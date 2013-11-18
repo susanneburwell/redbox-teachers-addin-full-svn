@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+<CONNSTRq>
+Data Source=RBSRV01\SQLEXPRESS;Initial Catalog=RedboxDB;User ID=CHDBUSR;Password=Chathumac1234
+</CONNSTRq>
+<CONNSTR>
+Data Source=DAVTON05\EXPRESS2;Initial Catalog=RedboxDB;User ID=CHDBUSR;Password=Chathumac1234
+</CONNSTR>
+<DEBUGLEVEL>3</DEBUGLEVEL>
+</Settings>
