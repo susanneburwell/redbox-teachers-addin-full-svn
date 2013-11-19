@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Data.Linq;
-using RedboxAddin.Models;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
 
@@ -28,7 +27,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                using (RedboxDB db = new RedboxDB(CONNSTR))
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
                     PopulateSchools(db);
                     PopulateYearGroup(db);
@@ -45,7 +44,7 @@ namespace RedboxAddin.Presentation
 
         #region LoadControls
 
-        private void PopulateSchools(RedboxDB db)
+        private void PopulateSchools(RedBoxDB db)
         {
             try
             {
@@ -62,7 +61,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void PopulateYearGroup(RedboxDB db)
+        private void PopulateYearGroup(RedBoxDB db)
         {
             try
             {
@@ -78,7 +77,7 @@ namespace RedboxAddin.Presentation
 
         }
 
-        private void PopulateTeacherLevel(RedboxDB db)
+        private void PopulateTeacherLevel(RedBoxDB db)
         {
             try
             {
@@ -96,6 +95,10 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
+        #region buttons
+        
+       
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (SaveRequest())
@@ -107,6 +110,20 @@ namespace RedboxAddin.Presentation
                 MessageBox.Show("Not Saved", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadTable();
+        }
+
+        private void frmNewRequest_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveLayout();
+        }
+
+        #endregion
+
+        #region actions  
 
         private bool SaveRequest()
         {
@@ -126,7 +143,7 @@ namespace RedboxAddin.Presentation
                 }
 
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                using (RedboxDB db = new RedboxDB(CONNSTR))
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
                     var mb = new MasterBooking();
 
@@ -196,6 +213,11 @@ namespace RedboxAddin.Presentation
 
 
                 gridControl1.DataSource = new DBManager().GetAvailability(monday);
+                gridView1.Columns[9].Caption = monday.ToString("ddd d MMM yy");
+                gridView1.Columns[10].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
+                gridView1.Columns[11].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
+                gridView1.Columns[12].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
+                gridView1.Columns[13].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
                 RestoreLayout();
             }
             catch (Exception ex)
@@ -221,6 +243,10 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception) { }
         }
+
+        #endregion
+
+        
 
     }
 }

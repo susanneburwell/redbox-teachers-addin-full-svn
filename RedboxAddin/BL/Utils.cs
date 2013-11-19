@@ -29,6 +29,75 @@ namespace RedboxAddin.BL
             return fullAddress;
         }
 
+        public static string CheckString(object myObject)
+        {
+            try
+            {
+                if (System.DBNull.Value == myObject)
+                {
+                    return "";
+                }
+                else if (myObject == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return Convert.ToString(myObject);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "CheckString Failed :- " + ex.Message);
+                return "";
+            }
+        }
+
+        public static bool CheckBool(object myObject)
+        {
+            try
+            {
+                if (System.DBNull.Value == myObject)
+                {
+                    return false;
+                }
+                else if (myObject == null)
+                {
+                    return false;
+                }
+                else if (myObject.ToString().ToLower() == "yes")
+                {
+                    return true;
+                }
+                else
+                {
+                    return Convert.ToBoolean(myObject);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "CheckBool Failed :- " + ex.Message);
+                return false;
+            }
+        }
+
+        public static Dictionary<int, string> ExtractAppointmentData(string data)
+        {
+            Dictionary<int, string> datastring = new Dictionary<int, string>();
+            try
+            {
+                string school = data.Substring(0, data.IndexOf(' ')).Trim();
+                string other = data.Substring(data.IndexOf(' ')).Trim();
+                datastring.Add(1, school);
+                datastring.Add(2, other);
+                return datastring;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in ExtractAppointmentData: " + ex.Message);
+                return null;
+            }
+        }
 
         //internal static bool CheckForRedboxFolder()
         //{

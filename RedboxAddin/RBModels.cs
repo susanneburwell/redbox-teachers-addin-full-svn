@@ -22,7 +22,7 @@ namespace RedboxAddin
 	using System;
 	
 	
-	public partial class RedboxDB : System.Data.Linq.DataContext
+	public partial class RedBoxDB : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -35,6 +35,9 @@ namespace RedboxAddin
     partial void InsertBooking(Booking instance);
     partial void UpdateBooking(Booking instance);
     partial void DeleteBooking(Booking instance);
+    partial void InsertContactData(ContactData instance);
+    partial void UpdateContactData(ContactData instance);
+    partial void DeleteContactData(ContactData instance);
     partial void InsertMasterBooking(MasterBooking instance);
     partial void UpdateMasterBooking(MasterBooking instance);
     partial void DeleteMasterBooking(MasterBooking instance);
@@ -61,25 +64,25 @@ namespace RedboxAddin
     partial void DeleteYearGroup(YearGroup instance);
     #endregion
 		
-		public RedboxDB(string connection) : 
+		public RedBoxDB(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public RedboxDB(System.Data.IDbConnection connection) : 
+		public RedBoxDB(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public RedboxDB(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public RedBoxDB(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public RedboxDB(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public RedBoxDB(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -98,6 +101,14 @@ namespace RedboxAddin
 			get
 			{
 				return this.GetTable<Booking>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ContactData> ContactDatas
+		{
+			get
+			{
+				return this.GetTable<ContactData>();
 			}
 		}
 		
@@ -262,7 +273,7 @@ namespace RedboxAddin
 		
 		private System.Nullable<long> _MasterBookingID;
 		
-		private System.Nullable<System.DateTime> _Date;
+		private System.DateTime _Date;
 		
 		private System.Nullable<bool> _Am;
 		
@@ -278,7 +289,7 @@ namespace RedboxAddin
     partial void OnIDChanged();
     partial void OnMasterBookingIDChanging(System.Nullable<long> value);
     partial void OnMasterBookingIDChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateChanging(System.DateTime value);
     partial void OnDateChanged();
     partial void OnAmChanging(System.Nullable<bool> value);
     partial void OnAmChanged();
@@ -336,8 +347,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		public System.DateTime Date
 		{
 			get
 			{
@@ -396,7 +407,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK__Bookings__Master__756D6ECB", Storage="_MasterBooking", ThisKey="MasterBookingID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK__Bookings__Master__070CFC19", Storage="_MasterBooking", ThisKey="MasterBookingID", OtherKey="ID", IsForeignKey=true)]
 		public MasterBooking MasterBooking
 		{
 			get
@@ -451,6 +462,236 @@ namespace RedboxAddin
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ContactData")]
+	public partial class ContactData : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ContactID;
+		
+		private string _Live;
+		
+		private string _Wants;
+		
+		private string _YrGroup;
+		
+		private string _Pay;
+		
+		private System.Nullable<bool> _PofA;
+		
+		private string _NoGo;
+		
+		private string _RequestedBy;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnContactIDChanging(long value);
+    partial void OnContactIDChanged();
+    partial void OnLiveChanging(string value);
+    partial void OnLiveChanged();
+    partial void OnWantsChanging(string value);
+    partial void OnWantsChanged();
+    partial void OnYrGroupChanging(string value);
+    partial void OnYrGroupChanged();
+    partial void OnPayChanging(string value);
+    partial void OnPayChanged();
+    partial void OnPofAChanging(System.Nullable<bool> value);
+    partial void OnPofAChanged();
+    partial void OnNoGoChanging(string value);
+    partial void OnNoGoChanged();
+    partial void OnRequestedByChanging(string value);
+    partial void OnRequestedByChanged();
+    #endregion
+		
+		public ContactData()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long ContactID
+		{
+			get
+			{
+				return this._ContactID;
+			}
+			set
+			{
+				if ((this._ContactID != value))
+				{
+					this.OnContactIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContactID = value;
+					this.SendPropertyChanged("ContactID");
+					this.OnContactIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Live", DbType="NVarChar(50)")]
+		public string Live
+		{
+			get
+			{
+				return this._Live;
+			}
+			set
+			{
+				if ((this._Live != value))
+				{
+					this.OnLiveChanging(value);
+					this.SendPropertyChanging();
+					this._Live = value;
+					this.SendPropertyChanged("Live");
+					this.OnLiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Wants", DbType="NVarChar(50)")]
+		public string Wants
+		{
+			get
+			{
+				return this._Wants;
+			}
+			set
+			{
+				if ((this._Wants != value))
+				{
+					this.OnWantsChanging(value);
+					this.SendPropertyChanging();
+					this._Wants = value;
+					this.SendPropertyChanged("Wants");
+					this.OnWantsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YrGroup", DbType="NVarChar(20)")]
+		public string YrGroup
+		{
+			get
+			{
+				return this._YrGroup;
+			}
+			set
+			{
+				if ((this._YrGroup != value))
+				{
+					this.OnYrGroupChanging(value);
+					this.SendPropertyChanging();
+					this._YrGroup = value;
+					this.SendPropertyChanged("YrGroup");
+					this.OnYrGroupChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pay", DbType="NVarChar(10)")]
+		public string Pay
+		{
+			get
+			{
+				return this._Pay;
+			}
+			set
+			{
+				if ((this._Pay != value))
+				{
+					this.OnPayChanging(value);
+					this.SendPropertyChanging();
+					this._Pay = value;
+					this.SendPropertyChanged("Pay");
+					this.OnPayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PofA", DbType="Bit")]
+		public System.Nullable<bool> PofA
+		{
+			get
+			{
+				return this._PofA;
+			}
+			set
+			{
+				if ((this._PofA != value))
+				{
+					this.OnPofAChanging(value);
+					this.SendPropertyChanging();
+					this._PofA = value;
+					this.SendPropertyChanged("PofA");
+					this.OnPofAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoGo", DbType="NVarChar(100)")]
+		public string NoGo
+		{
+			get
+			{
+				return this._NoGo;
+			}
+			set
+			{
+				if ((this._NoGo != value))
+				{
+					this.OnNoGoChanging(value);
+					this.SendPropertyChanging();
+					this._NoGo = value;
+					this.SendPropertyChanged("NoGo");
+					this.OnNoGoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestedBy", DbType="NVarChar(10)")]
+		public string RequestedBy
+		{
+			get
+			{
+				return this._RequestedBy;
+			}
+			set
+			{
+				if ((this._RequestedBy != value))
+				{
+					this.OnRequestedByChanging(value);
+					this.SendPropertyChanging();
+					this._RequestedBy = value;
+					this.SendPropertyChanged("RequestedBy");
+					this.OnRequestedByChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MasterBookings")]
 	public partial class MasterBooking : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -459,7 +700,7 @@ namespace RedboxAddin
 		
 		private long _ID;
 		
-		private System.Nullable<long> _SchoolID;
+		private long _SchoolID;
 		
 		private System.Nullable<long> _ContactID;
 		
@@ -469,13 +710,13 @@ namespace RedboxAddin
 		
 		private string _Details;
 		
-		private System.Nullable<bool> _IsAbsence;
+		private System.DateTime _StartDate;
+		
+		private System.DateTime _EndDate;
+		
+		private bool _IsAbsence;
 		
 		private string _AbsenceReason;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
 		
 		private EntitySet<Booking> _Bookings;
 		
@@ -485,7 +726,7 @@ namespace RedboxAddin
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnSchoolIDChanging(System.Nullable<long> value);
+    partial void OnSchoolIDChanging(long value);
     partial void OnSchoolIDChanged();
     partial void OnContactIDChanging(System.Nullable<long> value);
     partial void OnContactIDChanged();
@@ -495,14 +736,14 @@ namespace RedboxAddin
     partial void OnTeacherLevelChanged();
     partial void OnDetailsChanging(string value);
     partial void OnDetailsChanged();
-    partial void OnIsAbsenceChanging(System.Nullable<bool> value);
+    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnIsAbsenceChanging(bool value);
     partial void OnIsAbsenceChanged();
     partial void OnAbsenceReasonChanging(string value);
     partial void OnAbsenceReasonChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
     #endregion
 		
 		public MasterBooking()
@@ -531,8 +772,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolID", DbType="BigInt")]
-		public System.Nullable<long> SchoolID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolID", DbType="BigInt NOT NULL")]
+		public long SchoolID
 		{
 			get
 			{
@@ -631,8 +872,48 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="isAbsence", Storage="_IsAbsence", DbType="Bit")]
-		public System.Nullable<bool> IsAbsence
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date NOT NULL")]
+		public System.DateTime StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date NOT NULL")]
+		public System.DateTime EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="isAbsence", Storage="_IsAbsence", DbType="Bit NOT NULL")]
+		public bool IsAbsence
 		{
 			get
 			{
@@ -671,47 +952,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK__Bookings__Master__756D6ECB", Storage="_Bookings", ThisKey="ID", OtherKey="MasterBookingID", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK__Bookings__Master__070CFC19", Storage="_Bookings", ThisKey="ID", OtherKey="MasterBookingID", DeleteRule="NO ACTION")]
 		public EntitySet<Booking> Bookings
 		{
 			get

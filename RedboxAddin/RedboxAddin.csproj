@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>false</RegisterForComInterop>
+    <RegisterForComInterop>true</RegisterForComInterop>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -162,6 +162,12 @@
     <Compile Include="Presentation\frmExtractData.Designer.cs">
       <DependentUpon>frmExtractData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmImport.Designer.cs">
+      <DependentUpon>frmImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmNames.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,7 +204,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RBModels.cs" />
+    <Compile Include="RBModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -262,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmExtractData.resx">
       <DependentUpon>frmExtractData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmImport.resx">
+      <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmNames.resx">
       <DependentUpon>frmNames.cs</DependentUpon>

@@ -171,7 +171,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(577, 3);
+            this.btnSave.Location = new System.Drawing.Point(506, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 23);
             this.btnSave.TabIndex = 13;
@@ -181,12 +181,13 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(707, 3);
+            this.btnSearch.Location = new System.Drawing.Point(629, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(117, 23);
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -202,7 +203,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 230F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(865, 546);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 546);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // panel1
@@ -212,7 +213,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 233);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(859, 34);
+            this.panel1.Size = new System.Drawing.Size(911, 34);
             this.panel1.TabIndex = 0;
             // 
             // panel2
@@ -232,7 +233,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(859, 224);
+            this.panel2.Size = new System.Drawing.Size(911, 224);
             this.panel2.TabIndex = 1;
             // 
             // gridControl1
@@ -241,7 +242,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 273);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(859, 270);
+            this.gridControl1.Size = new System.Drawing.Size(911, 270);
             this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -270,63 +271,107 @@
             // 
             this.gridColumn1.Caption = "Teacher";
             this.gridColumn1.FieldName = "Teacher";
+            this.gridColumn1.MaxWidth = 200;
+            this.gridColumn1.MinWidth = 150;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 150;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Live";
+            this.gridColumn2.FieldName = "Live";
+            this.gridColumn2.MaxWidth = 75;
+            this.gridColumn2.MinWidth = 50;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Wants";
+            this.gridColumn3.FieldName = "Wants";
+            this.gridColumn3.MaxWidth = 85;
+            this.gridColumn3.MinWidth = 75;
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Yr Group";
+            this.gridColumn4.FieldName = "YrGroup";
+            this.gridColumn4.MaxWidth = 70;
+            this.gridColumn4.MinWidth = 50;
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 70;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "QTS";
+            this.gridColumn5.FieldName = "QTS";
+            this.gridColumn5.MaxWidth = 40;
+            this.gridColumn5.MinWidth = 40;
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.Width = 40;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Pay";
+            this.gridColumn6.FieldName = "Pay";
+            this.gridColumn6.MaxWidth = 40;
+            this.gridColumn6.MinWidth = 30;
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.Width = 30;
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "P of A";
+            this.gridColumn7.FieldName = "PofA";
+            this.gridColumn7.MaxWidth = 40;
+            this.gridColumn7.MinWidth = 40;
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.ReadOnly = true;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.Width = 40;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "CRB";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.OptionsColumn.ReadOnly = true;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "NoGo";
+            this.gridColumn9.FieldName = "NoGo";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.OptionsColumn.ReadOnly = true;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
             // 
@@ -335,6 +380,8 @@
             this.gridColumn10.Caption = "Mon";
             this.gridColumn10.FieldName = "Monday";
             this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.ReadOnly = true;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 9;
             // 
@@ -343,6 +390,8 @@
             this.gridColumn11.Caption = "Tue";
             this.gridColumn11.FieldName = "Tuesday";
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.OptionsColumn.ReadOnly = true;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 10;
             // 
@@ -351,6 +400,8 @@
             this.gridColumn12.Caption = "Wed";
             this.gridColumn12.FieldName = "Wednesday";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.OptionsColumn.ReadOnly = true;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 11;
             // 
@@ -359,28 +410,33 @@
             this.gridColumn13.Caption = "Thur";
             this.gridColumn13.FieldName = "Thursday";
             this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
+            this.gridColumn13.OptionsColumn.ReadOnly = true;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 13;
+            this.gridColumn13.VisibleIndex = 12;
             // 
             // gridColumn14
             // 
             this.gridColumn14.Caption = "Fri";
             this.gridColumn14.FieldName = "Friday";
             this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.OptionsColumn.ReadOnly = true;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 12;
+            this.gridColumn14.VisibleIndex = 13;
             // 
             // frmNewRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 546);
+            this.ClientSize = new System.Drawing.Size(917, 546);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNewRequest";
             this.Text = "NewRequest";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNewRequest_FormClosing);
             this.Load += new System.EventHandler(this.frmNewRequest_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
