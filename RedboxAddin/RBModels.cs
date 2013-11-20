@@ -44,6 +44,9 @@ namespace RedboxAddin
     partial void InsertNoGo(NoGo instance);
     partial void UpdateNoGo(NoGo instance);
     partial void DeleteNoGo(NoGo instance);
+    partial void InsertRate(Rate instance);
+    partial void UpdateRate(Rate instance);
+    partial void DeleteRate(Rate instance);
     partial void InsertSchool(School instance);
     partial void UpdateSchool(School instance);
     partial void DeleteSchool(School instance);
@@ -125,6 +128,14 @@ namespace RedboxAddin
 			get
 			{
 				return this.GetTable<NoGo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Rate> Rates
+		{
+			get
+			{
+				return this.GetTable<Rate>();
 			}
 		}
 		
@@ -478,11 +489,39 @@ namespace RedboxAddin
 		
 		private string _Pay;
 		
-		private System.Nullable<bool> _PofA;
+		private string _TeacherStatus;
+		
+		private string _CRBStatus;
 		
 		private string _NoGo;
 		
 		private string _RequestedBy;
+		
+		private System.Nullable<decimal> _DayRate;
+		
+		private System.Nullable<decimal> _HalfDayRate;
+		
+		private decimal _DayRateLT;
+		
+		private decimal _HalfDayRateLT;
+		
+		private bool _NN;
+		
+		private bool _QNN;
+		
+		private bool _Rec;
+		
+		private bool _Yr1;
+		
+		private bool _Yr2;
+		
+		private bool _Yr3;
+		
+		private bool _Yr4;
+		
+		private bool _Yr5;
+		
+		private bool _Yr6;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -498,12 +537,40 @@ namespace RedboxAddin
     partial void OnYrGroupChanged();
     partial void OnPayChanging(string value);
     partial void OnPayChanged();
-    partial void OnPofAChanging(System.Nullable<bool> value);
-    partial void OnPofAChanged();
+    partial void OnTeacherStatusChanging(string value);
+    partial void OnTeacherStatusChanged();
+    partial void OnCRBStatusChanging(string value);
+    partial void OnCRBStatusChanged();
     partial void OnNoGoChanging(string value);
     partial void OnNoGoChanged();
     partial void OnRequestedByChanging(string value);
     partial void OnRequestedByChanged();
+    partial void OnDayRateChanging(System.Nullable<decimal> value);
+    partial void OnDayRateChanged();
+    partial void OnHalfDayRateChanging(System.Nullable<decimal> value);
+    partial void OnHalfDayRateChanged();
+    partial void OnDayRateLTChanging(decimal value);
+    partial void OnDayRateLTChanged();
+    partial void OnHalfDayRateLTChanging(decimal value);
+    partial void OnHalfDayRateLTChanged();
+    partial void OnNNChanging(bool value);
+    partial void OnNNChanged();
+    partial void OnQNNChanging(bool value);
+    partial void OnQNNChanged();
+    partial void OnRecChanging(bool value);
+    partial void OnRecChanged();
+    partial void OnYr1Changing(bool value);
+    partial void OnYr1Changed();
+    partial void OnYr2Changing(bool value);
+    partial void OnYr2Changed();
+    partial void OnYr3Changing(bool value);
+    partial void OnYr3Changed();
+    partial void OnYr4Changing(bool value);
+    partial void OnYr4Changed();
+    partial void OnYr5Changing(bool value);
+    partial void OnYr5Changed();
+    partial void OnYr6Changing(bool value);
+    partial void OnYr6Changed();
     #endregion
 		
 		public ContactData()
@@ -611,22 +678,42 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PofA", DbType="Bit")]
-		public System.Nullable<bool> PofA
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherStatus", DbType="NVarChar(10)")]
+		public string TeacherStatus
 		{
 			get
 			{
-				return this._PofA;
+				return this._TeacherStatus;
 			}
 			set
 			{
-				if ((this._PofA != value))
+				if ((this._TeacherStatus != value))
 				{
-					this.OnPofAChanging(value);
+					this.OnTeacherStatusChanging(value);
 					this.SendPropertyChanging();
-					this._PofA = value;
-					this.SendPropertyChanged("PofA");
-					this.OnPofAChanged();
+					this._TeacherStatus = value;
+					this.SendPropertyChanged("TeacherStatus");
+					this.OnTeacherStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRBStatus", DbType="NVarChar(50)")]
+		public string CRBStatus
+		{
+			get
+			{
+				return this._CRBStatus;
+			}
+			set
+			{
+				if ((this._CRBStatus != value))
+				{
+					this.OnCRBStatusChanging(value);
+					this.SendPropertyChanging();
+					this._CRBStatus = value;
+					this.SendPropertyChanged("CRBStatus");
+					this.OnCRBStatusChanged();
 				}
 			}
 		}
@@ -667,6 +754,266 @@ namespace RedboxAddin
 					this._RequestedBy = value;
 					this.SendPropertyChanged("RequestedBy");
 					this.OnRequestedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRate
+		{
+			get
+			{
+				return this._DayRate;
+			}
+			set
+			{
+				if ((this._DayRate != value))
+				{
+					this.OnDayRateChanging(value);
+					this.SendPropertyChanging();
+					this._DayRate = value;
+					this.SendPropertyChanged("DayRate");
+					this.OnDayRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRate
+		{
+			get
+			{
+				return this._HalfDayRate;
+			}
+			set
+			{
+				if ((this._HalfDayRate != value))
+				{
+					this.OnHalfDayRateChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayRate = value;
+					this.SendPropertyChanged("HalfDayRate");
+					this.OnHalfDayRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRateLT", DbType="Decimal(7,2) NOT NULL")]
+		public decimal DayRateLT
+		{
+			get
+			{
+				return this._DayRateLT;
+			}
+			set
+			{
+				if ((this._DayRateLT != value))
+				{
+					this.OnDayRateLTChanging(value);
+					this.SendPropertyChanging();
+					this._DayRateLT = value;
+					this.SendPropertyChanged("DayRateLT");
+					this.OnDayRateLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRateLT", DbType="Decimal(7,2) NOT NULL")]
+		public decimal HalfDayRateLT
+		{
+			get
+			{
+				return this._HalfDayRateLT;
+			}
+			set
+			{
+				if ((this._HalfDayRateLT != value))
+				{
+					this.OnHalfDayRateLTChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayRateLT = value;
+					this.SendPropertyChanged("HalfDayRateLT");
+					this.OnHalfDayRateLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NN", DbType="Bit NOT NULL")]
+		public bool NN
+		{
+			get
+			{
+				return this._NN;
+			}
+			set
+			{
+				if ((this._NN != value))
+				{
+					this.OnNNChanging(value);
+					this.SendPropertyChanging();
+					this._NN = value;
+					this.SendPropertyChanged("NN");
+					this.OnNNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QNN", DbType="Bit NOT NULL")]
+		public bool QNN
+		{
+			get
+			{
+				return this._QNN;
+			}
+			set
+			{
+				if ((this._QNN != value))
+				{
+					this.OnQNNChanging(value);
+					this.SendPropertyChanging();
+					this._QNN = value;
+					this.SendPropertyChanged("QNN");
+					this.OnQNNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rec", DbType="Bit NOT NULL")]
+		public bool Rec
+		{
+			get
+			{
+				return this._Rec;
+			}
+			set
+			{
+				if ((this._Rec != value))
+				{
+					this.OnRecChanging(value);
+					this.SendPropertyChanging();
+					this._Rec = value;
+					this.SendPropertyChanged("Rec");
+					this.OnRecChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Yr1", DbType="Bit NOT NULL")]
+		public bool Yr1
+		{
+			get
+			{
+				return this._Yr1;
+			}
+			set
+			{
+				if ((this._Yr1 != value))
+				{
+					this.OnYr1Changing(value);
+					this.SendPropertyChanging();
+					this._Yr1 = value;
+					this.SendPropertyChanged("Yr1");
+					this.OnYr1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Yr2", DbType="Bit NOT NULL")]
+		public bool Yr2
+		{
+			get
+			{
+				return this._Yr2;
+			}
+			set
+			{
+				if ((this._Yr2 != value))
+				{
+					this.OnYr2Changing(value);
+					this.SendPropertyChanging();
+					this._Yr2 = value;
+					this.SendPropertyChanged("Yr2");
+					this.OnYr2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Yr3", DbType="Bit NOT NULL")]
+		public bool Yr3
+		{
+			get
+			{
+				return this._Yr3;
+			}
+			set
+			{
+				if ((this._Yr3 != value))
+				{
+					this.OnYr3Changing(value);
+					this.SendPropertyChanging();
+					this._Yr3 = value;
+					this.SendPropertyChanged("Yr3");
+					this.OnYr3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Yr4", DbType="Bit NOT NULL")]
+		public bool Yr4
+		{
+			get
+			{
+				return this._Yr4;
+			}
+			set
+			{
+				if ((this._Yr4 != value))
+				{
+					this.OnYr4Changing(value);
+					this.SendPropertyChanging();
+					this._Yr4 = value;
+					this.SendPropertyChanged("Yr4");
+					this.OnYr4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Yr5", DbType="Bit NOT NULL")]
+		public bool Yr5
+		{
+			get
+			{
+				return this._Yr5;
+			}
+			set
+			{
+				if ((this._Yr5 != value))
+				{
+					this.OnYr5Changing(value);
+					this.SendPropertyChanging();
+					this._Yr5 = value;
+					this.SendPropertyChanged("Yr5");
+					this.OnYr5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Yr6", DbType="Bit NOT NULL")]
+		public bool Yr6
+		{
+			get
+			{
+				return this._Yr6;
+			}
+			set
+			{
+				if ((this._Yr6 != value))
+				{
+					this.OnYr6Changing(value);
+					this.SendPropertyChanging();
+					this._Yr6 = value;
+					this.SendPropertyChanged("Yr6");
+					this.OnYr6Changed();
 				}
 			}
 		}
@@ -1132,6 +1479,164 @@ namespace RedboxAddin
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rates")]
+	public partial class Rate : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Type;
+		
+		private decimal _Rate1;
+		
+		private bool _TeacherRate;
+		
+		private bool _SchoolCharge;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnRate1Changing(decimal value);
+    partial void OnRate1Changed();
+    partial void OnTeacherRateChanging(bool value);
+    partial void OnTeacherRateChanged();
+    partial void OnSchoolChargeChanging(bool value);
+    partial void OnSchoolChargeChanged();
+    #endregion
+		
+		public Rate()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Rate", Storage="_Rate1", DbType="Decimal(7,2) NOT NULL")]
+		public decimal Rate1
+		{
+			get
+			{
+				return this._Rate1;
+			}
+			set
+			{
+				if ((this._Rate1 != value))
+				{
+					this.OnRate1Changing(value);
+					this.SendPropertyChanging();
+					this._Rate1 = value;
+					this.SendPropertyChanged("Rate1");
+					this.OnRate1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeacherRate", DbType="Bit NOT NULL")]
+		public bool TeacherRate
+		{
+			get
+			{
+				return this._TeacherRate;
+			}
+			set
+			{
+				if ((this._TeacherRate != value))
+				{
+					this.OnTeacherRateChanging(value);
+					this.SendPropertyChanging();
+					this._TeacherRate = value;
+					this.SendPropertyChanged("TeacherRate");
+					this.OnTeacherRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolCharge", DbType="Bit NOT NULL")]
+		public bool SchoolCharge
+		{
+			get
+			{
+				return this._SchoolCharge;
+			}
+			set
+			{
+				if ((this._SchoolCharge != value))
+				{
+					this.OnSchoolChargeChanging(value);
+					this.SendPropertyChanging();
+					this._SchoolCharge = value;
+					this.SendPropertyChanged("SchoolCharge");
+					this.OnSchoolChargeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Schools")]
 	public partial class School : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1142,6 +1647,26 @@ namespace RedboxAddin
 		
 		private string _SchoolName;
 		
+		private decimal _DayCharge;
+		
+		private decimal _HalfDayCharge;
+		
+		private decimal _DayChargeLT;
+		
+		private decimal _HalfDayChargeLT;
+		
+		private bool _RequirePofA;
+		
+		private string _ShortName;
+		
+		private string _MainContact;
+		
+		private string _EmailAddress;
+		
+		private string _Telephone;
+		
+		private string _Fax;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1150,6 +1675,26 @@ namespace RedboxAddin
     partial void OnIDChanged();
     partial void OnSchoolNameChanging(string value);
     partial void OnSchoolNameChanged();
+    partial void OnDayChargeChanging(decimal value);
+    partial void OnDayChargeChanged();
+    partial void OnHalfDayChargeChanging(decimal value);
+    partial void OnHalfDayChargeChanged();
+    partial void OnDayChargeLTChanging(decimal value);
+    partial void OnDayChargeLTChanged();
+    partial void OnHalfDayChargeLTChanging(decimal value);
+    partial void OnHalfDayChargeLTChanged();
+    partial void OnRequirePofAChanging(bool value);
+    partial void OnRequirePofAChanged();
+    partial void OnShortNameChanging(string value);
+    partial void OnShortNameChanged();
+    partial void OnMainContactChanging(string value);
+    partial void OnMainContactChanged();
+    partial void OnEmailAddressChanging(string value);
+    partial void OnEmailAddressChanged();
+    partial void OnTelephoneChanging(string value);
+    partial void OnTelephoneChanged();
+    partial void OnFaxChanging(string value);
+    partial void OnFaxChanged();
     #endregion
 		
 		public School()
@@ -1177,7 +1722,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolName", DbType="NVarChar(200)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
 		public string SchoolName
 		{
 			get
@@ -1193,6 +1738,206 @@ namespace RedboxAddin
 					this._SchoolName = value;
 					this.SendPropertyChanged("SchoolName");
 					this.OnSchoolNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayCharge", DbType="Decimal(7,2) NOT NULL")]
+		public decimal DayCharge
+		{
+			get
+			{
+				return this._DayCharge;
+			}
+			set
+			{
+				if ((this._DayCharge != value))
+				{
+					this.OnDayChargeChanging(value);
+					this.SendPropertyChanging();
+					this._DayCharge = value;
+					this.SendPropertyChanged("DayCharge");
+					this.OnDayChargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayCharge", DbType="Decimal(7,2) NOT NULL")]
+		public decimal HalfDayCharge
+		{
+			get
+			{
+				return this._HalfDayCharge;
+			}
+			set
+			{
+				if ((this._HalfDayCharge != value))
+				{
+					this.OnHalfDayChargeChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayCharge = value;
+					this.SendPropertyChanged("HalfDayCharge");
+					this.OnHalfDayChargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayChargeLT", DbType="Decimal(7,2) NOT NULL")]
+		public decimal DayChargeLT
+		{
+			get
+			{
+				return this._DayChargeLT;
+			}
+			set
+			{
+				if ((this._DayChargeLT != value))
+				{
+					this.OnDayChargeLTChanging(value);
+					this.SendPropertyChanging();
+					this._DayChargeLT = value;
+					this.SendPropertyChanged("DayChargeLT");
+					this.OnDayChargeLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayChargeLT", DbType="Decimal(7,2) NOT NULL")]
+		public decimal HalfDayChargeLT
+		{
+			get
+			{
+				return this._HalfDayChargeLT;
+			}
+			set
+			{
+				if ((this._HalfDayChargeLT != value))
+				{
+					this.OnHalfDayChargeLTChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayChargeLT = value;
+					this.SendPropertyChanged("HalfDayChargeLT");
+					this.OnHalfDayChargeLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequirePofA", DbType="Bit NOT NULL")]
+		public bool RequirePofA
+		{
+			get
+			{
+				return this._RequirePofA;
+			}
+			set
+			{
+				if ((this._RequirePofA != value))
+				{
+					this.OnRequirePofAChanging(value);
+					this.SendPropertyChanging();
+					this._RequirePofA = value;
+					this.SendPropertyChanged("RequirePofA");
+					this.OnRequirePofAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ShortName
+		{
+			get
+			{
+				return this._ShortName;
+			}
+			set
+			{
+				if ((this._ShortName != value))
+				{
+					this.OnShortNameChanging(value);
+					this.SendPropertyChanging();
+					this._ShortName = value;
+					this.SendPropertyChanged("ShortName");
+					this.OnShortNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainContact", DbType="NVarChar(50)")]
+		public string MainContact
+		{
+			get
+			{
+				return this._MainContact;
+			}
+			set
+			{
+				if ((this._MainContact != value))
+				{
+					this.OnMainContactChanging(value);
+					this.SendPropertyChanging();
+					this._MainContact = value;
+					this.SendPropertyChanged("MainContact");
+					this.OnMainContactChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailAddress", DbType="NVarChar(50)")]
+		public string EmailAddress
+		{
+			get
+			{
+				return this._EmailAddress;
+			}
+			set
+			{
+				if ((this._EmailAddress != value))
+				{
+					this.OnEmailAddressChanging(value);
+					this.SendPropertyChanging();
+					this._EmailAddress = value;
+					this.SendPropertyChanged("EmailAddress");
+					this.OnEmailAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telephone", DbType="NVarChar(50)")]
+		public string Telephone
+		{
+			get
+			{
+				return this._Telephone;
+			}
+			set
+			{
+				if ((this._Telephone != value))
+				{
+					this.OnTelephoneChanging(value);
+					this.SendPropertyChanging();
+					this._Telephone = value;
+					this.SendPropertyChanged("Telephone");
+					this.OnTelephoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="NVarChar(50)")]
+		public string Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this.OnFaxChanging(value);
+					this.SendPropertyChanging();
+					this._Fax = value;
+					this.SendPropertyChanged("Fax");
+					this.OnFaxChanged();
 				}
 			}
 		}

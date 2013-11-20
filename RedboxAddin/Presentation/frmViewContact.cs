@@ -77,7 +77,9 @@ namespace RedboxAddin.Presentation
             }
             else
             {
+                lblID.Text = contactObj.contactID.ToString();
                 lblFullName.Text = Utils.GetFullName(contactObj.Title, contactObj.FirstName, contactObj.MiddleName, contactObj.LastName, contactObj.Suffix);
+                lblTeacherName.Text = lblFullName.Text;
                 txtEmail.Text = contactObj.Email1;
                 txtJobTitle.Text = contactObj.JobTitle;
                 addressStreet = contactObj.AddressStreet;
@@ -139,6 +141,7 @@ namespace RedboxAddin.Presentation
                 cmbPayDetails.Text = contactObj.PayDetails;
                 chkPAYETeacherContractSigned.Checked = contactObj.PAYETeacherContractSigned;
                 picturebox1.ImageLocation = contactObj.PhotoLocation;
+                pictureBox2.ImageLocation = contactObj.PhotoLocation;
                 txtFilePath.Text = contactObj.PhotoLocation;
                 dtGradDate.Value = contactObj.GraduationDate;
                 dtProtabilityCheckSent.Value = contactObj.ProtabilityCheckSent;
@@ -189,6 +192,8 @@ namespace RedboxAddin.Presentation
                 txtVisaLocation.Text = contactObj.VisaLocation;
                 txtYearGroup.Text = contactObj.YearGroup;
                 CheckReminderButtonColors();
+
+                LoadSummaryInfo();
             }
         }
 
@@ -310,6 +315,7 @@ namespace RedboxAddin.Presentation
                 if (CurrentContactID != 0)
                 {
                     result = new DBManager().UpdateContact(contactObj, CurrentContactID);
+                    SaveSummaryInfo();
                     if (result)
                     {
                         MessageBox.Show("Contact saved successfully", "Save Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -322,17 +328,17 @@ namespace RedboxAddin.Presentation
                     }
                 }
                 else
-                {   
+                {
                     //check for duplicates
                     List<long> dupesFound = new DBManager().CheckDupes(firstName, lastName);
                     if (dupesFound != null)
                     {
-                        DialogResult dr = MessageBox.Show("There is already a contact with name \""+firstName+" "+lastName+"\""
-                            +Environment.NewLine+"Do you want to open the duplicates ?"
-                            +Environment.NewLine+"Yes - Open duplicates , No - Save anyway , Cancel - Do nothing",
-                            "Duplicates found",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question);
+                        DialogResult dr = MessageBox.Show("There is already a contact with name \"" + firstName + " " + lastName + "\""
+                            + Environment.NewLine + "Do you want to open the duplicates ?"
+                            + Environment.NewLine + "Yes - Open duplicates , No - Save anyway , Cancel - Do nothing",
+                            "Duplicates found", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                         if (dr == System.Windows.Forms.DialogResult.Yes)
-                        { 
+                        {
                             //Open the contacts
                             int count = 0;
                             foreach (var contactID in dupesFound)
@@ -345,7 +351,7 @@ namespace RedboxAddin.Presentation
                             return false;
                         }
                         else if (dr == System.Windows.Forms.DialogResult.No) { /* Let the function flow**/ }
-                        else 
+                        else
                         {
                             return false;
                         }
@@ -354,6 +360,7 @@ namespace RedboxAddin.Presentation
                     CurrentContactID = new DBManager().AddContact(contactObj);
                     if (CurrentContactID != 0)
                     {
+                        SaveSummaryInfo();
                         MessageBox.Show("Contact saved successfully", "Save Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return true;
                     }
@@ -950,7 +957,134 @@ namespace RedboxAddin.Presentation
 
         }
 
+        #region NewCode
 
+        private void btnKS1_Click(object sender, EventArgs e)
+        {
+            if (chkYr1.Checked)
+            {
+                chkYr1.Checked = false;
+                chkYr2.Checked = false;
+                chkYr3.Checked = false;
+            }
+            else
+            {
+                chkYr1.Checked = true;
+                chkYr2.Checked = true;
+                chkYr3.Checked = true;
+            }
+        }
+
+        private void btnKS2_Click(object sender, EventArgs e)
+        {
+            if (chkYr4.Checked)
+            {
+                chkYr4.Checked = false;
+                chkYr5.Checked = false;
+                chkYr6.Checked = false;
+            }
+            else
+            {
+                chkYr4.Checked = true;
+                chkYr5.Checked = true;
+                chkYr6.Checked = true;
+            }
+        }
+
+        private void SaveSummaryInfo()
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var contacts = (from s in db.ContactDatas
+                                    where s.ContactID == CurrentContactID
+                                    select s).Distinct();
+
+                    foreach (ContactData cd in contacts)
+                    {
+                        cd.Live = txtLives.Text;
+                        cd.NoGo = txtNoGo.Text;
+                        cd.Wants = txtWants.Text;
+                        cd.CRBStatus = txtCRBstatus.Text;
+                        cd.TeacherStatus = txtTeacherStatus.Text;
+                        cd.NN = chkNN.Checked;
+                        cd.QNN = chkQNN.Checked;
+                        cd.Rec = chkRec.Checked;
+                        cd.Yr1 = chkYr1.Checked;
+                        cd.Yr2 = chkYr2.Checked;
+                        cd.Yr3 = chkYr3.Checked;
+                        cd.Yr4 = chkYr4.Checked;
+                        cd.Yr5 = chkYr5.Checked;
+                        cd.Yr6 = chkYr6.Checked;
+                        cd.DayRate = Convert.ToDecimal(txtDayRate.Text);
+                        cd.HalfDayRate = Convert.ToDecimal(txtHfDayRate.Text);
+                        cd.DayRateLT = Convert.ToDecimal(txtLTDay.Text);
+                        cd.HalfDayRateLT = Convert.ToDecimal(txtLTHfDay.Text);
+
+                        db.SubmitChanges();
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SaveSummaryInfo: " + ex.Message);
+            }
+        }
+
+        private void LoadSummaryInfo()
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.ContactDatas.FirstOrDefault(s => s.ContactID == CurrentContactID);
+
+                    if (cd == null)
+                    {
+                        cd = new ContactData();
+                        cd.ContactID = CurrentContactID;
+                        db.ContactDatas.InsertOnSubmit(cd);
+                        db.SubmitChanges();
+
+                    }
+                    else
+                    {
+
+                        txtLives.Text = cd.Live;
+                        txtNoGo.Text = cd.NoGo;
+                        txtWants.Text = cd.Wants;
+                        txtCRBstatus.Text = cd.CRBStatus;
+                        txtTeacherStatus.Text = cd.TeacherStatus;
+                        chkNN.Checked = cd.NN;
+                        chkQNN.Checked = cd.QNN;
+                        chkRec.Checked = cd.Rec;
+                        chkYr1.Checked = cd.Yr1;
+                        chkYr2.Checked = cd.Yr2;
+                        chkYr3.Checked = cd.Yr3;
+                        chkYr4.Checked = cd.Yr4;
+                        chkYr5.Checked = cd.Yr5;
+                        chkYr6.Checked = cd.Yr6;
+                        txtDayRate.Text = cd.DayRate.ToString();
+                        txtHfDayRate.Text = cd.HalfDayRate.ToString();
+                        txtLTDay.Text = cd.DayRateLT.ToString();
+                        txtLTHfDay.Text = cd.HalfDayRateLT.ToString();
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in LoadSummaryInfo(): " + ex.Message);
+            }
+        }
+
+
+        #endregion
 
     }
 }

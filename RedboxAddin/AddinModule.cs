@@ -51,6 +51,8 @@ namespace RedboxAddin
         private ADXRibbonMenu adxOptions;
         private ADXRibbonButton adxImportXL;
         private ADXRibbonButton adxImport;
+        private ADXRibbonButton adxImportSchools;
+        private ADXRibbonButton adxEditSchool;
 
         #region Component Designer generated code
         /// <summary>
@@ -92,6 +94,8 @@ namespace RedboxAddin
             this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -195,12 +199,12 @@ namespace RedboxAddin
             // 
             // olFrmBotNavi
             // 
-            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
+            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmBotNavi.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.BottomNavigationPane;
             this.olFrmBotNavi.FormClassName = "RedboxAddin.Presentation.frmBotNavi";
@@ -213,12 +217,12 @@ namespace RedboxAddin
             // olFrmExplorer
             // 
             this.olFrmExplorer.Enabled = false;
-            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
+            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmExplorer.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmExplorer.FolderName = "Inbox";
@@ -228,12 +232,12 @@ namespace RedboxAddin
             // olFrmReminders
             // 
             this.olFrmReminders.Enabled = false;
-            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
+            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmReminders.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmReminders.FolderName = "Redbox";
@@ -249,12 +253,12 @@ namespace RedboxAddin
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnNewReminders);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnCheckForUpdates);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnAbout);
-            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem)
+            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
             this.commandBarRedboxAddin.UpdateCounter = 14;
@@ -328,7 +332,7 @@ namespace RedboxAddin
             this.adxtab.Controls.Add(this.adxRibbonGroup2);
             this.adxtab.Id = "adxRibbonTab_6009b89e68584fae8b43fda66b3b5ffb";
             this.adxtab.IdMso = "TabMail";
-            this.adxtab.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxtab.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             // 
             // adxRibbonGroup2
@@ -340,7 +344,7 @@ namespace RedboxAddin
             this.adxRibbonGroup2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxRibbonGroup2.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxRibbonGroup2.InsertBeforeIdMso = "GroupMailDelete";
-            this.adxRibbonGroup2.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxRibbonGroup2.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             // 
             // adxNewRequest
@@ -348,7 +352,7 @@ namespace RedboxAddin
             this.adxNewRequest.Caption = "New Request";
             this.adxNewRequest.Id = "adxRibbonButton_6bd6e6c1524f424690d570077e270772";
             this.adxNewRequest.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxNewRequest.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxNewRequest.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxNewRequest.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxNewRequest_OnClick);
             // 
@@ -357,17 +361,19 @@ namespace RedboxAddin
             this.adxTeacherUpdate.Caption = "Teacher Update";
             this.adxTeacherUpdate.Id = "adxRibbonButton_3cc7dd443a5a4d3188c35ce21f8f7907";
             this.adxTeacherUpdate.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxTeacherUpdate.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxTeacherUpdate.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             // 
             // adxOptions
             // 
             this.adxOptions.Caption = "Options";
             this.adxOptions.Controls.Add(this.adxImportXL);
+            this.adxOptions.Controls.Add(this.adxImportSchools);
             this.adxOptions.Controls.Add(this.adxImport);
+            this.adxOptions.Controls.Add(this.adxEditSchool);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxOptions.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxOptions.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             // 
             // adxImportXL
@@ -375,7 +381,7 @@ namespace RedboxAddin
             this.adxImportXL.Caption = "Import from Availability Sheet";
             this.adxImportXL.Id = "adxRibbonButton_8c1d915dd9a74f43b56f48fea09f25b2";
             this.adxImportXL.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImportXL.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxImportXL.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxImportXL.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportXL_OnClick);
             // 
@@ -384,9 +390,27 @@ namespace RedboxAddin
             this.adxImport.Caption = "Import from Excel";
             this.adxImport.Id = "adxRibbonButton_e3ccc303b7d645d9b2ddb9db31c95e78";
             this.adxImport.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImport.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)
+            this.adxImport.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxImport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImport_OnClick);
+            // 
+            // adxImportSchools
+            // 
+            this.adxImportSchools.Caption = "Import Schools";
+            this.adxImportSchools.Id = "adxRibbonButton_bc74cfe469fa4a51861db52615a98902";
+            this.adxImportSchools.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxImportSchools.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportSchools.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportSchools_OnClick);
+            // 
+            // adxEditSchool
+            // 
+            this.adxEditSchool.Caption = "Edit Schools";
+            this.adxEditSchool.Id = "adxRibbonButton_f7a0bbf4cfcf4c06a068b35846838e5a";
+            this.adxEditSchool.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxEditSchool.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxEditSchool.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditSchool_OnClick);
             // 
             // AddinModule
             // 
@@ -810,6 +834,32 @@ namespace RedboxAddin
             else
             {
                 fi.BringToFront();
+            }
+        }
+
+        private void adxImportSchools_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.FileName = "*.xls";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (ExcelImporter.ImportSchools(openFileDialog1.FileName)) MessageBox.Show("Imported");
+                else MessageBox.Show("Import failed");
+                
+            }
+        }
+
+        private void adxEditSchool_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmEditSchool es = Application.OpenForms["frmEditSchool"] as frmEditSchool;
+            if (es == null)
+            {
+                es = new frmEditSchool();
+                es.Show();
+            }
+            else
+            {
+                es.BringToFront();
             }
         }
 

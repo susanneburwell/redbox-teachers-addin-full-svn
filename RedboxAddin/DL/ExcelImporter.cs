@@ -188,7 +188,7 @@ namespace RedboxAddin.DL
                             cd.Live = Utils.CheckString(dt.Rows[iRow][3].ToString());
                             cd.NoGo = Utils.CheckString(dt.Rows[iRow][10].ToString());
                             cd.Pay = Utils.CheckString(dt.Rows[iRow][7].ToString());
-                            cd.PofA = Utils.CheckBool(dt.Rows[iRow][8].ToString());
+                            //cd.PofA = Utils.CheckBool(dt.Rows[iRow][8].ToString());
                             cd.Wants = Utils.CheckString(dt.Rows[iRow][4].ToString());
                             cd.YrGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
 
@@ -293,6 +293,82 @@ namespace RedboxAddin.DL
             {
                 Debug.DebugMessage(2, "Error importing from Exel: " + ex.Message);
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static bool ImportSchools(string filepath)
+        {
+
+            //The connection string to the excel file
+            String connStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filepath + ";Extended Properties=Excel 12.0;";
+
+            //Get the sheet names
+            IEnumerable<string> sheets = GetExcelSheetNames(filepath);
+
+
+            //The connection to that file
+            OleDbConnection conn = new OleDbConnection(connStr);
+
+            //The query (Selects all from SHEET1)
+            string strSQL = "SELECT * FROM [" + sheets.First() + "]"; //;  //[{0}$]  + sheets.First()
+
+            //The command (executes select all)
+            OleDbCommand cmd = new OleDbCommand(/*The query*/strSQL, /*The connection*/conn);
+            DataTable dt = new DataTable();
+            conn.Open();
+
+            try
+            {
+                //Read in the data from the specified Excel
+                OleDbDataReader dr1 = cmd.ExecuteReader();
+
+                if (dr1.Read())
+                {
+                    dt.Load(dr1);
+                }
+
+                //Gets the number of columns  
+                int iColCount = dt.Columns.Count;
+
+                //Get the number of rows
+                int iRowCount = dt.Rows.Count;
+
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+
+                    for (int iRow = 1; iRow < iRowCount; iRow++)
+                    {
+                        try
+                        {
+                            //create School
+                            School school = new School();
+                            school.SchoolName = Utils.CheckString(dt.Rows[iRow][0].ToString());
+                            school.ShortName = Utils.CheckString(dt.Rows[iRow][1].ToString());
+                            
+                            db.Schools.InsertOnSubmit(school);
+                            db.SubmitChanges();
+                           
+                        }
+                        catch (Exception ex1)
+                        {
+                            Debug.DebugMessage(2, "Error updating database: " + ex1.Message);
+                        }
+
+                    }
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error importing schools: " + ex.Message);
+                return false;
             }
             finally
             {

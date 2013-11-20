@@ -156,6 +156,18 @@
     <Compile Include="Presentation\frmContactExp.Designer.cs">
       <DependentUpon>frmContactExp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmEditSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmEditSchool.Designer.cs">
+      <DependentUpon>frmEditSchool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmEditTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmEditTeacher.Designer.cs">
+      <DependentUpon>frmEditTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmExtractData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +179,12 @@
     </Compile>
     <Compile Include="Presentation\frmImport.Designer.cs">
       <DependentUpon>frmImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmImportSchools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmImportSchools.Designer.cs">
+      <DependentUpon>frmImportSchools.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmNames.cs">
       <SubType>Form</SubType>
@@ -268,11 +286,20 @@
     <EmbeddedResource Include="Presentation\frmContactExp.resx">
       <DependentUpon>frmContactExp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmEditSchool.resx">
+      <DependentUpon>frmEditSchool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmEditTeacher.resx">
+      <DependentUpon>frmEditTeacher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmExtractData.resx">
       <DependentUpon>frmExtractData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmImportSchools.resx">
+      <DependentUpon>frmImportSchools.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmNames.resx">
       <DependentUpon>frmNames.cs</DependentUpon>
