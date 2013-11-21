@@ -108,7 +108,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public static List<RAvailability> Import(string filepath)
+        public static void Import(string filepath)
         {
 
             //The connection string to the excel file
@@ -162,7 +162,7 @@ namespace RedboxAddin.DL
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error - Could not retrieve the dates to import to. Import aborted.");
-                    return null;
+                    return ;
                 }
 
                 List<RAvailability> listA = new List<RAvailability>();
@@ -173,7 +173,7 @@ namespace RedboxAddin.DL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
 
-                    for (int iRow = 1; iRow < iRowCount; iRow++)
+                    for (int iRow = 0; iRow < 239; iRow++)
                     {
                         try
                         {
@@ -187,10 +187,24 @@ namespace RedboxAddin.DL
                             cd.ContactID = contactID;
                             cd.Live = Utils.CheckString(dt.Rows[iRow][3].ToString());
                             cd.NoGo = Utils.CheckString(dt.Rows[iRow][10].ToString());
-                            cd.Pay = Utils.CheckString(dt.Rows[iRow][7].ToString());
+                            //cd.Pay = Utils.CheckString(dt.Rows[iRow][7].ToString());
                             //cd.PofA = Utils.CheckBool(dt.Rows[iRow][8].ToString());
                             cd.Wants = Utils.CheckString(dt.Rows[iRow][4].ToString());
-                            cd.YrGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                            cd.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                            cd.Nur = Utils.CheckBool(dt.Rows[iRow][18].ToString());
+                            cd.Rec = Utils.CheckBool(dt.Rows[iRow][19].ToString());
+                            cd.Yr1 = Utils.CheckBool(dt.Rows[iRow][20].ToString());
+                            cd.Yr2 = Utils.CheckBool(dt.Rows[iRow][21].ToString());
+                            cd.Yr3 = Utils.CheckBool(dt.Rows[iRow][22].ToString());
+                            cd.Yr4 = Utils.CheckBool(dt.Rows[iRow][23].ToString());
+                            cd.Yr5 = Utils.CheckBool(dt.Rows[iRow][24].ToString());
+                            cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25].ToString());
+
+                            //Find SEN, QNN, TA, in year Group
+                            if (cd.YearGroup.IndexOf("QNN") > -1) cd.QNN = true;
+                            if (cd.YearGroup.IndexOf("SEN") > -1) cd.SEN = true;
+                            if (Utils.CheckString(dt.Rows[iRow][7].ToString()).IndexOf("TA") > -1) cd.TA = true;
+
 
                             db.ContactDatas.InsertOnSubmit(cd);
                             db.SubmitChanges();
@@ -204,6 +218,7 @@ namespace RedboxAddin.DL
                             mb.StartDate = monday;
                             mb.EndDate = monday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
@@ -219,6 +234,7 @@ namespace RedboxAddin.DL
                             mb.StartDate = tuesday;
                             mb.EndDate = tuesday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
@@ -232,6 +248,7 @@ namespace RedboxAddin.DL
                             mb.StartDate = wednesday;
                             mb.EndDate = wednesday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
@@ -245,6 +262,7 @@ namespace RedboxAddin.DL
                             mb.StartDate = thursday;
                             mb.EndDate = thursday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
@@ -258,26 +276,12 @@ namespace RedboxAddin.DL
                             mb.StartDate = friday;
                             mb.EndDate = friday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
 
-                            RAvailability rA = new RAvailability();
-                            rA.Teacher = dt.Rows[iRow][0].ToString();
-                            rA.Live = dt.Rows[iRow][3].ToString();
-                            rA.Wants = dt.Rows[iRow][4].ToString();
-                            rA.YrGroup = dt.Rows[iRow][5].ToString();
-                            rA.QTS = dt.Rows[iRow][6].ToString();
-                            rA.Pay = dt.Rows[iRow][7].ToString();
-                            rA.PofA = dt.Rows[iRow][8].ToString();
-                            rA.CRB = dt.Rows[iRow][9].ToString();
-                            rA.Monday = dt.Rows[iRow][11].ToString();
-                            rA.Tuesday = dt.Rows[iRow][12].ToString();
-                            rA.Wednesday = dt.Rows[iRow][13].ToString();
-                            rA.Thursday = dt.Rows[iRow][14].ToString();
-                            rA.Friday = dt.Rows[iRow][15].ToString();
-
-                            listA.Add(rA);
+                           
                         }
                         catch (Exception ex1)
                         {
@@ -286,13 +290,13 @@ namespace RedboxAddin.DL
 
                     }
                 }
-                return listA;
+                return ;
 
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error importing from Exel: " + ex.Message);
-                return null;
+                return ;
             }
             finally
             {
@@ -368,6 +372,86 @@ namespace RedboxAddin.DL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error importing schools: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static bool ImportKeyRefs(string filepath)
+        {
+
+            //The connection string to the excel file
+            String connStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filepath + ";Extended Properties=Excel 12.0;";
+
+            //Get the sheet names
+            IEnumerable<string> sheets = GetExcelSheetNames(filepath);
+
+
+            //The connection to that file
+            OleDbConnection conn = new OleDbConnection(connStr);
+
+            //The query (Selects all from SHEET1)
+            string strSQL = "SELECT * FROM [Key Refs$]"; //;  //[{0}$]  + sheets.First()
+
+            //The command (executes select all)
+            OleDbCommand cmd = new OleDbCommand(/*The query*/strSQL, /*The connection*/conn);
+            DataTable dt = new DataTable();
+            conn.Open();
+
+            try
+            {
+                //Read in the data from the specified Excel
+                OleDbDataReader dr1 = cmd.ExecuteReader();
+
+                if (dr1.Read())
+                {
+                    dt.Load(dr1);
+                }
+
+                //Gets the number of columns  
+                int iColCount = dt.Columns.Count;
+
+                //Get the number of rows
+                int iRowCount = dt.Rows.Count;
+
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+
+                    for (int iRow = 0; iRow < iRowCount; iRow++)
+                    {
+                        try
+                        {
+                            //create School
+                            string fn = Utils.CheckString(dt.Rows[iRow][2].ToString());
+                            string ln =  Utils.CheckString(dt.Rows[iRow][1].ToString());
+
+                            TblContact contact = db.TblContacts.Where(c => c.FirstName == fn && c.LastName == ln).FirstOrDefault();
+                            if (contact != null)
+                            {
+                                contact.KeyRef = Utils.CheckString(dt.Rows[iRow][0].ToString());
+                            }
+                            
+                            db.SubmitChanges();
+
+                        }
+                        catch (Exception ex1)
+                        {
+                            Debug.DebugMessage(2, "Error updating database(ImportKeyRef): " + ex1.Message);
+                        }
+
+                    }
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error ImportKeyRef: " + ex.Message);
                 return false;
             }
             finally

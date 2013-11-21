@@ -156,7 +156,20 @@ namespace RedboxAddin.Presentation
                     mb.StartDate = dtFrom.Value;
                     mb.EndDate = dtTo.Value;
                     mb.Details = txtDetails.Text;
+                    mb.HalfDay = chkHalfDay.Checked;
+                    mb.LongTerm = chkLongTerm.Checked;
+                    mb.Nur = chkNur.Checked;
+                    mb.Rec = chkRec.Checked;
+                    mb.Yr1 = chkYr1.Checked;
+                    mb.Yr2 = chkYr2.Checked;
+                    mb.Yr3 = chkYr3.Checked;
+                    mb.Yr4 = chkYr4.Checked;
+                    mb.Yr5 = chkYr5.Checked;
+                    mb.Yr6 = chkYr6.Checked;
+                    mb.Charge = Utils.CheckDecimal(txtCharge.Text);
+
                     db.MasterBookings.InsertOnSubmit(mb);
+
                    
                     db.SubmitChanges();
 
@@ -211,13 +224,13 @@ namespace RedboxAddin.Presentation
                 if(delta > 0)     delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
-
-                gridControl1.DataSource = new DBManager().GetAvailability(monday);
-                gridView1.Columns[9].Caption = monday.ToString("ddd d MMM yy");
-                gridView1.Columns[10].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
-                gridView1.Columns[11].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
-                gridView1.Columns[12].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
-                gridView1.Columns[13].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
+                string wheresql = WHERESQL();
+                gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
+                gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
+                gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
+                gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
+                gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
+                gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
                 RestoreLayout();
             }
             catch (Exception ex)
@@ -244,7 +257,58 @@ namespace RedboxAddin.Presentation
             catch (Exception) { }
         }
 
+        private string WHERESQL()
+        {
+            try
+            {
+                string wheresql = "";
+
+                if (chkNur.Checked) wheresql += "AND ([Nur] = 'true') ";
+                if (chkRec.Checked) wheresql += "AND ([Rec] = 'true') ";
+                if (chkYr1.Checked) wheresql += "AND ([Yr1] = 'true') ";
+                if (chkYr2.Checked) wheresql += "AND ([Yr2] = 'true') ";
+                if (chkYr3.Checked) wheresql += "AND ([Yr3] = 'true') ";
+                if (chkYr4.Checked) wheresql += "AND ([Yr4] = 'true') ";
+                if (chkYr5.Checked) wheresql += "AND ([Yr5] = 'true') ";
+                if (chkYr6.Checked) wheresql += "AND ([Yr6] = 'true') ";
+
+                wheresql = " WHERE Lastname IS NOT NULL " + wheresql;
+                wheresql = wheresql + " ORDER BY [LastName]";
+               
+                
+
+                return wheresql;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Eror in WHERESQL: " + ex.Message);
+                return null;
+            }
+        }
+
         #endregion
+
+        private void txtDayRate_Validating(object sender, CancelEventArgs e)
+        {
+            if (!validateDecimal(txtCharge.Text))
+            {
+                txtCharge.Text = "0.00";
+            }
+        }
+
+        private bool validateDecimal(string text)
+        {
+            try
+            {
+                Decimal dec = Convert.ToDecimal(text);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         
 

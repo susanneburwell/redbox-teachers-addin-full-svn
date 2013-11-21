@@ -117,6 +117,7 @@
     <Compile Include="Models\DatesForSearch.cs" />
     <Compile Include="Models\RAddress.cs" />
     <Compile Include="Models\RAvailability.cs" />
+    <Compile Include="Models\RBookings.cs" />
     <Compile Include="Models\RContact.cs" />
     <Compile Include="Models\RNames.cs" />
     <Compile Include="Models\RReminder.cs" />
@@ -162,12 +163,6 @@
     <Compile Include="Presentation\frmEditSchool.Designer.cs">
       <DependentUpon>frmEditSchool.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\frmEditTeacher.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\frmEditTeacher.Designer.cs">
-      <DependentUpon>frmEditTeacher.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\frmExtractData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +192,12 @@
     </Compile>
     <Compile Include="Presentation\frmReminderExp.Designer.cs">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmViewBookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmViewBookings.Designer.cs">
+      <DependentUpon>frmViewBookings.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmViewContact.cs">
       <SubType>Form</SubType>
@@ -289,9 +290,6 @@
     <EmbeddedResource Include="Presentation\frmEditSchool.resx">
       <DependentUpon>frmEditSchool.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\frmEditTeacher.resx">
-      <DependentUpon>frmEditTeacher.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmExtractData.resx">
       <DependentUpon>frmExtractData.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmReminderExp.resx">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmViewBookings.resx">
+      <DependentUpon>frmViewBookings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmViewContact.resx">
       <DependentUpon>frmViewContact.cs</DependentUpon>

@@ -53,6 +53,9 @@ namespace RedboxAddin
         private ADXRibbonButton adxImport;
         private ADXRibbonButton adxImportSchools;
         private ADXRibbonButton adxEditSchool;
+        private ADXRibbonButton adxProcess;
+        private ADXRibbonButton adxBookings;
+        private ADXRibbonButton adxImportKeyRef;
 
         #region Component Designer generated code
         /// <summary>
@@ -91,11 +94,14 @@ namespace RedboxAddin
             this.adxRibbonGroup2 = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxNewRequest = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTeacherUpdate = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxBookings = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxProcess = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxImportKeyRef = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -340,6 +346,7 @@ namespace RedboxAddin
             this.adxRibbonGroup2.Caption = "Redbox";
             this.adxRibbonGroup2.Controls.Add(this.adxNewRequest);
             this.adxRibbonGroup2.Controls.Add(this.adxTeacherUpdate);
+            this.adxRibbonGroup2.Controls.Add(this.adxBookings);
             this.adxRibbonGroup2.Controls.Add(this.adxOptions);
             this.adxRibbonGroup2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxRibbonGroup2.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -364,13 +371,24 @@ namespace RedboxAddin
             this.adxTeacherUpdate.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             // 
+            // adxBookings
+            // 
+            this.adxBookings.Caption = "View Bookings";
+            this.adxBookings.Id = "adxRibbonButton_84914fb391a242d6a1a80e9d661c9eb7";
+            this.adxBookings.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxBookings.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxBookings.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxBookings_OnClick);
+            // 
             // adxOptions
             // 
             this.adxOptions.Caption = "Options";
             this.adxOptions.Controls.Add(this.adxImportXL);
             this.adxOptions.Controls.Add(this.adxImportSchools);
+            this.adxOptions.Controls.Add(this.adxImportKeyRef);
             this.adxOptions.Controls.Add(this.adxImport);
             this.adxOptions.Controls.Add(this.adxEditSchool);
+            this.adxOptions.Controls.Add(this.adxProcess);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxOptions.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
@@ -385,15 +403,6 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxImportXL.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportXL_OnClick);
             // 
-            // adxImport
-            // 
-            this.adxImport.Caption = "Import from Excel";
-            this.adxImport.Id = "adxRibbonButton_e3ccc303b7d645d9b2ddb9db31c95e78";
-            this.adxImport.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImport.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
-            this.adxImport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImport_OnClick);
-            // 
             // adxImportSchools
             // 
             this.adxImportSchools.Caption = "Import Schools";
@@ -403,6 +412,15 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxImportSchools.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportSchools_OnClick);
             // 
+            // adxImport
+            // 
+            this.adxImport.Caption = "Import from Excel";
+            this.adxImport.Id = "adxRibbonButton_e3ccc303b7d645d9b2ddb9db31c95e78";
+            this.adxImport.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxImport.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImport_OnClick);
+            // 
             // adxEditSchool
             // 
             this.adxEditSchool.Caption = "Edit Schools";
@@ -411,6 +429,24 @@ namespace RedboxAddin
             this.adxEditSchool.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxEditSchool.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditSchool_OnClick);
+            // 
+            // adxProcess
+            // 
+            this.adxProcess.Caption = "Process Teachers";
+            this.adxProcess.Id = "adxRibbonButton_ecb2644624dc4d8cbb57063b2b841a00";
+            this.adxProcess.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxProcess.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxProcess.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxProcess_OnClick);
+            // 
+            // adxImportKeyRef
+            // 
+            this.adxImportKeyRef.Caption = "Import Key Refs";
+            this.adxImportKeyRef.Id = "adxRibbonButton_2c1b57b139ce4e95908deb5cf24ccac6";
+            this.adxImportKeyRef.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxImportKeyRef.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportKeyRef.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportKeyRef_OnClick);
             // 
             // AddinModule
             // 
@@ -860,6 +896,37 @@ namespace RedboxAddin
             else
             {
                 es.BringToFront();
+            }
+        }
+
+        private void adxProcess_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            DBManager dbm = new DBManager();
+            dbm.CheckAndUpdateTeachers();
+
+        }
+
+        private void adxBookings_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmViewBookings vb = Application.OpenForms["frmViewBookings"] as frmViewBookings;
+            if (vb == null)
+            {
+                vb = new frmViewBookings();
+                vb.Show();
+            }
+            else
+            {
+                vb.BringToFront();
+            }
+        }
+
+        private void adxImportKeyRef_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.FileName = "*.xls";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ExcelImporter.ImportKeyRefs(openFileDialog1.FileName);
             }
         }
 

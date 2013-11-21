@@ -69,6 +69,11 @@ namespace RedboxAddin.BL
                 {
                     return true;
                 }
+                else if (myObject.ToString().Trim() == "1")
+                {
+                    return true;
+                }
+
                 else
                 {
                     return Convert.ToBoolean(myObject);
@@ -77,6 +82,33 @@ namespace RedboxAddin.BL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "CheckBool Failed :- " + ex.Message);
+                return false;
+            }
+        }
+
+        public static decimal CheckDecimal(object myObject)
+        {
+           
+            try
+            {
+                Decimal dec = Convert.ToDecimal(myObject);
+                return dec;
+            }
+            catch
+            {
+                return Convert.ToDecimal("00.0");
+            }
+        }
+
+        public static bool validateDecimal(string text)
+        {
+            try
+            {
+                Decimal dec = Convert.ToDecimal(text);
+                return true;
+            }
+            catch
+            {
                 return false;
             }
         }

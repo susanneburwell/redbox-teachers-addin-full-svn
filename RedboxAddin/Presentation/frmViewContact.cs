@@ -80,6 +80,8 @@ namespace RedboxAddin.Presentation
                 lblID.Text = contactObj.contactID.ToString();
                 lblFullName.Text = Utils.GetFullName(contactObj.Title, contactObj.FirstName, contactObj.MiddleName, contactObj.LastName, contactObj.Suffix);
                 lblTeacherName.Text = lblFullName.Text;
+
+
                 txtEmail.Text = contactObj.Email1;
                 txtJobTitle.Text = contactObj.JobTitle;
                 addressStreet = contactObj.AddressStreet;
@@ -959,19 +961,31 @@ namespace RedboxAddin.Presentation
 
         #region NewCode
 
+        private void btnEY_Click(object sender, EventArgs e)
+        {
+            if (chkNur.Checked)
+            {
+                chkNur.Checked = false;
+                chkRec.Checked = false;
+            }
+            else
+            {
+                chkNur.Checked = true;
+                chkRec.Checked = true;
+            }
+        }
+
         private void btnKS1_Click(object sender, EventArgs e)
         {
             if (chkYr1.Checked)
             {
                 chkYr1.Checked = false;
                 chkYr2.Checked = false;
-                chkYr3.Checked = false;
             }
             else
             {
                 chkYr1.Checked = true;
                 chkYr2.Checked = true;
-                chkYr3.Checked = true;
             }
         }
 
@@ -979,12 +993,14 @@ namespace RedboxAddin.Presentation
         {
             if (chkYr4.Checked)
             {
+                chkYr3.Checked = false;
                 chkYr4.Checked = false;
                 chkYr5.Checked = false;
                 chkYr6.Checked = false;
             }
             else
             {
+                chkYr3.Checked = true;
                 chkYr4.Checked = true;
                 chkYr5.Checked = true;
                 chkYr6.Checked = true;
@@ -998,34 +1014,34 @@ namespace RedboxAddin.Presentation
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
-                    var contacts = (from s in db.ContactDatas
-                                    where s.ContactID == CurrentContactID
-                                    select s).Distinct();
+                    var cd = db.ContactDatas.FirstOrDefault(s => s.ContactID == CurrentContactID);
 
-                    foreach (ContactData cd in contacts)
-                    {
-                        cd.Live = txtLives.Text;
-                        cd.NoGo = txtNoGo.Text;
-                        cd.Wants = txtWants.Text;
-                        cd.CRBStatus = txtCRBstatus.Text;
-                        cd.TeacherStatus = txtTeacherStatus.Text;
-                        cd.NN = chkNN.Checked;
-                        cd.QNN = chkQNN.Checked;
-                        cd.Rec = chkRec.Checked;
-                        cd.Yr1 = chkYr1.Checked;
-                        cd.Yr2 = chkYr2.Checked;
-                        cd.Yr3 = chkYr3.Checked;
-                        cd.Yr4 = chkYr4.Checked;
-                        cd.Yr5 = chkYr5.Checked;
-                        cd.Yr6 = chkYr6.Checked;
-                        cd.DayRate = Convert.ToDecimal(txtDayRate.Text);
-                        cd.HalfDayRate = Convert.ToDecimal(txtHfDayRate.Text);
-                        cd.DayRateLT = Convert.ToDecimal(txtLTDay.Text);
-                        cd.HalfDayRateLT = Convert.ToDecimal(txtLTHfDay.Text);
+                    cd.Live = txtLives.Text;
+                    cd.NoGo = txtNoGo.Text;
+                    cd.Wants = txtWants.Text;
+                    cd.CRBStatus = txtCRBstatus.Text;
+                    cd.TeacherStatus = txtTeacherStatus.Text;
+                    cd.Teacher = chkTeacher.Checked;
+                    cd.TA = chkTA.Checked;
+                    cd.NN = chkNN.Checked;
+                    cd.QNN = chkQNN.Checked;
+                    cd.SEN = chkSEN.Checked;
+                    cd.Nur = chkNur.Checked;
+                    cd.Rec = chkRec.Checked;
+                    cd.Yr1 = chkYr1.Checked;
+                    cd.Yr2 = chkYr2.Checked;
+                    cd.Yr3 = chkYr3.Checked;
+                    cd.Yr4 = chkYr4.Checked;
+                    cd.Yr5 = chkYr5.Checked;
+                    cd.Yr6 = chkYr6.Checked;
+                    cd.DayRate = CheckDecimal(txtDayRate.Text);
+                    cd.HalfDayRate = CheckDecimal(txtHfDayRate.Text);
+                    cd.DayRateLT = CheckDecimal(txtLTDay.Text);
+                    cd.HalfDayRateLT = CheckDecimal(txtLTHfDay.Text);
 
-                        db.SubmitChanges();
-                        return;
-                    }
+                    db.SubmitChanges();
+                    return;
+
                 }
             }
             catch (Exception ex)
@@ -1059,8 +1075,15 @@ namespace RedboxAddin.Presentation
                         txtWants.Text = cd.Wants;
                         txtCRBstatus.Text = cd.CRBStatus;
                         txtTeacherStatus.Text = cd.TeacherStatus;
+                        chkTeacher.Checked = cd.Teacher;
+                        chkTA.Checked = cd.TA;
                         chkNN.Checked = cd.NN;
                         chkQNN.Checked = cd.QNN;
+                        chkSEN.Checked = cd.SEN;
+                        chkQTS1.Checked = chkQTS.Checked; //load only - updated via different control
+                        chkNQT1.Checked = chkNQT.Checked;//load only - updated via different control
+                        chkOTT.Checked = chkOverseasTrainedTeacher.Checked;//load only - updated via different control
+                        chkNur.Checked = cd.Nur;
                         chkRec.Checked = cd.Rec;
                         chkYr1.Checked = cd.Yr1;
                         chkYr2.Checked = cd.Yr2;
@@ -1085,6 +1108,24 @@ namespace RedboxAddin.Presentation
 
 
         #endregion
+
+        private decimal CheckDecimal(string value)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(value)) return Convert.ToDecimal("0.00");
+
+                return Convert.ToDecimal(value);
+            }
+            catch
+            {
+                return Convert.ToDecimal("0.00");
+            }
+        }
+
+      
+
+       
 
     }
 }
