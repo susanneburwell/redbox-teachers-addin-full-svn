@@ -96,8 +96,8 @@ namespace RedboxAddin.Presentation
         #endregion
 
         #region buttons
-        
-       
+
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -123,20 +123,20 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
-        #region actions  
+        #region actions
 
         private bool SaveRequest()
         {
             try
             {
 
-                if (dtTo.Value < dtFrom.Value )
+                if (dtTo.Value < dtFrom.Value)
                 {
                     MessageBox.Show("Your end date can not be earlier than your start date.");
                     return false;
                 }
 
-                if ((dtTo.Value == null )|| ( dtFrom.Value == null))
+                if ((dtTo.Value == null) || (dtFrom.Value == null))
                 {
                     MessageBox.Show("Please pick a start and end date.");
                     return false;
@@ -148,8 +148,8 @@ namespace RedboxAddin.Presentation
                     var mb = new MasterBooking();
 
                     //Table<MasterBooking> mbs = db.GetTable<MasterBooking>();
-                    
-                    
+
+
                     mb.SchoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                     mb.YearGroup = cmbYearGroup.Text;
                     mb.TeacherLevel = cmbTeacherLevel.Text;
@@ -168,32 +168,39 @@ namespace RedboxAddin.Presentation
                     mb.Yr6 = chkYr6.Checked;
                     mb.Charge = Utils.CheckDecimal(txtCharge.Text);
 
+                    //If Teacher named
+                    mb.NameGiven = radNG.Checked;
+                    mb.AskedFor = radAF.Checked;
+                    mb.TrialDay = radTD.Checked;
+                    if (radNS.Checked == false) mb.LinkedTeacherID = Convert.ToInt64(cmbTeacherName.SelectedValue);
+                    else mb.LinkedTeacherID = -1;
+
                     db.MasterBookings.InsertOnSubmit(mb);
 
-                   
+
                     db.SubmitChanges();
 
-                    if (mb.ID <1)
+                    if (mb.ID < 1)
                     {
-                            MessageBox.Show("There was an error creating the Master Booking.");
-                            Debug.DebugMessage(2, "There was an error creating the Master Booking. MasterBookingID 0 or Null");
-                            return false;
+                        MessageBox.Show("There was an error creating the Master Booking.");
+                        Debug.DebugMessage(2, "There was an error creating the Master Booking. MasterBookingID 0 or Null");
+                        return false;
 
                     }
-                    DateTime bookingdate =(System.DateTime) mb.StartDate;
+                    DateTime bookingdate = (System.DateTime)mb.StartDate;
                     int iCatch = 0;
-                    do 
+                    do
                     {
-                    var nb = new Booking();
-                    nb.Am = true;
-                    nb.Pm = true;
-                    nb.MasterBookingID = mb.ID;
-                    nb.Date = bookingdate;
+                        var nb = new Booking();
+                        nb.Am = true;
+                        nb.Pm = true;
+                        nb.MasterBookingID = mb.ID;
+                        nb.Date = bookingdate;
 
-                    db.Bookings.InsertOnSubmit(nb);
-                    bookingdate = bookingdate.AddDays(1);
-                        iCatch +=1;
-                        if (iCatch > 365) 
+                        db.Bookings.InsertOnSubmit(nb);
+                        bookingdate = bookingdate.AddDays(1);
+                        iCatch += 1;
+                        if (iCatch > 365)
                         {
                             MessageBox.Show("There was an error creating the daily bookings.");
                             Debug.DebugMessage(2, "Overflow error creating the daily bookings. MasterBookingID: " + mb.ID);
@@ -221,7 +228,7 @@ namespace RedboxAddin.Presentation
                 //Get first day of week
                 DateTime input = dtFrom.Value;
                 int delta = DayOfWeek.Monday - input.DayOfWeek;
-                if(delta > 0)     delta -= 7;
+                if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
                 string wheresql = WHERESQL();
@@ -243,7 +250,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
+                gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\NRFormDump.xml");
             }
             catch (Exception) { }
         }
@@ -252,7 +259,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
+                gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\NRFormDump.xml");
             }
             catch (Exception) { }
         }
@@ -274,8 +281,8 @@ namespace RedboxAddin.Presentation
 
                 wheresql = " WHERE Lastname IS NOT NULL " + wheresql;
                 wheresql = wheresql + " ORDER BY [LastName]";
-               
-                
+
+
 
                 return wheresql;
 
@@ -310,7 +317,23 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        
+        #region Teacher Specified
 
+
+        private void setTeacherControls(bool ShowDropDown)
+        {
+            cmbTeacherName.Visible = ShowDropDown;
+            lblTS.Visible = ShowDropDown;
+            lblTS2.Visible = ShowDropDown;
+        }
+
+
+
+        private void radNS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radNS.Checked) setTeacherControls(true);
+            else setTeacherControls(false);
+        }
+        #endregion
     }
 }

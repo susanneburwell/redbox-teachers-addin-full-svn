@@ -317,10 +317,10 @@ namespace RedboxAddin.DL
                             //Wants = dr["Wants"].ToString(),
                             //YrGroup = dr["YearGroup"].ToString(),
                             Monday = dr["Monday"].ToString(),
-                            Tuesday = dr["Tuesday"].ToString(),
-                            Wednesday = dr["Wednesday"].ToString(),
-                            Thursday = dr["Thursday"].ToString(),
-                            Friday = dr["Friday"].ToString(),
+                            //Tuesday = dr["Tuesday"].ToString(),
+                            //Wednesday = dr["Wednesday"].ToString(),
+                            //Thursday = dr["Thursday"].ToString(),
+                            //Friday = dr["Friday"].ToString(),
 
                         };
                         bookingList.Add(objBkg);

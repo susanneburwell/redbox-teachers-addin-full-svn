@@ -46,6 +46,17 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radTD = new System.Windows.Forms.RadioButton();
+            this.radNG = new System.Windows.Forms.RadioButton();
+            this.radAF = new System.Windows.Forms.RadioButton();
+            this.radNS = new System.Windows.Forms.RadioButton();
+            this.cmbTeacherName = new System.Windows.Forms.ComboBox();
+            this.lblTS = new System.Windows.Forms.Label();
+            this.lblTS2 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.txtCharge = new System.Windows.Forms.TextBox();
             this.chkHalfDay = new System.Windows.Forms.CheckBox();
             this.chkLongTerm = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -75,12 +86,15 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label78 = new System.Windows.Forms.Label();
-            this.label76 = new System.Windows.Forms.Label();
-            this.txtCharge = new System.Windows.Forms.TextBox();
+            this.chkMon = new System.Windows.Forms.CheckBox();
+            this.chkTue = new System.Windows.Forms.CheckBox();
+            this.chkWed = new System.Windows.Forms.CheckBox();
+            this.chkThu = new System.Windows.Forms.CheckBox();
+            this.chkFri = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -180,7 +194,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(419, 88);
+            this.label6.Location = new System.Drawing.Point(408, 196);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 16);
             this.label6.TabIndex = 11;
@@ -188,10 +202,10 @@
             // 
             // txtDetails
             // 
-            this.txtDetails.Location = new System.Drawing.Point(411, 107);
+            this.txtDetails.Location = new System.Drawing.Point(422, 218);
             this.txtDetails.Multiline = true;
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(422, 106);
+            this.txtDetails.Size = new System.Drawing.Size(422, 94);
             this.txtDetails.TabIndex = 8;
             // 
             // btnSave
@@ -225,10 +239,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 230F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 324F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 546);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 631);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // panel1
@@ -236,13 +250,19 @@
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 233);
+            this.panel1.Location = new System.Drawing.Point(3, 327);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(911, 34);
+            this.panel1.Size = new System.Drawing.Size(911, 51);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkFri);
+            this.panel2.Controls.Add(this.chkThu);
+            this.panel2.Controls.Add(this.chkWed);
+            this.panel2.Controls.Add(this.chkTue);
+            this.panel2.Controls.Add(this.chkMon);
+            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.label78);
             this.panel2.Controls.Add(this.label76);
             this.panel2.Controls.Add(this.txtCharge);
@@ -264,8 +284,137 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(911, 224);
+            this.panel2.Size = new System.Drawing.Size(911, 318);
             this.panel2.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radTD);
+            this.groupBox1.Controls.Add(this.radNG);
+            this.groupBox1.Controls.Add(this.radAF);
+            this.groupBox1.Controls.Add(this.radNS);
+            this.groupBox1.Controls.Add(this.cmbTeacherName);
+            this.groupBox1.Controls.Add(this.lblTS);
+            this.groupBox1.Controls.Add(this.lblTS2);
+            this.groupBox1.Location = new System.Drawing.Point(23, 213);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(350, 99);
+            this.groupBox1.TabIndex = 87;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Teacher";
+            // 
+            // radTD
+            // 
+            this.radTD.AutoSize = true;
+            this.radTD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTD.Location = new System.Drawing.Point(279, 21);
+            this.radTD.Name = "radTD";
+            this.radTD.Size = new System.Drawing.Size(67, 17);
+            this.radTD.TabIndex = 90;
+            this.radTD.TabStop = true;
+            this.radTD.Text = "Trial Day";
+            this.radTD.UseVisualStyleBackColor = true;
+            // 
+            // radNG
+            // 
+            this.radNG.AutoSize = true;
+            this.radNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radNG.Location = new System.Drawing.Point(187, 21);
+            this.radNG.Name = "radNG";
+            this.radNG.Size = new System.Drawing.Size(84, 17);
+            this.radNG.TabIndex = 89;
+            this.radNG.TabStop = true;
+            this.radNG.Text = "Name Given";
+            this.radNG.UseVisualStyleBackColor = true;
+            // 
+            // radAF
+            // 
+            this.radAF.AutoSize = true;
+            this.radAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radAF.Location = new System.Drawing.Point(106, 21);
+            this.radAF.Name = "radAF";
+            this.radAF.Size = new System.Drawing.Size(73, 17);
+            this.radAF.TabIndex = 88;
+            this.radAF.TabStop = true;
+            this.radAF.Text = "Asked For";
+            this.radAF.UseVisualStyleBackColor = true;
+            // 
+            // radNS
+            // 
+            this.radNS.AutoSize = true;
+            this.radNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radNS.Location = new System.Drawing.Point(10, 21);
+            this.radNS.Name = "radNS";
+            this.radNS.Size = new System.Drawing.Size(89, 17);
+            this.radNS.TabIndex = 87;
+            this.radNS.TabStop = true;
+            this.radNS.Text = "Not Specified";
+            this.radNS.UseVisualStyleBackColor = true;
+            this.radNS.CheckedChanged += new System.EventHandler(this.radNS_CheckedChanged);
+            // 
+            // cmbTeacherName
+            // 
+            this.cmbTeacherName.FormattingEnabled = true;
+            this.cmbTeacherName.Items.AddRange(new object[] {
+            "QTS",
+            "NQT",
+            "OTT",
+            "TA",
+            "SEN",
+            "QNN",
+            "NN"});
+            this.cmbTeacherName.Location = new System.Drawing.Point(109, 44);
+            this.cmbTeacherName.Name = "cmbTeacherName";
+            this.cmbTeacherName.Size = new System.Drawing.Size(200, 24);
+            this.cmbTeacherName.TabIndex = 84;
+            this.cmbTeacherName.Visible = false;
+            // 
+            // lblTS
+            // 
+            this.lblTS.AutoSize = true;
+            this.lblTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTS.Location = new System.Drawing.Point(27, 71);
+            this.lblTS.Name = "lblTS";
+            this.lblTS.Size = new System.Drawing.Size(282, 13);
+            this.lblTS.TabIndex = 86;
+            this.lblTS.Text = "*Only use this box for Asked For, Name Given, or Trial Day";
+            this.lblTS.Visible = false;
+            // 
+            // lblTS2
+            // 
+            this.lblTS2.AutoSize = true;
+            this.lblTS2.Location = new System.Drawing.Point(20, 52);
+            this.lblTS2.Name = "lblTS2";
+            this.lblTS2.Size = new System.Drawing.Size(67, 16);
+            this.lblTS2.TabIndex = 85;
+            this.lblTS2.Text = "Teacher*:";
+            this.lblTS2.Visible = false;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Location = new System.Drawing.Point(691, 11);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(55, 16);
+            this.label78.TabIndex = 82;
+            this.label78.Text = "Charge:";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(758, 11);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(15, 16);
+            this.label76.TabIndex = 83;
+            this.label76.Text = "£";
+            // 
+            // txtCharge
+            // 
+            this.txtCharge.Location = new System.Drawing.Point(792, 9);
+            this.txtCharge.Name = "txtCharge";
+            this.txtCharge.Size = new System.Drawing.Size(63, 22);
+            this.txtCharge.TabIndex = 81;
+            this.txtCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtDayRate_Validating);
             // 
             // chkHalfDay
             // 
@@ -417,10 +566,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 273);
+            this.gridControl1.Location = new System.Drawing.Point(3, 384);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(911, 270);
+            this.gridControl1.Size = new System.Drawing.Size(911, 244);
             this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -589,37 +738,61 @@
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 12;
             // 
-            // label78
+            // chkMon
             // 
-            this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(691, 11);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(55, 16);
-            this.label78.TabIndex = 82;
-            this.label78.Text = "Charge:";
+            this.chkMon.AutoSize = true;
+            this.chkMon.Location = new System.Drawing.Point(422, 71);
+            this.chkMon.Name = "chkMon";
+            this.chkMon.Size = new System.Drawing.Size(53, 20);
+            this.chkMon.TabIndex = 88;
+            this.chkMon.Text = "Mon";
+            this.chkMon.UseVisualStyleBackColor = true;
             // 
-            // label76
+            // chkTue
             // 
-            this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(758, 11);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(15, 16);
-            this.label76.TabIndex = 83;
-            this.label76.Text = "£";
+            this.chkTue.AutoSize = true;
+            this.chkTue.Location = new System.Drawing.Point(483, 71);
+            this.chkTue.Name = "chkTue";
+            this.chkTue.Size = new System.Drawing.Size(51, 20);
+            this.chkTue.TabIndex = 89;
+            this.chkTue.Text = "Tue";
+            this.chkTue.UseVisualStyleBackColor = true;
             // 
-            // txtCharge
+            // chkWed
             // 
-            this.txtCharge.Location = new System.Drawing.Point(792, 9);
-            this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(63, 22);
-            this.txtCharge.TabIndex = 81;
-            this.txtCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtDayRate_Validating);
+            this.chkWed.AutoSize = true;
+            this.chkWed.Location = new System.Drawing.Point(542, 71);
+            this.chkWed.Name = "chkWed";
+            this.chkWed.Size = new System.Drawing.Size(56, 20);
+            this.chkWed.TabIndex = 90;
+            this.chkWed.Text = "Wed";
+            this.chkWed.UseVisualStyleBackColor = true;
+            // 
+            // chkThu
+            // 
+            this.chkThu.AutoSize = true;
+            this.chkThu.Location = new System.Drawing.Point(606, 71);
+            this.chkThu.Name = "chkThu";
+            this.chkThu.Size = new System.Drawing.Size(50, 20);
+            this.chkThu.TabIndex = 91;
+            this.chkThu.Text = "Thu";
+            this.chkThu.UseVisualStyleBackColor = true;
+            // 
+            // chkFri
+            // 
+            this.chkFri.AutoSize = true;
+            this.chkFri.Location = new System.Drawing.Point(664, 71);
+            this.chkFri.Name = "chkFri";
+            this.chkFri.Size = new System.Drawing.Size(42, 20);
+            this.chkFri.TabIndex = 92;
+            this.chkFri.Text = "Fri";
+            this.chkFri.UseVisualStyleBackColor = true;
             // 
             // frmNewRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 546);
+            this.ClientSize = new System.Drawing.Size(917, 631);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -632,6 +805,8 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -691,5 +866,18 @@
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.TextBox txtCharge;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radTD;
+        private System.Windows.Forms.RadioButton radNG;
+        private System.Windows.Forms.RadioButton radAF;
+        private System.Windows.Forms.RadioButton radNS;
+        private System.Windows.Forms.ComboBox cmbTeacherName;
+        private System.Windows.Forms.Label lblTS;
+        private System.Windows.Forms.Label lblTS2;
+        private System.Windows.Forms.CheckBox chkFri;
+        private System.Windows.Forms.CheckBox chkThu;
+        private System.Windows.Forms.CheckBox chkWed;
+        private System.Windows.Forms.CheckBox chkTue;
+        private System.Windows.Forms.CheckBox chkMon;
     }
 }

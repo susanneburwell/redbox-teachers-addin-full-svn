@@ -1135,6 +1135,14 @@ namespace RedboxAddin
 		
 		private decimal _Charge;
 		
+		private System.Nullable<long> _LinkedTeacherID;
+		
+		private bool _NameGiven;
+		
+		private bool _AskedFor;
+		
+		private bool _TrialDay;
+		
 		private EntitySet<Booking> _Bookings;
 		
     #region Extensibility Method Definitions
@@ -1183,6 +1191,14 @@ namespace RedboxAddin
     partial void OnYr6Changed();
     partial void OnChargeChanging(decimal value);
     partial void OnChargeChanged();
+    partial void OnLinkedTeacherIDChanging(System.Nullable<long> value);
+    partial void OnLinkedTeacherIDChanged();
+    partial void OnNameGivenChanging(bool value);
+    partial void OnNameGivenChanged();
+    partial void OnAskedForChanging(bool value);
+    partial void OnAskedForChanged();
+    partial void OnTrialDayChanging(bool value);
+    partial void OnTrialDayChanged();
     #endregion
 		
 		public MasterBooking()
@@ -1607,6 +1623,86 @@ namespace RedboxAddin
 					this._Charge = value;
 					this.SendPropertyChanged("Charge");
 					this.OnChargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LinkedTeacherID", DbType="BigInt")]
+		public System.Nullable<long> LinkedTeacherID
+		{
+			get
+			{
+				return this._LinkedTeacherID;
+			}
+			set
+			{
+				if ((this._LinkedTeacherID != value))
+				{
+					this.OnLinkedTeacherIDChanging(value);
+					this.SendPropertyChanging();
+					this._LinkedTeacherID = value;
+					this.SendPropertyChanged("LinkedTeacherID");
+					this.OnLinkedTeacherIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NameGiven", DbType="Bit NOT NULL")]
+		public bool NameGiven
+		{
+			get
+			{
+				return this._NameGiven;
+			}
+			set
+			{
+				if ((this._NameGiven != value))
+				{
+					this.OnNameGivenChanging(value);
+					this.SendPropertyChanging();
+					this._NameGiven = value;
+					this.SendPropertyChanged("NameGiven");
+					this.OnNameGivenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AskedFor", DbType="Bit NOT NULL")]
+		public bool AskedFor
+		{
+			get
+			{
+				return this._AskedFor;
+			}
+			set
+			{
+				if ((this._AskedFor != value))
+				{
+					this.OnAskedForChanging(value);
+					this.SendPropertyChanging();
+					this._AskedFor = value;
+					this.SendPropertyChanged("AskedFor");
+					this.OnAskedForChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrialDay", DbType="Bit NOT NULL")]
+		public bool TrialDay
+		{
+			get
+			{
+				return this._TrialDay;
+			}
+			set
+			{
+				if ((this._TrialDay != value))
+				{
+					this.OnTrialDayChanging(value);
+					this.SendPropertyChanging();
+					this._TrialDay = value;
+					this.SendPropertyChanged("TrialDay");
+					this.OnTrialDayChanged();
 				}
 			}
 		}

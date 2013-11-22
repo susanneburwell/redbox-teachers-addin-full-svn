@@ -145,6 +145,12 @@
     <Compile Include="Presentation\frmAttributePicker.Designer.cs">
       <DependentUpon>frmAttributePicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmAvailabilitySheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmAvailabilitySheet.Designer.cs">
+      <DependentUpon>frmAvailabilitySheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmBotNavi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmAttributePicker.resx">
       <DependentUpon>frmAttributePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmAvailabilitySheet.resx">
+      <DependentUpon>frmAvailabilitySheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmBotNavi.resx">
       <DependentUpon>frmBotNavi.cs</DependentUpon>
