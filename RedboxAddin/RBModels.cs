@@ -282,13 +282,17 @@ namespace RedboxAddin
 		
 		private long _ID;
 		
-		private System.Nullable<long> _MasterBookingID;
+		private long _MasterBookingID;
 		
 		private System.DateTime _Date;
 		
-		private System.Nullable<bool> _Am;
+		private decimal _Rate;
 		
-		private System.Nullable<bool> _Pm;
+		private decimal _Charge;
+		
+		private bool _HalfDay;
+		
+		private string _Description;
 		
 		private EntityRef<MasterBooking> _MasterBooking;
 		
@@ -298,14 +302,18 @@ namespace RedboxAddin
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnMasterBookingIDChanging(System.Nullable<long> value);
+    partial void OnMasterBookingIDChanging(long value);
     partial void OnMasterBookingIDChanged();
     partial void OnDateChanging(System.DateTime value);
     partial void OnDateChanged();
-    partial void OnAmChanging(System.Nullable<bool> value);
-    partial void OnAmChanged();
-    partial void OnPmChanging(System.Nullable<bool> value);
-    partial void OnPmChanged();
+    partial void OnRateChanging(decimal value);
+    partial void OnRateChanged();
+    partial void OnChargeChanging(decimal value);
+    partial void OnChargeChanged();
+    partial void OnHalfDayChanging(bool value);
+    partial void OnHalfDayChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     #endregion
 		
 		public Booking()
@@ -334,8 +342,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterBookingID", DbType="BigInt")]
-		public System.Nullable<long> MasterBookingID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterBookingID", DbType="BigInt NOT NULL")]
+		public long MasterBookingID
 		{
 			get
 			{
@@ -378,42 +386,82 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="am", Storage="_Am", DbType="Bit")]
-		public System.Nullable<bool> Am
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rate", DbType="Decimal(7,2) NOT NULL")]
+		public decimal Rate
 		{
 			get
 			{
-				return this._Am;
+				return this._Rate;
 			}
 			set
 			{
-				if ((this._Am != value))
+				if ((this._Rate != value))
 				{
-					this.OnAmChanging(value);
+					this.OnRateChanging(value);
 					this.SendPropertyChanging();
-					this._Am = value;
-					this.SendPropertyChanged("Am");
-					this.OnAmChanged();
+					this._Rate = value;
+					this.SendPropertyChanged("Rate");
+					this.OnRateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="pm", Storage="_Pm", DbType="Bit")]
-		public System.Nullable<bool> Pm
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Charge", DbType="Decimal(7,2) NOT NULL")]
+		public decimal Charge
 		{
 			get
 			{
-				return this._Pm;
+				return this._Charge;
 			}
 			set
 			{
-				if ((this._Pm != value))
+				if ((this._Charge != value))
 				{
-					this.OnPmChanging(value);
+					this.OnChargeChanging(value);
 					this.SendPropertyChanging();
-					this._Pm = value;
-					this.SendPropertyChanged("Pm");
-					this.OnPmChanged();
+					this._Charge = value;
+					this.SendPropertyChanged("Charge");
+					this.OnChargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDay", DbType="Bit NOT NULL")]
+		public bool HalfDay
+		{
+			get
+			{
+				return this._HalfDay;
+			}
+			set
+			{
+				if ((this._HalfDay != value))
+				{
+					this.OnHalfDayChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDay = value;
+					this.SendPropertyChanged("HalfDay");
+					this.OnHalfDayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
 				}
 			}
 		}
@@ -445,7 +493,7 @@ namespace RedboxAddin
 					}
 					else
 					{
-						this._MasterBookingID = default(Nullable<long>);
+						this._MasterBookingID = default(long);
 					}
 					this.SendPropertyChanged("MasterBooking");
 				}

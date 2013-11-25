@@ -1772,6 +1772,8 @@ namespace RedboxAddin.DL
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
             string SQLstr = "Select FirstName+' '+Lastname as Teacher,Live, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
+                            "OverseasTrainedTeacher, NQT, TA, QNN, SEN, NN, " +
+                            "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, " + 
                             "s1.School as Monday, s2.School as Tuesday, s3.School as Wednesday, " +
                             "s4.School as Thursday, s5.School as Friday " +
                             "FROM [tblContacts] " +

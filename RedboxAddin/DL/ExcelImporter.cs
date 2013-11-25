@@ -162,7 +162,7 @@ namespace RedboxAddin.DL
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error - Could not retrieve the dates to import to. Import aborted.");
-                    return ;
+                    return;
                 }
 
                 List<RAvailability> listA = new List<RAvailability>();
@@ -180,34 +180,36 @@ namespace RedboxAddin.DL
                             //get contact id from full name
                             string fullname = dt.Rows[iRow][0].ToString();
                             long contactID = dbm.GetContactIDfromFullName(fullname);
-                            if (contactID == -1) continue;  //-1 == not found
+                            if (contactID != -1)   //-1 == not found
+                            {
+                                //create contact data
+                                ContactData cd = new ContactData();
+                                cd.ContactID = contactID;
+                                cd.Live = Utils.CheckString(dt.Rows[iRow][3].ToString());
+                                cd.NoGo = Utils.CheckString(dt.Rows[iRow][10].ToString());
+                                //cd.Pay = Utils.CheckString(dt.Rows[iRow][7].ToString());
+                                //cd.PofA = Utils.CheckBool(dt.Rows[iRow][8].ToString());
+                                cd.Wants = Utils.CheckString(dt.Rows[iRow][4].ToString());
+                                cd.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                                cd.Nur = Utils.CheckBool(dt.Rows[iRow][18].ToString());
+                                cd.Rec = Utils.CheckBool(dt.Rows[iRow][19].ToString());
+                                cd.Yr1 = Utils.CheckBool(dt.Rows[iRow][20].ToString());
+                                cd.Yr2 = Utils.CheckBool(dt.Rows[iRow][21].ToString());
+                                cd.Yr3 = Utils.CheckBool(dt.Rows[iRow][22].ToString());
+                                cd.Yr4 = Utils.CheckBool(dt.Rows[iRow][23].ToString());
+                                cd.Yr5 = Utils.CheckBool(dt.Rows[iRow][24].ToString());
+                                cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25].ToString());
 
-                            //create contact data
-                            ContactData cd = new ContactData();
-                            cd.ContactID = contactID;
-                            cd.Live = Utils.CheckString(dt.Rows[iRow][3].ToString());
-                            cd.NoGo = Utils.CheckString(dt.Rows[iRow][10].ToString());
-                            //cd.Pay = Utils.CheckString(dt.Rows[iRow][7].ToString());
-                            //cd.PofA = Utils.CheckBool(dt.Rows[iRow][8].ToString());
-                            cd.Wants = Utils.CheckString(dt.Rows[iRow][4].ToString());
-                            cd.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                            cd.Nur = Utils.CheckBool(dt.Rows[iRow][18].ToString());
-                            cd.Rec = Utils.CheckBool(dt.Rows[iRow][19].ToString());
-                            cd.Yr1 = Utils.CheckBool(dt.Rows[iRow][20].ToString());
-                            cd.Yr2 = Utils.CheckBool(dt.Rows[iRow][21].ToString());
-                            cd.Yr3 = Utils.CheckBool(dt.Rows[iRow][22].ToString());
-                            cd.Yr4 = Utils.CheckBool(dt.Rows[iRow][23].ToString());
-                            cd.Yr5 = Utils.CheckBool(dt.Rows[iRow][24].ToString());
-                            cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25].ToString());
-
-                            //Find SEN, QNN, TA, in year Group
-                            if (cd.YearGroup.IndexOf("QNN") > -1) cd.QNN = true;
-                            if (cd.YearGroup.IndexOf("SEN") > -1) cd.SEN = true;
-                            if (Utils.CheckString(dt.Rows[iRow][7].ToString()).IndexOf("TA") > -1) cd.TA = true;
+                                //Find SEN, QNN, TA, in year Group
+                                if (cd.YearGroup.IndexOf("QNN") > -1) cd.QNN = true;
+                                if (cd.YearGroup.IndexOf("SEN") > -1) cd.SEN = true;
+                                if (Utils.CheckString(dt.Rows[iRow][7].ToString()).IndexOf("TA") > -1) cd.TA = true;
 
 
-                            db.ContactDatas.InsertOnSubmit(cd);
-                            db.SubmitChanges();
+                                db.ContactDatas.InsertOnSubmit(cd);
+                                db.SubmitChanges();
+
+                            }
 
                             //create master bookings - Mon
                             MasterBooking mb = new MasterBooking();
@@ -218,12 +220,20 @@ namespace RedboxAddin.DL
                             mb.StartDate = monday;
                             mb.EndDate = monday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            mb.Charge = Utils.CheckDecimal("170.00");
+                            mb.Details = dt.Rows[iRow][11].ToString();
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
 
-
+                            Booking bb = new Booking();
+                            bb.MasterBookingID = mb.ID;
+                            bb.Date = mb.StartDate;
+                            bb.Charge = mb.Charge;
+                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            bb.Description = mb.Details;
+                            db.Bookings.InsertOnSubmit(bb);
+                            db.SubmitChanges();
 
                             //create master bookings - Tue
                             mb = new MasterBooking();
@@ -234,10 +244,21 @@ namespace RedboxAddin.DL
                             mb.StartDate = tuesday;
                             mb.EndDate = tuesday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            mb.Charge = Utils.CheckDecimal("170.00");
+                            mb.Details = dt.Rows[iRow][11].ToString();
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
+
+                            bb = new Booking();
+                            bb.MasterBookingID = mb.ID;
+                            bb.Date = mb.StartDate;
+                            bb.Charge = mb.Charge;
+                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            bb.Description = mb.Details;
+                            db.Bookings.InsertOnSubmit(bb);
+                            db.SubmitChanges();
+
 
                             //create master bookings - Wed
                             mb = new MasterBooking();
@@ -248,10 +269,21 @@ namespace RedboxAddin.DL
                             mb.StartDate = wednesday;
                             mb.EndDate = wednesday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            mb.Charge = Utils.CheckDecimal("170.00");
+                            mb.Details = dt.Rows[iRow][11].ToString();
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
+
+                            bb = new Booking();
+                            bb.MasterBookingID = mb.ID;
+                            bb.Date = mb.StartDate;
+                            bb.Charge = mb.Charge;
+                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            bb.Description = mb.Details;
+                            db.Bookings.InsertOnSubmit(bb);
+                            db.SubmitChanges();
+
 
                             //create master bookings - thur
                             mb = new MasterBooking();
@@ -262,10 +294,21 @@ namespace RedboxAddin.DL
                             mb.StartDate = thursday;
                             mb.EndDate = thursday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            mb.Charge = Utils.CheckDecimal("170.00");
+                            mb.Details = dt.Rows[iRow][11].ToString();
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
+
+                            bb = new Booking();
+                            bb.MasterBookingID = mb.ID;
+                            bb.Date = mb.StartDate;
+                            bb.Charge = mb.Charge;
+                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            bb.Description = mb.Details;
+                            db.Bookings.InsertOnSubmit(bb);
+                            db.SubmitChanges();
+
 
                             //create master bookings - frid
                             mb = new MasterBooking();
@@ -276,12 +319,21 @@ namespace RedboxAddin.DL
                             mb.StartDate = friday;
                             mb.EndDate = friday;
                             mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            mb.Charge = Utils.CheckDecimal("170.00");
+                            mb.Details = dt.Rows[iRow][11].ToString();
 
                             db.MasterBookings.InsertOnSubmit(mb);
                             db.SubmitChanges();
 
-                           
+                            bb = new Booking();
+                            bb.MasterBookingID = mb.ID;
+                            bb.Date = mb.StartDate;
+                            bb.Charge = mb.Charge;
+                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                            bb.Description = mb.Details;
+                            db.Bookings.InsertOnSubmit(bb);
+                            db.SubmitChanges();
+
                         }
                         catch (Exception ex1)
                         {
@@ -290,13 +342,13 @@ namespace RedboxAddin.DL
 
                     }
                 }
-                return ;
+                return;
 
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error importing from Exel: " + ex.Message);
-                return ;
+                return;
             }
             finally
             {
@@ -346,7 +398,7 @@ namespace RedboxAddin.DL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
 
-                    for (int iRow = 1; iRow < iRowCount; iRow++)
+                    for (int iRow = 0; iRow < iRowCount; iRow++)
                     {
                         try
                         {
@@ -354,10 +406,14 @@ namespace RedboxAddin.DL
                             School school = new School();
                             school.SchoolName = Utils.CheckString(dt.Rows[iRow][0].ToString());
                             school.ShortName = Utils.CheckString(dt.Rows[iRow][1].ToString());
-                            
+                            school.DayCharge = Utils.CheckDecimal(dt.Rows[iRow][2].ToString());
+                            school.HalfDayCharge = Utils.CheckDecimal(dt.Rows[iRow][3].ToString());
+                            school.DayChargeLT = Utils.CheckDecimal(dt.Rows[iRow][4].ToString());
+                            school.HalfDayChargeLT = Utils.CheckDecimal(dt.Rows[iRow][5].ToString());
+
                             db.Schools.InsertOnSubmit(school);
                             db.SubmitChanges();
-                           
+
                         }
                         catch (Exception ex1)
                         {
@@ -428,14 +484,14 @@ namespace RedboxAddin.DL
                         {
                             //create School
                             string fn = Utils.CheckString(dt.Rows[iRow][2].ToString());
-                            string ln =  Utils.CheckString(dt.Rows[iRow][1].ToString());
+                            string ln = Utils.CheckString(dt.Rows[iRow][1].ToString());
 
                             TblContact contact = db.TblContacts.Where(c => c.FirstName == fn && c.LastName == ln).FirstOrDefault();
                             if (contact != null)
                             {
                                 contact.KeyRef = Utils.CheckString(dt.Rows[iRow][0].ToString());
                             }
-                            
+
                             db.SubmitChanges();
 
                         }

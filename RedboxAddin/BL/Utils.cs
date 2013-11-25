@@ -142,5 +142,55 @@ namespace RedboxAddin.BL
         //        Debug.DebugMessage(2, "Error in CheckForRedboxFolder() :- " + ex.Message);
         //    }
         //}
+
+        public static string TeacherQuals(bool TA, bool QTS, bool NQT, bool OTT, bool QNN, bool NN, bool SEN)
+        {
+            string Quals = "";
+            if (TA) Quals += "/TA";
+            if (QTS) Quals += "/QTS";
+            if (NQT) Quals += "/NQT";
+            if (OTT) Quals += "/OTT";
+            if (QNN) Quals += "/QNN";
+            if (NN) Quals += "/NN";
+            if (SEN) Quals += "/SEN";
+
+            if (Quals != "") Quals = Quals.Substring(1);
+            return Quals;
+        }
+
+        public static string YearGroup(bool Nur, bool Rec, bool Yr1, bool Yr2, bool Yr3, bool Yr4, bool Yr5, bool Yr6)
+        {
+            string agegroup = "";
+            if (Nur) agegroup += "Nur/";
+            if (Rec) agegroup += "Rec/";
+            if (Yr1) agegroup += "Yr1/";
+            if (Yr2) agegroup += "Yr2/";
+            if (Yr3) agegroup += "Yr3/";
+            if (Yr4) agegroup += "Yr4/";
+            if (Yr5) agegroup += "Yr5/";
+            if (Yr6) agegroup += "Yr6";
+
+            agegroup = agegroup.Replace("Nur/Rec", "Nur-Rec");
+            agegroup = agegroup.Replace("Rec/Yr1", "Rec-Yr1");
+            agegroup = agegroup.Replace("Yr1/Yr2", "Yr1-Yr2");
+            agegroup = agegroup.Replace("Yr2/Yr3", "Yr2-Yr3");
+            agegroup = agegroup.Replace("Yr3/Yr4", "Yr3-Yr4");
+            agegroup = agegroup.Replace("Yr4/Yr5", "Yr4-Yr5");
+            agegroup = agegroup.Replace("Yr5/Yr6", "Yr5-Yr6");
+
+            agegroup = agegroup.Replace("-Rec-", "-");
+            agegroup = agegroup.Replace("-Yr1-", "-");
+            agegroup = agegroup.Replace("-Yr2-", "-");
+            agegroup = agegroup.Replace("-Yr3-", "-");
+            agegroup = agegroup.Replace("-Yr4-", "-");
+            agegroup = agegroup.Replace("-Yr5-", "-");
+
+            if (agegroup.Length > 0)
+            {
+                if (agegroup.Substring(agegroup.Length - 1) == "/") agegroup = agegroup.Substring(0, agegroup.Length - 1);
+            }
+
+            return agegroup;
+        }
     }
 }

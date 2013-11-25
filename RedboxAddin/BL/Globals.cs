@@ -9,5 +9,7 @@ namespace RedboxAddin.BL
     {
         internal static Microsoft.Office.Interop.Outlook._Application objOutlook;
         internal static Microsoft.Office.Interop.Outlook.NameSpace objNS;
+
+        internal static decimal TeacherDailyRate = Convert.ToDecimal("135.00");
     }
 }
