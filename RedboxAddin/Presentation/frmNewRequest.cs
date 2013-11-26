@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Data.Linq;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
+using RedboxAddin.Models;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
@@ -79,37 +80,51 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        //private void PopulateYearGroup()
-        //{
-        //    try
-        //    {
-        //        List<YearGroup> ygs = db.YearGroups.ToList();
-        //        cmbYearGroup.DataSource = ygs;
-        //        cmbYearGroup.DisplayMember = "Name";
-        //        cmbYearGroup.ValueMember = "Name";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.DebugMessage(2, "Error in PopulateYearGroup: " + ex.Message);
-        //    }
+        private void LoadMasterBooking(long ID)
+        {
+            try
+            {
+                RMasterBooking rMB = new DBManager().GetMasterBookingInfo(ID);
+                
+        //cmbSchool.ValueMember=rMB.SchoolID ;
+        cmbSchool.Text=rMB.School;
+        //=rMB.ContactID ;
+        cmbTeacher.Text=rMB.TeacherName ;
+        txtDetails.Text=rMB.Details ;
+        dtFrom.Value=rMB.Startdate ;
+        dtTo.Value=rMB.EndDate ;
+        //=rMB.isAbsence ;
+        //=rMB.AbsenceReason ;
+        chkHalfDay.Checked=rMB.HalfDay ;
+        chkLongTerm.Checked=rMB.LongTerm ;
+        chkNur.Checked=rMB.Nur ;
+        chkRec.Checked=rMB.Rec ;
+        chkYr1.Checked=rMB.Yr1 ;
+        chkYr2.Checked=rMB.Yr2 ;
+        chkYr3.Checked=rMB.Yr3 ;
+        chkYr4.Checked=rMB.Yr4 ;
+        chkYr5.Checked=rMB.Yr5 ;
+        chkYr6.Checked=rMB.Yr6 ;
+        chkQTS.Checked=rMB.QTS ;
+        chkNQT.Checked=rMB.NQT ;
+        chkOTT.Checked=rMB.OTT ;
+        chkTA.Checked=rMB.TA ;
+        chkNN.Checked=rMB.NN ;
+        chkQNN.Checked=rMB.QNN ;
+        chkSEN.Checked=rMB.SEN ;
+        txtCharge.Text=rMB.Charge.ToString() ;
+        =rMB.LinkedTeacherID ;
+        radNG.Checked=rMB.NameGiven ;
+        radAF.Checked=rMB.AskedFor ;
+        radTD.Checked=rMB.TrialDay ;
 
-        //}
 
-        //private void PopulateTeacherLevel()
-        //{
-        //    try
-        //    {
-        //        List<TeacherLevel> tl = db.TeacherLevels.ToList();
-        //        cmbTeacherLevel.DataSource = tl;
-        //        cmbTeacherLevel.DisplayMember = "level";
-        //        cmbTeacherLevel.ValueMember = "level";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.DebugMessage(2, "Error in PopulateTeacherLevel: " + ex.Message);
-        //    }
-
-        //}
+            }
+            catch (Exception ex)
+            {
+               Debug.DebugMessage(2, "Error in LoadMasterBooking: " + ex.Message);
+            }
+        }
 
         private void PopulateTeacher()
         {

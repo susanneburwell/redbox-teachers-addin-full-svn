@@ -623,7 +623,7 @@
             // label78
             // 
             this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(612, 11);
+            this.label78.Location = new System.Drawing.Point(694, 11);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(55, 16);
             this.label78.TabIndex = 82;
@@ -632,7 +632,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(673, 11);
+            this.label76.Location = new System.Drawing.Point(757, 11);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(15, 16);
             this.label76.TabIndex = 83;
@@ -640,7 +640,7 @@
             // 
             // txtCharge
             // 
-            this.txtCharge.Location = new System.Drawing.Point(717, 7);
+            this.txtCharge.Location = new System.Drawing.Point(778, 8);
             this.txtCharge.Name = "txtCharge";
             this.txtCharge.Size = new System.Drawing.Size(63, 22);
             this.txtCharge.TabIndex = 81;
@@ -649,7 +649,7 @@
             // chkHalfDay
             // 
             this.chkHalfDay.AutoSize = true;
-            this.chkHalfDay.Location = new System.Drawing.Point(412, 10);
+            this.chkHalfDay.Location = new System.Drawing.Point(420, 10);
             this.chkHalfDay.Name = "chkHalfDay";
             this.chkHalfDay.Size = new System.Drawing.Size(79, 20);
             this.chkHalfDay.TabIndex = 6;
@@ -660,7 +660,7 @@
             // chkLongTerm
             // 
             this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(514, 9);
+            this.chkLongTerm.Location = new System.Drawing.Point(515, 10);
             this.chkLongTerm.Name = "chkLongTerm";
             this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
             this.chkLongTerm.TabIndex = 7;

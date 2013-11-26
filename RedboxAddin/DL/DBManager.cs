@@ -383,6 +383,70 @@ namespace RedboxAddin.DL
             }
         }
 
+        public RMasterBooking GetMasterBookingInfo(long masterBookingID)
+        {
+            RMasterBooking rMB = new RMasterBooking();
+            try
+            {
+                string SQLstr = GetMasterBookingInfoSQL(masterBookingID);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RMasterBooking objBkg = new RMasterBooking()
+                        {
+                                 ID = Convert.ToInt64(dr["ID"] ),
+                                 SchoolID = Convert.ToInt64(dr["SchoolID"]),
+                                 School = dr["SchoolName"].ToString(),
+                                 ContactID = Convert.ToInt64(dr["ContactID"]),
+                                 TeacherName = dr["Teacher"].ToString(),
+                                 Details = dr["Details"].ToString(),
+                                 Startdate = Convert.ToDateTime(dr["StartDate"]).Date,
+                                 EndDate = Convert.ToDateTime(dr["EndDate"]).Date,
+                                 isAbsence = Utils.CheckBool(dr["isAbsence"]),
+                                 AbsenceReason = dr["AbsenceReason"].ToString(),
+                                 HalfDay = Utils.CheckBool(dr["HalfDay"]),
+                                 LongTerm = Utils.CheckBool(dr["LongTerm"]),
+                                 Nur = Utils.CheckBool(dr["Nur"]),
+                                 Rec = Utils.CheckBool(dr["Rec"]),
+                                 Yr1 = Utils.CheckBool(dr["Yr1"]),
+                                 Yr2 = Utils.CheckBool(dr["Yr2"]),
+                                 Yr3 = Utils.CheckBool(dr["Yr3"]),
+                                 Yr4 = Utils.CheckBool(dr["Yr4"]),
+                                 Yr5 = Utils.CheckBool(dr["Yr5"]),
+                                 Yr6 = Utils.CheckBool(dr["Yr6"]),
+                                 QTS = Utils.CheckBool(dr["QTS"]),
+                                 NQT = Utils.CheckBool(dr["NQT"]),
+                                 OTT = Utils.CheckBool(dr["OTT"]),
+                                 TA = Utils.CheckBool(dr["TA"]),
+                                 NN = Utils.CheckBool(dr["NN"]),
+                                 QNN = Utils.CheckBool(dr["QNN"]),
+                                 SEN = Utils.CheckBool(dr["SEN"]),
+                                 Charge = Utils.CheckDecimal(dr["Charge"]),
+                                 LinkedTeacherID = Convert.ToInt64(dr["LinkedTeacherID"]),
+                                 LinkedTeacherName = dr["LinkedTeacherName"].ToString(),
+                                 NameGiven = Utils.CheckBool(dr["NameGiven"]),
+                                 AskedFor = Utils.CheckBool(dr["AskedFor"]),
+                                 TrialDay = Utils.CheckBool(dr["TrialDay"]),
+
+                        };
+                        return objBkg;
+                    }
+
+                    return null;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
+                return null;
+            }
+        }
+
         public RReminder GetReminder(long reminderID)
         {
             try
@@ -1993,6 +2057,22 @@ namespace RedboxAddin.DL
             SQL += "((Bookings.Date >= '" + dStart.ToString("yyyyMMdd") + "') AND (Bookings.Date <= '" + dEnd.ToString("yyyyMMdd") + "'))";
 
             return SQL;
+        }
+
+        private string GetMasterBookingInfoSQL(long masterBookingID)
+        {
+            string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, " +
+                            "LastName+' '+FirstName as TeacherName, Details, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
+                            "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, TA,SEN, QNN, NN, " +
+                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay " +
+
+                            "FROM MasterBookings " +
+                            "LEFT JOIN [Schools] " +
+                            "ON [MasterBookings].SchoolID = Schools.ID " +
+                            "LEFT JOIN [tblContacts]  " +
+                            "WHERE MasterBookings.ID = '" + masterBookingID.ToString() + "' ";
+
+            return SQLstr;
         }
         #endregion
 

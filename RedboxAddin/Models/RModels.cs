@@ -20,7 +20,7 @@ namespace RedboxAddin.Models
         public string AbsenceReason { get; set; }
         public bool HalfDay { get; set; }
         public bool LongTerm { get; set; }
-        public bool nur { get; set; }
+        public bool Nur { get; set; }
         public bool Rec { get; set; }
         public bool Yr1 { get; set; }
         public bool Yr2 { get; set; }
@@ -37,6 +37,7 @@ namespace RedboxAddin.Models
         public bool SEN { get; set; }
         public Decimal Charge { get; set; }
         public long LinkedTeacherID { get; set; }
+        public string LinkedTeacherName { get; set; }
         public bool NameGiven { get; set; }
         public bool AskedFor { get; set; }
         public bool TrialDay { get; set; }
