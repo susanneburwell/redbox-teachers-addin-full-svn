@@ -39,32 +39,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgcAvail = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dgcBookings = new DevExpress.XtraGrid.GridControl();
-            this.ViewBookings = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn0 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -92,7 +69,7 @@
             this.radNG = new System.Windows.Forms.RadioButton();
             this.radAF = new System.Windows.Forms.RadioButton();
             this.radNS = new System.Windows.Forms.RadioButton();
-            this.cmbTeacherName = new System.Windows.Forms.ComboBox();
+            this.cmbRequestedTeacher = new System.Windows.Forms.ComboBox();
             this.lblTS = new System.Windows.Forms.Label();
             this.lblTS2 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
@@ -116,23 +93,48 @@
             this.chkYr6 = new System.Windows.Forms.CheckBox();
             this.btnKS1 = new System.Windows.Forms.Button();
             this.btnKS2 = new System.Windows.Forms.Button();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panelGrids = new System.Windows.Forms.Panel();
+            this.dgcAvail = new DevExpress.XtraGrid.GridControl();
+            this.dgcAvailView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dgcBookings = new DevExpress.XtraGrid.GridControl();
+            this.ViewBookings = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn0 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.panelGrids.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgcAvail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgcAvailView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgcBookings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBookings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.panelGrids.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -150,6 +152,7 @@
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(200, 22);
             this.dtFrom.TabIndex = 4;
+            this.dtFrom.ValueChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // label4
             // 
@@ -175,6 +178,7 @@
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(200, 22);
             this.dtTo.TabIndex = 5;
+            this.dtTo.ValueChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // cmbSchool
             // 
@@ -188,7 +192,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(409, 126);
+            this.label6.Location = new System.Drawing.Point(409, 111);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 16);
             this.label6.TabIndex = 11;
@@ -196,7 +200,7 @@
             // 
             // txtDetails
             // 
-            this.txtDetails.Location = new System.Drawing.Point(408, 145);
+            this.txtDetails.Location = new System.Drawing.Point(408, 131);
             this.txtDetails.Multiline = true;
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.Size = new System.Drawing.Size(489, 76);
@@ -217,20 +221,660 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 745);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.cmbTeacher);
+            this.panel2.Controls.Add(this.btnView);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.groupBox2);
+            this.panel2.Controls.Add(this.btnEditDesc);
+            this.panel2.Controls.Add(this.btnRefresh);
+            this.panel2.Controls.Add(this.lblDescription);
+            this.panel2.Controls.Add(this.txtDescription);
+            this.panel2.Controls.Add(this.btnSave);
+            this.panel2.Controls.Add(this.lblDes);
+            this.panel2.Controls.Add(this.chkFri);
+            this.panel2.Controls.Add(this.chkThu);
+            this.panel2.Controls.Add(this.chkWed);
+            this.panel2.Controls.Add(this.chkTue);
+            this.panel2.Controls.Add(this.chkMon);
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.label78);
+            this.panel2.Controls.Add(this.label76);
+            this.panel2.Controls.Add(this.txtCharge);
+            this.panel2.Controls.Add(this.chkHalfDay);
+            this.panel2.Controls.Add(this.chkLongTerm);
+            this.panel2.Controls.Add(this.groupBox6);
+            this.panel2.Controls.Add(this.txtDetails);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.dtFrom);
+            this.panel2.Controls.Add(this.cmbSchool);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.dtTo);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(911, 324);
+            this.panel2.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(409, 247);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(119, 16);
+            this.label11.TabIndex = 101;
+            this.label11.Text = "Selected Teacher:";
+            // 
+            // cmbTeacher
+            // 
+            this.cmbTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbTeacher.FormattingEnabled = true;
+            this.cmbTeacher.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.cmbTeacher.Location = new System.Drawing.Point(531, 244);
+            this.cmbTeacher.Name = "cmbTeacher";
+            this.cmbTeacher.Size = new System.Drawing.Size(297, 24);
+            this.cmbTeacher.TabIndex = 100;
+            // 
+            // btnView
+            // 
+            this.btnView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.Location = new System.Drawing.Point(713, 288);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(115, 22);
+            this.btnView.TabIndex = 99;
+            this.btnView.Text = "Edit Daily Bookings";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.View_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(409, 88);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(28, 16);
+            this.label10.TabIndex = 98;
+            this.label10.Text = "inc:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.chkSEN);
+            this.groupBox2.Controls.Add(this.chkNN);
+            this.groupBox2.Controls.Add(this.chkTA);
+            this.groupBox2.Controls.Add(this.chkQNN);
+            this.groupBox2.Controls.Add(this.chkOTT);
+            this.groupBox2.Controls.Add(this.chkNQT);
+            this.groupBox2.Controls.Add(this.chkQTS);
+            this.groupBox2.Location = new System.Drawing.Point(23, 38);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(349, 71);
+            this.groupBox2.TabIndex = 97;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Qualifications";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(249, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Match ANY ticked";
+            // 
+            // chkSEN
+            // 
+            this.chkSEN.AutoSize = true;
+            this.chkSEN.Location = new System.Drawing.Point(139, 45);
+            this.chkSEN.Name = "chkSEN";
+            this.chkSEN.Size = new System.Drawing.Size(55, 20);
+            this.chkSEN.TabIndex = 17;
+            this.chkSEN.Text = "SEN";
+            this.chkSEN.UseVisualStyleBackColor = true;
+            this.chkSEN.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkNN
+            // 
+            this.chkNN.AutoSize = true;
+            this.chkNN.Location = new System.Drawing.Point(77, 45);
+            this.chkNN.Name = "chkNN";
+            this.chkNN.Size = new System.Drawing.Size(47, 20);
+            this.chkNN.TabIndex = 16;
+            this.chkNN.Text = "NN";
+            this.chkNN.UseVisualStyleBackColor = true;
+            this.chkNN.CheckStateChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkTA
+            // 
+            this.chkTA.AutoSize = true;
+            this.chkTA.Location = new System.Drawing.Point(200, 21);
+            this.chkTA.Name = "chkTA";
+            this.chkTA.Size = new System.Drawing.Size(45, 20);
+            this.chkTA.TabIndex = 15;
+            this.chkTA.Text = "TA";
+            this.chkTA.UseVisualStyleBackColor = true;
+            this.chkTA.CheckStateChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkQNN
+            // 
+            this.chkQNN.AutoSize = true;
+            this.chkQNN.Location = new System.Drawing.Point(17, 47);
+            this.chkQNN.Name = "chkQNN";
+            this.chkQNN.Size = new System.Drawing.Size(57, 20);
+            this.chkQNN.TabIndex = 14;
+            this.chkQNN.Text = "QNN";
+            this.chkQNN.UseVisualStyleBackColor = true;
+            this.chkQNN.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkOTT
+            // 
+            this.chkOTT.AutoSize = true;
+            this.chkOTT.Location = new System.Drawing.Point(139, 21);
+            this.chkOTT.Name = "chkOTT";
+            this.chkOTT.Size = new System.Drawing.Size(55, 20);
+            this.chkOTT.TabIndex = 13;
+            this.chkOTT.Text = "OTT";
+            this.chkOTT.UseVisualStyleBackColor = true;
+            this.chkOTT.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkNQT
+            // 
+            this.chkNQT.AutoSize = true;
+            this.chkNQT.Location = new System.Drawing.Point(78, 21);
+            this.chkNQT.Name = "chkNQT";
+            this.chkNQT.Size = new System.Drawing.Size(56, 20);
+            this.chkNQT.TabIndex = 12;
+            this.chkNQT.Text = "NQT";
+            this.chkNQT.UseVisualStyleBackColor = true;
+            this.chkNQT.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkQTS
+            // 
+            this.chkQTS.AutoSize = true;
+            this.chkQTS.Location = new System.Drawing.Point(17, 21);
+            this.chkQTS.Name = "chkQTS";
+            this.chkQTS.Size = new System.Drawing.Size(55, 20);
+            this.chkQTS.TabIndex = 11;
+            this.chkQTS.Text = "QTS";
+            this.chkQTS.UseVisualStyleBackColor = true;
+            this.chkQTS.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // btnEditDesc
+            // 
+            this.btnEditDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditDesc.Location = new System.Drawing.Point(844, 216);
+            this.btnEditDesc.Name = "btnEditDesc";
+            this.btnEditDesc.Size = new System.Drawing.Size(53, 22);
+            this.btnEditDesc.TabIndex = 96;
+            this.btnEditDesc.Text = "Edit";
+            this.btnEditDesc.UseVisualStyleBackColor = true;
+            this.btnEditDesc.Click += new System.EventHandler(this.btnEditDesc_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(408, 286);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(117, 27);
+            this.btnRefresh.TabIndex = 15;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(528, 219);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(79, 16);
+            this.lblDescription.TabIndex = 95;
+            this.lblDescription.Text = "Description:";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(531, 216);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(297, 22);
+            this.txtDescription.TabIndex = 94;
+            this.txtDescription.Visible = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(531, 286);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(117, 27);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save Request";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblDes
+            // 
+            this.lblDes.AutoSize = true;
+            this.lblDes.Location = new System.Drawing.Point(409, 219);
+            this.lblDes.Name = "lblDes";
+            this.lblDes.Size = new System.Drawing.Size(79, 16);
+            this.lblDes.TabIndex = 93;
+            this.lblDes.Text = "Description:";
+            // 
+            // chkFri
+            // 
+            this.chkFri.AutoSize = true;
+            this.chkFri.Checked = true;
+            this.chkFri.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFri.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFri.Location = new System.Drawing.Point(699, 86);
+            this.chkFri.Name = "chkFri";
+            this.chkFri.Size = new System.Drawing.Size(37, 17);
+            this.chkFri.TabIndex = 92;
+            this.chkFri.Text = "Fri";
+            this.chkFri.UseVisualStyleBackColor = true;
+            // 
+            // chkThu
+            // 
+            this.chkThu.AutoSize = true;
+            this.chkThu.Checked = true;
+            this.chkThu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThu.Location = new System.Drawing.Point(641, 86);
+            this.chkThu.Name = "chkThu";
+            this.chkThu.Size = new System.Drawing.Size(45, 17);
+            this.chkThu.TabIndex = 91;
+            this.chkThu.Text = "Thu";
+            this.chkThu.UseVisualStyleBackColor = true;
+            // 
+            // chkWed
+            // 
+            this.chkWed.AutoSize = true;
+            this.chkWed.Checked = true;
+            this.chkWed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWed.Location = new System.Drawing.Point(577, 86);
+            this.chkWed.Name = "chkWed";
+            this.chkWed.Size = new System.Drawing.Size(49, 17);
+            this.chkWed.TabIndex = 90;
+            this.chkWed.Text = "Wed";
+            this.chkWed.UseVisualStyleBackColor = true;
+            // 
+            // chkTue
+            // 
+            this.chkTue.AutoSize = true;
+            this.chkTue.Checked = true;
+            this.chkTue.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTue.Location = new System.Drawing.Point(518, 86);
+            this.chkTue.Name = "chkTue";
+            this.chkTue.Size = new System.Drawing.Size(45, 17);
+            this.chkTue.TabIndex = 89;
+            this.chkTue.Text = "Tue";
+            this.chkTue.UseVisualStyleBackColor = true;
+            // 
+            // chkMon
+            // 
+            this.chkMon.AutoSize = true;
+            this.chkMon.Checked = true;
+            this.chkMon.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMon.Location = new System.Drawing.Point(457, 86);
+            this.chkMon.Name = "chkMon";
+            this.chkMon.Size = new System.Drawing.Size(47, 17);
+            this.chkMon.TabIndex = 88;
+            this.chkMon.Text = "Mon";
+            this.chkMon.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radTD);
+            this.groupBox1.Controls.Add(this.radNG);
+            this.groupBox1.Controls.Add(this.radAF);
+            this.groupBox1.Controls.Add(this.radNS);
+            this.groupBox1.Controls.Add(this.cmbRequestedTeacher);
+            this.groupBox1.Controls.Add(this.lblTS);
+            this.groupBox1.Controls.Add(this.lblTS2);
+            this.groupBox1.Location = new System.Drawing.Point(22, 222);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(350, 99);
+            this.groupBox1.TabIndex = 87;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Requested Teacher";
+            // 
+            // radTD
+            // 
+            this.radTD.AutoSize = true;
+            this.radTD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTD.Location = new System.Drawing.Point(279, 21);
+            this.radTD.Name = "radTD";
+            this.radTD.Size = new System.Drawing.Size(67, 17);
+            this.radTD.TabIndex = 90;
+            this.radTD.Text = "Trial Day";
+            this.radTD.UseVisualStyleBackColor = true;
+            // 
+            // radNG
+            // 
+            this.radNG.AutoSize = true;
+            this.radNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radNG.Location = new System.Drawing.Point(187, 21);
+            this.radNG.Name = "radNG";
+            this.radNG.Size = new System.Drawing.Size(84, 17);
+            this.radNG.TabIndex = 89;
+            this.radNG.Text = "Name Given";
+            this.radNG.UseVisualStyleBackColor = true;
+            // 
+            // radAF
+            // 
+            this.radAF.AutoSize = true;
+            this.radAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radAF.Location = new System.Drawing.Point(106, 21);
+            this.radAF.Name = "radAF";
+            this.radAF.Size = new System.Drawing.Size(73, 17);
+            this.radAF.TabIndex = 88;
+            this.radAF.Text = "Asked For";
+            this.radAF.UseVisualStyleBackColor = true;
+            // 
+            // radNS
+            // 
+            this.radNS.AutoSize = true;
+            this.radNS.Checked = true;
+            this.radNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radNS.Location = new System.Drawing.Point(10, 21);
+            this.radNS.Name = "radNS";
+            this.radNS.Size = new System.Drawing.Size(89, 17);
+            this.radNS.TabIndex = 87;
+            this.radNS.TabStop = true;
+            this.radNS.Text = "Not Specified";
+            this.radNS.UseVisualStyleBackColor = true;
+            this.radNS.CheckedChanged += new System.EventHandler(this.radNS_CheckedChanged);
+            // 
+            // cmbRequestedTeacher
+            // 
+            this.cmbRequestedTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbRequestedTeacher.FormattingEnabled = true;
+            this.cmbRequestedTeacher.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.cmbRequestedTeacher.Location = new System.Drawing.Point(151, 44);
+            this.cmbRequestedTeacher.Name = "cmbRequestedTeacher";
+            this.cmbRequestedTeacher.Size = new System.Drawing.Size(189, 24);
+            this.cmbRequestedTeacher.TabIndex = 84;
+            this.cmbRequestedTeacher.Visible = false;
+            // 
+            // lblTS
+            // 
+            this.lblTS.AutoSize = true;
+            this.lblTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTS.Location = new System.Drawing.Point(57, 79);
+            this.lblTS.Name = "lblTS";
+            this.lblTS.Size = new System.Drawing.Size(282, 13);
+            this.lblTS.TabIndex = 86;
+            this.lblTS.Text = "*Only use this box for Asked For, Name Given, or Trial Day";
+            this.lblTS.Visible = false;
+            // 
+            // lblTS2
+            // 
+            this.lblTS2.AutoSize = true;
+            this.lblTS2.Location = new System.Drawing.Point(8, 47);
+            this.lblTS2.Name = "lblTS2";
+            this.lblTS2.Size = new System.Drawing.Size(137, 16);
+            this.lblTS2.TabIndex = 85;
+            this.lblTS2.Text = "Requested Teacher*:";
+            this.lblTS2.Visible = false;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Location = new System.Drawing.Point(612, 11);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(55, 16);
+            this.label78.TabIndex = 82;
+            this.label78.Text = "Charge:";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(673, 11);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(15, 16);
+            this.label76.TabIndex = 83;
+            this.label76.Text = "£";
+            // 
+            // txtCharge
+            // 
+            this.txtCharge.Location = new System.Drawing.Point(717, 7);
+            this.txtCharge.Name = "txtCharge";
+            this.txtCharge.Size = new System.Drawing.Size(63, 22);
+            this.txtCharge.TabIndex = 81;
+            this.txtCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtDayRate_Validating);
+            // 
+            // chkHalfDay
+            // 
+            this.chkHalfDay.AutoSize = true;
+            this.chkHalfDay.Location = new System.Drawing.Point(412, 10);
+            this.chkHalfDay.Name = "chkHalfDay";
+            this.chkHalfDay.Size = new System.Drawing.Size(79, 20);
+            this.chkHalfDay.TabIndex = 6;
+            this.chkHalfDay.Text = "Half Day";
+            this.chkHalfDay.UseVisualStyleBackColor = true;
+            this.chkHalfDay.CheckedChanged += new System.EventHandler(this.chkHalfDay_CheckedChanged);
+            // 
+            // chkLongTerm
+            // 
+            this.chkLongTerm.AutoSize = true;
+            this.chkLongTerm.Location = new System.Drawing.Point(514, 9);
+            this.chkLongTerm.Name = "chkLongTerm";
+            this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
+            this.chkLongTerm.TabIndex = 7;
+            this.chkLongTerm.Text = "Long Term";
+            this.chkLongTerm.UseVisualStyleBackColor = true;
+            this.chkLongTerm.CheckedChanged += new System.EventHandler(this.chkLongTerm_CheckedChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.label9);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.label7);
+            this.groupBox6.Controls.Add(this.btnEY);
+            this.groupBox6.Controls.Add(this.chkRec);
+            this.groupBox6.Controls.Add(this.chkYr1);
+            this.groupBox6.Controls.Add(this.chkNur);
+            this.groupBox6.Controls.Add(this.chkYr2);
+            this.groupBox6.Controls.Add(this.chkYr3);
+            this.groupBox6.Controls.Add(this.chkYr4);
+            this.groupBox6.Controls.Add(this.chkYr5);
+            this.groupBox6.Controls.Add(this.chkYr6);
+            this.groupBox6.Controls.Add(this.btnKS1);
+            this.groupBox6.Controls.Add(this.btnKS2);
+            this.groupBox6.Location = new System.Drawing.Point(22, 111);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(350, 110);
+            this.groupBox6.TabIndex = 80;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Year Groups";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(249, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Match ALL ticked";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(15, 82);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "KS2";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(15, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(27, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "KS1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(15, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(21, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "EY";
+            // 
+            // btnEY
+            // 
+            this.btnEY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEY.Location = new System.Drawing.Point(42, 27);
+            this.btnEY.Name = "btnEY";
+            this.btnEY.Size = new System.Drawing.Size(15, 15);
+            this.btnEY.TabIndex = 20;
+            this.btnEY.UseVisualStyleBackColor = true;
+            this.btnEY.Click += new System.EventHandler(this.btnEY_Click);
+            // 
+            // chkRec
+            // 
+            this.chkRec.AutoSize = true;
+            this.chkRec.Location = new System.Drawing.Point(174, 24);
+            this.chkRec.Name = "chkRec";
+            this.chkRec.Size = new System.Drawing.Size(52, 20);
+            this.chkRec.TabIndex = 11;
+            this.chkRec.Text = "Rec";
+            this.chkRec.UseVisualStyleBackColor = true;
+            this.chkRec.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkYr1
+            // 
+            this.chkYr1.AutoSize = true;
+            this.chkYr1.Location = new System.Drawing.Point(109, 50);
+            this.chkYr1.Name = "chkYr1";
+            this.chkYr1.Size = new System.Drawing.Size(47, 20);
+            this.chkYr1.TabIndex = 12;
+            this.chkYr1.Text = "Yr1";
+            this.chkYr1.UseVisualStyleBackColor = true;
+            this.chkYr1.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkNur
+            // 
+            this.chkNur.AutoSize = true;
+            this.chkNur.Location = new System.Drawing.Point(110, 24);
+            this.chkNur.Name = "chkNur";
+            this.chkNur.Size = new System.Drawing.Size(48, 20);
+            this.chkNur.TabIndex = 10;
+            this.chkNur.Text = "Nur";
+            this.chkNur.UseVisualStyleBackColor = true;
+            this.chkNur.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkYr2
+            // 
+            this.chkYr2.AutoSize = true;
+            this.chkYr2.Location = new System.Drawing.Point(173, 50);
+            this.chkYr2.Name = "chkYr2";
+            this.chkYr2.Size = new System.Drawing.Size(47, 20);
+            this.chkYr2.TabIndex = 13;
+            this.chkYr2.Text = "Yr2";
+            this.chkYr2.UseVisualStyleBackColor = true;
+            this.chkYr2.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkYr3
+            // 
+            this.chkYr3.AutoSize = true;
+            this.chkYr3.Location = new System.Drawing.Point(109, 79);
+            this.chkYr3.Name = "chkYr3";
+            this.chkYr3.Size = new System.Drawing.Size(47, 20);
+            this.chkYr3.TabIndex = 14;
+            this.chkYr3.Text = "Yr3";
+            this.chkYr3.UseVisualStyleBackColor = true;
+            this.chkYr3.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkYr4
+            // 
+            this.chkYr4.AutoSize = true;
+            this.chkYr4.Location = new System.Drawing.Point(173, 79);
+            this.chkYr4.Name = "chkYr4";
+            this.chkYr4.Size = new System.Drawing.Size(47, 20);
+            this.chkYr4.TabIndex = 15;
+            this.chkYr4.Text = "Yr4";
+            this.chkYr4.UseVisualStyleBackColor = true;
+            this.chkYr4.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkYr5
+            // 
+            this.chkYr5.AutoSize = true;
+            this.chkYr5.Location = new System.Drawing.Point(231, 79);
+            this.chkYr5.Name = "chkYr5";
+            this.chkYr5.Size = new System.Drawing.Size(47, 20);
+            this.chkYr5.TabIndex = 16;
+            this.chkYr5.Text = "Yr5";
+            this.chkYr5.UseVisualStyleBackColor = true;
+            this.chkYr5.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkYr6
+            // 
+            this.chkYr6.AutoSize = true;
+            this.chkYr6.Location = new System.Drawing.Point(293, 79);
+            this.chkYr6.Name = "chkYr6";
+            this.chkYr6.Size = new System.Drawing.Size(47, 20);
+            this.chkYr6.TabIndex = 17;
+            this.chkYr6.Text = "Yr6";
+            this.chkYr6.UseVisualStyleBackColor = true;
+            this.chkYr6.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // btnKS1
+            // 
+            this.btnKS1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKS1.Location = new System.Drawing.Point(42, 53);
+            this.btnKS1.Name = "btnKS1";
+            this.btnKS1.Size = new System.Drawing.Size(15, 15);
+            this.btnKS1.TabIndex = 21;
+            this.btnKS1.UseVisualStyleBackColor = true;
+            this.btnKS1.Click += new System.EventHandler(this.btnKS1_Click);
+            // 
+            // btnKS2
+            // 
+            this.btnKS2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKS2.Location = new System.Drawing.Point(42, 78);
+            this.btnKS2.Name = "btnKS2";
+            this.btnKS2.Size = new System.Drawing.Size(15, 15);
+            this.btnKS2.TabIndex = 22;
+            this.btnKS2.UseVisualStyleBackColor = true;
+            this.btnKS2.Click += new System.EventHandler(this.btnKS2_Click);
+            // 
+            // panelGrids
+            // 
+            this.panelGrids.Controls.Add(this.dgcAvail);
+            this.panelGrids.Controls.Add(this.dgcBookings);
+            this.panelGrids.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelGrids.Location = new System.Drawing.Point(3, 333);
+            this.panelGrids.Name = "panelGrids";
+            this.panelGrids.Size = new System.Drawing.Size(911, 409);
+            this.panelGrids.TabIndex = 6;
+            // 
             // dgcAvail
             // 
-            this.dgcAvail.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgcAvail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgcAvail.Location = new System.Drawing.Point(686, 0);
-            this.dgcAvail.MainView = this.gridView1;
+            this.dgcAvail.MainView = this.dgcAvailView;
             this.dgcAvail.Name = "dgcAvail";
-            this.dgcAvail.Size = new System.Drawing.Size(797, 409);
+            this.dgcAvail.Size = new System.Drawing.Size(225, 409);
             this.dgcAvail.TabIndex = 6;
             this.dgcAvail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dgcAvailView});
+            this.dgcAvail.DoubleClick += new System.EventHandler(this.dgcAvail_DoubleClick);
             // 
-            // gridView1
+            // dgcAvailView
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dgcAvailView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn2,
             this.gridColumn6,
             this.gridColumn7,
@@ -244,8 +888,8 @@
             this.gridColumn15,
             this.gridColumn16,
             this.gridColumn17});
-            this.gridView1.GridControl = this.dgcAvail;
-            this.gridView1.Name = "gridView1";
+            this.dgcAvailView.GridControl = this.dgcAvail;
+            this.dgcAvailView.Name = "dgcAvailView";
             // 
             // gridColumn2
             // 
@@ -488,6 +1132,10 @@
             // 
             // gridColumn5
             // 
+            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn5.AppearanceCell.Options.UseFont = true;
+            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn5.AppearanceHeader.Options.UseFont = true;
             this.gridColumn5.Caption = "Desciption";
             this.gridColumn5.FieldName = "Description";
             this.gridColumn5.MinWidth = 200;
@@ -516,617 +1164,6 @@
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnView);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Controls.Add(this.btnEditDesc);
-            this.panel2.Controls.Add(this.btnRefresh);
-            this.panel2.Controls.Add(this.lblDescription);
-            this.panel2.Controls.Add(this.txtDescription);
-            this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Controls.Add(this.lblDes);
-            this.panel2.Controls.Add(this.chkFri);
-            this.panel2.Controls.Add(this.chkThu);
-            this.panel2.Controls.Add(this.chkWed);
-            this.panel2.Controls.Add(this.chkTue);
-            this.panel2.Controls.Add(this.chkMon);
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.label78);
-            this.panel2.Controls.Add(this.label76);
-            this.panel2.Controls.Add(this.txtCharge);
-            this.panel2.Controls.Add(this.chkHalfDay);
-            this.panel2.Controls.Add(this.chkLongTerm);
-            this.panel2.Controls.Add(this.groupBox6);
-            this.panel2.Controls.Add(this.txtDetails);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.dtFrom);
-            this.panel2.Controls.Add(this.cmbSchool);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.dtTo);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(911, 324);
-            this.panel2.TabIndex = 1;
-            // 
-            // btnView
-            // 
-            this.btnView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(782, 288);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(115, 22);
-            this.btnView.TabIndex = 99;
-            this.btnView.Text = "View Daily Bookings";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.View_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(409, 88);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(28, 16);
-            this.label10.TabIndex = 98;
-            this.label10.Text = "inc:";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.chkSEN);
-            this.groupBox2.Controls.Add(this.chkNN);
-            this.groupBox2.Controls.Add(this.chkTA);
-            this.groupBox2.Controls.Add(this.chkQNN);
-            this.groupBox2.Controls.Add(this.chkOTT);
-            this.groupBox2.Controls.Add(this.chkNQT);
-            this.groupBox2.Controls.Add(this.chkQTS);
-            this.groupBox2.Location = new System.Drawing.Point(23, 38);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(349, 71);
-            this.groupBox2.TabIndex = 97;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Qualifications";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(249, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Match ANY ticked";
-            // 
-            // chkSEN
-            // 
-            this.chkSEN.AutoSize = true;
-            this.chkSEN.Location = new System.Drawing.Point(139, 45);
-            this.chkSEN.Name = "chkSEN";
-            this.chkSEN.Size = new System.Drawing.Size(55, 20);
-            this.chkSEN.TabIndex = 17;
-            this.chkSEN.Text = "SEN";
-            this.chkSEN.UseVisualStyleBackColor = true;
-            // 
-            // chkNN
-            // 
-            this.chkNN.AutoSize = true;
-            this.chkNN.Location = new System.Drawing.Point(77, 45);
-            this.chkNN.Name = "chkNN";
-            this.chkNN.Size = new System.Drawing.Size(47, 20);
-            this.chkNN.TabIndex = 16;
-            this.chkNN.Text = "NN";
-            this.chkNN.UseVisualStyleBackColor = true;
-            // 
-            // chkTA
-            // 
-            this.chkTA.AutoSize = true;
-            this.chkTA.Location = new System.Drawing.Point(200, 21);
-            this.chkTA.Name = "chkTA";
-            this.chkTA.Size = new System.Drawing.Size(45, 20);
-            this.chkTA.TabIndex = 15;
-            this.chkTA.Text = "TA";
-            this.chkTA.UseVisualStyleBackColor = true;
-            // 
-            // chkQNN
-            // 
-            this.chkQNN.AutoSize = true;
-            this.chkQNN.Location = new System.Drawing.Point(17, 47);
-            this.chkQNN.Name = "chkQNN";
-            this.chkQNN.Size = new System.Drawing.Size(57, 20);
-            this.chkQNN.TabIndex = 14;
-            this.chkQNN.Text = "QNN";
-            this.chkQNN.UseVisualStyleBackColor = true;
-            // 
-            // chkOTT
-            // 
-            this.chkOTT.AutoSize = true;
-            this.chkOTT.Location = new System.Drawing.Point(139, 21);
-            this.chkOTT.Name = "chkOTT";
-            this.chkOTT.Size = new System.Drawing.Size(55, 20);
-            this.chkOTT.TabIndex = 13;
-            this.chkOTT.Text = "OTT";
-            this.chkOTT.UseVisualStyleBackColor = true;
-            // 
-            // chkNQT
-            // 
-            this.chkNQT.AutoSize = true;
-            this.chkNQT.Location = new System.Drawing.Point(78, 21);
-            this.chkNQT.Name = "chkNQT";
-            this.chkNQT.Size = new System.Drawing.Size(56, 20);
-            this.chkNQT.TabIndex = 12;
-            this.chkNQT.Text = "NQT";
-            this.chkNQT.UseVisualStyleBackColor = true;
-            // 
-            // chkQTS
-            // 
-            this.chkQTS.AutoSize = true;
-            this.chkQTS.Location = new System.Drawing.Point(17, 21);
-            this.chkQTS.Name = "chkQTS";
-            this.chkQTS.Size = new System.Drawing.Size(55, 20);
-            this.chkQTS.TabIndex = 11;
-            this.chkQTS.Text = "QTS";
-            this.chkQTS.UseVisualStyleBackColor = true;
-            // 
-            // btnEditDesc
-            // 
-            this.btnEditDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDesc.Location = new System.Drawing.Point(844, 243);
-            this.btnEditDesc.Name = "btnEditDesc";
-            this.btnEditDesc.Size = new System.Drawing.Size(53, 22);
-            this.btnEditDesc.TabIndex = 96;
-            this.btnEditDesc.Text = "Edit";
-            this.btnEditDesc.UseVisualStyleBackColor = true;
-            this.btnEditDesc.Click += new System.EventHandler(this.btnEditDesc_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(408, 286);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(117, 27);
-            this.btnRefresh.TabIndex = 15;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(510, 246);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(79, 16);
-            this.lblDescription.TabIndex = 95;
-            this.lblDescription.Text = "Description:";
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(509, 243);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(319, 22);
-            this.txtDescription.TabIndex = 94;
-            this.txtDescription.Visible = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(531, 286);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(117, 27);
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save Request";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // lblDes
-            // 
-            this.lblDes.AutoSize = true;
-            this.lblDes.Location = new System.Drawing.Point(420, 246);
-            this.lblDes.Name = "lblDes";
-            this.lblDes.Size = new System.Drawing.Size(79, 16);
-            this.lblDes.TabIndex = 93;
-            this.lblDes.Text = "Description:";
-            // 
-            // chkFri
-            // 
-            this.chkFri.AutoSize = true;
-            this.chkFri.Checked = true;
-            this.chkFri.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFri.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFri.Location = new System.Drawing.Point(699, 86);
-            this.chkFri.Name = "chkFri";
-            this.chkFri.Size = new System.Drawing.Size(37, 17);
-            this.chkFri.TabIndex = 92;
-            this.chkFri.Text = "Fri";
-            this.chkFri.UseVisualStyleBackColor = true;
-            // 
-            // chkThu
-            // 
-            this.chkThu.AutoSize = true;
-            this.chkThu.Checked = true;
-            this.chkThu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu.Location = new System.Drawing.Point(641, 86);
-            this.chkThu.Name = "chkThu";
-            this.chkThu.Size = new System.Drawing.Size(45, 17);
-            this.chkThu.TabIndex = 91;
-            this.chkThu.Text = "Thu";
-            this.chkThu.UseVisualStyleBackColor = true;
-            // 
-            // chkWed
-            // 
-            this.chkWed.AutoSize = true;
-            this.chkWed.Checked = true;
-            this.chkWed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkWed.Location = new System.Drawing.Point(577, 86);
-            this.chkWed.Name = "chkWed";
-            this.chkWed.Size = new System.Drawing.Size(49, 17);
-            this.chkWed.TabIndex = 90;
-            this.chkWed.Text = "Wed";
-            this.chkWed.UseVisualStyleBackColor = true;
-            // 
-            // chkTue
-            // 
-            this.chkTue.AutoSize = true;
-            this.chkTue.Checked = true;
-            this.chkTue.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTue.Location = new System.Drawing.Point(518, 86);
-            this.chkTue.Name = "chkTue";
-            this.chkTue.Size = new System.Drawing.Size(45, 17);
-            this.chkTue.TabIndex = 89;
-            this.chkTue.Text = "Tue";
-            this.chkTue.UseVisualStyleBackColor = true;
-            // 
-            // chkMon
-            // 
-            this.chkMon.AutoSize = true;
-            this.chkMon.Checked = true;
-            this.chkMon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMon.Location = new System.Drawing.Point(457, 86);
-            this.chkMon.Name = "chkMon";
-            this.chkMon.Size = new System.Drawing.Size(47, 17);
-            this.chkMon.TabIndex = 88;
-            this.chkMon.Text = "Mon";
-            this.chkMon.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radTD);
-            this.groupBox1.Controls.Add(this.radNG);
-            this.groupBox1.Controls.Add(this.radAF);
-            this.groupBox1.Controls.Add(this.radNS);
-            this.groupBox1.Controls.Add(this.cmbTeacherName);
-            this.groupBox1.Controls.Add(this.lblTS);
-            this.groupBox1.Controls.Add(this.lblTS2);
-            this.groupBox1.Location = new System.Drawing.Point(22, 222);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 99);
-            this.groupBox1.TabIndex = 87;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Teacher";
-            // 
-            // radTD
-            // 
-            this.radTD.AutoSize = true;
-            this.radTD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTD.Location = new System.Drawing.Point(279, 21);
-            this.radTD.Name = "radTD";
-            this.radTD.Size = new System.Drawing.Size(67, 17);
-            this.radTD.TabIndex = 90;
-            this.radTD.Text = "Trial Day";
-            this.radTD.UseVisualStyleBackColor = true;
-            // 
-            // radNG
-            // 
-            this.radNG.AutoSize = true;
-            this.radNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radNG.Location = new System.Drawing.Point(187, 21);
-            this.radNG.Name = "radNG";
-            this.radNG.Size = new System.Drawing.Size(84, 17);
-            this.radNG.TabIndex = 89;
-            this.radNG.Text = "Name Given";
-            this.radNG.UseVisualStyleBackColor = true;
-            // 
-            // radAF
-            // 
-            this.radAF.AutoSize = true;
-            this.radAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radAF.Location = new System.Drawing.Point(106, 21);
-            this.radAF.Name = "radAF";
-            this.radAF.Size = new System.Drawing.Size(73, 17);
-            this.radAF.TabIndex = 88;
-            this.radAF.Text = "Asked For";
-            this.radAF.UseVisualStyleBackColor = true;
-            // 
-            // radNS
-            // 
-            this.radNS.AutoSize = true;
-            this.radNS.Checked = true;
-            this.radNS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radNS.Location = new System.Drawing.Point(10, 21);
-            this.radNS.Name = "radNS";
-            this.radNS.Size = new System.Drawing.Size(89, 17);
-            this.radNS.TabIndex = 87;
-            this.radNS.TabStop = true;
-            this.radNS.Text = "Not Specified";
-            this.radNS.UseVisualStyleBackColor = true;
-            this.radNS.CheckedChanged += new System.EventHandler(this.radNS_CheckedChanged);
-            // 
-            // cmbTeacherName
-            // 
-            this.cmbTeacherName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbTeacherName.FormattingEnabled = true;
-            this.cmbTeacherName.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.cmbTeacherName.Location = new System.Drawing.Point(109, 44);
-            this.cmbTeacherName.Name = "cmbTeacherName";
-            this.cmbTeacherName.Size = new System.Drawing.Size(200, 24);
-            this.cmbTeacherName.TabIndex = 84;
-            this.cmbTeacherName.Visible = false;
-            // 
-            // lblTS
-            // 
-            this.lblTS.AutoSize = true;
-            this.lblTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTS.Location = new System.Drawing.Point(27, 71);
-            this.lblTS.Name = "lblTS";
-            this.lblTS.Size = new System.Drawing.Size(282, 13);
-            this.lblTS.TabIndex = 86;
-            this.lblTS.Text = "*Only use this box for Asked For, Name Given, or Trial Day";
-            this.lblTS.Visible = false;
-            // 
-            // lblTS2
-            // 
-            this.lblTS2.AutoSize = true;
-            this.lblTS2.Location = new System.Drawing.Point(20, 52);
-            this.lblTS2.Name = "lblTS2";
-            this.lblTS2.Size = new System.Drawing.Size(67, 16);
-            this.lblTS2.TabIndex = 85;
-            this.lblTS2.Text = "Teacher*:";
-            this.lblTS2.Visible = false;
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(612, 11);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(55, 16);
-            this.label78.TabIndex = 82;
-            this.label78.Text = "Charge:";
-            // 
-            // label76
-            // 
-            this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(673, 11);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(15, 16);
-            this.label76.TabIndex = 83;
-            this.label76.Text = "£";
-            // 
-            // txtCharge
-            // 
-            this.txtCharge.Location = new System.Drawing.Point(717, 7);
-            this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(63, 22);
-            this.txtCharge.TabIndex = 81;
-            this.txtCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtDayRate_Validating);
-            // 
-            // chkHalfDay
-            // 
-            this.chkHalfDay.AutoSize = true;
-            this.chkHalfDay.Location = new System.Drawing.Point(412, 10);
-            this.chkHalfDay.Name = "chkHalfDay";
-            this.chkHalfDay.Size = new System.Drawing.Size(79, 20);
-            this.chkHalfDay.TabIndex = 6;
-            this.chkHalfDay.Text = "Half Day";
-            this.chkHalfDay.UseVisualStyleBackColor = true;
-            this.chkHalfDay.CheckedChanged += new System.EventHandler(this.chkHalfDay_CheckedChanged);
-            // 
-            // chkLongTerm
-            // 
-            this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(514, 9);
-            this.chkLongTerm.Name = "chkLongTerm";
-            this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
-            this.chkLongTerm.TabIndex = 7;
-            this.chkLongTerm.Text = "Long Term";
-            this.chkLongTerm.UseVisualStyleBackColor = true;
-            this.chkLongTerm.CheckedChanged += new System.EventHandler(this.chkLongTerm_CheckedChanged);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.label8);
-            this.groupBox6.Controls.Add(this.label7);
-            this.groupBox6.Controls.Add(this.btnEY);
-            this.groupBox6.Controls.Add(this.chkRec);
-            this.groupBox6.Controls.Add(this.chkYr1);
-            this.groupBox6.Controls.Add(this.chkNur);
-            this.groupBox6.Controls.Add(this.chkYr2);
-            this.groupBox6.Controls.Add(this.chkYr3);
-            this.groupBox6.Controls.Add(this.chkYr4);
-            this.groupBox6.Controls.Add(this.chkYr5);
-            this.groupBox6.Controls.Add(this.chkYr6);
-            this.groupBox6.Controls.Add(this.btnKS1);
-            this.groupBox6.Controls.Add(this.btnKS2);
-            this.groupBox6.Location = new System.Drawing.Point(22, 111);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(350, 110);
-            this.groupBox6.TabIndex = 80;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Year Groups";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(249, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Match ALL ticked";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(15, 82);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(27, 13);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "KS2";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(15, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(27, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "KS1";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 27);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(21, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "EY";
-            // 
-            // btnEY
-            // 
-            this.btnEY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEY.Location = new System.Drawing.Point(42, 27);
-            this.btnEY.Name = "btnEY";
-            this.btnEY.Size = new System.Drawing.Size(15, 15);
-            this.btnEY.TabIndex = 20;
-            this.btnEY.UseVisualStyleBackColor = true;
-            this.btnEY.Click += new System.EventHandler(this.btnEY_Click);
-            // 
-            // chkRec
-            // 
-            this.chkRec.AutoSize = true;
-            this.chkRec.Location = new System.Drawing.Point(174, 24);
-            this.chkRec.Name = "chkRec";
-            this.chkRec.Size = new System.Drawing.Size(52, 20);
-            this.chkRec.TabIndex = 11;
-            this.chkRec.Text = "Rec";
-            this.chkRec.UseVisualStyleBackColor = true;
-            this.chkRec.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkYr1
-            // 
-            this.chkYr1.AutoSize = true;
-            this.chkYr1.Location = new System.Drawing.Point(109, 50);
-            this.chkYr1.Name = "chkYr1";
-            this.chkYr1.Size = new System.Drawing.Size(47, 20);
-            this.chkYr1.TabIndex = 12;
-            this.chkYr1.Text = "Yr1";
-            this.chkYr1.UseVisualStyleBackColor = true;
-            this.chkYr1.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkNur
-            // 
-            this.chkNur.AutoSize = true;
-            this.chkNur.Location = new System.Drawing.Point(110, 24);
-            this.chkNur.Name = "chkNur";
-            this.chkNur.Size = new System.Drawing.Size(48, 20);
-            this.chkNur.TabIndex = 10;
-            this.chkNur.Text = "Nur";
-            this.chkNur.UseVisualStyleBackColor = true;
-            this.chkNur.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkYr2
-            // 
-            this.chkYr2.AutoSize = true;
-            this.chkYr2.Location = new System.Drawing.Point(173, 50);
-            this.chkYr2.Name = "chkYr2";
-            this.chkYr2.Size = new System.Drawing.Size(47, 20);
-            this.chkYr2.TabIndex = 13;
-            this.chkYr2.Text = "Yr2";
-            this.chkYr2.UseVisualStyleBackColor = true;
-            this.chkYr2.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkYr3
-            // 
-            this.chkYr3.AutoSize = true;
-            this.chkYr3.Location = new System.Drawing.Point(109, 79);
-            this.chkYr3.Name = "chkYr3";
-            this.chkYr3.Size = new System.Drawing.Size(47, 20);
-            this.chkYr3.TabIndex = 14;
-            this.chkYr3.Text = "Yr3";
-            this.chkYr3.UseVisualStyleBackColor = true;
-            this.chkYr3.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkYr4
-            // 
-            this.chkYr4.AutoSize = true;
-            this.chkYr4.Location = new System.Drawing.Point(173, 79);
-            this.chkYr4.Name = "chkYr4";
-            this.chkYr4.Size = new System.Drawing.Size(47, 20);
-            this.chkYr4.TabIndex = 15;
-            this.chkYr4.Text = "Yr4";
-            this.chkYr4.UseVisualStyleBackColor = true;
-            this.chkYr4.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkYr5
-            // 
-            this.chkYr5.AutoSize = true;
-            this.chkYr5.Location = new System.Drawing.Point(231, 79);
-            this.chkYr5.Name = "chkYr5";
-            this.chkYr5.Size = new System.Drawing.Size(47, 20);
-            this.chkYr5.TabIndex = 16;
-            this.chkYr5.Text = "Yr5";
-            this.chkYr5.UseVisualStyleBackColor = true;
-            this.chkYr5.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // chkYr6
-            // 
-            this.chkYr6.AutoSize = true;
-            this.chkYr6.Location = new System.Drawing.Point(293, 79);
-            this.chkYr6.Name = "chkYr6";
-            this.chkYr6.Size = new System.Drawing.Size(47, 20);
-            this.chkYr6.TabIndex = 17;
-            this.chkYr6.Text = "Yr6";
-            this.chkYr6.UseVisualStyleBackColor = true;
-            this.chkYr6.Click += new System.EventHandler(this.chkUpdate_Click);
-            // 
-            // btnKS1
-            // 
-            this.btnKS1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKS1.Location = new System.Drawing.Point(42, 53);
-            this.btnKS1.Name = "btnKS1";
-            this.btnKS1.Size = new System.Drawing.Size(15, 15);
-            this.btnKS1.TabIndex = 21;
-            this.btnKS1.UseVisualStyleBackColor = true;
-            this.btnKS1.Click += new System.EventHandler(this.btnKS1_Click);
-            // 
-            // btnKS2
-            // 
-            this.btnKS2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKS2.Location = new System.Drawing.Point(42, 78);
-            this.btnKS2.Name = "btnKS2";
-            this.btnKS2.Size = new System.Drawing.Size(15, 15);
-            this.btnKS2.TabIndex = 22;
-            this.btnKS2.UseVisualStyleBackColor = true;
-            this.btnKS2.Click += new System.EventHandler(this.btnKS2_Click);
-            // 
-            // panelGrids
-            // 
-            this.panelGrids.Controls.Add(this.dgcAvail);
-            this.panelGrids.Controls.Add(this.dgcBookings);
-            this.panelGrids.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelGrids.Location = new System.Drawing.Point(3, 333);
-            this.panelGrids.Name = "panelGrids";
-            this.panelGrids.Size = new System.Drawing.Size(911, 409);
-            this.panelGrids.TabIndex = 6;
-            // 
             // frmNewRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1141,14 +1178,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNewRequest_FormClosing);
             this.Load += new System.EventHandler(this.frmNewRequest_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgcAvail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgcBookings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ViewBookings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1157,8 +1186,16 @@
             this.groupBox1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panelGrids.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgcAvail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgcAvailView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgcBookings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewBookings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1197,7 +1234,7 @@
         private System.Windows.Forms.RadioButton radNG;
         private System.Windows.Forms.RadioButton radAF;
         private System.Windows.Forms.RadioButton radNS;
-        private System.Windows.Forms.ComboBox cmbTeacherName;
+        private System.Windows.Forms.ComboBox cmbRequestedTeacher;
         private System.Windows.Forms.Label lblTS;
         private System.Windows.Forms.Label lblTS2;
         private System.Windows.Forms.CheckBox chkFri;
@@ -1226,7 +1263,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnSave;
         private DevExpress.XtraGrid.GridControl dgcAvail;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgcAvailView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
@@ -1253,5 +1290,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Panel panelGrids;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cmbTeacher;
     }
 }

@@ -39,7 +39,7 @@ namespace RedboxAddin.Presentation
                 DateTime monday = input.AddDays(delta).Date;
 
                 string wheresql = WHERESQL();
-                gridControl1.DataSource = new DBManager().GetAvailability(monday, WHERESQL());
+                gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
                 gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
                 gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
                 gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");

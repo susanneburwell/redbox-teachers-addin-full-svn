@@ -57,6 +57,8 @@ namespace RedboxAddin
         private ADXRibbonButton adxBookings;
         private ADXRibbonButton adxImportKeyRef;
         private ADXRibbonButton adxAvail;
+        private ADXRibbonButton adxLoadPlan;
+        private ADXRibbonButton adxPivot;
 
         #region Component Designer generated code
         /// <summary>
@@ -96,6 +98,8 @@ namespace RedboxAddin
             this.adxNewRequest = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTeacherUpdate = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxBookings = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxAvail = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxLoadPlan = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -103,7 +107,7 @@ namespace RedboxAddin
             this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxProcess = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxAvail = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -350,6 +354,8 @@ namespace RedboxAddin
             this.adxRibbonGroup2.Controls.Add(this.adxTeacherUpdate);
             this.adxRibbonGroup2.Controls.Add(this.adxBookings);
             this.adxRibbonGroup2.Controls.Add(this.adxAvail);
+            this.adxRibbonGroup2.Controls.Add(this.adxLoadPlan);
+            this.adxRibbonGroup2.Controls.Add(this.adxPivot);
             this.adxRibbonGroup2.Controls.Add(this.adxOptions);
             this.adxRibbonGroup2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxRibbonGroup2.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -382,6 +388,24 @@ namespace RedboxAddin
             this.adxBookings.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxBookings.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxBookings_OnClick);
+            // 
+            // adxAvail
+            // 
+            this.adxAvail.Caption = "Availability Sheet";
+            this.adxAvail.Id = "adxRibbonButton_bb8da1a4e609499396d30b190eaa54e2";
+            this.adxAvail.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxAvail.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxAvail.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxAvail_OnClick);
+            // 
+            // adxLoadPlan
+            // 
+            this.adxLoadPlan.Caption = "Load Plan";
+            this.adxLoadPlan.Id = "adxRibbonButton_f2091261af184203ba2efe10ba3a1b1e";
+            this.adxLoadPlan.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxLoadPlan.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxLoadPlan.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxLoadPlan_OnClick);
             // 
             // adxOptions
             // 
@@ -451,14 +475,14 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxProcess.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxProcess_OnClick);
             // 
-            // adxAvail
+            // adxPivot
             // 
-            this.adxAvail.Caption = "Availability Sheet";
-            this.adxAvail.Id = "adxRibbonButton_bb8da1a4e609499396d30b190eaa54e2";
-            this.adxAvail.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxAvail.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            this.adxPivot.Caption = "Pivot Grid";
+            this.adxPivot.Id = "adxRibbonButton_0b7f30f7815047beaeae043c569fcf44";
+            this.adxPivot.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxPivot.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
-            this.adxAvail.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxAvail_OnClick);
+            this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
             // 
             // AddinModule
             // 
@@ -953,6 +977,34 @@ namespace RedboxAddin
             else
             {
                 av.BringToFront();
+            }
+        }
+
+        private void adxLoadPlan_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmLoadPlan lp = Application.OpenForms["frmLoadPlan"] as frmLoadPlan;
+            if (lp == null)
+            {
+                lp = new frmLoadPlan();
+                lp.Show();
+            }
+            else
+            {
+                lp.BringToFront();
+            }
+        }
+
+        private void adxPivot_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmLoadPivot lp = Application.OpenForms["frmLoadPivot"] as frmLoadPivot;
+            if (lp == null)
+            {
+                lp = new frmLoadPivot();
+                lp.Show();
+            }
+            else
+            {
+                lp.BringToFront();
             }
         }
 

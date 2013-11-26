@@ -11,6 +11,7 @@ using System.Data.Linq;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 
 
@@ -19,12 +20,18 @@ namespace RedboxAddin.Presentation
     public partial class frmNewRequest : Form
     {
         RedBoxDB db;
-        long masterBookingID;
+        long _masterBookingID;
 
 
         public frmNewRequest()
         {
             InitializeComponent();
+        }
+
+        public frmNewRequest(long masterBookingID)
+        {
+            InitializeComponent();
+            _masterBookingID = masterBookingID;
         }
 
         private void frmNewRequest_Load(object sender, EventArgs e)
@@ -49,7 +56,7 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in frmNewRequest_Load: " + ex.Message);
             }
 
-            LoadTable();
+            LoadAvailabilityTable();
         }
 
         #region LoadControls
@@ -64,6 +71,7 @@ namespace RedboxAddin.Presentation
                 cmbSchool.DataSource = schools;
                 cmbSchool.DisplayMember = "SchoolName";
                 cmbSchool.ValueMember = "ID";
+                cmbSchool.Text = "";
             }
             catch (Exception ex)
             {
@@ -112,9 +120,13 @@ namespace RedboxAddin.Presentation
                         orderby s.LastName
                         select new { FullName = (s.LastName + ' ' + s.FirstName), s.ContactID };
                 var schools = q.ToList();
-                cmbTeacherName.DataSource = schools;
-                cmbTeacherName.DisplayMember = "FullName";
-                cmbTeacherName.ValueMember = "ContactID";
+                cmbRequestedTeacher.DataSource = schools;
+                cmbRequestedTeacher.DisplayMember = "FullName";
+                cmbRequestedTeacher.ValueMember = "ContactID";
+
+                cmbTeacher.DataSource = schools;
+                cmbTeacher.DisplayMember = "FullName";
+                cmbTeacher.ValueMember = "ContactID";
             }
             catch (Exception ex)
             {
@@ -124,135 +136,7 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
-        #region buttons
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            RefreshDGC();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (SaveRequest())
-            {
-                dgcAvail.Show();
-                MessageBox.Show("Saved");
-            }
-            else
-            {
-                MessageBox.Show("Not Saved", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            LoadTable();
-        }
-
-        private void btnSaveChanges_Click(object sender, EventArgs e)
-        {
-            db.SubmitChanges();
-        }
-
-        private void btnEY_Click(object sender, EventArgs e)
-        {
-            bool set = !chkNur.Checked;
-            chkNur.Checked = set;
-            chkRec.Checked = set;
-            UpdateDescription();
-        }
-
-        private void btnKS1_Click(object sender, EventArgs e)
-        {
-            bool set = !chkYr1.Checked;
-            chkYr1.Checked = set;
-            chkYr2.Checked = set;
-            UpdateDescription();
-        }
-
-        private void btnKS2_Click(object sender, EventArgs e)
-        {
-            bool set = !chkYr3.Checked;
-            chkYr3.Checked = set;
-            chkYr4.Checked = set;
-            chkYr5.Checked = set;
-            chkYr6.Checked = set;
-            UpdateDescription();
-        }
-
-        private void cmbSchool_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            SetChargeRate();
-            UpdateDescription();
-        }
-
-        private void cmbTeacherLevel_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            UpdateDescription();
-        }
-
-        private void chkLongTerm_CheckedChanged(object sender, EventArgs e)
-        {
-            SetChargeRate();
-            UpdateDescription();
-
-        }
-
-        private void chkHalfDay_CheckedChanged(object sender, EventArgs e)
-        {
-            SetChargeRate();
-            UpdateDescription();
-        }
-
-        private void btnEditDesc_Click(object sender, EventArgs e)
-        {
-            txtDescription.Visible = lblDescription.Visible;
-            lblDescription.Visible = !txtDescription.Visible;
-            if (txtDescription.Visible) txtDescription.Text = lblDescription.Text;
-            
-        }
-
-        private void chkUpdate_Click(object sender, EventArgs e)
-        {
-            UpdateDescription();
-        }
-
-        private void SetChargeRate()
-        {
-            try
-            {
-                long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
-                School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
-                if (chkHalfDay.Checked)
-                {
-                    if (chkLongTerm.Checked) txtCharge.Text = school.HalfDayChargeLT.ToString();
-                    else txtCharge.Text = school.HalfDayCharge.ToString();
-                }
-                else
-                {
-                    if (chkLongTerm.Checked) txtCharge.Text = school.DayChargeLT.ToString();
-                    else txtCharge.Text = school.DayCharge.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in SetChargeRate: " + ex.Message);
-            }
-        }
-
-        private void frmNewRequest_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            SaveLayout();
-        }
-
-        private void radNS_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radNS.Checked) setTeacherControls(false);
-            else setTeacherControls(true);
-            UpdateDescription();
-        }
-
-        #endregion
 
         #region actions
 
@@ -277,9 +161,9 @@ namespace RedboxAddin.Presentation
                 MasterBooking mb;
                 //If this is a new request - create a new item
 
-                if (masterBookingID == 0) mb = new MasterBooking();
+                if (_masterBookingID == 0) mb = new MasterBooking();
 
-                else mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == masterBookingID).FirstOrDefault();
+                else mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
 
                 //Table<MasterBooking> mbs = db.GetTable<MasterBooking>();
 
@@ -306,11 +190,11 @@ namespace RedboxAddin.Presentation
                 mb.NameGiven = radNG.Checked;
                 mb.AskedFor = radAF.Checked;
                 mb.TrialDay = radTD.Checked;
-                if (radNS.Checked == false) mb.LinkedTeacherID = Convert.ToInt64(cmbTeacherName.SelectedValue);
+                if (radNS.Checked == false) mb.LinkedTeacherID = Convert.ToInt64(cmbRequestedTeacher.SelectedValue);
                 else mb.LinkedTeacherID = -1;
 
                 //If this is not a new booking, submit changes and exit
-                if (masterBookingID != 0)
+                if (_masterBookingID != 0)
                 {
                     db.SubmitChanges();
                     return true;
@@ -328,7 +212,7 @@ namespace RedboxAddin.Presentation
                     return false;
 
                 }
-                masterBookingID = mb.ID;
+                _masterBookingID = mb.ID;
 
                 //Create IndividualBookings
                 DateTime bookingdate = (System.DateTime)mb.StartDate;
@@ -373,7 +257,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void LoadTable()
+        private void LoadAvailabilityTable()
         {
             try
             {
@@ -384,13 +268,13 @@ namespace RedboxAddin.Presentation
                 DateTime monday = input.AddDays(delta).Date;
 
                 string wheresql = WHERESQL();
-                //gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
-                //gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
-                //gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
-                //gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
-                //gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
-                //gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
-                //RestoreLayout();
+                dgcAvail.DataSource = new DBManager().GetAvailability(monday, wheresql);
+                dgcAvailView.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
+                dgcAvailView.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
+                dgcAvailView.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
+                dgcAvailView.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
+                dgcAvailView.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
+                RestoreLayout();
             }
             catch (Exception ex)
             {
@@ -439,7 +323,7 @@ namespace RedboxAddin.Presentation
 
                 //get Teacher Status
                 //TeacherLevel tl = cmbTeacherLevel.SelectedItem as TeacherLevel;
-                string teacherStatus = Utils.TeacherQuals(chkTA.Checked,chkQTS.Checked, chkNQT.Checked, chkOTT.Checked, chkQNN.Checked, chkNN.Checked, chkSEN.Checked);
+                string teacherStatus = Utils.TeacherQuals(chkTA.Checked, chkQTS.Checked, chkNQT.Checked, chkOTT.Checked, chkQNN.Checked, chkNN.Checked, chkSEN.Checked);
 
                 //Get AgeGroup
                 string agegroup = Utils.YearGroup(chkNur.Checked, chkRec.Checked, chkYr1.Checked, chkYr2.Checked, chkYr3.Checked, chkYr4.Checked, chkYr5.Checked, chkYr6.Checked);
@@ -472,7 +356,7 @@ namespace RedboxAddin.Presentation
                 //    if (agegroup.Substring(agegroup.Length - 1) == "/") agegroup = agegroup.Substring(0, agegroup.Length - 1);
                 //}
 
-                lblDescription.Text =   shortname + " " + teacherStatus + " " + agegroup;
+                lblDescription.Text = shortname + " " + teacherStatus + " " + agegroup;
 
                 //Check Halfday
                 if (chkHalfDay.Checked) lblDescription.Text += " 0.5";
@@ -490,7 +374,7 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in CreateDescription: " + ex.Message);
             }
         }
-        
+
         #region DGC
 
         private void RefreshDGC()
@@ -505,7 +389,7 @@ namespace RedboxAddin.Presentation
 
                 //Table<Booking> bookingList = db.GetTable<Booking>();
                 var bookingList = from b in db.Bookings
-                                  where b.MasterBookingID == masterBookingID
+                                  where b.MasterBookingID == _masterBookingID
                                   select b;
                 bindingSource1.DataSource = bookingList;
 
@@ -594,37 +478,198 @@ namespace RedboxAddin.Presentation
 
         private void setTeacherControls(bool ShowDropDown)
         {
-            cmbTeacherName.Visible = ShowDropDown;
+            cmbRequestedTeacher.Visible = ShowDropDown;
             lblTS.Visible = ShowDropDown;
             lblTS2.Visible = ShowDropDown;
         }
 
-        
+
         #endregion
 
-       
+        #region buttons
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            if (dgcBookings.Visible)  RefreshDGC();
+            if (dgcAvail.Visible) LoadAvailabilityTable();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (SaveRequest())
+            {
+                btnView.Text = "Edit Daily Bookings";
+                SetGridVisibility();
+                btnSave.Text = "Save Updates";
+            }
+            else
+            {
+                MessageBox.Show("Not Saved", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadAvailabilityTable();
+        }
+
+        private void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            db.SubmitChanges();
+        }
+
+        private void btnEY_Click(object sender, EventArgs e)
+        {
+            bool set = !chkNur.Checked;
+            chkNur.Checked = set;
+            chkRec.Checked = set;
+            UpdateDescription();
+        }
+
+        private void btnKS1_Click(object sender, EventArgs e)
+        {
+            bool set = !chkYr1.Checked;
+            chkYr1.Checked = set;
+            chkYr2.Checked = set;
+            UpdateDescription();
+        }
+
+        private void btnKS2_Click(object sender, EventArgs e)
+        {
+            bool set = !chkYr3.Checked;
+            chkYr3.Checked = set;
+            chkYr4.Checked = set;
+            chkYr5.Checked = set;
+            chkYr6.Checked = set;
+            UpdateDescription();
+        }
+
+        private void cmbSchool_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SetChargeRate();
+            UpdateDescription();
+        }
+
+        private void cmbTeacherLevel_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateDescription();
+        }
+
+        private void chkLongTerm_CheckedChanged(object sender, EventArgs e)
+        {
+            SetChargeRate();
+            UpdateDescription();
+
+        }
+
+        private void chkHalfDay_CheckedChanged(object sender, EventArgs e)
+        {
+            SetChargeRate();
+            UpdateDescription();
+        }
+
+        private void btnEditDesc_Click(object sender, EventArgs e)
+        {
+            txtDescription.Visible = lblDescription.Visible;
+            lblDescription.Visible = !txtDescription.Visible;
+            if (txtDescription.Visible) txtDescription.Text = lblDescription.Text;
+
+        }
+
+        private void SetChargeRate()
+        {
+            try
+            {
+                long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
+                School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
+                if (chkHalfDay.Checked)
+                {
+                    if (chkLongTerm.Checked) txtCharge.Text = school.HalfDayChargeLT.ToString();
+                    else txtCharge.Text = school.HalfDayCharge.ToString();
+                }
+                else
+                {
+                    if (chkLongTerm.Checked) txtCharge.Text = school.DayChargeLT.ToString();
+                    else txtCharge.Text = school.DayCharge.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SetChargeRate: " + ex.Message);
+            }
+        }
+
+        private void frmNewRequest_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveLayout();
+        }
+
+        private void radNS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radNS.Checked) setTeacherControls(false);
+            else setTeacherControls(true);
+            UpdateDescription();
+        }
 
         private void View_Click(object sender, EventArgs e)
         {
-            if (btnView.Text == "View Daily Bookings")
+            SetGridVisibility();
+        }
+
+        private void SetGridVisibility()
+        {
+            if (btnView.Text == "View Availability")
             {
-                btnView.Text = "View Availability";
+                btnView.Text = "Edit Daily Bookings";
+                LoadAvailabilityTable();
                 dgcAvail.Show();
                 dgcAvail.Dock = DockStyle.Fill;
                 dgcBookings.Hide();
             }
             else
             {
-                btnView.Text = "View Daily Bookings";
+                btnView.Text = "View Availability";
                 dgcAvail.Hide();
-                dgcBookings.Dock = DockStyle.Left;
+                BindGrid();
+                dgcBookings.Dock = DockStyle.Fill;
                 dgcBookings.Show();
             }
         }
 
-        
+        private void CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateDescription();
+            if (dgcAvail.Visible) LoadAvailabilityTable();
+        }
 
-        
+
+        private void dgcAvail_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Point pt = dgcAvail.PointToClient(Control.MousePosition);
+                GridHitInfo info = dgcAvailView.CalcHitInfo(pt);
+                if(info.InRow || info.InRowCell) 
+                {
+                string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+                string teacher = dgcAvailView.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                cmbTeacher.Text = teacher;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in dgcAvail_DoubleClick: " + ex.Message);
+            }
+        }
+
+        #endregion
+
+
+
+
+
 
 
 
