@@ -278,6 +278,7 @@
             this.cmbTeacher.Name = "cmbTeacher";
             this.cmbTeacher.Size = new System.Drawing.Size(297, 24);
             this.cmbTeacher.TabIndex = 100;
+            this.cmbTeacher.SelectedValueChanged += new System.EventHandler(this.cmbTeacher_SelectedValueChanged);
             // 
             // btnView
             // 

@@ -19,7 +19,7 @@ namespace RedboxAddin.Presentation
             InitializeComponent();
             //Get Addable attributes
             List<string> addableCategories = new List<string>();
-            var ds = new DBManager().GetDataSet("SELECT * FROM tblCategories");
+            var ds = new DBManager().GetDataSet("SELECT * FROM Categories");
             if (ds != null)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -134,7 +134,7 @@ namespace RedboxAddin.Presentation
         private void btnNew_Click(object sender, EventArgs e)
         {
             lboxAttAddables.Items.Add(txtNewAttribute.Text.Trim());
-            new DBManager().ExecuteQuery("INSERT INTO tblCategories (CategoryName) VALUES('"+txtNewAttribute.Text.Trim()+"')");
+            new DBManager().ExecuteQuery("INSERT INTO Categories (CategoryName) VALUES('"+txtNewAttribute.Text.Trim()+"')");
         }
     }
 }

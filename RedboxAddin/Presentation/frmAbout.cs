@@ -196,7 +196,7 @@ namespace RedboxAddin.Presentation
 
             try
             {
-                DataSet msgDs = new DBManager(). GetDataSet("Select CategoryStr,contactID from tblContacts");
+                DataSet msgDs = new DBManager(). GetDataSet("Select CategoryStr,contactID from Contacts");
                 if (msgDs != null)
                 {
                     RContact objContact;
@@ -206,7 +206,7 @@ namespace RedboxAddin.Presentation
                         var arr = categoryString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                         for (int i = 0; i < arr.Length; i++)
                         {
-                            new DBManager().ExecuteQuery("INSERT INTO tblCategories (CategoryName) VALUES('" + arr[i].Trim() + "')");
+                            new DBManager().ExecuteQuery("INSERT INTO Categories (CategoryName) VALUES('" + arr[i].Trim() + "')");
                         }
                     }                    
                 }                

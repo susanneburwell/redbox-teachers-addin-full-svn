@@ -99,7 +99,7 @@ namespace RedboxAddin.DL
             List<RContact> contactList = new List<RContact>();
             try
             {
-                DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from tblContacts");
+                DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from Contacts");
 
 
                 if (msgDs != null)
@@ -178,7 +178,7 @@ namespace RedboxAddin.DL
             List<RContact> contactList = new List<RContact>();
             try
             {
-                DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from tblContacts");
+                DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from Contacts");
                 if (msgDs != null)
                 {
                     RContact objContact;
@@ -219,7 +219,7 @@ namespace RedboxAddin.DL
             List<RReminder> reminderList = new List<RReminder>();
             try
             {
-                DataSet ds = GetDataSet("Select * from tblReminders");
+                DataSet ds = GetDataSet("Select * from Reminders");
                 if (ds != null)
                 {
                     RReminder reminderObj = null;
@@ -396,43 +396,43 @@ namespace RedboxAddin.DL
                 {
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
                     {
-                        RMasterBooking objBkg = new RMasterBooking()
-                        {
-                                 ID = Convert.ToInt64(dr["ID"] ),
-                                 SchoolID = Convert.ToInt64(dr["SchoolID"]),
-                                 School = dr["SchoolName"].ToString(),
-                                 ContactID = Convert.ToInt64(dr["ContactID"]),
-                                 TeacherName = dr["Teacher"].ToString(),
-                                 Details = dr["Details"].ToString(),
-                                 Startdate = Convert.ToDateTime(dr["StartDate"]).Date,
-                                 EndDate = Convert.ToDateTime(dr["EndDate"]).Date,
-                                 isAbsence = Utils.CheckBool(dr["isAbsence"]),
-                                 AbsenceReason = dr["AbsenceReason"].ToString(),
-                                 HalfDay = Utils.CheckBool(dr["HalfDay"]),
-                                 LongTerm = Utils.CheckBool(dr["LongTerm"]),
-                                 Nur = Utils.CheckBool(dr["Nur"]),
-                                 Rec = Utils.CheckBool(dr["Rec"]),
-                                 Yr1 = Utils.CheckBool(dr["Yr1"]),
-                                 Yr2 = Utils.CheckBool(dr["Yr2"]),
-                                 Yr3 = Utils.CheckBool(dr["Yr3"]),
-                                 Yr4 = Utils.CheckBool(dr["Yr4"]),
-                                 Yr5 = Utils.CheckBool(dr["Yr5"]),
-                                 Yr6 = Utils.CheckBool(dr["Yr6"]),
-                                 QTS = Utils.CheckBool(dr["QTS"]),
-                                 NQT = Utils.CheckBool(dr["NQT"]),
-                                 OTT = Utils.CheckBool(dr["OTT"]),
-                                 TA = Utils.CheckBool(dr["TA"]),
-                                 NN = Utils.CheckBool(dr["NN"]),
-                                 QNN = Utils.CheckBool(dr["QNN"]),
-                                 SEN = Utils.CheckBool(dr["SEN"]),
-                                 Charge = Utils.CheckDecimal(dr["Charge"]),
-                                 LinkedTeacherID = Convert.ToInt64(dr["LinkedTeacherID"]),
-                                 LinkedTeacherName = dr["LinkedTeacherName"].ToString(),
-                                 NameGiven = Utils.CheckBool(dr["NameGiven"]),
-                                 AskedFor = Utils.CheckBool(dr["AskedFor"]),
-                                 TrialDay = Utils.CheckBool(dr["TrialDay"]),
+                        RMasterBooking objBkg = new RMasterBooking();
 
-                        };
+                        objBkg.ID = Utils.CheckLong(dr["ID"]);
+                        objBkg.SchoolID = Utils.CheckLong(dr["SchoolID"]);
+                        objBkg.School = Utils.CheckString(dr["School"]);
+                        objBkg.ContactID = Utils.CheckLong(dr["ContactID"]);
+                        objBkg.TeacherName = Utils.CheckString(dr["TeacherName"]);
+                        objBkg.Details = Utils.CheckString(dr["Details"]);
+                        objBkg.Startdate = Convert.ToDateTime(dr["StartDate"]).Date;
+                        objBkg.EndDate = Convert.ToDateTime(dr["EndDate"]).Date;
+                        objBkg.isAbsence = Utils.CheckBool(dr["isAbsence"]);
+                        objBkg.AbsenceReason = Utils.CheckString(dr["AbsenceReason"]);
+                        objBkg.HalfDay = Utils.CheckBool(dr["HalfDay"]);
+                        objBkg.LongTerm = Utils.CheckBool(dr["LongTerm"]);
+                        objBkg.Nur = Utils.CheckBool(dr["Nur"]);
+                        objBkg.Rec = Utils.CheckBool(dr["Rec"]);
+                        objBkg.Yr1 = Utils.CheckBool(dr["Yr1"]);
+                        objBkg.Yr2 = Utils.CheckBool(dr["Yr2"]);
+                        objBkg.Yr3 = Utils.CheckBool(dr["Yr3"]);
+                        objBkg.Yr4 = Utils.CheckBool(dr["Yr4"]);
+                        objBkg.Yr5 = Utils.CheckBool(dr["Yr5"]);
+                        objBkg.Yr6 = Utils.CheckBool(dr["Yr6"]);
+                        objBkg.QTS = Utils.CheckBool(dr["QTS"]);
+                        objBkg.NQT = Utils.CheckBool(dr["NQT"]);
+                        objBkg.OTT = Utils.CheckBool(dr["OTT"]);
+                        objBkg.TA = Utils.CheckBool(dr["TA"]);
+                        objBkg.NN = Utils.CheckBool(dr["NN"]);
+                        objBkg.QNN = Utils.CheckBool(dr["QNN"]);
+                        objBkg.SEN = Utils.CheckBool(dr["SEN"]);
+                        objBkg.Charge = Utils.CheckDecimal(dr["Charge"]);
+                        objBkg.LinkedTeacherID = Utils.CheckLong(dr["LinkedTeacherID"]);
+                        objBkg.LinkedTeacherName = Utils.CheckString(dr["LinkedTeacherName"]);
+                        objBkg.NameGiven = Utils.CheckBool(dr["NameGiven"]);
+                        objBkg.AskedFor = Utils.CheckBool(dr["AskedFor"]);
+                        objBkg.TrialDay = Utils.CheckBool(dr["TrialDay"]);
+
+                        
                         return objBkg;
                     }
 
@@ -451,7 +451,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                DataSet ds = GetDataSet("Select * from tblReminders WHERE ReminderID =" + reminderID);
+                DataSet ds = GetDataSet("Select * from Reminders WHERE ReminderID =" + reminderID);
                 if (ds != null)
                 {
                     RReminder reminderObj = null;
@@ -480,11 +480,13 @@ namespace RedboxAddin.DL
             }
         }
 
+       
+
         public long GetReminderID(long contactRef, string reminderType)
         {
             try
             {
-                DataSet ds = GetDataSet("Select ReminderID from tblReminders WHERE ContactRefID =" + contactRef + " AND Type = '" + reminderType + "'");
+                DataSet ds = GetDataSet("Select ReminderID from Reminders WHERE ContactRefID =" + contactRef + " AND Type = '" + reminderType + "'");
                 if (ds != null)
                 {
                     DataRow dr = ds.Tables[0].Rows[0];
@@ -509,7 +511,7 @@ namespace RedboxAddin.DL
                 string[] names = fullName.Split(' ');
                 string firstname = names[1];
                 string lastname = names[0];
-                DataSet msgDs = GetDataSet("Select ContactID from tblContacts "
+                DataSet msgDs = GetDataSet("Select ContactID from Contacts "
                 + "WHERE FirstName = '" + firstname + "' AND LastName = '" + lastname + "'");
                 if (msgDs != null)
                 {
@@ -576,7 +578,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                DataSet msgDs = GetDataSet("Select * from tblContacts WHERE contactID = " + contactID.ToString());
+                DataSet msgDs = GetDataSet("Select * from Contacts WHERE contactID = " + contactID.ToString());
                 if (msgDs != null)
                 {
                     RContact objContact;
@@ -712,7 +714,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                string sqlStr = "INSERT INTO tblReminders ("
+                string sqlStr = "INSERT INTO Reminders ("
                     + "ContactRefID,"
                     + "Type,"
                     + "Subject,"
@@ -748,7 +750,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                string sqlStr = "UPDATE tblReminders SET "
+                string sqlStr = "UPDATE Reminders SET "
                                        + "Type = @type,"
                     + "Subject = @subject,"
                     + "DueDate = @duedate,"
@@ -786,7 +788,7 @@ namespace RedboxAddin.DL
             try
             {
                 var listToReturn = new List<long>();
-                DataSet ds = GetDataSet("SELECT contactID FROM tblContacts WHERE FirstName = '" + firstName + "' AND LastName = '" + lastName + "'");
+                DataSet ds = GetDataSet("SELECT contactID FROM Contacts WHERE FirstName = '" + firstName + "' AND LastName = '" + lastName + "'");
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     listToReturn.Add(Convert.ToInt64(dr["contactID"]));
@@ -807,7 +809,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                string sqlStr = "INSERT INTO tblContacts ("
+                string sqlStr = "INSERT INTO Contacts ("
                     + "FirstName,"
                     + "LastName,"
                     + "Title,"
@@ -1259,7 +1261,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@GUID"].Value = CheckVals(guidVal);
                 CmdAddContact.ExecuteNonQuery();
 
-                DataSet ds = GetDataSet("SELECT contactID FROM tblContacts WHERE GUID = '" + guidVal + "'");
+                DataSet ds = GetDataSet("SELECT contactID FROM Contacts WHERE GUID = '" + guidVal + "'");
                 DataRow dr = ds.Tables[0].Rows[0];
                 long autoGeneratedContactID = Convert.ToInt64(dr["contactID"].ToString());
 
@@ -1276,7 +1278,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                string sqlStr = "UPDATE tblContacts SET "
+                string sqlStr = "UPDATE Contacts SET "
                        + "FirstName = @FirstName, "
                        + "LastName = @LastName, "
                        + "Title = @Title, "
@@ -1657,50 +1659,13 @@ namespace RedboxAddin.DL
 
         public bool ReminderExist(long contactID, string reminderType)
         {
-            var ds = GetDataSet("SELECT * FROM tblReminders WHERE contactRefID = " + contactID.ToString() + " AND Type = '" + reminderType + "'");
+            var ds = GetDataSet("SELECT * FROM Reminders WHERE contactRefID = " + contactID.ToString() + " AND Type = '" + reminderType + "'");
             if (ds == null) return false;
             else if (ds.Tables[0].Rows.Count > 0) return true;
             else { return false; }
         }
 
-        public void CheckAndUpdateTeachers()
-        {
-            //Process the teacher database and update the ContactData table
-            try
-            {
-                string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                using (RedBoxDB db = new RedBoxDB(CONNSTR))
-                {
-                    var contacts = db.TblContacts;
-
-                    foreach (TblContact cc in contacts)
-                    {
-                        //find or create ContactData
-                        var cd = db.ContactDatas.FirstOrDefault(s => s.ContactID == cc.ContactID);
-
-                        if (cd == null)
-                        {
-                            //Create a new one
-                            cd = new ContactData();
-                            cd.ContactID = cc.ContactID;
-                            db.ContactDatas.InsertOnSubmit(cd);
-                            db.SubmitChanges();
-                        }
-                        //Create Teacher Status
-                        string tStatus = "";
-                        if (cc.QTS == true) tStatus += "QTS ";
-                        if (cc.NQT == true) tStatus += "NQT ";
-                        if (cc.OverseasTrainedTeacher == true) tStatus += "OTT ";
-                        cd.TeacherStatus = tStatus.Trim().Replace(' ', ',');
-                        cd.CRBStatus = "";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in CheckAndUpdateTeachers: " + ex.Message);
-            }
-        }
+       
 
         #region Create tables
 
@@ -1880,15 +1845,15 @@ namespace RedboxAddin.DL
             string thursday = weekbegining.AddDays(3).ToString("yyyyMMdd");
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
-            string SQLstr = "Select Lastname+' '+FirstName as Teacher,Live, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
+            string SQLstr = "Select Lastname+', '+FirstName as Teacher,Live, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
                             "OverseasTrainedTeacher, NQT, TA, QNN, SEN, NN, " +
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, " +
                             "s1.School as Monday, s2.School as Tuesday, s3.School as Wednesday, " +
                             "s4.School as Thursday, s5.School as Friday " +
-                            "FROM [tblContacts] " +
+                            "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
-                            "ON [tblContacts].contactID = [ContactData].ContactID " +
+                            "ON [Contacts].contactID = [ContactData].ContactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1901,7 +1866,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + monday + "' " +
                             ") as s1 " +
-                            "ON s1.contactID = [tblContacts].contactID " +
+                            "ON s1.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1914,7 +1879,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + tuesday + "' " +
                             ") as s2 " +
-                            "ON s2.contactID = [tblContacts].contactID " +
+                            "ON s2.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1927,7 +1892,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + wednesday + "' " +
                             ") as s3 " +
-                            "ON s3.contactID = [tblContacts].contactID " +
+                            "ON s3.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1940,7 +1905,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + thursday + "' " +
                             ") as s4 " +
-                            "ON s4.contactID = [tblContacts].contactID " +
+                            "ON s4.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1953,7 +1918,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + friday + "' " +
                             ") as s5 " +
-                            "ON s5.contactID = [tblContacts].contactID ";
+                            "ON s5.contactID = [Contacts].contactID ";
 
             return SQLstr;
         }
@@ -1969,10 +1934,10 @@ namespace RedboxAddin.DL
             string SQLstr = "Select FirstName+' '+Lastname as Teacher,Live, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
                             "s1.School as Monday, s2.School as Tuesday, s3.School as Wednesday, " +
                             "s4.School as Thursday, s5.School as Friday " +
-                            "FROM [tblContacts] " +
+                            "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
-                            "ON [tblContacts].contactID = [ContactData].ContactID " +
+                            "ON [Contacts].contactID = [ContactData].ContactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1985,7 +1950,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + monday + "' " +
                             ") as s1 " +
-                            "ON s1.contactID = [tblContacts].contactID " +
+                            "ON s1.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -1998,7 +1963,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + tuesday + "' " +
                             ") as s2 " +
-                            "ON s2.contactID = [tblContacts].contactID " +
+                            "ON s2.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -2011,7 +1976,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + wednesday + "' " +
                             ") as s3 " +
-                            "ON s3.contactID = [tblContacts].contactID " +
+                            "ON s3.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -2024,7 +1989,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + thursday + "' " +
                             ") as s4 " +
-                            "ON s4.contactID = [tblContacts].contactID " +
+                            "ON s4.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
@@ -2037,7 +2002,7 @@ namespace RedboxAddin.DL
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + friday + "' " +
                             ") as s5 " +
-                            "ON s5.contactID = [tblContacts].contactID ";
+                            "ON s5.contactID = [Contacts].contactID ";
 
             return SQLstr;
         }
@@ -2051,8 +2016,8 @@ namespace RedboxAddin.DL
             SQL += "ON [Bookings].MasterBookingID = MasterBookings.ID ";
             SQL += "LEFT JOIN [Schools] ";
             SQL += "ON [MasterBookings].SchoolID = Schools.ID ";
-            SQL += "LEFT JOIN [tblContacts] ";
-            SQL += "ON MasterBookings.contactID = tblContacts.contactID ";
+            SQL += "LEFT JOIN [Contacts] ";
+            SQL += "ON MasterBookings.contactID = Contacts.contactID ";
             SQL += "WHERE ";
             SQL += "((Bookings.Date >= '" + dStart.ToString("yyyyMMdd") + "') AND (Bookings.Date <= '" + dEnd.ToString("yyyyMMdd") + "'))";
 
@@ -2062,14 +2027,21 @@ namespace RedboxAddin.DL
         private string GetMasterBookingInfoSQL(long masterBookingID)
         {
             string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, " +
-                            "LastName+' '+FirstName as TeacherName, Details, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
+                            "LastName+', '+FirstName as TeacherName, Details, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
                             "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, TA,SEN, QNN, NN, " +
-                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay " +
+                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName " +
 
                             "FROM MasterBookings " +
                             "LEFT JOIN [Schools] " +
                             "ON [MasterBookings].SchoolID = Schools.ID " +
-                            "LEFT JOIN [tblContacts]  " +
+                            "LEFT JOIN [Contacts]  " +
+                            "ON [MasterBookings].ContactID = [Contacts].ContactID " +
+                            "LEFT JOIN "+
+                            "( "+
+                            "SELECT contactID, LastName+', '+FirstName as LinkedTeacherName "+
+                            "FROM [Contacts] "+
+                            ") as LinkedTeacher "+
+                            "ON LinkedTeacher.contactID = MasterBookings.LinkedTeacherID " +
                             "WHERE MasterBookings.ID = '" + masterBookingID.ToString() + "' ";
 
             return SQLstr;

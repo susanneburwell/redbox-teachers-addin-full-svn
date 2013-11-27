@@ -47,7 +47,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                var ds = new DBManager().GetDataSet("SELECT ReminderID,Type FROM tblReminders WHERE ContactRefID = " + CurrentContactID.ToString());
+                var ds = new DBManager().GetDataSet("SELECT ReminderID,Type FROM Reminders WHERE ContactRefID = " + CurrentContactID.ToString());
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     string reminderType = dr["Type"].ToString();
@@ -944,7 +944,7 @@ namespace RedboxAddin.Presentation
             {
                 if (CurrentContactID != 0)
                 {
-                    var deleteResult = new DBManager().ExecuteQuery("DELETE FROM tblContacts WHERE contactID = " + CurrentContactID.ToString());
+                    var deleteResult = new DBManager().ExecuteQuery("DELETE FROM Contacts WHERE contactID = " + CurrentContactID.ToString());
                     if (deleteResult)
                     {
                         MessageBox.Show("Contact deleted successfully", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Information);

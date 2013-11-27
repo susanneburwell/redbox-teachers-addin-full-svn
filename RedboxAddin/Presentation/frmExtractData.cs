@@ -238,7 +238,7 @@ namespace RedboxAddin.Presentation
                 contactObj.Email1 = mapiContactObj.Email1Address;
                 contactObj.PhotoLocation = mapiContactObj.User1;
                 if (string.IsNullOrEmpty(contactObj.PhotoLocation)) continue;
-                new DBManager().ExecuteQuery("UPDATE tblContacts SET PhotoLocation = '" + contactObj.PhotoLocation + "' WHERE Email1 = '" + contactObj.Email1 + "'  ");
+                new DBManager().ExecuteQuery("UPDATE Contacts SET PhotoLocation = '" + contactObj.PhotoLocation + "' WHERE Email1 = '" + contactObj.Email1 + "'  ");
 
                 if (mapiContactObj != null) Marshal.ReleaseComObject(mapiContactObj);
                 if (item != null) Marshal.ReleaseComObject(item);
@@ -267,7 +267,7 @@ namespace RedboxAddin.Presentation
                 contactObj.Email1 = mapiContactObj.Email1Address;
                 contactObj.ReferredBy = mapiContactObj.ReferredBy;
                 if (string.IsNullOrEmpty(contactObj.ReferredBy)) continue;
-                new DBManager().ExecuteQuery("UPDATE tblContacts SET ReferredBy = '" + contactObj.ReferredBy + "' WHERE Email1 = '" + contactObj.Email1 + "'  ");
+                new DBManager().ExecuteQuery("UPDATE Contacts SET ReferredBy = '" + contactObj.ReferredBy + "' WHERE Email1 = '" + contactObj.Email1 + "'  ");
 
                 if (mapiContactObj != null) Marshal.ReleaseComObject(mapiContactObj);
                 if (item != null) Marshal.ReleaseComObject(item);

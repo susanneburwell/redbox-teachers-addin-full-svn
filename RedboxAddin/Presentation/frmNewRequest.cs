@@ -49,7 +49,10 @@ namespace RedboxAddin.Presentation
                 PopulateSchools();
                 //PopulateYearGroup();
                 //PopulateTeacherLevel();
-                PopulateTeacher();
+                PopulateTeacher(cmbTeacher);
+                PopulateTeacher(cmbRequestedTeacher);
+
+                if (_masterBookingID != null) LoadMasterBooking(_masterBookingID);
 
             }
             catch (Exception ex)
@@ -86,37 +89,40 @@ namespace RedboxAddin.Presentation
             {
                 RMasterBooking rMB = new DBManager().GetMasterBookingInfo(ID);
                 
-        //cmbSchool.ValueMember=rMB.SchoolID ;
-        cmbSchool.Text=rMB.School;
-        //=rMB.ContactID ;
-        cmbTeacher.Text=rMB.TeacherName ;
-        txtDetails.Text=rMB.Details ;
-        dtFrom.Value=rMB.Startdate ;
-        dtTo.Value=rMB.EndDate ;
-        //=rMB.isAbsence ;
-        //=rMB.AbsenceReason ;
-        chkHalfDay.Checked=rMB.HalfDay ;
-        chkLongTerm.Checked=rMB.LongTerm ;
-        chkNur.Checked=rMB.Nur ;
-        chkRec.Checked=rMB.Rec ;
-        chkYr1.Checked=rMB.Yr1 ;
-        chkYr2.Checked=rMB.Yr2 ;
-        chkYr3.Checked=rMB.Yr3 ;
-        chkYr4.Checked=rMB.Yr4 ;
-        chkYr5.Checked=rMB.Yr5 ;
-        chkYr6.Checked=rMB.Yr6 ;
-        chkQTS.Checked=rMB.QTS ;
-        chkNQT.Checked=rMB.NQT ;
-        chkOTT.Checked=rMB.OTT ;
-        chkTA.Checked=rMB.TA ;
-        chkNN.Checked=rMB.NN ;
-        chkQNN.Checked=rMB.QNN ;
-        chkSEN.Checked=rMB.SEN ;
-        txtCharge.Text=rMB.Charge.ToString() ;
-        =rMB.LinkedTeacherID ;
-        radNG.Checked=rMB.NameGiven ;
-        radAF.Checked=rMB.AskedFor ;
-        radTD.Checked=rMB.TrialDay ;
+                //cmbSchool.ValueMember=rMB.SchoolID ;
+                cmbSchool.Text=rMB.School;
+                //=rMB.ContactID ;
+                cmbTeacher.Text=rMB.TeacherName ;
+                //cmbTeacher.SelectedValue = rMB.ContactID;
+                txtDetails.Text=rMB.Details ;
+                dtFrom.Value=rMB.Startdate ;
+                dtTo.Value=rMB.EndDate ;
+                //=rMB.isAbsence ;
+                //=rMB.AbsenceReason ;
+                chkHalfDay.Checked=rMB.HalfDay ;
+                chkLongTerm.Checked=rMB.LongTerm ;
+                chkNur.Checked=rMB.Nur ;
+                chkRec.Checked=rMB.Rec ;
+                chkYr1.Checked=rMB.Yr1 ;
+                chkYr2.Checked=rMB.Yr2 ;
+                chkYr3.Checked=rMB.Yr3 ;
+                chkYr4.Checked=rMB.Yr4 ;
+                chkYr5.Checked=rMB.Yr5 ;
+                chkYr6.Checked=rMB.Yr6 ;
+                chkQTS.Checked=rMB.QTS ;
+                chkNQT.Checked=rMB.NQT ;
+                chkOTT.Checked=rMB.OTT ;
+                chkTA.Checked=rMB.TA ;
+                chkNN.Checked=rMB.NN ;
+                chkQNN.Checked=rMB.QNN ;
+                chkSEN.Checked=rMB.SEN ;
+                txtCharge.Text=rMB.Charge.ToString() ;
+                //cmbRequestedTeacher.Text = rMB.LinkedTeacherName;
+                
+               // =rMB.LinkedTeacherID ;
+                radNG.Checked=rMB.NameGiven ;
+                radAF.Checked=rMB.AskedFor ;
+                radTD.Checked=rMB.TrialDay ;
 
 
             }
@@ -126,22 +132,21 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void PopulateTeacher()
+        private void PopulateTeacher(ComboBox cmb1)
         {
             try
             {
-                var q = from s in db.TblContacts
+                var q = from s in db.Contacts
                         where s.LastName != null
                         orderby s.LastName
-                        select new { FullName = (s.LastName + ' ' + s.FirstName), s.ContactID };
+                        select new  { FullName = (s.LastName + ',' + ' ' + s.FirstName),  s.ContactID };
+                        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
                 var schools = q.ToList();
-                cmbRequestedTeacher.DataSource = schools;
-                cmbRequestedTeacher.DisplayMember = "FullName";
-                cmbRequestedTeacher.ValueMember = "ContactID";
 
-                cmbTeacher.DataSource = schools;
-                cmbTeacher.DisplayMember = "FullName";
-                cmbTeacher.ValueMember = "ContactID";
+                cmb1.DataSource = schools;
+                cmb1.DisplayMember = "FullName";
+                cmb1.ValueMember = "ContactID";
+                cmb1.Text = "";
             }
             catch (Exception ex)
             {
@@ -200,6 +205,7 @@ namespace RedboxAddin.Presentation
                 mb.Yr5 = chkYr5.Checked;
                 mb.Yr6 = chkYr6.Checked;
                 mb.Charge = Utils.CheckDecimal(txtCharge.Text);
+                mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
 
                 //If Teacher named
                 mb.NameGiven = radNG.Checked;
@@ -681,24 +687,13 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string test = cmbTeacher.Text;
+        }
 
 
     }
+
+   
 }

@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RedboxAddin.DL;
 using RedboxAddin.BL;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace RedboxAddin.Presentation
 {
     public partial class frmAvailabilitySheet : Form
     {
-       // RedBoxDB db;
+        // RedBoxDB db;
 
         public frmAvailabilitySheet()
         {
@@ -86,12 +87,12 @@ namespace RedboxAddin.Presentation
                 }
                 else
                 {
-                 if (SQL2=="")       SQL = " WHERE " + SQL.Substring(3);
-                 else SQL = " WHERE (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + ")"; 
+                    if (SQL2 == "") SQL = " WHERE " + SQL.Substring(3);
+                    else SQL = " WHERE (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + ")";
 
                 }
-                
-               
+
+
                 return SQL;
             }
             catch (Exception ex)
@@ -135,7 +136,52 @@ namespace RedboxAddin.Presentation
             LoadTable();
         }
 
-        
+        private void gridControl1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Point pt = gridControl1.PointToClient(Control.MousePosition);
+                GridHitInfo info = gridView1.CalcHitInfo(pt);
+                if (info.InRow || info.InRowCell)
+                {
+                    string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                    //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+
+                    string teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                    string description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+
+                    List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+
+                    if (MasterBookingIDs.Count > 0)
+                    {
+                        frmNewRequest fq = new frmNewRequest(MasterBookingIDs[0]);
+                        fq.Show();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in dgcAvail_DoubleClick: " + ex.Message);
+            }
+        }
+
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+
+            dtFrom.Value = dtFrom.Value.AddDays(-7);
+
+        }
+
+        private void bnFwd_Click(object sender, EventArgs e)
+        {
+
+            dtFrom.Value = dtFrom.Value.AddDays(7);
+
+        }
+
+
 
     }
 }

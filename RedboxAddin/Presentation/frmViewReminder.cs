@@ -77,7 +77,7 @@ namespace RedboxAddin.Presentation
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //Delete Reminder
-            if (new DBManager().ExecuteQuery("DELETE FROM tblReminders WHERE ReminderID = '" + ReminderID.ToString() + "'"))
+            if (new DBManager().ExecuteQuery("DELETE FROM Reminders WHERE ReminderID = '" + ReminderID.ToString() + "'"))
             {
                 this.Close();
             }

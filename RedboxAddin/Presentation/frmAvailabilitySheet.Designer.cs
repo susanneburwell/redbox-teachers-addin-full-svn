@@ -75,6 +75,8 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.bnFwd = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -108,6 +110,7 @@
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
             // 
             // gridView1
             // 
@@ -275,6 +278,8 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.bnFwd);
+            this.panelTop.Controls.Add(this.btnBack);
             this.panelTop.Controls.Add(this.groupBox1);
             this.panelTop.Controls.Add(this.groupBox6);
             this.panelTop.Controls.Add(this.label1);
@@ -592,7 +597,7 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(123, 17);
+            this.dtFrom.Location = new System.Drawing.Point(72, 16);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(200, 22);
             this.dtFrom.TabIndex = 6;
@@ -606,6 +611,26 @@
             this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
+            // 
+            // bnFwd
+            // 
+            this.bnFwd.Location = new System.Drawing.Point(323, 18);
+            this.bnFwd.Name = "bnFwd";
+            this.bnFwd.Size = new System.Drawing.Size(35, 23);
+            this.bnFwd.TabIndex = 84;
+            this.bnFwd.Text = ">>";
+            this.bnFwd.UseVisualStyleBackColor = true;
+            this.bnFwd.Click += new System.EventHandler(this.bnFwd_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(280, 17);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(37, 23);
+            this.btnBack.TabIndex = 83;
+            this.btnBack.Text = "<<";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // frmAvailabilitySheet
             // 
@@ -681,5 +706,7 @@
         private System.Windows.Forms.CheckBox chkQTS;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button bnFwd;
+        private System.Windows.Forms.Button btnBack;
     }
 }

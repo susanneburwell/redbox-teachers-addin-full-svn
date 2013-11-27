@@ -84,6 +84,30 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (radWeek.Checked)
+            {
+                dtFrom.Value = dtFrom.Value.AddDays(-7);
+            }
+            else
+            {
+                dtFrom.Value = dtFrom.Value.AddMonths(-1);
+            }
+}
+
+        private void bnFwd_Click(object sender, EventArgs e)
+        {
+            if (radWeek.Checked)
+            {
+                dtFrom.Value = dtFrom.Value.AddDays(7);
+            }
+            else
+            {
+                dtFrom.Value = dtFrom.Value.AddMonths(1);
+            }
+        }
+
 
 
       

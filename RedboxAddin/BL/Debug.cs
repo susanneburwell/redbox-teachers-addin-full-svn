@@ -59,6 +59,7 @@ namespace RedboxAddin.BL
 
                     case 2:
                         if (DebugLevel >= 2) myListener.WriteLine(DateTime.Now + " -2- " + dbMessage);
+                        //MessageBox.Show(dbMessage, "Level 2 Debug Message");
                         break;
                     case 3:
                         if (DebugLevel >= 3)

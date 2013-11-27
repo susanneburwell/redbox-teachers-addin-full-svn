@@ -937,9 +937,7 @@ namespace RedboxAddin
 
         private void adxProcess_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            DBManager dbm = new DBManager();
-            dbm.CheckAndUpdateTeachers();
-
+            LINQmanager.CheckAndUpdateTeachers();
         }
 
         private void adxBookings_OnClick(object sender, IRibbonControl control, bool pressed)

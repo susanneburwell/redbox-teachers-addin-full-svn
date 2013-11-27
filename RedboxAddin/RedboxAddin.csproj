@@ -116,6 +116,7 @@
     <Compile Include="DL\DBManager.cs" />
     <Compile Include="BL\Debug.cs" />
     <Compile Include="DL\ExcelImporter.cs" />
+    <Compile Include="DL\LINQmanager.cs" />
     <Compile Include="Models\DatesForSearch.cs" />
     <Compile Include="Models\RModels.cs" />
     <Compile Include="Models\RContact.cs" />

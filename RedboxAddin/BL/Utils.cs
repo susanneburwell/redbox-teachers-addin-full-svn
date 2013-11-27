@@ -100,6 +100,34 @@ namespace RedboxAddin.BL
             }
         }
 
+        public static Int64 CheckLong(object myObject)
+        {
+
+            try
+            {
+               long myInt = Convert.ToInt64(myObject);
+               return myInt;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        public static DateTime CheckDate(object myObject)
+        {
+
+            try
+            {
+                DateTime md = Convert.ToDateTime(myObject);
+                return md;
+            }
+            catch
+            {
+                return Convert.ToDateTime("2000-01-01");
+            }
+        }
+
         public static bool validateDecimal(string text)
         {
             try
@@ -127,7 +155,7 @@ namespace RedboxAddin.BL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in ExtractAppointmentData: " + ex.Message);
-                return null;
+                return datastring;
             }
         }
 

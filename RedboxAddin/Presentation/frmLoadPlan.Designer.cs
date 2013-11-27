@@ -44,13 +44,14 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.bnFwd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -75,6 +76,8 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.bnFwd);
+            this.panelTop.Controls.Add(this.btnBack);
             this.panelTop.Controls.Add(this.lblTo);
             this.panelTop.Controls.Add(this.radCustom);
             this.panelTop.Controls.Add(this.radMonth);
@@ -207,18 +210,13 @@
             this.gridColumn6,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn10,
-            this.gridColumn3});
-            this.gridView1.FooterPanelHeight = 100;
+            this.gridColumn10});
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.GroupCount = 1;
-            this.gridView1.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Margin", null, "£{0}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "Date", null, "{0} Days")});
             this.gridView1.Name = "gridView1";
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.OptionsView.ShowFooter = true;
             // 
             // gridColumn1
             // 
@@ -231,23 +229,39 @@
             this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 121;
             // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Name";
+            this.gridColumn2.FieldName = "Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Rate";
+            this.gridColumn5.DisplayFormat.FormatString = "{0:c}";
+            this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn5.FieldName = "Rate";
             this.gridColumn5.MaxWidth = 75;
             this.gridColumn5.MinWidth = 75;
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Rate", "{0:c}")});
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 2;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Charge";
+            this.gridColumn6.DisplayFormat.FormatString = "{0:c}";
+            this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn6.FieldName = "Charge";
             this.gridColumn6.MaxWidth = 75;
             this.gridColumn6.MinWidth = 75;
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Charge", "{0:c}")});
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 3;
             // 
@@ -259,7 +273,7 @@
             this.gridColumn7.MinWidth = 100;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count)});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Date", "{0} Days")});
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 4;
             this.gridColumn7.Width = 107;
@@ -277,30 +291,36 @@
             // gridColumn10
             // 
             this.gridColumn10.Caption = "Margin";
+            this.gridColumn10.DisplayFormat.FormatString = "{0:c}";
+            this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn10.FieldName = "Margin";
             this.gridColumn10.MaxWidth = 75;
             this.gridColumn10.MinWidth = 75;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Margin", "{0:c}")});
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 6;
             // 
-            // gridColumn2
+            // btnBack
             // 
-            this.gridColumn2.Caption = "Name";
-            this.gridColumn2.FieldName = "Name";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.btnBack.Location = new System.Drawing.Point(296, 36);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(47, 23);
+            this.btnBack.TabIndex = 26;
+            this.btnBack.Text = "<<";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // gridColumn3
+            // bnFwd
             // 
-            this.gridColumn3.Caption = "Total";
-            this.gridColumn3.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.DisplayText;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 7;
+            this.bnFwd.Location = new System.Drawing.Point(362, 36);
+            this.bnFwd.Name = "bnFwd";
+            this.bnFwd.Size = new System.Drawing.Size(47, 23);
+            this.bnFwd.TabIndex = 27;
+            this.bnFwd.Text = ">>";
+            this.bnFwd.UseVisualStyleBackColor = true;
+            this.bnFwd.Click += new System.EventHandler(this.bnFwd_Click);
             // 
             // frmLoadPlan
             // 
@@ -345,6 +365,7 @@
         private System.Windows.Forms.RadioButton radMonth;
         private System.Windows.Forms.RadioButton radWeek;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private System.Windows.Forms.Button bnFwd;
+        private System.Windows.Forms.Button btnBack;
     }
 }

@@ -219,7 +219,7 @@ namespace RedboxAddin.DL
                             mb.TeacherLevel = dt.Rows[iRow][6].ToString();
                             mb.StartDate = monday;
                             mb.EndDate = monday;
-                            mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            if (apptData.Count >0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
                             mb.Charge = Utils.CheckDecimal("170.00");
                             mb.Details = dt.Rows[iRow][11].ToString();
 
@@ -243,7 +243,7 @@ namespace RedboxAddin.DL
                             mb.TeacherLevel = dt.Rows[iRow][6].ToString();
                             mb.StartDate = tuesday;
                             mb.EndDate = tuesday;
-                            mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
                             mb.Charge = Utils.CheckDecimal("170.00");
                             mb.Details = dt.Rows[iRow][11].ToString();
 
@@ -268,7 +268,7 @@ namespace RedboxAddin.DL
                             mb.TeacherLevel = dt.Rows[iRow][6].ToString();
                             mb.StartDate = wednesday;
                             mb.EndDate = wednesday;
-                            mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
                             mb.Charge = Utils.CheckDecimal("170.00");
                             mb.Details = dt.Rows[iRow][11].ToString();
 
@@ -293,7 +293,7 @@ namespace RedboxAddin.DL
                             mb.TeacherLevel = dt.Rows[iRow][6].ToString();
                             mb.StartDate = thursday;
                             mb.EndDate = thursday;
-                            mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
                             mb.Charge = Utils.CheckDecimal("170.00");
                             mb.Details = dt.Rows[iRow][11].ToString();
 
@@ -318,7 +318,7 @@ namespace RedboxAddin.DL
                             mb.TeacherLevel = dt.Rows[iRow][6].ToString();
                             mb.StartDate = friday;
                             mb.EndDate = friday;
-                            mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
                             mb.Charge = Utils.CheckDecimal("170.00");
                             mb.Details = dt.Rows[iRow][11].ToString();
 
@@ -486,7 +486,7 @@ namespace RedboxAddin.DL
                             string fn = Utils.CheckString(dt.Rows[iRow][2].ToString());
                             string ln = Utils.CheckString(dt.Rows[iRow][1].ToString());
 
-                            TblContact contact = db.TblContacts.Where(c => c.FirstName == fn && c.LastName == ln).FirstOrDefault();
+                            Contact contact = db.Contacts.Where(c => c.FirstName == fn && c.LastName == ln).FirstOrDefault();
                             if (contact != null)
                             {
                                 contact.KeyRef = Utils.CheckString(dt.Rows[iRow][0].ToString());
