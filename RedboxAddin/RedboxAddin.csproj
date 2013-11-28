@@ -222,11 +222,11 @@
     <Compile Include="Presentation\frmViewReminder.Designer.cs">
       <DependentUpon>frmViewReminder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\frmNewRequest.cs">
+    <Compile Include="Presentation\frmMasterBooking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\frmNewRequest.Designer.cs">
-      <DependentUpon>frmNewRequest.cs</DependentUpon>
+    <Compile Include="Presentation\frmMasterBooking.Designer.cs">
+      <DependentUpon>frmMasterBooking.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmLoadPivot.cs">
       <SubType>Form</SubType>
@@ -337,8 +337,8 @@
     <EmbeddedResource Include="Presentation\frmViewReminder.resx">
       <DependentUpon>frmViewReminder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\frmNewRequest.resx">
-      <DependentUpon>frmNewRequest.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\frmMasterBooking.resx">
+      <DependentUpon>frmMasterBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmLoadPivot.resx">
       <DependentUpon>frmLoadPivot.cs</DependentUpon>

@@ -154,7 +154,7 @@ namespace RedboxAddin.Presentation
 
                     if (MasterBookingIDs.Count > 0)
                     {
-                        frmNewRequest fq = new frmNewRequest(MasterBookingIDs[0]);
+                        frmMasterBooking fq = new frmMasterBooking(MasterBookingIDs[0]);
                         fq.Show();
                     }
 

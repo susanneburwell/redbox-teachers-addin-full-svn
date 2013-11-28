@@ -1039,6 +1039,19 @@ namespace RedboxAddin.Presentation
                     cd.DayRateLT = CheckDecimal(txtLTDay.Text);
                     cd.HalfDayRateLT = CheckDecimal(txtLTHfDay.Text);
 
+                    cd.DayRateTA = CheckDecimal(txtDayRateTA.Text) ;
+                     cd.HalfDayRateTA = CheckDecimal(txtHfDayRateTA.Text);
+                    cd.DayRateLTTA = CheckDecimal(txtLTDayTA.Text);
+                    cd.HalfDayRateLTTA = CheckDecimal(txtLTHfDayTA.Text);
+
+                    cd.Current = chkCurrent.Checked;
+                    cd.Teacher = chkTeacher.Checked;
+                    cd.TA = chkTA.Checked;
+                    cd.PPA = chkPPA.Checked;
+                    cd.LT = chkLT.Checked;
+                    cd.D2D = chkD2D.Checked;
+                    cd.RGD = chkRGD.Checked;
+
                     db.SubmitChanges();
                     return;
 
@@ -1095,6 +1108,20 @@ namespace RedboxAddin.Presentation
                         txtHfDayRate.Text = cd.HalfDayRate.ToString();
                         txtLTDay.Text = cd.DayRateLT.ToString();
                         txtLTHfDay.Text = cd.HalfDayRateLT.ToString();
+
+                        txtDayRateTA.Text = cd.DayRateTA.ToString();
+                        txtHfDayRateTA.Text = cd.HalfDayRateTA.ToString();
+                        txtLTDayTA.Text = cd.DayRateLTTA.ToString();
+                        txtLTHfDayTA.Text = cd.HalfDayRateLTTA.ToString();
+
+                        chkCurrent.Checked = cd.Current;
+                        chkTeacher.Checked = cd.Teacher;
+                        chkTA.Checked = cd.TA;
+                        chkPPA.Checked = cd.PPA;
+                        chkLT.Checked = cd.LT;
+                        chkD2D.Checked = cd.D2D;
+                        chkRGD.Checked = cd.RGD;
+
                     }
 
 

@@ -873,10 +873,10 @@ namespace RedboxAddin
 
         private void adxNewRequest_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmNewRequest fnr = Application.OpenForms["frmNewRequest"] as frmNewRequest;
+            frmMasterBooking fnr = Application.OpenForms["frmNewRequest"] as frmMasterBooking;
             if (fnr == null)
             {
-                fnr = new frmNewRequest();
+                fnr = new frmMasterBooking();
                 fnr.Show();
             }
             else

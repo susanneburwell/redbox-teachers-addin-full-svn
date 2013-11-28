@@ -35,6 +35,9 @@ namespace RedboxAddin
     partial void InsertBooking(Booking instance);
     partial void UpdateBooking(Booking instance);
     partial void DeleteBooking(Booking instance);
+    partial void InsertBookingStatuse(BookingStatuse instance);
+    partial void UpdateBookingStatuse(BookingStatuse instance);
+    partial void DeleteBookingStatuse(BookingStatuse instance);
     partial void InsertCategory(Category instance);
     partial void UpdateCategory(Category instance);
     partial void DeleteCategory(Category instance);
@@ -104,6 +107,14 @@ namespace RedboxAddin
 			get
 			{
 				return this.GetTable<Booking>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BookingStatuse> BookingStatuses
+		{
+			get
+			{
+				return this.GetTable<BookingStatuse>();
 			}
 		}
 		
@@ -521,6 +532,92 @@ namespace RedboxAddin
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BookingStatuses")]
+	public partial class BookingStatuse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _ID;
+		
+		private string _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(short value);
+    partial void OnIDChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public BookingStatuse()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
+		public short ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categories")]
 	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -607,13 +704,21 @@ namespace RedboxAddin
 		
 		private string _NoGo;
 		
-		private decimal _DayRate;
+		private System.Nullable<decimal> _DayRate;
 		
-		private decimal _HalfDayRate;
+		private System.Nullable<decimal> _HalfDayRate;
 		
-		private decimal _DayRateLT;
+		private System.Nullable<decimal> _DayRateLT;
 		
-		private decimal _HalfDayRateLT;
+		private System.Nullable<decimal> _HalfDayRateLT;
+		
+		private System.Nullable<decimal> _DayRateTA;
+		
+		private System.Nullable<decimal> _HalfDayRateTA;
+		
+		private System.Nullable<decimal> _DayRateLTTA;
+		
+		private System.Nullable<decimal> _HalfDayRateLTTA;
 		
 		private bool _Nur;
 		
@@ -637,6 +742,18 @@ namespace RedboxAddin
 		
 		private bool _SEN;
 		
+		private bool _SENTA;
+		
+		private bool _PPA;
+		
+		private bool _LT;
+		
+		private bool _D2D;
+		
+		private bool _RGD;
+		
+		private bool _Current;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -659,14 +776,22 @@ namespace RedboxAddin
     partial void OnCRBStatusChanged();
     partial void OnNoGoChanging(string value);
     partial void OnNoGoChanged();
-    partial void OnDayRateChanging(decimal value);
+    partial void OnDayRateChanging(System.Nullable<decimal> value);
     partial void OnDayRateChanged();
-    partial void OnHalfDayRateChanging(decimal value);
+    partial void OnHalfDayRateChanging(System.Nullable<decimal> value);
     partial void OnHalfDayRateChanged();
-    partial void OnDayRateLTChanging(decimal value);
+    partial void OnDayRateLTChanging(System.Nullable<decimal> value);
     partial void OnDayRateLTChanged();
-    partial void OnHalfDayRateLTChanging(decimal value);
+    partial void OnHalfDayRateLTChanging(System.Nullable<decimal> value);
     partial void OnHalfDayRateLTChanged();
+    partial void OnDayRateTAChanging(System.Nullable<decimal> value);
+    partial void OnDayRateTAChanged();
+    partial void OnHalfDayRateTAChanging(System.Nullable<decimal> value);
+    partial void OnHalfDayRateTAChanged();
+    partial void OnDayRateLTTAChanging(System.Nullable<decimal> value);
+    partial void OnDayRateLTTAChanged();
+    partial void OnHalfDayRateLTTAChanging(System.Nullable<decimal> value);
+    partial void OnHalfDayRateLTTAChanged();
     partial void OnNurChanging(bool value);
     partial void OnNurChanged();
     partial void OnRecChanging(bool value);
@@ -689,6 +814,18 @@ namespace RedboxAddin
     partial void OnQNNChanged();
     partial void OnSENChanging(bool value);
     partial void OnSENChanged();
+    partial void OnSENTAChanging(bool value);
+    partial void OnSENTAChanged();
+    partial void OnPPAChanging(bool value);
+    partial void OnPPAChanged();
+    partial void OnLTChanging(bool value);
+    partial void OnLTChanged();
+    partial void OnD2DChanging(bool value);
+    partial void OnD2DChanged();
+    partial void OnRGDChanging(bool value);
+    partial void OnRGDChanged();
+    partial void OnCurrentChanging(bool value);
+    partial void OnCurrentChanged();
     #endregion
 		
 		public ContactData()
@@ -876,8 +1013,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRate", DbType="Decimal(7,2) NOT NULL")]
-		public decimal DayRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRate
 		{
 			get
 			{
@@ -896,8 +1033,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRate", DbType="Decimal(7,2) NOT NULL")]
-		public decimal HalfDayRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRate
 		{
 			get
 			{
@@ -916,8 +1053,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRateLT", DbType="Decimal(7,2) NOT NULL")]
-		public decimal DayRateLT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRateLT", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRateLT
 		{
 			get
 			{
@@ -936,8 +1073,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRateLT", DbType="Decimal(7,2) NOT NULL")]
-		public decimal HalfDayRateLT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRateLT", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRateLT
 		{
 			get
 			{
@@ -952,6 +1089,86 @@ namespace RedboxAddin
 					this._HalfDayRateLT = value;
 					this.SendPropertyChanged("HalfDayRateLT");
 					this.OnHalfDayRateLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRateTA", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRateTA
+		{
+			get
+			{
+				return this._DayRateTA;
+			}
+			set
+			{
+				if ((this._DayRateTA != value))
+				{
+					this.OnDayRateTAChanging(value);
+					this.SendPropertyChanging();
+					this._DayRateTA = value;
+					this.SendPropertyChanged("DayRateTA");
+					this.OnDayRateTAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRateTA", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRateTA
+		{
+			get
+			{
+				return this._HalfDayRateTA;
+			}
+			set
+			{
+				if ((this._HalfDayRateTA != value))
+				{
+					this.OnHalfDayRateTAChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayRateTA = value;
+					this.SendPropertyChanged("HalfDayRateTA");
+					this.OnHalfDayRateTAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRateLTTA", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRateLTTA
+		{
+			get
+			{
+				return this._DayRateLTTA;
+			}
+			set
+			{
+				if ((this._DayRateLTTA != value))
+				{
+					this.OnDayRateLTTAChanging(value);
+					this.SendPropertyChanging();
+					this._DayRateLTTA = value;
+					this.SendPropertyChanged("DayRateLTTA");
+					this.OnDayRateLTTAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRateLTTA", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRateLTTA
+		{
+			get
+			{
+				return this._HalfDayRateLTTA;
+			}
+			set
+			{
+				if ((this._HalfDayRateLTTA != value))
+				{
+					this.OnHalfDayRateLTTAChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayRateLTTA = value;
+					this.SendPropertyChanged("HalfDayRateLTTA");
+					this.OnHalfDayRateLTTAChanged();
 				}
 			}
 		}
@@ -1172,6 +1389,126 @@ namespace RedboxAddin
 					this._SEN = value;
 					this.SendPropertyChanged("SEN");
 					this.OnSENChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SENTA", DbType="Bit NOT NULL")]
+		public bool SENTA
+		{
+			get
+			{
+				return this._SENTA;
+			}
+			set
+			{
+				if ((this._SENTA != value))
+				{
+					this.OnSENTAChanging(value);
+					this.SendPropertyChanging();
+					this._SENTA = value;
+					this.SendPropertyChanged("SENTA");
+					this.OnSENTAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PPA", DbType="Bit NOT NULL")]
+		public bool PPA
+		{
+			get
+			{
+				return this._PPA;
+			}
+			set
+			{
+				if ((this._PPA != value))
+				{
+					this.OnPPAChanging(value);
+					this.SendPropertyChanging();
+					this._PPA = value;
+					this.SendPropertyChanged("PPA");
+					this.OnPPAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LT", DbType="Bit NOT NULL")]
+		public bool LT
+		{
+			get
+			{
+				return this._LT;
+			}
+			set
+			{
+				if ((this._LT != value))
+				{
+					this.OnLTChanging(value);
+					this.SendPropertyChanging();
+					this._LT = value;
+					this.SendPropertyChanged("LT");
+					this.OnLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_D2D", DbType="Bit NOT NULL")]
+		public bool D2D
+		{
+			get
+			{
+				return this._D2D;
+			}
+			set
+			{
+				if ((this._D2D != value))
+				{
+					this.OnD2DChanging(value);
+					this.SendPropertyChanging();
+					this._D2D = value;
+					this.SendPropertyChanged("D2D");
+					this.OnD2DChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RGD", DbType="Bit NOT NULL")]
+		public bool RGD
+		{
+			get
+			{
+				return this._RGD;
+			}
+			set
+			{
+				if ((this._RGD != value))
+				{
+					this.OnRGDChanging(value);
+					this.SendPropertyChanging();
+					this._RGD = value;
+					this.SendPropertyChanged("RGD");
+					this.OnRGDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Current", DbType="Bit NOT NULL")]
+		public bool Current
+		{
+			get
+			{
+				return this._Current;
+			}
+			set
+			{
+				if ((this._Current != value))
+				{
+					this.OnCurrentChanging(value);
+					this.SendPropertyChanging();
+					this._Current = value;
+					this.SendPropertyChanged("Current");
+					this.OnCurrentChanged();
 				}
 			}
 		}
@@ -4009,6 +4346,8 @@ namespace RedboxAddin
 		
 		private bool _OTT;
 		
+		private bool _Teacher;
+		
 		private bool _TA;
 		
 		private bool _QNN;
@@ -4016,6 +4355,8 @@ namespace RedboxAddin
 		private bool _NN;
 		
 		private bool _SEN;
+		
+		private short _BookingStatus;
 		
 		private EntitySet<Booking> _Bookings;
 		
@@ -4079,6 +4420,8 @@ namespace RedboxAddin
     partial void OnNQTChanged();
     partial void OnOTTChanging(bool value);
     partial void OnOTTChanged();
+    partial void OnTeacherChanging(bool value);
+    partial void OnTeacherChanged();
     partial void OnTAChanging(bool value);
     partial void OnTAChanged();
     partial void OnQNNChanging(bool value);
@@ -4087,6 +4430,8 @@ namespace RedboxAddin
     partial void OnNNChanged();
     partial void OnSENChanging(bool value);
     partial void OnSENChanged();
+    partial void OnBookingStatusChanging(short value);
+    partial void OnBookingStatusChanged();
     #endregion
 		
 		public MasterBooking()
@@ -4655,6 +5000,26 @@ namespace RedboxAddin
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Teacher", DbType="Bit NOT NULL")]
+		public bool Teacher
+		{
+			get
+			{
+				return this._Teacher;
+			}
+			set
+			{
+				if ((this._Teacher != value))
+				{
+					this.OnTeacherChanging(value);
+					this.SendPropertyChanging();
+					this._Teacher = value;
+					this.SendPropertyChanged("Teacher");
+					this.OnTeacherChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TA", DbType="Bit NOT NULL")]
 		public bool TA
 		{
@@ -4731,6 +5096,26 @@ namespace RedboxAddin
 					this._SEN = value;
 					this.SendPropertyChanged("SEN");
 					this.OnSENChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingStatus", DbType="SmallInt NOT NULL")]
+		public short BookingStatus
+		{
+			get
+			{
+				return this._BookingStatus;
+			}
+			set
+			{
+				if ((this._BookingStatus != value))
+				{
+					this.OnBookingStatusChanging(value);
+					this.SendPropertyChanging();
+					this._BookingStatus = value;
+					this.SendPropertyChanged("BookingStatus");
+					this.OnBookingStatusChanged();
 				}
 			}
 		}
