@@ -204,6 +204,12 @@
     <Compile Include="Presentation\frmReminderExp.Designer.cs">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmTeacherUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmTeacherUpdate.Designer.cs">
+      <DependentUpon>frmTeacherUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmViewBookings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmReminderExp.resx">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmTeacherUpdate.resx">
+      <DependentUpon>frmTeacherUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmViewBookings.resx">
       <DependentUpon>frmViewBookings.cs</DependentUpon>

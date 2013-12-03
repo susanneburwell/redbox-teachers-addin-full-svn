@@ -100,6 +100,7 @@ namespace RedboxAddin
             this.adxBookings = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxAvail = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxLoadPlan = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -107,7 +108,6 @@ namespace RedboxAddin
             this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxProcess = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -379,6 +379,7 @@ namespace RedboxAddin
             this.adxTeacherUpdate.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxTeacherUpdate.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxTeacherUpdate.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTeacherUpdate_OnClick);
             // 
             // adxBookings
             // 
@@ -406,6 +407,15 @@ namespace RedboxAddin
             this.adxLoadPlan.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxLoadPlan.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxLoadPlan_OnClick);
+            // 
+            // adxPivot
+            // 
+            this.adxPivot.Caption = "Pivot Grid";
+            this.adxPivot.Id = "adxRibbonButton_0b7f30f7815047beaeae043c569fcf44";
+            this.adxPivot.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxPivot.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
             // 
             // adxOptions
             // 
@@ -474,15 +484,6 @@ namespace RedboxAddin
             this.adxProcess.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxProcess.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxProcess_OnClick);
-            // 
-            // adxPivot
-            // 
-            this.adxPivot.Caption = "Pivot Grid";
-            this.adxPivot.Id = "adxRibbonButton_0b7f30f7815047beaeae043c569fcf44";
-            this.adxPivot.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxPivot.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
-            this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
             // 
             // AddinModule
             // 
@@ -998,6 +999,20 @@ namespace RedboxAddin
             if (lp == null)
             {
                 lp = new frmLoadPivot();
+                lp.Show();
+            }
+            else
+            {
+                lp.BringToFront();
+            }
+        }
+
+        private void adxTeacherUpdate_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmTeacherUpdate lp = Application.OpenForms["frmTeacherUpdate"] as frmTeacherUpdate;
+            if (lp == null)
+            {
+                lp = new frmTeacherUpdate();
                 lp.Show();
             }
             else

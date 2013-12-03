@@ -124,4 +124,11 @@ namespace RedboxAddin.Models
         public string ZIP { get; set; }
         public string Country { get; set; }
     }
+
+    public class RTeacherday
+    {
+        public DateTime dte { get; set; }
+        public string Type { get; set; }
+        public string Details { get; set; }
+    }
 }

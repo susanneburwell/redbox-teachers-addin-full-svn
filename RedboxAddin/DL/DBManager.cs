@@ -294,6 +294,93 @@ namespace RedboxAddin.DL
             }
         }
 
+        public List<RTeacherday> GetTeacherDays(Int64 teacherID, bool past, bool future)
+        {
+
+            List<RTeacherday> teacherDays = new List<RTeacherday>();
+
+            //Create DateSQL
+            string today = DateTime.Today.Date.ToString("yyyyMMdd");
+            string DateSQL = "";
+            if (!past)
+            {
+                DateSQL = " AND [Date] >= '" + today + "' ";
+            }
+
+            if (!future)
+            {
+                DateSQL = " AND [Date] <= '" + today + "' ";
+            }
+
+
+
+            //Get Guaranteed days
+            try
+            {
+                string SQLstr = "SELECT [Date],[Note] " + 
+                                "FROM [GuaranteedDays] "+
+                                "Where [TeacherID] = '" + teacherID.ToString() + "' ";
+                DataSet msgDs = GetDataSet(SQLstr + DateSQL);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RTeacherday tDay = new RTeacherday();
+                        tDay.dte = Utils.CheckDate(dr["Date"]);
+                        tDay.Type = "Guaranteed Day";
+                        tDay.Details = Utils.CheckString(dr["Note"]);
+                        teacherDays.Add(tDay);
+
+                    }
+                }
+
+
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetTeacherDays(Guarantees): " + ex.Message);
+                return null;
+            }
+
+            //Get Booked days
+            try
+            {
+                string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, Status " +
+                                "FROM [Bookings] " +
+                                "LEFT JOIN [MasterBookings] ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                                "LEFT JOIN [BookingStatuses] ON [MasterBookings].BookingStatus = BookingStatuses.ID " + 
+                                "WHERE  [MasterBookings].contactID = '" + teacherID.ToString() + "' ";
+                DataSet msgDs = GetDataSet(SQLstr + DateSQL);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RTeacherday tDay = new RTeacherday();
+                        tDay.dte = Utils.CheckDate(dr["Date"]);
+                        if (Utils.CheckBool(dr["isAbsence"])) tDay.Type = "Absence";
+                        else tDay.Type = Utils.CheckString(dr["Status"]);
+                        tDay.Details = Utils.CheckString(dr["Description"]);
+                        teacherDays.Add(tDay);
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetTeacherDays(Guarantees): " + ex.Message);
+                return null;
+            }
+
+
+            return teacherDays;
+        }
+
         public List<RLoad> GetLoadPlan(DateTime dStart, DateTime dEnd)
         {
 
@@ -479,8 +566,6 @@ namespace RedboxAddin.DL
                 return null;
             }
         }
-
-       
 
         public long GetReminderID(long contactRef, string reminderType)
         {
@@ -803,7 +888,6 @@ namespace RedboxAddin.DL
                 return null;
             }
         }
-
 
         public long AddContact(RContact contactObj)
         {
