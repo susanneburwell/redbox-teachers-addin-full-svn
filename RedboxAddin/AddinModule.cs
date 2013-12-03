@@ -8,6 +8,9 @@ using RedboxAddin.Presentation;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
 using RedboxAddin.Models;
+using System.Linq;
+using System.Collections.Generic;
+
 
 
 namespace RedboxAddin
@@ -59,6 +62,8 @@ namespace RedboxAddin
         private ADXRibbonButton adxAvail;
         private ADXRibbonButton adxLoadPlan;
         private ADXRibbonButton adxPivot;
+        private ADXRibbonButton adxImportContacts;
+        private ADXRibbonButton adxUpdateContacts;
 
         #region Component Designer generated code
         /// <summary>
@@ -108,6 +113,8 @@ namespace RedboxAddin
             this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxProcess = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxImportContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxUpdateContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -426,6 +433,8 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxImport);
             this.adxOptions.Controls.Add(this.adxEditSchool);
             this.adxOptions.Controls.Add(this.adxProcess);
+            this.adxOptions.Controls.Add(this.adxImportContacts);
+            this.adxOptions.Controls.Add(this.adxUpdateContacts);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxOptions.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
@@ -485,12 +494,29 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
             this.adxProcess.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxProcess_OnClick);
             // 
+            // adxImportContacts
+            // 
+            this.adxImportContacts.Caption = "Import Contacts";
+            this.adxImportContacts.Id = "adxRibbonButton_038dc2864f8048b98526fdf69e514fd1";
+            this.adxImportContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxImportContacts.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportContacts_OnClick);
+            // 
+            // adxUpdateContacts
+            // 
+            this.adxUpdateContacts.Caption = "Clean Contact Names";
+            this.adxUpdateContacts.Id = "adxRibbonButton_afb82f1c8fe342c98a8899b512567222";
+            this.adxUpdateContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxUpdateContacts.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
+            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxUpdateContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxUpdateContacts_OnClick);
+            // 
             // AddinModule
             // 
             this.AddinName = "RedboxAddin";
             this.SupportedApps = AddinExpress.MSO.ADXOfficeHostApp.ohaOutlook;
             this.AddinInitialize += new AddinExpress.MSO.ADXEvents_EventHandler(this.AddinModule_AddinInitialize);
-            this.AddinStartupComplete += new AddinExpress.MSO.ADXEvents_EventHandler(this.AddinModule_AddinStartupComplete);
 
         }
         #endregion
@@ -559,12 +585,6 @@ namespace RedboxAddin
             Debug.SetDebugLevel();
             var mapiObject = Globals.objNS.MAPIOBJECT;
             RedemptionCode.InitialiseRedemption(ref mapiObject);
-        }
-
-        private void AddinModule_AddinStartupComplete(object sender, EventArgs e)
-        {
-            DBManager dbm = new DBManager();
-            dbm.CheckDatabase();
         }
 
         private void adxRibbonButton1_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1019,6 +1039,34 @@ namespace RedboxAddin
             {
                 lp.BringToFront();
             }
+        }
+
+        private void adxImportContacts_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            if (MessageBox.Show("This will add new contacts to the current contact data and should only be used before the system is live." +
+                "/RDo you want to proceed?", "Carefull!!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                OLDDBManager odb = new OLDDBManager();
+                List<RContact> contacts = odb.GetOldContacts();
+
+                DBManager db = new DBManager();
+                int count = 0;
+                foreach (RContact c in contacts)
+                {
+                    count+=1;
+                    db.AddContact(c);
+                }
+
+                MessageBox.Show(count.ToString() + " contacts added.");
+
+            }
+        }
+
+        private void adxUpdateContacts_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            DBManager db = new DBManager();
+            db.CleanContactNames();
+
         }
 
 

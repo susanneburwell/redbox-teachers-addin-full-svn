@@ -88,7 +88,7 @@ namespace RedboxAddin.Presentation
                 else
                 {
                     if (SQL2 == "") SQL = " WHERE " + SQL.Substring(3);
-                    else SQL = " WHERE (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + ")";
+                    else SQL = " WHERE [current] = 'true' AND (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + ")";
 
                 }
 

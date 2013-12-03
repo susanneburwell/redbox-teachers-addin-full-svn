@@ -1749,7 +1749,38 @@ namespace RedboxAddin.DL
             else { return false; }
         }
 
-       
+        public void CleanContactNames()
+        {
+            //This finds contacts with no lastname. and updates the firstname and last name accordingly
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                RedBoxDB db = new RedBoxDB(CONNSTR);
+                List<Contact> contacts = db.Contacts.ToList();
+                foreach (Contact c in contacts)
+                {
+                    if (string.IsNullOrWhiteSpace(c.LastName))
+                    {
+                        string fullname = c.FirstName.Trim();
+                        int i = fullname.IndexOf(' ');
+                        if (i>0)
+                        {
+                            string firstname = fullname.Substring(0, i).Trim();
+                            string lastname = fullname.Substring(i).Trim();
+                            c.FirstName = firstname;
+                            c.LastName = lastname;
+                            db.SubmitChanges();
+
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CleanContactNames: " + ex.Message);
+            }
+        }
 
         #region Create tables
 

@@ -117,6 +117,7 @@
     <Compile Include="BL\Debug.cs" />
     <Compile Include="DL\ExcelImporter.cs" />
     <Compile Include="DL\LINQmanager.cs" />
+    <Compile Include="DL\OLDDBManager.cs" />
     <Compile Include="Models\DatesForSearch.cs" />
     <Compile Include="Models\RModels.cs" />
     <Compile Include="Models\RContact.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="RBModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RBModels2.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

@@ -173,7 +173,7 @@ namespace RedboxAddin.DL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
 
-                    for (int iRow = 0; iRow < 239; iRow++)
+                    for (int iRow = 0; iRow < 285; iRow++)
                     {
                         try
                         {
@@ -199,6 +199,10 @@ namespace RedboxAddin.DL
                                 cd.Yr4 = Utils.CheckBool(dt.Rows[iRow][23].ToString());
                                 cd.Yr5 = Utils.CheckBool(dt.Rows[iRow][24].ToString());
                                 cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25].ToString());
+                                cd.Teacher = Utils.CheckBool(dt.Rows[iRow][26].ToString());
+                                cd.TA = Utils.CheckBool(dt.Rows[iRow][27].ToString());
+                                cd.DayRate = Convert.ToDecimal("135");
+
 
                                 //Find SEN, QNN, TA, in year Group
                                 if (cd.YearGroup.IndexOf("QNN") > -1) cd.QNN = true;
