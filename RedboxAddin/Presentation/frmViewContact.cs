@@ -64,8 +64,6 @@ namespace RedboxAddin.Presentation
             }
         }
 
-
-
         private void frmViewContact_Load(object sender, EventArgs e)
         {
             if (CurrentContactID == 0) return;
@@ -1149,6 +1147,8 @@ namespace RedboxAddin.Presentation
                 return Convert.ToDecimal("0.00");
             }
         }
+
+       
 
       
 

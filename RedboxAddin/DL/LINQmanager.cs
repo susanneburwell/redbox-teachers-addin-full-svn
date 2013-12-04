@@ -15,31 +15,47 @@ namespace RedboxAddin.DL
             List<long> IDs = new List<long>();
             try
             {
-                string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                using (RedBoxDB db = new RedBoxDB(CONNSTR))
-                {
-                    string[] name = teachername.Split(',');
-                    string lastname = name[0].Trim();
-                    string firstname = name[1].Trim();
-                    DateTime bdate = Convert.ToDateTime(bookingdate).Date;
+               DateTime bdate = Convert.ToDateTime(bookingdate).Date;
 
-                    //get teacherID from teachername
-                    var teachers = db.Contacts.Where(s => s.FirstName == firstname && s.LastName == lastname);
+               string CONNSTR = DavSettings.getDavValue("CONNSTR");
+               using (RedBoxDB db = new RedBoxDB(CONNSTR))
+               {
 
-                    foreach (Contact cc in teachers)
-                    {
-                        //get Masterbooking ID from name and date
-                        var bkgs = db.MasterBookings.Where(m => m.ContactID == cc.ContactID && m.StartDate >= bdate && m.EndDate <= bdate);
+                   //Determine if teacher name exists
+                   bool TeacherNameFound = !string.IsNullOrWhiteSpace(teachername.Replace(',', ' '));
+                   long teacherID = -1;
+                   if (TeacherNameFound)
+                   {
+                       string[] name = teachername.Split(',');
+                       string lastname = name[0].Trim();
+                       string firstname = name[1].Trim();
 
-                        foreach (MasterBooking mb in bkgs)
-                        {
-                            //get masterbooking ID from bookingID
-                            IDs.Add(mb.ID);
-                        }
+                       //get teacherID from teachername
+                       var teachers = db.Contacts.Where(s => s.FirstName == firstname && s.LastName == lastname).First();
+                       teacherID = teachers.ContactID;
+                   }
 
-                    }
-                }
-                return IDs;
+                   //get bookings ID from description and date
+                   var bkgs = (from bk in db.Bookings
+                               where bk.Date == bdate && bk.Description == description
+                               join mb in db.MasterBookings on bk.MasterBookingID equals mb.ID
+                               select new { bk.MasterBookingID, mb.ContactID }).ToList();
+
+                   foreach (var bb in bkgs)
+                   {
+                       try
+                       {
+                           long id = Convert.ToInt64(bb.MasterBookingID);
+                           if (TeacherNameFound)
+                           {
+                               if (bb.ContactID == teacherID) IDs.Add(id);
+                           }
+                           else IDs.Add(id);
+                       }
+                       catch { }
+                   }
+                   return IDs;
+               }
             }
             catch (Exception ex)
             {

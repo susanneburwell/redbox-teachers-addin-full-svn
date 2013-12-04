@@ -33,14 +33,6 @@
             this.tableLayoutPanelContainer = new System.Windows.Forms.TableLayoutPanel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.chkCurrent = new System.Windows.Forms.CheckBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.chkRGD = new System.Windows.Forms.CheckBox();
-            this.chkD2D = new System.Windows.Forms.CheckBox();
-            this.chkLT = new System.Windows.Forms.CheckBox();
-            this.chkPPA = new System.Windows.Forms.CheckBox();
-            this.chkTA = new System.Windows.Forms.CheckBox();
-            this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label82 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
@@ -54,6 +46,27 @@
             this.label80 = new System.Windows.Forms.Label();
             this.txtHfDayRate = new System.Windows.Forms.TextBox();
             this.label81 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
+            this.txtLTHfDayTA = new System.Windows.Forms.TextBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.txtLTDayTA = new System.Windows.Forms.TextBox();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
+            this.txtDayRateTA = new System.Windows.Forms.TextBox();
+            this.label88 = new System.Windows.Forms.Label();
+            this.txtHfDayRateTA = new System.Windows.Forms.TextBox();
+            this.label89 = new System.Windows.Forms.Label();
+            this.chkCurrent = new System.Windows.Forms.CheckBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chkRGD = new System.Windows.Forms.CheckBox();
+            this.chkD2D = new System.Windows.Forms.CheckBox();
+            this.chkLT = new System.Windows.Forms.CheckBox();
+            this.chkPPA = new System.Windows.Forms.CheckBox();
+            this.chkTA = new System.Windows.Forms.CheckBox();
+            this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnEY = new System.Windows.Forms.Button();
             this.chkRec = new System.Windows.Forms.CheckBox();
@@ -289,24 +302,12 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label73 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
-            this.txtLTHfDayTA = new System.Windows.Forms.TextBox();
-            this.label85 = new System.Windows.Forms.Label();
-            this.txtLTDayTA = new System.Windows.Forms.TextBox();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label87 = new System.Windows.Forms.Label();
-            this.txtDayRateTA = new System.Windows.Forms.TextBox();
-            this.label88 = new System.Windows.Forms.Label();
-            this.txtHfDayRateTA = new System.Windows.Forms.TextBox();
-            this.label89 = new System.Windows.Forms.Label();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -326,7 +327,6 @@
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanelContainer
@@ -392,92 +392,6 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Summary";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // chkCurrent
-            // 
-            this.chkCurrent.AutoSize = true;
-            this.chkCurrent.Location = new System.Drawing.Point(419, 76);
-            this.chkCurrent.Name = "chkCurrent";
-            this.chkCurrent.Size = new System.Drawing.Size(69, 20);
-            this.chkCurrent.TabIndex = 85;
-            this.chkCurrent.Text = "Current";
-            this.chkCurrent.UseVisualStyleBackColor = true;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.chkRGD);
-            this.groupBox8.Controls.Add(this.chkD2D);
-            this.groupBox8.Controls.Add(this.chkLT);
-            this.groupBox8.Controls.Add(this.chkPPA);
-            this.groupBox8.Location = new System.Drawing.Point(398, 128);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(320, 57);
-            this.groupBox8.TabIndex = 84;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Wants";
-            // 
-            // chkRGD
-            // 
-            this.chkRGD.AutoSize = true;
-            this.chkRGD.Location = new System.Drawing.Point(240, 21);
-            this.chkRGD.Name = "chkRGD";
-            this.chkRGD.Size = new System.Drawing.Size(57, 20);
-            this.chkRGD.TabIndex = 86;
-            this.chkRGD.Text = "RGD";
-            this.toolTip1.SetToolTip(this.chkRGD, "Regular Days");
-            this.chkRGD.UseVisualStyleBackColor = true;
-            // 
-            // chkD2D
-            // 
-            this.chkD2D.AutoSize = true;
-            this.chkD2D.Location = new System.Drawing.Point(153, 21);
-            this.chkD2D.Name = "chkD2D";
-            this.chkD2D.Size = new System.Drawing.Size(54, 20);
-            this.chkD2D.TabIndex = 85;
-            this.chkD2D.Text = "D2D";
-            this.toolTip1.SetToolTip(this.chkD2D, "Day to Day");
-            this.chkD2D.UseVisualStyleBackColor = true;
-            // 
-            // chkLT
-            // 
-            this.chkLT.AutoSize = true;
-            this.chkLT.Location = new System.Drawing.Point(84, 21);
-            this.chkLT.Name = "chkLT";
-            this.chkLT.Size = new System.Drawing.Size(43, 20);
-            this.chkLT.TabIndex = 84;
-            this.chkLT.Text = "LT";
-            this.toolTip1.SetToolTip(this.chkLT, "Long Term");
-            this.chkLT.UseVisualStyleBackColor = true;
-            // 
-            // chkPPA
-            // 
-            this.chkPPA.AutoSize = true;
-            this.chkPPA.Location = new System.Drawing.Point(21, 21);
-            this.chkPPA.Name = "chkPPA";
-            this.chkPPA.Size = new System.Drawing.Size(54, 20);
-            this.chkPPA.TabIndex = 83;
-            this.chkPPA.Text = "PPA";
-            this.chkPPA.UseVisualStyleBackColor = true;
-            // 
-            // chkTA
-            // 
-            this.chkTA.AutoSize = true;
-            this.chkTA.Location = new System.Drawing.Point(511, 102);
-            this.chkTA.Name = "chkTA";
-            this.chkTA.Size = new System.Drawing.Size(45, 20);
-            this.chkTA.TabIndex = 82;
-            this.chkTA.Text = "TA";
-            this.chkTA.UseVisualStyleBackColor = true;
-            // 
-            // chkTeacher
-            // 
-            this.chkTeacher.AutoSize = true;
-            this.chkTeacher.Location = new System.Drawing.Point(419, 102);
-            this.chkTeacher.Name = "chkTeacher";
-            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
-            this.chkTeacher.TabIndex = 81;
-            this.chkTeacher.Text = "Teacher";
-            this.chkTeacher.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -599,6 +513,213 @@
             this.label81.Size = new System.Drawing.Size(154, 16);
             this.label81.TabIndex = 68;
             this.label81.Text = "Long Term 1/2 Day Rate";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label73);
+            this.groupBox9.Controls.Add(this.label83);
+            this.groupBox9.Controls.Add(this.label84);
+            this.groupBox9.Controls.Add(this.txtLTHfDayTA);
+            this.groupBox9.Controls.Add(this.label85);
+            this.groupBox9.Controls.Add(this.txtLTDayTA);
+            this.groupBox9.Controls.Add(this.label86);
+            this.groupBox9.Controls.Add(this.label87);
+            this.groupBox9.Controls.Add(this.txtDayRateTA);
+            this.groupBox9.Controls.Add(this.label88);
+            this.groupBox9.Controls.Add(this.txtHfDayRateTA);
+            this.groupBox9.Controls.Add(this.label89);
+            this.groupBox9.Location = new System.Drawing.Point(24, 457);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(694, 100);
+            this.groupBox9.TabIndex = 86;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "TA Rates";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(270, 24);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(133, 16);
+            this.label73.TabIndex = 95;
+            this.label73.Text = "Long Term Day Rate";
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Location = new System.Drawing.Point(24, 24);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(65, 16);
+            this.label83.TabIndex = 91;
+            this.label83.Text = "Day Rate";
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(24, 61);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(86, 16);
+            this.label84.TabIndex = 92;
+            this.label84.Text = "1/2 Day Rate";
+            // 
+            // txtLTHfDayTA
+            // 
+            this.txtLTHfDayTA.Location = new System.Drawing.Point(448, 58);
+            this.txtLTHfDayTA.Name = "txtLTHfDayTA";
+            this.txtLTHfDayTA.Size = new System.Drawing.Size(73, 22);
+            this.txtLTHfDayTA.TabIndex = 90;
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Location = new System.Drawing.Point(145, 24);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(15, 16);
+            this.label85.TabIndex = 93;
+            this.label85.Text = "£";
+            // 
+            // txtLTDayTA
+            // 
+            this.txtLTDayTA.Location = new System.Drawing.Point(448, 21);
+            this.txtLTDayTA.Name = "txtLTDayTA";
+            this.txtLTDayTA.Size = new System.Drawing.Size(73, 22);
+            this.txtLTDayTA.TabIndex = 89;
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(145, 61);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(15, 16);
+            this.label86.TabIndex = 94;
+            this.label86.Text = "£";
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(427, 61);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(15, 16);
+            this.label87.TabIndex = 98;
+            this.label87.Text = "£";
+            // 
+            // txtDayRateTA
+            // 
+            this.txtDayRateTA.Location = new System.Drawing.Point(166, 21);
+            this.txtDayRateTA.Name = "txtDayRateTA";
+            this.txtDayRateTA.Size = new System.Drawing.Size(63, 22);
+            this.txtDayRateTA.TabIndex = 87;
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(427, 24);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(15, 16);
+            this.label88.TabIndex = 97;
+            this.label88.Text = "£";
+            // 
+            // txtHfDayRateTA
+            // 
+            this.txtHfDayRateTA.Location = new System.Drawing.Point(166, 58);
+            this.txtHfDayRateTA.Name = "txtHfDayRateTA";
+            this.txtHfDayRateTA.Size = new System.Drawing.Size(63, 22);
+            this.txtHfDayRateTA.TabIndex = 88;
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(270, 61);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(154, 16);
+            this.label89.TabIndex = 96;
+            this.label89.Text = "Long Term 1/2 Day Rate";
+            // 
+            // chkCurrent
+            // 
+            this.chkCurrent.AutoSize = true;
+            this.chkCurrent.Location = new System.Drawing.Point(419, 76);
+            this.chkCurrent.Name = "chkCurrent";
+            this.chkCurrent.Size = new System.Drawing.Size(69, 20);
+            this.chkCurrent.TabIndex = 85;
+            this.chkCurrent.Text = "Current";
+            this.chkCurrent.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.chkRGD);
+            this.groupBox8.Controls.Add(this.chkD2D);
+            this.groupBox8.Controls.Add(this.chkLT);
+            this.groupBox8.Controls.Add(this.chkPPA);
+            this.groupBox8.Location = new System.Drawing.Point(398, 128);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(320, 57);
+            this.groupBox8.TabIndex = 84;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Wants";
+            // 
+            // chkRGD
+            // 
+            this.chkRGD.AutoSize = true;
+            this.chkRGD.Location = new System.Drawing.Point(240, 21);
+            this.chkRGD.Name = "chkRGD";
+            this.chkRGD.Size = new System.Drawing.Size(57, 20);
+            this.chkRGD.TabIndex = 86;
+            this.chkRGD.Text = "RGD";
+            this.toolTip1.SetToolTip(this.chkRGD, "Regular Days");
+            this.chkRGD.UseVisualStyleBackColor = true;
+            // 
+            // chkD2D
+            // 
+            this.chkD2D.AutoSize = true;
+            this.chkD2D.Location = new System.Drawing.Point(153, 21);
+            this.chkD2D.Name = "chkD2D";
+            this.chkD2D.Size = new System.Drawing.Size(54, 20);
+            this.chkD2D.TabIndex = 85;
+            this.chkD2D.Text = "D2D";
+            this.toolTip1.SetToolTip(this.chkD2D, "Day to Day");
+            this.chkD2D.UseVisualStyleBackColor = true;
+            // 
+            // chkLT
+            // 
+            this.chkLT.AutoSize = true;
+            this.chkLT.Location = new System.Drawing.Point(84, 21);
+            this.chkLT.Name = "chkLT";
+            this.chkLT.Size = new System.Drawing.Size(43, 20);
+            this.chkLT.TabIndex = 84;
+            this.chkLT.Text = "LT";
+            this.toolTip1.SetToolTip(this.chkLT, "Long Term");
+            this.chkLT.UseVisualStyleBackColor = true;
+            // 
+            // chkPPA
+            // 
+            this.chkPPA.AutoSize = true;
+            this.chkPPA.Location = new System.Drawing.Point(21, 21);
+            this.chkPPA.Name = "chkPPA";
+            this.chkPPA.Size = new System.Drawing.Size(54, 20);
+            this.chkPPA.TabIndex = 83;
+            this.chkPPA.Text = "PPA";
+            this.chkPPA.UseVisualStyleBackColor = true;
+            // 
+            // chkTA
+            // 
+            this.chkTA.AutoSize = true;
+            this.chkTA.Location = new System.Drawing.Point(511, 102);
+            this.chkTA.Name = "chkTA";
+            this.chkTA.Size = new System.Drawing.Size(45, 20);
+            this.chkTA.TabIndex = 82;
+            this.chkTA.Text = "TA";
+            this.chkTA.UseVisualStyleBackColor = true;
+            // 
+            // chkTeacher
+            // 
+            this.chkTeacher.AutoSize = true;
+            this.chkTeacher.Location = new System.Drawing.Point(419, 102);
+            this.chkTeacher.Name = "chkTeacher";
+            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
+            this.chkTeacher.TabIndex = 81;
+            this.chkTeacher.Text = "Teacher";
+            this.chkTeacher.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -942,7 +1063,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1000, 598);
+            this.tabPage1.Size = new System.Drawing.Size(1000, 643);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -955,7 +1076,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1000, 598);
+            this.panel2.Size = new System.Drawing.Size(1000, 643);
             this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanelMain
@@ -970,7 +1091,7 @@
             this.tableLayoutPanelMain.RowCount = 2;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 248F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1000, 598);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1000, 643);
             this.tableLayoutPanelMain.TabIndex = 106;
             // 
             // groupBox4
@@ -1355,7 +1476,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 211F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 344);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 389);
             this.tableLayoutPanel2.TabIndex = 104;
             // 
             // Panel11
@@ -1969,7 +2090,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(994, 133);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(994, 178);
             this.tableLayoutPanel3.TabIndex = 105;
             // 
             // txtNotes
@@ -1981,7 +2102,7 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(624, 113);
+            this.txtNotes.Size = new System.Drawing.Size(624, 158);
             this.txtNotes.TabIndex = 68;
             // 
             // panel1
@@ -2002,7 +2123,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(350, 133);
+            this.panel1.Size = new System.Drawing.Size(350, 178);
             this.panel1.TabIndex = 2;
             // 
             // chkReferencesChecked
@@ -3016,7 +3137,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1000, 598);
+            this.tabPage4.Size = new System.Drawing.Size(1000, 643);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Attachments";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -3149,127 +3270,6 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.label73);
-            this.groupBox9.Controls.Add(this.label83);
-            this.groupBox9.Controls.Add(this.label84);
-            this.groupBox9.Controls.Add(this.txtLTHfDayTA);
-            this.groupBox9.Controls.Add(this.label85);
-            this.groupBox9.Controls.Add(this.txtLTDayTA);
-            this.groupBox9.Controls.Add(this.label86);
-            this.groupBox9.Controls.Add(this.label87);
-            this.groupBox9.Controls.Add(this.txtDayRateTA);
-            this.groupBox9.Controls.Add(this.label88);
-            this.groupBox9.Controls.Add(this.txtHfDayRateTA);
-            this.groupBox9.Controls.Add(this.label89);
-            this.groupBox9.Location = new System.Drawing.Point(24, 457);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(694, 100);
-            this.groupBox9.TabIndex = 86;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "TA Rates";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(270, 24);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(133, 16);
-            this.label73.TabIndex = 95;
-            this.label73.Text = "Long Term Day Rate";
-            // 
-            // label83
-            // 
-            this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(24, 24);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(65, 16);
-            this.label83.TabIndex = 91;
-            this.label83.Text = "Day Rate";
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(24, 61);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(86, 16);
-            this.label84.TabIndex = 92;
-            this.label84.Text = "1/2 Day Rate";
-            // 
-            // txtLTHfDayTA
-            // 
-            this.txtLTHfDayTA.Location = new System.Drawing.Point(448, 58);
-            this.txtLTHfDayTA.Name = "txtLTHfDayTA";
-            this.txtLTHfDayTA.Size = new System.Drawing.Size(73, 22);
-            this.txtLTHfDayTA.TabIndex = 90;
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(145, 24);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(15, 16);
-            this.label85.TabIndex = 93;
-            this.label85.Text = "£";
-            // 
-            // txtLTDayTA
-            // 
-            this.txtLTDayTA.Location = new System.Drawing.Point(448, 21);
-            this.txtLTDayTA.Name = "txtLTDayTA";
-            this.txtLTDayTA.Size = new System.Drawing.Size(73, 22);
-            this.txtLTDayTA.TabIndex = 89;
-            // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(145, 61);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(15, 16);
-            this.label86.TabIndex = 94;
-            this.label86.Text = "£";
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(427, 61);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(15, 16);
-            this.label87.TabIndex = 98;
-            this.label87.Text = "£";
-            // 
-            // txtDayRateTA
-            // 
-            this.txtDayRateTA.Location = new System.Drawing.Point(166, 21);
-            this.txtDayRateTA.Name = "txtDayRateTA";
-            this.txtDayRateTA.Size = new System.Drawing.Size(63, 22);
-            this.txtDayRateTA.TabIndex = 87;
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(427, 24);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(15, 16);
-            this.label88.TabIndex = 97;
-            this.label88.Text = "£";
-            // 
-            // txtHfDayRateTA
-            // 
-            this.txtHfDayRateTA.Location = new System.Drawing.Point(166, 58);
-            this.txtHfDayRateTA.Name = "txtHfDayRateTA";
-            this.txtHfDayRateTA.Size = new System.Drawing.Size(63, 22);
-            this.txtHfDayRateTA.TabIndex = 88;
-            // 
-            // label89
-            // 
-            this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(270, 61);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(154, 16);
-            this.label89.TabIndex = 96;
-            this.label89.Text = "Long Term 1/2 Day Rate";
-            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3287,10 +3287,12 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -3322,8 +3324,6 @@
             this.tabPage4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
 
         }

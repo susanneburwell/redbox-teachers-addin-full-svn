@@ -1,6 +1,6 @@
 ﻿namespace RedboxAddin.Presentation
 {
-    partial class frmNewRequest
+    partial class frmMasterBooking
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewRequest));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMasterBooking));
             this.label2 = new System.Windows.Forms.Label();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,15 +40,18 @@
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cmbBookingStatus = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chkSEN = new System.Windows.Forms.CheckBox();
-            this.chkNN = new System.Windows.Forms.CheckBox();
             this.chkTA = new System.Windows.Forms.CheckBox();
+            this.chkNN = new System.Windows.Forms.CheckBox();
             this.chkQNN = new System.Windows.Forms.CheckBox();
             this.chkOTT = new System.Windows.Forms.CheckBox();
             this.chkNQT = new System.Windows.Forms.CheckBox();
@@ -70,7 +73,6 @@
             this.radAF = new System.Windows.Forms.RadioButton();
             this.radNS = new System.Windows.Forms.RadioButton();
             this.cmbRequestedTeacher = new System.Windows.Forms.ComboBox();
-            this.lblTS = new System.Windows.Forms.Label();
             this.lblTS2 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
@@ -120,6 +122,7 @@
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -148,16 +151,16 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(454, 54);
+            this.dtFrom.Location = new System.Drawing.Point(452, 55);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 22);
+            this.dtFrom.Size = new System.Drawing.Size(186, 22);
             this.dtFrom.TabIndex = 4;
             this.dtFrom.ValueChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(409, 58);
+            this.label4.Location = new System.Drawing.Point(407, 59);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 5;
@@ -166,7 +169,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(663, 58);
+            this.label5.Location = new System.Drawing.Point(661, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 16);
             this.label5.TabIndex = 6;
@@ -174,9 +177,9 @@
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(697, 53);
+            this.dtTo.Location = new System.Drawing.Point(695, 54);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(200, 22);
+            this.dtTo.Size = new System.Drawing.Size(170, 22);
             this.dtTo.TabIndex = 5;
             this.dtTo.ValueChanged += new System.EventHandler(this.CheckedChanged);
             // 
@@ -185,14 +188,14 @@
             this.cmbSchool.FormattingEnabled = true;
             this.cmbSchool.Location = new System.Drawing.Point(145, 8);
             this.cmbSchool.Name = "cmbSchool";
-            this.cmbSchool.Size = new System.Drawing.Size(200, 24);
+            this.cmbSchool.Size = new System.Drawing.Size(214, 24);
             this.cmbSchool.TabIndex = 1;
             this.cmbSchool.SelectionChangeCommitted += new System.EventHandler(this.cmbSchool_SelectionChangeCommitted);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(409, 111);
+            this.label6.Location = new System.Drawing.Point(407, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 16);
             this.label6.TabIndex = 11;
@@ -200,10 +203,11 @@
             // 
             // txtDetails
             // 
-            this.txtDetails.Location = new System.Drawing.Point(408, 131);
+            this.txtDetails.Location = new System.Drawing.Point(410, 139);
             this.txtDetails.Multiline = true;
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(489, 76);
+            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDetails.Size = new System.Drawing.Size(427, 78);
             this.txtDetails.TabIndex = 8;
             // 
             // tableLayoutPanel1
@@ -218,11 +222,13 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 330F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 745);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 697);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.cmbBookingStatus);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.cmbTeacher);
             this.panel2.Controls.Add(this.btnView);
@@ -257,13 +263,35 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(911, 324);
+            this.panel2.Size = new System.Drawing.Size(1002, 324);
             this.panel2.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(849, 120);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(98, 16);
+            this.label12.TabIndex = 103;
+            this.label12.Text = "Booking Status";
+            // 
+            // cmbBookingStatus
+            // 
+            this.cmbBookingStatus.FormattingEnabled = true;
+            this.cmbBookingStatus.Items.AddRange(new object[] {
+            "Unassigned",
+            "Contacted",
+            "Confirmed",
+            "Details Sent"});
+            this.cmbBookingStatus.Location = new System.Drawing.Point(852, 139);
+            this.cmbBookingStatus.Name = "cmbBookingStatus";
+            this.cmbBookingStatus.Size = new System.Drawing.Size(121, 24);
+            this.cmbBookingStatus.TabIndex = 102;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(409, 247);
+            this.label11.Location = new System.Drawing.Point(409, 254);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(119, 16);
             this.label11.TabIndex = 101;
@@ -274,16 +302,16 @@
             this.cmbTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbTeacher.FormattingEnabled = true;
             this.cmbTeacher.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.cmbTeacher.Location = new System.Drawing.Point(531, 244);
+            this.cmbTeacher.Location = new System.Drawing.Point(531, 251);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(297, 24);
+            this.cmbTeacher.Size = new System.Drawing.Size(306, 24);
             this.cmbTeacher.TabIndex = 100;
             this.cmbTeacher.SelectedValueChanged += new System.EventHandler(this.cmbTeacher_SelectedValueChanged);
             // 
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(713, 288);
+            this.btnView.Location = new System.Drawing.Point(722, 286);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(115, 22);
             this.btnView.TabIndex = 99;
@@ -294,7 +322,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(409, 88);
+            this.label10.Location = new System.Drawing.Point(452, 86);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 16);
             this.label10.TabIndex = 98;
@@ -302,35 +330,46 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkTeacher);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.chkSEN);
-            this.groupBox2.Controls.Add(this.chkNN);
             this.groupBox2.Controls.Add(this.chkTA);
+            this.groupBox2.Controls.Add(this.chkNN);
             this.groupBox2.Controls.Add(this.chkQNN);
             this.groupBox2.Controls.Add(this.chkOTT);
             this.groupBox2.Controls.Add(this.chkNQT);
             this.groupBox2.Controls.Add(this.chkQTS);
-            this.groupBox2.Location = new System.Drawing.Point(23, 38);
+            this.groupBox2.Location = new System.Drawing.Point(23, 37);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(349, 71);
+            this.groupBox2.Size = new System.Drawing.Size(349, 83);
             this.groupBox2.TabIndex = 97;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Qualifications";
             // 
+            // chkTeacher
+            // 
+            this.chkTeacher.AutoSize = true;
+            this.chkTeacher.Location = new System.Drawing.Point(17, 19);
+            this.chkTeacher.Name = "chkTeacher";
+            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
+            this.chkTeacher.TabIndex = 102;
+            this.chkTeacher.Text = "Teacher";
+            this.chkTeacher.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(249, 52);
+            this.label1.Location = new System.Drawing.Point(248, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.Size = new System.Drawing.Size(99, 23);
             this.label1.TabIndex = 18;
             this.label1.Text = "Match ANY ticked";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkSEN
             // 
             this.chkSEN.AutoSize = true;
-            this.chkSEN.Location = new System.Drawing.Point(139, 45);
+            this.chkSEN.Location = new System.Drawing.Point(173, 19);
             this.chkSEN.Name = "chkSEN";
             this.chkSEN.Size = new System.Drawing.Size(55, 20);
             this.chkSEN.TabIndex = 17;
@@ -338,21 +377,10 @@
             this.chkSEN.UseVisualStyleBackColor = true;
             this.chkSEN.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
-            // chkNN
-            // 
-            this.chkNN.AutoSize = true;
-            this.chkNN.Location = new System.Drawing.Point(77, 45);
-            this.chkNN.Name = "chkNN";
-            this.chkNN.Size = new System.Drawing.Size(47, 20);
-            this.chkNN.TabIndex = 16;
-            this.chkNN.Text = "NN";
-            this.chkNN.UseVisualStyleBackColor = true;
-            this.chkNN.CheckStateChanged += new System.EventHandler(this.CheckedChanged);
-            // 
             // chkTA
             // 
             this.chkTA.AutoSize = true;
-            this.chkTA.Location = new System.Drawing.Point(200, 21);
+            this.chkTA.Location = new System.Drawing.Point(105, 19);
             this.chkTA.Name = "chkTA";
             this.chkTA.Size = new System.Drawing.Size(45, 20);
             this.chkTA.TabIndex = 15;
@@ -360,10 +388,21 @@
             this.chkTA.UseVisualStyleBackColor = true;
             this.chkTA.CheckStateChanged += new System.EventHandler(this.CheckedChanged);
             // 
+            // chkNN
+            // 
+            this.chkNN.AutoSize = true;
+            this.chkNN.Location = new System.Drawing.Point(204, 48);
+            this.chkNN.Name = "chkNN";
+            this.chkNN.Size = new System.Drawing.Size(47, 20);
+            this.chkNN.TabIndex = 16;
+            this.chkNN.Text = "NN";
+            this.chkNN.UseVisualStyleBackColor = true;
+            this.chkNN.CheckStateChanged += new System.EventHandler(this.CheckedChanged);
+            // 
             // chkQNN
             // 
             this.chkQNN.AutoSize = true;
-            this.chkQNN.Location = new System.Drawing.Point(17, 47);
+            this.chkQNN.Location = new System.Drawing.Point(141, 48);
             this.chkQNN.Name = "chkQNN";
             this.chkQNN.Size = new System.Drawing.Size(57, 20);
             this.chkQNN.TabIndex = 14;
@@ -374,7 +413,7 @@
             // chkOTT
             // 
             this.chkOTT.AutoSize = true;
-            this.chkOTT.Location = new System.Drawing.Point(139, 21);
+            this.chkOTT.Location = new System.Drawing.Point(257, 48);
             this.chkOTT.Name = "chkOTT";
             this.chkOTT.Size = new System.Drawing.Size(55, 20);
             this.chkOTT.TabIndex = 13;
@@ -385,7 +424,7 @@
             // chkNQT
             // 
             this.chkNQT.AutoSize = true;
-            this.chkNQT.Location = new System.Drawing.Point(78, 21);
+            this.chkNQT.Location = new System.Drawing.Point(79, 48);
             this.chkNQT.Name = "chkNQT";
             this.chkNQT.Size = new System.Drawing.Size(56, 20);
             this.chkNQT.TabIndex = 12;
@@ -396,7 +435,7 @@
             // chkQTS
             // 
             this.chkQTS.AutoSize = true;
-            this.chkQTS.Location = new System.Drawing.Point(17, 21);
+            this.chkQTS.Location = new System.Drawing.Point(17, 48);
             this.chkQTS.Name = "chkQTS";
             this.chkQTS.Size = new System.Drawing.Size(55, 20);
             this.chkQTS.TabIndex = 11;
@@ -407,7 +446,7 @@
             // btnEditDesc
             // 
             this.btnEditDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDesc.Location = new System.Drawing.Point(844, 216);
+            this.btnEditDesc.Location = new System.Drawing.Point(843, 223);
             this.btnEditDesc.Name = "btnEditDesc";
             this.btnEditDesc.Size = new System.Drawing.Size(53, 22);
             this.btnEditDesc.TabIndex = 96;
@@ -417,7 +456,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(408, 286);
+            this.btnRefresh.Location = new System.Drawing.Point(419, 284);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(117, 27);
             this.btnRefresh.TabIndex = 15;
@@ -428,7 +467,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(528, 219);
+            this.lblDescription.Location = new System.Drawing.Point(528, 226);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(79, 16);
             this.lblDescription.TabIndex = 95;
@@ -436,15 +475,15 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(531, 216);
+            this.txtDescription.Location = new System.Drawing.Point(531, 223);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(297, 22);
+            this.txtDescription.Size = new System.Drawing.Size(306, 22);
             this.txtDescription.TabIndex = 94;
             this.txtDescription.Visible = false;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(531, 286);
+            this.btnSave.Location = new System.Drawing.Point(550, 282);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 27);
             this.btnSave.TabIndex = 13;
@@ -455,7 +494,7 @@
             // lblDes
             // 
             this.lblDes.AutoSize = true;
-            this.lblDes.Location = new System.Drawing.Point(409, 219);
+            this.lblDes.Location = new System.Drawing.Point(409, 226);
             this.lblDes.Name = "lblDes";
             this.lblDes.Size = new System.Drawing.Size(79, 16);
             this.lblDes.TabIndex = 93;
@@ -467,7 +506,7 @@
             this.chkFri.Checked = true;
             this.chkFri.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFri.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFri.Location = new System.Drawing.Point(699, 86);
+            this.chkFri.Location = new System.Drawing.Point(731, 87);
             this.chkFri.Name = "chkFri";
             this.chkFri.Size = new System.Drawing.Size(37, 17);
             this.chkFri.TabIndex = 92;
@@ -480,7 +519,7 @@
             this.chkThu.Checked = true;
             this.chkThu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu.Location = new System.Drawing.Point(641, 86);
+            this.chkThu.Location = new System.Drawing.Point(673, 87);
             this.chkThu.Name = "chkThu";
             this.chkThu.Size = new System.Drawing.Size(45, 17);
             this.chkThu.TabIndex = 91;
@@ -493,7 +532,7 @@
             this.chkWed.Checked = true;
             this.chkWed.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkWed.Location = new System.Drawing.Point(577, 86);
+            this.chkWed.Location = new System.Drawing.Point(609, 87);
             this.chkWed.Name = "chkWed";
             this.chkWed.Size = new System.Drawing.Size(49, 17);
             this.chkWed.TabIndex = 90;
@@ -506,7 +545,7 @@
             this.chkTue.Checked = true;
             this.chkTue.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTue.Location = new System.Drawing.Point(518, 86);
+            this.chkTue.Location = new System.Drawing.Point(550, 87);
             this.chkTue.Name = "chkTue";
             this.chkTue.Size = new System.Drawing.Size(45, 17);
             this.chkTue.TabIndex = 89;
@@ -519,7 +558,7 @@
             this.chkMon.Checked = true;
             this.chkMon.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMon.Location = new System.Drawing.Point(457, 86);
+            this.chkMon.Location = new System.Drawing.Point(489, 87);
             this.chkMon.Name = "chkMon";
             this.chkMon.Size = new System.Drawing.Size(47, 17);
             this.chkMon.TabIndex = 88;
@@ -533,11 +572,10 @@
             this.groupBox1.Controls.Add(this.radAF);
             this.groupBox1.Controls.Add(this.radNS);
             this.groupBox1.Controls.Add(this.cmbRequestedTeacher);
-            this.groupBox1.Controls.Add(this.lblTS);
             this.groupBox1.Controls.Add(this.lblTS2);
-            this.groupBox1.Location = new System.Drawing.Point(22, 222);
+            this.groupBox1.Location = new System.Drawing.Point(22, 240);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(350, 99);
+            this.groupBox1.Size = new System.Drawing.Size(350, 76);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Requested Teacher";
@@ -600,17 +638,6 @@
             this.cmbRequestedTeacher.TabIndex = 84;
             this.cmbRequestedTeacher.Visible = false;
             // 
-            // lblTS
-            // 
-            this.lblTS.AutoSize = true;
-            this.lblTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTS.Location = new System.Drawing.Point(57, 79);
-            this.lblTS.Name = "lblTS";
-            this.lblTS.Size = new System.Drawing.Size(282, 13);
-            this.lblTS.TabIndex = 86;
-            this.lblTS.Text = "*Only use this box for Asked For, Name Given, or Trial Day";
-            this.lblTS.Visible = false;
-            // 
             // lblTS2
             // 
             this.lblTS2.AutoSize = true;
@@ -619,12 +646,13 @@
             this.lblTS2.Size = new System.Drawing.Size(137, 16);
             this.lblTS2.TabIndex = 85;
             this.lblTS2.Text = "Requested Teacher*:";
+            this.toolTip1.SetToolTip(this.lblTS2, "Only Use this box for a Teacher Requested or Named by the school");
             this.lblTS2.Visible = false;
             // 
             // label78
             // 
             this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(694, 11);
+            this.label78.Location = new System.Drawing.Point(731, 14);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(55, 16);
             this.label78.TabIndex = 82;
@@ -633,7 +661,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(757, 11);
+            this.label76.Location = new System.Drawing.Point(792, 15);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(15, 16);
             this.label76.TabIndex = 83;
@@ -641,7 +669,7 @@
             // 
             // txtCharge
             // 
-            this.txtCharge.Location = new System.Drawing.Point(778, 8);
+            this.txtCharge.Location = new System.Drawing.Point(811, 12);
             this.txtCharge.Name = "txtCharge";
             this.txtCharge.Size = new System.Drawing.Size(63, 22);
             this.txtCharge.TabIndex = 81;
@@ -650,7 +678,7 @@
             // chkHalfDay
             // 
             this.chkHalfDay.AutoSize = true;
-            this.chkHalfDay.Location = new System.Drawing.Point(420, 10);
+            this.chkHalfDay.Location = new System.Drawing.Point(531, 14);
             this.chkHalfDay.Name = "chkHalfDay";
             this.chkHalfDay.Size = new System.Drawing.Size(79, 20);
             this.chkHalfDay.TabIndex = 6;
@@ -661,7 +689,7 @@
             // chkLongTerm
             // 
             this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(515, 10);
+            this.chkLongTerm.Location = new System.Drawing.Point(412, 14);
             this.chkLongTerm.Name = "chkLongTerm";
             this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
             this.chkLongTerm.TabIndex = 7;
@@ -686,7 +714,7 @@
             this.groupBox6.Controls.Add(this.chkYr6);
             this.groupBox6.Controls.Add(this.btnKS1);
             this.groupBox6.Controls.Add(this.btnKS2);
-            this.groupBox6.Location = new System.Drawing.Point(22, 111);
+            this.groupBox6.Location = new System.Drawing.Point(22, 126);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(350, 110);
             this.groupBox6.TabIndex = 80;
@@ -695,13 +723,13 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(249, 18);
+            this.label3.Location = new System.Drawing.Point(296, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.Size = new System.Drawing.Size(44, 48);
             this.label3.TabIndex = 27;
             this.label3.Text = "Match ALL ticked";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label9
             // 
@@ -858,7 +886,7 @@
             this.panelGrids.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrids.Location = new System.Drawing.Point(3, 333);
             this.panelGrids.Name = "panelGrids";
-            this.panelGrids.Size = new System.Drawing.Size(911, 409);
+            this.panelGrids.Size = new System.Drawing.Size(1002, 361);
             this.panelGrids.TabIndex = 6;
             // 
             // dgcAvail
@@ -867,7 +895,7 @@
             this.dgcAvail.Location = new System.Drawing.Point(686, 0);
             this.dgcAvail.MainView = this.dgcAvailView;
             this.dgcAvail.Name = "dgcAvail";
-            this.dgcAvail.Size = new System.Drawing.Size(225, 409);
+            this.dgcAvail.Size = new System.Drawing.Size(316, 361);
             this.dgcAvail.TabIndex = 6;
             this.dgcAvail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgcAvailView});
@@ -1047,7 +1075,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemCheckEdit2,
             this.repositoryItemDateEdit1});
-            this.dgcBookings.Size = new System.Drawing.Size(686, 409);
+            this.dgcBookings.Size = new System.Drawing.Size(686, 361);
             this.dgcBookings.TabIndex = 5;
             this.dgcBookings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ViewBookings});
@@ -1165,17 +1193,17 @@
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
-            // frmNewRequest
+            // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 745);
+            this.ClientSize = new System.Drawing.Size(1008, 697);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmNewRequest";
-            this.Text = "NewRequest";
+            this.Name = "frmMasterBooking";
+            this.Text = "Master Booking";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNewRequest_FormClosing);
             this.Load += new System.EventHandler(this.frmNewRequest_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1236,7 +1264,6 @@
         private System.Windows.Forms.RadioButton radAF;
         private System.Windows.Forms.RadioButton radNS;
         private System.Windows.Forms.ComboBox cmbRequestedTeacher;
-        private System.Windows.Forms.Label lblTS;
         private System.Windows.Forms.Label lblTS2;
         private System.Windows.Forms.CheckBox chkFri;
         private System.Windows.Forms.CheckBox chkThu;
@@ -1293,5 +1320,9 @@
         private System.Windows.Forms.Panel panelGrids;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbTeacher;
+        private System.Windows.Forms.CheckBox chkTeacher;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cmbBookingStatus;
     }
 }

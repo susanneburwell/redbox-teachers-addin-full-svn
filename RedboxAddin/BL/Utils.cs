@@ -221,5 +221,53 @@ namespace RedboxAddin.BL
 
             return agegroup;
         }
+
+        public static void PopulateSchools(ComboBox cmbSchool)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var q = from s in db.Schools
+                            orderby s.SchoolName
+                            select s;
+                    var schools = q.ToList();
+                    cmbSchool.DataSource = schools;
+                    cmbSchool.DisplayMember = "SchoolName";
+                    cmbSchool.ValueMember = "ID";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+            }
+        }
+
+        public static void PopulateTeacher(ComboBox cmb1)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var q = from s in db.Contacts
+                            where s.LastName != null
+                            orderby s.LastName
+                            select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
+                    //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+                    var schools = q.ToList();
+
+                    cmb1.DataSource = schools;
+                    cmb1.DisplayMember = "FullName";
+                    cmb1.ValueMember = "ContactID";
+                    cmb1.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+            }
+        }
     }
 }

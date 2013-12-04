@@ -425,13 +425,13 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RBookings> GetBookings(DateTime weekbegining, string wheresql)
+        public List<RBookings> GetBookings(string SchoolID, string teacherID, string dtStart, string dtEnd)
         {
             List<RBookings> bookingList = new List<RBookings>();
             try
             {
-                string SQLstr = GetBookingSQL(weekbegining);
-                DataSet msgDs = GetDataSet(SQLstr + wheresql);
+                string SQLstr = GetViewBookingsSQL(SchoolID,  teacherID,  dtStart,  dtEnd);
+                DataSet msgDs = GetDataSet(SQLstr );
 
 
                 if (msgDs != null)
@@ -440,19 +440,13 @@ namespace RedboxAddin.DL
                     {
                         RBookings objBkg = new RBookings()
                         {
-                            Teacher = dr["Teacher"].ToString(),
-                            //CRB = dr["CRB"].ToString(),
-                            //Live = dr["Live"].ToString(),
-                            //NoGo = dr["NoGo"].ToString(),
-                            //PofA = dr["ProofofAddress"].ToString(),
-                            //QTS = dr["QTS"].ToString(),
-                            //Wants = dr["Wants"].ToString(),
-                            //YrGroup = dr["YearGroup"].ToString(),
-                            Monday = dr["Monday"].ToString(),
-                            //Tuesday = dr["Tuesday"].ToString(),
-                            //Wednesday = dr["Wednesday"].ToString(),
-                            //Thursday = dr["Thursday"].ToString(),
-                            //Friday = dr["Friday"].ToString(),
+                            Teacher = dr["FullName"].ToString(),
+                            SchoolName = dr["SchoolName"].ToString(),
+                            Description = dr["Description"].ToString(),
+                            Date = Utils.CheckDate(dr["Date"].ToString()),
+                            ContactID = dr["ContactID"].ToString(),
+                            SchoolID = dr["SchoolID"].ToString(),
+                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"])
 
                         };
                         bookingList.Add(objBkg);
@@ -465,7 +459,7 @@ namespace RedboxAddin.DL
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
+                Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
                 return null;
             }
         }
@@ -1782,6 +1776,26 @@ namespace RedboxAddin.DL
             }
         }
 
+        public void MarkAllCurrent()
+        {
+            //This finds contacts with no lastname. and updates the firstname and last name accordingly
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                RedBoxDB db = new RedBoxDB(CONNSTR);
+                List<ContactData> contacts = db.ContactDatas.ToList();
+                foreach (ContactData c in contacts)
+                {
+                            c.Current = true;
+                            db.SubmitChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CleanContactNames: " + ex.Message);
+            }
+        }
+
         #region Create tables
 
         public bool CheckDatabase()
@@ -1972,66 +1986,71 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Schools].SchoolName+' '+[MasterBookings].YearGroup+' '+[MasterBookings].TeacherLevel as School, [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
                             "FROM [MasterBookings] " +
-                            "JOIN [Schools] " +
-                            "ON [Schools].ID = [MasterBookings].SchoolID " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
                             "WHERE  " +
                             "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + monday + "' " +
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + monday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + monday + "' " +
                             ") as s1 " +
                             "ON s1.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Schools].SchoolName+' '+[MasterBookings].YearGroup+' '+[MasterBookings].TeacherLevel as School, [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
                             "FROM [MasterBookings] " +
-                            "JOIN [Schools] " +
-                            "ON [Schools].ID = [MasterBookings].SchoolID " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
                             "WHERE  " +
                             "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + tuesday + "' " +
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + tuesday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + tuesday + "' " +
                             ") as s2 " +
                             "ON s2.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Schools].SchoolName+' '+[MasterBookings].YearGroup+' '+[MasterBookings].TeacherLevel as School, [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
                             "FROM [MasterBookings] " +
-                            "JOIN [Schools] " +
-                            "ON [Schools].ID = [MasterBookings].SchoolID " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
                             "WHERE  " +
                             "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + wednesday + "' " +
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + wednesday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + wednesday + "' " +
                             ") as s3 " +
                             "ON s3.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Schools].SchoolName+' '+[MasterBookings].YearGroup+' '+[MasterBookings].TeacherLevel as School, [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
                             "FROM [MasterBookings] " +
-                            "JOIN [Schools] " +
-                            "ON [Schools].ID = [MasterBookings].SchoolID " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
                             "WHERE  " +
                             "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + thursday + "' " +
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + thursday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + thursday + "' " +
                             ") as s4 " +
                             "ON s4.contactID = [Contacts].contactID " +
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Schools].SchoolName+' '+[MasterBookings].YearGroup+' '+[MasterBookings].TeacherLevel as School, [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
                             "FROM [MasterBookings] " +
-                            "JOIN [Schools] " +
-                            "ON [Schools].ID = [MasterBookings].SchoolID " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
                             "WHERE  " +
                             "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + friday + "' " +
                             "AND " +
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + friday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + friday + "' " +
                             ") as s5 " +
                             "ON s5.contactID = [Contacts].contactID ";
 
@@ -2161,6 +2180,28 @@ namespace RedboxAddin.DL
 
             return SQLstr;
         }
+        
+        private string GetViewBookingsSQL(string SchoolID, string teacherID, string dtStart, string dtEnd)
+         {
+             string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " + 
+                          "LastName+', ' + FirstName as FullName " +
+                          "FROM [Bookings] " +
+                          "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
+                          "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
+                          "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID";
+                          string WhereSQL = "";
+            if (!string.IsNullOrWhiteSpace(SchoolID)) WhereSQL += " AND SchoolID = '" + SchoolID + "' ";
+            if (!string.IsNullOrWhiteSpace(teacherID)) WhereSQL += " AND [MasterBookings].contactID = '" + teacherID + "' ";
+            if (!string.IsNullOrWhiteSpace(dtStart)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "' ";
+            if (!string.IsNullOrWhiteSpace(dtEnd)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "' ";
+
+            if (WhereSQL.Length > 2)
+            {
+                WhereSQL = " WHERE " + WhereSQL.Substring(4).Trim();
+            }
+            return SQL + WhereSQL;
+        }
+
         #endregion
 
 

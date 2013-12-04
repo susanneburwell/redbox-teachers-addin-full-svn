@@ -32,23 +32,24 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.School = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Details = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.chkTeach = new System.Windows.Forms.CheckBox();
             this.chkSch = new System.Windows.Forms.CheckBox();
             this.chkDate = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbSchool = new System.Windows.Forms.ComboBox();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -84,25 +85,67 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4});
+            this.Date,
+            this.School,
+            this.Teacher,
+            this.Details,
+            this.MasterBookingID});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Date, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
-            // gridColumn1
+            // Date
             // 
-            this.gridColumn1.Caption = "SchoolID";
-            this.gridColumn1.FieldName = "SchoolID";
-            this.gridColumn1.MaxWidth = 200;
-            this.gridColumn1.MinWidth = 150;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.OptionsColumn.ReadOnly = true;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 150;
+            this.Date.Caption = "Date";
+            this.Date.DisplayFormat.FormatString = "ddd dd MMM yyyy";
+            this.Date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.Date.FieldName = "Date";
+            this.Date.MaxWidth = 150;
+            this.Date.MinWidth = 150;
+            this.Date.Name = "Date";
+            this.Date.OptionsColumn.AllowEdit = false;
+            this.Date.OptionsColumn.ReadOnly = true;
+            this.Date.Visible = true;
+            this.Date.VisibleIndex = 0;
+            this.Date.Width = 150;
+            // 
+            // School
+            // 
+            this.School.Caption = "School";
+            this.School.FieldName = "SchoolName";
+            this.School.MaxWidth = 250;
+            this.School.MinWidth = 250;
+            this.School.Name = "School";
+            this.School.OptionsColumn.AllowEdit = false;
+            this.School.OptionsColumn.ReadOnly = true;
+            this.School.Visible = true;
+            this.School.VisibleIndex = 1;
+            this.School.Width = 250;
+            // 
+            // Teacher
+            // 
+            this.Teacher.Caption = "Teacher";
+            this.Teacher.FieldName = "Teacher";
+            this.Teacher.MaxWidth = 200;
+            this.Teacher.MinWidth = 200;
+            this.Teacher.Name = "Teacher";
+            this.Teacher.OptionsColumn.AllowEdit = false;
+            this.Teacher.OptionsColumn.ReadOnly = true;
+            this.Teacher.Visible = true;
+            this.Teacher.VisibleIndex = 2;
+            this.Teacher.Width = 200;
+            // 
+            // Details
+            // 
+            this.Details.Caption = "Description";
+            this.Details.FieldName = "Description";
+            this.Details.Name = "Details";
+            this.Details.OptionsColumn.AllowEdit = false;
+            this.Details.OptionsColumn.ReadOnly = true;
+            this.Details.Visible = true;
+            this.Details.VisibleIndex = 3;
             // 
             // TopPanel
             // 
@@ -111,7 +154,7 @@
             this.TopPanel.Controls.Add(this.chkSch);
             this.TopPanel.Controls.Add(this.chkDate);
             this.TopPanel.Controls.Add(this.label1);
-            this.TopPanel.Controls.Add(this.comboBox1);
+            this.TopPanel.Controls.Add(this.cmbTeacher);
             this.TopPanel.Controls.Add(this.dtFrom);
             this.TopPanel.Controls.Add(this.label4);
             this.TopPanel.Controls.Add(this.dtTo);
@@ -173,13 +216,13 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Teacher:";
             // 
-            // comboBox1
+            // cmbTeacher
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(99, 45);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 24);
-            this.comboBox1.TabIndex = 12;
+            this.cmbTeacher.FormattingEnabled = true;
+            this.cmbTeacher.Location = new System.Drawing.Point(99, 45);
+            this.cmbTeacher.Name = "cmbTeacher";
+            this.cmbTeacher.Size = new System.Drawing.Size(200, 24);
+            this.cmbTeacher.TabIndex = 12;
             // 
             // dtFrom
             // 
@@ -230,29 +273,12 @@
             this.cmbSchool.Size = new System.Drawing.Size(200, 24);
             this.cmbSchool.TabIndex = 3;
             // 
-            // gridColumn2
+            // MasterBookingID
             // 
-            this.gridColumn2.Caption = "TeacherID";
-            this.gridColumn2.FieldName = "ContactID";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Start";
-            this.gridColumn3.FieldName = "StartDate";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "End";
-            this.gridColumn4.FieldName = "EndDate";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.MasterBookingID.Caption = "MasterBookingID";
+            this.MasterBookingID.FieldName = "MasterBookingID";
+            this.MasterBookingID.Name = "MasterBookingID";
+            this.MasterBookingID.OptionsColumn.ReadOnly = true;
             // 
             // frmViewBookings
             // 
@@ -285,18 +311,19 @@
         private System.Windows.Forms.CheckBox chkSch;
         private System.Windows.Forms.CheckBox chkDate;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbTeacher;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn Date;
         private System.Windows.Forms.Button btnSearch;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn School;
+        private DevExpress.XtraGrid.Columns.GridColumn Teacher;
+        private DevExpress.XtraGrid.Columns.GridColumn Details;
+        private DevExpress.XtraGrid.Columns.GridColumn MasterBookingID;
 
     }
 }

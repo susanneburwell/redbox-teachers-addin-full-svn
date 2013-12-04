@@ -18,18 +18,18 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace RedboxAddin.Presentation
 {
-    public partial class frmNewRequest : Form
+    public partial class frmMasterBooking : Form
     {
         RedBoxDB db;
         long _masterBookingID;
 
 
-        public frmNewRequest()
+        public frmMasterBooking()
         {
             InitializeComponent();
         }
 
-        public frmNewRequest(long masterBookingID)
+        public frmMasterBooking(long masterBookingID)
         {
             InitializeComponent();
             _masterBookingID = masterBookingID;
@@ -47,10 +47,9 @@ namespace RedboxAddin.Presentation
                 db = new RedBoxDB(CONNSTR);
 
                 PopulateSchools();
-                //PopulateYearGroup();
-                //PopulateTeacherLevel();
-                PopulateTeacher(cmbTeacher);
-                PopulateTeacher(cmbRequestedTeacher);
+                PopulateBookingStatus();
+                Utils.PopulateTeacher(cmbTeacher);
+                Utils.PopulateTeacher(cmbRequestedTeacher);
 
                 if (_masterBookingID != null) LoadMasterBooking(_masterBookingID);
 
@@ -76,6 +75,24 @@ namespace RedboxAddin.Presentation
                 cmbSchool.DisplayMember = "SchoolName";
                 cmbSchool.ValueMember = "ID";
                 cmbSchool.Text = "";
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+            }
+        }
+
+        private void PopulateBookingStatus()
+        {
+            try
+            {
+                var q = from s in db.BookingStatuses
+                        select s;
+                var bs = q.ToList();
+                cmbBookingStatus.DataSource = bs;
+                cmbBookingStatus.DisplayMember = "Status";
+                cmbBookingStatus.ValueMember = "ID";
+                cmbBookingStatus.Text = "";
             }
             catch (Exception ex)
             {
@@ -193,7 +210,7 @@ namespace RedboxAddin.Presentation
                 //mb.TeacherLevel = cmbTeacherLevel.Text;
                 mb.StartDate = dtFrom.Value;
                 mb.EndDate = dtTo.Value;
-                mb.Details = txtDetails.Text;
+                mb.Details = txtDescription.Text;
                 mb.HalfDay = chkHalfDay.Checked;
                 mb.LongTerm = chkLongTerm.Checked;
                 mb.Nur = chkNur.Checked;
@@ -204,6 +221,14 @@ namespace RedboxAddin.Presentation
                 mb.Yr4 = chkYr4.Checked;
                 mb.Yr5 = chkYr5.Checked;
                 mb.Yr6 = chkYr6.Checked;
+                mb.Teacher = chkTeacher.Checked;
+                mb.TA = chkTA.Checked;
+                mb.SEN = chkSEN.Checked;
+                mb.QTS = chkQTS.Checked;
+                mb.NQT = chkNQT.Checked;
+                mb.OTT = chkOTT.Checked;
+                mb.QNN = chkQNN.Checked;
+                mb.NN = chkNN.Checked;
                 mb.Charge = Utils.CheckDecimal(txtCharge.Text);
                 mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
 
@@ -388,7 +413,7 @@ namespace RedboxAddin.Presentation
                 if (radAF.Checked) lblDescription.Text = "AF " + lblDescription.Text;
 
                 if (radTD.Checked) lblDescription.Text = "TD " + lblDescription.Text;
-
+                txtDescription.Text = lblDescription.Text;
             }
             catch (Exception ex)
             {
@@ -427,7 +452,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                ViewBookings.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\BookingsFormDump.xml");
+                ViewBookings.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\MasterBookingsFormDump.xml");
             }
             catch (Exception) { }
         }
@@ -436,7 +461,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                ViewBookings.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\BookingsFormDump.xml");
+                ViewBookings.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\MasterBookingsFormDump.xml");
             }
             catch (Exception) { }
         }
@@ -456,7 +481,7 @@ namespace RedboxAddin.Presentation
                 if (chkYr5.Checked) wheresql += "AND ([Yr5] = 'true') ";
                 if (chkYr6.Checked) wheresql += "AND ([Yr6] = 'true') ";
 
-                wheresql = " WHERE Lastname IS NOT NULL " + wheresql;
+                wheresql = " WHERE [current] = 'true' AND [Lastname] IS NOT NULL " + wheresql;
                 wheresql = wheresql + " ORDER BY [LastName]";
 
 
@@ -500,7 +525,7 @@ namespace RedboxAddin.Presentation
         private void setTeacherControls(bool ShowDropDown)
         {
             cmbRequestedTeacher.Visible = ShowDropDown;
-            lblTS.Visible = ShowDropDown;
+            //lblTS.Visible = ShowDropDown;
             lblTS2.Visible = ShowDropDown;
         }
 
