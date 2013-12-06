@@ -2914,7 +2914,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InterviewNotes", DbType="VarChar(5000)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InterviewNotes", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string InterviewNotes
 		{
 			get
@@ -3034,7 +3034,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="VarChar(8000)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public string Notes
 		{
 			get
@@ -4501,7 +4501,11 @@ namespace RedboxAddin
 		
 		private bool _SEN;
 		
+		private bool _PPL;
+		
 		private short _BookingStatus;
+		
+		private string _Color;
 		
 		private EntitySet<Booking> _Bookings;
 		
@@ -4575,8 +4579,12 @@ namespace RedboxAddin
     partial void OnNNChanged();
     partial void OnSENChanging(bool value);
     partial void OnSENChanged();
+    partial void OnPPLChanging(bool value);
+    partial void OnPPLChanged();
     partial void OnBookingStatusChanging(short value);
     partial void OnBookingStatusChanged();
+    partial void OnColorChanging(string value);
+    partial void OnColorChanged();
     #endregion
 		
 		public MasterBooking()
@@ -5245,6 +5253,26 @@ namespace RedboxAddin
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PPL", DbType="Bit NOT NULL")]
+		public bool PPL
+		{
+			get
+			{
+				return this._PPL;
+			}
+			set
+			{
+				if ((this._PPL != value))
+				{
+					this.OnPPLChanging(value);
+					this.SendPropertyChanging();
+					this._PPL = value;
+					this.SendPropertyChanged("PPL");
+					this.OnPPLChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingStatus", DbType="SmallInt NOT NULL")]
 		public short BookingStatus
 		{
@@ -5261,6 +5289,26 @@ namespace RedboxAddin
 					this._BookingStatus = value;
 					this.SendPropertyChanged("BookingStatus");
 					this.OnBookingStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color", DbType="NVarChar(30)")]
+		public string Color
+		{
+			get
+			{
+				return this._Color;
+			}
+			set
+			{
+				if ((this._Color != value))
+				{
+					this.OnColorChanging(value);
+					this.SendPropertyChanging();
+					this._Color = value;
+					this.SendPropertyChanged("Color");
+					this.OnColorChanged();
 				}
 			}
 		}

@@ -248,6 +248,21 @@ namespace RedboxAddin.DL
             }
         }
 
+        public DataSet GetAvailabilityDS(DateTime weekbegining, string wheresql)
+        {
+            try
+            {
+                string SQLstr = GetAvailabilitySQL(weekbegining);
+                DataSet msgDs = GetDataSet(SQLstr + wheresql);
+                return msgDs;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
+                return null;
+            }
+        }
+
         public List<RAvailability> GetAvailability(DateTime weekbegining, string wheresql)
         {
 
@@ -262,23 +277,38 @@ namespace RedboxAddin.DL
                 {
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
                     {
-                        RAvailability objAvail = new RAvailability()
-                        {
-                            Teacher = dr["Teacher"].ToString(),
-                            //CRB = dr["CRB"].ToString(),
-                            Live = dr["Live"].ToString(),
-                            NoGo = dr["NoGo"].ToString(),
-                            PofA = dr["ProofofAddress"].ToString(),
-                            QTS = dr["QTS"].ToString(),
-                            Wants = dr["Wants"].ToString(),
-                            YrGroup = dr["YearGroup"].ToString(),
-                            Monday = dr["Monday"].ToString(),
-                            Tuesday = dr["Tuesday"].ToString(),
-                            Wednesday = dr["Wednesday"].ToString(),
-                            Thursday = dr["Thursday"].ToString(),
-                            Friday = dr["Friday"].ToString(),
+                        RAvailability objAvail = new RAvailability();
+                        
+                        objAvail.Teacher = dr["Teacher"].ToString();
+                        //CRB = dr["CRB"].ToString();
+                        objAvail.Live = dr["Live"].ToString();
+                        objAvail.NoGo = dr["NoGo"].ToString();
+                        objAvail.PofA = dr["ProofofAddress"].ToString();
+                        objAvail.QTS = dr["QTS"].ToString();
+                        objAvail.Wants = dr["Wants"].ToString();
+                        objAvail.YrGroup = dr["YearGroup"].ToString();
+                        objAvail.Monday = dr["Monday"].ToString();
+                        objAvail.Tuesday = dr["Tuesday"].ToString();
+                        objAvail.Wednesday = dr["Wednesday"].ToString();
+                        objAvail.Thursday = dr["Thursday"].ToString();
+                        objAvail.Friday = dr["Friday"].ToString();
+                        objAvail.MonG = dr["MonG"].ToString();
+                        objAvail.MonColor = dr["MonColor"].ToString();
+                        objAvail.TueColor = dr["TueColor"].ToString();
+                        objAvail.WedColor = dr["WedColor"].ToString();
+                        objAvail.ThuColor = dr["ThuColor"].ToString();
+                        objAvail.FriColor = dr["FriColor"].ToString();
+                        //objAvail.MonG = Utils.CheckLong(dr["MonG"]);
+                        //objAvail.TueG = Utils.CheckLong(dr["TueG"]);
+                        //objAvail.WedG = Utils.CheckLong(dr["WedG"]);
+                        //objAvail.ThuG = Utils.CheckLong(dr["ThuG"]);
+                        //objAvail.FriG = Utils.CheckLong(dr["FriG"]);
+                        //if (Utils.CheckLong(dr["MonG"]) > 0) objAvail.MonG = true;
+                        //if (Utils.CheckLong(dr["TueG"]) > 0) objAvail.TueG = true;
+                        //if (Utils.CheckLong(dr["WedG"]) > 0) objAvail.WedG = true;
+                        //if (Utils.CheckLong(dr["ThuG"]) > 0) objAvail.ThuG = true;
+                        //if (Utils.CheckLong(dr["FriG"]) > 0) objAvail.FriG = true;
 
-                        };
                         availabilityList.Add(objAvail);
 
                     }
@@ -506,13 +536,14 @@ namespace RedboxAddin.DL
                         objBkg.NN = Utils.CheckBool(dr["NN"]);
                         objBkg.QNN = Utils.CheckBool(dr["QNN"]);
                         objBkg.SEN = Utils.CheckBool(dr["SEN"]);
+                        objBkg.PPL = Utils.CheckBool(dr["PPL"]);
                         objBkg.Charge = Utils.CheckDecimal(dr["Charge"]);
                         objBkg.LinkedTeacherID = Utils.CheckLong(dr["LinkedTeacherID"]);
                         objBkg.LinkedTeacherName = Utils.CheckString(dr["LinkedTeacherName"]);
                         objBkg.NameGiven = Utils.CheckBool(dr["NameGiven"]);
                         objBkg.AskedFor = Utils.CheckBool(dr["AskedFor"]);
                         objBkg.TrialDay = Utils.CheckBool(dr["TrialDay"]);
-
+                        objBkg.Color = Utils.CheckString(dr["Color"]);
                         
                         return objBkg;
                     }
@@ -1977,16 +2008,18 @@ namespace RedboxAddin.DL
             string SQLstr = "Select Lastname+', '+FirstName as Teacher,Live, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
                             "OverseasTrainedTeacher, NQT, TA, QNN, SEN, NN, " +
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, " +
-                            "s1.School as Monday, s2.School as Tuesday, s3.School as Wednesday, " +
-                            "s4.School as Thursday, s5.School as Friday " +
+                            "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
+                            "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
+                            "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor " +
                             "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
                             "ON [Contacts].contactID = [ContactData].ContactID " +
 
+
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2000,7 +2033,15 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
+                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + monday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g1 ON g1.TeacherID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2012,9 +2053,18 @@ namespace RedboxAddin.DL
                             ") as s2 " +
                             "ON s2.contactID = [Contacts].contactID " +
 
+                                                        "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + tuesday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g2 ON g2.TeacherID = [Contacts].contactID " +
+
+
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2028,7 +2078,16 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
+                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + wednesday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g3 ON g3.TeacherID = [Contacts].contactID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2042,7 +2101,16 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID " +
+                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + thursday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g4 ON g4.TeacherID = [Contacts].contactID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2052,7 +2120,16 @@ namespace RedboxAddin.DL
                             "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + friday + "' " +
                             "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + friday + "' " +
                             ") as s5 " +
-                            "ON s5.contactID = [Contacts].contactID ";
+                            "ON s5.contactID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + friday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g5 ON g5.TeacherID = [Contacts].contactID ";
+
 
             return SQLstr;
         }
@@ -2162,8 +2239,8 @@ namespace RedboxAddin.DL
         {
             string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, " +
                             "LastName+', '+FirstName as TeacherName, Details, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
-                            "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, TA,SEN, QNN, NN, " +
-                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName " +
+                            "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, TA,SEN, QNN, NN, PPL, " +
+                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName, Color " +
 
                             "FROM MasterBookings " +
                             "LEFT JOIN [Schools] " +

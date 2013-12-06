@@ -40,15 +40,15 @@
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblBooking = new System.Windows.Forms.Label();
             this.cmbBookingStatus = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkPPL = new System.Windows.Forms.CheckBox();
             this.chkTeacher = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.chkSEN = new System.Windows.Forms.CheckBox();
             this.chkTA = new System.Windows.Forms.CheckBox();
             this.chkNN = new System.Windows.Forms.CheckBox();
@@ -56,6 +56,7 @@
             this.chkOTT = new System.Windows.Forms.CheckBox();
             this.chkNQT = new System.Windows.Forms.CheckBox();
             this.chkQTS = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnEditDesc = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -123,6 +124,7 @@
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblColor = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -227,7 +229,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.lblColor);
+            this.panel2.Controls.Add(this.lblBooking);
             this.panel2.Controls.Add(this.cmbBookingStatus);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.cmbTeacher);
@@ -266,14 +269,14 @@
             this.panel2.Size = new System.Drawing.Size(1002, 324);
             this.panel2.TabIndex = 1;
             // 
-            // label12
+            // lblBooking
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(849, 120);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(98, 16);
-            this.label12.TabIndex = 103;
-            this.label12.Text = "Booking Status";
+            this.lblBooking.AutoSize = true;
+            this.lblBooking.Location = new System.Drawing.Point(849, 119);
+            this.lblBooking.Name = "lblBooking";
+            this.lblBooking.Size = new System.Drawing.Size(98, 16);
+            this.lblBooking.TabIndex = 103;
+            this.lblBooking.Text = "Booking Status";
             // 
             // cmbBookingStatus
             // 
@@ -285,8 +288,9 @@
             "Details Sent"});
             this.cmbBookingStatus.Location = new System.Drawing.Point(852, 139);
             this.cmbBookingStatus.Name = "cmbBookingStatus";
-            this.cmbBookingStatus.Size = new System.Drawing.Size(121, 24);
+            this.cmbBookingStatus.Size = new System.Drawing.Size(141, 24);
             this.cmbBookingStatus.TabIndex = 102;
+            this.cmbBookingStatus.SelectedValueChanged += new System.EventHandler(this.cmbBookingStatus_SelectedValueChanged);
             // 
             // label11
             // 
@@ -330,8 +334,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkPPL);
             this.groupBox2.Controls.Add(this.chkTeacher);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.chkSEN);
             this.groupBox2.Controls.Add(this.chkTA);
             this.groupBox2.Controls.Add(this.chkNN);
@@ -339,12 +343,24 @@
             this.groupBox2.Controls.Add(this.chkOTT);
             this.groupBox2.Controls.Add(this.chkNQT);
             this.groupBox2.Controls.Add(this.chkQTS);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(23, 37);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(349, 83);
             this.groupBox2.TabIndex = 97;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Qualifications";
+            // 
+            // chkPPL
+            // 
+            this.chkPPL.AutoSize = true;
+            this.chkPPL.Location = new System.Drawing.Point(257, 19);
+            this.chkPPL.Name = "chkPPL";
+            this.chkPPL.Size = new System.Drawing.Size(52, 20);
+            this.chkPPL.TabIndex = 103;
+            this.chkPPL.Text = "PPL";
+            this.chkPPL.UseVisualStyleBackColor = true;
+            this.chkPPL.Click += new System.EventHandler(this.chkPPL_Click);
             // 
             // chkTeacher
             // 
@@ -355,16 +371,6 @@
             this.chkTeacher.TabIndex = 102;
             this.chkTeacher.Text = "Teacher";
             this.chkTeacher.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(248, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 23);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Match ANY ticked";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkSEN
             // 
@@ -442,6 +448,16 @@
             this.chkQTS.Text = "QTS";
             this.chkQTS.UseVisualStyleBackColor = true;
             this.chkQTS.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(255, 62);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 20);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Match ANY ticked";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnEditDesc
             // 
@@ -612,6 +628,7 @@
             this.radAF.TabIndex = 88;
             this.radAF.Text = "Asked For";
             this.radAF.UseVisualStyleBackColor = true;
+            this.radAF.CheckedChanged += new System.EventHandler(this.radAF_CheckedChanged);
             // 
             // radNS
             // 
@@ -723,10 +740,10 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(296, 18);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(242, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 48);
+            this.label3.Size = new System.Drawing.Size(108, 16);
             this.label3.TabIndex = 27;
             this.label3.Text = "Match ALL ticked";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1193,6 +1210,15 @@
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
+            // lblColor
+            // 
+            this.lblColor.AutoSize = true;
+            this.lblColor.Location = new System.Drawing.Point(849, 166);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(40, 16);
+            this.lblColor.TabIndex = 104;
+            this.lblColor.Text = "Color";
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1322,7 +1348,9 @@
         private System.Windows.Forms.ComboBox cmbTeacher;
         private System.Windows.Forms.CheckBox chkTeacher;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblBooking;
         private System.Windows.Forms.ComboBox cmbBookingStatus;
+        private System.Windows.Forms.CheckBox chkPPL;
+        private System.Windows.Forms.Label lblColor;
     }
 }

@@ -1005,6 +1005,37 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private void chkPPA_Click(object sender, EventArgs e)
+        {
+            if (chkPPA.Checked)
+            {
+                chkNur.Checked = true;
+                chkRec.Checked = true;
+                chkYr1.Checked = true;
+                chkYr2.Checked = true;
+                chkYr3.Checked = true;
+                chkYr4.Checked = true;
+                chkYr5.Checked = true;
+                chkYr6.Checked = true;
+            }
+            UpdateWants();
+        }
+
+        private void chkLT_Click(object sender, EventArgs e)
+        {
+            UpdateWants();
+        }
+
+        private void chkD2D_Click(object sender, EventArgs e)
+        {
+            UpdateWants();
+        }
+
+        private void chkRGD_Click(object sender, EventArgs e)
+        {
+            UpdateWants();
+        }
+
         private void SaveSummaryInfo()
         {
             try
@@ -1032,15 +1063,15 @@ namespace RedboxAddin.Presentation
                     cd.Yr4 = chkYr4.Checked;
                     cd.Yr5 = chkYr5.Checked;
                     cd.Yr6 = chkYr6.Checked;
-                    cd.DayRate = CheckDecimal(txtDayRate.Text);
-                    cd.HalfDayRate = CheckDecimal(txtHfDayRate.Text);
-                    cd.DayRateLT = CheckDecimal(txtLTDay.Text);
-                    cd.HalfDayRateLT = CheckDecimal(txtLTHfDay.Text);
+                    cd.DayRate = Utils.CheckDecimal(txtDayRate.Text);
+                    cd.HalfDayRate = Utils.CheckDecimal(txtHfDayRate.Text);
+                    cd.DayRateLT = Utils.CheckDecimal(txtLTDay.Text);
+                    cd.HalfDayRateLT = Utils.CheckDecimal(txtLTHfDay.Text);
 
-                    cd.DayRateTA = CheckDecimal(txtDayRateTA.Text) ;
-                     cd.HalfDayRateTA = CheckDecimal(txtHfDayRateTA.Text);
-                    cd.DayRateLTTA = CheckDecimal(txtLTDayTA.Text);
-                    cd.HalfDayRateLTTA = CheckDecimal(txtLTHfDayTA.Text);
+                    cd.DayRateTA = Utils.CheckDecimal(txtDayRateTA.Text);
+                    cd.HalfDayRateTA = Utils.CheckDecimal(txtHfDayRateTA.Text);
+                    cd.DayRateLTTA = Utils.CheckDecimal(txtLTDayTA.Text);
+                    cd.HalfDayRateLTTA = Utils.CheckDecimal(txtLTHfDayTA.Text);
 
                     cd.Current = chkCurrent.Checked;
                     cd.Teacher = chkTeacher.Checked;
@@ -1131,28 +1162,34 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private void UpdateWants()
+        {
+            string wants = "";
+            if (chkPPA.Checked) wants += "/PPA";
+            if (chkLT.Checked) wants += "/LT";
+            if (chkD2D.Checked) wants += "/D2D";
+            if (chkRGD.Checked) wants += "/RGD";
+
+            if (wants.Length > 0) wants = wants.Substring(1);
+            txtWants.Text = wants;
+
+
+        }
 
         #endregion
 
-        private decimal CheckDecimal(string value)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(value)) return Convert.ToDecimal("0.00");
 
-                return Convert.ToDecimal(value);
-            }
-            catch
-            {
-                return Convert.ToDecimal("0.00");
-            }
-        }
 
-       
 
-      
 
-       
+
+
+
+
+
+
+
+
 
     }
 }

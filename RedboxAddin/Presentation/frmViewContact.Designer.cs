@@ -668,6 +668,7 @@
             this.chkRGD.Text = "RGD";
             this.toolTip1.SetToolTip(this.chkRGD, "Regular Days");
             this.chkRGD.UseVisualStyleBackColor = true;
+            this.chkRGD.Click += new System.EventHandler(this.chkRGD_Click);
             // 
             // chkD2D
             // 
@@ -679,6 +680,7 @@
             this.chkD2D.Text = "D2D";
             this.toolTip1.SetToolTip(this.chkD2D, "Day to Day");
             this.chkD2D.UseVisualStyleBackColor = true;
+            this.chkD2D.Click += new System.EventHandler(this.chkD2D_Click);
             // 
             // chkLT
             // 
@@ -690,6 +692,7 @@
             this.chkLT.Text = "LT";
             this.toolTip1.SetToolTip(this.chkLT, "Long Term");
             this.chkLT.UseVisualStyleBackColor = true;
+            this.chkLT.Click += new System.EventHandler(this.chkLT_Click);
             // 
             // chkPPA
             // 
@@ -700,6 +703,7 @@
             this.chkPPA.TabIndex = 83;
             this.chkPPA.Text = "PPA";
             this.chkPPA.UseVisualStyleBackColor = true;
+            this.chkPPA.Click += new System.EventHandler(this.chkPPA_Click);
             // 
             // chkTA
             // 

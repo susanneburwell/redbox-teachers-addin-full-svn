@@ -35,13 +35,14 @@ namespace RedboxAddin.Models
         public bool NN { get; set; }
         public bool QNN { get; set; }
         public bool SEN { get; set; }
+        public bool PPL { get; set; }
         public Decimal Charge { get; set; }
         public long LinkedTeacherID { get; set; }
         public string LinkedTeacherName { get; set; }
         public bool NameGiven { get; set; }
         public bool AskedFor { get; set; }
         public bool TrialDay { get; set; }
-
+        public string Color { get; set; }
 
 
 
@@ -64,6 +65,17 @@ namespace RedboxAddin.Models
         public string Wednesday { get; set; }
         public string Thursday { get; set; }
         public string Friday { get; set; }
+        public string MonG { get; set; }
+        public string MonColor { get; set; }
+        public string TueColor { get; set; }
+        public string WedColor { get; set; }
+        public string ThuColor { get; set; }
+        public string FriColor { get; set; }
+        //public bool MonG { get; set; }
+        //public bool TueG { get; set; }
+        //public bool WedG { get; set; }
+        //public bool ThuG { get; set; }
+        //public bool FriG { get; set; }
     }
 
     class RLoad

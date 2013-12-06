@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using RedboxAddin.DL;
 using RedboxAddin.BL;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraGrid;
 
 namespace RedboxAddin.Presentation
 {
@@ -26,7 +27,12 @@ namespace RedboxAddin.Presentation
         {
             //string CONNSTR = DavSettings.getDavValue("CONNSTR");
             //db = new RedBoxDB(CONNSTR);
+            //gridControl1.DataSource = bindingSource1;
+
+            //createGridViewCondition();
+            RestoreLayout();
             LoadTable();
+            
         }
 
         private void LoadTable()
@@ -40,13 +46,15 @@ namespace RedboxAddin.Presentation
                 DateTime monday = input.AddDays(delta).Date;
 
                 string wheresql = WHERESQL();
+                DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
+                //bindingSource1.DataSource = msgDs;
                 gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
                 gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
                 gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
                 gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
                 gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
-                RestoreLayout();
+                
             }
             catch (Exception ex)
             {
@@ -181,6 +189,43 @@ namespace RedboxAddin.Presentation
 
         }
 
+        private void createGridViewCondition()
+        {
+            StyleFormatCondition condition1 = new DevExpress.XtraGrid.StyleFormatCondition();
+            condition1.Appearance.BackColor = Color.SeaShell;
+            condition1.Appearance.Options.UseBackColor = true;
+            condition1.Appearance.Options.UseFont = false;
+            condition1.Condition = FormatConditionEnum.Expression;
+            condition1.Expression = "[MonG] >0";
+            condition1.ApplyToRow = false;
+            gridView1.FormatConditions.Add(condition1);
+        }
+
+        private void btnEY_Click(object sender, EventArgs e)
+        {
+            bool set = !chkNur.Checked;
+            chkNur.Checked = set;
+            chkRec.Checked = set;
+            LoadTable();
+        }
+
+        private void btnKS1_Click(object sender, EventArgs e)
+        {
+            bool set = !chkYr1.Checked;
+            chkYr1.Checked = set;
+            chkYr2.Checked = set;
+            LoadTable();
+        }
+
+        private void btnKS2_Click(object sender, EventArgs e)
+        {
+            bool set = !chkYr3.Checked;
+            chkYr3.Checked = set;
+            chkYr4.Checked = set;
+            chkYr5.Checked = set;
+            chkYr6.Checked = set;
+            LoadTable();
+        }
 
 
     }

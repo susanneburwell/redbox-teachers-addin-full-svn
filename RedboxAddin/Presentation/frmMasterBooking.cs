@@ -105,47 +105,49 @@ namespace RedboxAddin.Presentation
             try
             {
                 RMasterBooking rMB = new DBManager().GetMasterBookingInfo(ID);
-                
+
                 //cmbSchool.ValueMember=rMB.SchoolID ;
-                cmbSchool.Text=rMB.School;
+                cmbSchool.Text = rMB.School;
                 //=rMB.ContactID ;
-                cmbTeacher.Text=rMB.TeacherName ;
+                cmbTeacher.Text = rMB.TeacherName;
                 //cmbTeacher.SelectedValue = rMB.ContactID;
-                txtDetails.Text=rMB.Details ;
-                dtFrom.Value=rMB.Startdate ;
-                dtTo.Value=rMB.EndDate ;
+                txtDetails.Text = rMB.Details;
+                dtFrom.Value = rMB.Startdate;
+                dtTo.Value = rMB.EndDate;
                 //=rMB.isAbsence ;
                 //=rMB.AbsenceReason ;
-                chkHalfDay.Checked=rMB.HalfDay ;
-                chkLongTerm.Checked=rMB.LongTerm ;
-                chkNur.Checked=rMB.Nur ;
-                chkRec.Checked=rMB.Rec ;
-                chkYr1.Checked=rMB.Yr1 ;
-                chkYr2.Checked=rMB.Yr2 ;
-                chkYr3.Checked=rMB.Yr3 ;
-                chkYr4.Checked=rMB.Yr4 ;
-                chkYr5.Checked=rMB.Yr5 ;
-                chkYr6.Checked=rMB.Yr6 ;
-                chkQTS.Checked=rMB.QTS ;
-                chkNQT.Checked=rMB.NQT ;
-                chkOTT.Checked=rMB.OTT ;
-                chkTA.Checked=rMB.TA ;
-                chkNN.Checked=rMB.NN ;
-                chkQNN.Checked=rMB.QNN ;
-                chkSEN.Checked=rMB.SEN ;
-                txtCharge.Text=rMB.Charge.ToString() ;
+                chkHalfDay.Checked = rMB.HalfDay;
+                chkLongTerm.Checked = rMB.LongTerm;
+                chkNur.Checked = rMB.Nur;
+                chkRec.Checked = rMB.Rec;
+                chkYr1.Checked = rMB.Yr1;
+                chkYr2.Checked = rMB.Yr2;
+                chkYr3.Checked = rMB.Yr3;
+                chkYr4.Checked = rMB.Yr4;
+                chkYr5.Checked = rMB.Yr5;
+                chkYr6.Checked = rMB.Yr6;
+                chkQTS.Checked = rMB.QTS;
+                chkNQT.Checked = rMB.NQT;
+                chkOTT.Checked = rMB.OTT;
+                chkTA.Checked = rMB.TA;
+                chkNN.Checked = rMB.NN;
+                chkQNN.Checked = rMB.QNN;
+                chkSEN.Checked = rMB.SEN;
+                chkPPL.Checked = rMB.PPL;
+                txtCharge.Text = rMB.Charge.ToString();
                 //cmbRequestedTeacher.Text = rMB.LinkedTeacherName;
-                
-               // =rMB.LinkedTeacherID ;
-                radNG.Checked=rMB.NameGiven ;
-                radAF.Checked=rMB.AskedFor ;
-                radTD.Checked=rMB.TrialDay ;
 
+                // =rMB.LinkedTeacherID ;
+                radNG.Checked = rMB.NameGiven;
+                radAF.Checked = rMB.AskedFor;
+                radTD.Checked = rMB.TrialDay;
+
+                lblColor.Text = rMB.Color;
 
             }
             catch (Exception ex)
             {
-               Debug.DebugMessage(2, "Error in LoadMasterBooking: " + ex.Message);
+                Debug.DebugMessage(2, "Error in LoadMasterBooking: " + ex.Message);
             }
         }
 
@@ -156,8 +158,8 @@ namespace RedboxAddin.Presentation
                 var q = from s in db.Contacts
                         where s.LastName != null
                         orderby s.LastName
-                        select new  { FullName = (s.LastName + ',' + ' ' + s.FirstName),  s.ContactID };
-                        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+                        select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
+                //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
                 var schools = q.ToList();
 
                 cmb1.DataSource = schools;
@@ -229,8 +231,10 @@ namespace RedboxAddin.Presentation
                 mb.OTT = chkOTT.Checked;
                 mb.QNN = chkQNN.Checked;
                 mb.NN = chkNN.Checked;
+                mb.PPL = chkPPL.Checked;
                 mb.Charge = Utils.CheckDecimal(txtCharge.Text);
                 mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
+                mb.Color = lblColor.Text;
 
                 //If Teacher named
                 mb.NameGiven = radNG.Checked;
@@ -421,32 +425,90 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        #region DGC
-
-        private void RefreshDGC()
+        private void SetColours()
         {
-            BindGrid();
+            //colours are abbreviated to 4 letters
+            //colour is split fore/back
+            string fore = "";
+            string back = "";
+            string status = cmbBookingStatus.Text.ToString();
+            if (status == "") status = "Unassigned";
+
+            switch (status)
+            {
+
+                case "Unassigned":
+                    cmbBookingStatus.ForeColor = Color.Red;
+                    cmbBookingStatus.BackColor = Color.Yellow;
+                    fore = "redd";
+                    back = "yell";
+                    break;
+                case "Contacted":
+                    cmbBookingStatus.ForeColor = Color.Purple;
+                    cmbBookingStatus.BackColor = Color.Yellow;
+                    fore = "purp";
+                    back = "yell";
+                    break;
+                case "Confirmed":
+                    cmbBookingStatus.ForeColor = Color.Black;
+                    cmbBookingStatus.BackColor = Color.Yellow;
+                    fore = "blck";
+                    back = "yell";
+                    break;
+                case "Details Sent":
+                    cmbBookingStatus.ForeColor = Color.Black;
+                    cmbBookingStatus.BackColor = Color.LightGray;
+                    fore = "purp";
+                    back = "gray";
+                    break;
+
+                default:
+                    cmbBookingStatus.ForeColor = System.Drawing.SystemColors.WindowText;
+                    cmbBookingStatus.BackColor = System.Drawing.SystemColors.Window;
+                    break;
+
+            }
+
+            if (radAF.Checked) //asked for
+            {
+                if (status == "Details Sent") back = "dblu"; //darkblue;
+                else back = "lblu";  //light blue
+            }
+
+            if (chkLongTerm.Checked) //LongTerm / Regular Booking
+            {
+                back = "purp";
+            }
+
+
+            this.ActiveControl = lblBooking;
+            //cmbBookingStatus.Select(3, 0);
+
+            lblColor.Text = fore + "/" + back;
         }
 
-        private void BindGrid()
+        private void SetChargeRate()
         {
             try
             {
-
-                //Table<Booking> bookingList = db.GetTable<Booking>();
-                var bookingList = from b in db.Bookings
-                                  where b.MasterBookingID == _masterBookingID
-                                  select b;
-                bindingSource1.DataSource = bookingList;
-
+                long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
+                School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
+                if (chkHalfDay.Checked)
+                {
+                    if (chkLongTerm.Checked) txtCharge.Text = school.HalfDayChargeLT.ToString();
+                    else txtCharge.Text = school.HalfDayCharge.ToString();
+                }
+                else
+                {
+                    if (chkLongTerm.Checked) txtCharge.Text = school.DayChargeLT.ToString();
+                    else txtCharge.Text = school.DayCharge.ToString();
+                }
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in BindGrid: " + ex.Message);
+                Debug.DebugMessage(2, "Error in SetChargeRate: " + ex.Message);
             }
         }
-
-        #endregion
 
         private void RestoreLayout()
         {
@@ -496,6 +558,40 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private void setTeacherControls(bool ShowDropDown)
+        {
+            cmbRequestedTeacher.Visible = ShowDropDown;
+            //lblTS.Visible = ShowDropDown;
+            lblTS2.Visible = ShowDropDown;
+        }
+
+        #endregion
+
+        #region DGC
+
+        private void RefreshDGC()
+        {
+            BindGrid();
+        }
+
+        private void BindGrid()
+        {
+            try
+            {
+
+                //Table<Booking> bookingList = db.GetTable<Booking>();
+                var bookingList = from b in db.Bookings
+                                  where b.MasterBookingID == _masterBookingID
+                                  select b;
+                bindingSource1.DataSource = bookingList;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in BindGrid: " + ex.Message);
+            }
+        }
+
         #endregion
 
         private void txtDayRate_Validating(object sender, CancelEventArgs e)
@@ -519,24 +615,12 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        #region Teacher Specified
-
-
-        private void setTeacherControls(bool ShowDropDown)
-        {
-            cmbRequestedTeacher.Visible = ShowDropDown;
-            //lblTS.Visible = ShowDropDown;
-            lblTS2.Visible = ShowDropDown;
-        }
-
-
-        #endregion
-
+        
         #region buttons
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            if (dgcBookings.Visible)  RefreshDGC();
+            if (dgcBookings.Visible) RefreshDGC();
             if (dgcAvail.Visible) LoadAvailabilityTable();
         }
 
@@ -590,6 +674,27 @@ namespace RedboxAddin.Presentation
             UpdateDescription();
         }
 
+        private void chkPPL_Click(object sender, EventArgs e)
+        {
+            if (chkPPL.Checked)
+            {
+                chkNur.Checked = true;
+                chkRec.Checked = true;
+                chkYr1.Checked = true;
+                chkYr2.Checked = true;
+                chkYr3.Checked = true;
+                chkYr4.Checked = true;
+                chkYr5.Checked = true;
+                chkYr6.Checked = true;
+            }
+
+        }
+
+        private void radAF_CheckedChanged(object sender, EventArgs e)
+        {
+            SetColours();
+        }
+
         private void cmbSchool_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SetChargeRate();
@@ -605,7 +710,7 @@ namespace RedboxAddin.Presentation
         {
             SetChargeRate();
             UpdateDescription();
-
+            SetColours();
         }
 
         private void chkHalfDay_CheckedChanged(object sender, EventArgs e)
@@ -622,27 +727,15 @@ namespace RedboxAddin.Presentation
 
         }
 
-        private void SetChargeRate()
+        private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
-                School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
-                if (chkHalfDay.Checked)
-                {
-                    if (chkLongTerm.Checked) txtCharge.Text = school.HalfDayChargeLT.ToString();
-                    else txtCharge.Text = school.HalfDayCharge.ToString();
-                }
-                else
-                {
-                    if (chkLongTerm.Checked) txtCharge.Text = school.DayChargeLT.ToString();
-                    else txtCharge.Text = school.DayCharge.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in SetChargeRate: " + ex.Message);
-            }
+            string test = cmbTeacher.Text;
+        }
+
+
+        private void cmbBookingStatus_SelectedValueChanged(object sender, EventArgs e)
+        {
+            SetColours();
         }
 
         private void frmNewRequest_FormClosing(object sender, FormClosingEventArgs e)
@@ -686,6 +779,7 @@ namespace RedboxAddin.Presentation
         {
             UpdateDescription();
             if (dgcAvail.Visible) LoadAvailabilityTable();
+            SetColours();
         }
 
 
@@ -695,12 +789,12 @@ namespace RedboxAddin.Presentation
             {
                 Point pt = dgcAvail.PointToClient(Control.MousePosition);
                 GridHitInfo info = dgcAvailView.CalcHitInfo(pt);
-                if(info.InRow || info.InRowCell) 
+                if (info.InRow || info.InRowCell)
                 {
-                string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
-                string teacher = dgcAvailView.GetRowCellValue(info.RowHandle, "Teacher").ToString();
-                cmbTeacher.Text = teacher;
+                    string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                    //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
+                    string teacher = dgcAvailView.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                    cmbTeacher.Text = teacher;
 
                 }
             }
@@ -712,13 +806,13 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
-        private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string test = cmbTeacher.Text;
-        }
+        
+
+
+
 
 
     }
 
-   
+
 }

@@ -106,6 +106,8 @@ namespace RedboxAddin.BL
 
             try
             {
+                if (myObject == null) return -1;
+
                long myInt = Convert.ToInt64(myObject);
                return myInt;
             }
