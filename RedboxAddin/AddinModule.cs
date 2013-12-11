@@ -353,8 +353,7 @@ namespace RedboxAddin
             this.adxtab.Controls.Add(this.adxRibbonGroup2);
             this.adxtab.Id = "adxRibbonTab_6009b89e68584fae8b43fda66b3b5ffb";
             this.adxtab.IdMso = "TabMail";
-            this.adxtab.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxtab.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             // 
             // adxRibbonGroup2
             // 
@@ -369,16 +368,14 @@ namespace RedboxAddin
             this.adxRibbonGroup2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxRibbonGroup2.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxRibbonGroup2.InsertBeforeIdMso = "GroupMailDelete";
-            this.adxRibbonGroup2.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxRibbonGroup2.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             // 
             // adxNewRequest
             // 
             this.adxNewRequest.Caption = "New Request";
             this.adxNewRequest.Id = "adxRibbonButton_6bd6e6c1524f424690d570077e270772";
             this.adxNewRequest.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxNewRequest.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxNewRequest.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxNewRequest.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxNewRequest_OnClick);
             // 
             // adxTeacherUpdate
@@ -386,8 +383,7 @@ namespace RedboxAddin
             this.adxTeacherUpdate.Caption = "Teacher Update";
             this.adxTeacherUpdate.Id = "adxRibbonButton_3cc7dd443a5a4d3188c35ce21f8f7907";
             this.adxTeacherUpdate.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxTeacherUpdate.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxTeacherUpdate.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxTeacherUpdate.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTeacherUpdate_OnClick);
             // 
             // adxBookings
@@ -395,8 +391,7 @@ namespace RedboxAddin
             this.adxBookings.Caption = "View Bookings";
             this.adxBookings.Id = "adxRibbonButton_84914fb391a242d6a1a80e9d661c9eb7";
             this.adxBookings.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxBookings.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxBookings.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxBookings.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxBookings_OnClick);
             // 
             // adxAvail
@@ -404,8 +399,7 @@ namespace RedboxAddin
             this.adxAvail.Caption = "Availability Sheet";
             this.adxAvail.Id = "adxRibbonButton_bb8da1a4e609499396d30b190eaa54e2";
             this.adxAvail.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxAvail.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxAvail.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxAvail.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxAvail_OnClick);
             // 
             // adxLoadPlan
@@ -413,8 +407,7 @@ namespace RedboxAddin
             this.adxLoadPlan.Caption = "Load Plan";
             this.adxLoadPlan.Id = "adxRibbonButton_f2091261af184203ba2efe10ba3a1b1e";
             this.adxLoadPlan.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxLoadPlan.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxLoadPlan.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxLoadPlan.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxLoadPlan_OnClick);
             // 
             // adxPivot
@@ -422,8 +415,7 @@ namespace RedboxAddin
             this.adxPivot.Caption = "Pivot Grid";
             this.adxPivot.Id = "adxRibbonButton_0b7f30f7815047beaeae043c569fcf44";
             this.adxPivot.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxPivot.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxPivot.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
             // 
             // adxOptions
@@ -440,16 +432,14 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxMarkCurrent);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxOptions.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxOptions.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             // 
             // adxImportXL
             // 
             this.adxImportXL.Caption = "Import from Availability Sheet";
             this.adxImportXL.Id = "adxRibbonButton_8c1d915dd9a74f43b56f48fea09f25b2";
             this.adxImportXL.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImportXL.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportXL.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxImportXL.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportXL_OnClick);
             // 
             // adxImportSchools
@@ -457,8 +447,7 @@ namespace RedboxAddin
             this.adxImportSchools.Caption = "Import Schools";
             this.adxImportSchools.Id = "adxRibbonButton_bc74cfe469fa4a51861db52615a98902";
             this.adxImportSchools.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImportSchools.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportSchools.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxImportSchools.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportSchools_OnClick);
             // 
             // adxImportKeyRef
@@ -466,8 +455,7 @@ namespace RedboxAddin
             this.adxImportKeyRef.Caption = "Import Key Refs";
             this.adxImportKeyRef.Id = "adxRibbonButton_2c1b57b139ce4e95908deb5cf24ccac6";
             this.adxImportKeyRef.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImportKeyRef.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportKeyRef.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxImportKeyRef.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportKeyRef_OnClick);
             // 
             // adxImport
@@ -475,8 +463,7 @@ namespace RedboxAddin
             this.adxImport.Caption = "Import from Excel";
             this.adxImport.Id = "adxRibbonButton_e3ccc303b7d645d9b2ddb9db31c95e78";
             this.adxImport.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImport.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImport.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxImport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImport_OnClick);
             // 
             // adxEditSchool
@@ -484,8 +471,7 @@ namespace RedboxAddin
             this.adxEditSchool.Caption = "Edit Schools";
             this.adxEditSchool.Id = "adxRibbonButton_f7a0bbf4cfcf4c06a068b35846838e5a";
             this.adxEditSchool.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxEditSchool.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxEditSchool.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxEditSchool.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditSchool_OnClick);
             // 
             // adxProcess
@@ -493,8 +479,7 @@ namespace RedboxAddin
             this.adxProcess.Caption = "Process Teachers";
             this.adxProcess.Id = "adxRibbonButton_ecb2644624dc4d8cbb57063b2b841a00";
             this.adxProcess.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxProcess.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxProcess.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxProcess.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxProcess_OnClick);
             // 
             // adxImportContacts
@@ -502,8 +487,7 @@ namespace RedboxAddin
             this.adxImportContacts.Caption = "Import Contacts";
             this.adxImportContacts.Id = "adxRibbonButton_038dc2864f8048b98526fdf69e514fd1";
             this.adxImportContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxImportContacts.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxImportContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxImportContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImportContacts_OnClick);
             // 
             // adxUpdateContacts
@@ -511,8 +495,7 @@ namespace RedboxAddin
             this.adxUpdateContacts.Caption = "Clean Contact Names";
             this.adxUpdateContacts.Id = "adxRibbonButton_afb82f1c8fe342c98a8899b512567222";
             this.adxUpdateContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxUpdateContacts.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxUpdateContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxUpdateContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxUpdateContacts_OnClick);
             // 
             // adxMarkCurrent
@@ -520,8 +503,7 @@ namespace RedboxAddin
             this.adxMarkCurrent.Caption = "MarkAllCurrent";
             this.adxMarkCurrent.Id = "adxRibbonButton_7f8c8205befe40f786e6de61abe4bd3c";
             this.adxMarkCurrent.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxMarkCurrent.Ribbons = ((AddinExpress.MSO.ADXRibbons)(((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose) 
-            | AddinExpress.MSO.ADXRibbons.msrOutlookExplorer)));
+            this.adxMarkCurrent.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxMarkCurrent.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxMarkCurrent_OnClick);
             // 
             // AddinModule

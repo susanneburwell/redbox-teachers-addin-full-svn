@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
             this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Mon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -43,13 +43,19 @@
             this.PofA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CRB = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NoGo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Mon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MonG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Tue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Wed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Thur = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Fri = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MonColor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TueColor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.WedColor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ThuColor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FriColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnDblBkgs = new System.Windows.Forms.Button();
+            this.lblDblBkgs = new System.Windows.Forms.Label();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -82,11 +88,7 @@
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.MonColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TueColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.WedColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ThuColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.FriColor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -108,6 +110,16 @@
             this.Teacher.Visible = true;
             this.Teacher.VisibleIndex = 0;
             this.Teacher.Width = 150;
+            // 
+            // Mon
+            // 
+            this.Mon.Caption = "Mon";
+            this.Mon.FieldName = "Monday";
+            this.Mon.Name = "Mon";
+            this.Mon.OptionsColumn.AllowEdit = false;
+            this.Mon.OptionsColumn.ReadOnly = true;
+            this.Mon.Visible = true;
+            this.Mon.VisibleIndex = 8;
             // 
             // tableLayoutPanel1
             // 
@@ -158,6 +170,7 @@
             this.WedColor,
             this.ThuColor,
             this.FriColor});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             styleFormatCondition1.Appearance.Options.UseBackColor = true;
@@ -165,16 +178,11 @@
             styleFormatCondition1.Column = this.Teacher;
             styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
             styleFormatCondition1.Expression = " !IsNullOrEmpty([MonG])";
-            styleFormatCondition2.Appearance.BackColor = System.Drawing.Color.Purple;
-            styleFormatCondition2.Appearance.Options.UseBackColor = true;
-            styleFormatCondition2.Column = this.Mon;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            styleFormatCondition2.Expression = "Substring([MonColor],5,4)= \'purp\'";
             this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1,
-            styleFormatCondition2});
+            styleFormatCondition1});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.MonG, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
@@ -260,16 +268,6 @@
             this.NoGo.Visible = true;
             this.NoGo.VisibleIndex = 7;
             // 
-            // Mon
-            // 
-            this.Mon.Caption = "Mon";
-            this.Mon.FieldName = "Monday";
-            this.Mon.Name = "Mon";
-            this.Mon.OptionsColumn.AllowEdit = false;
-            this.Mon.OptionsColumn.ReadOnly = true;
-            this.Mon.Visible = true;
-            this.Mon.VisibleIndex = 8;
-            // 
             // MonG
             // 
             this.MonG.Caption = "Guaranteed";
@@ -318,8 +316,41 @@
             this.Fri.Visible = true;
             this.Fri.VisibleIndex = 12;
             // 
+            // MonColor
+            // 
+            this.MonColor.Caption = "MonColor";
+            this.MonColor.FieldName = "MonColor";
+            this.MonColor.Name = "MonColor";
+            this.MonColor.ShowUnboundExpressionMenu = true;
+            // 
+            // TueColor
+            // 
+            this.TueColor.Caption = "TueColor";
+            this.TueColor.FieldName = "TueColor";
+            this.TueColor.Name = "TueColor";
+            // 
+            // WedColor
+            // 
+            this.WedColor.Caption = "WedColor";
+            this.WedColor.FieldName = "WedColor";
+            this.WedColor.Name = "WedColor";
+            // 
+            // ThuColor
+            // 
+            this.ThuColor.Caption = "ThuColor";
+            this.ThuColor.FieldName = "ThuColor";
+            this.ThuColor.Name = "ThuColor";
+            // 
+            // FriColor
+            // 
+            this.FriColor.Caption = "FriColor";
+            this.FriColor.FieldName = "FriColor";
+            this.FriColor.Name = "FriColor";
+            // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnDblBkgs);
+            this.panelTop.Controls.Add(this.lblDblBkgs);
             this.panelTop.Controls.Add(this.bnFwd);
             this.panelTop.Controls.Add(this.btnBack);
             this.panelTop.Controls.Add(this.groupBox1);
@@ -333,6 +364,25 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1031, 128);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnDblBkgs
+            // 
+            this.btnDblBkgs.Location = new System.Drawing.Point(757, 43);
+            this.btnDblBkgs.Name = "btnDblBkgs";
+            this.btnDblBkgs.Size = new System.Drawing.Size(241, 23);
+            this.btnDblBkgs.TabIndex = 86;
+            this.btnDblBkgs.Text = "Click to View Double Bookings";
+            this.btnDblBkgs.UseVisualStyleBackColor = true;
+            this.btnDblBkgs.Click += new System.EventHandler(this.btnDblBkgs_Click);
+            // 
+            // lblDblBkgs
+            // 
+            this.lblDblBkgs.AutoSize = true;
+            this.lblDblBkgs.Location = new System.Drawing.Point(800, 69);
+            this.lblDblBkgs.Name = "lblDblBkgs";
+            this.lblDblBkgs.Size = new System.Drawing.Size(170, 16);
+            this.lblDblBkgs.TabIndex = 85;
+            this.lblDblBkgs.Text = "Double Bookings Detected";
             // 
             // bnFwd
             // 
@@ -515,6 +565,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(15, 27);
             this.label7.Name = "label7";
@@ -677,46 +728,9 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
-            // MonColor
+            // CheckDoubleBookingsTimer1
             // 
-            this.MonColor.Caption = "MonColor";
-            this.MonColor.FieldName = "MonColor";
-            this.MonColor.Name = "MonColor";
-            this.MonColor.ShowUnboundExpressionMenu = true;
-            this.MonColor.Visible = true;
-            this.MonColor.VisibleIndex = 14;
-            // 
-            // TueColor
-            // 
-            this.TueColor.Caption = "TueColor";
-            this.TueColor.FieldName = "TueColor";
-            this.TueColor.Name = "TueColor";
-            this.TueColor.Visible = true;
-            this.TueColor.VisibleIndex = 15;
-            // 
-            // WedColor
-            // 
-            this.WedColor.Caption = "WedColor";
-            this.WedColor.FieldName = "WedColor";
-            this.WedColor.Name = "WedColor";
-            this.WedColor.Visible = true;
-            this.WedColor.VisibleIndex = 16;
-            // 
-            // ThuColor
-            // 
-            this.ThuColor.Caption = "ThuColor";
-            this.ThuColor.FieldName = "ThuColor";
-            this.ThuColor.Name = "ThuColor";
-            this.ThuColor.Visible = true;
-            this.ThuColor.VisibleIndex = 17;
-            // 
-            // FriColor
-            // 
-            this.FriColor.Caption = "FriColor";
-            this.FriColor.FieldName = "FriColor";
-            this.FriColor.Name = "FriColor";
-            this.FriColor.Visible = true;
-            this.FriColor.VisibleIndex = 18;
+            this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
             // 
             // frmAvailabilitySheet
             // 
@@ -802,5 +816,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn WedColor;
         private DevExpress.XtraGrid.Columns.GridColumn ThuColor;
         private DevExpress.XtraGrid.Columns.GridColumn FriColor;
+        private System.Windows.Forms.Button btnDblBkgs;
+        private System.Windows.Forms.Label lblDblBkgs;
+        private System.Windows.Forms.Timer CheckDoubleBookingsTimer1;
     }
 }

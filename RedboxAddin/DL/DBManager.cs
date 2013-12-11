@@ -278,7 +278,7 @@ namespace RedboxAddin.DL
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
                     {
                         RAvailability objAvail = new RAvailability();
-                        
+
                         objAvail.Teacher = dr["Teacher"].ToString();
                         //CRB = dr["CRB"].ToString();
                         objAvail.Live = dr["Live"].ToString();
@@ -347,8 +347,8 @@ namespace RedboxAddin.DL
             //Get Guaranteed days
             try
             {
-                string SQLstr = "SELECT [Date],[Note] " + 
-                                "FROM [GuaranteedDays] "+
+                string SQLstr = "SELECT [Date],[Note] " +
+                                "FROM [GuaranteedDays] " +
                                 "Where [TeacherID] = '" + teacherID.ToString() + "' ";
                 DataSet msgDs = GetDataSet(SQLstr + DateSQL);
 
@@ -381,7 +381,7 @@ namespace RedboxAddin.DL
                 string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, Status " +
                                 "FROM [Bookings] " +
                                 "LEFT JOIN [MasterBookings] ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
-                                "LEFT JOIN [BookingStatuses] ON [MasterBookings].BookingStatus = BookingStatuses.ID " + 
+                                "LEFT JOIN [BookingStatuses] ON [MasterBookings].BookingStatus = BookingStatuses.ID " +
                                 "WHERE  [MasterBookings].contactID = '" + teacherID.ToString() + "' ";
                 DataSet msgDs = GetDataSet(SQLstr + DateSQL);
 
@@ -460,8 +460,8 @@ namespace RedboxAddin.DL
             List<RBookings> bookingList = new List<RBookings>();
             try
             {
-                string SQLstr = GetViewBookingsSQL(SchoolID,  teacherID,  dtStart,  dtEnd);
-                DataSet msgDs = GetDataSet(SQLstr );
+                string SQLstr = GetViewBookingsSQL(SchoolID, teacherID, dtStart, dtEnd);
+                DataSet msgDs = GetDataSet(SQLstr);
 
 
                 if (msgDs != null)
@@ -493,6 +493,80 @@ namespace RedboxAddin.DL
                 return null;
             }
         }
+
+        public List<RBookings> GetBookings(string teacherID, string ddate)
+        {
+            List<RBookings> bookingList = new List<RBookings>();
+            try
+            {
+                string SQLstr = GetDoubleBookingsSQL(teacherID, ddate);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RBookings objBkg = new RBookings()
+                        {
+                            Teacher = dr["FullName"].ToString(),
+                            SchoolName = dr["SchoolName"].ToString(),
+                            Description = dr["Description"].ToString(),
+                            Date = Utils.CheckDate(dr["Date"]),
+                            ContactID = dr["ContactID"].ToString(),
+                            SchoolID = dr["SchoolID"].ToString(),
+                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"])
+
+                        };
+                        bookingList.Add(objBkg);
+
+                    }
+
+                    return bookingList;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<RDoubleBookings> CheckDoubleBookings()
+        {
+            List<RDoubleBookings> ListDblB = new List<RDoubleBookings>();
+            try
+            {
+                string SQLstr = GetCheckDoubleBookingsSQL();
+                DataSet msgDs = GetDataSet(SQLstr);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RDoubleBookings objBkg = new RDoubleBookings()
+                        {
+                            FirstName = dr["FirstName"].ToString(),
+                            LastName = dr["LastName"].ToString(),
+                            Number = dr["num"].ToString(),
+                            Date = Utils.CheckDate(dr["Date"].ToString()),
+                            ContactID = dr["ContID"].ToString(),
+                        };
+                        ListDblB.Add(objBkg);
+                    }
+                }
+                return ListDblB;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
+                return ListDblB;
+            }
+        }
+
+
 
         public RMasterBooking GetMasterBookingInfo(long masterBookingID)
         {
@@ -544,7 +618,7 @@ namespace RedboxAddin.DL
                         objBkg.AskedFor = Utils.CheckBool(dr["AskedFor"]);
                         objBkg.TrialDay = Utils.CheckBool(dr["TrialDay"]);
                         objBkg.Color = Utils.CheckString(dr["Color"]);
-                        
+
                         return objBkg;
                     }
 
@@ -1788,7 +1862,7 @@ namespace RedboxAddin.DL
                     {
                         string fullname = c.FirstName.Trim();
                         int i = fullname.IndexOf(' ');
-                        if (i>0)
+                        if (i > 0)
                         {
                             string firstname = fullname.Substring(0, i).Trim();
                             string lastname = fullname.Substring(i).Trim();
@@ -1817,8 +1891,8 @@ namespace RedboxAddin.DL
                 List<ContactData> contacts = db.ContactDatas.ToList();
                 foreach (ContactData c in contacts)
                 {
-                            c.Current = true;
-                            db.SubmitChanges();
+                    c.Current = true;
+                    db.SubmitChanges();
                 }
             }
             catch (Exception ex)
@@ -2247,26 +2321,26 @@ namespace RedboxAddin.DL
                             "ON [MasterBookings].SchoolID = Schools.ID " +
                             "LEFT JOIN [Contacts]  " +
                             "ON [MasterBookings].ContactID = [Contacts].ContactID " +
-                            "LEFT JOIN "+
-                            "( "+
-                            "SELECT contactID, LastName+', '+FirstName as LinkedTeacherName "+
-                            "FROM [Contacts] "+
-                            ") as LinkedTeacher "+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT contactID, LastName+', '+FirstName as LinkedTeacherName " +
+                            "FROM [Contacts] " +
+                            ") as LinkedTeacher " +
                             "ON LinkedTeacher.contactID = MasterBookings.LinkedTeacherID " +
                             "WHERE MasterBookings.ID = '" + masterBookingID.ToString() + "' ";
 
             return SQLstr;
         }
-        
+
         private string GetViewBookingsSQL(string SchoolID, string teacherID, string dtStart, string dtEnd)
-         {
-             string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " + 
-                          "LastName+', ' + FirstName as FullName " +
-                          "FROM [Bookings] " +
-                          "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
-                          "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
-                          "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID";
-                          string WhereSQL = "";
+        {
+            string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
+                         "LastName+', ' + FirstName as FullName " +
+                         "FROM [Bookings] " +
+                         "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
+                         "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
+                         "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID";
+            string WhereSQL = "";
             if (!string.IsNullOrWhiteSpace(SchoolID)) WhereSQL += " AND SchoolID = '" + SchoolID + "' ";
             if (!string.IsNullOrWhiteSpace(teacherID)) WhereSQL += " AND [MasterBookings].contactID = '" + teacherID + "' ";
             if (!string.IsNullOrWhiteSpace(dtStart)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "' ";
@@ -2279,6 +2353,35 @@ namespace RedboxAddin.DL
             return SQL + WhereSQL;
         }
 
+        private string GetDoubleBookingsSQL(string teacherID, string ddate)
+        {
+            string SQL = "SELECT [Schools].SchoolName, Bookings.Date, Contacts.LastName+', '+Contacts.FirstName as FullName, " +
+                        "[Bookings].Description, MasterBookings.ID as MasterBookingID, Contacts.contactID, Schools.ID as SchoolID " +
+                        "FROM MasterBookings " +
+                        "Left JOIN [Bookings] ON MasterBookingID = MasterBookings.ID " +
+                        "Left Join [Schools] ON Schools.ID = MasterBookings.SchoolID " +
+                        "Left Join [Contacts] on MasterBookings.contactID = Contacts.contactID " +
+                        "WHERE MasterBookings.contactID = '" + teacherID + "' AND [Bookings].Date = '" + ddate + "'";
+
+
+
+            return SQL;
+        }
+
+        private string GetCheckDoubleBookingsSQL()
+        {
+            string SQL = "SELECT Contacts.contactID as contID, FirstName, LastName, s1.num, s1.Date " +
+                        "FROM Contacts " +
+                        "JOIN " +
+                        "( " +
+                        "SELECT  [Date], COUNT(Date) as num, [MasterBookings].contactID  " +
+                        "FROM [RedboxDB2].[dbo].[Bookings] " +
+                        "LEFT JOIN [MasterBookings] ON MasterBookingID = MasterBookings.ID " +
+                        "GROUP BY Date, [MasterBookings].contactID " +
+                        ") as s1 ON s1.ContactID = Contacts.contactID  " +
+                        "WHERE s1.num > 1 ";
+            return SQL;
+        }
         #endregion
 
 

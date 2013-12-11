@@ -50,6 +50,7 @@
     <Reference Include="DevExpress.XtraGrid.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPivotGrid.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
@@ -223,6 +224,12 @@
     <Compile Include="Presentation\frmViewContact.Designer.cs">
       <DependentUpon>frmViewContact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmViewDoubleBookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmViewDoubleBookings.Designer.cs">
+      <DependentUpon>frmViewDoubleBookings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmViewReminder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmViewContact.resx">
       <DependentUpon>frmViewContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmViewDoubleBookings.resx">
+      <DependentUpon>frmViewDoubleBookings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmViewReminder.resx">
       <DependentUpon>frmViewReminder.cs</DependentUpon>

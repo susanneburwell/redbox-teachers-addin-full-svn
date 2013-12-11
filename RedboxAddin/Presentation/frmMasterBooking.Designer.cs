@@ -40,6 +40,7 @@
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblColor = new System.Windows.Forms.Label();
             this.lblBooking = new System.Windows.Forms.Label();
             this.cmbBookingStatus = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -124,7 +125,6 @@
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lblColor = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -269,6 +269,16 @@
             this.panel2.Size = new System.Drawing.Size(1002, 324);
             this.panel2.TabIndex = 1;
             // 
+            // lblColor
+            // 
+            this.lblColor.AutoSize = true;
+            this.lblColor.Location = new System.Drawing.Point(849, 166);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(40, 16);
+            this.lblColor.TabIndex = 104;
+            this.lblColor.Text = "Color";
+            this.lblColor.Visible = false;
+            // 
             // lblBooking
             // 
             this.lblBooking.AutoSize = true;
@@ -290,6 +300,7 @@
             this.cmbBookingStatus.Name = "cmbBookingStatus";
             this.cmbBookingStatus.Size = new System.Drawing.Size(141, 24);
             this.cmbBookingStatus.TabIndex = 102;
+            this.cmbBookingStatus.Text = "Unassigned";
             this.cmbBookingStatus.SelectedValueChanged += new System.EventHandler(this.cmbBookingStatus_SelectedValueChanged);
             // 
             // label11
@@ -1209,15 +1220,6 @@
             this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            // 
-            // lblColor
-            // 
-            this.lblColor.AutoSize = true;
-            this.lblColor.Location = new System.Drawing.Point(849, 166);
-            this.lblColor.Name = "lblColor";
-            this.lblColor.Size = new System.Drawing.Size(40, 16);
-            this.lblColor.TabIndex = 104;
-            this.lblColor.Text = "Color";
             // 
             // frmMasterBooking
             // 

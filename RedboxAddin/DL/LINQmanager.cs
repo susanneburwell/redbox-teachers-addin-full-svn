@@ -15,47 +15,47 @@ namespace RedboxAddin.DL
             List<long> IDs = new List<long>();
             try
             {
-               DateTime bdate = Convert.ToDateTime(bookingdate).Date;
+                DateTime bdate = Convert.ToDateTime(bookingdate).Date;
 
-               string CONNSTR = DavSettings.getDavValue("CONNSTR");
-               using (RedBoxDB db = new RedBoxDB(CONNSTR))
-               {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
 
-                   //Determine if teacher name exists
-                   bool TeacherNameFound = !string.IsNullOrWhiteSpace(teachername.Replace(',', ' '));
-                   long teacherID = -1;
-                   if (TeacherNameFound)
-                   {
-                       string[] name = teachername.Split(',');
-                       string lastname = name[0].Trim();
-                       string firstname = name[1].Trim();
+                    //Determine if teacher name exists
+                    bool TeacherNameFound = !string.IsNullOrWhiteSpace(teachername.Replace(',', ' '));
+                    long teacherID = -1;
+                    if (TeacherNameFound)
+                    {
+                        string[] name = teachername.Split(',');
+                        string lastname = name[0].Trim();
+                        string firstname = name[1].Trim();
 
-                       //get teacherID from teachername
-                       var teachers = db.Contacts.Where(s => s.FirstName == firstname && s.LastName == lastname).First();
-                       teacherID = teachers.ContactID;
-                   }
+                        //get teacherID from teachername
+                        var teachers = db.Contacts.Where(s => s.FirstName == firstname && s.LastName == lastname).First();
+                        teacherID = teachers.ContactID;
+                    }
 
-                   //get bookings ID from description and date
-                   var bkgs = (from bk in db.Bookings
-                               where bk.Date == bdate && bk.Description == description
-                               join mb in db.MasterBookings on bk.MasterBookingID equals mb.ID
-                               select new { bk.MasterBookingID, mb.ContactID }).ToList();
+                    //get bookings ID from description and date
+                    var bkgs = (from bk in db.Bookings
+                                where bk.Date == bdate && bk.Description == description
+                                join mb in db.MasterBookings on bk.MasterBookingID equals mb.ID
+                                select new { bk.MasterBookingID, mb.ContactID }).ToList();
 
-                   foreach (var bb in bkgs)
-                   {
-                       try
-                       {
-                           long id = Convert.ToInt64(bb.MasterBookingID);
-                           if (TeacherNameFound)
-                           {
-                               if (bb.ContactID == teacherID) IDs.Add(id);
-                           }
-                           else IDs.Add(id);
-                       }
-                       catch { }
-                   }
-                   return IDs;
-               }
+                    foreach (var bb in bkgs)
+                    {
+                        try
+                        {
+                            long id = Convert.ToInt64(bb.MasterBookingID);
+                            if (TeacherNameFound)
+                            {
+                                if (bb.ContactID == teacherID) IDs.Add(id);
+                            }
+                            else IDs.Add(id);
+                        }
+                        catch { }
+                    }
+                    return IDs;
+                }
             }
             catch (Exception ex)
             {
@@ -139,6 +139,49 @@ namespace RedboxAddin.DL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in ImportContacts: " + ex.Message);
+            }
+        }
+
+        public static string GetNoGoforContactID(long teacherID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.ContactDatas.FirstOrDefault(s => s.ContactID == teacherID);
+
+                    if (cd == null) return "";
+                    else return cd.NoGo;
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetNoGoforContactID: " + ex.Message);
+                return "";
+            }
+        }
+
+
+        public static string GetShortNameforSchoolID(long schoolID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.Schools.FirstOrDefault(s => s.ID == schoolID);
+
+                    if (cd == null) return "";
+                    else return cd.ShortName;
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetShortNameforSchoolID: " + ex.Message);
+                return "";
             }
         }
     }

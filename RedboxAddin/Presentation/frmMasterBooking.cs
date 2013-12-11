@@ -21,7 +21,8 @@ namespace RedboxAddin.Presentation
     public partial class frmMasterBooking : Form
     {
         RedBoxDB db;
-        long _masterBookingID;
+        long _masterBookingID = -1;
+        bool loading = false;
 
 
         public frmMasterBooking()
@@ -37,6 +38,7 @@ namespace RedboxAddin.Presentation
 
         private void frmNewRequest_Load(object sender, EventArgs e)
         {
+            loading = true;
             dgcBookings.DataSource = bindingSource1;
 
             dgcBookings.Hide();
@@ -51,8 +53,8 @@ namespace RedboxAddin.Presentation
                 Utils.PopulateTeacher(cmbTeacher);
                 Utils.PopulateTeacher(cmbRequestedTeacher);
 
-                if (_masterBookingID != null) LoadMasterBooking(_masterBookingID);
-
+                if (_masterBookingID != -1) LoadMasterBooking(_masterBookingID);
+                loading = false;
             }
             catch (Exception ex)
             {
@@ -60,6 +62,7 @@ namespace RedboxAddin.Presentation
             }
 
             LoadAvailabilityTable();
+            loading = false;
         }
 
         #region LoadControls
@@ -615,7 +618,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        
+
         #region buttons
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -727,12 +730,6 @@ namespace RedboxAddin.Presentation
 
         }
 
-        private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string test = cmbTeacher.Text;
-        }
-
-
         private void cmbBookingStatus_SelectedValueChanged(object sender, EventArgs e)
         {
             SetColours();
@@ -806,7 +803,40 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
-        
+
+
+        private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+
+            //check nogo status
+            try
+            {
+                long teacherID = Convert.ToInt64(cmbTeacher.SelectedValue);
+                long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
+                if (teacherID < 0 ) return;
+
+                //School school = cmbTeacher.SelectedItem as School;
+                string nogo = LINQmanager.GetNoGoforContactID(teacherID).ToLower();
+                if (nogo == "") return;
+                string shortname = LINQmanager.GetShortNameforSchoolID(schoolID).ToLower();
+                if (shortname == "") return;
+
+                if (nogo.Contains(shortname))
+                {
+                    MessageBox.Show(cmbTeacher.Text + " has a NoGo flagged for " + shortname, "NoGo Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in cmbTeacher_SelectedValueChanged: " + ex.Message);
+            }
+        }
+
+
+
+
 
 
 

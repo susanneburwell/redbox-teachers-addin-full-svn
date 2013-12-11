@@ -43,10 +43,6 @@ namespace RedboxAddin.Models
         public bool AskedFor { get; set; }
         public bool TrialDay { get; set; }
         public string Color { get; set; }
-
-
-
-
     }
 
     class RAvailability
@@ -71,11 +67,6 @@ namespace RedboxAddin.Models
         public string WedColor { get; set; }
         public string ThuColor { get; set; }
         public string FriColor { get; set; }
-        //public bool MonG { get; set; }
-        //public bool TueG { get; set; }
-        //public bool WedG { get; set; }
-        //public bool ThuG { get; set; }
-        //public bool FriG { get; set; }
     }
 
     class RLoad
@@ -91,7 +82,6 @@ namespace RedboxAddin.Models
 
     class RBookings
     {
-        
         public string SchoolName { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
@@ -99,21 +89,15 @@ namespace RedboxAddin.Models
         public string SchoolID { get; set; }
         public string Teacher { get; set; }
         public long MasterBookingID { get; set; }
+    }
 
-        //public string School { get; set; }
-        //public string KeyRef { get; set; }
-        //public string Teacher { get; set; }
-        //public string Days { get; set; }
-        //public string Pay { get; set; }
-        //public string Charge { get; set; }
-        //public string Monday { get; set; }
-        //public string Tuesday { get; set; }
-        //public string Wednesday { get; set; }
-        //public string Thursday { get; set; }
-        //public string Friday { get; set; }
-        //public string Margin { get; set; }
-        //public string Cost { get; set; }
-        //public string Net { get; set; }
+    class RDoubleBookings
+    {
+        public string ContactID { get; set; }
+        public DateTime Date { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Number { get; set; }
     }
 
     public class RNames
