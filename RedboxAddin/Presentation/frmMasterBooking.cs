@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Data.Linq;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
+using RedboxAddin;
 using RedboxAddin.Models;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
@@ -42,7 +43,7 @@ namespace RedboxAddin.Presentation
             dgcBookings.DataSource = bindingSource1;
 
             dgcBookings.Hide();
-            dgcAvail.Hide();
+            availabilityGrid1.Hide();
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -314,6 +315,8 @@ namespace RedboxAddin.Presentation
 
         private void LoadAvailabilityTable()
         {
+            
+           
             try
             {
                 //Get first day of week
@@ -323,17 +326,19 @@ namespace RedboxAddin.Presentation
                 DateTime monday = input.AddDays(delta).Date;
 
                 string wheresql = WHERESQL();
-                dgcAvail.DataSource = new DBManager().GetAvailability(monday, wheresql);
-                dgcAvailView.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
-                dgcAvailView.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
-                dgcAvailView.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
-                dgcAvailView.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
-                dgcAvailView.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
-                RestoreLayout();
+                availabilityGrid1.LoadTable(wheresql, monday);
+
+                //dgcAvail.DataSource = new DBManager().GetAvailability(monday, wheresql);
+                //dgcAvailView.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
+                //dgcAvailView.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
+                //dgcAvailView.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
+                //dgcAvailView.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
+                //dgcAvailView.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
+                //RestoreLayout();
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in LoadTable: " + ex.Message);
+                Debug.DebugMessage(2, "Error in LoadAvailabilityTable: " + ex.Message);
             }
         }
 
@@ -626,7 +631,7 @@ namespace RedboxAddin.Presentation
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             if (dgcBookings.Visible) RefreshDGC();
-            if (dgcAvail.Visible) LoadAvailabilityTable();
+            if (availabilityGrid1.Visible) LoadAvailabilityTable();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -760,14 +765,14 @@ namespace RedboxAddin.Presentation
             {
                 btnView.Text = "Edit Daily Bookings";
                 LoadAvailabilityTable();
-                dgcAvail.Show();
-                dgcAvail.Dock = DockStyle.Fill;
+                availabilityGrid1.Show();
+                availabilityGrid1.Dock = DockStyle.Fill;
                 dgcBookings.Hide();
             }
             else
             {
                 btnView.Text = "View Availability";
-                dgcAvail.Hide();
+                availabilityGrid1.Hide();
                 BindGrid();
                 dgcBookings.Dock = DockStyle.Fill;
                 dgcBookings.Show();
@@ -777,7 +782,7 @@ namespace RedboxAddin.Presentation
         private void CheckedChanged(object sender, EventArgs e)
         {
             UpdateDescription();
-            if (dgcAvail.Visible) LoadAvailabilityTable();
+            if (availabilityGrid1.Visible) LoadAvailabilityTable();
             SetColours();
         }
 

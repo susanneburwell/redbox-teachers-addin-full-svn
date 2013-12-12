@@ -18,6 +18,9 @@ namespace RedboxAddin.UC
 {
     public partial class AvailabilityGrid : UserControl
     {
+
+        public EventHandler DoubleClick;
+
         public AvailabilityGrid()
         {
             InitializeComponent();
@@ -186,6 +189,15 @@ namespace RedboxAddin.UC
                 Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
             }
         }
+
+        private void gridControl1_DoubleClick(object sender, EventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.DoubleClick != null)
+                this.DoubleClick(this, e);
+        }
+
+      
 
 
     }

@@ -98,21 +98,6 @@
             this.btnKS1 = new System.Windows.Forms.Button();
             this.btnKS2 = new System.Windows.Forms.Button();
             this.panelGrids = new System.Windows.Forms.Panel();
-            this.dgcAvail = new DevExpress.XtraGrid.GridControl();
-            this.dgcAvailView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dgcBookings = new DevExpress.XtraGrid.GridControl();
             this.ViewBookings = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn0 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -125,14 +110,13 @@
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panelGrids.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgcAvail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgcAvailView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgcBookings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBookings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -909,189 +893,13 @@
             // 
             // panelGrids
             // 
-            this.panelGrids.Controls.Add(this.dgcAvail);
+            this.panelGrids.Controls.Add(this.availabilityGrid1);
             this.panelGrids.Controls.Add(this.dgcBookings);
             this.panelGrids.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrids.Location = new System.Drawing.Point(3, 333);
             this.panelGrids.Name = "panelGrids";
             this.panelGrids.Size = new System.Drawing.Size(1002, 361);
             this.panelGrids.TabIndex = 6;
-            // 
-            // dgcAvail
-            // 
-            this.dgcAvail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgcAvail.Location = new System.Drawing.Point(686, 0);
-            this.dgcAvail.MainView = this.dgcAvailView;
-            this.dgcAvail.Name = "dgcAvail";
-            this.dgcAvail.Size = new System.Drawing.Size(316, 361);
-            this.dgcAvail.TabIndex = 6;
-            this.dgcAvail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dgcAvailView});
-            this.dgcAvail.DoubleClick += new System.EventHandler(this.dgcAvail_DoubleClick);
-            // 
-            // dgcAvailView
-            // 
-            this.dgcAvailView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn2,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn9,
-            this.gridColumn10,
-            this.gridColumn11,
-            this.gridColumn12,
-            this.gridColumn13,
-            this.gridColumn14,
-            this.gridColumn15,
-            this.gridColumn16,
-            this.gridColumn17});
-            this.dgcAvailView.GridControl = this.dgcAvail;
-            this.dgcAvailView.Name = "dgcAvailView";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Teacher";
-            this.gridColumn2.FieldName = "Teacher";
-            this.gridColumn2.MaxWidth = 200;
-            this.gridColumn2.MinWidth = 150;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.ReadOnly = true;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 150;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Live";
-            this.gridColumn6.FieldName = "Live";
-            this.gridColumn6.MaxWidth = 75;
-            this.gridColumn6.MinWidth = 50;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.OptionsColumn.ReadOnly = true;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 1;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Wants";
-            this.gridColumn7.FieldName = "Wants";
-            this.gridColumn7.MaxWidth = 85;
-            this.gridColumn7.MinWidth = 75;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.OptionsColumn.ReadOnly = true;
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 2;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Yr Group";
-            this.gridColumn8.FieldName = "YrGroup";
-            this.gridColumn8.MaxWidth = 70;
-            this.gridColumn8.MinWidth = 50;
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.OptionsColumn.ReadOnly = true;
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 3;
-            this.gridColumn8.Width = 70;
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "QTS";
-            this.gridColumn9.FieldName = "QTS";
-            this.gridColumn9.MaxWidth = 40;
-            this.gridColumn9.MinWidth = 40;
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.OptionsColumn.AllowEdit = false;
-            this.gridColumn9.OptionsColumn.ReadOnly = true;
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
-            this.gridColumn9.Width = 40;
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Caption = "P of A";
-            this.gridColumn10.FieldName = "PofA";
-            this.gridColumn10.MaxWidth = 40;
-            this.gridColumn10.MinWidth = 40;
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.OptionsColumn.ReadOnly = true;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 5;
-            this.gridColumn10.Width = 40;
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "CRB";
-            this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.OptionsColumn.AllowEdit = false;
-            this.gridColumn11.OptionsColumn.ReadOnly = true;
-            this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 6;
-            // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "NoGo";
-            this.gridColumn12.FieldName = "NoGo";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.OptionsColumn.AllowEdit = false;
-            this.gridColumn12.OptionsColumn.ReadOnly = true;
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 7;
-            // 
-            // gridColumn13
-            // 
-            this.gridColumn13.Caption = "Mon";
-            this.gridColumn13.FieldName = "Monday";
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.OptionsColumn.AllowEdit = false;
-            this.gridColumn13.OptionsColumn.ReadOnly = true;
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 8;
-            // 
-            // gridColumn14
-            // 
-            this.gridColumn14.Caption = "Tue";
-            this.gridColumn14.FieldName = "Tuesday";
-            this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.OptionsColumn.AllowEdit = false;
-            this.gridColumn14.OptionsColumn.ReadOnly = true;
-            this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 9;
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Wed";
-            this.gridColumn15.FieldName = "Wednesday";
-            this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.OptionsColumn.AllowEdit = false;
-            this.gridColumn15.OptionsColumn.ReadOnly = true;
-            this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 10;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "Thur";
-            this.gridColumn16.FieldName = "Thursday";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.OptionsColumn.AllowEdit = false;
-            this.gridColumn16.OptionsColumn.ReadOnly = true;
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 11;
-            // 
-            // gridColumn17
-            // 
-            this.gridColumn17.Caption = "Fri";
-            this.gridColumn17.FieldName = "Friday";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.OptionsColumn.AllowEdit = false;
-            this.gridColumn17.OptionsColumn.ReadOnly = true;
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 12;
             // 
             // dgcBookings
             // 
@@ -1221,6 +1029,15 @@
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.availabilityGrid1.Location = new System.Drawing.Point(697, 0);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(305, 361);
+            this.availabilityGrid1.TabIndex = 6;
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1244,8 +1061,6 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.panelGrids.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgcAvail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgcAvailView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgcBookings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBookings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
@@ -1318,21 +1133,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnSave;
-        private DevExpress.XtraGrid.GridControl dgcAvail;
-        private DevExpress.XtraGrid.Views.Grid.GridView dgcAvailView;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chkSEN;
@@ -1354,5 +1154,6 @@
         private System.Windows.Forms.ComboBox cmbBookingStatus;
         private System.Windows.Forms.CheckBox chkPPL;
         private System.Windows.Forms.Label lblColor;
+        private RedboxAddin.UC.AvailabilityGrid availabilityGrid1;
     }
 }
