@@ -31,13 +31,25 @@ namespace RedboxAddin.Presentation
             //db = new RedBoxDB(CONNSTR);
             //gridControl1.DataSource = bindingSource1;
 
-            //createGridViewConditions to set colours based on grid view;
-            createGridViewConditions(this.Mon, "MonColor");
-            createGridViewConditions(this.Tue, "TueColor");
-            createGridViewConditions(this.Wed, "WedColor");
-            createGridViewConditions(this.Thur, "ThuColor");
-            createGridViewConditions(this.Fri, "FriColor");
 
+            //Not used any more
+            //We now use gridView1_CustomDrawCell as it is quicker and more flexible.
+            //createGridViewConditions to set colours based on grid view;
+            //createGridViewConditions(this.Mon, "MonColor");
+            //createGridViewConditions(this.Tue, "TueColor");
+            //createGridViewConditions(this.Wed, "WedColor");
+            //createGridViewConditions(this.Thur, "ThuColor");
+            //createGridViewConditions(this.Fri, "FriColor");
+            //**********************************
+
+            //Colour name if guaranteed
+            StyleFormatCondition st1 = new StyleFormatCondition();
+            st1.Appearance.BackColor = System.Drawing.Color.LightGreen;
+            st1.Appearance.Options.UseBackColor = true;
+            st1.Column = this.Teacher; // this.Mon;
+            st1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+            st1.Expression =  "!IsNullOrEmpty([MonG])";
+            this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1});
 
             RestoreLayout();
             LoadTable();
@@ -132,7 +144,7 @@ namespace RedboxAddin.Presentation
             {
                 DBManager dbm = new DBManager();
                 List<RDoubleBookings> listDblB = dbm.CheckDoubleBookings();
-                if (listDblB.Count > 0 ) 
+                if (listDblB.Count > 0)
                 {
                     lblDblBkgs.Visible = true;
                     btnDblBkgs.Visible = true;
@@ -145,7 +157,7 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in CheckDoubleBookings: " + ex.Message );
+                Debug.DebugMessage(2, "Error in CheckDoubleBookings: " + ex.Message);
             }
         }
 
@@ -229,7 +241,7 @@ namespace RedboxAddin.Presentation
 
         private void createGridViewConditions(GridColumn gridColumn, string expName)
         {
-            //Foreground: Red , Purple, Black
+                        //Foreground: Red , Purple, Black
             //Background: yello, gray, light blue, darkblue , purple
 
             //Foreground: Red 
@@ -360,6 +372,90 @@ namespace RedboxAddin.Presentation
                 fdb.Show();
             }
             else { fdb.BringToFront(); }
+        }
+
+        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            //this paints the grid
+            try
+            {
+                string columnname = e.Column.FieldName;
+                string expname = "";//"MonColor";
+
+                switch (columnname)
+                {
+                    case "Monday":
+                        expname = "MonColor";
+                        break;
+                    case "Tuesday":
+                        expname = "TueColor";
+                        break;
+                    case "Wednesday":
+                        expname = "WedColor";
+                        break;
+                    case "Thursday":
+                        expname = "ThuColor";
+                        break;
+                    case "Friday":
+                        expname = "FriColor";
+                        break;
+
+                    default:
+                        return;
+                        break;
+                }
+
+                int myRow = e.RowHandle;
+                string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
+                string backcolor = myVal.Substring(5, 4);
+                string forecolor = myVal.Substring(0, 4);
+
+                switch (backcolor)
+                {
+                    case "yell":
+                        e.Appearance.BackColor = System.Drawing.Color.Yellow;
+                        break;
+                    case "gray":
+                        e.Appearance.BackColor = System.Drawing.Color.LightGray;
+                        break;
+                    case "lblu":
+                        e.Appearance.BackColor = System.Drawing.Color.LightBlue;
+                        break;
+                    case "dblu":
+                        e.Appearance.BackColor = System.Drawing.Color.DarkBlue;
+                        break;
+                    case "purp":
+                        e.Appearance.BackColor = System.Drawing.Color.Violet;
+                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+
+                        break;
+                    default:
+                        break;
+                }
+
+                switch (forecolor)
+                {
+                    case "redd":
+                        e.Appearance.BackColor = System.Drawing.Color.Red;
+                        break;
+                    case "purp":
+                        e.Appearance.BackColor = System.Drawing.Color.Purple;
+                        break;
+                    case "blck":
+                        e.Appearance.BackColor = System.Drawing.Color.Black;
+                        break;
+                  
+                    default:
+                        break;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
+            }
         }
 
 

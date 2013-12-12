@@ -43,6 +43,7 @@ namespace RedboxAddin.Models
         public bool AskedFor { get; set; }
         public bool TrialDay { get; set; }
         public string Color { get; set; }
+        public string BookingStatus { get; set; }
     }
 
     class RAvailability

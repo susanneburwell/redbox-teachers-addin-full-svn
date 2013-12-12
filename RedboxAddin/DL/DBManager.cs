@@ -618,6 +618,7 @@ namespace RedboxAddin.DL
                         objBkg.AskedFor = Utils.CheckBool(dr["AskedFor"]);
                         objBkg.TrialDay = Utils.CheckBool(dr["TrialDay"]);
                         objBkg.Color = Utils.CheckString(dr["Color"]);
+                        objBkg.BookingStatus = Utils.CheckString(dr["BookingStatus"]);
 
                         return objBkg;
                     }
@@ -2311,7 +2312,7 @@ namespace RedboxAddin.DL
 
         private string GetMasterBookingInfoSQL(long masterBookingID)
         {
-            string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, " +
+            string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, MasterBookings.BookingStatus," +
                             "LastName+', '+FirstName as TeacherName, Details, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
                             "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, TA,SEN, QNN, NN, PPL, " +
                             "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName, Color " +
@@ -2355,7 +2356,7 @@ namespace RedboxAddin.DL
 
         private string GetDoubleBookingsSQL(string teacherID, string ddate)
         {
-            string SQL = "SELECT [Schools].SchoolName, Bookings.Date, Contacts.LastName+', '+Contacts.FirstName as FullName, " +
+            string SQL = "SELECT [Schools].SchoolName, Bookings.Date, Contacts.LastName+', '+Contacts.FirstName as FullName,  " +
                         "[Bookings].Description, MasterBookings.ID as MasterBookingID, Contacts.contactID, Schools.ID as SchoolID " +
                         "FROM MasterBookings " +
                         "Left JOIN [Bookings] ON MasterBookingID = MasterBookings.ID " +

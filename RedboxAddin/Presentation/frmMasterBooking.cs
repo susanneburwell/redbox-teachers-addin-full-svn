@@ -146,6 +146,7 @@ namespace RedboxAddin.Presentation
                 radTD.Checked = rMB.TrialDay;
 
                 lblColor.Text = rMB.Color;
+                cmbBookingStatus.Text = rMB.BookingStatus;
 
             }
             catch (Exception ex)
@@ -203,7 +204,7 @@ namespace RedboxAddin.Presentation
                 MasterBooking mb;
                 //If this is a new request - create a new item
 
-                if (_masterBookingID == 0) mb = new MasterBooking();
+                if (_masterBookingID <1) mb = new MasterBooking();
 
                 else mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
 
@@ -238,6 +239,7 @@ namespace RedboxAddin.Presentation
                 mb.Charge = Utils.CheckDecimal(txtCharge.Text);
                 mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                 mb.Color = lblColor.Text;
+                mb.BookingStatus = cmbBookingStatus.Text;
 
                 //If Teacher named
                 mb.NameGiven = radNG.Checked;
@@ -247,7 +249,7 @@ namespace RedboxAddin.Presentation
                 else mb.LinkedTeacherID = -1;
 
                 //If this is not a new booking, submit changes and exit
-                if (_masterBookingID != 0)
+                if (_masterBookingID >0 )
                 {
                     db.SubmitChanges();
                     return true;

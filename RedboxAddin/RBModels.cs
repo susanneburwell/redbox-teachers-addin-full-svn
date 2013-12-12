@@ -4503,7 +4503,7 @@ namespace RedboxAddin
 		
 		private bool _PPL;
 		
-		private short _BookingStatus;
+		private string _BookingStatus;
 		
 		private string _Color;
 		
@@ -4581,7 +4581,7 @@ namespace RedboxAddin
     partial void OnSENChanged();
     partial void OnPPLChanging(bool value);
     partial void OnPPLChanged();
-    partial void OnBookingStatusChanging(short value);
+    partial void OnBookingStatusChanging(string value);
     partial void OnBookingStatusChanged();
     partial void OnColorChanging(string value);
     partial void OnColorChanged();
@@ -5273,8 +5273,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingStatus", DbType="SmallInt NOT NULL")]
-		public short BookingStatus
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingStatus", DbType="NVarChar(20)")]
+		public string BookingStatus
 		{
 			get
 			{

@@ -258,6 +258,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RBModels2.cs" />
+    <Compile Include="UC\AvailabilityGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\AvailabilityGrid.Designer.cs">
+      <DependentUpon>AvailabilityGrid.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -368,6 +374,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\AvailabilityGrid.resx">
+      <DependentUpon>AvailabilityGrid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
