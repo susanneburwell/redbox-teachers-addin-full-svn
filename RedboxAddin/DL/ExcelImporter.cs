@@ -108,7 +108,61 @@ namespace RedboxAddin.DL
             }
         }
 
-        public static void Import(string filepath)
+        public static string GetNameForRow(string filepath, int firstrownumber, int lastrownumber)
+        {
+
+            //The connection string to the excel file
+            String connStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filepath + ";Extended Properties=Excel 12.0;";
+
+            //Get the sheet names
+            IEnumerable<string> sheets = GetExcelSheetNames(filepath);
+
+
+            //The connection to that file
+            OleDbConnection conn = new OleDbConnection(connStr);
+
+            //The query (Selects all from SHEET1)
+            string strSQL = "SELECT * FROM [" + sheets.First() + "]"; //;  //[{0}$]  + sheets.First()
+
+            //The command (executes select all)
+            OleDbCommand cmd = new OleDbCommand(/*The query*/strSQL, /*The connection*/conn);
+            DataTable dt = new DataTable();
+            conn.Open();
+
+            try
+            {
+                //Read in the data from the specified Excel
+                OleDbDataReader dr1 = cmd.ExecuteReader();
+
+                if (dr1.Read())
+                {
+                    dt.Load(dr1);
+                }
+
+                //Gets the number of columns  
+                int iColCount = dt.Columns.Count;
+
+                //Get the number of rows
+                int iRowCount = dt.Rows.Count;
+
+                string fullname1 = "";
+                string fullname2 = "";
+                try { fullname1 = dt.Rows[firstrownumber][0].ToString(); }
+                catch { }
+                try { fullname2 = dt.Rows[lastrownumber][0].ToString(); }
+                catch { }
+
+                return fullname1 + "/" + fullname2;
+
+            }
+            catch (Exception ex1)
+            {
+                Debug.DebugMessage(2, "Error in GetNameForRow: " + ex1.Message);
+                return "";
+            }
+        }
+
+        public static void Import(string filepath, bool setTA, bool setTeacher, bool setCurrent, int startrow, int endrow)
         {
 
             //The connection string to the excel file
@@ -173,7 +227,7 @@ namespace RedboxAddin.DL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
 
-                    for (int iRow = 0; iRow < 285; iRow++)
+                    for (int iRow = startrow ; iRow < endrow; iRow++)
                     {
                         try
                         {
@@ -202,6 +256,9 @@ namespace RedboxAddin.DL
                                 cd.Teacher = Utils.CheckBool(dt.Rows[iRow][26].ToString());
                                 cd.TA = Utils.CheckBool(dt.Rows[iRow][27].ToString());
                                 cd.DayRate = Convert.ToDecimal("135");
+                                if (setTA) cd.TA = true;
+                                if (setTeacher) cd.Teacher = true;
+                                if (setCurrent) cd.Current = true;
 
 
                                 //Find SEN, QNN, TA, in year Group
@@ -537,5 +594,7 @@ namespace RedboxAddin.DL
                 }
             }
         }
+    
+    
     }
 }

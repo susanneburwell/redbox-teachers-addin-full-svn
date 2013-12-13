@@ -906,7 +906,7 @@ namespace RedboxAddin
             openFileDialog1.FileName = "*.xls";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ExcelImporter.Import(openFileDialog1.FileName);
+                ExcelImporter.Import(openFileDialog1.FileName,false,false,false,0,280);
             }
         }
 

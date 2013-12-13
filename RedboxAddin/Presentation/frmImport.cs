@@ -28,13 +28,9 @@ namespace RedboxAddin.Presentation
                 openFileDialog1.FileName = "*.xls";
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    grpBox.Visible = true;
-                    List<string> list = ExcelImporter.GetColumnNames(openFileDialog1.FileName);
-                    lblCol1.Text = list[0];
-                    lblCol2.Text = list[1];
-                    lblCol3.Text = list[2];
-                    lblCol4.Text = list[3];
-                    lblCol5.Text = list[4];
+                    lblFile.Text = openFileDialog1.FileName;
+                    //List<string> list = ExcelImporter.GetColumnNames(openFileDialog1.FileName);
+                    
                 }
             }
             catch (Exception ex)
@@ -78,6 +74,14 @@ namespace RedboxAddin.Presentation
         private void CalculateSQL()
         {
 
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            string names = ExcelImporter.GetNameForRow(lblFile.Text, Convert.ToInt32(numFirst.Value), Convert.ToInt32(numLast.Value));
+            string[] name = names.Split('/');
+            lblFirst.Text = name[0];
+            lblL.Text = name[1];
         }
 
 

@@ -145,4 +145,7 @@ namespace RedboxAddin.Models
         public string ColumnCaption { get; set; }
         public string Description { get; set; }
     }
+
+    
+
 }
