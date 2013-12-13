@@ -19,10 +19,12 @@ namespace RedboxAddin.Presentation
     public partial class frmAvailabilitySheet : Form
     {
         // RedBoxDB db;
+        
 
         public frmAvailabilitySheet()
         {
             InitializeComponent();
+            availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
         private void frmAvailabilitySheet_Load(object sender, EventArgs e)
@@ -43,15 +45,16 @@ namespace RedboxAddin.Presentation
             //**********************************
 
             //Colour name if guaranteed
-            StyleFormatCondition st1 = new StyleFormatCondition();
-            st1.Appearance.BackColor = System.Drawing.Color.LightGreen;
-            st1.Appearance.Options.UseBackColor = true;
-            st1.Column = this.Teacher; // this.Mon;
-            st1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st1.Expression =  "!IsNullOrEmpty([MonG])";
-            this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1});
+            //StyleFormatCondition st1 = new StyleFormatCondition();
+            //st1.Appearance.BackColor = System.Drawing.Color.LightGreen;
+            //st1.Appearance.Options.UseBackColor = true;
+            //st1.Column = this.Teacher; // this.Mon;
+            //st1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+            //st1.Expression = "!IsNullOrEmpty([MonG])";
+            //this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1 });
 
-            RestoreLayout();
+            //RestoreLayout();
+            dtFrom.Value = Utils.GetFirstDayoftheWeek(DateTime.Today);
             LoadTable();
             CheckDoubleBookingsTimer1.Interval = 250;
             CheckDoubleBookingsTimer1.Enabled = true;
@@ -63,6 +66,8 @@ namespace RedboxAddin.Presentation
             try
             {
                 this.UseWaitCursor = true;
+                string wheresql = WHERESQL();
+
                 Application.DoEvents();
                 //Get first day of week
                 DateTime input = dtFrom.Value;
@@ -70,15 +75,17 @@ namespace RedboxAddin.Presentation
                 if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
-                string wheresql = WHERESQL();
-                DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
-                //bindingSource1.DataSource = msgDs;
-                gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
-                gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
-                gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
-                gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
-                gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
-                gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
+                availabilityGrid1.LoadTable(wheresql, monday);
+
+                
+                //DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
+                ////bindingSource1.DataSource = msgDs;
+                //gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
+                //gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
+                //gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
+                //gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
+                //gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
+                //gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
                 this.UseWaitCursor = false;
             }
@@ -103,6 +110,7 @@ namespace RedboxAddin.Presentation
                 if (chkQNN.Checked) SQL += " OR [QNN]  = 'true' ";
                 if (chkNN.Checked) SQL += " OR [NN]  = 'true' ";
                 if (chkSEN.Checked) SQL += " OR [SEN]  = 'true' ";
+                if (chkTeacher.Checked) SQL += " OR [Teacher]  = 'true' ";
 
                 //Get Year Groups
                 string SQL2 = "";
@@ -114,6 +122,8 @@ namespace RedboxAddin.Presentation
                 if (chkYr4.Checked) SQL2 += " AND [Yr4] = 'true' ";
                 if (chkYr5.Checked) SQL2 += " AND [Yr5] = 'true' ";
                 if (chkYr6.Checked) SQL2 += " AND [Yr6] = 'true' ";
+                if (chkLongTerm.Checked) SQL2 += " AND [LT] = 'true' ";
+                if (chkGuaranteed.Checked) SQL2 += " AND G1.gar > 0 ";
 
 
                 if (SQL == "")
@@ -146,13 +156,14 @@ namespace RedboxAddin.Presentation
                 List<RDoubleBookings> listDblB = dbm.CheckDoubleBookings();
                 if (listDblB.Count > 0)
                 {
-                    lblDblBkgs.Visible = true;
                     btnDblBkgs.Visible = true;
+                    flashtimer1.Interval = 500;
+                    flashtimer1.Enabled = true;
                 }
                 else
                 {
-                    lblDblBkgs.Visible = false;
                     btnDblBkgs.Visible = false;
+                    flashtimer1.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -165,7 +176,8 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
+                availabilityGrid1.RestoreLayout();
+                //gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
             }
             catch (Exception) { }
         }
@@ -174,19 +186,21 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
+                availabilityGrid1.SaveLayout();
+                //gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
             }
             catch (Exception) { }
         }
 
         private void frmAvailabilitySheet_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveLayout();
+            //SaveLayout();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadTable();
+            CheckDoubleBookings();
         }
 
         private void CheckedChanged(object sender, EventArgs e)
@@ -194,28 +208,22 @@ namespace RedboxAddin.Presentation
             LoadTable();
         }
 
-        private void gridControl1_DoubleClick(object sender, EventArgs e)
+        protected void availabilityGrid_DblClick(object sender, EventArgs e)
         {
             try
             {
-                Point pt = gridControl1.PointToClient(Control.MousePosition);
-                GridHitInfo info = gridView1.CalcHitInfo(pt);
-                if (info.InRow || info.InRowCell)
+                REventArgs e1 = e as REventArgs;
+
+                string teacher = e1.Teacher;
+                string description = e1.Description;
+                string colCaption = e1.ColumnCaption;
+
+                List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+
+                if (MasterBookingIDs.Count > 0)
                 {
-                    string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                    //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
-
-                    string teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
-                    string description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
-
-                    List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
-
-                    if (MasterBookingIDs.Count > 0)
-                    {
-                        frmMasterBooking fq = new frmMasterBooking(MasterBookingIDs[0]);
-                        fq.Show();
-                    }
-
+                    frmMasterBooking fq = new frmMasterBooking(MasterBookingIDs[0]);
+                    fq.Show();
                 }
             }
             catch (Exception ex)
@@ -224,7 +232,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-
+       
         private void btnBack_Click(object sender, EventArgs e)
         {
 
@@ -241,7 +249,7 @@ namespace RedboxAddin.Presentation
 
         private void createGridViewConditions(GridColumn gridColumn, string expName)
         {
-                        //Foreground: Red , Purple, Black
+            //Foreground: Red , Purple, Black
             //Background: yello, gray, light blue, darkblue , purple
 
             //Foreground: Red 
@@ -311,7 +319,7 @@ namespace RedboxAddin.Presentation
             st8.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
             st8.Expression = "Substring([" + expName + "],5,4)= \'purp\'";
 
-            this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1, st2, st3, st4, st5, st6, st7, st8 });
+           // this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1, st2, st3, st4, st5, st6, st7, st8 });
 
 
             //st2.Appearance.BackColor = System.Drawing.Color.Purple;
@@ -374,89 +382,100 @@ namespace RedboxAddin.Presentation
             else { fdb.BringToFront(); }
         }
 
-        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        private void flashtimer1_Tick(object sender, EventArgs e)
         {
-            //this paints the grid
-            try
+            if (btnDblBkgs.BackColor == Color.Crimson)
             {
-                string columnname = e.Column.FieldName;
-                string expname = "";//"MonColor";
-
-                switch (columnname)
-                {
-                    case "Monday":
-                        expname = "MonColor";
-                        break;
-                    case "Tuesday":
-                        expname = "TueColor";
-                        break;
-                    case "Wednesday":
-                        expname = "WedColor";
-                        break;
-                    case "Thursday":
-                        expname = "ThuColor";
-                        break;
-                    case "Friday":
-                        expname = "FriColor";
-                        break;
-
-                    default:
-                        return;
-                        break;
-                }
-
-                int myRow = e.RowHandle;
-                string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
-                string backcolor = myVal.Substring(5, 4);
-                string forecolor = myVal.Substring(0, 4);
-
-                switch (backcolor)
-                {
-                    case "yell":
-                        e.Appearance.BackColor = System.Drawing.Color.Yellow;
-                        break;
-                    case "gray":
-                        e.Appearance.BackColor = System.Drawing.Color.LightGray;
-                        break;
-                    case "lblu":
-                        e.Appearance.BackColor = System.Drawing.Color.LightBlue;
-                        break;
-                    case "dblu":
-                        e.Appearance.BackColor = System.Drawing.Color.DarkBlue;
-                        break;
-                    case "purp":
-                        e.Appearance.BackColor = System.Drawing.Color.Violet;
-                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-
-                        break;
-                    default:
-                        break;
-                }
-
-                switch (forecolor)
-                {
-                    case "redd":
-                        e.Appearance.BackColor = System.Drawing.Color.Red;
-                        break;
-                    case "purp":
-                        e.Appearance.BackColor = System.Drawing.Color.Purple;
-                        break;
-                    case "blck":
-                        e.Appearance.BackColor = System.Drawing.Color.Black;
-                        break;
-                  
-                    default:
-                        break;
-                }
-
-
-
+                btnDblBkgs.BackColor = Color.Orange;
             }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
-            }
+            else btnDblBkgs.BackColor = Color.Crimson;
         }
+
+       
+
+        //private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        //{
+        //    //this paints the grid
+        //    try
+        //    {
+        //        string columnname = e.Column.FieldName;
+        //        string expname = "";//"MonColor";
+
+        //        switch (columnname)
+        //        {
+        //            case "Monday":
+        //                expname = "MonColor";
+        //                break;
+        //            case "Tuesday":
+        //                expname = "TueColor";
+        //                break;
+        //            case "Wednesday":
+        //                expname = "WedColor";
+        //                break;
+        //            case "Thursday":
+        //                expname = "ThuColor";
+        //                break;
+        //            case "Friday":
+        //                expname = "FriColor";
+        //                break;
+
+        //            default:
+        //                return;
+        //                break;
+        //        }
+
+        //        int myRow = e.RowHandle;
+        //        string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
+        //        string backcolor = myVal.Substring(5, 4);
+        //        string forecolor = myVal.Substring(0, 4);
+
+        //        switch (backcolor)
+        //        {
+        //            case "yell":
+        //                e.Appearance.BackColor = System.Drawing.Color.Yellow;
+        //                break;
+        //            case "gray":
+        //                e.Appearance.BackColor = System.Drawing.Color.LightGray;
+        //                break;
+        //            case "lblu":
+        //                e.Appearance.BackColor = System.Drawing.Color.LightBlue;
+        //                break;
+        //            case "dblu":
+        //                e.Appearance.BackColor = System.Drawing.Color.DarkBlue;
+        //                break;
+        //            case "purp":
+        //                e.Appearance.BackColor = System.Drawing.Color.Violet;
+        //                e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+
+        //                break;
+        //            default:
+        //                break;
+        //        }
+
+        //        switch (forecolor)
+        //        {
+        //            case "redd":
+        //                e.Appearance.BackColor = System.Drawing.Color.Red;
+        //                break;
+        //            case "purp":
+        //                e.Appearance.BackColor = System.Drawing.Color.Purple;
+        //                break;
+        //            case "blck":
+        //                e.Appearance.BackColor = System.Drawing.Color.Black;
+        //                break;
+
+        //            default:
+        //                break;
+        //        }
+
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
+        //    }
+        //}
 
 
     }

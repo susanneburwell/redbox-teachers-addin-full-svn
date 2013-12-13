@@ -40,6 +40,7 @@
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDblBkgs = new System.Windows.Forms.Button();
             this.lblColor = new System.Windows.Forms.Label();
             this.lblBooking = new System.Windows.Forms.Label();
             this.cmbBookingStatus = new System.Windows.Forms.ComboBox();
@@ -98,6 +99,7 @@
             this.btnKS1 = new System.Windows.Forms.Button();
             this.btnKS2 = new System.Windows.Forms.Button();
             this.panelGrids = new System.Windows.Forms.Panel();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.dgcBookings = new DevExpress.XtraGrid.GridControl();
             this.ViewBookings = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn0 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -110,7 +112,7 @@
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
+            this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -213,6 +215,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnDblBkgs);
             this.panel2.Controls.Add(this.lblColor);
             this.panel2.Controls.Add(this.lblBooking);
             this.panel2.Controls.Add(this.cmbBookingStatus);
@@ -252,6 +255,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1002, 324);
             this.panel2.TabIndex = 1;
+            // 
+            // btnDblBkgs
+            // 
+            this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
+            this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
+            this.btnDblBkgs.Location = new System.Drawing.Point(859, 259);
+            this.btnDblBkgs.Name = "btnDblBkgs";
+            this.btnDblBkgs.Size = new System.Drawing.Size(134, 52);
+            this.btnDblBkgs.TabIndex = 106;
+            this.btnDblBkgs.Text = "Double Bookings Found";
+            this.btnDblBkgs.UseVisualStyleBackColor = false;
+            this.btnDblBkgs.Visible = false;
+            this.btnDblBkgs.Click += new System.EventHandler(this.btnDblBkgs_Click);
             // 
             // lblColor
             // 
@@ -310,7 +326,7 @@
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.Location = new System.Drawing.Point(722, 286);
+            this.btnView.Location = new System.Drawing.Point(692, 286);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(115, 22);
             this.btnView.TabIndex = 99;
@@ -901,6 +917,15 @@
             this.panelGrids.Size = new System.Drawing.Size(1002, 361);
             this.panelGrids.TabIndex = 6;
             // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.availabilityGrid1.Location = new System.Drawing.Point(697, 0);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(305, 361);
+            this.availabilityGrid1.TabIndex = 6;
+            // 
             // dgcBookings
             // 
             this.dgcBookings.Dock = System.Windows.Forms.DockStyle.Left;
@@ -1029,14 +1054,10 @@
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
-            // availabilityGrid1
+            // flashtimer1
             // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.availabilityGrid1.Location = new System.Drawing.Point(697, 0);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(305, 361);
-            this.availabilityGrid1.TabIndex = 6;
+            this.flashtimer1.Interval = 500;
+            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
             // frmMasterBooking
             // 
@@ -1155,5 +1176,7 @@
         private System.Windows.Forms.CheckBox chkPPL;
         private System.Windows.Forms.Label lblColor;
         private RedboxAddin.UC.AvailabilityGrid availabilityGrid1;
+        private System.Windows.Forms.Timer flashtimer1;
+        private System.Windows.Forms.Button btnDblBkgs;
     }
 }

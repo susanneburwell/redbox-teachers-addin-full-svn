@@ -51,6 +51,7 @@
             this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -79,6 +80,7 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.label3);
             this.panelTop.Controls.Add(this.btnRefresh);
             this.panelTop.Controls.Add(this.label2);
             this.panelTop.Controls.Add(this.label1);
@@ -102,17 +104,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 62);
+            this.label2.Location = new System.Drawing.Point(37, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 16);
+            this.label2.Size = new System.Drawing.Size(312, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "(Double click to open booking)";
+            this.label2.Text = "2. Double click the booking in the lower table to edit.";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 20);
+            this.label1.Location = new System.Drawing.Point(21, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 20);
             this.label1.TabIndex = 0;
@@ -260,6 +262,15 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(37, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(427, 16);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "1. Select the Teacher in the top table to see bookings in the lower table.";
+            // 
             // frmViewDoubleBookings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,5 +316,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn FullName;
         private DevExpress.XtraGrid.Columns.GridColumn Description;
         private DevExpress.XtraGrid.Columns.GridColumn MasterBookingID;
+        private System.Windows.Forms.Label label3;
     }
 }

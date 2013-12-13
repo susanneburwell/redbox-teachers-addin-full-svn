@@ -30,31 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
-            this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Mon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Live = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Wants = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.YrGroup = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.QTS = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.PofA = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.CRB = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.NoGo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.MonG = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Tue = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Wed = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Thur = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Fri = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.MonColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TueColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.WedColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ThuColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.FriColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnDblBkgs = new System.Windows.Forms.Button();
-            this.lblDblBkgs = new System.Windows.Forms.Label();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -88,260 +66,36 @@
             this.label4 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
+            this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
+            this.chkTeacher = new System.Windows.Forms.CheckBox();
+            this.chkLongTerm = new System.Windows.Forms.CheckBox();
+            this.chkGuaranteed = new System.Windows.Forms.CheckBox();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panelTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // Teacher
-            // 
-            this.Teacher.Caption = "Teacher";
-            this.Teacher.FieldName = "Teacher";
-            this.Teacher.MaxWidth = 200;
-            this.Teacher.MinWidth = 150;
-            this.Teacher.Name = "Teacher";
-            this.Teacher.OptionsColumn.AllowEdit = false;
-            this.Teacher.OptionsColumn.ReadOnly = true;
-            this.Teacher.Visible = true;
-            this.Teacher.VisibleIndex = 0;
-            this.Teacher.Width = 150;
-            // 
-            // Mon
-            // 
-            this.Mon.Caption = "Mon";
-            this.Mon.FieldName = "Monday";
-            this.Mon.Name = "Mon";
-            this.Mon.OptionsColumn.AllowEdit = false;
-            this.Mon.OptionsColumn.ReadOnly = true;
-            this.Mon.Visible = true;
-            this.Mon.VisibleIndex = 8;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panelTop, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.availabilityGrid1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.71428F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.52381F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.47619F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1037, 525);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 137);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1031, 385);
-            this.gridControl1.TabIndex = 3;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Teacher,
-            this.Live,
-            this.Wants,
-            this.YrGroup,
-            this.QTS,
-            this.PofA,
-            this.CRB,
-            this.NoGo,
-            this.Mon,
-            this.MonG,
-            this.Tue,
-            this.Wed,
-            this.Thur,
-            this.Fri,
-            this.MonColor,
-            this.TueColor,
-            this.WedColor,
-            this.ThuColor,
-            this.FriColor});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.MonG, DevExpress.Data.ColumnSortOrder.Descending)});
-            this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
-            // 
-            // Live
-            // 
-            this.Live.Caption = "Live";
-            this.Live.FieldName = "Live";
-            this.Live.MaxWidth = 75;
-            this.Live.MinWidth = 50;
-            this.Live.Name = "Live";
-            this.Live.OptionsColumn.AllowEdit = false;
-            this.Live.OptionsColumn.ReadOnly = true;
-            this.Live.Visible = true;
-            this.Live.VisibleIndex = 1;
-            // 
-            // Wants
-            // 
-            this.Wants.Caption = "Wants";
-            this.Wants.FieldName = "Wants";
-            this.Wants.MaxWidth = 85;
-            this.Wants.MinWidth = 75;
-            this.Wants.Name = "Wants";
-            this.Wants.OptionsColumn.AllowEdit = false;
-            this.Wants.OptionsColumn.ReadOnly = true;
-            this.Wants.Visible = true;
-            this.Wants.VisibleIndex = 2;
-            // 
-            // YrGroup
-            // 
-            this.YrGroup.Caption = "Yr Group";
-            this.YrGroup.FieldName = "YrGroup";
-            this.YrGroup.MaxWidth = 70;
-            this.YrGroup.MinWidth = 50;
-            this.YrGroup.Name = "YrGroup";
-            this.YrGroup.OptionsColumn.AllowEdit = false;
-            this.YrGroup.OptionsColumn.ReadOnly = true;
-            this.YrGroup.Visible = true;
-            this.YrGroup.VisibleIndex = 3;
-            this.YrGroup.Width = 70;
-            // 
-            // QTS
-            // 
-            this.QTS.Caption = "QTS";
-            this.QTS.FieldName = "QTS";
-            this.QTS.MaxWidth = 40;
-            this.QTS.MinWidth = 40;
-            this.QTS.Name = "QTS";
-            this.QTS.OptionsColumn.AllowEdit = false;
-            this.QTS.OptionsColumn.ReadOnly = true;
-            this.QTS.Visible = true;
-            this.QTS.VisibleIndex = 4;
-            this.QTS.Width = 40;
-            // 
-            // PofA
-            // 
-            this.PofA.Caption = "P of A";
-            this.PofA.FieldName = "PofA";
-            this.PofA.MaxWidth = 40;
-            this.PofA.MinWidth = 40;
-            this.PofA.Name = "PofA";
-            this.PofA.OptionsColumn.AllowEdit = false;
-            this.PofA.OptionsColumn.ReadOnly = true;
-            this.PofA.Visible = true;
-            this.PofA.VisibleIndex = 5;
-            this.PofA.Width = 40;
-            // 
-            // CRB
-            // 
-            this.CRB.Caption = "CRB";
-            this.CRB.Name = "CRB";
-            this.CRB.OptionsColumn.AllowEdit = false;
-            this.CRB.OptionsColumn.ReadOnly = true;
-            this.CRB.Visible = true;
-            this.CRB.VisibleIndex = 6;
-            // 
-            // NoGo
-            // 
-            this.NoGo.Caption = "NoGo";
-            this.NoGo.FieldName = "NoGo";
-            this.NoGo.Name = "NoGo";
-            this.NoGo.OptionsColumn.AllowEdit = false;
-            this.NoGo.OptionsColumn.ReadOnly = true;
-            this.NoGo.Visible = true;
-            this.NoGo.VisibleIndex = 7;
-            // 
-            // MonG
-            // 
-            this.MonG.Caption = "Guaranteed";
-            this.MonG.FieldName = "MonG";
-            this.MonG.Name = "MonG";
-            this.MonG.Visible = true;
-            this.MonG.VisibleIndex = 13;
-            // 
-            // Tue
-            // 
-            this.Tue.Caption = "Tue";
-            this.Tue.FieldName = "Tuesday";
-            this.Tue.Name = "Tue";
-            this.Tue.OptionsColumn.AllowEdit = false;
-            this.Tue.OptionsColumn.ReadOnly = true;
-            this.Tue.Visible = true;
-            this.Tue.VisibleIndex = 9;
-            // 
-            // Wed
-            // 
-            this.Wed.Caption = "Wed";
-            this.Wed.FieldName = "Wednesday";
-            this.Wed.Name = "Wed";
-            this.Wed.OptionsColumn.AllowEdit = false;
-            this.Wed.OptionsColumn.ReadOnly = true;
-            this.Wed.Visible = true;
-            this.Wed.VisibleIndex = 10;
-            // 
-            // Thur
-            // 
-            this.Thur.Caption = "Thur";
-            this.Thur.FieldName = "Thursday";
-            this.Thur.Name = "Thur";
-            this.Thur.OptionsColumn.AllowEdit = false;
-            this.Thur.OptionsColumn.ReadOnly = true;
-            this.Thur.Visible = true;
-            this.Thur.VisibleIndex = 11;
-            // 
-            // Fri
-            // 
-            this.Fri.Caption = "Fri";
-            this.Fri.FieldName = "Friday";
-            this.Fri.Name = "Fri";
-            this.Fri.OptionsColumn.AllowEdit = false;
-            this.Fri.OptionsColumn.ReadOnly = true;
-            this.Fri.Visible = true;
-            this.Fri.VisibleIndex = 12;
-            // 
-            // MonColor
-            // 
-            this.MonColor.Caption = "MonColor";
-            this.MonColor.FieldName = "MonColor";
-            this.MonColor.Name = "MonColor";
-            this.MonColor.ShowUnboundExpressionMenu = true;
-            // 
-            // TueColor
-            // 
-            this.TueColor.Caption = "TueColor";
-            this.TueColor.FieldName = "TueColor";
-            this.TueColor.Name = "TueColor";
-            // 
-            // WedColor
-            // 
-            this.WedColor.Caption = "WedColor";
-            this.WedColor.FieldName = "WedColor";
-            this.WedColor.Name = "WedColor";
-            // 
-            // ThuColor
-            // 
-            this.ThuColor.Caption = "ThuColor";
-            this.ThuColor.FieldName = "ThuColor";
-            this.ThuColor.Name = "ThuColor";
-            // 
-            // FriColor
-            // 
-            this.FriColor.Caption = "FriColor";
-            this.FriColor.FieldName = "FriColor";
-            this.FriColor.Name = "FriColor";
             // 
             // panelTop
             // 
             this.panelTop.Controls.Add(this.btnDblBkgs);
-            this.panelTop.Controls.Add(this.lblDblBkgs);
             this.panelTop.Controls.Add(this.bnFwd);
             this.panelTop.Controls.Add(this.btnBack);
             this.panelTop.Controls.Add(this.groupBox1);
@@ -353,27 +107,21 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1031, 128);
+            this.panelTop.Size = new System.Drawing.Size(1031, 148);
             this.panelTop.TabIndex = 0;
             // 
             // btnDblBkgs
             // 
+            this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
+            this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
             this.btnDblBkgs.Location = new System.Drawing.Point(757, 43);
             this.btnDblBkgs.Name = "btnDblBkgs";
             this.btnDblBkgs.Size = new System.Drawing.Size(241, 23);
             this.btnDblBkgs.TabIndex = 86;
-            this.btnDblBkgs.Text = "Click to View Double Bookings";
-            this.btnDblBkgs.UseVisualStyleBackColor = true;
+            this.btnDblBkgs.Text = "Double Bookings Detected";
+            this.btnDblBkgs.UseVisualStyleBackColor = false;
+            this.btnDblBkgs.Visible = false;
             this.btnDblBkgs.Click += new System.EventHandler(this.btnDblBkgs_Click);
-            // 
-            // lblDblBkgs
-            // 
-            this.lblDblBkgs.AutoSize = true;
-            this.lblDblBkgs.Location = new System.Drawing.Point(800, 69);
-            this.lblDblBkgs.Name = "lblDblBkgs";
-            this.lblDblBkgs.Size = new System.Drawing.Size(170, 16);
-            this.lblDblBkgs.TabIndex = 85;
-            this.lblDblBkgs.Text = "Double Bookings Detected";
             // 
             // bnFwd
             // 
@@ -397,6 +145,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkTeacher);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.chkSEN);
             this.groupBox1.Controls.Add(this.chkNN);
@@ -407,7 +156,7 @@
             this.groupBox1.Controls.Add(this.chkQTS);
             this.groupBox1.Location = new System.Drawing.Point(9, 48);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 71);
+            this.groupBox1.Size = new System.Drawing.Size(349, 97);
             this.groupBox1.TabIndex = 82;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Qualifications";
@@ -447,7 +196,7 @@
             // chkTA
             // 
             this.chkTA.AutoSize = true;
-            this.chkTA.Location = new System.Drawing.Point(200, 21);
+            this.chkTA.Location = new System.Drawing.Point(139, 71);
             this.chkTA.Name = "chkTA";
             this.chkTA.Size = new System.Drawing.Size(45, 20);
             this.chkTA.TabIndex = 15;
@@ -501,7 +250,9 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.chkGuaranteed);
             this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.chkLongTerm);
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.label7);
@@ -518,7 +269,7 @@
             this.groupBox6.Controls.Add(this.btnKS2);
             this.groupBox6.Location = new System.Drawing.Point(384, 9);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(350, 110);
+            this.groupBox6.Size = new System.Drawing.Size(350, 136);
             this.groupBox6.TabIndex = 81;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Year Groups";
@@ -723,6 +474,52 @@
             // 
             this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
             // 
+            // flashtimer1
+            // 
+            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
+            // 
+            // chkTeacher
+            // 
+            this.chkTeacher.AutoSize = true;
+            this.chkTeacher.Location = new System.Drawing.Point(17, 71);
+            this.chkTeacher.Name = "chkTeacher";
+            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
+            this.chkTeacher.TabIndex = 19;
+            this.chkTeacher.Text = "Teacher";
+            this.chkTeacher.UseVisualStyleBackColor = true;
+            this.chkTeacher.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkLongTerm
+            // 
+            this.chkLongTerm.AutoSize = true;
+            this.chkLongTerm.Location = new System.Drawing.Point(109, 110);
+            this.chkLongTerm.Name = "chkLongTerm";
+            this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
+            this.chkLongTerm.TabIndex = 87;
+            this.chkLongTerm.Text = "Long Term";
+            this.chkLongTerm.UseVisualStyleBackColor = true;
+            this.chkLongTerm.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkGuaranteed
+            // 
+            this.chkGuaranteed.AutoSize = true;
+            this.chkGuaranteed.Location = new System.Drawing.Point(231, 110);
+            this.chkGuaranteed.Name = "chkGuaranteed";
+            this.chkGuaranteed.Size = new System.Drawing.Size(98, 20);
+            this.chkGuaranteed.TabIndex = 88;
+            this.chkGuaranteed.Text = "Guaranteed";
+            this.chkGuaranteed.UseVisualStyleBackColor = true;
+            this.chkGuaranteed.Click += new System.EventHandler(this.CheckedChanged);
+            // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 158);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1029, 363);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
             // frmAvailabilitySheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -737,8 +534,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAvailabilitySheet_FormClosing);
             this.Load += new System.EventHandler(this.frmAvailabilitySheet_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -754,21 +549,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panelTop;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn Teacher;
-        private DevExpress.XtraGrid.Columns.GridColumn Live;
-        private DevExpress.XtraGrid.Columns.GridColumn Wants;
-        private DevExpress.XtraGrid.Columns.GridColumn YrGroup;
-        private DevExpress.XtraGrid.Columns.GridColumn QTS;
-        private DevExpress.XtraGrid.Columns.GridColumn PofA;
-        private DevExpress.XtraGrid.Columns.GridColumn CRB;
-        private DevExpress.XtraGrid.Columns.GridColumn NoGo;
-        private DevExpress.XtraGrid.Columns.GridColumn Mon;
-        private DevExpress.XtraGrid.Columns.GridColumn Tue;
-        private DevExpress.XtraGrid.Columns.GridColumn Wed;
-        private DevExpress.XtraGrid.Columns.GridColumn Thur;
-        private DevExpress.XtraGrid.Columns.GridColumn Fri;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSearch;
@@ -800,15 +580,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button bnFwd;
         private System.Windows.Forms.Button btnBack;
-        private DevExpress.XtraGrid.Columns.GridColumn MonG;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private DevExpress.XtraGrid.Columns.GridColumn MonColor;
-        private DevExpress.XtraGrid.Columns.GridColumn TueColor;
-        private DevExpress.XtraGrid.Columns.GridColumn WedColor;
-        private DevExpress.XtraGrid.Columns.GridColumn ThuColor;
-        private DevExpress.XtraGrid.Columns.GridColumn FriColor;
         private System.Windows.Forms.Button btnDblBkgs;
-        private System.Windows.Forms.Label lblDblBkgs;
         private System.Windows.Forms.Timer CheckDoubleBookingsTimer1;
+        private UC.AvailabilityGrid availabilityGrid1;
+        private System.Windows.Forms.Timer flashtimer1;
+        private System.Windows.Forms.CheckBox chkTeacher;
+        private System.Windows.Forms.CheckBox chkGuaranteed;
+        private System.Windows.Forms.CheckBox chkLongTerm;
     }
 }

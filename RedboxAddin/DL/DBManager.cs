@@ -455,12 +455,12 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RBookings> GetBookings(string SchoolID, string teacherID, string dtStart, string dtEnd)
+        public List<RBookings> GetBookings(string SchoolID, string teacherID, string dtStart, string dtEnd, string status)
         {
             List<RBookings> bookingList = new List<RBookings>();
             try
             {
-                string SQLstr = GetViewBookingsSQL(SchoolID, teacherID, dtStart, dtEnd);
+                string SQLstr = GetViewBookingsSQL(SchoolID, teacherID, dtStart, dtEnd, status);
                 DataSet msgDs = GetDataSet(SQLstr);
 
 
@@ -476,8 +476,8 @@ namespace RedboxAddin.DL
                             Date = Utils.CheckDate(dr["Date"].ToString()),
                             ContactID = dr["ContactID"].ToString(),
                             SchoolID = dr["SchoolID"].ToString(),
-                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"])
-
+                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
+                            BookingStatus = dr["BookingStatus"].ToString()
                         };
                         bookingList.Add(objBkg);
 
@@ -499,7 +499,7 @@ namespace RedboxAddin.DL
             List<RBookings> bookingList = new List<RBookings>();
             try
             {
-                string SQLstr = GetDoubleBookingsSQL(teacherID, ddate);
+                string SQLstr = GetMasterBookingsSQL(teacherID, ddate);
                 DataSet msgDs = GetDataSet(SQLstr);
 
 
@@ -515,7 +515,8 @@ namespace RedboxAddin.DL
                             Date = Utils.CheckDate(dr["Date"]),
                             ContactID = dr["ContactID"].ToString(),
                             SchoolID = dr["SchoolID"].ToString(),
-                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"])
+                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
+                            BookingStatus = dr["BookingStatus"].ToString()
 
                         };
                         bookingList.Add(objBkg);
@@ -529,6 +530,46 @@ namespace RedboxAddin.DL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<RBookings> GetUnassignedBookings(string dtStart, string dtEnd)
+        {
+            List<RBookings> bookingList = new List<RBookings>();
+            try
+            {
+                string SQLstr = GetUnassignedBookingsSQL(dtStart, dtEnd);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RBookings objBkg = new RBookings()
+                        {
+                            Teacher = dr["FullName"].ToString(),
+                            SchoolName = dr["SchoolName"].ToString(),
+                            Description = dr["Description"].ToString(),
+                            Date = Utils.CheckDate(dr["Date"]),
+                            ContactID = dr["ContactID"].ToString(),
+                            SchoolID = dr["SchoolID"].ToString(),
+                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
+                            BookingStatus = dr["BookingStatus"].ToString()
+
+                        };
+                        bookingList.Add(objBkg);
+
+                    }
+
+                    return bookingList;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetUnassignedBookings: " + ex.Message);
                 return null;
             }
         }
@@ -554,7 +595,7 @@ namespace RedboxAddin.DL
                             Date = Utils.CheckDate(dr["Date"].ToString()),
                             ContactID = dr["ContID"].ToString(),
                         };
-                        ListDblB.Add(objBkg);
+                        if (!String.IsNullOrWhiteSpace(objBkg.FirstName) && !String.IsNullOrWhiteSpace(objBkg.LastName)) ListDblB.Add(objBkg);
                     }
                 }
                 return ListDblB;
@@ -565,8 +606,6 @@ namespace RedboxAddin.DL
                 return ListDblB;
             }
         }
-
-
 
         public RMasterBooking GetMasterBookingInfo(long masterBookingID)
         {
@@ -2333,10 +2372,10 @@ namespace RedboxAddin.DL
             return SQLstr;
         }
 
-        private string GetViewBookingsSQL(string SchoolID, string teacherID, string dtStart, string dtEnd)
+        private string GetViewBookingsSQL(string SchoolID, string teacherID, string dtStart, string dtEnd, string status)
         {
             string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
-                         "LastName+', ' + FirstName as FullName " +
+                         "LastName+', ' + FirstName as FullName, BookingStatus " +
                          "FROM [Bookings] " +
                          "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
                          "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
@@ -2346,6 +2385,7 @@ namespace RedboxAddin.DL
             if (!string.IsNullOrWhiteSpace(teacherID)) WhereSQL += " AND [MasterBookings].contactID = '" + teacherID + "' ";
             if (!string.IsNullOrWhiteSpace(dtStart)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "' ";
             if (!string.IsNullOrWhiteSpace(dtEnd)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "' ";
+            if (!string.IsNullOrWhiteSpace(status)) WhereSQL += " AND [BookingStatus] = '" + status + "' ";
 
             if (WhereSQL.Length > 2)
             {
@@ -2354,10 +2394,10 @@ namespace RedboxAddin.DL
             return SQL + WhereSQL;
         }
 
-        private string GetDoubleBookingsSQL(string teacherID, string ddate)
+        private string GetMasterBookingsSQL(string teacherID, string ddate)
         {
             string SQL = "SELECT [Schools].SchoolName, Bookings.Date, Contacts.LastName+', '+Contacts.FirstName as FullName,  " +
-                        "[Bookings].Description, MasterBookings.ID as MasterBookingID, Contacts.contactID, Schools.ID as SchoolID " +
+                        "[Bookings].Description, MasterBookings.ID as MasterBookingID, Contacts.contactID, Schools.ID as SchoolID , BookingStatus " +
                         "FROM MasterBookings " +
                         "Left JOIN [Bookings] ON MasterBookingID = MasterBookings.ID " +
                         "Left Join [Schools] ON Schools.ID = MasterBookings.SchoolID " +
@@ -2382,6 +2422,22 @@ namespace RedboxAddin.DL
                         ") as s1 ON s1.ContactID = Contacts.contactID  " +
                         "WHERE s1.num > 1 ";
             return SQL;
+        }
+
+        private string GetUnassignedBookingsSQL(string dtStart, string dtEnd)
+        {
+            string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
+                         "LastName+', ' + FirstName as FullName , BookingStatus " +
+                         "FROM [Bookings] " +
+                         "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
+                         "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
+                         "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID " +
+                         "WHERE ([MasterBookings].contactID = -1 OR [MasterBookings].contactID IS NULL OR FirstName = '' or LastName = '' )";
+            if (!string.IsNullOrWhiteSpace(dtStart)) SQL += " AND (CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "') ";
+            if (!string.IsNullOrWhiteSpace(dtEnd)) SQL += " AND (CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "') ";
+
+            
+            return SQL ;
         }
         #endregion
 

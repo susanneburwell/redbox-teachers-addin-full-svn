@@ -90,6 +90,7 @@ namespace RedboxAddin.Models
         public string SchoolID { get; set; }
         public string Teacher { get; set; }
         public long MasterBookingID { get; set; }
+        public string BookingStatus { get; set; }
     }
 
     class RDoubleBookings
@@ -136,5 +137,12 @@ namespace RedboxAddin.Models
         public DateTime dte { get; set; }
         public string Type { get; set; }
         public string Details { get; set; }
+    }
+
+    public class REventArgs: EventArgs
+    {
+        public string Teacher { get; set; }
+        public string ColumnCaption { get; set; }
+        public string Description { get; set; }
     }
 }

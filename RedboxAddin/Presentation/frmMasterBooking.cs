@@ -25,16 +25,17 @@ namespace RedboxAddin.Presentation
         long _masterBookingID = -1;
         bool loading = false;
 
-
         public frmMasterBooking()
         {
             InitializeComponent();
+            availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
         public frmMasterBooking(long masterBookingID)
         {
             InitializeComponent();
             _masterBookingID = masterBookingID;
+            availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
         private void frmNewRequest_Load(object sender, EventArgs e)
@@ -180,8 +181,6 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
-
-
         #region actions
 
         private bool SaveRequest()
@@ -205,7 +204,7 @@ namespace RedboxAddin.Presentation
                 MasterBooking mb;
                 //If this is a new request - create a new item
 
-                if (_masterBookingID <1) mb = new MasterBooking();
+                if (_masterBookingID < 1) mb = new MasterBooking();
 
                 else mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
 
@@ -242,6 +241,11 @@ namespace RedboxAddin.Presentation
                 mb.Color = lblColor.Text;
                 mb.BookingStatus = cmbBookingStatus.Text;
 
+                //Check teacher is real
+                string teachername = cmbTeacher.Text.Replace(',',' ');
+                if (teachername.Trim() == "") mb.ContactID = -1;
+
+
                 //If Teacher named
                 mb.NameGiven = radNG.Checked;
                 mb.AskedFor = radAF.Checked;
@@ -250,7 +254,7 @@ namespace RedboxAddin.Presentation
                 else mb.LinkedTeacherID = -1;
 
                 //If this is not a new booking, submit changes and exit
-                if (_masterBookingID >0 )
+                if (_masterBookingID > 0)
                 {
                     db.SubmitChanges();
                     return true;
@@ -315,8 +319,8 @@ namespace RedboxAddin.Presentation
 
         private void LoadAvailabilityTable()
         {
-            
-           
+
+
             try
             {
                 //Get first day of week
@@ -575,6 +579,30 @@ namespace RedboxAddin.Presentation
             lblTS2.Visible = ShowDropDown;
         }
 
+        private void CheckDoubleBookings()
+        {
+            try
+            {
+                DBManager dbm = new DBManager();
+                List<RDoubleBookings> listDblB = dbm.CheckDoubleBookings();
+                if (listDblB.Count > 0)
+                {
+                    btnDblBkgs.Visible = true;
+                    flashtimer1.Interval = 500;
+                    flashtimer1.Enabled = true;
+                }
+                else
+                {
+                    btnDblBkgs.Visible = false;
+                    flashtimer1.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckDoubleBookings: " + ex.Message);
+            }
+        }
+
         #endregion
 
         #region DGC
@@ -641,6 +669,7 @@ namespace RedboxAddin.Presentation
                 btnView.Text = "Edit Daily Bookings";
                 SetGridVisibility();
                 btnSave.Text = "Save Updates";
+                CheckDoubleBookings();
             }
             else
             {
@@ -787,20 +816,12 @@ namespace RedboxAddin.Presentation
         }
 
 
-        private void dgcAvail_DoubleClick(object sender, EventArgs e)
+        protected void availabilityGrid_DblClick(object sender, EventArgs e)
         {
             try
             {
-                Point pt = dgcAvail.PointToClient(Control.MousePosition);
-                GridHitInfo info = dgcAvailView.CalcHitInfo(pt);
-                if (info.InRow || info.InRowCell)
-                {
-                    string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                    //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
-                    string teacher = dgcAvailView.GetRowCellValue(info.RowHandle, "Teacher").ToString();
-                    cmbTeacher.Text = teacher;
-
-                }
+                REventArgs e1 = e as REventArgs;
+                cmbTeacher.Text = e1.Teacher;
             }
             catch (Exception ex)
             {
@@ -821,7 +842,7 @@ namespace RedboxAddin.Presentation
             {
                 long teacherID = Convert.ToInt64(cmbTeacher.SelectedValue);
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
-                if (teacherID < 0 ) return;
+                if (teacherID < 0) return;
 
                 //School school = cmbTeacher.SelectedItem as School;
                 string nogo = LINQmanager.GetNoGoforContactID(teacherID).ToLower();
@@ -840,6 +861,28 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in cmbTeacher_SelectedValueChanged: " + ex.Message);
             }
         }
+
+        private void flashtimer1_Tick(object sender, EventArgs e)
+        {
+             if (btnDblBkgs.BackColor == Color.Crimson)
+            {
+                btnDblBkgs.BackColor = Color.Orange;
+            }
+            else btnDblBkgs.BackColor = Color.Crimson;
+        }
+
+        
+            private void btnDblBkgs_Click(object sender, EventArgs e)
+        {
+            frmViewDoubleBookings fdb = Application.OpenForms["frmViewDoubleBookings"] as frmViewDoubleBookings;
+            if (fdb == null)
+            {
+                fdb = new frmViewDoubleBookings();
+                fdb.Show();
+            }
+            else { fdb.BringToFront(); }
+        }
+        
 
 
 

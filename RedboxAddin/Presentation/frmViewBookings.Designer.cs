@@ -36,20 +36,29 @@
             this.School = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Details = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BookingStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.radMonth = new System.Windows.Forms.RadioButton();
+            this.radWeek = new System.Windows.Forms.RadioButton();
+            this.bnFwd = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.chkUnassigned = new System.Windows.Forms.CheckBox();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.chkTeach = new System.Windows.Forms.CheckBox();
             this.chkSch = new System.Windows.Forms.CheckBox();
             this.chkDate = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTeacher = new System.Windows.Forms.Label();
             this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblSchool = new System.Windows.Forms.Label();
             this.cmbSchool = new System.Windows.Forms.ComboBox();
-            this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -66,18 +75,18 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.56881F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.43119F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(819, 545);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.27523F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.72477F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(863, 545);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 126);
+            this.gridControl1.Location = new System.Drawing.Point(3, 168);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(813, 416);
+            this.gridControl1.Size = new System.Drawing.Size(857, 374);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -89,7 +98,8 @@
             this.School,
             this.Teacher,
             this.Details,
-            this.MasterBookingID});
+            this.MasterBookingID,
+            this.BookingStatus});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
@@ -103,7 +113,7 @@
             this.Date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.Date.FieldName = "Date";
             this.Date.MaxWidth = 150;
-            this.Date.MinWidth = 150;
+            this.Date.MinWidth = 50;
             this.Date.Name = "Date";
             this.Date.OptionsColumn.AllowEdit = false;
             this.Date.OptionsColumn.ReadOnly = true;
@@ -116,20 +126,20 @@
             this.School.Caption = "School";
             this.School.FieldName = "SchoolName";
             this.School.MaxWidth = 250;
-            this.School.MinWidth = 250;
+            this.School.MinWidth = 50;
             this.School.Name = "School";
             this.School.OptionsColumn.AllowEdit = false;
             this.School.OptionsColumn.ReadOnly = true;
             this.School.Visible = true;
             this.School.VisibleIndex = 1;
-            this.School.Width = 250;
+            this.School.Width = 200;
             // 
             // Teacher
             // 
             this.Teacher.Caption = "Teacher";
             this.Teacher.FieldName = "Teacher";
-            this.Teacher.MaxWidth = 200;
-            this.Teacher.MinWidth = 200;
+            this.Teacher.MaxWidth = 250;
+            this.Teacher.MinWidth = 50;
             this.Teacher.Name = "Teacher";
             this.Teacher.OptionsColumn.AllowEdit = false;
             this.Teacher.OptionsColumn.ReadOnly = true;
@@ -141,35 +151,150 @@
             // 
             this.Details.Caption = "Description";
             this.Details.FieldName = "Description";
+            this.Details.MaxWidth = 400;
+            this.Details.MinWidth = 50;
             this.Details.Name = "Details";
             this.Details.OptionsColumn.AllowEdit = false;
             this.Details.OptionsColumn.ReadOnly = true;
             this.Details.Visible = true;
             this.Details.VisibleIndex = 3;
+            this.Details.Width = 110;
+            // 
+            // MasterBookingID
+            // 
+            this.MasterBookingID.Caption = "MasterBookingID";
+            this.MasterBookingID.FieldName = "MasterBookingID";
+            this.MasterBookingID.Name = "MasterBookingID";
+            this.MasterBookingID.OptionsColumn.ReadOnly = true;
+            // 
+            // BookingStatus
+            // 
+            this.BookingStatus.Caption = "BookingStatus";
+            this.BookingStatus.FieldName = "BookingStatus";
+            this.BookingStatus.MaxWidth = 250;
+            this.BookingStatus.MinWidth = 50;
+            this.BookingStatus.Name = "BookingStatus";
+            this.BookingStatus.Visible = true;
+            this.BookingStatus.VisibleIndex = 4;
+            this.BookingStatus.Width = 180;
             // 
             // TopPanel
             // 
+            this.TopPanel.Controls.Add(this.radMonth);
+            this.TopPanel.Controls.Add(this.radWeek);
+            this.TopPanel.Controls.Add(this.bnFwd);
+            this.TopPanel.Controls.Add(this.btnBack);
+            this.TopPanel.Controls.Add(this.chkUnassigned);
+            this.TopPanel.Controls.Add(this.chkStatus);
+            this.TopPanel.Controls.Add(this.cmbStatus);
+            this.TopPanel.Controls.Add(this.lblStatus);
             this.TopPanel.Controls.Add(this.btnSearch);
             this.TopPanel.Controls.Add(this.chkTeach);
             this.TopPanel.Controls.Add(this.chkSch);
             this.TopPanel.Controls.Add(this.chkDate);
-            this.TopPanel.Controls.Add(this.label1);
+            this.TopPanel.Controls.Add(this.lblTeacher);
             this.TopPanel.Controls.Add(this.cmbTeacher);
             this.TopPanel.Controls.Add(this.dtFrom);
             this.TopPanel.Controls.Add(this.label4);
             this.TopPanel.Controls.Add(this.dtTo);
             this.TopPanel.Controls.Add(this.label5);
-            this.TopPanel.Controls.Add(this.label2);
+            this.TopPanel.Controls.Add(this.lblSchool);
             this.TopPanel.Controls.Add(this.cmbSchool);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TopPanel.Location = new System.Drawing.Point(3, 3);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(813, 117);
+            this.TopPanel.Size = new System.Drawing.Size(857, 159);
             this.TopPanel.TabIndex = 0;
+            // 
+            // radMonth
+            // 
+            this.radMonth.AutoSize = true;
+            this.radMonth.Location = new System.Drawing.Point(786, 44);
+            this.radMonth.Name = "radMonth";
+            this.radMonth.Size = new System.Drawing.Size(62, 20);
+            this.radMonth.TabIndex = 88;
+            this.radMonth.Text = "Month";
+            this.radMonth.UseVisualStyleBackColor = true;
+            // 
+            // radWeek
+            // 
+            this.radWeek.AutoSize = true;
+            this.radWeek.Checked = true;
+            this.radWeek.Location = new System.Drawing.Point(786, 16);
+            this.radWeek.Name = "radWeek";
+            this.radWeek.Size = new System.Drawing.Size(62, 20);
+            this.radWeek.TabIndex = 87;
+            this.radWeek.TabStop = true;
+            this.radWeek.Text = "Week";
+            this.radWeek.UseVisualStyleBackColor = true;
+            this.radWeek.CheckedChanged += new System.EventHandler(this.radWeek_CheckedChanged);
+            // 
+            // bnFwd
+            // 
+            this.bnFwd.Location = new System.Drawing.Point(742, 68);
+            this.bnFwd.Name = "bnFwd";
+            this.bnFwd.Size = new System.Drawing.Size(35, 23);
+            this.bnFwd.TabIndex = 86;
+            this.bnFwd.Text = ">>";
+            this.bnFwd.UseVisualStyleBackColor = true;
+            this.bnFwd.Click += new System.EventHandler(this.bnFwd_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(680, 68);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(37, 23);
+            this.btnBack.TabIndex = 85;
+            this.btnBack.Text = "<<";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // chkUnassigned
+            // 
+            this.chkUnassigned.AutoSize = true;
+            this.chkUnassigned.Location = new System.Drawing.Point(99, 105);
+            this.chkUnassigned.Name = "chkUnassigned";
+            this.chkUnassigned.Size = new System.Drawing.Size(189, 20);
+            this.chkUnassigned.TabIndex = 20;
+            this.chkUnassigned.Text = "Find Unassigned Bookings";
+            this.chkUnassigned.UseVisualStyleBackColor = true;
+            this.chkUnassigned.CheckedChanged += new System.EventHandler(this.chkUnassigned_CheckedChanged);
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Location = new System.Drawing.Point(305, 75);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(182, 20);
+            this.chkStatus.TabIndex = 19;
+            this.chkStatus.Text = "Search By Booking Status";
+            this.chkStatus.UseVisualStyleBackColor = true;
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "Unassigned",
+            "Contacted",
+            "Confirmed",
+            "Details Sent"});
+            this.cmbStatus.Location = new System.Drawing.Point(99, 75);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(200, 24);
+            this.cmbStatus.TabIndex = 18;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(30, 76);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(48, 16);
+            this.lblStatus.TabIndex = 17;
+            this.lblStatus.Text = "Status:";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(37, 86);
+            this.btnSearch.Location = new System.Drawing.Point(720, 120);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 16;
@@ -200,6 +325,8 @@
             // chkDate
             // 
             this.chkDate.AutoSize = true;
+            this.chkDate.Checked = true;
+            this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDate.Location = new System.Drawing.Point(532, 71);
             this.chkDate.Name = "chkDate";
             this.chkDate.Size = new System.Drawing.Size(121, 20);
@@ -207,19 +334,19 @@
             this.chkDate.Text = "Search By Date";
             this.chkDate.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblTeacher
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 16);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Teacher:";
+            this.lblTeacher.AutoSize = true;
+            this.lblTeacher.Location = new System.Drawing.Point(30, 48);
+            this.lblTeacher.Name = "lblTeacher";
+            this.lblTeacher.Size = new System.Drawing.Size(62, 16);
+            this.lblTeacher.TabIndex = 11;
+            this.lblTeacher.Text = "Teacher:";
             // 
             // cmbTeacher
             // 
             this.cmbTeacher.FormattingEnabled = true;
-            this.cmbTeacher.Location = new System.Drawing.Point(99, 45);
+            this.cmbTeacher.Location = new System.Drawing.Point(99, 44);
             this.cmbTeacher.Name = "cmbTeacher";
             this.cmbTeacher.Size = new System.Drawing.Size(200, 24);
             this.cmbTeacher.TabIndex = 12;
@@ -256,14 +383,14 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "To:";
             // 
-            // label2
+            // lblSchool
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "School:";
+            this.lblSchool.AutoSize = true;
+            this.lblSchool.Location = new System.Drawing.Point(30, 15);
+            this.lblSchool.Name = "lblSchool";
+            this.lblSchool.Size = new System.Drawing.Size(53, 16);
+            this.lblSchool.TabIndex = 2;
+            this.lblSchool.Text = "School:";
             // 
             // cmbSchool
             // 
@@ -273,18 +400,11 @@
             this.cmbSchool.Size = new System.Drawing.Size(200, 24);
             this.cmbSchool.TabIndex = 3;
             // 
-            // MasterBookingID
-            // 
-            this.MasterBookingID.Caption = "MasterBookingID";
-            this.MasterBookingID.FieldName = "MasterBookingID";
-            this.MasterBookingID.Name = "MasterBookingID";
-            this.MasterBookingID.OptionsColumn.ReadOnly = true;
-            // 
             // frmViewBookings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 545);
+            this.ClientSize = new System.Drawing.Size(863, 545);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -305,12 +425,12 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel TopPanel;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSchool;
         private System.Windows.Forms.ComboBox cmbSchool;
         private System.Windows.Forms.CheckBox chkTeach;
         private System.Windows.Forms.CheckBox chkSch;
         private System.Windows.Forms.CheckBox chkDate;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTeacher;
         private System.Windows.Forms.ComboBox cmbTeacher;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label4;
@@ -324,6 +444,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn Teacher;
         private DevExpress.XtraGrid.Columns.GridColumn Details;
         private DevExpress.XtraGrid.Columns.GridColumn MasterBookingID;
+        private System.Windows.Forms.CheckBox chkStatus;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.CheckBox chkUnassigned;
+        private DevExpress.XtraGrid.Columns.GridColumn BookingStatus;
+        private System.Windows.Forms.RadioButton radMonth;
+        private System.Windows.Forms.RadioButton radWeek;
+        private System.Windows.Forms.Button bnFwd;
+        private System.Windows.Forms.Button btnBack;
 
     }
 }

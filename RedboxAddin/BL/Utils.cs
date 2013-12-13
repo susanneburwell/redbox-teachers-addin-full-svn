@@ -271,5 +271,16 @@ namespace RedboxAddin.BL
                 Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
             }
         }
+
+        public static DateTime GetFirstDayoftheWeek(DateTime mydate)
+        {
+            //Get first day of week
+            DateTime input = mydate.Date;
+            int delta = DayOfWeek.Monday - input.DayOfWeek;
+            if (delta > 0) delta -= 7;
+            DateTime monday = input.AddDays(delta).Date;
+            return monday;
+        }
+    
     }
 }

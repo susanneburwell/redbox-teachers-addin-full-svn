@@ -19,7 +19,7 @@ namespace RedboxAddin.UC
     public partial class AvailabilityGrid : UserControl
     {
 
-        public EventHandler DoubleClick;
+        public event EventHandler DblClick;
 
         public AvailabilityGrid()
         {
@@ -38,7 +38,7 @@ namespace RedboxAddin.UC
                 if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
-                
+
                 DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
                 //bindingSource1.DataSource = msgDs;
                 gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
@@ -57,7 +57,7 @@ namespace RedboxAddin.UC
             }
         }
 
-        private void RestoreLayout()
+        public void RestoreLayout()
         {
             try
             {
@@ -66,7 +66,7 @@ namespace RedboxAddin.UC
             catch (Exception) { }
         }
 
-        private void SaveLayout()
+        public void SaveLayout()
         {
             try
             {
@@ -93,7 +93,7 @@ namespace RedboxAddin.UC
             {
                 Debug.DebugMessage(2, "Error in AvailabilityGrid_Load: " + ex.Message);
             }
-            
+
         }
 
         private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
@@ -137,7 +137,7 @@ namespace RedboxAddin.UC
                         break;
                 }
 
-                
+
                 string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
                 string backcolor = myVal.Substring(5, 4);
                 string forecolor = myVal.Substring(0, 4);
@@ -193,11 +193,32 @@ namespace RedboxAddin.UC
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
             //bubble the event up to the parent
-            if (this.DoubleClick != null)
-                this.DoubleClick(this, e);
+            EventHandler handler = this.DblClick;
+            if (handler != null)
+            {
+            REventArgs rowInfo = new REventArgs();
+            try
+            {
+                Point pt = gridControl1.PointToClient(Control.MousePosition);
+                GridHitInfo info = gridView1.CalcHitInfo(pt);
+                if (info.InRow || info.InRowCell)
+                {
+                    rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                    rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                    rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in AvailabilityGrid_DoubleClick: " + ex.Message);
+            }
+
+            this.DblClick(this, rowInfo);
+            }
+
         }
 
-      
+
 
 
     }
