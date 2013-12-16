@@ -1901,7 +1901,8 @@ namespace RedboxAddin.DL
                     if (string.IsNullOrWhiteSpace(c.LastName))
                     {
                         string fullname = c.FirstName.Trim();
-                        int i = fullname.IndexOf(' ');
+                        int i = fullname.IndexOf(") ") + 1;
+                        if (i < 2) i = fullname.IndexOf(' ');
                         if (i > 0)
                         {
                             string firstname = fullname.Substring(0, i).Trim();

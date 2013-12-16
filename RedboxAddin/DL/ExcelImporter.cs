@@ -234,28 +234,37 @@ namespace RedboxAddin.DL
                             //get contact id from full name
                             string fullname = dt.Rows[iRow][0].ToString();
                             long contactID = dbm.GetContactIDfromFullName(fullname);
-                            if (contactID != -1)   //-1 == not found
+
+                            if (contactID == -1)   //-1 == not found
+                            {
+                                Debug.DebugMessage(2,"Importing: Contact Name not found: " + fullname );
+                                continue;
+                            }
+                            else
                             {
                                 //create contact data
                                 ContactData cd = new ContactData();
                                 cd.ContactID = contactID;
-                                cd.Live = Utils.CheckString(dt.Rows[iRow][3].ToString());
-                                cd.NoGo = Utils.CheckString(dt.Rows[iRow][10].ToString());
-                                //cd.Pay = Utils.CheckString(dt.Rows[iRow][7].ToString());
-                                //cd.PofA = Utils.CheckBool(dt.Rows[iRow][8].ToString());
-                                cd.Wants = Utils.CheckString(dt.Rows[iRow][4].ToString());
-                                cd.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                                cd.Nur = Utils.CheckBool(dt.Rows[iRow][18].ToString());
-                                cd.Rec = Utils.CheckBool(dt.Rows[iRow][19].ToString());
-                                cd.Yr1 = Utils.CheckBool(dt.Rows[iRow][20].ToString());
-                                cd.Yr2 = Utils.CheckBool(dt.Rows[iRow][21].ToString());
-                                cd.Yr3 = Utils.CheckBool(dt.Rows[iRow][22].ToString());
-                                cd.Yr4 = Utils.CheckBool(dt.Rows[iRow][23].ToString());
-                                cd.Yr5 = Utils.CheckBool(dt.Rows[iRow][24].ToString());
-                                cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25].ToString());
-                                cd.Teacher = Utils.CheckBool(dt.Rows[iRow][26].ToString());
-                                cd.TA = Utils.CheckBool(dt.Rows[iRow][27].ToString());
-                                cd.DayRate = Convert.ToDecimal("135");
+                                cd.Live = Utils.CheckString(dt.Rows[iRow][3]);
+                                cd.NoGo = Utils.CheckString(dt.Rows[iRow][10]);
+                                Decimal dayrate = Utils.GetDayRate(dt.Rows[iRow][7]);
+                                if (dayrate > 0) cd.DayRate = dayrate;
+                                //cd.Pay = Utils.CheckString(dt.Rows[iRow][7]);
+                                //cd.PofA = Utils.CheckBool(dt.Rows[iRow][8]);
+                                cd.Wants = Utils.CheckString(dt.Rows[iRow][4]);
+                                cd.YearGroup = Utils.CheckString(dt.Rows[iRow][5]);
+                                cd.Nur = Utils.CheckBool(dt.Rows[iRow][18]);
+                                cd.Rec = Utils.CheckBool(dt.Rows[iRow][19]);
+                                cd.Yr1 = Utils.CheckBool(dt.Rows[iRow][20]);
+                                cd.Yr2 = Utils.CheckBool(dt.Rows[iRow][21]);
+                                cd.Yr3 = Utils.CheckBool(dt.Rows[iRow][22]);
+                                cd.Yr4 = Utils.CheckBool(dt.Rows[iRow][23]);
+                                cd.Yr5 = Utils.CheckBool(dt.Rows[iRow][24]);
+                                cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25]);
+                                cd.Teacher = Utils.CheckBool(dt.Rows[iRow][26]);
+                                cd.TA = Utils.CheckBool(dt.Rows[iRow][27]);
+
+
                                 if (setTA) cd.TA = true;
                                 if (setTeacher) cd.Teacher = true;
                                 if (setCurrent) cd.Current = true;
@@ -273,128 +282,198 @@ namespace RedboxAddin.DL
                             }
 
                             //create master bookings - Mon
-                            MasterBooking mb = new MasterBooking();
+                            MasterBooking mb;
                             Dictionary<int, string> apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][11].ToString());
-                            mb.ContactID = contactID;
-                            mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                            mb.TeacherLevel = dt.Rows[iRow][6].ToString();
-                            mb.StartDate = monday;
-                            mb.EndDate = monday;
-                            if (apptData.Count >0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal("170.00");
-                            mb.Details = dt.Rows[iRow][11].ToString();
+                            if (apptData.Count > 0)
+                            {
+                                mb = new MasterBooking();
+                                mb.ContactID = contactID;
+                                mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                                mb.TeacherLevel = dt.Rows[iRow][6].ToString();
+                                mb.StartDate = monday;
+                                mb.EndDate = monday;
+                                if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                                mb.Charge = Utils.CheckDecimal("170.00");
+                                mb.Details = dt.Rows[iRow][11].ToString();
 
-                            db.MasterBookings.InsertOnSubmit(mb);
-                            db.SubmitChanges();
+                                db.MasterBookings.InsertOnSubmit(mb);
+                                db.SubmitChanges();
 
-                            Booking bb = new Booking();
-                            bb.MasterBookingID = mb.ID;
-                            bb.Date = mb.StartDate;
-                            bb.Charge = mb.Charge;
-                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
-                            bb.Description = mb.Details;
-                            db.Bookings.InsertOnSubmit(bb);
-                            db.SubmitChanges();
+                                Booking bb = new Booking();
+                                bb.MasterBookingID = mb.ID;
+                                bb.Date = mb.StartDate;
+                                bb.Charge = mb.Charge;
+                                bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                                bb.Description = mb.Details;
+                                db.Bookings.InsertOnSubmit(bb);
+                                db.SubmitChanges();
+                            }
 
                             //create master bookings - Tue
-                            mb = new MasterBooking();
+                            //check if it already exists
                             apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][12].ToString());
-                            mb.ContactID = contactID;
-                            mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                            mb.TeacherLevel = dt.Rows[iRow][6].ToString();
-                            mb.StartDate = tuesday;
-                            mb.EndDate = tuesday;
-                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal("170.00");
-                            mb.Details = dt.Rows[iRow][11].ToString();
+                            if (apptData.Count > 0)
+                            {
+                                mb = null;
+                                try
+                                {
+                                    mb = db.MasterBookings.Where(b => b.ContactID == contactID && b.EndDate == monday).First();
+                                }
+                                catch { }
+                                if (mb == null)
+                                {
+                                    mb = new MasterBooking();
+                                    mb.ContactID = contactID;
+                                    mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                                    mb.TeacherLevel = dt.Rows[iRow][6].ToString();
+                                    mb.StartDate = tuesday;
+                                    mb.EndDate = tuesday;
+                                    if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                                    mb.Charge = Utils.CheckDecimal("170.00");
+                                    mb.Details = dt.Rows[iRow][12].ToString();
 
-                            db.MasterBookings.InsertOnSubmit(mb);
-                            db.SubmitChanges();
+                                    db.MasterBookings.InsertOnSubmit(mb);
+                                    db.SubmitChanges();
+                                }
+                                else
+                                {
+                                    mb.EndDate = tuesday;
+                                }
 
-                            bb = new Booking();
-                            bb.MasterBookingID = mb.ID;
-                            bb.Date = mb.StartDate;
-                            bb.Charge = mb.Charge;
-                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
-                            bb.Description = mb.Details;
-                            db.Bookings.InsertOnSubmit(bb);
-                            db.SubmitChanges();
-
+                                Booking bb = new Booking();
+                                bb.MasterBookingID = mb.ID;
+                                bb.Date = mb.StartDate;
+                                bb.Charge = mb.Charge;
+                                bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                                bb.Description = mb.Details;
+                                db.Bookings.InsertOnSubmit(bb);
+                                db.SubmitChanges();
+                            }
 
                             //create master bookings - Wed
-                            mb = new MasterBooking();
+                             //check if it already exists
                             apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][13].ToString());
-                            mb.ContactID = contactID;
-                            mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                            mb.TeacherLevel = dt.Rows[iRow][6].ToString();
-                            mb.StartDate = wednesday;
-                            mb.EndDate = wednesday;
-                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal("170.00");
-                            mb.Details = dt.Rows[iRow][11].ToString();
+                            if (apptData.Count > 0)
+                            {
+                                mb = null;
+                                try
+                                {
+                                    mb = db.MasterBookings.Where(b => b.ContactID == contactID && b.EndDate == tuesday).First();
+                                }
+                                catch { }
+                                if (mb == null)
+                                {
+                                    mb = new MasterBooking();
+                                    apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][13].ToString());
+                                    mb.ContactID = contactID;
+                                    mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                                    mb.TeacherLevel = dt.Rows[iRow][6].ToString();
+                                    mb.StartDate = wednesday;
+                                    mb.EndDate = wednesday;
+                                    if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                                    mb.Charge = Utils.CheckDecimal("170.00");
+                                    mb.Details = dt.Rows[iRow][13].ToString();
 
-                            db.MasterBookings.InsertOnSubmit(mb);
-                            db.SubmitChanges();
+                                    db.MasterBookings.InsertOnSubmit(mb);
+                                    db.SubmitChanges();
+                                }
+                                else
+                                {
+                                    mb.EndDate = wednesday;
+                                }
 
-                            bb = new Booking();
-                            bb.MasterBookingID = mb.ID;
-                            bb.Date = mb.StartDate;
-                            bb.Charge = mb.Charge;
-                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
-                            bb.Description = mb.Details;
-                            db.Bookings.InsertOnSubmit(bb);
-                            db.SubmitChanges();
-
+                                Booking bb = new Booking();
+                                bb.MasterBookingID = mb.ID;
+                                bb.Date = mb.StartDate;
+                                bb.Charge = mb.Charge;
+                                bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                                bb.Description = mb.Details;
+                                db.Bookings.InsertOnSubmit(bb);
+                                db.SubmitChanges();
+                            }
 
                             //create master bookings - thur
-                            mb = new MasterBooking();
-                            apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][14].ToString());
-                            mb.ContactID = contactID;
-                            mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                            mb.TeacherLevel = dt.Rows[iRow][6].ToString();
-                            mb.StartDate = thursday;
-                            mb.EndDate = thursday;
-                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal("170.00");
-                            mb.Details = dt.Rows[iRow][11].ToString();
+                             //check if it already exists
+                            apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][12].ToString());
+                            if (apptData.Count > 0)
+                            {
+                                mb = null;
+                                try
+                                {
+                                    mb = db.MasterBookings.Where(b => b.ContactID == contactID && b.EndDate == wednesday).First();
+                                }
+                                catch { }
+                                if (mb == null)
+                                {
+                                    mb = new MasterBooking();
+                                    apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][14].ToString());
+                                    mb.ContactID = contactID;
+                                    mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                                    mb.TeacherLevel = dt.Rows[iRow][6].ToString();
+                                    mb.StartDate = thursday;
+                                    mb.EndDate = thursday;
+                                    if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                                    mb.Charge = Utils.CheckDecimal("170.00");
+                                    mb.Details = dt.Rows[iRow][14].ToString();
 
-                            db.MasterBookings.InsertOnSubmit(mb);
-                            db.SubmitChanges();
-
-                            bb = new Booking();
-                            bb.MasterBookingID = mb.ID;
-                            bb.Date = mb.StartDate;
-                            bb.Charge = mb.Charge;
-                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
-                            bb.Description = mb.Details;
-                            db.Bookings.InsertOnSubmit(bb);
-                            db.SubmitChanges();
-
+                                    db.MasterBookings.InsertOnSubmit(mb);
+                                    db.SubmitChanges();
+                                }
+                                else
+                                {
+                                    mb.EndDate = thursday;
+                                }
+                                Booking bb = new Booking();
+                                bb.MasterBookingID = mb.ID;
+                                bb.Date = mb.StartDate;
+                                bb.Charge = mb.Charge;
+                                bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                                bb.Description = mb.Details;
+                                db.Bookings.InsertOnSubmit(bb);
+                                db.SubmitChanges();
+                            }
 
                             //create master bookings - frid
-                            mb = new MasterBooking();
-                            apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][15].ToString());
-                            mb.ContactID = contactID;
-                            mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
-                            mb.TeacherLevel = dt.Rows[iRow][6].ToString();
-                            mb.StartDate = friday;
-                            mb.EndDate = friday;
-                            if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
-                            mb.Charge = Utils.CheckDecimal("170.00");
-                            mb.Details = dt.Rows[iRow][11].ToString();
+                             //check if it already exists
+                            apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][12].ToString());
+                            if (apptData.Count > 0)
+                            {
+                                mb = null;
+                                try
+                                {
+                                    mb = db.MasterBookings.Where(b => b.ContactID == contactID && b.EndDate == thursday).First();
+                                }
+                                catch { }
+                                if (mb == null)
+                                {
+                                    mb = new MasterBooking();
+                                    apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][15].ToString());
+                                    mb.ContactID = contactID;
+                                    mb.YearGroup = Utils.CheckString(dt.Rows[iRow][5].ToString());
+                                    mb.TeacherLevel = dt.Rows[iRow][6].ToString();
+                                    mb.StartDate = friday;
+                                    mb.EndDate = friday;
+                                    if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
+                                    mb.Charge = Utils.CheckDecimal("170.00");
+                                    mb.Details = dt.Rows[iRow][15].ToString();
 
-                            db.MasterBookings.InsertOnSubmit(mb);
-                            db.SubmitChanges();
+                                    db.MasterBookings.InsertOnSubmit(mb);
+                                    db.SubmitChanges();
+                                }
+                                else
+                                {
+                                    mb.EndDate = friday;
+                                }
 
-                            bb = new Booking();
-                            bb.MasterBookingID = mb.ID;
-                            bb.Date = mb.StartDate;
-                            bb.Charge = mb.Charge;
-                            bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
-                            bb.Description = mb.Details;
-                            db.Bookings.InsertOnSubmit(bb);
-                            db.SubmitChanges();
-
+                                Booking bb = new Booking();
+                                bb.MasterBookingID = mb.ID;
+                                bb.Date = mb.StartDate;
+                                bb.Charge = mb.Charge;
+                                bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
+                                bb.Description = mb.Details;
+                                db.Bookings.InsertOnSubmit(bb);
+                                db.SubmitChanges();
+                            }
                         }
                         catch (Exception ex1)
                         {
@@ -548,7 +627,11 @@ namespace RedboxAddin.DL
                             string ln = Utils.CheckString(dt.Rows[iRow][1].ToString());
 
                             Contact contact = db.Contacts.Where(c => c.FirstName == fn && c.LastName == ln).FirstOrDefault();
-                            if (contact != null)
+                            if (contact == null)
+                            {
+                                Debug.DebugMessage(2, "Import KeyRefs: Contact Not Found: " + fn + " " + ln);
+                            }
+                            else
                             {
                                 contact.KeyRef = Utils.CheckString(dt.Rows[iRow][0].ToString());
                             }

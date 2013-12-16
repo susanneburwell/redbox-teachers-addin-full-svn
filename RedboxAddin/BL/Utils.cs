@@ -30,6 +30,22 @@ namespace RedboxAddin.BL
             return fullAddress;
         }
 
+        internal static decimal GetDayRate(object myObject)
+        {
+            try
+            {
+                string value = myObject.ToString().Trim();
+                if ((value == "TA")||(string.IsNullOrWhiteSpace(value))) return -1;
+
+                Decimal dec = Convert.ToDecimal(myObject);
+                return dec;
+            }
+            catch
+            {
+                return Convert.ToDecimal("-1");
+            }
+        }
+
         public static string CheckString(object myObject)
         {
             try
