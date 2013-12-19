@@ -70,6 +70,17 @@ namespace RedboxAddin.Models
         public string FriColor { get; set; }
     }
 
+    class RTimeSheet
+    {
+        public long ID { get; set; }
+        public string SchoolName { get; set; }
+        public string FullName { get; set; }
+        public string days { get; set; }
+        public int numDays { get; set; }
+        public Decimal DayRate { get; set; }
+        public Decimal Total { get; set; }
+    }
+
     class RLoad
     {
         public string SchoolName { get; set; }

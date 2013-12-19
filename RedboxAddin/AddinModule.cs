@@ -65,6 +65,7 @@ namespace RedboxAddin
         private ADXRibbonButton adxImportContacts;
         private ADXRibbonButton adxUpdateContacts;
         private ADXRibbonButton adxMarkCurrent;
+        private ADXRibbonButton adxTimeSheet;
 
         #region Component Designer generated code
         /// <summary>
@@ -117,6 +118,7 @@ namespace RedboxAddin
             this.adxImportContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxUpdateContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxMarkCurrent = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxTimeSheet = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -364,6 +366,7 @@ namespace RedboxAddin
             this.adxRibbonGroup2.Controls.Add(this.adxAvail);
             this.adxRibbonGroup2.Controls.Add(this.adxLoadPlan);
             this.adxRibbonGroup2.Controls.Add(this.adxPivot);
+            this.adxRibbonGroup2.Controls.Add(this.adxTimeSheet);
             this.adxRibbonGroup2.Controls.Add(this.adxOptions);
             this.adxRibbonGroup2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxRibbonGroup2.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -505,6 +508,14 @@ namespace RedboxAddin
             this.adxMarkCurrent.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxMarkCurrent.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxMarkCurrent.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxMarkCurrent_OnClick);
+            // 
+            // adxTimeSheet
+            // 
+            this.adxTimeSheet.Caption = "Time Sheets";
+            this.adxTimeSheet.Id = "adxRibbonButton_2117e4350adc466b9996232a245b3394";
+            this.adxTimeSheet.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxTimeSheet.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxTimeSheet.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTimeSheet_OnClick);
             // 
             // AddinModule
             // 
@@ -1021,6 +1032,20 @@ namespace RedboxAddin
             }
         }
 
+        private void adxTimeSheet_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmTimeSheets ts = Application.OpenForms["frmTimeSheets"] as frmTimeSheets;
+            if (ts == null)
+            {
+                ts = new frmTimeSheets();
+                ts.Show();
+            }
+            else
+            {
+                ts.BringToFront();
+            }
+        }
+
         private void adxTeacherUpdate_OnClick(object sender, IRibbonControl control, bool pressed)
         {
             frmTeacherUpdate lp = Application.OpenForms["frmTeacherUpdate"] as frmTeacherUpdate;
@@ -1068,6 +1093,8 @@ namespace RedboxAddin
             DBManager db = new DBManager();
             db.MarkAllCurrent();
         }
+
+       
 
 
 

@@ -411,6 +411,48 @@ namespace RedboxAddin.DL
             return teacherDays;
         }
 
+        public List<RTimeSheet> GetTimeSheets(DateTime dStart, string schoolID)
+        {
+
+            List<RTimeSheet> TimeSheets = new List<RTimeSheet>();
+            try
+            {
+                string SQLstr = GetTimeSheetSQL(dStart, schoolID);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            RTimeSheet objTS = new RTimeSheet()
+                           {
+                               SchoolName = dr["SchoolName"].ToString(),
+                               FullName = dr["FullName"].ToString(),
+                               days = dr["days"].ToString(),
+                               numDays = Convert.ToInt32(dr["numDays"]),
+                               DayRate = Utils.CheckDecimal(dr["DayRate"].ToString()),
+                               Total = Utils.CheckDecimal(dr["Total"].ToString()),
+
+                           };
+                            TimeSheets.Add(objTS);
+                        }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
+
+                    }
+
+                    return TimeSheets;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetTimeSheets: " + ex.Message);
+                return null;
+            }
+        }
+
         public List<RLoad> GetLoadPlan(DateTime dStart)
         {
 
@@ -2403,20 +2445,7 @@ namespace RedboxAddin.DL
         }
 
         private string GetLoadPlanSQL(DateTime dStart)
-        {   //    string SQL = "";
-            //    SQL += "SELECT SchoolName, LastName+', '+FirstName as Name, Rate, Bookings.Charge, Bookings.Date, Description, Bookings.Charge-Bookings.Rate as Margin ";
-            //    SQL += "FROM [Bookings] ";
-            //    SQL += "LEFT JOIN [MasterBookings] ";
-            //    SQL += "ON [Bookings].MasterBookingID = MasterBookings.ID ";
-            //    SQL += "LEFT JOIN [Schools] ";
-            //    SQL += "ON [MasterBookings].SchoolID = Schools.ID ";
-            //    SQL += "LEFT JOIN [Contacts] ";
-            //    SQL += "ON MasterBookings.contactID = Contacts.contactID ";
-            //    SQL += "WHERE ";
-            //    SQL += "((Bookings.Date >= '" + dStart.ToString("yyyyMMdd") + "') AND (Bookings.Date <= '" + dEnd.ToString("yyyyMMdd") + "'))";
-
-            //    return SQL;
-
+        {
             string monday = dStart.ToString("yyyy-MM-dd");
             string tuesday = dStart.AddDays(1).ToString("yyyy-MM-dd");
             string wednesday = dStart.AddDays(2).ToString("yyyy-MM-dd");
@@ -2488,6 +2517,88 @@ namespace RedboxAddin.DL
             SQL += "WHERE isAbsence != 1 ";
 
             return SQL;
+        }
+
+        private string GetTimeSheetSQL(DateTime dStart, string schoolID)
+        {
+            string monday = dStart.ToString("yyyy-MM-dd");
+            string tuesday = dStart.AddDays(1).ToString("yyyy-MM-dd");
+            string wednesday = dStart.AddDays(2).ToString("yyyy-MM-dd");
+            string thursday = dStart.AddDays(3).ToString("yyyy-MM-dd");
+            string friday = dStart.AddDays(4).ToString("yyyy-MM-dd");
+
+
+            string SQL = "";
+            SQL += "SELECT MasterBookings.ID, SchoolName, LastName+', ' +FirstName as FullName,  ";
+            SQL += "CASE  WHEN ISNULL(s1.Description,'')='' THEN '' ELSE 'Mon,' END+ ";
+            SQL += "CASE  WHEN ISNULL(s2.Description,'')='' THEN '' ELSE 'Tue,' END+ ";
+            SQL += "CASE  WHEN ISNULL(s3.Description,'')='' THEN '' ELSE 'Wed,' END+ ";
+            SQL += "CASE  WHEN ISNULL(s4.Description,'')='' THEN '' ELSE 'Thu,' END+ ";
+            SQL += "CASE  WHEN ISNULL(s5.Description,'')='' THEN '' ELSE 'Fri' END AS days, ";
+
+            SQL += "s.numDays,  Charge as DayRate,  numDays*Charge as Total ";
+            SQL += "FROM MasterBookings ";
+
+            SQL += "JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT COUNT(Bookings.ID) as numDays, MasterBookingID, SUM(Rate) as total ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE (Date >= '" + monday + "' ) AND (Date <= '" + friday + "') ";
+            SQL += "GROUP BY MasterBookingID ";
+            SQL += ") As s ";
+            SQL += "ON s.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "LEFT JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + monday + "' ";
+            SQL += ") As s1 ";
+            SQL += "ON s1.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + tuesday + "' ";
+            SQL += ") As s2 ";
+            SQL += "ON s2.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" +wednesday + "' ";
+            SQL += ") As s3 ";
+            SQL += "ON s3.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + thursday + "' ";
+            SQL += ") As s4 ";
+            SQL += "ON s4.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + friday + "' ";
+            SQL += ") As s5 ";
+            SQL += "ON s5.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "LEFT JOIN [Contacts] ";
+            SQL += "ON MasterBookings.contactID = [Contacts].contactID ";
+
+            SQL += "LEFT JOIN [Schools]  ";
+            SQL += "ON MasterBookings.SchoolID = [Schools].ID ";
+
+            SQL += "WHERE isAbsence != 1 AND MasterBookings.SchoolID = '" + schoolID + "' ";
+
+
+            return SQL;
+
         }
 
         private string GetMasterBookingInfoSQL(long masterBookingID)
