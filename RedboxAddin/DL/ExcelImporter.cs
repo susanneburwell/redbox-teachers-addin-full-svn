@@ -301,7 +301,7 @@ namespace RedboxAddin.DL
 
                                 Booking bb = new Booking();
                                 bb.MasterBookingID = mb.ID;
-                                bb.Date = mb.StartDate;
+                                bb.Date = monday;
                                 bb.Charge = mb.Charge;
                                 bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
                                 bb.Description = mb.Details;
@@ -342,7 +342,7 @@ namespace RedboxAddin.DL
 
                                 Booking bb = new Booking();
                                 bb.MasterBookingID = mb.ID;
-                                bb.Date = mb.StartDate;
+                                bb.Date = tuesday;
                                 bb.Charge = mb.Charge;
                                 bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
                                 bb.Description = mb.Details;
@@ -384,7 +384,7 @@ namespace RedboxAddin.DL
 
                                 Booking bb = new Booking();
                                 bb.MasterBookingID = mb.ID;
-                                bb.Date = mb.StartDate;
+                                bb.Date = wednesday;
                                 bb.Charge = mb.Charge;
                                 bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
                                 bb.Description = mb.Details;
@@ -425,7 +425,7 @@ namespace RedboxAddin.DL
                                 }
                                 Booking bb = new Booking();
                                 bb.MasterBookingID = mb.ID;
-                                bb.Date = mb.StartDate;
+                                bb.Date = thursday;
                                 bb.Charge = mb.Charge;
                                 bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
                                 bb.Description = mb.Details;
@@ -467,7 +467,7 @@ namespace RedboxAddin.DL
 
                                 Booking bb = new Booking();
                                 bb.MasterBookingID = mb.ID;
-                                bb.Date = mb.StartDate;
+                                bb.Date = friday;
                                 bb.Charge = mb.Charge;
                                 bb.Rate = Utils.CheckDecimal(dt.Rows[iRow][7].ToString());
                                 bb.Description = mb.Details;

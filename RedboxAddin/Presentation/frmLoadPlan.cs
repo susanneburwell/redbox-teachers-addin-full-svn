@@ -23,6 +23,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
+                dtFrom.Value = Utils.GetFirstDayoftheWeek(DateTime.Today);
                 UpdateDates();
             }
             catch (Exception ex)
@@ -64,7 +65,7 @@ namespace RedboxAddin.Presentation
                 }
                 lblTo.Text = dEnd.ToLongDateString();
 
-                gridControl1.DataSource = new DBManager().GetLoadPlan(dStart, dEnd);
+                gridControl1.DataSource = new DBManager().GetLoadPlan(dStart);
                     
                 
             }
@@ -80,7 +81,7 @@ namespace RedboxAddin.Presentation
             {
                 DateTime dStart = dtFrom.Value.Date;
                 DateTime dEnd = dtTo.Value.Date;
-                gridControl1.DataSource = new DBManager().GetLoadPlan(dStart, dEnd);
+                gridControl1.DataSource = new DBManager().GetLoadPlan(dStart);
             }
         }
 

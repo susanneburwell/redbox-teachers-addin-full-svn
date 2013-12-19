@@ -411,15 +411,14 @@ namespace RedboxAddin.DL
             return teacherDays;
         }
 
-        public List<RLoad> GetLoadPlan(DateTime dStart, DateTime dEnd)
+        public List<RLoad> GetLoadPlan(DateTime dStart)
         {
 
             List<RLoad> LoadPlan = new List<RLoad>();
             try
             {
-                string SQLstr = GetLoadPlanSQL(dStart, dEnd);
+                string SQLstr = GetLoadPlanSQL(dStart);
                 DataSet msgDs = GetDataSet(SQLstr);
-
 
                 if (msgDs != null)
                 {
@@ -429,13 +428,21 @@ namespace RedboxAddin.DL
                         {
                             RLoad objLoad = new RLoad()
                            {
-                               School = dr["SchoolName"].ToString(),
-                               Name = dr["Name"].ToString(),
-                               Rate = Utils.CheckDecimal(dr["Rate"].ToString()),
+                               SchoolName = dr["SchoolName"].ToString(),
+                               FirstName = dr["FirstName"].ToString(),
+                               LastName = dr["LastName"].ToString(),
+                               numDays = Convert.ToInt32(dr["numDays"]),
+                               Monday = dr["Monday"].ToString(),
+                               Tuesday = dr["Tuesday"].ToString(),
+                               Wednesday = dr["Wednesday"].ToString(),
+                               Thursday = dr["Thursday"].ToString(),
+                               Friday = dr["Friday"].ToString(),
+                               srate = Utils.CheckDecimal(dr["srate"].ToString()),
+                               TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
+                               Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
                                Charge = Utils.CheckDecimal(dr["Charge"].ToString()),
-                               Date = Convert.ToDateTime(dr["Date"]),
-                               Description = dr["Description"].ToString(),
-                               Margin = Utils.CheckDecimal(dr["Margin"].ToString())
+                               Revenue = Utils.CheckDecimal(dr["Revenue"].ToString()),
+                               TMargin = Utils.CheckDecimal(dr["TMargin"].ToString()),
 
                            };
                             LoadPlan.Add(objLoad);
@@ -451,6 +458,50 @@ namespace RedboxAddin.DL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in GetLoadPlan: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<RPivotLoad> GetPivotLoadPlan(DateTime dStart, DateTime dEnd)
+        {
+
+            List<RPivotLoad> LoadPlan = new List<RPivotLoad>();
+            try
+            {
+                string SQLstr = GetPivotLoadPlanSQL(dStart, dEnd);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            RPivotLoad objLoad = new RPivotLoad()
+                            {
+                                School = dr["SchoolName"].ToString(),
+                                Name = dr["Name"].ToString(),
+                                Rate = Utils.CheckDecimal(dr["Rate"].ToString()),
+                                Charge = Utils.CheckDecimal(dr["Charge"].ToString()),
+                                Date = Convert.ToDateTime(dr["Date"]),
+                                Description = dr["Description"].ToString(),
+                                Margin = Utils.CheckDecimal(dr["Margin"].ToString())
+
+                            };
+                            LoadPlan.Add(objLoad);
+                        }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List: " + ex.Message); }
+
+                    }
+
+                    return LoadPlan;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetPivotLoadPlan: " + ex.Message);
                 return null;
             }
         }
@@ -2333,7 +2384,7 @@ namespace RedboxAddin.DL
             return SQLstr;
         }
 
-        private string GetLoadPlanSQL(DateTime dStart, DateTime dEnd)
+        private string GetPivotLoadPlanSQL(DateTime dStart, DateTime dEnd)
         {
             string SQL = "";
             SQL += "SELECT SchoolName, LastName+', '+FirstName as Name, Rate, Bookings.Charge, Bookings.Date, Description, Bookings.Charge-Bookings.Rate as Margin ";
@@ -2346,6 +2397,95 @@ namespace RedboxAddin.DL
             SQL += "ON MasterBookings.contactID = Contacts.contactID ";
             SQL += "WHERE ";
             SQL += "((Bookings.Date >= '" + dStart.ToString("yyyyMMdd") + "') AND (Bookings.Date <= '" + dEnd.ToString("yyyyMMdd") + "'))";
+
+            return SQL;
+
+        }
+
+        private string GetLoadPlanSQL(DateTime dStart)
+        {   //    string SQL = "";
+            //    SQL += "SELECT SchoolName, LastName+', '+FirstName as Name, Rate, Bookings.Charge, Bookings.Date, Description, Bookings.Charge-Bookings.Rate as Margin ";
+            //    SQL += "FROM [Bookings] ";
+            //    SQL += "LEFT JOIN [MasterBookings] ";
+            //    SQL += "ON [Bookings].MasterBookingID = MasterBookings.ID ";
+            //    SQL += "LEFT JOIN [Schools] ";
+            //    SQL += "ON [MasterBookings].SchoolID = Schools.ID ";
+            //    SQL += "LEFT JOIN [Contacts] ";
+            //    SQL += "ON MasterBookings.contactID = Contacts.contactID ";
+            //    SQL += "WHERE ";
+            //    SQL += "((Bookings.Date >= '" + dStart.ToString("yyyyMMdd") + "') AND (Bookings.Date <= '" + dEnd.ToString("yyyyMMdd") + "'))";
+
+            //    return SQL;
+
+            string monday = dStart.ToString("yyyy-MM-dd");
+            string tuesday = dStart.AddDays(1).ToString("yyyy-MM-dd");
+            string wednesday = dStart.AddDays(2).ToString("yyyy-MM-dd");
+            string thursday = dStart.AddDays(3).ToString("yyyy-MM-dd");
+            string friday = dStart.AddDays(4).ToString("yyyy-MM-dd");
+
+
+            string SQL = "";
+            SQL += "SELECT SchoolName, FirstName, LastName, s.numDays, s1.Description as Monday, s2.Description as Tuesday, ";
+            SQL += "s3.Description as Wednesday, s4.Description as Thursday, s5.Description as Friday, Cast(ROUND(total/numDays, 2) as decimal(18,2)) as srate,  ";
+            SQL += "Cast(Round(total,2) as decimal(18,2)) as TotalCost, ";
+            SQL += "Charge-Cast(ROUND(total/numDays, 2) as decimal(18,2)) as Margin,Charge,  numDays*Charge as Revenue, (numDays*Charge)-total as TMargin ";
+            SQL += "FROM MasterBookings ";
+
+            SQL += "JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT COUNT(Bookings.ID) as numDays, MasterBookingID, SUM(Rate) as total ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE (Date >= '" + monday + "' ) AND (Date <= '" + friday + "') ";
+            SQL += "GROUP BY MasterBookingID ";
+            SQL += ") As s ";
+            SQL += "ON s.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "LEFT JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + monday + "' ";
+            SQL += ") As s1 ";
+            SQL += "ON s1.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + tuesday + "' ";
+            SQL += ") As s2 ";
+            SQL += "ON s2.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + wednesday + "' ";
+            SQL += ") As s3 ";
+            SQL += "ON s3.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + thursday + "' ";
+            SQL += ") As s4 ";
+            SQL += "ON s4.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "Left JOIN  ";
+            SQL += "( ";
+            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "FROM Bookings ";
+            SQL += "WHERE Date = '" + friday + "' ";
+            SQL += ") As s5 ";
+            SQL += "ON s5.MasterBookingID = [MasterBookings].ID ";
+
+            SQL += "LEFT JOIN [Contacts] ";
+            SQL += "ON MasterBookings.contactID = [Contacts].contactID ";
+
+            SQL += "LEFT JOIN [Schools]  ";
+            SQL += "ON MasterBookings.SchoolID = [Schools].ID ";
+            SQL += "WHERE isAbsence != 1 ";
 
             return SQL;
         }
@@ -2437,8 +2577,8 @@ namespace RedboxAddin.DL
             if (!string.IsNullOrWhiteSpace(dtStart)) SQL += " AND (CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "') ";
             if (!string.IsNullOrWhiteSpace(dtEnd)) SQL += " AND (CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "') ";
 
-            
-            return SQL ;
+
+            return SQL;
         }
         #endregion
 

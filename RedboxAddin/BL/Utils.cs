@@ -98,7 +98,7 @@ namespace RedboxAddin.BL
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "CheckBool Failed :- " + ex.Message);
+                Debug.DebugMessage(4, "CheckBool Failed :- " + ex.Message);
                 return false;
             }
         }

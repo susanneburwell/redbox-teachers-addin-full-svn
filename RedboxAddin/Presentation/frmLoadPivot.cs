@@ -64,7 +64,7 @@ namespace RedboxAddin.Presentation
                 }
                 lblTo.Text = dEnd.ToLongDateString();
 
-                pivotGridControl1.DataSource = new DBManager().GetLoadPlan(dStart, dEnd);
+                pivotGridControl1.DataSource = new DBManager().GetPivotLoadPlan(dStart, dEnd);
                     
                 
             }
@@ -80,7 +80,7 @@ namespace RedboxAddin.Presentation
             {
                 DateTime dStart = dtFrom.Value.Date;
                 DateTime dEnd = dtTo.Value.Date;
-                pivotGridControl1.DataSource = new DBManager().GetLoadPlan(dStart, dEnd);
+                pivotGridControl1.DataSource = new DBManager().GetPivotLoadPlan(dStart, dEnd);
             }
         }
 

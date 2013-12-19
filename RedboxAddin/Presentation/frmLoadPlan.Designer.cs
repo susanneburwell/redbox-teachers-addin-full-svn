@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoadPlan));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.bnFwd = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.lblTo = new System.Windows.Forms.Label();
             this.radCustom = new System.Windows.Forms.RadioButton();
             this.radMonth = new System.Windows.Forms.RadioButton();
@@ -43,15 +45,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.bnFwd = new System.Windows.Forms.Button();
+            this.School = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FirstName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LastName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.numDays = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Monday = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Tuesday = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Wednesday = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Thursday = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Friday = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Rate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.sMargin = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Charge = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Revenue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TMargin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -95,6 +103,26 @@
             this.panelTop.Size = new System.Drawing.Size(936, 62);
             this.panelTop.TabIndex = 0;
             // 
+            // bnFwd
+            // 
+            this.bnFwd.Location = new System.Drawing.Point(362, 36);
+            this.bnFwd.Name = "bnFwd";
+            this.bnFwd.Size = new System.Drawing.Size(47, 23);
+            this.bnFwd.TabIndex = 27;
+            this.bnFwd.Text = ">>";
+            this.bnFwd.UseVisualStyleBackColor = true;
+            this.bnFwd.Click += new System.EventHandler(this.bnFwd_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(296, 36);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(47, 23);
+            this.btnBack.TabIndex = 26;
+            this.btnBack.Text = "<<";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // lblTo
             // 
             this.lblTo.AutoSize = true;
@@ -113,6 +141,7 @@
             this.radCustom.TabIndex = 24;
             this.radCustom.Text = "Custom";
             this.radCustom.UseVisualStyleBackColor = true;
+            this.radCustom.Visible = false;
             this.radCustom.Click += new System.EventHandler(this.SetDates);
             // 
             // radMonth
@@ -124,6 +153,7 @@
             this.radMonth.TabIndex = 23;
             this.radMonth.Text = "Month";
             this.radMonth.UseVisualStyleBackColor = true;
+            this.radMonth.Visible = false;
             this.radMonth.Click += new System.EventHandler(this.SetDates);
             // 
             // radWeek
@@ -137,6 +167,7 @@
             this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
             this.radWeek.UseVisualStyleBackColor = true;
+            this.radWeek.Visible = false;
             this.radWeek.Click += new System.EventHandler(this.SetDates);
             // 
             // dtFrom
@@ -204,123 +235,176 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn10});
+            this.School,
+            this.FirstName,
+            this.LastName,
+            this.numDays,
+            this.Monday,
+            this.Tuesday,
+            this.Wednesday,
+            this.Thursday,
+            this.Friday,
+            this.Rate,
+            this.TotalCost,
+            this.sMargin,
+            this.Charge,
+            this.Revenue,
+            this.TMargin});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Margin", null, "£{0}"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "Date", null, "{0} Days")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TMargin", null, "£{0}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", null, "£{0}")});
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowFooter = true;
             // 
-            // gridColumn1
+            // School
             // 
-            this.gridColumn1.Caption = "School";
-            this.gridColumn1.FieldName = "School";
-            this.gridColumn1.MaxWidth = 200;
-            this.gridColumn1.MinWidth = 100;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 121;
+            this.School.Caption = "School";
+            this.School.FieldName = "SchoolName";
+            this.School.MaxWidth = 200;
+            this.School.MinWidth = 100;
+            this.School.Name = "School";
+            this.School.Visible = true;
+            this.School.VisibleIndex = 0;
+            this.School.Width = 121;
             // 
-            // gridColumn2
+            // FirstName
             // 
-            this.gridColumn2.Caption = "Name";
-            this.gridColumn2.FieldName = "Name";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.FirstName.Caption = "First Name";
+            this.FirstName.FieldName = "FirstName";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Visible = true;
+            this.FirstName.VisibleIndex = 1;
             // 
-            // gridColumn5
+            // LastName
             // 
-            this.gridColumn5.Caption = "Rate";
-            this.gridColumn5.DisplayFormat.FormatString = "{0:c}";
-            this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn5.FieldName = "Rate";
-            this.gridColumn5.MaxWidth = 75;
-            this.gridColumn5.MinWidth = 75;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Rate", "{0:c}")});
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 2;
+            this.LastName.Caption = "Last Name";
+            this.LastName.FieldName = "LastName";
+            this.LastName.Name = "LastName";
+            this.LastName.Visible = true;
+            this.LastName.VisibleIndex = 2;
             // 
-            // gridColumn6
+            // numDays
             // 
-            this.gridColumn6.Caption = "Charge";
-            this.gridColumn6.DisplayFormat.FormatString = "{0:c}";
-            this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn6.FieldName = "Charge";
-            this.gridColumn6.MaxWidth = 75;
-            this.gridColumn6.MinWidth = 75;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Charge", "{0:c}")});
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 3;
+            this.numDays.Caption = "No. of days";
+            this.numDays.FieldName = "numDays";
+            this.numDays.Name = "numDays";
+            this.numDays.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "numDays", "{0} days")});
+            this.numDays.Visible = true;
+            this.numDays.VisibleIndex = 3;
             // 
-            // gridColumn7
+            // Monday
             // 
-            this.gridColumn7.Caption = "Date";
-            this.gridColumn7.FieldName = "Date";
-            this.gridColumn7.MaxWidth = 150;
-            this.gridColumn7.MinWidth = 100;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Date", "{0} Days")});
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
-            this.gridColumn7.Width = 107;
+            this.Monday.Caption = "Monday";
+            this.Monday.FieldName = "Monday";
+            this.Monday.Name = "Monday";
+            this.Monday.Visible = true;
+            this.Monday.VisibleIndex = 4;
             // 
-            // gridColumn8
+            // Tuesday
             // 
-            this.gridColumn8.Caption = "Description";
-            this.gridColumn8.FieldName = "Description";
-            this.gridColumn8.MinWidth = 200;
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 5;
-            this.gridColumn8.Width = 200;
+            this.Tuesday.Caption = "Tuesday";
+            this.Tuesday.FieldName = "Tuesday";
+            this.Tuesday.Name = "Tuesday";
+            this.Tuesday.Visible = true;
+            this.Tuesday.VisibleIndex = 5;
             // 
-            // gridColumn10
+            // Wednesday
             // 
-            this.gridColumn10.Caption = "Margin";
-            this.gridColumn10.DisplayFormat.FormatString = "{0:c}";
-            this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn10.FieldName = "Margin";
-            this.gridColumn10.MaxWidth = 75;
-            this.gridColumn10.MinWidth = 75;
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.Wednesday.Caption = "Wednesday";
+            this.Wednesday.FieldName = "Wednesday";
+            this.Wednesday.Name = "Wednesday";
+            this.Wednesday.Visible = true;
+            this.Wednesday.VisibleIndex = 6;
+            // 
+            // Thursday
+            // 
+            this.Thursday.Caption = "Thursday";
+            this.Thursday.FieldName = "Thursday";
+            this.Thursday.Name = "Thursday";
+            this.Thursday.Visible = true;
+            this.Thursday.VisibleIndex = 7;
+            // 
+            // Friday
+            // 
+            this.Friday.Caption = "Friday";
+            this.Friday.FieldName = "Friday";
+            this.Friday.Name = "Friday";
+            this.Friday.Visible = true;
+            this.Friday.VisibleIndex = 8;
+            // 
+            // Rate
+            // 
+            this.Rate.Caption = "Rate";
+            this.Rate.DisplayFormat.FormatString = "{0:c}";
+            this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Rate.FieldName = "srate";
+            this.Rate.MaxWidth = 50;
+            this.Rate.MinWidth = 50;
+            this.Rate.Name = "Rate";
+            this.Rate.Visible = true;
+            this.Rate.VisibleIndex = 9;
+            this.Rate.Width = 50;
+            // 
+            // TotalCost
+            // 
+            this.TotalCost.Caption = "Total Cost";
+            this.TotalCost.FieldName = "TotalCost";
+            this.TotalCost.MaxWidth = 80;
+            this.TotalCost.MinWidth = 10;
+            this.TotalCost.Name = "TotalCost";
+            this.TotalCost.Visible = true;
+            this.TotalCost.VisibleIndex = 10;
+            // 
+            // sMargin
+            // 
+            this.sMargin.Caption = "Margin";
+            this.sMargin.FieldName = "Margin";
+            this.sMargin.MaxWidth = 80;
+            this.sMargin.MinWidth = 10;
+            this.sMargin.Name = "sMargin";
+            this.sMargin.Visible = true;
+            this.sMargin.VisibleIndex = 11;
+            // 
+            // Charge
+            // 
+            this.Charge.Caption = "Charge";
+            this.Charge.DisplayFormat.FormatString = "{0:c}";
+            this.Charge.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Charge.FieldName = "Charge";
+            this.Charge.MaxWidth = 80;
+            this.Charge.MinWidth = 10;
+            this.Charge.Name = "Charge";
+            this.Charge.Visible = true;
+            this.Charge.VisibleIndex = 12;
+            // 
+            // Revenue
+            // 
+            this.Revenue.Caption = "Revenue";
+            this.Revenue.FieldName = "Revenue";
+            this.Revenue.MaxWidth = 100;
+            this.Revenue.MinWidth = 75;
+            this.Revenue.Name = "Revenue";
+            this.Revenue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", "{0:c}")});
+            this.Revenue.Visible = true;
+            this.Revenue.VisibleIndex = 13;
+            // 
+            // TMargin
+            // 
+            this.TMargin.Caption = "Total Margin";
+            this.TMargin.DisplayFormat.FormatString = "{0:c}";
+            this.TMargin.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.TMargin.FieldName = "TMargin";
+            this.TMargin.MaxWidth = 100;
+            this.TMargin.MinWidth = 80;
+            this.TMargin.Name = "TMargin";
+            this.TMargin.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Margin", "{0:c}")});
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 6;
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(296, 36);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(47, 23);
-            this.btnBack.TabIndex = 26;
-            this.btnBack.Text = "<<";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // bnFwd
-            // 
-            this.bnFwd.Location = new System.Drawing.Point(362, 36);
-            this.bnFwd.Name = "bnFwd";
-            this.bnFwd.Size = new System.Drawing.Size(47, 23);
-            this.bnFwd.TabIndex = 27;
-            this.bnFwd.Text = ">>";
-            this.bnFwd.UseVisualStyleBackColor = true;
-            this.bnFwd.Click += new System.EventHandler(this.bnFwd_Click);
+            this.TMargin.Visible = true;
+            this.TMargin.VisibleIndex = 14;
+            this.TMargin.Width = 80;
             // 
             // frmLoadPlan
             // 
@@ -350,12 +434,10 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn School;
+        private DevExpress.XtraGrid.Columns.GridColumn Rate;
+        private DevExpress.XtraGrid.Columns.GridColumn Charge;
+        private DevExpress.XtraGrid.Columns.GridColumn TMargin;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtTo;
@@ -364,8 +446,18 @@
         private System.Windows.Forms.RadioButton radCustom;
         private System.Windows.Forms.RadioButton radMonth;
         private System.Windows.Forms.RadioButton radWeek;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn FirstName;
         private System.Windows.Forms.Button bnFwd;
         private System.Windows.Forms.Button btnBack;
+        private DevExpress.XtraGrid.Columns.GridColumn LastName;
+        private DevExpress.XtraGrid.Columns.GridColumn numDays;
+        private DevExpress.XtraGrid.Columns.GridColumn Monday;
+        private DevExpress.XtraGrid.Columns.GridColumn Tuesday;
+        private DevExpress.XtraGrid.Columns.GridColumn Wednesday;
+        private DevExpress.XtraGrid.Columns.GridColumn Thursday;
+        private DevExpress.XtraGrid.Columns.GridColumn Friday;
+        private DevExpress.XtraGrid.Columns.GridColumn TotalCost;
+        private DevExpress.XtraGrid.Columns.GridColumn sMargin;
+        private DevExpress.XtraGrid.Columns.GridColumn Revenue;
     }
 }

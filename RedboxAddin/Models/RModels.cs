@@ -72,6 +72,25 @@ namespace RedboxAddin.Models
 
     class RLoad
     {
+        public string SchoolName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int numDays { get; set; }
+        public string Monday { get; set; }
+        public string Tuesday { get; set; }
+        public string Wednesday { get; set; }
+        public string Thursday { get; set; }
+        public string Friday { get; set; }
+        public Decimal srate { get; set; }
+        public Decimal TotalCost { get; set; }
+        public Decimal Margin { get; set; }
+        public Decimal Charge { get; set; }
+        public Decimal Revenue { get; set; }
+        public Decimal TMargin { get; set; }
+    }
+
+    class RPivotLoad
+    {
         public string School { get; set; }
         public string Name { get; set; }
         public Decimal Rate { get; set; }
