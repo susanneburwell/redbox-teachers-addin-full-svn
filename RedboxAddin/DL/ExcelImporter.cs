@@ -227,7 +227,7 @@ namespace RedboxAddin.DL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
 
-                    for (int iRow = startrow ; iRow < endrow; iRow++)
+                    for (int iRow = startrow; iRow < endrow; iRow++)
                     {
                         try
                         {
@@ -237,7 +237,7 @@ namespace RedboxAddin.DL
 
                             if (contactID == -1)   //-1 == not found
                             {
-                                Debug.DebugMessage(2,"Importing: Contact Name not found: " + fullname );
+                                Debug.DebugMessage(2, "Importing: Contact Name not found: " + fullname);
                                 continue;
                             }
                             else
@@ -263,6 +263,7 @@ namespace RedboxAddin.DL
                                 cd.Yr6 = Utils.CheckBool(dt.Rows[iRow][25]);
                                 cd.Teacher = Utils.CheckBool(dt.Rows[iRow][26]);
                                 cd.TA = Utils.CheckBool(dt.Rows[iRow][27]);
+                                cd.Current = Utils.CheckBool(dt.Rows[iRow][28]);
 
 
                                 if (setTA) cd.TA = true;
@@ -295,6 +296,7 @@ namespace RedboxAddin.DL
                                 if (apptData.Count > 0) mb.SchoolID = dbm.GetSchoolIDfromName(apptData[1]);
                                 mb.Charge = Utils.CheckDecimal("170.00");
                                 mb.Details = dt.Rows[iRow][11].ToString();
+                                mb.LongTerm = Utils.CheckBool(dt.Rows[iRow][29]);
 
                                 db.MasterBookings.InsertOnSubmit(mb);
                                 db.SubmitChanges();
@@ -351,7 +353,7 @@ namespace RedboxAddin.DL
                             }
 
                             //create master bookings - Wed
-                             //check if it already exists
+                            //check if it already exists
                             apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][13].ToString());
                             if (apptData.Count > 0)
                             {
@@ -393,7 +395,7 @@ namespace RedboxAddin.DL
                             }
 
                             //create master bookings - thur
-                             //check if it already exists
+                            //check if it already exists
                             apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][12].ToString());
                             if (apptData.Count > 0)
                             {
@@ -434,7 +436,7 @@ namespace RedboxAddin.DL
                             }
 
                             //create master bookings - frid
-                             //check if it already exists
+                            //check if it already exists
                             apptData = Utils.ExtractAppointmentData(dt.Rows[iRow][12].ToString());
                             if (apptData.Count > 0)
                             {
@@ -677,7 +679,89 @@ namespace RedboxAddin.DL
                 }
             }
         }
-    
-    
+
+        public static void CheckNamesInExcel(string filepath)
+        {
+            //The connection string to the excel file
+            String connStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filepath + ";Extended Properties=Excel 12.0;";
+
+            //Get the sheet names
+            IEnumerable<string> sheets = GetExcelSheetNames(filepath);
+
+
+            //The connection to that file
+            OleDbConnection conn = new OleDbConnection(connStr);
+
+            //The query (Selects all from SHEET1)
+            string strSQL = "SELECT * FROM [" + sheets.First() + "]"; //;  //[{0}$]  + sheets.First()
+
+            //The command (executes select all)
+            OleDbCommand cmd = new OleDbCommand(/*The query*/strSQL, /*The connection*/conn);
+            DataTable dt = new DataTable();
+            conn.Open();
+
+            try
+            {
+                //Read in the data from the specified Excel
+                OleDbDataReader dr1 = cmd.ExecuteReader();
+
+                if (dr1.Read())
+                {
+                    dt.Load(dr1);
+                }
+
+                //Gets the number of columns  
+                int iColCount = dt.Columns.Count;
+
+                //Get the number of rows
+                int iRowCount = dt.Rows.Count;
+
+
+                List<RAvailability> listA = new List<RAvailability>();
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                DBManager.OpenDBConnection();
+                DBManager dbm = new DBManager();
+
+                string MissingNames = "";
+
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+
+                    for (int iRow = 0; iRow < iRowCount ; iRow++)
+                    {
+                        try
+                        {
+                            //get contact id from full name
+                            string fullname = dt.Rows[iRow][0].ToString();
+                            long contactID = dbm.GetContactIDfromFullName(fullname);
+
+                            if (contactID == -1)   //-1 == not found
+                            {
+                                MissingNames += fullname + "\r\n";
+                                continue;
+                            }
+                        }
+                        catch { }
+                    }
+                }
+
+                //save file to temp folder
+                string tempfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\Davton";
+                if (!Directory.Exists(tempfolder)) Directory.CreateDirectory(tempfolder);
+
+                string tempfilepath = tempfolder + "\\" + "UnMatched_Names.txt";
+
+                System.IO.StreamWriter myFile = new StreamWriter(tempfilepath, false);
+
+                myFile.Write(MissingNames);
+                myFile.Flush();
+                myFile.Close();
+                System.Diagnostics.Process.Start(tempfilepath);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error CheckNamesInExcel: " + ex.Message);
+            }
+        }
     }
 }

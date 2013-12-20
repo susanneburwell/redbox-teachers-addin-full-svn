@@ -116,6 +116,7 @@ namespace RedboxAddin.Presentation
                 txtCRBFormRef.Text = contactObj.CRBFormRef;
                 txtCRBNumber.Text = contactObj.CRBNumber;
                 dtCRBValidFrom.Value = contactObj.CRBValidFrom;
+                chkDBSDirectPayment.Checked =contactObj.DBSDirectPayment;
                 txtCurrentPayScale.Text = contactObj.CurrentPayScale;
                 chkCVReceived.Checked = contactObj.CVReceived;
                 dtDateOfSupply.Value = contactObj.DateOfSupply;
@@ -238,6 +239,7 @@ namespace RedboxAddin.Presentation
                 contactObj.CRBFormRef = txtCRBFormRef.Text;
                 contactObj.CRBNumber = txtCRBNumber.Text;
                 contactObj.CRBValidFrom = dtCRBValidFrom.Value;
+                contactObj.DBSDirectPayment = chkDBSDirectPayment.Checked;
                 contactObj.CurrentPayScale = txtCurrentPayScale.Text;
                 contactObj.CVReceived = chkCVReceived.Checked;
                 contactObj.DateOfSupply = dtDateOfSupply.Value;
@@ -789,8 +791,8 @@ namespace RedboxAddin.Presentation
                 if (chkCautionsCRB.Checked) { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? No"; }
 
-                if (chkUpdateService.Checked) { txtBody = txtBody + Environment.NewLine + "Update Service? Yes"; }
-                else { txtBody = txtBody + Environment.NewLine + "Update Service? No"; }
+                if (chkUpdateService.Checked) { txtBody = txtBody + Environment.NewLine + "DBS Update Service? Yes"; }
+                else { txtBody = txtBody + Environment.NewLine + "DBS Update Service? No"; }
 
                 if (dtVisaExpiryDate.Value != DateTime.MinValue)
                 {

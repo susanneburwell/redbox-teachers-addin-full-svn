@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTimeSheets));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnSend = new System.Windows.Forms.Button();
             this.cmbSchool = new System.Windows.Forms.ComboBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
@@ -68,11 +69,13 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(968, 655);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnSend);
             this.panelTop.Controls.Add(this.cmbSchool);
             this.panelTop.Controls.Add(this.btnNext);
             this.panelTop.Controls.Add(this.btnPrev);
@@ -89,6 +92,16 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(960, 62);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(560, 21);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(70, 26);
+            this.btnSend.TabIndex = 33;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // cmbSchool
             // 
@@ -191,9 +204,12 @@
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
             // 
             // gridView1
             // 
+            this.gridView1.AppearancePrint.HeaderPanel.Image = global::RedboxAddin.Properties.Resources.red_box_logo;
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseImage = true;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.School,
             this.FullName,
@@ -205,7 +221,10 @@
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", null, "£{0:c}")});
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowFooter = true;
+            this.gridView1.OptionsView.ShowViewCaption = true;
+            this.gridView1.ViewCaption = "Redbox Teachers Timesheet";
             // 
             // School
             // 
@@ -232,7 +251,7 @@
             this.days.FieldName = "days";
             this.days.Name = "days";
             this.days.Visible = true;
-            this.days.VisibleIndex = 5;
+            this.days.VisibleIndex = 2;
             // 
             // numDays
             // 
@@ -242,7 +261,7 @@
             this.numDays.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "numDays", "{0} days")});
             this.numDays.Visible = true;
-            this.numDays.VisibleIndex = 2;
+            this.numDays.VisibleIndex = 3;
             // 
             // DayRate
             // 
@@ -254,7 +273,7 @@
             this.DayRate.MinWidth = 10;
             this.DayRate.Name = "DayRate";
             this.DayRate.Visible = true;
-            this.DayRate.VisibleIndex = 3;
+            this.DayRate.VisibleIndex = 4;
             // 
             // Total
             // 
@@ -268,7 +287,7 @@
             this.Total.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:c}")});
             this.Total.Visible = true;
-            this.Total.VisibleIndex = 4;
+            this.Total.VisibleIndex = 5;
             this.Total.Width = 80;
             // 
             // frmTimeSheets
@@ -311,5 +330,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn DayRate;
         private DevExpress.XtraGrid.Columns.GridColumn Total;
         private DevExpress.XtraGrid.Columns.GridColumn days;
+        private System.Windows.Forms.Button btnSend;
     }
 }

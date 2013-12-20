@@ -121,13 +121,16 @@
   <data name="1354184896_3floppy_unmount" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1354184896_3floppy_unmount.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="1360344418_101" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1360344418_101.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="1354796819_contact" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1354796819_contact.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1354184944_Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1354184944_Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1360344418_101" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1360344418_101.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="red-box-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\red-box-logo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

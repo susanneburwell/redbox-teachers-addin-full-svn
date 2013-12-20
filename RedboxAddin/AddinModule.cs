@@ -66,6 +66,7 @@ namespace RedboxAddin
         private ADXRibbonButton adxUpdateContacts;
         private ADXRibbonButton adxMarkCurrent;
         private ADXRibbonButton adxTimeSheet;
+        private ADXRibbonButton adxCheckContactnames;
 
         #region Component Designer generated code
         /// <summary>
@@ -108,6 +109,7 @@ namespace RedboxAddin
             this.adxAvail = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxLoadPlan = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxTimeSheet = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -118,7 +120,7 @@ namespace RedboxAddin
             this.adxImportContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxUpdateContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxMarkCurrent = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxTimeSheet = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxCheckContactnames = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -421,6 +423,14 @@ namespace RedboxAddin
             this.adxPivot.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
             // 
+            // adxTimeSheet
+            // 
+            this.adxTimeSheet.Caption = "Time Sheets";
+            this.adxTimeSheet.Id = "adxRibbonButton_2117e4350adc466b9996232a245b3394";
+            this.adxTimeSheet.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxTimeSheet.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxTimeSheet.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTimeSheet_OnClick);
+            // 
             // adxOptions
             // 
             this.adxOptions.Caption = "Options";
@@ -433,6 +443,7 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxImportContacts);
             this.adxOptions.Controls.Add(this.adxUpdateContacts);
             this.adxOptions.Controls.Add(this.adxMarkCurrent);
+            this.adxOptions.Controls.Add(this.adxCheckContactnames);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxOptions.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
@@ -509,13 +520,13 @@ namespace RedboxAddin
             this.adxMarkCurrent.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxMarkCurrent.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxMarkCurrent_OnClick);
             // 
-            // adxTimeSheet
+            // adxCheckContactnames
             // 
-            this.adxTimeSheet.Caption = "Time Sheets";
-            this.adxTimeSheet.Id = "adxRibbonButton_2117e4350adc466b9996232a245b3394";
-            this.adxTimeSheet.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxTimeSheet.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxTimeSheet.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTimeSheet_OnClick);
+            this.adxCheckContactnames.Caption = "Check Contact Names in Excel";
+            this.adxCheckContactnames.Id = "adxRibbonButton_4b3ceafd9086415398a453218d062d5d";
+            this.adxCheckContactnames.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCheckContactnames.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxCheckContactnames.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxCheckContactnames_OnClick);
             // 
             // AddinModule
             // 
@@ -1092,6 +1103,17 @@ namespace RedboxAddin
         {
             DBManager db = new DBManager();
             db.MarkAllCurrent();
+        }
+
+        private void adxCheckContactnames_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.FileName = "*.xls";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ExcelImporter.CheckNamesInExcel(openFileDialog1.FileName);
+            }
+            
         }
 
        

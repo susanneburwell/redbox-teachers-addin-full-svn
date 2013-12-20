@@ -49,6 +49,7 @@ namespace RedboxAddin.Models
         public DateTime CRBValidFrom { get; set; }
         public string CurrentPayScale { get; set; }
         public bool CVReceived { get; set; }
+        public bool DBSDirectPayment { get; set; }
         public DateTime DateOfSupply { get; set; }
         public DateTime FirstDayTeachingUK { get; set; }
         public DateTime GTCCheckDate { get; set; }

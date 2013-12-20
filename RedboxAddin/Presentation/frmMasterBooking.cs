@@ -42,9 +42,9 @@ namespace RedboxAddin.Presentation
         {
             loading = true;
             dgcBookings.DataSource = bindingSource1;
-
             dgcBookings.Hide();
             availabilityGrid1.Hide();
+
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -55,7 +55,11 @@ namespace RedboxAddin.Presentation
                 Utils.PopulateTeacher(cmbTeacher);
                 Utils.PopulateTeacher(cmbRequestedTeacher);
 
-                if (_masterBookingID != -1) LoadMasterBooking(_masterBookingID);
+                if (_masterBookingID != -1)
+                {
+                    LoadMasterBooking(_masterBookingID);
+                    SetGridVisibility();
+                }
                 loading = false;
             }
             catch (Exception ex)
@@ -63,7 +67,6 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in frmNewRequest_Load: " + ex.Message);
             }
 
-            LoadAvailabilityTable();
             loading = false;
         }
 
@@ -242,7 +245,7 @@ namespace RedboxAddin.Presentation
                 mb.BookingStatus = cmbBookingStatus.Text;
 
                 //Check teacher is real
-                string teachername = cmbTeacher.Text.Replace(',',' ');
+                string teachername = cmbTeacher.Text.Replace(',', ' ');
                 if (teachername.Trim() == "") mb.ContactID = -1;
 
 
@@ -609,10 +612,10 @@ namespace RedboxAddin.Presentation
 
         private void RefreshDGC()
         {
-            BindGrid();
+            LoadBookingsGrid();
         }
 
-        private void BindGrid()
+        private void LoadBookingsGrid()
         {
             try
             {
@@ -802,7 +805,7 @@ namespace RedboxAddin.Presentation
             {
                 btnView.Text = "View Availability";
                 availabilityGrid1.Hide();
-                BindGrid();
+                LoadBookingsGrid();
                 dgcBookings.Dock = DockStyle.Fill;
                 dgcBookings.Show();
             }
@@ -864,15 +867,15 @@ namespace RedboxAddin.Presentation
 
         private void flashtimer1_Tick(object sender, EventArgs e)
         {
-             if (btnDblBkgs.BackColor == Color.Crimson)
+            if (btnDblBkgs.BackColor == Color.Crimson)
             {
                 btnDblBkgs.BackColor = Color.Orange;
             }
             else btnDblBkgs.BackColor = Color.Crimson;
         }
 
-        
-            private void btnDblBkgs_Click(object sender, EventArgs e)
+
+        private void btnDblBkgs_Click(object sender, EventArgs e)
         {
             frmViewDoubleBookings fdb = Application.OpenForms["frmViewDoubleBookings"] as frmViewDoubleBookings;
             if (fdb == null)
@@ -882,7 +885,7 @@ namespace RedboxAddin.Presentation
             }
             else { fdb.BringToFront(); }
         }
-        
+
 
 
 

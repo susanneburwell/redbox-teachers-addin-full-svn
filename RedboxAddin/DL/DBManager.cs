@@ -428,6 +428,7 @@ namespace RedboxAddin.DL
                         {
                             RTimeSheet objTS = new RTimeSheet()
                            {
+                               ID = Utils.CheckLong(dr["ID"]),
                                SchoolName = dr["SchoolName"].ToString(),
                                FullName = dr["FullName"].ToString(),
                                days = dr["days"].ToString(),
@@ -828,6 +829,9 @@ namespace RedboxAddin.DL
                 string[] names = fullName.Split(' ');
                 string firstname = names[1];
                 string lastname = names[0];
+                firstname = firstname.Replace("'", @"''");
+                lastname = lastname.Replace("'", @"\'");
+
                 DataSet msgDs = GetDataSet("Select ContactID from Contacts "
                 + "WHERE FirstName = '" + firstname + "' AND LastName = '" + lastname + "'");
                 if (msgDs != null)
@@ -940,6 +944,7 @@ namespace RedboxAddin.DL
                             CRBFormRef = dr["CRBFormRef"].ToString(),
                             CRBNumber = dr["CRBNumber"].ToString(),
                             CRBValidFrom = CheckDate(dr["CRBValidFrom"].ToString()),
+                            DBSDirectPayment = CheckBool(dr["DBSDirectPayment"]),
                             CurrentPayScale = dr["CurrentPayScale"].ToString(),
                             CVReceived = CheckBool(dr["CVReceived"].ToString()),
                             DateOfSupply = CheckDate(dr["DateOfSupply"].ToString()),
@@ -1163,6 +1168,7 @@ namespace RedboxAddin.DL
                     + "CRBNumber,"
                     + "CRBValidFrom,"
                     + "CurrentPayScale,"
+                    + "DBSDirectPayment,"
                     + "CVReceived,"
                     + "DateOfSupply,"
                     + "FirstDayTeachingUK,"
@@ -1274,6 +1280,7 @@ namespace RedboxAddin.DL
                     + "@CRBNumber,"
                     + "@CRBValidFrom,"
                     + "@CurrentPayScale,"
+                    + "@DBSDirectPayment,"
                     + "@CVReceived,"
                     + "@DateOfSupply,"
                     + "@FirstDayTeachingUK,"
@@ -1387,6 +1394,8 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.Add("@CRBFormRef", SqlDbType.VarChar, 100);
                 CmdAddContact.Parameters.Add("@CRBNumber", SqlDbType.VarChar, 100);
                 CmdAddContact.Parameters.Add("@CRBValidFrom", SqlDbType.DateTime);
+                CmdAddContact.Parameters.Add("@DBSDirectPayment", SqlDbType.Bit);
+
                 CmdAddContact.Parameters.Add("@CurrentPayScale", SqlDbType.VarChar, 50);
                 CmdAddContact.Parameters.Add("@CVReceived", SqlDbType.Bit);
                 CmdAddContact.Parameters.Add("@DateOfSupply", SqlDbType.DateTime);
@@ -1499,6 +1508,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@CRBFormRef"].Value = CheckVals(contactObj.CRBFormRef);
                 CmdAddContact.Parameters["@CRBNumber"].Value = CheckVals(contactObj.CRBNumber);
                 CmdAddContact.Parameters["@CRBValidFrom"].Value = FilterSQLDate(contactObj.CRBValidFrom);
+                CmdAddContact.Parameters["@DBSDirectPayment"].Value = CheckVals(contactObj.DBSDirectPayment);
                 CmdAddContact.Parameters["@CurrentPayScale"].Value = CheckVals(contactObj.CurrentPayScale);
                 CmdAddContact.Parameters["@CVReceived"].Value = CheckVals(contactObj.CVReceived);
                 CmdAddContact.Parameters["@DateOfSupply"].Value = FilterSQLDate(contactObj.DateOfSupply);
@@ -1631,6 +1641,7 @@ namespace RedboxAddin.DL
                        + "CRBFormRef = @CRBFormRef, "
                        + "CRBNumber = @CRBNumber, "
                        + "CRBValidFrom = @CRBValidFrom, "
+                       + "DBSDirectPayment = @DBSDirectPayment, "
                        + "CurrentPayScale = @CurrentPayScale, "
                        + "CVReceived = @CVReceived, "
                        + "DateOfSupply = @DateOfSupply, "
@@ -1744,6 +1755,8 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.Add("@CRBFormRef", SqlDbType.VarChar, 100);
                 CmdUpdateContact.Parameters.Add("@CRBNumber", SqlDbType.VarChar, 100);
                 CmdUpdateContact.Parameters.Add("@CRBValidFrom", SqlDbType.DateTime);
+                CmdUpdateContact.Parameters.Add("@DBSDirectPayment", SqlDbType.Bit);
+
                 CmdUpdateContact.Parameters.Add("@CurrentPayScale", SqlDbType.VarChar, 50);
                 CmdUpdateContact.Parameters.Add("@CVReceived", SqlDbType.Bit);
                 CmdUpdateContact.Parameters.Add("@DateOfSupply", SqlDbType.DateTime);
@@ -1856,6 +1869,7 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters["@CRBFormRef"].Value = CheckVals(contactObj.CRBFormRef);
                 CmdUpdateContact.Parameters["@CRBNumber"].Value = CheckVals(contactObj.CRBNumber);
                 CmdUpdateContact.Parameters["@CRBValidFrom"].Value = FilterSQLDate(contactObj.CRBValidFrom);
+                CmdUpdateContact.Parameters["@DBSDirectPayment"].Value = CheckVals(contactObj.DBSDirectPayment);
                 CmdUpdateContact.Parameters["@CurrentPayScale"].Value = CheckVals(contactObj.CurrentPayScale);
                 CmdUpdateContact.Parameters["@CVReceived"].Value = CheckVals(contactObj.CVReceived);
                 CmdUpdateContact.Parameters["@DateOfSupply"].Value = FilterSQLDate(contactObj.DateOfSupply);
@@ -2568,7 +2582,7 @@ namespace RedboxAddin.DL
             SQL += "( ";
             SQL += "SELECT Description, MasterBookingID ";
             SQL += "FROM Bookings ";
-            SQL += "WHERE Date = '" +wednesday + "' ";
+            SQL += "WHERE Date = '" + wednesday + "' ";
             SQL += ") As s3 ";
             SQL += "ON s3.MasterBookingID = [MasterBookings].ID ";
 

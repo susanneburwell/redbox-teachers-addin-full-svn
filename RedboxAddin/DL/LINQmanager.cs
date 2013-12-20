@@ -66,7 +66,7 @@ namespace RedboxAddin.DL
 
         public static void CheckAndUpdateTeachers()
         {
-            //Process the teacher database and update the ContactData table
+            //Process the Contact database and update the ContactData table
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -175,6 +175,27 @@ namespace RedboxAddin.DL
 
                     if (cd == null) return "";
                     else return cd.ShortName;
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetShortNameforSchoolID: " + ex.Message);
+                return "";
+            }
+        }
+
+        public static string GetEmailAddressforSchoolID(long schoolID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.Schools.FirstOrDefault(s => s.ID == schoolID);
+
+                    if (cd == null) return "";
+                    else return cd.EmailAddress;
                 }
                 return "";
             }
