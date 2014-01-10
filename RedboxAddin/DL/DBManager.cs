@@ -298,6 +298,12 @@ namespace RedboxAddin.DL
                         objAvail.WedColor = dr["WedColor"].ToString();
                         objAvail.ThuColor = dr["ThuColor"].ToString();
                         objAvail.FriColor = dr["FriColor"].ToString();
+                        objAvail.MonStatus = dr["MonStatus"].ToString();
+                        objAvail.TueStatus = dr["TueStatus"].ToString();
+                        objAvail.WedStatus = dr["WedStatus"].ToString();
+                        objAvail.ThuStatus = dr["ThuStatus"].ToString();
+                        objAvail.FriStatus = dr["FriStatus"].ToString();
+
                         //objAvail.MonG = Utils.CheckLong(dr["MonG"]);
                         //objAvail.TueG = Utils.CheckLong(dr["TueG"]);
                         //objAvail.WedG = Utils.CheckLong(dr["WedG"]);
@@ -2232,7 +2238,8 @@ namespace RedboxAddin.DL
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, " +
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
                             "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
-                            "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor " +
+                            "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +
+                            "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus " +
                             "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
@@ -2241,7 +2248,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2263,7 +2270,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2286,7 +2293,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2309,7 +2316,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2332,7 +2339,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +

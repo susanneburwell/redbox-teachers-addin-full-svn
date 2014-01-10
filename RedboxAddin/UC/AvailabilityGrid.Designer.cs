@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AvailabilityGrid));
             this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -50,6 +52,12 @@
             this.WedColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThuColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FriColor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.MonStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TueStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.WedStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ThuStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FriStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +86,7 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
+            this.gridControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridControl1_MouseDown);
             // 
             // gridView1
             // 
@@ -100,7 +109,12 @@
             this.TueColor,
             this.WedColor,
             this.ThuColor,
-            this.FriColor});
+            this.FriColor,
+            this.MonStatus,
+            this.TueStatus,
+            this.WedStatus,
+            this.ThuStatus,
+            this.FriStatus});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -289,6 +303,39 @@
             this.FriColor.FieldName = "FriColor";
             this.FriColor.Name = "FriColor";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "status.png");
+            this.imageList1.Images.SetKeyName(1, "found.png");
+            // 
+            // MonStatus
+            // 
+            this.MonStatus.Caption = "MonStatus";
+            this.MonStatus.FieldName = "MonStatus";
+            this.MonStatus.Name = "MonStatus";
+            // 
+            // TueStatus
+            // 
+            this.TueStatus.Caption = "TueStatus";
+            this.TueStatus.Name = "TueStatus";
+            // 
+            // WedStatus
+            // 
+            this.WedStatus.Caption = "WedStatus";
+            this.WedStatus.Name = "WedStatus";
+            // 
+            // ThuStatus
+            // 
+            this.ThuStatus.Caption = "ThuStatus";
+            this.ThuStatus.Name = "ThuStatus";
+            // 
+            // FriStatus
+            // 
+            this.FriStatus.Caption = "FriStatus";
+            this.FriStatus.Name = "FriStatus";
+            // 
             // AvailabilityGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,5 +373,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn WedColor;
         private DevExpress.XtraGrid.Columns.GridColumn ThuColor;
         private DevExpress.XtraGrid.Columns.GridColumn FriColor;
+        private System.Windows.Forms.ImageList imageList1;
+        private DevExpress.XtraGrid.Columns.GridColumn MonStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn TueStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn WedStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn ThuStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn FriStatus;
     }
 }

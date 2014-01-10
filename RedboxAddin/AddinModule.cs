@@ -203,6 +203,7 @@ namespace RedboxAddin
             this.imageList2.Images.SetKeyName(2, "1355480893_contact-new.png");
             this.imageList2.Images.SetKeyName(3, "1355480900_contact.png");
             this.imageList2.Images.SetKeyName(4, "1359478888_arrow_circle_double.png");
+            this.imageList2.Images.SetKeyName(5, "status.png");
             // 
             // rbAbout
             // 

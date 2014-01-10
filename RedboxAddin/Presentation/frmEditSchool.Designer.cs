@@ -64,6 +64,9 @@
             this.txtHfDayCharge = new System.Windows.Forms.TextBox();
             this.txtLTDay = new System.Windows.Forms.TextBox();
             this.txtLTHfDay = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbSchool
@@ -80,7 +83,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 26);
+            this.label1.Location = new System.Drawing.Point(23, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 16);
             this.label1.TabIndex = 1;
@@ -99,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 78);
+            this.label2.Location = new System.Drawing.Point(23, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 3;
@@ -118,7 +121,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 115);
+            this.label3.Location = new System.Drawing.Point(23, 115);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 16);
             this.label3.TabIndex = 5;
@@ -145,7 +148,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 152);
+            this.label4.Location = new System.Drawing.Point(23, 152);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 8;
@@ -154,16 +157,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 189);
+            this.label5.Location = new System.Drawing.Point(23, 260);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 16);
+            this.label5.Size = new System.Drawing.Size(117, 16);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Email address";
+            this.label5.Text = "Email (Timesheet)";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 226);
+            this.label6.Location = new System.Drawing.Point(23, 185);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 16);
             this.label6.TabIndex = 10;
@@ -172,7 +175,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(34, 263);
+            this.label7.Location = new System.Drawing.Point(23, 222);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 16);
             this.label7.TabIndex = 11;
@@ -187,21 +190,23 @@
             // 
             // txtEmailAddress
             // 
-            this.txtEmailAddress.Location = new System.Drawing.Point(146, 183);
+            this.txtEmailAddress.Location = new System.Drawing.Point(146, 258);
+            this.txtEmailAddress.Multiline = true;
             this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.Size = new System.Drawing.Size(245, 22);
+            this.txtEmailAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtEmailAddress.Size = new System.Drawing.Size(245, 41);
             this.txtEmailAddress.TabIndex = 13;
             // 
             // txtTel
             // 
-            this.txtTel.Location = new System.Drawing.Point(146, 220);
+            this.txtTel.Location = new System.Drawing.Point(146, 182);
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(245, 22);
             this.txtTel.TabIndex = 14;
             // 
             // txtFax
             // 
-            this.txtFax.Location = new System.Drawing.Point(146, 257);
+            this.txtFax.Location = new System.Drawing.Point(146, 219);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(245, 22);
             this.txtFax.TabIndex = 15;
@@ -244,7 +249,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(582, 352);
+            this.btnSave.Location = new System.Drawing.Point(582, 462);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(172, 27);
             this.btnSave.TabIndex = 24;
@@ -274,7 +279,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(582, 319);
+            this.btnClose.Location = new System.Drawing.Point(582, 429);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(172, 27);
             this.btnClose.TabIndex = 27;
@@ -358,11 +363,42 @@
             this.txtLTHfDay.TabIndex = 36;
             this.txtLTHfDay.Validating += new System.ComponentModel.CancelEventHandler(this.txtLTHfDay_Validating);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(146, 305);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(245, 159);
+            this.textBox1.TabIndex = 38;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(23, 311);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(94, 16);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "Email (Vetting)";
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(153, 467);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(283, 41);
+            this.label18.TabIndex = 39;
+            this.label18.Text = "* separate multiple emails with a semi colon, e.g. \r\nadmin@school1.com; bursar@sc" +
+    "hool1.com";
+            // 
             // frmEditSchool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 391);
+            this.ClientSize = new System.Drawing.Size(790, 511);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.txtLTHfDay);
             this.Controls.Add(this.txtLTDay);
             this.Controls.Add(this.txtHfDayCharge);
@@ -443,5 +479,8 @@
         private System.Windows.Forms.TextBox txtHfDayCharge;
         private System.Windows.Forms.TextBox txtLTDay;
         private System.Windows.Forms.TextBox txtLTHfDay;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }

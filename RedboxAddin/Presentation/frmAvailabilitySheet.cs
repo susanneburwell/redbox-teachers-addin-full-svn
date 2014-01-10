@@ -19,12 +19,13 @@ namespace RedboxAddin.Presentation
     public partial class frmAvailabilitySheet : Form
     {
         // RedBoxDB db;
-        
+
 
         public frmAvailabilitySheet()
         {
             InitializeComponent();
             availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
+            availabilityGrid1.RepaintRequired += new EventHandler(availabilityGrid_Repaint);
         }
 
         private void frmAvailabilitySheet_Load(object sender, EventArgs e)
@@ -77,7 +78,7 @@ namespace RedboxAddin.Presentation
 
                 availabilityGrid1.LoadTable(wheresql, monday);
 
-                
+
                 //DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
                 ////bindingSource1.DataSource = msgDs;
                 //gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
@@ -232,7 +233,20 @@ namespace RedboxAddin.Presentation
             }
         }
 
-       
+        protected void availabilityGrid_Repaint(object sender, EventArgs e)
+        {
+            try
+            {
+                int topRow = availabilityGrid1.getTopRow();
+                LoadTable();
+                availabilityGrid1.setTopRow( topRow);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in availabilityGrid_Repaint: " + ex.Message);
+            }
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
 
@@ -319,7 +333,7 @@ namespace RedboxAddin.Presentation
             st8.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
             st8.Expression = "Substring([" + expName + "],5,4)= \'purp\'";
 
-           // this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1, st2, st3, st4, st5, st6, st7, st8 });
+            // this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1, st2, st3, st4, st5, st6, st7, st8 });
 
 
             //st2.Appearance.BackColor = System.Drawing.Color.Purple;
@@ -391,7 +405,9 @@ namespace RedboxAddin.Presentation
             else btnDblBkgs.BackColor = Color.Crimson;
         }
 
-       
+
+
+
 
         //private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         //{

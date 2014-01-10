@@ -13,13 +13,18 @@ using RedboxAddin.Models;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Menu;
+using DevExpress.Utils;
+using DevExpress.Utils.Menu;
+using RedboxAddin;
+using RedboxAddin.Presentation;
 
 namespace RedboxAddin.UC
 {
     public partial class AvailabilityGrid : UserControl
     {
-
         public event EventHandler DblClick;
+        public event EventHandler RepaintRequired;
 
         public AvailabilityGrid()
         {
@@ -196,30 +201,195 @@ namespace RedboxAddin.UC
             EventHandler handler = this.DblClick;
             if (handler != null)
             {
-            REventArgs rowInfo = new REventArgs();
-            try
+                REventArgs rowInfo = new REventArgs();
+                try
+                {
+                    Point pt = gridControl1.PointToClient(Control.MousePosition);
+                    GridHitInfo info = gridView1.CalcHitInfo(pt);
+                    if (info.InRow || info.InRowCell)
+                    {
+                        rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                        rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                        rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.DebugMessage(2, "Error in AvailabilityGrid_DoubleClick: " + ex.Message);
+                }
+
+                this.DblClick(this, rowInfo);
+            }
+
+        }
+
+        private void gridControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Check if the end-user has right clicked the grid control. 
+            if (e.Button == MouseButtons.Right)
             {
-                Point pt = gridControl1.PointToClient(Control.MousePosition);
-                GridHitInfo info = gridView1.CalcHitInfo(pt);
+                REventArgs rowInfo = new REventArgs();
+                GridHitInfo info = gridView1.CalcHitInfo(new Point(e.X, e.Y));
+
+                //******************88
                 if (info.InRow || info.InRowCell)
                 {
                     rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                     rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
                     rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+
+                    switch (rowInfo.ColumnCaption.Substring(0,3))
+                    {
+                        case "Mon":
+                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "MonStatus").ToString();
+                            break;
+                        case "Tue":
+                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "TueStatus").ToString();
+                            break;
+                        case "Wed":
+                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "WedStatus").ToString();
+                            break;
+                        case "Thu":
+                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "ThuStatus").ToString();
+                            break;
+                        case "Fri":
+                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "FriStatus").ToString();
+                            break;
+                    }
                 }
+
+                if (rowInfo.Description.Trim() == "")
+                {
+                    //System.Media.SystemSounds.Exclamation.Play();
+                    System.Media.SystemSounds.Beep.Play();
+                    return;
+                }
+
+
+                //rowInfo.Status = LINQmanager.GetMasterBookingStatus(rowInfo.Teacher, rowInfo.ColumnCaption, rowInfo.Description);
+
+                //*******************
+                //if (hi.HitTest == GridHitTest.ColumnButton)
+                //{
+                GridViewCustomMenu menu = new GridViewCustomMenu(gridView1);
+                menu.RepaintRequired += OnRepaintRequired;
+                menu.SetRowInfo( rowInfo);
+                menu.imageList = imageList1;
+                menu.Init(info);
+                // Display the menu. 
+                menu.Show(info.HitPoint);
+                //}
             }
-            catch (Exception ex)
+        }
+
+        protected virtual void OnRepaintRequired(object sender, EventArgs e)
+        {
+            EventHandler handler = RepaintRequired;
+            if (handler != null)
             {
-                Debug.DebugMessage(2, "Error in AvailabilityGrid_DoubleClick: " + ex.Message);
+                handler(this, EventArgs.Empty);
+            }
+        }
+
+        public int getTopRow()
+        {
+            return gridView1.TopRowIndex;
+        }
+
+        public void setTopRow(int topRow)
+        {
+            gridView1.TopRowIndex = topRow;
+        }
+
+        
+
+
+    }
+
+    public class GridViewCustomMenu : GridViewMenu
+    {
+        public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) { }
+
+        private REventArgs _rowInfo;
+        public ImageList imageList;
+        public event EventHandler RepaintRequired;
+
+
+        public void SetRowInfo( REventArgs rowInfo )
+        {
+            _rowInfo = rowInfo;
+        }
+        // Create menu items. 
+        // This method is automatically called by the menu's public Init method. 
+        protected override void CreateItems()
+        {
+            //image 0 = dot ; image 1 = tick
+            int unass = 0;
+            int cont = 0;
+            int conf = 0;
+            int dets = 0;
+            int none = 0;
+
+            switch (_rowInfo.Status)
+            {
+                case "Unassigned":
+                    unass = 1;
+                    break;
+
+                case "Contacted":
+                    cont = 1;
+                    break;
+
+                case "Confirmed":
+                    conf = 1;
+                    break;
+
+                case "Details Sent":
+                    dets = 1;
+                    break;
+
+                case "None":
+                    none = 1;
+                    break;
             }
 
-            this.DblClick(this, rowInfo);
-            }
+            Items.Clear();
+            int vv = GridMenuImages.Column.Images.Count;
+            int vw = GridMenuImages.Footer.Images.Count;
+            int vx = GridMenuImages.GroupPanel.Images.Count;
+            Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
+            Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
+            Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
+            Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
+            Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
 
         }
 
+        protected override void OnMenuItemClick(object sender, EventArgs e)
+        {
+            if (RaiseClickEvent(sender, null)) return;
+            DXMenuItem item = sender as DXMenuItem;
+            string status = item.Tag.ToString();
 
+            string teacher = _rowInfo.Teacher;
+            string description = _rowInfo.Description;
+            string colCaption = _rowInfo.ColumnCaption;
 
+            List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+
+            if (MasterBookingIDs.Count > 0)
+            {
+                if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status))
+                {
+                    EventHandler handler = RepaintRequired;
+                    if (handler != null)
+                    {
+                        handler(this, EventArgs.Empty);
+                    }
+                }
+            }
+
+        }
 
     }
 }

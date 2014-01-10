@@ -36,6 +36,7 @@
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chkSEN = new System.Windows.Forms.CheckBox();
             this.chkNN = new System.Windows.Forms.CheckBox();
@@ -45,7 +46,9 @@
             this.chkNQT = new System.Windows.Forms.CheckBox();
             this.chkQTS = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkGuaranteed = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.chkLongTerm = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,13 +67,10 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
-            this.chkTeacher = new System.Windows.Forms.CheckBox();
-            this.chkLongTerm = new System.Windows.Forms.CheckBox();
-            this.chkGuaranteed = new System.Windows.Forms.CheckBox();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -160,6 +160,17 @@
             this.groupBox1.TabIndex = 82;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Qualifications";
+            // 
+            // chkTeacher
+            // 
+            this.chkTeacher.AutoSize = true;
+            this.chkTeacher.Location = new System.Drawing.Point(17, 71);
+            this.chkTeacher.Name = "chkTeacher";
+            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
+            this.chkTeacher.TabIndex = 19;
+            this.chkTeacher.Text = "Teacher";
+            this.chkTeacher.UseVisualStyleBackColor = true;
+            this.chkTeacher.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // label2
             // 
@@ -274,6 +285,17 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Year Groups";
             // 
+            // chkGuaranteed
+            // 
+            this.chkGuaranteed.AutoSize = true;
+            this.chkGuaranteed.Location = new System.Drawing.Point(231, 110);
+            this.chkGuaranteed.Name = "chkGuaranteed";
+            this.chkGuaranteed.Size = new System.Drawing.Size(98, 20);
+            this.chkGuaranteed.TabIndex = 88;
+            this.chkGuaranteed.Text = "Guaranteed";
+            this.chkGuaranteed.UseVisualStyleBackColor = true;
+            this.chkGuaranteed.Click += new System.EventHandler(this.CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -283,6 +305,17 @@
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 26;
             this.label3.Text = "Match ALL ticked";
+            // 
+            // chkLongTerm
+            // 
+            this.chkLongTerm.AutoSize = true;
+            this.chkLongTerm.Location = new System.Drawing.Point(109, 110);
+            this.chkLongTerm.Name = "chkLongTerm";
+            this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
+            this.chkLongTerm.TabIndex = 87;
+            this.chkLongTerm.Text = "Long Term";
+            this.chkLongTerm.UseVisualStyleBackColor = true;
+            this.chkLongTerm.Click += new System.EventHandler(this.CheckedChanged);
             // 
             // label9
             // 
@@ -470,47 +503,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
-            // CheckDoubleBookingsTimer1
-            // 
-            this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
-            // 
-            // flashtimer1
-            // 
-            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
-            // 
-            // chkTeacher
-            // 
-            this.chkTeacher.AutoSize = true;
-            this.chkTeacher.Location = new System.Drawing.Point(17, 71);
-            this.chkTeacher.Name = "chkTeacher";
-            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
-            this.chkTeacher.TabIndex = 19;
-            this.chkTeacher.Text = "Teacher";
-            this.chkTeacher.UseVisualStyleBackColor = true;
-            this.chkTeacher.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkLongTerm
-            // 
-            this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(109, 110);
-            this.chkLongTerm.Name = "chkLongTerm";
-            this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
-            this.chkLongTerm.TabIndex = 87;
-            this.chkLongTerm.Text = "Long Term";
-            this.chkLongTerm.UseVisualStyleBackColor = true;
-            this.chkLongTerm.Click += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkGuaranteed
-            // 
-            this.chkGuaranteed.AutoSize = true;
-            this.chkGuaranteed.Location = new System.Drawing.Point(231, 110);
-            this.chkGuaranteed.Name = "chkGuaranteed";
-            this.chkGuaranteed.Size = new System.Drawing.Size(98, 20);
-            this.chkGuaranteed.TabIndex = 88;
-            this.chkGuaranteed.Text = "Guaranteed";
-            this.chkGuaranteed.UseVisualStyleBackColor = true;
-            this.chkGuaranteed.Click += new System.EventHandler(this.CheckedChanged);
-            // 
             // availabilityGrid1
             // 
             this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -519,6 +511,14 @@
             this.availabilityGrid1.Name = "availabilityGrid1";
             this.availabilityGrid1.Size = new System.Drawing.Size(1029, 363);
             this.availabilityGrid1.TabIndex = 1;
+            // 
+            // CheckDoubleBookingsTimer1
+            // 
+            this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
+            // 
+            // flashtimer1
+            // 
+            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
             // frmAvailabilitySheet
             // 

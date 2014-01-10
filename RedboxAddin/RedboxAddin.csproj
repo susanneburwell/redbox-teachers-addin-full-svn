@@ -91,6 +91,7 @@
   <ItemGroup>
     <Content Include="Loader\adxloader.dll" />
     <Content Include="Loader\adxloader64.dll" />
+    <Content Include="Resources\status.png" />
     <None Include="Resources\red-box-logo.gif" />
     <None Include="packages.config" />
     <None Include="Resources\1360344418_101.png" />

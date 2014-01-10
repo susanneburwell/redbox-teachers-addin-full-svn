@@ -68,6 +68,11 @@ namespace RedboxAddin.Models
         public string WedColor { get; set; }
         public string ThuColor { get; set; }
         public string FriColor { get; set; }
+        public string MonStatus { get; set; }
+        public string TueStatus { get; set; }
+        public string WedStatus { get; set; }
+        public string ThuStatus { get; set; }
+        public string FriStatus { get; set; }
     }
 
     class RTimeSheet
@@ -174,6 +179,7 @@ namespace RedboxAddin.Models
         public string Teacher { get; set; }
         public string ColumnCaption { get; set; }
         public string Description { get; set; }
+        public string Status { get; set; }
     }
 
     

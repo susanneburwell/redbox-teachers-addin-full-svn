@@ -10,6 +10,24 @@ namespace RedboxAddin.DL
     static class LINQmanager
     {
 
+        //public static string GetMasterBookingStatus(string teachername, string bookingdate, string description)
+        //{
+        //    try
+        //    {
+        //        List<long> MasterBookingIDs = GetMasterBookingIDs(teachername, bookingdate, description);
+
+        //        if (MasterBookingIDs.Count > 0)
+        //        {
+        //        }
+
+        //        return "returned value";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return "error";
+        //    }
+        //}
+
         public static List<long> GetMasterBookingIDs(string teachername, string bookingdate, string description)
         {
             List<long> IDs = new List<long>();
@@ -61,6 +79,31 @@ namespace RedboxAddin.DL
             {
                 Debug.DebugMessage(2, "Error in GetMasterBookingID: " + ex.Message);
                 return IDs;
+            }
+        }
+
+        public static bool SetBookingStatus(long masterBookingID, string status)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var mb = db.MasterBookings.FirstOrDefault(s => s.ID == masterBookingID);
+
+                    if (mb != null)
+                    {
+                        mb.BookingStatus = status;
+                        db.SubmitChanges();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SetBookingStatus: " + ex.Message);
+                return false;
             }
         }
 
