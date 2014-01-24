@@ -55,6 +55,16 @@
     <Reference Include="DevExpress.XtraPrinting.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 11.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 11.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -115,6 +125,7 @@
     </Compile>
     <Compile Include="DL\DBManager.cs" />
     <Compile Include="BL\Debug.cs" />
+    <Compile Include="DL\ExcelExporter.cs" />
     <Compile Include="DL\ExcelImporter.cs" />
     <Compile Include="DL\LINQmanager.cs" />
     <Compile Include="DL\OLDDBManager.cs" />
@@ -204,6 +215,12 @@
     </Compile>
     <Compile Include="Presentation\frmReminderExp.Designer.cs">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmSendVetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmSendVetting.Designer.cs">
+      <DependentUpon>frmSendVetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmTeacherUpdate.cs">
       <SubType>Form</SubType>
@@ -359,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmReminderExp.resx">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmSendVetting.resx">
+      <DependentUpon>frmSendVetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmTeacherUpdate.resx">
       <DependentUpon>frmTeacherUpdate.cs</DependentUpon>

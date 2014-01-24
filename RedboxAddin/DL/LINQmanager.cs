@@ -228,6 +228,27 @@ namespace RedboxAddin.DL
             }
         }
 
+        public static School GetSchoolbyID(long schoolID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.Schools.FirstOrDefault(s => s.ID == schoolID);
+
+                    if (cd == null) return null;
+                    else return cd;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetSchoolbyID: " + ex.Message);
+                return null;
+            }
+        }
+
         public static string GetEmailAddressforSchoolID(long schoolID)
         {
             try
@@ -246,6 +267,27 @@ namespace RedboxAddin.DL
             {
                 Debug.DebugMessage(2, "Error in GetShortNameforSchoolID: " + ex.Message);
                 return "";
+            }
+        }
+
+        public static List<string> GetPaymentTypes()
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var pt = (from n in db.PaymentTypes select n);
+                    List<string> pt2 = new List<string>();
+                    foreach (RedboxAddin.PaymentType type in pt) pt2.Add(type.Name.ToString().Trim());
+
+                    return pt2 ;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetSchoolbyID: " + ex.Message);
+                return null;
             }
         }
     }

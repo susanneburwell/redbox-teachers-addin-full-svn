@@ -67,6 +67,7 @@ namespace RedboxAddin
         private ADXRibbonButton adxMarkCurrent;
         private ADXRibbonButton adxTimeSheet;
         private ADXRibbonButton adxCheckContactnames;
+        private ADXRibbonButton adxSendVetting;
 
         #region Component Designer generated code
         /// <summary>
@@ -121,6 +122,7 @@ namespace RedboxAddin
             this.adxUpdateContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxMarkCurrent = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxCheckContactnames = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxRibbonTab1
             // 
@@ -370,6 +372,7 @@ namespace RedboxAddin
             this.adxRibbonGroup2.Controls.Add(this.adxLoadPlan);
             this.adxRibbonGroup2.Controls.Add(this.adxPivot);
             this.adxRibbonGroup2.Controls.Add(this.adxTimeSheet);
+            this.adxRibbonGroup2.Controls.Add(this.adxSendVetting);
             this.adxRibbonGroup2.Controls.Add(this.adxOptions);
             this.adxRibbonGroup2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxRibbonGroup2.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -528,6 +531,14 @@ namespace RedboxAddin
             this.adxCheckContactnames.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxCheckContactnames.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxCheckContactnames.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxCheckContactnames_OnClick);
+            // 
+            // adxSendVetting
+            // 
+            this.adxSendVetting.Caption = "Send Vetting Details";
+            this.adxSendVetting.Id = "adxRibbonButton_d85eda28b374424aa2acc3bfba75d0e2";
+            this.adxSendVetting.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxSendVetting.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxSendVetting.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxSendVetting_OnClick);
             // 
             // AddinModule
             // 
@@ -1057,6 +1068,20 @@ namespace RedboxAddin
                 ts.BringToFront();
             }
         }
+        private void adxSendVetting_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+
+            frmSendVetting sv = Application.OpenForms["frmSendVetting"] as frmSendVetting;
+            if (sv == null)
+            {
+                sv = new frmSendVetting();
+                sv.Show();
+            }
+            else
+            {
+                sv.BringToFront();
+            }
+        }
 
         private void adxTeacherUpdate_OnClick(object sender, IRibbonControl control, bool pressed)
         {
@@ -1116,6 +1141,8 @@ namespace RedboxAddin
             }
             
         }
+
+      
 
        
 

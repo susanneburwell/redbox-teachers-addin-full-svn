@@ -35,7 +35,7 @@
             this.btnDblBkgs = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpQual = new System.Windows.Forms.GroupBox();
             this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chkSEN = new System.Windows.Forms.CheckBox();
@@ -45,7 +45,7 @@
             this.chkOTT = new System.Windows.Forms.CheckBox();
             this.chkNQT = new System.Windows.Forms.CheckBox();
             this.chkQTS = new System.Windows.Forms.CheckBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.grpYearGroups = new System.Windows.Forms.GroupBox();
             this.chkGuaranteed = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.chkLongTerm = new System.Windows.Forms.CheckBox();
@@ -67,14 +67,16 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnCreatePaySheets = new System.Windows.Forms.Button();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
+            this.chkJustBookings = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.grpQual.SuspendLayout();
+            this.grpYearGroups.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,11 +97,13 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.chkJustBookings);
+            this.panelTop.Controls.Add(this.btnCreatePaySheets);
             this.panelTop.Controls.Add(this.btnDblBkgs);
             this.panelTop.Controls.Add(this.bnFwd);
             this.panelTop.Controls.Add(this.btnBack);
-            this.panelTop.Controls.Add(this.groupBox1);
-            this.panelTop.Controls.Add(this.groupBox6);
+            this.panelTop.Controls.Add(this.grpQual);
+            this.panelTop.Controls.Add(this.grpYearGroups);
             this.panelTop.Controls.Add(this.label1);
             this.panelTop.Controls.Add(this.btnSearch);
             this.panelTop.Controls.Add(this.dtFrom);
@@ -116,7 +120,7 @@
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
             this.btnDblBkgs.Location = new System.Drawing.Point(757, 43);
             this.btnDblBkgs.Name = "btnDblBkgs";
-            this.btnDblBkgs.Size = new System.Drawing.Size(241, 23);
+            this.btnDblBkgs.Size = new System.Drawing.Size(265, 23);
             this.btnDblBkgs.TabIndex = 86;
             this.btnDblBkgs.Text = "Double Bookings Detected";
             this.btnDblBkgs.UseVisualStyleBackColor = false;
@@ -143,23 +147,23 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // groupBox1
+            // grpQual
             // 
-            this.groupBox1.Controls.Add(this.chkTeacher);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.chkSEN);
-            this.groupBox1.Controls.Add(this.chkNN);
-            this.groupBox1.Controls.Add(this.chkTA);
-            this.groupBox1.Controls.Add(this.chkQNN);
-            this.groupBox1.Controls.Add(this.chkOTT);
-            this.groupBox1.Controls.Add(this.chkNQT);
-            this.groupBox1.Controls.Add(this.chkQTS);
-            this.groupBox1.Location = new System.Drawing.Point(9, 48);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 97);
-            this.groupBox1.TabIndex = 82;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Qualifications";
+            this.grpQual.Controls.Add(this.chkTeacher);
+            this.grpQual.Controls.Add(this.label2);
+            this.grpQual.Controls.Add(this.chkSEN);
+            this.grpQual.Controls.Add(this.chkNN);
+            this.grpQual.Controls.Add(this.chkTA);
+            this.grpQual.Controls.Add(this.chkQNN);
+            this.grpQual.Controls.Add(this.chkOTT);
+            this.grpQual.Controls.Add(this.chkNQT);
+            this.grpQual.Controls.Add(this.chkQTS);
+            this.grpQual.Location = new System.Drawing.Point(9, 48);
+            this.grpQual.Name = "grpQual";
+            this.grpQual.Size = new System.Drawing.Size(349, 97);
+            this.grpQual.TabIndex = 82;
+            this.grpQual.TabStop = false;
+            this.grpQual.Text = "Qualifications";
             // 
             // chkTeacher
             // 
@@ -259,31 +263,31 @@
             this.chkQTS.UseVisualStyleBackColor = true;
             this.chkQTS.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
-            // groupBox6
+            // grpYearGroups
             // 
-            this.groupBox6.Controls.Add(this.chkGuaranteed);
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.chkLongTerm);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.label8);
-            this.groupBox6.Controls.Add(this.label7);
-            this.groupBox6.Controls.Add(this.btnEY);
-            this.groupBox6.Controls.Add(this.chkRec);
-            this.groupBox6.Controls.Add(this.chkYr1);
-            this.groupBox6.Controls.Add(this.chkNur);
-            this.groupBox6.Controls.Add(this.chkYr2);
-            this.groupBox6.Controls.Add(this.chkYr3);
-            this.groupBox6.Controls.Add(this.chkYr4);
-            this.groupBox6.Controls.Add(this.chkYr5);
-            this.groupBox6.Controls.Add(this.chkYr6);
-            this.groupBox6.Controls.Add(this.btnKS1);
-            this.groupBox6.Controls.Add(this.btnKS2);
-            this.groupBox6.Location = new System.Drawing.Point(384, 9);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(350, 136);
-            this.groupBox6.TabIndex = 81;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Year Groups";
+            this.grpYearGroups.Controls.Add(this.chkGuaranteed);
+            this.grpYearGroups.Controls.Add(this.label3);
+            this.grpYearGroups.Controls.Add(this.chkLongTerm);
+            this.grpYearGroups.Controls.Add(this.label9);
+            this.grpYearGroups.Controls.Add(this.label8);
+            this.grpYearGroups.Controls.Add(this.label7);
+            this.grpYearGroups.Controls.Add(this.btnEY);
+            this.grpYearGroups.Controls.Add(this.chkRec);
+            this.grpYearGroups.Controls.Add(this.chkYr1);
+            this.grpYearGroups.Controls.Add(this.chkNur);
+            this.grpYearGroups.Controls.Add(this.chkYr2);
+            this.grpYearGroups.Controls.Add(this.chkYr3);
+            this.grpYearGroups.Controls.Add(this.chkYr4);
+            this.grpYearGroups.Controls.Add(this.chkYr5);
+            this.grpYearGroups.Controls.Add(this.chkYr6);
+            this.grpYearGroups.Controls.Add(this.btnKS1);
+            this.grpYearGroups.Controls.Add(this.btnKS2);
+            this.grpYearGroups.Location = new System.Drawing.Point(384, 9);
+            this.grpYearGroups.Name = "grpYearGroups";
+            this.grpYearGroups.Size = new System.Drawing.Size(350, 136);
+            this.grpYearGroups.TabIndex = 81;
+            this.grpYearGroups.TabStop = false;
+            this.grpYearGroups.Text = "Year Groups";
             // 
             // chkGuaranteed
             // 
@@ -478,9 +482,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(891, 88);
+            this.btnSearch.Location = new System.Drawing.Point(886, 72);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(117, 23);
+            this.btnSearch.Size = new System.Drawing.Size(136, 23);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -503,6 +507,25 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
+            // CheckDoubleBookingsTimer1
+            // 
+            this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
+            // 
+            // flashtimer1
+            // 
+            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
+            // 
+            // btnCreatePaySheets
+            // 
+            this.btnCreatePaySheets.Location = new System.Drawing.Point(757, 95);
+            this.btnCreatePaySheets.Name = "btnCreatePaySheets";
+            this.btnCreatePaySheets.Size = new System.Drawing.Size(86, 44);
+            this.btnCreatePaySheets.TabIndex = 88;
+            this.btnCreatePaySheets.Text = "Create PaySheets";
+            this.btnCreatePaySheets.UseVisualStyleBackColor = true;
+            this.btnCreatePaySheets.Visible = false;
+            this.btnCreatePaySheets.Click += new System.EventHandler(this.btnCreatePaySheets_Click);
+            // 
             // availabilityGrid1
             // 
             this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -512,13 +535,17 @@
             this.availabilityGrid1.Size = new System.Drawing.Size(1029, 363);
             this.availabilityGrid1.TabIndex = 1;
             // 
-            // CheckDoubleBookingsTimer1
+            // chkJustBookings
             // 
-            this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
-            // 
-            // flashtimer1
-            // 
-            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
+            this.chkJustBookings.AutoSize = true;
+            this.chkJustBookings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkJustBookings.Location = new System.Drawing.Point(875, 119);
+            this.chkJustBookings.Name = "chkJustBookings";
+            this.chkJustBookings.Size = new System.Drawing.Size(147, 20);
+            this.chkJustBookings.TabIndex = 89;
+            this.chkJustBookings.Text = "Just Show Bookings";
+            this.chkJustBookings.UseVisualStyleBackColor = true;
+            this.chkJustBookings.CheckedChanged += new System.EventHandler(this.chkJustBookings_CheckedChanged);
             // 
             // frmAvailabilitySheet
             // 
@@ -536,10 +563,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.grpQual.ResumeLayout(false);
+            this.grpQual.PerformLayout();
+            this.grpYearGroups.ResumeLayout(false);
+            this.grpYearGroups.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -553,7 +580,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox grpYearGroups;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -568,7 +595,7 @@
         private System.Windows.Forms.CheckBox chkYr6;
         private System.Windows.Forms.Button btnKS1;
         private System.Windows.Forms.Button btnKS2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpQual;
         private System.Windows.Forms.CheckBox chkSEN;
         private System.Windows.Forms.CheckBox chkNN;
         private System.Windows.Forms.CheckBox chkTA;
@@ -588,5 +615,7 @@
         private System.Windows.Forms.CheckBox chkTeacher;
         private System.Windows.Forms.CheckBox chkGuaranteed;
         private System.Windows.Forms.CheckBox chkLongTerm;
+        private System.Windows.Forms.Button btnCreatePaySheets;
+        private System.Windows.Forms.CheckBox chkJustBookings;
     }
 }

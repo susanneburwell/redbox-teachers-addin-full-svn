@@ -460,6 +460,49 @@ namespace RedboxAddin.DL
             }
         }
 
+        public List<Payment> GetPayrun(DateTime dStart)
+        {
+            List<Payment> PayList = new List<Payment>();
+            try
+            {
+                string SQLstr = GetPayRunSQL(dStart);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            Payment objTS = new Payment()
+                            {
+                                //ID = Utils.CheckLong(dr["ID"]),
+                                PayDetails = dr["PayDetails"].ToString(),
+                                AgencyRef = dr["Description"].ToString(),
+                                LastName = dr["LastName"].ToString(),
+                                FirstName = dr["FirstName"].ToString(),
+                                TotalDays = 1,
+                                Rate = Utils.CheckDecimal(dr["Rate"]),
+                                //AdditionalPayment = Utils.CheckDecimal(dr["ID"]),
+
+                            };
+                            PayList.Add(objTS);
+                        }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
+
+                    }
+
+                    return PayList;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetTimeSheets: " + ex.Message);
+                return null;
+            }
+        }
+
         public List<RLoad> GetLoadPlan(DateTime dStart)
         {
 
@@ -618,6 +661,46 @@ namespace RedboxAddin.DL
                             MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
                             BookingStatus = dr["BookingStatus"].ToString()
 
+                        };
+                        bookingList.Add(objBkg);
+
+                    }
+
+                    return bookingList;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<RBookings> GetBookingsForDate(string ddate, bool confirmed)
+        {
+            List<RBookings> bookingList = new List<RBookings>();
+            try
+            {
+                string SQLstr = GetMasterBookingsforDateSQL(ddate, confirmed);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RBookings objBkg = new RBookings()
+                        {
+                            Teacher = dr["FullName"].ToString(),
+                            SchoolName = dr["SchoolName"].ToString(),
+                            Description = dr["Description"].ToString(),
+                            Date = Utils.CheckDate(dr["Date"]),
+                            ContactID = dr["ContactID"].ToString(),
+                            SchoolID = dr["SchoolID"].ToString(),
+                            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
+                            BookingStatus = dr["BookingStatus"].ToString(),
+                            Selected = true
                         };
                         bookingList.Add(objBkg);
 
@@ -901,6 +984,26 @@ namespace RedboxAddin.DL
 
         }
 
+        public string GetVettingEmailAddresses(string SchoolID)
+        {
+            try
+            {
+                DataSet msgDs = GetDataSet("Select VettingEmails from Schools WHERE ID = '" + SchoolID + "'");
+                foreach (DataRow dr in msgDs.Tables[0].Rows)
+                {
+                    string vettingEmailAddresses = dr["VettingEmails"].ToString();
+                    return vettingEmailAddresses;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetVettingEmailAddresses: " + ex.Message);
+                return null;
+            }
+        }
+
         public RContact GetContact(long contactID)
         {
             try
@@ -1025,6 +1128,10 @@ namespace RedboxAddin.DL
                             VisaLocation = dr["VisaLocation"].ToString(),
                             YearGroup = dr["YearGroup"].ToString(),
                         };
+
+                        objContact.FullName = objContact.LastName + ", " + objContact.FirstName;
+                        if (objContact.Suffix != "") objContact.FullName += " " + objContact.Suffix;
+
                         return objContact;
                     }
                 }
@@ -2540,6 +2647,33 @@ namespace RedboxAddin.DL
             return SQL;
         }
 
+        private string GetPayRunSQL(DateTime dStart)
+        {
+            string sStart = dStart.ToString("yyyy-MM-dd");
+            string sEnd = dStart.AddDays(4).ToString("yyyy-MM-dd");
+            string SQL = "";
+            SQL += "SELECT   ";
+            SQL += "[MasterBookingID]  ";
+            SQL += ",[Date]  ";
+            SQL += ",[Rate]  ";
+            SQL += ",[Bookings].[Charge]  ";
+            SQL += ",[Description]  ";
+            SQL += ",[MasterBookings].contactID  ";
+            SQL += ",[Contacts].FirstName  ";
+            SQL += ",[Contacts].LastName  ";
+            SQL += ",[Contacts].KeyRef  ";
+            SQL += ",[Contacts].PayDetails  ";
+            SQL += "FROM [RedboxDB2].[dbo].[Bookings]  ";
+            SQL += " LEFT JOIN [MasterBookings]   ";
+            SQL += "ON [MasterBookings].ID = Bookings.MasterBookingID  ";
+            SQL += "LEFT JOIN [Contacts]  ";
+            SQL += "ON [MasterBookings].contactID = [Contacts].contactID  ";
+            SQL += "WHERE [Date] >= '" + sStart + "' AND [Date] <= '" + sEnd + "'  ";
+            SQL += "ORDER BY contactID, Rate ";
+
+            return SQL;
+        }
+
         private string GetTimeSheetSQL(DateTime dStart, string schoolID)
         {
             string monday = dStart.ToString("yyyy-MM-dd");
@@ -2676,6 +2810,25 @@ namespace RedboxAddin.DL
                         "Left Join [Schools] ON Schools.ID = MasterBookings.SchoolID " +
                         "Left Join [Contacts] on MasterBookings.contactID = Contacts.contactID " +
                         "WHERE MasterBookings.contactID = '" + teacherID + "' AND [Bookings].Date = '" + ddate + "'";
+
+
+
+            return SQL;
+        }
+
+        private string GetMasterBookingsforDateSQL(string ddate, bool confirmed)
+        {
+            string SQL = "SELECT [Schools].SchoolName, Bookings.Date, Contacts.LastName+', '+Contacts.FirstName as FullName,  " +
+                        "[Bookings].Description, MasterBookings.ID as MasterBookingID, Contacts.contactID, Schools.ID as SchoolID , BookingStatus " +
+                        "FROM MasterBookings " +
+                        "Left JOIN [Bookings] ON MasterBookingID = MasterBookings.ID " +
+                        "Left Join [Schools] ON Schools.ID = MasterBookings.SchoolID " +
+                        "Left Join [Contacts] on MasterBookings.contactID = Contacts.contactID " +
+                        "WHERE [Bookings].Date = '" + ddate + "'";
+            if (confirmed)
+            {
+                SQL += " AND MasterBookings.BookingStatus = 'Confirmed'  ";
+            }
 
 
 

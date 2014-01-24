@@ -117,6 +117,21 @@ namespace RedboxAddin.BL
             }
         }
 
+        public static Int32 CheckInt(object myObject)
+        {
+
+            try
+            {
+                if (myObject == null) return -1;
+                int myInt = Convert.ToInt32(myObject);
+                return myInt;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
         public static Int64 CheckLong(object myObject)
         {
 

@@ -64,9 +64,10 @@
             this.txtHfDayCharge = new System.Windows.Forms.TextBox();
             this.txtLTDay = new System.Windows.Forms.TextBox();
             this.txtLTHfDay = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtVettingEmails = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.chkUseFaxForTimeSheets = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cmbSchool
@@ -83,7 +84,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 26);
+            this.label1.Location = new System.Drawing.Point(26, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 16);
             this.label1.TabIndex = 1;
@@ -102,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 78);
+            this.label2.Location = new System.Drawing.Point(26, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 3;
@@ -121,7 +122,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 115);
+            this.label3.Location = new System.Drawing.Point(26, 115);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 16);
             this.label3.TabIndex = 5;
@@ -148,7 +149,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 152);
+            this.label4.Location = new System.Drawing.Point(26, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 8;
@@ -157,16 +158,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 260);
+            this.label5.Location = new System.Drawing.Point(26, 291);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 16);
+            this.label5.Size = new System.Drawing.Size(85, 32);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Email (Timesheet)";
+            this.label5.Text = "Emails \r\n(Timesheet)*";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 185);
+            this.label6.Location = new System.Drawing.Point(26, 187);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 16);
             this.label6.TabIndex = 10;
@@ -175,7 +176,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 222);
+            this.label7.Location = new System.Drawing.Point(26, 224);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 16);
             this.label7.TabIndex = 11;
@@ -183,30 +184,29 @@
             // 
             // txtMainContact
             // 
-            this.txtMainContact.Location = new System.Drawing.Point(146, 146);
+            this.txtMainContact.Location = new System.Drawing.Point(146, 148);
             this.txtMainContact.Name = "txtMainContact";
             this.txtMainContact.Size = new System.Drawing.Size(245, 22);
             this.txtMainContact.TabIndex = 12;
             // 
             // txtEmailAddress
             // 
-            this.txtEmailAddress.Location = new System.Drawing.Point(146, 258);
+            this.txtEmailAddress.Location = new System.Drawing.Point(149, 288);
             this.txtEmailAddress.Multiline = true;
             this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtEmailAddress.Size = new System.Drawing.Size(245, 41);
+            this.txtEmailAddress.Size = new System.Drawing.Size(605, 56);
             this.txtEmailAddress.TabIndex = 13;
             // 
             // txtTel
             // 
-            this.txtTel.Location = new System.Drawing.Point(146, 182);
+            this.txtTel.Location = new System.Drawing.Point(146, 184);
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(245, 22);
             this.txtTel.TabIndex = 14;
             // 
             // txtFax
             // 
-            this.txtFax.Location = new System.Drawing.Point(146, 219);
+            this.txtFax.Location = new System.Drawing.Point(146, 221);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(245, 22);
             this.txtFax.TabIndex = 15;
@@ -363,41 +363,51 @@
             this.txtLTHfDay.TabIndex = 36;
             this.txtLTHfDay.Validating += new System.ComponentModel.CancelEventHandler(this.txtLTHfDay_Validating);
             // 
-            // textBox1
+            // txtVettingEmails
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 305);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(245, 159);
-            this.textBox1.TabIndex = 38;
+            this.txtVettingEmails.Location = new System.Drawing.Point(146, 350);
+            this.txtVettingEmails.Multiline = true;
+            this.txtVettingEmails.Name = "txtVettingEmails";
+            this.txtVettingEmails.Size = new System.Drawing.Size(608, 73);
+            this.txtVettingEmails.TabIndex = 38;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(23, 311);
+            this.label17.Location = new System.Drawing.Point(26, 353);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(94, 16);
+            this.label17.Size = new System.Drawing.Size(62, 32);
             this.label17.TabIndex = 37;
-            this.label17.Text = "Email (Vetting)";
+            this.label17.Text = "Emails \r\n(Vetting)*";
             // 
             // label18
             // 
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(153, 467);
+            this.label18.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(146, 434);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(283, 41);
+            this.label18.Size = new System.Drawing.Size(358, 41);
             this.label18.TabIndex = 39;
-            this.label18.Text = "* separate multiple emails with a semi colon, e.g. \r\nadmin@school1.com; bursar@sc" +
-    "hool1.com";
+            this.label18.Text = "* separate multiple emails with a semi colon, \r\ne.g.     admin@school1.com; bursa" +
+    "r@school1.com";
+            // 
+            // chkUseFaxForTimeSheets
+            // 
+            this.chkUseFaxForTimeSheets.AutoSize = true;
+            this.chkUseFaxForTimeSheets.Location = new System.Drawing.Point(149, 250);
+            this.chkUseFaxForTimeSheets.Name = "chkUseFaxForTimeSheets";
+            this.chkUseFaxForTimeSheets.Size = new System.Drawing.Size(174, 20);
+            this.chkUseFaxForTimeSheets.TabIndex = 40;
+            this.chkUseFaxForTimeSheets.Text = "Use Fax for Time Sheets";
+            this.chkUseFaxForTimeSheets.UseVisualStyleBackColor = true;
             // 
             // frmEditSchool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 511);
+            this.Controls.Add(this.chkUseFaxForTimeSheets);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtVettingEmails);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.txtLTHfDay);
             this.Controls.Add(this.txtLTDay);
@@ -479,8 +489,9 @@
         private System.Windows.Forms.TextBox txtHfDayCharge;
         private System.Windows.Forms.TextBox txtLTDay;
         private System.Windows.Forms.TextBox txtLTHfDay;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtVettingEmails;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox chkUseFaxForTimeSheets;
     }
 }

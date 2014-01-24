@@ -169,6 +169,14 @@ namespace RedboxAddin
 			}
 		}
 		
+		public System.Data.Linq.Table<PaymentType> PaymentTypes
+		{
+			get
+			{
+				return this.GetTable<PaymentType>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Rate> Rates
 		{
 			get
@@ -1777,6 +1785,8 @@ namespace RedboxAddin
 		
 		private string _KeyRef;
 		
+		private System.Nullable<bool> _DBSDirectPayment;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2007,6 +2017,8 @@ namespace RedboxAddin
     partial void OnGUIDChanged();
     partial void OnKeyRefChanging(string value);
     partial void OnKeyRefChanged();
+    partial void OnDBSDirectPaymentChanging(System.Nullable<bool> value);
+    partial void OnDBSDirectPaymentChanged();
     #endregion
 		
 		public Contact()
@@ -4274,6 +4286,26 @@ namespace RedboxAddin
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DBSDirectPayment", DbType="Bit")]
+		public System.Nullable<bool> DBSDirectPayment
+		{
+			get
+			{
+				return this._DBSDirectPayment;
+			}
+			set
+			{
+				if ((this._DBSDirectPayment != value))
+				{
+					this.OnDBSDirectPaymentChanging(value);
+					this.SendPropertyChanging();
+					this._DBSDirectPayment = value;
+					this.SendPropertyChanged("DBSDirectPayment");
+					this.OnDBSDirectPaymentChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -5493,6 +5525,33 @@ namespace RedboxAddin
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PaymentTypes")]
+	public partial class PaymentType
+	{
+		
+		private string _Name;
+		
+		public PaymentType()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(25) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rates")]
 	public partial class Rate : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5911,6 +5970,12 @@ namespace RedboxAddin
 		
 		private string _Fax;
 		
+		private string _VettingEmails;
+		
+		private string _TimeSheetEmails;
+		
+		private bool _FaxTimeSheet;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5939,6 +6004,12 @@ namespace RedboxAddin
     partial void OnTelephoneChanged();
     partial void OnFaxChanging(string value);
     partial void OnFaxChanged();
+    partial void OnVettingEmailsChanging(string value);
+    partial void OnVettingEmailsChanged();
+    partial void OnTimeSheetEmailsChanging(string value);
+    partial void OnTimeSheetEmailsChanged();
+    partial void OnFaxTimeSheetChanging(bool value);
+    partial void OnFaxTimeSheetChanged();
     #endregion
 		
 		public School()
@@ -6126,7 +6197,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailAddress", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailAddress", DbType="NVarChar(500)")]
 		public string EmailAddress
 		{
 			get
@@ -6182,6 +6253,66 @@ namespace RedboxAddin
 					this._Fax = value;
 					this.SendPropertyChanged("Fax");
 					this.OnFaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VettingEmails", DbType="NVarChar(500)")]
+		public string VettingEmails
+		{
+			get
+			{
+				return this._VettingEmails;
+			}
+			set
+			{
+				if ((this._VettingEmails != value))
+				{
+					this.OnVettingEmailsChanging(value);
+					this.SendPropertyChanging();
+					this._VettingEmails = value;
+					this.SendPropertyChanged("VettingEmails");
+					this.OnVettingEmailsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeSheetEmails", DbType="NVarChar(500)")]
+		public string TimeSheetEmails
+		{
+			get
+			{
+				return this._TimeSheetEmails;
+			}
+			set
+			{
+				if ((this._TimeSheetEmails != value))
+				{
+					this.OnTimeSheetEmailsChanging(value);
+					this.SendPropertyChanging();
+					this._TimeSheetEmails = value;
+					this.SendPropertyChanged("TimeSheetEmails");
+					this.OnTimeSheetEmailsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="faxTimeSheet", Storage="_FaxTimeSheet", DbType="Bit NOT NULL")]
+		public bool FaxTimeSheet
+		{
+			get
+			{
+				return this._FaxTimeSheet;
+			}
+			set
+			{
+				if ((this._FaxTimeSheet != value))
+				{
+					this.OnFaxTimeSheetChanging(value);
+					this.SendPropertyChanging();
+					this._FaxTimeSheet = value;
+					this.SendPropertyChanged("FaxTimeSheet");
+					this.OnFaxTimeSheetChanged();
 				}
 			}
 		}

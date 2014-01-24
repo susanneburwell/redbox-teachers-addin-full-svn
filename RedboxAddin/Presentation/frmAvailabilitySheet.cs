@@ -66,10 +66,13 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                this.UseWaitCursor = true;
-                string wheresql = WHERESQL();
+                //this.UseWaitCursor = true;
+                Cursor.Current = Cursors.WaitCursor;
+                string wheresql = "";
+                if (chkJustBookings.Checked) wheresql = JustBookingSQL();
+                else wheresql = WHERESQL();
 
-                Application.DoEvents();
+                //Application.DoEvents();
                 //Get first day of week
                 DateTime input = dtFrom.Value;
                 int delta = DayOfWeek.Monday - input.DayOfWeek;
@@ -88,7 +91,7 @@ namespace RedboxAddin.Presentation
                 //gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 //gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
-                this.UseWaitCursor = false;
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {
@@ -148,6 +151,27 @@ namespace RedboxAddin.Presentation
                 return "";
             }
         }
+
+        private string JustBookingSQL()
+        {
+            try
+            {
+
+                //Get qualifications
+                string SQL = "";
+                SQL += "WHERE s1.School <> '' OR s2.School <> '' OR s3.School <> '' OR s4.School <> '' or s5.School <> '' ";
+
+
+                return SQL;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in WHERESQL: " + ex.Message);
+                return "";
+            }
+        }
+
+
 
         private void CheckDoubleBookings()
         {
@@ -239,7 +263,7 @@ namespace RedboxAddin.Presentation
             {
                 int topRow = availabilityGrid1.getTopRow();
                 LoadTable();
-                availabilityGrid1.setTopRow( topRow);
+                availabilityGrid1.setTopRow(topRow);
             }
             catch (Exception ex)
             {
@@ -403,6 +427,38 @@ namespace RedboxAddin.Presentation
                 btnDblBkgs.BackColor = Color.Orange;
             }
             else btnDblBkgs.BackColor = Color.Crimson;
+        }
+
+
+        private void btnCreatePaySheets_Click(object sender, EventArgs e)
+        {
+            string sEnd = dtFrom.Value.AddDays(4).ToString("yyyy-MM-dd");
+            List<string> names = LINQmanager.GetPaymentTypes();
+            ExcelExporter exEx = new ExcelExporter();
+            DBManager dbm = new DBManager();
+
+            foreach (string name in names)
+            {
+                List<Payment> lp = dbm.GetPayrun(dtFrom.Value);
+                exEx.CreatePaySheet(name, sEnd, lp);
+            }
+        }
+
+        private void chkJustBookings_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkJustBookings.Checked)
+            {
+                grpQual.Visible = false;
+                grpYearGroups.Visible = false;
+                btnCreatePaySheets.Visible = true;
+            }
+            else
+            {
+                grpQual.Visible = true;
+                grpYearGroups.Visible = true;
+                btnCreatePaySheets.Visible = false;
+            }
+            LoadTable();
         }
 
 

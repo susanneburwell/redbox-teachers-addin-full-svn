@@ -126,6 +126,7 @@ namespace RedboxAddin.Models
         public string Teacher { get; set; }
         public long MasterBookingID { get; set; }
         public string BookingStatus { get; set; }
+        public bool Selected { get; set; }
     }
 
     class RDoubleBookings
@@ -182,6 +183,18 @@ namespace RedboxAddin.Models
         public string Status { get; set; }
     }
 
-    
+    public class Payment
+    {
+        public long ID { get; set; }
+        public string PayDetails { get; set; }
+        public string AgencyRef { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string WeekEnding { get; set; }
+        public int TotalDays { get; set; }
+        public decimal Rate { get; set; }
+        public decimal AdditionalPayment { get; set; }
+
+    }
 
 }
