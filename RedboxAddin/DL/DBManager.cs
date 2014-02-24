@@ -434,19 +434,40 @@ namespace RedboxAddin.DL
                         {
                             RTimeSheet objTS = new RTimeSheet()
                            {
-                               ID = Utils.CheckLong(dr["ID"]),
+                               ID = Utils.CheckLong(dr["MasterBookingID"]),
                                SchoolName = dr["SchoolName"].ToString(),
                                FullName = dr["FullName"].ToString(),
-                               days = dr["days"].ToString(),
-                               numDays = Convert.ToInt32(dr["numDays"]),
+                               days = GetDay(dr["Date"].ToString()),
+                               numDays = 1,
                                DayRate = Utils.CheckDecimal(dr["DayRate"].ToString()),
-                               Total = Utils.CheckDecimal(dr["Total"].ToString()),
+                               Total = Utils.CheckDecimal(dr["DayRate"].ToString()),
 
                            };
                             TimeSheets.Add(objTS);
                         }
                         catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
 
+                    }
+
+                    //
+                    //iterate through the list
+                    int listPointer = 0;
+                    while (listPointer < TimeSheets.Count - 1)
+                    {
+                        if (TimeSheetsMatch(TimeSheets[listPointer], TimeSheets[listPointer + 1]))
+                        {
+                            //add a day to existing payment
+                            TimeSheets[listPointer].numDays += 1;
+                            TimeSheets[listPointer].days += "," + TimeSheets[listPointer + 1].days;
+                            TimeSheets[listPointer].Total += TimeSheets[listPointer + 1].Total;
+
+                            TimeSheets.RemoveAt(listPointer + 1);
+                        }
+                        else
+                        {
+                            //move on to next payment
+                            listPointer += 1;
+                        }
                     }
 
                     return TimeSheets;
@@ -457,6 +478,37 @@ namespace RedboxAddin.DL
             {
                 Debug.DebugMessage(2, "Error in GetTimeSheets: " + ex.Message);
                 return null;
+            }
+        }
+
+        private string GetDay(string date)
+        {
+            try
+            {
+                DateTime dt = Convert.ToDateTime(date);
+                string day = dt.DayOfWeek.ToString();
+                return day.Substring(0, 3);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in  GetDay: " + ex.Message);
+                return "Err";
+            }
+        }
+
+        private bool TimeSheetsMatch(RTimeSheet ts1, RTimeSheet ts2)
+        {
+            try
+            {
+                if (ts1.FullName != ts2.FullName) return false;
+                if (ts1.SchoolName != ts2.SchoolName) return false;
+                if (ts1.DayRate != ts2.DayRate) return false;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in TimeSheetsMatch: " + ex.Message);
+                return false;
             }
         }
 
@@ -499,6 +551,52 @@ namespace RedboxAddin.DL
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in GetTimeSheets: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<InvoiceLine> GetInvoice(string WeekEnding, string SageAccountRef)
+        {
+            if (string.IsNullOrWhiteSpace(SageAccountRef)) return null;
+            SageAccountRef = SageAccountRef.Trim();
+
+            List<InvoiceLine> invoiceList = new List<InvoiceLine>();
+            try
+            {
+                string SQLstr = GetInvoiceSQL(WeekEnding, SageAccountRef);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            InvoiceLine invLine = new InvoiceLine()
+                            {
+                                WeekEnding = WeekEnding,
+                                SageAcctRef = SageAccountRef,
+                                Address = dr["Address"].ToString(),
+                                PayDetails = dr["PayDetails"].ToString(),
+                                LastName = dr["LastName"].ToString(),
+                                FirstName = dr["FirstName"].ToString(),
+                                TotalDays = 1,
+                                Charge = Utils.CheckDecimal(dr["Charge"])
+                            };
+                            invoiceList.Add(invLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.DebugMessage(2, "Error in GetInvoice(1): " + ex.Message);
+                        }
+                    }
+                    return invoiceList;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetInvoice: " + ex.Message);
                 return null;
             }
         }
@@ -2389,7 +2487,7 @@ namespace RedboxAddin.DL
                             ") as s2 " +
                             "ON s2.contactID = [Contacts].contactID " +
 
-                                                        "LEFT JOIN " +
+                            "LEFT JOIN " +
                             "( " +
                             "SELECT COUNT(ID) as gar , TeacherID " +
                             "FROM GuaranteedDays " +
@@ -2674,7 +2772,58 @@ namespace RedboxAddin.DL
             return SQL;
         }
 
+        private string GetInvoiceSQL(string WeekEnding, string SageAccountRef)
+        {
+            DateTime dtEnd = Convert.ToDateTime(WeekEnding);
+            string sStart = dtEnd.AddDays(-4).ToString("yyyy-MM-dd");
+            string SQL = "";
+            SQL += "SELECT   ";
+            SQL += "[MasterBookingID] ,";
+            SQL += "[Date],";
+            SQL += "[Rate],";
+            SQL += "[Bookings].[Charge],";
+            SQL += "[Description],";
+            SQL += "[MasterBookings].contactID,";
+            SQL += "[Contacts].FirstName,";
+            SQL += "[Contacts].LastName,";
+            SQL += "[Contacts].KeyRef,";
+            SQL += "[Contacts].PayDetails ,";
+            SQL += "[Schools].SchoolName,";
+            SQL += "[Schools].SageName,";
+            SQL += "[Schools].Address ";
+            SQL += "FROM [RedboxDB2].[dbo].[Bookings]   ";
+            SQL += "LEFT JOIN [MasterBookings] ";
+            SQL += "ON [MasterBookings].ID = Bookings.MasterBookingID ";
+            SQL += "LEFT JOIN [Contacts] ";
+            SQL += "ON [MasterBookings].contactID = [Contacts].contactID ";
+            SQL += "LEFT JOIN [Schools] ";
+            SQL += "ON [MasterBookings].SchoolID = [Schools].ID ";
+            SQL += "WHERE [Date] >= '" + sStart + "' AND [Date] <= '" + WeekEnding + "'  ";
+            SQL += "AND [Schools].SageName = '" + SageAccountRef + "' ";
+            SQL += "ORDER BY contactID, Rate  ";
+
+            return SQL;
+        }
+
         private string GetTimeSheetSQL(DateTime dStart, string schoolID)
+        {
+            string start = dStart.ToString("yyyy-MM-dd");
+            string dEnd = dStart.AddDays(4).ToString("yyyy-MM-dd");
+
+            string SQL = "";
+            SQL += "SELECT  Date, ";
+            SQL += "[Bookings].Charge as DayRate, [Bookings].MasterBookingID, SchoolName, LastName+', ' +FirstName as FullName ";
+            SQL += "FROM Bookings  ";
+            SQL += "LEFT JOIN MasterBookings ON MasterBookings.ID = MasterBookingID ";
+            SQL += "LEFT JOIN [Contacts] ON MasterBookings.contactID = [Contacts].contactID  ";
+            SQL += "LEFT JOIN [Schools]  ON MasterBookings.SchoolID = [Schools].ID  ";
+            SQL += "WHERE (Date >= '" + start + "' ) AND (Date <= '" + dEnd + "') ";
+            SQL += "AND ( isAbsence != 1) AND (MasterBookings.SchoolID = '" + schoolID + "') ";
+            SQL += "ORDER BY [Bookings].MasterBookingID, [Bookings].Charge, [Bookings].Date ";
+            return SQL;
+        }
+
+        private string GetTimeSheetSQL_orig(DateTime dStart, string schoolID)
         {
             string monday = dStart.ToString("yyyy-MM-dd");
             string tuesday = dStart.AddDays(1).ToString("yyyy-MM-dd");

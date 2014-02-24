@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoadPlan));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnCreateInvoices = new System.Windows.Forms.Button();
+            this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblTo = new System.Windows.Forms.Label();
@@ -84,6 +86,8 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnCreateInvoices);
+            this.panelTop.Controls.Add(this.btnCreatePaySheets);
             this.panelTop.Controls.Add(this.bnFwd);
             this.panelTop.Controls.Add(this.btnBack);
             this.panelTop.Controls.Add(this.lblTo);
@@ -102,6 +106,26 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(936, 62);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnCreateInvoices
+            // 
+            this.btnCreateInvoices.Location = new System.Drawing.Point(655, 12);
+            this.btnCreateInvoices.Name = "btnCreateInvoices";
+            this.btnCreateInvoices.Size = new System.Drawing.Size(86, 44);
+            this.btnCreateInvoices.TabIndex = 90;
+            this.btnCreateInvoices.Text = "Create Invoices";
+            this.btnCreateInvoices.UseVisualStyleBackColor = true;
+            this.btnCreateInvoices.Click += new System.EventHandler(this.btnCreateInvoices_Click);
+            // 
+            // btnCreatePaySheets
+            // 
+            this.btnCreatePaySheets.Location = new System.Drawing.Point(563, 12);
+            this.btnCreatePaySheets.Name = "btnCreatePaySheets";
+            this.btnCreatePaySheets.Size = new System.Drawing.Size(86, 44);
+            this.btnCreatePaySheets.TabIndex = 89;
+            this.btnCreatePaySheets.Text = "Create PaySheets";
+            this.btnCreatePaySheets.UseVisualStyleBackColor = true;
+            this.btnCreatePaySheets.Click += new System.EventHandler(this.btnCreatePaySheets_Click);
             // 
             // bnFwd
             // 
@@ -459,5 +483,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn TotalCost;
         private DevExpress.XtraGrid.Columns.GridColumn sMargin;
         private DevExpress.XtraGrid.Columns.GridColumn Revenue;
+        private System.Windows.Forms.Button btnCreateInvoices;
+        private System.Windows.Forms.Button btnCreatePaySheets;
     }
 }

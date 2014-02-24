@@ -5976,6 +5976,10 @@ namespace RedboxAddin
 		
 		private bool _FaxTimeSheet;
 		
+		private string _SageName;
+		
+		private string _Address;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6010,6 +6014,10 @@ namespace RedboxAddin
     partial void OnTimeSheetEmailsChanged();
     partial void OnFaxTimeSheetChanging(bool value);
     partial void OnFaxTimeSheetChanged();
+    partial void OnSageNameChanging(string value);
+    partial void OnSageNameChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
     #endregion
 		
 		public School()
@@ -6313,6 +6321,46 @@ namespace RedboxAddin
 					this._FaxTimeSheet = value;
 					this.SendPropertyChanged("FaxTimeSheet");
 					this.OnFaxTimeSheetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SageName", DbType="NChar(20)")]
+		public string SageName
+		{
+			get
+			{
+				return this._SageName;
+			}
+			set
+			{
+				if ((this._SageName != value))
+				{
+					this.OnSageNameChanging(value);
+					this.SendPropertyChanging();
+					this._SageName = value;
+					this.SendPropertyChanged("SageName");
+					this.OnSageNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(500)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
 				}
 			}
 		}

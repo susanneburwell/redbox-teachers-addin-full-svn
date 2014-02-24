@@ -28,7 +28,7 @@ namespace RedboxAddin
             // Please add any initialization code to the AddinInitialize event handler
         }
 
-        private ADXRibbonTab adxRibbonTab1;
+        private ADXRibbonTab adxTabMail;
         private ADXRibbonGroup adxRibbonGroup1;
         private ADXRibbonButton adxRibbonButtonAddNew;
         private AddinExpress.OL.ADXOlFormsManager adxOlFormsManagerRedbox;
@@ -68,6 +68,11 @@ namespace RedboxAddin
         private ADXRibbonButton adxTimeSheet;
         private ADXRibbonButton adxCheckContactnames;
         private ADXRibbonButton adxSendVetting;
+        private ADXRibbonTab adxTabContact;
+        private ADXRibbonGroup adxRibbonGroup3;
+        private ADXRibbonButton adxRibbonButton3;
+        private ADXRibbonButton adxRibbonButton4;
+        private ADXRibbonTab adxTabAppt;
 
         #region Component Designer generated code
         /// <summary>
@@ -83,7 +88,7 @@ namespace RedboxAddin
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddinModule));
-            this.adxRibbonTab1 = new AddinExpress.MSO.ADXRibbonTab(this.components);
+            this.adxTabMail = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxRibbonGroup1 = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxRibbonButtonAddNew = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -111,6 +116,7 @@ namespace RedboxAddin
             this.adxLoadPlan = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTimeSheet = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -122,14 +128,18 @@ namespace RedboxAddin
             this.adxUpdateContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxMarkCurrent = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxCheckContactnames = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxTabContact = new AddinExpress.MSO.ADXRibbonTab(this.components);
+            this.adxTabAppt = new AddinExpress.MSO.ADXRibbonTab(this.components);
+            this.adxRibbonGroup3 = new AddinExpress.MSO.ADXRibbonGroup(this.components);
+            this.adxRibbonButton3 = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxRibbonButton4 = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
-            // adxRibbonTab1
+            // adxTabMail
             // 
-            this.adxRibbonTab1.Caption = "Redbox";
-            this.adxRibbonTab1.Controls.Add(this.adxRibbonGroup1);
-            this.adxRibbonTab1.Id = "adxRibbonTab_53cd27d9f4444a159945725686081d67";
-            this.adxRibbonTab1.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxTabMail.Caption = "Redbox";
+            this.adxTabMail.Controls.Add(this.adxRibbonGroup1);
+            this.adxTabMail.Id = "adxRibbonTab_53cd27d9f4444a159945725686081d67";
+            this.adxTabMail.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             // 
             // adxRibbonGroup1
             // 
@@ -289,7 +299,7 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 14;
+            this.commandBarRedboxAddin.UpdateCounter = 15;
             // 
             // cbBtnNewContact
             // 
@@ -435,6 +445,14 @@ namespace RedboxAddin
             this.adxTimeSheet.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxTimeSheet.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTimeSheet_OnClick);
             // 
+            // adxSendVetting
+            // 
+            this.adxSendVetting.Caption = "Send Vetting Details";
+            this.adxSendVetting.Id = "adxRibbonButton_d85eda28b374424aa2acc3bfba75d0e2";
+            this.adxSendVetting.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxSendVetting.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxSendVetting.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxSendVetting_OnClick);
+            // 
             // adxOptions
             // 
             this.adxOptions.Caption = "Options";
@@ -532,13 +550,41 @@ namespace RedboxAddin
             this.adxCheckContactnames.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxCheckContactnames.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxCheckContactnames_OnClick);
             // 
-            // adxSendVetting
+            // adxTabContact
             // 
-            this.adxSendVetting.Caption = "Send Vetting Details";
-            this.adxSendVetting.Id = "adxRibbonButton_d85eda28b374424aa2acc3bfba75d0e2";
-            this.adxSendVetting.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxSendVetting.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxSendVetting.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxSendVetting_OnClick);
+            this.adxTabContact.Caption = "Conference Calling";
+            this.adxTabContact.Controls.Add(this.adxRibbonGroup3);
+            this.adxTabContact.Id = "adxRibbonTab_11ad4b2ebd85496a841472c0b2d46dc6";
+            this.adxTabContact.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
+            // 
+            // adxTabAppt
+            // 
+            this.adxTabAppt.Caption = "adxRibbonTab1";
+            this.adxTabAppt.Id = "adxRibbonTab_b1048884135f4ceabfd13019f1b726d7";
+            this.adxTabAppt.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
+            // 
+            // adxRibbonGroup3
+            // 
+            this.adxRibbonGroup3.Caption = "Conference Calling";
+            this.adxRibbonGroup3.Controls.Add(this.adxRibbonButton3);
+            this.adxRibbonGroup3.Controls.Add(this.adxRibbonButton4);
+            this.adxRibbonGroup3.Id = "adxRibbonGroup_5b586534389d48c8ae5d7562d862dbda";
+            this.adxRibbonGroup3.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxRibbonGroup3.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
+            // 
+            // adxRibbonButton3
+            // 
+            this.adxRibbonButton3.Caption = "Meet Now";
+            this.adxRibbonButton3.Id = "adxRibbonButton_ed4c5b4bb8144435b3028e3f812b19cf";
+            this.adxRibbonButton3.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxRibbonButton3.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
+            // 
+            // adxRibbonButton4
+            // 
+            this.adxRibbonButton4.Caption = "Schedule";
+            this.adxRibbonButton4.Id = "adxRibbonButton_b1ab10cc8c9c46c4b4909aa4a0a7f1da";
+            this.adxRibbonButton4.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxRibbonButton4.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
             // 
             // AddinModule
             // 

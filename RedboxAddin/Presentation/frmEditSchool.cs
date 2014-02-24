@@ -99,6 +99,9 @@ namespace RedboxAddin.Presentation
                         lblID.Text = school.ID.ToString();
                         txtVettingEmails.Text = school.VettingEmails;
                         chkUseFaxForTimeSheets.Checked = school.FaxTimeSheet;
+                        txtAddress.Text= school.Address;
+                        txtSageAccountRef.Text = school.SageName;
+
 
                         return;
                     }
@@ -139,6 +142,8 @@ namespace RedboxAddin.Presentation
                         school.HalfDayChargeLT = Convert.ToDecimal(txtLTHfDay.Text);
                         school.VettingEmails = txtVettingEmails.Text;
                         school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
+                        school.Address = txtAddress.Text;
+                        school.SageName = txtSageAccountRef.Text;
                         
 
                         db.Schools.InsertOnSubmit(school);
@@ -169,6 +174,8 @@ namespace RedboxAddin.Presentation
                             school.HalfDayChargeLT = Convert.ToDecimal(txtLTHfDay.Text);
                             school.VettingEmails = txtVettingEmails.Text;
                             school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
+                            school.Address = txtAddress.Text;
+                            school.SageName = txtSageAccountRef.Text;
 
                             db.SubmitChanges();
 

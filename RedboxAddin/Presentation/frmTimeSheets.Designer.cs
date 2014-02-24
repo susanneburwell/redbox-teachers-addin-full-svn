@@ -241,27 +241,36 @@
             // 
             this.FullName.Caption = "FullName";
             this.FullName.FieldName = "FullName";
+            this.FullName.MaxWidth = 300;
+            this.FullName.MinWidth = 100;
             this.FullName.Name = "FullName";
             this.FullName.Visible = true;
             this.FullName.VisibleIndex = 1;
+            this.FullName.Width = 100;
             // 
             // days
             // 
             this.days.Caption = "Days";
             this.days.FieldName = "days";
+            this.days.MaxWidth = 200;
+            this.days.MinWidth = 100;
             this.days.Name = "days";
             this.days.Visible = true;
             this.days.VisibleIndex = 2;
+            this.days.Width = 100;
             // 
             // numDays
             // 
             this.numDays.Caption = "No. of days";
             this.numDays.FieldName = "numDays";
+            this.numDays.MaxWidth = 50;
+            this.numDays.MinWidth = 50;
             this.numDays.Name = "numDays";
             this.numDays.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "numDays", "{0} days")});
             this.numDays.Visible = true;
             this.numDays.VisibleIndex = 3;
+            this.numDays.Width = 50;
             // 
             // DayRate
             // 
@@ -270,7 +279,7 @@
             this.DayRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.DayRate.FieldName = "DayRate";
             this.DayRate.MaxWidth = 80;
-            this.DayRate.MinWidth = 10;
+            this.DayRate.MinWidth = 50;
             this.DayRate.Name = "DayRate";
             this.DayRate.Visible = true;
             this.DayRate.VisibleIndex = 4;

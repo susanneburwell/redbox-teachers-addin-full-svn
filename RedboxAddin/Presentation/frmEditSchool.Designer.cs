@@ -68,6 +68,10 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.chkUseFaxForTimeSheets = new System.Windows.Forms.CheckBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtSageAccountRef = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbSchool
@@ -400,11 +404,49 @@
             this.chkUseFaxForTimeSheets.Text = "Use Fax for Time Sheets";
             this.chkUseFaxForTimeSheets.UseVisualStyleBackColor = true;
             // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(778, 127);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtAddress.Size = new System.Drawing.Size(230, 94);
+            this.txtAddress.TabIndex = 41;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(775, 99);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(249, 16);
+            this.label19.TabIndex = 42;
+            this.label19.Text = "Address (Only first 5 lines show on Sage)";
+            // 
+            // txtSageAccountRef
+            // 
+            this.txtSageAccountRef.Location = new System.Drawing.Point(778, 260);
+            this.txtSageAccountRef.Name = "txtSageAccountRef";
+            this.txtSageAccountRef.Size = new System.Drawing.Size(230, 22);
+            this.txtSageAccountRef.TabIndex = 44;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(775, 241);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(94, 16);
+            this.label20.TabIndex = 43;
+            this.label20.Text = "Sage Acct Ref";
+            // 
             // frmEditSchool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 511);
+            this.ClientSize = new System.Drawing.Size(1036, 534);
+            this.Controls.Add(this.txtSageAccountRef);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.chkUseFaxForTimeSheets);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txtVettingEmails);
@@ -493,5 +535,9 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox chkUseFaxForTimeSheets;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtSageAccountRef;
+        private System.Windows.Forms.Label label20;
     }
 }
