@@ -249,6 +249,48 @@ namespace RedboxAddin.DL
             }
         }
 
+        public static Contact GetContactbyID(long contactID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.Contacts.FirstOrDefault(s => s.ContactID == contactID);
+
+                    if (cd == null) return null;
+                    else return cd;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetContactbyID: " + ex.Message);
+                return null;
+            }
+        }
+
+        public static MasterBooking GetMasterBookingbyID(long masterBookingID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var mb = db.MasterBookings.FirstOrDefault(s => s.ID == masterBookingID);
+
+                    if (mb == null) return null;
+                    else return mb;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetMasterBookingbyID: " + ex.Message);
+                return null;
+            }
+        }
+
         public static string GetEmailAddressforSchoolID(long schoolID)
         {
             try

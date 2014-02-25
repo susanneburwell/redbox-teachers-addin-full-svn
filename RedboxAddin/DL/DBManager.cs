@@ -384,10 +384,9 @@ namespace RedboxAddin.DL
             //Get Booked days
             try
             {
-                string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, Status " +
+                string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, BookingStatus " +
                                 "FROM [Bookings] " +
                                 "LEFT JOIN [MasterBookings] ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
-                                "LEFT JOIN [BookingStatuses] ON [MasterBookings].BookingStatus = BookingStatuses.ID " +
                                 "WHERE  [MasterBookings].contactID = '" + teacherID.ToString() + "' ";
                 DataSet msgDs = GetDataSet(SQLstr + DateSQL);
 
@@ -399,7 +398,7 @@ namespace RedboxAddin.DL
                         RTeacherday tDay = new RTeacherday();
                         tDay.dte = Utils.CheckDate(dr["Date"]);
                         if (Utils.CheckBool(dr["isAbsence"])) tDay.Type = "Absence";
-                        else tDay.Type = Utils.CheckString(dr["Status"]);
+                        else tDay.Type = Utils.CheckString(dr["BookingStatus"]);
                         tDay.Details = Utils.CheckString(dr["Description"]);
                         teacherDays.Add(tDay);
 

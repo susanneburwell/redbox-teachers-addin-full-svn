@@ -113,6 +113,10 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.pnlTop = new System.Windows.Forms.Panel();
+            this.btnSendNotification = new System.Windows.Forms.Button();
+            this.btnSendVettingDetails = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -126,6 +130,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.toolStripContainer1.SuspendLayout();
+            this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -202,14 +208,17 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panelGrids, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panelGrids, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pnlTop, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 330F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 697);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
@@ -251,7 +260,7 @@
             this.panel2.Controls.Add(this.dtTo);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 53);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1002, 324);
             this.panel2.TabIndex = 1;
@@ -912,9 +921,9 @@
             this.panelGrids.Controls.Add(this.availabilityGrid1);
             this.panelGrids.Controls.Add(this.dgcBookings);
             this.panelGrids.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelGrids.Location = new System.Drawing.Point(3, 333);
+            this.panelGrids.Location = new System.Drawing.Point(3, 383);
             this.panelGrids.Name = "panelGrids";
-            this.panelGrids.Size = new System.Drawing.Size(1002, 361);
+            this.panelGrids.Size = new System.Drawing.Size(1002, 311);
             this.panelGrids.TabIndex = 6;
             // 
             // availabilityGrid1
@@ -923,7 +932,7 @@
             this.availabilityGrid1.Location = new System.Drawing.Point(697, 0);
             this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(305, 361);
+            this.availabilityGrid1.Size = new System.Drawing.Size(305, 311);
             this.availabilityGrid1.TabIndex = 6;
             // 
             // dgcBookings
@@ -936,7 +945,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemCheckEdit2,
             this.repositoryItemDateEdit1});
-            this.dgcBookings.Size = new System.Drawing.Size(686, 361);
+            this.dgcBookings.Size = new System.Drawing.Size(686, 311);
             this.dgcBookings.TabIndex = 5;
             this.dgcBookings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ViewBookings});
@@ -1059,12 +1068,58 @@
             this.flashtimer1.Interval = 500;
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1008, 672);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(1008, 697);
+            this.toolStripContainer1.TabIndex = 7;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Controls.Add(this.btnSendVettingDetails);
+            this.pnlTop.Controls.Add(this.btnSendNotification);
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTop.Location = new System.Drawing.Point(3, 3);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(1002, 44);
+            this.pnlTop.TabIndex = 7;
+            // 
+            // btnSendNotification
+            // 
+            this.btnSendNotification.Location = new System.Drawing.Point(23, 9);
+            this.btnSendNotification.Name = "btnSendNotification";
+            this.btnSendNotification.Size = new System.Drawing.Size(117, 27);
+            this.btnSendNotification.TabIndex = 14;
+            this.btnSendNotification.Text = "Send Notification";
+            this.toolTip1.SetToolTip(this.btnSendNotification, "Send email to teacher");
+            this.btnSendNotification.UseVisualStyleBackColor = true;
+            this.btnSendNotification.Click += new System.EventHandler(this.btnSendNotification_Click);
+            // 
+            // btnSendVettingDetails
+            // 
+            this.btnSendVettingDetails.Location = new System.Drawing.Point(157, 9);
+            this.btnSendVettingDetails.Name = "btnSendVettingDetails";
+            this.btnSendVettingDetails.Size = new System.Drawing.Size(117, 27);
+            this.btnSendVettingDetails.TabIndex = 15;
+            this.btnSendVettingDetails.Text = "Send Details";
+            this.toolTip1.SetToolTip(this.btnSendVettingDetails, "Send vetting details to school");
+            this.btnSendVettingDetails.UseVisualStyleBackColor = true;
+            this.btnSendVettingDetails.Click += new System.EventHandler(this.btnSendVettingDetails_Click);
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 697);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.toolStripContainer1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -1089,6 +1144,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
+            this.pnlTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1178,5 +1236,9 @@
         private RedboxAddin.UC.AvailabilityGrid availabilityGrid1;
         private System.Windows.Forms.Timer flashtimer1;
         private System.Windows.Forms.Button btnDblBkgs;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.Panel pnlTop;
+        private System.Windows.Forms.Button btnSendVettingDetails;
+        private System.Windows.Forms.Button btnSendNotification;
     }
 }

@@ -606,6 +606,44 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private void SendNotificationDetails()
+        {
+            try
+            {
+                if (Utils.SendNotification(_masterBookingID, txtDescription.Text) == false)
+                {
+                    MessageBox.Show("Error. The email could not be created at this time.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in send notification details: " + ex.Message);
+            }
+        }
+
+        private void SendVettingDetails()
+        {
+            try
+            {
+                MasterBooking mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
+                long schoolID = mb.SchoolID;
+
+                long contactID = (long)mb.ContactID;
+                if (Utils.SendVettingDetails(schoolID, contactID) == false)
+                {
+                    MessageBox.Show("Error. The email could not be created at this time.");
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error creating the email. Please make sure you have selected a contact.");
+                Debug.DebugMessage(2, "Error in SendVettingDetails(2): " + ex.Message);
+            }
+        }
+
         #endregion
 
         #region DGC
@@ -832,7 +870,28 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        #endregion
+        private void btnSendNotification_Click(object sender, EventArgs e)
+        {
+            SendNotificationDetails();
+        }
+
+        private void btnSendVettingDetails_Click(object sender, EventArgs e)
+        {
+            SendVettingDetails();
+        }
+
+        private void btnDblBkgs_Click(object sender, EventArgs e)
+        {
+            frmViewDoubleBookings fdb = Application.OpenForms["frmViewDoubleBookings"] as frmViewDoubleBookings;
+            if (fdb == null)
+            {
+                fdb = new frmViewDoubleBookings();
+                fdb.Show();
+            }
+            else { fdb.BringToFront(); }
+        }
+
+
 
 
 
@@ -865,6 +924,8 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        #endregion
+
         private void flashtimer1_Tick(object sender, EventArgs e)
         {
             if (btnDblBkgs.BackColor == Color.Crimson)
@@ -875,16 +936,10 @@ namespace RedboxAddin.Presentation
         }
 
 
-        private void btnDblBkgs_Click(object sender, EventArgs e)
-        {
-            frmViewDoubleBookings fdb = Application.OpenForms["frmViewDoubleBookings"] as frmViewDoubleBookings;
-            if (fdb == null)
-            {
-                fdb = new frmViewDoubleBookings();
-                fdb.Show();
-            }
-            else { fdb.BringToFront(); }
-        }
+
+
+
+
 
 
 

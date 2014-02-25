@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using RedboxAddin.DL;
+using Redemption;
+using Microsoft.Office.Interop.Outlook;
+using System.Runtime.InteropServices;
+
+
 
 namespace RedboxAddin.BL
 {
@@ -35,7 +41,7 @@ namespace RedboxAddin.BL
             try
             {
                 string value = myObject.ToString().Trim();
-                if ((value == "TA")||(string.IsNullOrWhiteSpace(value))) return -1;
+                if ((value == "TA") || (string.IsNullOrWhiteSpace(value))) return -1;
 
                 Decimal dec = Convert.ToDecimal(myObject);
                 return dec;
@@ -63,7 +69,7 @@ namespace RedboxAddin.BL
                     return Convert.ToString(myObject);
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.DebugMessage(2, "CheckString Failed :- " + ex.Message);
                 return "";
@@ -96,7 +102,7 @@ namespace RedboxAddin.BL
                     return Convert.ToBoolean(myObject);
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.DebugMessage(4, "CheckBool Failed :- " + ex.Message);
                 return false;
@@ -105,7 +111,7 @@ namespace RedboxAddin.BL
 
         public static decimal CheckDecimal(object myObject)
         {
-           
+
             try
             {
                 Decimal dec = Convert.ToDecimal(myObject);
@@ -139,8 +145,8 @@ namespace RedboxAddin.BL
             {
                 if (myObject == null) return -1;
 
-               long myInt = Convert.ToInt64(myObject);
-               return myInt;
+                long myInt = Convert.ToInt64(myObject);
+                return myInt;
             }
             catch
             {
@@ -186,7 +192,7 @@ namespace RedboxAddin.BL
                 datastring.Add(2, other);
                 return datastring;
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.DebugMessage(2, "Error in ExtractAppointmentData: " + ex.Message);
                 return datastring;
@@ -197,7 +203,7 @@ namespace RedboxAddin.BL
         //{
         //    try
         //    {
-               
+
         //    }
         //    catch (Exception ex)
         //    {
@@ -271,7 +277,7 @@ namespace RedboxAddin.BL
                     cmbSchool.ValueMember = "ID";
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
             }
@@ -297,7 +303,7 @@ namespace RedboxAddin.BL
                     cmb1.Text = "";
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
             }
@@ -312,6 +318,292 @@ namespace RedboxAddin.BL
             DateTime monday = input.AddDays(delta).Date;
             return monday;
         }
-    
+
+        public static bool SendNotification(long bookingID, string description)
+        {
+            try
+            {
+                MasterBooking mb = LINQmanager.GetMasterBookingbyID(bookingID);
+
+                if (mb.ContactID == null) return false;
+                Contact contact = LINQmanager.GetContactbyID((long)mb.ContactID);
+                School school = LINQmanager.GetSchoolbyID((long)mb.SchoolID);
+
+                MailItem oMail = Globals.objOutlook.CreateItem(OlItemType.olMailItem) as MailItem;
+                string subject = "Redbox Booking: " + mb.StartDate.ToLongDateString();
+                string details = "Dear " + contact.FirstName;
+                details += "\rPlease confirm acceptance of the following booking:";
+                details += "\r\rSchool: " + school.SchoolName;
+                details += "\rFirst Day: " + mb.StartDate.ToLongDateString();
+                details += "\rFinal Day: " + mb.EndDate.ToLongDateString();
+                details += "\r\rDescription: " + description;
+                details += "\r\rOther Details:" + mb.Details;
+                details += "\r\rSchool Address:\r " + school.Address;
+
+                oMail.To = contact.Email1;
+                oMail.Subject = subject;
+                oMail.Body = details;
+                oMail.Display();
+
+
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SendNotification(2): " + ex.Message);
+                return false;
+            }
+        }
+
+        public static bool SendVettingDetails(long schoolID, long contactID)
+        {
+            try
+            {
+                //get school 
+                School school = LINQmanager.GetSchoolbyID(schoolID);
+                string schoolEmail = school.VettingEmails;
+
+                //get contact
+                Contact contact = LINQmanager.GetContactbyID(contactID);
+
+                //create text 
+
+                {
+                    RDOFolder rFolderDrafts = null;
+                    RDOItems rItems = null;
+                    Redemption.RDOMail rMail = null;
+                    RDOAttachments colAttach = null;
+                    RDOAttachment myAttach = null;
+                    MailItem oMail = null;
+                    try
+                    {
+                        string myEntryID = "";
+                        string TableMiddle = "";
+                        string TableBottom = "";
+                        string Replacement1 = "";
+                        string Replacement2 = "";
+                        string myPic = "";
+                        string myBody = "";
+                        string txtBody = "";
+
+                        string contentID = "myident";
+                        string TableTop = "<table border=" + (char)(34) + "1" + (char)(34) + "width=" + (char)(34) + "100%" +
+                                          "id=" + (char)(34) + "table1" + (char)(34) + "height=" + (char)(34) + "200" + (char)(34) + " >" + Environment.NewLine +
+                                          "<tr>" + Environment.NewLine + "<td width=" + (char)(34) + "200" + (char)(34) + " >" + Environment.NewLine;
+                        rFolderDrafts = RedemptionCode.rSession.GetDefaultFolder(rdoDefaultFolders.olFolderDrafts);
+                        rItems = rFolderDrafts.Items;
+                        rMail = (RDOMail)rItems.Add("IPM.Note");
+                        colAttach = rMail.Attachments;
+                        AddAttachments(ref colAttach, contact);
+                        rMail.Body = " ";
+                        try
+                        {
+                            myAttach = colAttach.Add(contact.PhotoLocation, OlAttachmentType.olByValue, rMail.Body.Length, Type.Missing);
+                            myAttach.Hidden = true;
+                            myAttach.set_Fields(0x370E001E, "image/jpeg");
+                            myAttach.set_Fields(0x3712001E, "myident");
+
+                            myAttach.ContentID = contentID;
+                        }
+                        catch (System.Exception ex) { Debug.DebugMessage(2, "Error attaching pictures in the " + ex.Message); }
+
+                        rMail.Save();
+                        myEntryID = rMail.EntryID;
+
+                        oMail = (MailItem)Globals.objNS.GetItemFromID(myEntryID);
+
+                        myPic = "<DIV>" + Environment.NewLine + "<IMG style=" + " border=0 hspace=0 alt=myPic align=baseline src=cid:myident width=200 height=200>" + Environment.NewLine + "</DIV>" + Environment.NewLine;
+                        TableMiddle = "</td>" + Environment.NewLine + "<td><FONT SIZE=2 FACE=" + (char)34 + "Arial" + (char)34 + ">";
+                        //TODO contact.DateOfSupply
+                        txtBody = txtBody + "Date of Supply: " + contact.DateOfSupply.ToString() + Environment.NewLine;
+                        txtBody = txtBody + Environment.NewLine + "Supply Requirement: Basic Cover" + Environment.NewLine + Environment.NewLine;
+                        txtBody = txtBody + "Teacher Name: " + contact.FirstName + " " + contact.LastName + Environment.NewLine + Environment.NewLine;
+                        txtBody = txtBody + "Year Group: " + contact.YearGroup + Environment.NewLine;
+                        txtBody = txtBody + Environment.NewLine + "Qualification: " + contact.Qualification;
+                        if (contact.QTS == true)
+                        {
+                            txtBody = txtBody + Environment.NewLine + "QTS? Yes";
+                        }
+                        else
+                        {
+                            txtBody = txtBody + Environment.NewLine + "QTS? No";
+                        }
+
+                        if (contact.NQT == true)
+                        {
+                            txtBody = txtBody + Environment.NewLine + "NQT? Yes";
+                        }
+                        else
+                        {
+                            txtBody = txtBody + Environment.NewLine + "NQT? No";
+                        }
+
+                        if (contact.Instructor == true) { txtBody = txtBody + Environment.NewLine + "Instructor? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Instructor? No"; }
+
+                        if (contact.OverseasTrainedTeacher == true) { txtBody = txtBody + Environment.NewLine + "Overseas Trained Teacher? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Overseas Trained Teacher? No"; }
+
+                        if (contact.CVReceived == true) { txtBody = txtBody + Environment.NewLine + "CV Received? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "CV Received? No"; }
+
+                        if (contact.RedboxCRB == true) { txtBody = txtBody + Environment.NewLine + "Red Box CRB? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Red Box CRB? No"; }
+
+                        txtBody = txtBody + Environment.NewLine + "Red Box CRB Form Ref: " + contact.CRBFormRef;
+                        txtBody = txtBody + Environment.NewLine + "CRB Number: " + contact.CRBNumber;
+
+                        if (contact.CRBValidFrom != DateTime.MinValue && contact.CRBValidFrom != null)
+                        {
+                            txtBody = txtBody + Environment.NewLine + "CRB Valid from: " + contact.CRBValidFrom.ToString();
+                        }
+                        else
+                        {
+                            txtBody = txtBody + Environment.NewLine + "CRB Valid from: None";
+                        }
+
+                        if (contact.AdditionalInfoOnCRB == true) { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? No"; }
+
+                        if (contact.UpdateService == true) { txtBody = txtBody + Environment.NewLine + "DBS Update Service? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "DBS Update Service? No"; }
+
+                        if (contact.VisaExpiryDate != DateTime.MinValue && contact.VisaExpiryDate != null)
+                        {
+                            txtBody = txtBody + Environment.NewLine + "Visa Expiry Date: " + contact.VisaExpiryDate.ToString();
+                        }
+                        else
+                        {
+                            txtBody = txtBody + Environment.NewLine + "Visa Expiry Date: None";
+                        }
+
+                        if (!string.IsNullOrEmpty(contact.VisaType))
+                        {
+                            txtBody = txtBody + Environment.NewLine + "Visa Type: " + contact.VisaType;
+                        }
+                        else
+                        {
+                            txtBody = txtBody + Environment.NewLine + "Visa Type: None";
+                        }
+
+                        if (contact.IDChecked == true) { txtBody = txtBody + Environment.NewLine + "ID checked? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "ID checked? No"; }
+
+                        if (contact.OverseasPoliceCheck == true) { txtBody = txtBody + Environment.NewLine + "Overseas Police Check? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Overseas Police Check? No"; }
+
+                        if (contact.ReferencesChecked == true) { txtBody = txtBody + Environment.NewLine + "All References checked? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "All References checked? No"; }
+
+                        if (contact.List99 == true) { txtBody = txtBody + Environment.NewLine + "List 99 undertaken? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "List 99 undertaken? No"; }
+
+                        if (contact.MedicalChecklist == true) { txtBody = txtBody + Environment.NewLine + "Medical Checklist checked? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Medical Checklist checked? No"; }
+
+                        if (contact.ProofOfAddress == true) { txtBody = txtBody + Environment.NewLine + "Proof of Address checked? Yes"; }
+                        else { txtBody = txtBody + Environment.NewLine + "Proof of Address checked? No"; }
+
+                        if (contact.RegistrationDate != DateTime.MinValue && contact.RegistrationDate != null)
+                        {
+                            txtBody = txtBody + Environment.NewLine + "Date of Registration: " + contact.RegistrationDate.ToString();
+                        }
+                        else { txtBody = txtBody + Environment.NewLine + "Date of Registration: None"; }
+
+                        txtBody = txtBody + Environment.NewLine + "GTC Number: " + contact.GTCNumber;
+
+                        if (contact.GTCCheckDate != DateTime.MinValue && contact.GTCCheckDate != null)
+                        {
+                            txtBody = txtBody + Environment.NewLine + "GTC Check Date: " + contact.GTCCheckDate.ToString();
+                        }
+                        else { txtBody = txtBody + Environment.NewLine + "GTC Check Date: None"; }
+
+                        if (!string.IsNullOrWhiteSpace(contact.BirthDate))
+                        {
+                            txtBody = txtBody + Environment.NewLine + "Date of Birth: " + contact.BirthDate;
+                        }
+                        else { txtBody = txtBody + Environment.NewLine + "Date of Birth: None"; }
+
+                        txtBody = txtBody + Environment.NewLine;
+                        TableBottom = "</td>" + Environment.NewLine + "</tr>" + Environment.NewLine + "</table>";
+                        Replacement1 = "<BODY>" + Environment.NewLine + TableTop + myPic + TableMiddle;
+                        Replacement2 = TableBottom + "</BODY>";
+
+                        oMail.Subject = contact.FirstName + " " + contact.LastName;
+                        oMail.Body = txtBody;
+
+                        //send attachments
+
+                        string myText = oMail.HTMLBody;
+                        myText = myText.Replace("<BODY>", Replacement1);
+                        myText = myText.Replace("</BODY>", Replacement2);
+                        oMail.HTMLBody = myText;
+                        oMail.To = schoolEmail;
+
+                        oMail.Display();
+                        oMail.Save();
+                        return true;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.DebugMessage(2, "Error in Send Details(1) : " + ex.Message);
+                        return false;
+                    }
+                    finally
+                    {
+                        if (oMail != null) Marshal.ReleaseComObject(oMail);
+                        if (myAttach != null) Marshal.ReleaseComObject(myAttach);
+                        if (colAttach != null) Marshal.ReleaseComObject(colAttach);
+                        if (rMail != null) Marshal.ReleaseComObject(rMail);
+                        if (rItems != null) Marshal.ReleaseComObject(rItems);
+                        if (rFolderDrafts != null) Marshal.ReleaseComObject(rFolderDrafts);
+                        GC.Collect();
+                    }
+                }
+                // pop up email
+            }
+            catch (System.Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SendVettingDetails: " + ex.Message);
+            }
+            return false;
+        }
+
+        private static bool AddAttachments(ref RDOAttachments attachmentCol, Contact contact)
+        {
+            try
+            {
+                if (contact.SendBankStatement == true)
+                {
+                    if (!string.IsNullOrWhiteSpace(contact.BankStatementLocation))
+                    {
+                        RDOAttachment rAttachment = attachmentCol.Add(contact.BankStatementLocation);
+                        if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+                    }
+                }
+                if (contact.SendPassport == true)
+                {
+                    if (!string.IsNullOrWhiteSpace(contact.PassportLocation))
+                    {
+                        RDOAttachment rAttachment = attachmentCol.Add(contact.PassportLocation);
+                        if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+                    }
+                }
+                if (contact.SendVisa == true)
+                {
+                    if (!string.IsNullOrWhiteSpace(contact.VisaLocation))
+                    {
+                        RDOAttachment rAttachment = attachmentCol.Add(contact.VisaLocation);
+                        if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+                    }
+                }
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
+                return false;
+            }
+        }
     }
 }
