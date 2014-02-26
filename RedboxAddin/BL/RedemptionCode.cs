@@ -189,7 +189,7 @@ namespace RedboxAddin.BL
 
 
                 //Create the Mail
-                oMail = CreateMessage(contactObj);
+                oMail = CreateVettingMessage(contactObj);
                 oMail.To = vettingEmailAddresses; //must be a semicolon delimited list
 
 
@@ -262,7 +262,7 @@ namespace RedboxAddin.BL
             }
         }
 
-        private static MailItem CreateMessage(RContact contactObj)
+        private static MailItem CreateVettingMessage(RContact contactObj)
         {
             //Create the message
 

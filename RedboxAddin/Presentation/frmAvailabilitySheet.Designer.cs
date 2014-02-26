@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.chkJustBookings = new System.Windows.Forms.CheckBox();
+            this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.btnDblBkgs = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -67,29 +69,31 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnCreatePaySheets = new System.Windows.Forms.Button();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
-            this.chkJustBookings = new System.Windows.Forms.CheckBox();
+            this.panelRibbon = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpQual.SuspendLayout();
             this.grpYearGroups.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.panelRibbon.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.panelTop, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.availabilityGrid1, 0, 1);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.panelTop, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.availabilityGrid1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panelRibbon, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.52381F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.47619F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1037, 525);
@@ -98,7 +102,6 @@
             // panelTop
             // 
             this.panelTop.Controls.Add(this.chkJustBookings);
-            this.panelTop.Controls.Add(this.btnCreatePaySheets);
             this.panelTop.Controls.Add(this.btnDblBkgs);
             this.panelTop.Controls.Add(this.bnFwd);
             this.panelTop.Controls.Add(this.btnBack);
@@ -109,10 +112,33 @@
             this.panelTop.Controls.Add(this.dtFrom);
             this.panelTop.Controls.Add(this.label4);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTop.Location = new System.Drawing.Point(3, 3);
+            this.panelTop.Location = new System.Drawing.Point(3, 43);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1031, 148);
+            this.panelTop.Size = new System.Drawing.Size(1031, 137);
             this.panelTop.TabIndex = 0;
+            // 
+            // chkJustBookings
+            // 
+            this.chkJustBookings.AutoSize = true;
+            this.chkJustBookings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkJustBookings.Location = new System.Drawing.Point(875, 104);
+            this.chkJustBookings.Name = "chkJustBookings";
+            this.chkJustBookings.Size = new System.Drawing.Size(147, 20);
+            this.chkJustBookings.TabIndex = 89;
+            this.chkJustBookings.Text = "Just Show Bookings";
+            this.chkJustBookings.UseVisualStyleBackColor = true;
+            this.chkJustBookings.CheckedChanged += new System.EventHandler(this.chkJustBookings_CheckedChanged);
+            // 
+            // btnCreatePaySheets
+            // 
+            this.btnCreatePaySheets.Location = new System.Drawing.Point(886, 3);
+            this.btnCreatePaySheets.Name = "btnCreatePaySheets";
+            this.btnCreatePaySheets.Size = new System.Drawing.Size(135, 28);
+            this.btnCreatePaySheets.TabIndex = 88;
+            this.btnCreatePaySheets.Text = "Create PaySheets";
+            this.btnCreatePaySheets.UseVisualStyleBackColor = true;
+            this.btnCreatePaySheets.Visible = false;
+            this.btnCreatePaySheets.Click += new System.EventHandler(this.btnCreatePaySheets_Click);
             // 
             // btnDblBkgs
             // 
@@ -507,6 +533,15 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 187);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1029, 334);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
             // CheckDoubleBookingsTimer1
             // 
             this.CheckDoubleBookingsTimer1.Tick += new System.EventHandler(this.CheckDoubleBookingsTimer1_Tick);
@@ -515,37 +550,14 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
-            // btnCreatePaySheets
+            // panelRibbon
             // 
-            this.btnCreatePaySheets.Location = new System.Drawing.Point(757, 95);
-            this.btnCreatePaySheets.Name = "btnCreatePaySheets";
-            this.btnCreatePaySheets.Size = new System.Drawing.Size(86, 44);
-            this.btnCreatePaySheets.TabIndex = 88;
-            this.btnCreatePaySheets.Text = "Create PaySheets";
-            this.btnCreatePaySheets.UseVisualStyleBackColor = true;
-            this.btnCreatePaySheets.Visible = false;
-            this.btnCreatePaySheets.Click += new System.EventHandler(this.btnCreatePaySheets_Click);
-            // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 158);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1029, 363);
-            this.availabilityGrid1.TabIndex = 1;
-            // 
-            // chkJustBookings
-            // 
-            this.chkJustBookings.AutoSize = true;
-            this.chkJustBookings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkJustBookings.Location = new System.Drawing.Point(875, 119);
-            this.chkJustBookings.Name = "chkJustBookings";
-            this.chkJustBookings.Size = new System.Drawing.Size(147, 20);
-            this.chkJustBookings.TabIndex = 89;
-            this.chkJustBookings.Text = "Just Show Bookings";
-            this.chkJustBookings.UseVisualStyleBackColor = true;
-            this.chkJustBookings.CheckedChanged += new System.EventHandler(this.chkJustBookings_CheckedChanged);
+            this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
+            this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRibbon.Location = new System.Drawing.Point(3, 3);
+            this.panelRibbon.Name = "panelRibbon";
+            this.panelRibbon.Size = new System.Drawing.Size(1031, 34);
+            this.panelRibbon.TabIndex = 2;
             // 
             // frmAvailabilitySheet
             // 
@@ -568,6 +580,7 @@
             this.grpYearGroups.ResumeLayout(false);
             this.grpYearGroups.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.panelRibbon.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -617,5 +630,6 @@
         private System.Windows.Forms.CheckBox chkLongTerm;
         private System.Windows.Forms.Button btnCreatePaySheets;
         private System.Windows.Forms.CheckBox chkJustBookings;
+        private System.Windows.Forms.Panel panelRibbon;
     }
 }

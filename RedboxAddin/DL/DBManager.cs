@@ -36,6 +36,27 @@ namespace RedboxAddin.DL
             }
         }
 
+        internal static bool OpenOriginalDBConnection()
+        {
+            try
+            {
+                string connStrFromSettings = DavSettings.getDavValue("CONNSTR");
+                connStrFromSettings.Replace("RedboxDB2", "RedboxDB");
+                Debug.DebugMessage(2, "OriginalConnStr " + connStrFromSettings);
+                if (_DBConn == null) _DBConn = _DBConn = new SqlConnection(connStrFromSettings);
+                if (_DBConn.State == ConnectionState.Closed)
+                {
+                    _DBConn.Open();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error Opening the DB Connection :- " + ex.Message);
+                return false;
+            }
+        }
+
         internal static bool CloseDBConnection()
         {
             try
@@ -3015,6 +3036,19 @@ namespace RedboxAddin.DL
         }
         #endregion
 
+        #region Import Data from original Database
 
+        public void ImportOriginalData()
+        {
+            try
+            {
+                //Get dataset from original 
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in ImportOriginalData: " + ex.Message);
+            }
+        }
+        #endregion
     }
 }

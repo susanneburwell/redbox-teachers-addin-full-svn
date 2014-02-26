@@ -82,8 +82,10 @@ namespace RedboxAddin.Presentation
                 GridColumn colContactID = gridView1.Columns.ColumnByFieldName("ContactID");
                 GridColumn colSchoolID = gridView1.Columns.ColumnByFieldName("SchoolID");
                 GridColumn colMasterBookingID = gridView1.Columns.ColumnByFieldName("MasterBookingID");
+                GridColumn colTeacher = gridView1.Columns.ColumnByFieldName("Teacher");
+                GridColumn colSchool = gridView1.Columns.ColumnByFieldName("SchoolName");
 
-
+                string errors = "";
 
                 // Obtain the number of data rows. 
                 int dataRowCount = gridView1.DataRowCount;
@@ -104,12 +106,23 @@ namespace RedboxAddin.Presentation
                             {
                                 LINQmanager.SetBookingStatus(masterBookingID, "Details Sent");
                             }
+                            else
+                            {
+                                string teacher = gridView1.GetRowCellValue(i, colTeacher).ToString();
+                                string school= gridView1.GetRowCellValue(i, colSchool).ToString();
+                                errors += teacher + " at " + school + "\r";
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
                         Debug.DebugMessage(2, "Error Sending Vetting Details: " + ex.Message);
                     }
+                }
+
+                if (errors != "")
+                {
+                    MessageBox.Show("There were errors sending the following messages:\r\r" + errors);
                 }
 
                 LoadGrid();
