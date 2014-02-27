@@ -265,11 +265,9 @@ namespace RedboxAddin.DL
                                 cd.TA = Utils.CheckBool(dt.Rows[iRow][27]);
                                 cd.Current = Utils.CheckBool(dt.Rows[iRow][28]);
 
-
-                                if (setTA) cd.TA = true;
-                                if (setTeacher) cd.Teacher = true;
-                                if (setCurrent) cd.Current = true;
-
+                                //if (setTA) cd.TA = true;
+                                //if (setTeacher) cd.Teacher = true;
+                                //if (setCurrent) cd.Current = true;
 
                                 //Find SEN, QNN, TA, in year Group
                                 if (cd.YearGroup.IndexOf("QNN") > -1) cd.QNN = true;

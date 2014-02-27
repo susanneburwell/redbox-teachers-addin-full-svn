@@ -73,6 +73,27 @@ namespace RedboxAddin
         private ADXRibbonButton adxTeacherContacts;
         private ADXRibbonButton adxSchoolContacts;
         private ImageList imageList32;
+        private ADXOlExplorerCommandBar adxCommandBar2;
+        private ADXCommandBarButton adxcbNewRequest;
+        private ADXCommandBarButton adxcbTeacherUpdate;
+        private ADXCommandBarButton adxcbViewBookings;
+        private ADXCommandBarButton adxcbAvail;
+        private ADXCommandBarButton adxcbTeacherContacts;
+        private ADXCommandBarPopup adxCommandBarPopup1;
+        private ADXCommandBarButton adxcbLoadPlan;
+        private ADXCommandBarButton adxcbTimeSheets;
+        private ADXCommandBarButton adxcbSendVetting;
+        private ADXCommandBarButton adxcbEditSchools;
+        private ADXCommandBarPopup adxCommandBarPopup2;
+        private ADXCommandBarButton adxCommandBarButton10;
+        private ADXCommandBarButton adxCommandBarButton11;
+        private ADXCommandBarButton adxCommandBarButton12;
+        private ADXCommandBarButton adxCommandBarButton13;
+        private ADXCommandBarButton adxCommandBarButton14;
+        private ADXCommandBarButton adxCommandBarButton15;
+        private ADXCommandBarButton adxCommandBarButton16;
+        private ADXCommandBarButton adxCommandBarButton17;
+        private ADXCommandBarButton adxCommandBarButton18;
 
         #region Component Designer generated code
         /// <summary>
@@ -110,29 +131,50 @@ namespace RedboxAddin
             this.adxtab = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxGRPRedbox2 = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxNewRequest = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.adxTeacherUpdate = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxBookings = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxAvail = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxLoadPlan = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTimeSheet = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxOptions = new AddinExpress.MSO.ADXRibbonMenu(this.components);
+            this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxTeacherContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxSchoolContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxRibbonMenu1 = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportKeyRef = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImport = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxProcess = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxUpdateContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxMarkCurrent = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxCheckContactnames = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTabAppt = new AddinExpress.MSO.ADXRibbonTab(this.components);
-            this.adxRibbonMenu1 = new AddinExpress.MSO.ADXRibbonMenu(this.components);
-            this.adxTeacherContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxSchoolContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.adxCommandBar2 = new AddinExpress.MSO.ADXOlExplorerCommandBar(this.components);
+            this.adxcbNewRequest = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbTeacherUpdate = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbViewBookings = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbAvail = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbTeacherContacts = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarPopup1 = new AddinExpress.MSO.ADXCommandBarPopup(this.components);
+            this.adxcbLoadPlan = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbTimeSheets = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbSendVetting = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbEditSchools = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarPopup2 = new AddinExpress.MSO.ADXCommandBarPopup(this.components);
+            this.adxCommandBarButton10 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton11 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton12 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton13 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton14 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton15 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton16 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             // 
             // adxTabMail
             // 
@@ -300,7 +342,7 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 16;
+            this.commandBarRedboxAddin.UpdateCounter = 20;
             // 
             // cbBtnNewContact
             // 
@@ -400,6 +442,29 @@ namespace RedboxAddin
             this.adxNewRequest.Size = AddinExpress.MSO.ADXRibbonXControlSize.Large;
             this.adxNewRequest.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxNewRequest_OnClick);
             // 
+            // imageList32
+            // 
+            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
+            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList32.Images.SetKeyName(0, "1393347085_notification_add.png");
+            this.imageList32.Images.SetKeyName(1, "1393347046_notification_error.png");
+            this.imageList32.Images.SetKeyName(2, "1393346933_file_search.png");
+            this.imageList32.Images.SetKeyName(3, "1393346921_folder_empty.png");
+            this.imageList32.Images.SetKeyName(4, "1393346907_user_add.png");
+            this.imageList32.Images.SetKeyName(5, "1393346996_document_edit.png");
+            this.imageList32.Images.SetKeyName(6, "1393346876_player_play.png");
+            this.imageList32.Images.SetKeyName(7, "1393346972_notification_done.png");
+            this.imageList32.Images.SetKeyName(8, "1393346966_user_manage.png");
+            this.imageList32.Images.SetKeyName(9, "1393346961_message.png");
+            this.imageList32.Images.SetKeyName(10, "1393346841_notification_warning.png");
+            this.imageList32.Images.SetKeyName(11, "1393346941_mail_send.png");
+            this.imageList32.Images.SetKeyName(12, "1393346804_mail.png");
+            this.imageList32.Images.SetKeyName(13, "1393346781_file_add.png");
+            this.imageList32.Images.SetKeyName(14, "1393346767_folder_search.png");
+            this.imageList32.Images.SetKeyName(15, "1393346492_Teacher.png");
+            this.imageList32.Images.SetKeyName(16, "1393346122_Two-storied_house.png");
+            this.imageList32.Images.SetKeyName(17, "1393346665_gear.png");
+            // 
             // adxTeacherUpdate
             // 
             this.adxTeacherUpdate.Caption = "Teacher Update";
@@ -431,6 +496,19 @@ namespace RedboxAddin
             this.adxAvail.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxAvail.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxAvail_OnClick);
             // 
+            // adxOptions
+            // 
+            this.adxOptions.Caption = "Admin";
+            this.adxOptions.Controls.Add(this.adxLoadPlan);
+            this.adxOptions.Controls.Add(this.adxTimeSheet);
+            this.adxOptions.Controls.Add(this.adxSendVetting);
+            this.adxOptions.Controls.Add(this.adxEditSchool);
+            this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
+            this.adxOptions.Image = 5;
+            this.adxOptions.ImageList = this.imageList32;
+            this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxOptions.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            // 
             // adxLoadPlan
             // 
             this.adxLoadPlan.Caption = "Load Plan";
@@ -438,14 +516,6 @@ namespace RedboxAddin
             this.adxLoadPlan.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxLoadPlan.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxLoadPlan.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxLoadPlan_OnClick);
-            // 
-            // adxPivot
-            // 
-            this.adxPivot.Caption = "Pivot Grid";
-            this.adxPivot.Id = "adxRibbonButton_0b7f30f7815047beaeae043c569fcf44";
-            this.adxPivot.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxPivot.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
             // 
             // adxTimeSheet
             // 
@@ -463,18 +533,51 @@ namespace RedboxAddin
             this.adxSendVetting.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxSendVetting.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxSendVetting_OnClick);
             // 
-            // adxOptions
+            // adxEditSchool
             // 
-            this.adxOptions.Caption = "Admin";
-            this.adxOptions.Controls.Add(this.adxLoadPlan);
-            this.adxOptions.Controls.Add(this.adxTimeSheet);
-            this.adxOptions.Controls.Add(this.adxSendVetting);
-            this.adxOptions.Controls.Add(this.adxEditSchool);
-            this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
-            this.adxOptions.Image = 5;
-            this.adxOptions.ImageList = this.imageList32;
-            this.adxOptions.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxOptions.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxEditSchool.Caption = "Edit Schools";
+            this.adxEditSchool.Id = "adxRibbonButton_f7a0bbf4cfcf4c06a068b35846838e5a";
+            this.adxEditSchool.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxEditSchool.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxEditSchool.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditSchool_OnClick);
+            // 
+            // adxTeacherContacts
+            // 
+            this.adxTeacherContacts.Caption = "Teacher Contacts";
+            this.adxTeacherContacts.Id = "adxRibbonButton_37a1b212a62b432f9f97155d44de1c9c";
+            this.adxTeacherContacts.Image = 15;
+            this.adxTeacherContacts.ImageList = this.imageList32;
+            this.adxTeacherContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxTeacherContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxTeacherContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTeacherContacts_OnClick);
+            // 
+            // adxSchoolContacts
+            // 
+            this.adxSchoolContacts.Caption = "School Contacts";
+            this.adxSchoolContacts.Id = "adxRibbonButton_4583c1d3b7e94cdabe3c3da91a6fd656";
+            this.adxSchoolContacts.Image = 16;
+            this.adxSchoolContacts.ImageList = this.imageList32;
+            this.adxSchoolContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxSchoolContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            // 
+            // adxRibbonMenu1
+            // 
+            this.adxRibbonMenu1.Caption = "Maintenance";
+            this.adxRibbonMenu1.Controls.Add(this.adxImportXL);
+            this.adxRibbonMenu1.Controls.Add(this.adxImportSchools);
+            this.adxRibbonMenu1.Controls.Add(this.adxImportKeyRef);
+            this.adxRibbonMenu1.Controls.Add(this.adxImport);
+            this.adxRibbonMenu1.Controls.Add(this.adxProcess);
+            this.adxRibbonMenu1.Controls.Add(this.adxImportContacts);
+            this.adxRibbonMenu1.Controls.Add(this.adxUpdateContacts);
+            this.adxRibbonMenu1.Controls.Add(this.adxMarkCurrent);
+            this.adxRibbonMenu1.Controls.Add(this.adxCheckContactnames);
+            this.adxRibbonMenu1.Controls.Add(this.adxPivot);
+            this.adxRibbonMenu1.Id = "adxRibbonMenu_ce459db124dd49b687736d6d60802b44";
+            this.adxRibbonMenu1.Image = 17;
+            this.adxRibbonMenu1.ImageList = this.imageList32;
+            this.adxRibbonMenu1.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxRibbonMenu1.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             // 
             // adxImportXL
             // 
@@ -507,14 +610,6 @@ namespace RedboxAddin
             this.adxImport.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxImport.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxImport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxImport_OnClick);
-            // 
-            // adxEditSchool
-            // 
-            this.adxEditSchool.Caption = "Edit Schools";
-            this.adxEditSchool.Id = "adxRibbonButton_f7a0bbf4cfcf4c06a068b35846838e5a";
-            this.adxEditSchool.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxEditSchool.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxEditSchool.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditSchool_OnClick);
             // 
             // adxProcess
             // 
@@ -556,71 +651,214 @@ namespace RedboxAddin
             this.adxCheckContactnames.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxCheckContactnames.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxCheckContactnames_OnClick);
             // 
+            // adxPivot
+            // 
+            this.adxPivot.Caption = "Pivot Grid";
+            this.adxPivot.Id = "adxRibbonButton_0b7f30f7815047beaeae043c569fcf44";
+            this.adxPivot.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxPivot.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxPivot.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxPivot_OnClick);
+            // 
             // adxTabAppt
             // 
             this.adxTabAppt.Caption = "adxRibbonTab1";
             this.adxTabAppt.Id = "adxRibbonTab_b1048884135f4ceabfd13019f1b726d7";
             this.adxTabAppt.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
             // 
-            // adxRibbonMenu1
+            // adxCommandBar2
             // 
-            this.adxRibbonMenu1.Caption = "Maintenance";
-            this.adxRibbonMenu1.Controls.Add(this.adxImportXL);
-            this.adxRibbonMenu1.Controls.Add(this.adxImportSchools);
-            this.adxRibbonMenu1.Controls.Add(this.adxImportKeyRef);
-            this.adxRibbonMenu1.Controls.Add(this.adxImport);
-            this.adxRibbonMenu1.Controls.Add(this.adxProcess);
-            this.adxRibbonMenu1.Controls.Add(this.adxImportContacts);
-            this.adxRibbonMenu1.Controls.Add(this.adxUpdateContacts);
-            this.adxRibbonMenu1.Controls.Add(this.adxMarkCurrent);
-            this.adxRibbonMenu1.Controls.Add(this.adxCheckContactnames);
-            this.adxRibbonMenu1.Controls.Add(this.adxPivot);
-            this.adxRibbonMenu1.Id = "adxRibbonMenu_ce459db124dd49b687736d6d60802b44";
-            this.adxRibbonMenu1.Image = 17;
-            this.adxRibbonMenu1.ImageList = this.imageList32;
-            this.adxRibbonMenu1.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxRibbonMenu1.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxCommandBar2.CommandBarName = "Redbox2";
+            this.adxCommandBar2.CommandBarTag = "29d0e898-55ff-44f1-8f9b-d8e31af3c190";
+            this.adxCommandBar2.Controls.Add(this.adxcbNewRequest);
+            this.adxCommandBar2.Controls.Add(this.adxcbTeacherUpdate);
+            this.adxCommandBar2.Controls.Add(this.adxcbViewBookings);
+            this.adxCommandBar2.Controls.Add(this.adxcbAvail);
+            this.adxCommandBar2.Controls.Add(this.adxcbTeacherContacts);
+            this.adxCommandBar2.Controls.Add(this.adxCommandBarPopup1);
+            this.adxCommandBar2.Controls.Add(this.adxCommandBarPopup2);
+            this.adxCommandBar2.Temporary = true;
+            this.adxCommandBar2.UpdateCounter = 6;
             // 
-            // adxTeacherContacts
+            // adxcbNewRequest
             // 
-            this.adxTeacherContacts.Caption = "Teacher Contacts";
-            this.adxTeacherContacts.Id = "adxRibbonButton_37a1b212a62b432f9f97155d44de1c9c";
-            this.adxTeacherContacts.Image = 15;
-            this.adxTeacherContacts.ImageList = this.imageList32;
-            this.adxTeacherContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxTeacherContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxcbNewRequest.Caption = "New Request";
+            this.adxcbNewRequest.ControlTag = "141759d0-9089-43ac-bfad-4b21bc638a89";
+            this.adxcbNewRequest.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbNewRequest.Temporary = true;
+            this.adxcbNewRequest.UpdateCounter = 6;
+            this.adxcbNewRequest.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbNewRequest_Click);
             // 
-            // adxSchoolContacts
+            // adxcbTeacherUpdate
             // 
-            this.adxSchoolContacts.Caption = "School Contacts";
-            this.adxSchoolContacts.Id = "adxRibbonButton_4583c1d3b7e94cdabe3c3da91a6fd656";
-            this.adxSchoolContacts.Image = 16;
-            this.adxSchoolContacts.ImageList = this.imageList32;
-            this.adxSchoolContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxSchoolContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxcbTeacherUpdate.Caption = "Teacher Update";
+            this.adxcbTeacherUpdate.ControlTag = "d626eb74-a26b-44bc-8c6e-4c8ecc0c73c9";
+            this.adxcbTeacherUpdate.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbTeacherUpdate.Temporary = true;
+            this.adxcbTeacherUpdate.UpdateCounter = 4;
+            this.adxcbTeacherUpdate.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbTeacherUpdate_Click);
             // 
-            // imageList32
+            // adxcbViewBookings
             // 
-            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
-            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList32.Images.SetKeyName(0, "1393347085_notification_add.png");
-            this.imageList32.Images.SetKeyName(1, "1393347046_notification_error.png");
-            this.imageList32.Images.SetKeyName(2, "1393346933_file_search.png");
-            this.imageList32.Images.SetKeyName(3, "1393346921_folder_empty.png");
-            this.imageList32.Images.SetKeyName(4, "1393346907_user_add.png");
-            this.imageList32.Images.SetKeyName(5, "1393346996_document_edit.png");
-            this.imageList32.Images.SetKeyName(6, "1393346876_player_play.png");
-            this.imageList32.Images.SetKeyName(7, "1393346972_notification_done.png");
-            this.imageList32.Images.SetKeyName(8, "1393346966_user_manage.png");
-            this.imageList32.Images.SetKeyName(9, "1393346961_message.png");
-            this.imageList32.Images.SetKeyName(10, "1393346841_notification_warning.png");
-            this.imageList32.Images.SetKeyName(11, "1393346941_mail_send.png");
-            this.imageList32.Images.SetKeyName(12, "1393346804_mail.png");
-            this.imageList32.Images.SetKeyName(13, "1393346781_file_add.png");
-            this.imageList32.Images.SetKeyName(14, "1393346767_folder_search.png");
-            this.imageList32.Images.SetKeyName(15, "1393346492_Teacher.png");
-            this.imageList32.Images.SetKeyName(16, "1393346122_Two-storied_house.png");
-            this.imageList32.Images.SetKeyName(17, "1393346665_gear.png");
+            this.adxcbViewBookings.Caption = "View Bookings";
+            this.adxcbViewBookings.ControlTag = "b87c0c7a-cc27-4c9f-8c00-5d1f5e4b3617";
+            this.adxcbViewBookings.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbViewBookings.Temporary = true;
+            this.adxcbViewBookings.UpdateCounter = 5;
+            this.adxcbViewBookings.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbViewBookings_Click);
+            // 
+            // adxcbAvail
+            // 
+            this.adxcbAvail.Caption = "Availability Sheet";
+            this.adxcbAvail.ControlTag = "9553bc12-cc90-469f-8f3f-308bd5d79481";
+            this.adxcbAvail.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbAvail.Temporary = true;
+            this.adxcbAvail.UpdateCounter = 4;
+            this.adxcbAvail.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbAvail_Click);
+            // 
+            // adxcbTeacherContacts
+            // 
+            this.adxcbTeacherContacts.Caption = "Teacher Contacts";
+            this.adxcbTeacherContacts.ControlTag = "7b51eb78-2d5d-40ea-8322-3d291ffd3118";
+            this.adxcbTeacherContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbTeacherContacts.Temporary = true;
+            this.adxcbTeacherContacts.UpdateCounter = 4;
+            this.adxcbTeacherContacts.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbTeacherContacts_Click);
+            // 
+            // adxCommandBarPopup1
+            // 
+            this.adxCommandBarPopup1.Caption = "Admin";
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbLoadPlan);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbTimeSheets);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbSendVetting);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbEditSchools);
+            this.adxCommandBarPopup1.ControlTag = "049113cd-d4a7-4d94-9e8a-f9bcc775fb2f";
+            this.adxCommandBarPopup1.Temporary = true;
+            this.adxCommandBarPopup1.UpdateCounter = 1;
+            // 
+            // adxcbLoadPlan
+            // 
+            this.adxcbLoadPlan.Caption = "Load Plan";
+            this.adxcbLoadPlan.ControlTag = "932c961a-cf73-424c-9bac-b68e7a846f98";
+            this.adxcbLoadPlan.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbLoadPlan.Temporary = true;
+            this.adxcbLoadPlan.UpdateCounter = 4;
+            this.adxcbLoadPlan.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbLoadPlan_Click);
+            // 
+            // adxcbTimeSheets
+            // 
+            this.adxcbTimeSheets.Caption = "Time Sheets";
+            this.adxcbTimeSheets.ControlTag = "30a96596-a5f5-4132-9477-fb1d9a3647f3";
+            this.adxcbTimeSheets.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbTimeSheets.Temporary = true;
+            this.adxcbTimeSheets.UpdateCounter = 4;
+            this.adxcbTimeSheets.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbTimeSheets_Click);
+            // 
+            // adxcbSendVetting
+            // 
+            this.adxcbSendVetting.Caption = "Send Vetting Details";
+            this.adxcbSendVetting.ControlTag = "721c0252-926f-4add-94e4-512fc1932b88";
+            this.adxcbSendVetting.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbSendVetting.Temporary = true;
+            this.adxcbSendVetting.UpdateCounter = 4;
+            this.adxcbSendVetting.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbSendVetting_Click);
+            // 
+            // adxcbEditSchools
+            // 
+            this.adxcbEditSchools.Caption = "Edit Schools";
+            this.adxcbEditSchools.ControlTag = "aae4eb01-d310-43bd-a8a6-bba1a4a5d4b4";
+            this.adxcbEditSchools.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbEditSchools.Temporary = true;
+            this.adxcbEditSchools.UpdateCounter = 4;
+            this.adxcbEditSchools.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbEditSchools_Click);
+            // 
+            // adxCommandBarPopup2
+            // 
+            this.adxCommandBarPopup2.Caption = "Maintenance";
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton10);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton11);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton12);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton13);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton14);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton15);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton16);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton17);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton18);
+            this.adxCommandBarPopup2.ControlTag = "996554fe-616d-4125-9176-8496a9599f0b";
+            this.adxCommandBarPopup2.Temporary = true;
+            this.adxCommandBarPopup2.UpdateCounter = 2;
+            this.adxCommandBarPopup2.Visible = false;
+            // 
+            // adxCommandBarButton10
+            // 
+            this.adxCommandBarButton10.Caption = "Import From Availability Sheet";
+            this.adxCommandBarButton10.ControlTag = "eddb1f65-501a-48e8-ac1a-68720bb4952f";
+            this.adxCommandBarButton10.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton10.Temporary = true;
+            this.adxCommandBarButton10.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton11
+            // 
+            this.adxCommandBarButton11.Caption = "Import Schools";
+            this.adxCommandBarButton11.ControlTag = "4fce2a44-e534-47be-8d3e-af9e4458954f";
+            this.adxCommandBarButton11.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton11.Temporary = true;
+            this.adxCommandBarButton11.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton12
+            // 
+            this.adxCommandBarButton12.Caption = "Import Key Refs";
+            this.adxCommandBarButton12.ControlTag = "d9c3d784-6455-413a-8dcf-ecbaee7fe7b2";
+            this.adxCommandBarButton12.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton12.Temporary = true;
+            this.adxCommandBarButton12.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton13
+            // 
+            this.adxCommandBarButton13.Caption = "Import From Excel";
+            this.adxCommandBarButton13.ControlTag = "4928c942-170b-4afd-a0b7-121fd5c4e4cd";
+            this.adxCommandBarButton13.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton13.Temporary = true;
+            this.adxCommandBarButton13.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton14
+            // 
+            this.adxCommandBarButton14.Caption = "Process Teachers";
+            this.adxCommandBarButton14.ControlTag = "46ff1e1f-dc68-467c-9f21-68b86758f002";
+            this.adxCommandBarButton14.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton14.Temporary = true;
+            this.adxCommandBarButton14.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton15
+            // 
+            this.adxCommandBarButton15.Caption = "Import Contacts";
+            this.adxCommandBarButton15.ControlTag = "5abb61e5-d538-406b-b046-7101169d940d";
+            this.adxCommandBarButton15.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton15.Temporary = true;
+            this.adxCommandBarButton15.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton16
+            // 
+            this.adxCommandBarButton16.Caption = "Clean Contact names";
+            this.adxCommandBarButton16.ControlTag = "a9aba8eb-90ea-4e4f-bdf3-f328c8dd0e29";
+            this.adxCommandBarButton16.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton16.Temporary = true;
+            this.adxCommandBarButton16.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton17
+            // 
+            this.adxCommandBarButton17.Caption = "Mark All Current";
+            this.adxCommandBarButton17.ControlTag = "7946fa1e-c7ef-4ae7-8e14-dc3bc8033db3";
+            this.adxCommandBarButton17.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton17.Temporary = true;
+            this.adxCommandBarButton17.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton18
+            // 
+            this.adxCommandBarButton18.Caption = "Check Contact names in Excel";
+            this.adxCommandBarButton18.ControlTag = "21e50b50-3c46-4606-8a39-7cb26c83fd60";
+            this.adxCommandBarButton18.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton18.Temporary = true;
+            this.adxCommandBarButton18.UpdateCounter = 1;
             // 
             // AddinModule
             // 
@@ -908,55 +1146,17 @@ namespace RedboxAddin
 
         private void cbBtnContacts_Click(object sender)
         {
-            Outlook.Explorer currentExplorer = null;
-            Outlook.MAPIFolder redboxFolder = null;
-            Outlook.MAPIFolder oInbox = null;
-            Outlook.MAPIFolder oPublicFolderRoot = null;
-            Outlook.Folders oFolders = null;
-            try
-            {
-                currentExplorer = Globals.objOutlook.ActiveExplorer();
-                oInbox = Globals.objNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-                oPublicFolderRoot = (Outlook.MAPIFolder)oInbox.Parent;
-                oFolders = oPublicFolderRoot.Folders;
-                bool folderFound = false;
+            ViewContacts();
+        }
 
-                foreach (Microsoft.Office.Interop.Outlook.MAPIFolder Folder in oFolders)
-                {
-                    try
-                    {
-                        string foldername = Folder.Name;
-                        if (foldername == "Redbox Contacts")
-                        {
-                            currentExplorer.SelectFolder(Folder);
-                            folderFound = true;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.DebugMessage(2, "Error in the folder Loop :- " + ex.Message);
-                    }
-                    finally
-                    {
-                        if (Folder != null) Marshal.ReleaseComObject(Folder);
-                    }
-                }
-                if (!folderFound)
-                {
-                    redboxFolder = oFolders.Add("Redbox Contacts");
-                    currentExplorer.SelectFolder(redboxFolder);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error when showing the redbox explorer :- " + ex.Message);
-            }
-            finally
-            {
-                if (redboxFolder != null) Marshal.ReleaseComObject(redboxFolder);
-                if (currentExplorer != null) Marshal.ReleaseComObject(currentExplorer);
-                GC.Collect();
-            }
+        private void adxTeacherContacts_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            ViewContacts();
+        }
+
+        private void adxcbTeacherContacts_Click(object sender)
+        {
+            ViewContacts();
         }
 
         private void cbBtnNewContact_Click(object sender)
@@ -1004,16 +1204,7 @@ namespace RedboxAddin
 
         private void adxNewRequest_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmMasterBooking fnr = Application.OpenForms["frmNewRequest"] as frmMasterBooking;
-            if (fnr == null)
-            {
-                fnr = new frmMasterBooking();
-                fnr.Show();
-            }
-            else
-            {
-                fnr.BringToFront();
-            }
+            NewRequest();
         }
 
         private void adxImportXL_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1022,7 +1213,7 @@ namespace RedboxAddin
             openFileDialog1.FileName = "*.xls";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ExcelImporter.Import(openFileDialog1.FileName,false,false,false,0,280);
+                ExcelImporter.Import(openFileDialog1.FileName, false, false, false, 81, 247);
             }
         }
 
@@ -1048,22 +1239,18 @@ namespace RedboxAddin
             {
                 if (ExcelImporter.ImportSchools(openFileDialog1.FileName)) MessageBox.Show("Imported");
                 else MessageBox.Show("Import failed");
-                
+
             }
         }
 
         private void adxEditSchool_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmEditSchool es = Application.OpenForms["frmEditSchool"] as frmEditSchool;
-            if (es == null)
-            {
-                es = new frmEditSchool();
-                es.Show();
-            }
-            else
-            {
-                es.BringToFront();
-            }
+            EditSchools();
+        }
+
+        private void adxcbEditSchools_Click(object sender)
+        {
+            EditSchools();
         }
 
         private void adxProcess_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1073,16 +1260,12 @@ namespace RedboxAddin
 
         private void adxBookings_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmViewBookings vb = Application.OpenForms["frmViewBookings"] as frmViewBookings;
-            if (vb == null)
-            {
-                vb = new frmViewBookings();
-                vb.Show();
-            }
-            else
-            {
-                vb.BringToFront();
-            }
+            ViewBookings();
+        }
+
+        private void adxcbViewBookings_Click(object sender)
+        {
+            ViewBookings();
         }
 
         private void adxImportKeyRef_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1097,30 +1280,22 @@ namespace RedboxAddin
 
         private void adxAvail_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmAvailabilitySheet av = Application.OpenForms["frmAvailabilitySheet"] as frmAvailabilitySheet;
-            if (av == null)
-            {
-                av = new frmAvailabilitySheet();
-                av.Show();
-            }
-            else
-            {
-                av.BringToFront();
-            }
+            AvailabilitySheet();
+        }
+
+        private void adxcbAvail_Click(object sender)
+        {
+            AvailabilitySheet();
         }
 
         private void adxLoadPlan_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmLoadPlan lp = Application.OpenForms["frmLoadPlan"] as frmLoadPlan;
-            if (lp == null)
-            {
-                lp = new frmLoadPlan();
-                lp.Show();
-            }
-            else
-            {
-                lp.BringToFront();
-            }
+            LoadPlan();
+        }
+
+        private void adxcbLoadPlan_Click(object sender)
+        {
+            LoadPlan();
         }
 
         private void adxPivot_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1139,44 +1314,32 @@ namespace RedboxAddin
 
         private void adxTimeSheet_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmTimeSheets ts = Application.OpenForms["frmTimeSheets"] as frmTimeSheets;
-            if (ts == null)
-            {
-                ts = new frmTimeSheets();
-                ts.Show();
-            }
-            else
-            {
-                ts.BringToFront();
-            }
+            TimeSheets();
         }
+
+        private void adxcbTimeSheets_Click(object sender)
+        {
+            TimeSheets();
+        }
+
         private void adxSendVetting_OnClick(object sender, IRibbonControl control, bool pressed)
         {
+            SendVetting();
+        }
 
-            frmSendVetting sv = Application.OpenForms["frmSendVetting"] as frmSendVetting;
-            if (sv == null)
-            {
-                sv = new frmSendVetting();
-                sv.Show();
-            }
-            else
-            {
-                sv.BringToFront();
-            }
+        private void adxcbSendVetting_Click(object sender)
+        {
+            SendVetting();
         }
 
         private void adxTeacherUpdate_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmTeacherUpdate lp = Application.OpenForms["frmTeacherUpdate"] as frmTeacherUpdate;
-            if (lp == null)
-            {
-                lp = new frmTeacherUpdate();
-                lp.Show();
-            }
-            else
-            {
-                lp.BringToFront();
-            }
+            TeacherUpdate();
+        }
+
+        private void adxcbTeacherUpdate_Click(object sender)
+        {
+            TeacherUpdate();
         }
 
         private void adxImportContacts_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1191,7 +1354,7 @@ namespace RedboxAddin
                 int count = 0;
                 foreach (RContact c in contacts)
                 {
-                    count+=1;
+                    count += 1;
                     db.AddContact(c);
                 }
 
@@ -1221,12 +1384,203 @@ namespace RedboxAddin
             {
                 ExcelImporter.CheckNamesInExcel(openFileDialog1.FileName);
             }
-            
+
         }
 
-      
+        private void adxcbNewRequest_Click(object sender)
+        {
+            NewRequest();
+        }
+
+
+        #region actions
+
+        private void NewRequest()
+        {
+            frmMasterBooking fnr = Application.OpenForms["frmNewRequest"] as frmMasterBooking;
+            if (fnr == null)
+            {
+                fnr = new frmMasterBooking();
+                fnr.Show();
+            }
+            else
+            {
+                fnr.BringToFront();
+            }
+        }
+
+        private void TeacherUpdate()
+        {
+            frmTeacherUpdate lp = Application.OpenForms["frmTeacherUpdate"] as frmTeacherUpdate;
+            if (lp == null)
+            {
+                lp = new frmTeacherUpdate();
+                lp.Show();
+            }
+            else
+            {
+                lp.BringToFront();
+            }
+        }
+
+        private void ViewBookings()
+        {
+            frmViewBookings vb = Application.OpenForms["frmViewBookings"] as frmViewBookings;
+            if (vb == null)
+            {
+                vb = new frmViewBookings();
+                vb.Show();
+            }
+            else
+            {
+                vb.BringToFront();
+            }
+        }
+
+        private void AvailabilitySheet()
+        {
+            frmAvailabilitySheet av = Application.OpenForms["frmAvailabilitySheet"] as frmAvailabilitySheet;
+            if (av == null)
+            {
+                av = new frmAvailabilitySheet();
+                av.Show();
+            }
+            else
+            {
+                av.BringToFront();
+            }
+        }
+
+        private void LoadPlan()
+        {
+            frmLoadPlan lp = Application.OpenForms["frmLoadPlan"] as frmLoadPlan;
+            if (lp == null)
+            {
+                lp = new frmLoadPlan();
+                lp.Show();
+            }
+            else
+            {
+                lp.BringToFront();
+            }
+        }
+
+        private void ViewContacts()
+        {
+            Outlook.Explorer currentExplorer = null;
+            Outlook.MAPIFolder redboxFolder = null;
+            Outlook.MAPIFolder oInbox = null;
+            Outlook.MAPIFolder oPublicFolderRoot = null;
+            Outlook.Folders oFolders = null;
+            try
+            {
+                currentExplorer = Globals.objOutlook.ActiveExplorer();
+                oInbox = Globals.objNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+                oPublicFolderRoot = (Outlook.MAPIFolder)oInbox.Parent;
+                oFolders = oPublicFolderRoot.Folders;
+                bool folderFound = false;
+
+                foreach (Microsoft.Office.Interop.Outlook.MAPIFolder Folder in oFolders)
+                {
+                    try
+                    {
+                        string foldername = Folder.Name;
+                        if (foldername == "Redbox Contacts")
+                        {
+                            currentExplorer.SelectFolder(Folder);
+                            //currentExplorer.CurrentFolder = Folder;
+                            //Folder.Display();
+                            folderFound = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.DebugMessage(2, "Error in the folder Loop :- " + ex.Message);
+                    }
+                    finally
+                    {
+                        if (Folder != null) Marshal.ReleaseComObject(Folder);
+                    }
+                }
+                if (!folderFound)
+                {
+                    redboxFolder = oFolders.Add("Redbox Contacts");
+                    currentExplorer.SelectFolder(redboxFolder);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error when showing the redbox explorer :- " + ex.Message);
+            }
+            finally
+            {
+                if (redboxFolder != null) Marshal.ReleaseComObject(redboxFolder);
+                if (currentExplorer != null) Marshal.ReleaseComObject(currentExplorer);
+                GC.Collect();
+            }
+        }
+
+        private void TimeSheets()
+        {
+            frmTimeSheets ts = Application.OpenForms["frmTimeSheets"] as frmTimeSheets;
+            if (ts == null)
+            {
+                ts = new frmTimeSheets();
+                ts.Show();
+            }
+            else
+            {
+                ts.BringToFront();
+            }
+        }
+
+        private void SendVetting()
+        {
+
+            frmSendVetting sv = Application.OpenForms["frmSendVetting"] as frmSendVetting;
+            if (sv == null)
+            {
+                sv = new frmSendVetting();
+                sv.Show();
+            }
+            else
+            {
+                sv.BringToFront();
+            }
+        }
+
+        private void EditSchools()
+        {
+            frmEditSchool es = Application.OpenForms["frmEditSchool"] as frmEditSchool;
+            if (es == null)
+            {
+                es = new frmEditSchool();
+                es.Show();
+            }
+            else
+            {
+                es.BringToFront();
+            }
+        }
+
+        #endregion
+
+        
+
+        
+
+        
 
        
+
+
+
+
+
+
+
+
+
 
 
 

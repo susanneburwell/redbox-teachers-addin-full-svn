@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSendVetting));
             this.label1 = new System.Windows.Forms.Label();
             this.btnSend = new System.Windows.Forms.Button();
@@ -40,16 +41,18 @@
             this.School = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Booking = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BookingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ContactID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SchoolID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelBot = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.radShowConfirmed = new System.Windows.Forms.RadioButton();
-            this.radAny = new System.Windows.Forms.RadioButton();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.radAny = new System.Windows.Forms.RadioButton();
+            this.radShowConfirmed = new System.Windows.Forms.RadioButton();
+            this.chkSendAuto = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -173,6 +176,16 @@
             this.Booking.VisibleIndex = 4;
             this.Booking.Width = 150;
             // 
+            // Status
+            // 
+            this.Status.Caption = "Status";
+            this.Status.FieldName = "BookingStatus";
+            this.Status.MaxWidth = 100;
+            this.Status.MinWidth = 50;
+            this.Status.Name = "Status";
+            this.Status.Visible = true;
+            this.Status.VisibleIndex = 5;
+            // 
             // BookingID
             // 
             this.BookingID.Caption = "MasterBookingID";
@@ -210,6 +223,7 @@
             // 
             // panelBot
             // 
+            this.panelBot.Controls.Add(this.chkSendAuto);
             this.panelBot.Controls.Add(this.label1);
             this.panelBot.Controls.Add(this.btnSend);
             this.panelBot.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -230,15 +244,25 @@
             this.panelTop.Size = new System.Drawing.Size(991, 44);
             this.panelTop.TabIndex = 1;
             // 
-            // Status
+            // btnRefresh
             // 
-            this.Status.Caption = "Status";
-            this.Status.FieldName = "BookingStatus";
-            this.Status.MaxWidth = 100;
-            this.Status.MinWidth = 50;
-            this.Status.Name = "Status";
-            this.Status.Visible = true;
-            this.Status.VisibleIndex = 5;
+            this.btnRefresh.Location = new System.Drawing.Point(918, 9);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(64, 24);
+            this.btnRefresh.TabIndex = 10;
+            this.btnRefresh.Text = "refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // radAny
+            // 
+            this.radAny.AutoSize = true;
+            this.radAny.Location = new System.Drawing.Point(700, 11);
+            this.radAny.Name = "radAny";
+            this.radAny.Size = new System.Drawing.Size(89, 20);
+            this.radAny.TabIndex = 9;
+            this.radAny.Text = "Any Status";
+            this.radAny.UseVisualStyleBackColor = true;
             // 
             // radShowConfirmed
             // 
@@ -252,25 +276,16 @@
             this.radShowConfirmed.Text = "Confirmed Only";
             this.radShowConfirmed.UseVisualStyleBackColor = true;
             // 
-            // radAny
+            // chkSendAuto
             // 
-            this.radAny.AutoSize = true;
-            this.radAny.Location = new System.Drawing.Point(700, 11);
-            this.radAny.Name = "radAny";
-            this.radAny.Size = new System.Drawing.Size(89, 20);
-            this.radAny.TabIndex = 9;
-            this.radAny.Text = "Any Status";
-            this.radAny.UseVisualStyleBackColor = true;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(918, 9);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(64, 24);
-            this.btnRefresh.TabIndex = 10;
-            this.btnRefresh.Text = "refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.chkSendAuto.AutoSize = true;
+            this.chkSendAuto.Location = new System.Drawing.Point(666, 31);
+            this.chkSendAuto.Name = "chkSendAuto";
+            this.chkSendAuto.Size = new System.Drawing.Size(142, 20);
+            this.chkSendAuto.TabIndex = 2;
+            this.chkSendAuto.Text = "Send Automatically";
+            this.toolTip1.SetToolTip(this.chkSendAuto, "If you tick this the emails will be sent without being seen by you.");
+            this.chkSendAuto.UseVisualStyleBackColor = true;
             // 
             // frmSendVetting
             // 
@@ -318,5 +333,7 @@
         private System.Windows.Forms.RadioButton radAny;
         private System.Windows.Forms.RadioButton radShowConfirmed;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.CheckBox chkSendAuto;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
