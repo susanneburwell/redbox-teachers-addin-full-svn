@@ -73,7 +73,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 DBManager dbm = new DBManager();
-                List<RTeacherday> teacherdays = dbm.GetTeacherDays(teacherID, chkPast.Checked, chkFuture.Checked);
+                List<RTeacherday> teacherdays = dbm.GetTeacherDays(teacherID, chkPast.Checked, chkFuture.Checked, chkShowGuarantees.Checked);
 
                 gcGuaranteed.DataSource = teacherdays;
 

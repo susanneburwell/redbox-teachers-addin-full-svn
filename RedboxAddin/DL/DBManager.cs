@@ -351,7 +351,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RTeacherday> GetTeacherDays(Int64 teacherID, bool past, bool future)
+        public List<RTeacherday> GetTeacherDays(Int64 teacherID, bool past, bool future, bool guarantee)
         {
 
             List<RTeacherday> teacherDays = new List<RTeacherday>();
@@ -372,34 +372,37 @@ namespace RedboxAddin.DL
 
 
             //Get Guaranteed days
-            try
+            if (guarantee)
             {
-                string SQLstr = "SELECT [Date],[Note] " +
-                                "FROM [GuaranteedDays] " +
-                                "Where [TeacherID] = '" + teacherID.ToString() + "' ";
-                DataSet msgDs = GetDataSet(SQLstr + DateSQL);
-
-
-                if (msgDs != null)
+                try
                 {
-                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    string SQLstr = "SELECT [Date],[Note] " +
+                                    "FROM [GuaranteedDays] " +
+                                    "Where [TeacherID] = '" + teacherID.ToString() + "' ";
+                    DataSet msgDs = GetDataSet(SQLstr + DateSQL);
+
+
+                    if (msgDs != null)
                     {
-                        RTeacherday tDay = new RTeacherday();
-                        tDay.dte = Utils.CheckDate(dr["Date"]);
-                        tDay.Type = "Guaranteed Day";
-                        tDay.Details = Utils.CheckString(dr["Note"]);
-                        teacherDays.Add(tDay);
+                        foreach (DataRow dr in msgDs.Tables[0].Rows)
+                        {
+                            RTeacherday tDay = new RTeacherday();
+                            tDay.dte = Utils.CheckDate(dr["Date"]);
+                            tDay.Type = "Guaranteed Day";
+                            tDay.Details = Utils.CheckString(dr["Note"]);
+                            teacherDays.Add(tDay);
 
+                        }
                     }
+
+
+                    else return null;
                 }
-
-
-                else return null;
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in GetTeacherDays(Guarantees): " + ex.Message);
-                return null;
+                catch (Exception ex)
+                {
+                    Debug.DebugMessage(2, "Error in GetTeacherDays(Guarantees): " + ex.Message);
+                    return null;
+                }
             }
 
             //Get Booked days

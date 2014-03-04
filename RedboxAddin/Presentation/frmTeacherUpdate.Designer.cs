@@ -57,6 +57,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.chkShowGuarantees = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpAbsence.SuspendLayout();
@@ -79,11 +80,12 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1037, 661);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.chkShowGuarantees);
             this.panelTop.Controls.Add(this.chkFuture);
             this.panelTop.Controls.Add(this.chkPast);
             this.panelTop.Controls.Add(this.grpAbsence);
@@ -100,7 +102,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1031, 174);
+            this.panelTop.Size = new System.Drawing.Size(938, 174);
             this.panelTop.TabIndex = 0;
             // 
             // chkFuture
@@ -202,7 +204,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(947, 98);
+            this.btnSave.Location = new System.Drawing.Point(845, 128);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 12;
@@ -300,7 +302,7 @@
             this.gcGuaranteed.Location = new System.Drawing.Point(3, 183);
             this.gcGuaranteed.MainView = this.gvGuaranteed;
             this.gcGuaranteed.Name = "gcGuaranteed";
-            this.gcGuaranteed.Size = new System.Drawing.Size(1031, 475);
+            this.gcGuaranteed.Size = new System.Drawing.Size(938, 475);
             this.gcGuaranteed.TabIndex = 1;
             this.gcGuaranteed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGuaranteed});
@@ -326,6 +328,8 @@
             this.gridColumn1.MaxWidth = 200;
             this.gridColumn1.MinWidth = 200;
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 200;
@@ -337,6 +341,8 @@
             this.gridColumn2.MaxWidth = 300;
             this.gridColumn2.MinWidth = 300;
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 300;
@@ -346,14 +352,28 @@
             this.gridColumn3.Caption = "Details";
             this.gridColumn3.FieldName = "Details";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
+            // 
+            // chkShowGuarantees
+            // 
+            this.chkShowGuarantees.AutoSize = true;
+            this.chkShowGuarantees.Checked = true;
+            this.chkShowGuarantees.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowGuarantees.Location = new System.Drawing.Point(389, 127);
+            this.chkShowGuarantees.Name = "chkShowGuarantees";
+            this.chkShowGuarantees.Size = new System.Drawing.Size(134, 20);
+            this.chkShowGuarantees.TabIndex = 18;
+            this.chkShowGuarantees.Text = "Show Guaranteed";
+            this.chkShowGuarantees.UseVisualStyleBackColor = true;
             // 
             // frmTeacherUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1037, 661);
+            this.ClientSize = new System.Drawing.Size(944, 661);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTeacherUpdate";
@@ -402,5 +422,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private System.Windows.Forms.CheckBox chkFuture;
         private System.Windows.Forms.CheckBox chkPast;
+        private System.Windows.Forms.CheckBox chkShowGuarantees;
     }
 }

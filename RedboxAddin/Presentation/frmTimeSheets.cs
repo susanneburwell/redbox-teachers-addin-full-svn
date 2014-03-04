@@ -148,7 +148,14 @@ namespace RedboxAddin.Presentation
                 oMail.Body = "Please find attached the Timesheet for week beginning " + dtFrom.Value.ToString("dd-MMM-yyyy") +
                     "/R" + "Please check and confirm the details by replying to this message";
 
-                oMail.Display();
+                if (chkSendAuto.Checked)
+                {
+                    oMail.Send();
+                }
+                else
+                {
+                    oMail.Display();
+                }
                 if (atts != null) Marshal.ReleaseComObject(atts);
                 if (oMail != null) Marshal.ReleaseComObject(oMail);
 

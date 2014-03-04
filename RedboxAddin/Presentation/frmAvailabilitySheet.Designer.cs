@@ -33,7 +33,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
             this.chkJustBookings = new System.Windows.Forms.CheckBox();
-            this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.btnDblBkgs = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -70,16 +69,17 @@
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
+            this.panelRibbon = new System.Windows.Forms.Panel();
+            this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
-            this.panelRibbon = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpQual.SuspendLayout();
             this.grpYearGroups.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panelRibbon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -96,7 +96,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.52381F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.47619F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1037, 525);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1007, 525);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -114,14 +114,14 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 43);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1031, 137);
+            this.panelTop.Size = new System.Drawing.Size(1001, 137);
             this.panelTop.TabIndex = 0;
             // 
             // chkJustBookings
             // 
             this.chkJustBookings.AutoSize = true;
             this.chkJustBookings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkJustBookings.Location = new System.Drawing.Point(875, 104);
+            this.chkJustBookings.Location = new System.Drawing.Point(848, 100);
             this.chkJustBookings.Name = "chkJustBookings";
             this.chkJustBookings.Size = new System.Drawing.Size(147, 20);
             this.chkJustBookings.TabIndex = 89;
@@ -129,24 +129,13 @@
             this.chkJustBookings.UseVisualStyleBackColor = true;
             this.chkJustBookings.CheckedChanged += new System.EventHandler(this.chkJustBookings_CheckedChanged);
             // 
-            // btnCreatePaySheets
-            // 
-            this.btnCreatePaySheets.Location = new System.Drawing.Point(886, 3);
-            this.btnCreatePaySheets.Name = "btnCreatePaySheets";
-            this.btnCreatePaySheets.Size = new System.Drawing.Size(135, 28);
-            this.btnCreatePaySheets.TabIndex = 88;
-            this.btnCreatePaySheets.Text = "Create PaySheets";
-            this.btnCreatePaySheets.UseVisualStyleBackColor = true;
-            this.btnCreatePaySheets.Visible = false;
-            this.btnCreatePaySheets.Click += new System.EventHandler(this.btnCreatePaySheets_Click);
-            // 
             // btnDblBkgs
             // 
             this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
             this.btnDblBkgs.Location = new System.Drawing.Point(757, 43);
             this.btnDblBkgs.Name = "btnDblBkgs";
-            this.btnDblBkgs.Size = new System.Drawing.Size(265, 23);
+            this.btnDblBkgs.Size = new System.Drawing.Size(238, 23);
             this.btnDblBkgs.TabIndex = 86;
             this.btnDblBkgs.Text = "Double Bookings Detected";
             this.btnDblBkgs.UseVisualStyleBackColor = false;
@@ -508,7 +497,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(886, 72);
+            this.btnSearch.Location = new System.Drawing.Point(859, 69);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(136, 23);
             this.btnSearch.TabIndex = 15;
@@ -539,8 +528,28 @@
             this.availabilityGrid1.Location = new System.Drawing.Point(4, 187);
             this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1029, 334);
+            this.availabilityGrid1.Size = new System.Drawing.Size(999, 334);
             this.availabilityGrid1.TabIndex = 1;
+            // 
+            // panelRibbon
+            // 
+            this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
+            this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRibbon.Location = new System.Drawing.Point(3, 3);
+            this.panelRibbon.Name = "panelRibbon";
+            this.panelRibbon.Size = new System.Drawing.Size(1001, 34);
+            this.panelRibbon.TabIndex = 2;
+            // 
+            // btnCreatePaySheets
+            // 
+            this.btnCreatePaySheets.Location = new System.Drawing.Point(886, 3);
+            this.btnCreatePaySheets.Name = "btnCreatePaySheets";
+            this.btnCreatePaySheets.Size = new System.Drawing.Size(135, 28);
+            this.btnCreatePaySheets.TabIndex = 88;
+            this.btnCreatePaySheets.Text = "Create PaySheets";
+            this.btnCreatePaySheets.UseVisualStyleBackColor = true;
+            this.btnCreatePaySheets.Visible = false;
+            this.btnCreatePaySheets.Click += new System.EventHandler(this.btnCreatePaySheets_Click);
             // 
             // CheckDoubleBookingsTimer1
             // 
@@ -550,20 +559,11 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
-            // panelRibbon
-            // 
-            this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
-            this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRibbon.Location = new System.Drawing.Point(3, 3);
-            this.panelRibbon.Name = "panelRibbon";
-            this.panelRibbon.Size = new System.Drawing.Size(1031, 34);
-            this.panelRibbon.TabIndex = 2;
-            // 
             // frmAvailabilitySheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1037, 525);
+            this.ClientSize = new System.Drawing.Size(1007, 525);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -579,8 +579,8 @@
             this.grpQual.PerformLayout();
             this.grpYearGroups.ResumeLayout(false);
             this.grpYearGroups.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panelRibbon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -110,13 +110,13 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.pnlTop = new System.Windows.Forms.Panel();
+            this.btnSendVettingDetails = new System.Windows.Forms.Button();
+            this.btnSendNotification = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.pnlTop = new System.Windows.Forms.Panel();
-            this.btnSendNotification = new System.Windows.Forms.Button();
-            this.btnSendVettingDetails = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -129,9 +129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
+            this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.toolStripContainer1.SuspendLayout();
-            this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -1035,7 +1035,7 @@
             this.gridColumn5.AppearanceCell.Options.UseFont = true;
             this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn5.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn5.Caption = "Desciption";
+            this.gridColumn5.Caption = "Description";
             this.gridColumn5.FieldName = "Description";
             this.gridColumn5.MinWidth = 200;
             this.gridColumn5.Name = "gridColumn5";
@@ -1063,6 +1063,38 @@
             this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
+            // pnlTop
+            // 
+            this.pnlTop.Controls.Add(this.btnSendVettingDetails);
+            this.pnlTop.Controls.Add(this.btnSendNotification);
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTop.Location = new System.Drawing.Point(3, 3);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(1002, 44);
+            this.pnlTop.TabIndex = 7;
+            // 
+            // btnSendVettingDetails
+            // 
+            this.btnSendVettingDetails.Location = new System.Drawing.Point(157, 9);
+            this.btnSendVettingDetails.Name = "btnSendVettingDetails";
+            this.btnSendVettingDetails.Size = new System.Drawing.Size(117, 27);
+            this.btnSendVettingDetails.TabIndex = 15;
+            this.btnSendVettingDetails.Text = "Send Details";
+            this.toolTip1.SetToolTip(this.btnSendVettingDetails, "Send vetting details to school");
+            this.btnSendVettingDetails.UseVisualStyleBackColor = true;
+            this.btnSendVettingDetails.Click += new System.EventHandler(this.btnSendVettingDetails_Click);
+            // 
+            // btnSendNotification
+            // 
+            this.btnSendNotification.Location = new System.Drawing.Point(23, 9);
+            this.btnSendNotification.Name = "btnSendNotification";
+            this.btnSendNotification.Size = new System.Drawing.Size(117, 27);
+            this.btnSendNotification.TabIndex = 14;
+            this.btnSendNotification.Text = "Send Notification";
+            this.toolTip1.SetToolTip(this.btnSendNotification, "Send email to teacher");
+            this.btnSendNotification.UseVisualStyleBackColor = true;
+            this.btnSendNotification.Click += new System.EventHandler(this.btnSendNotification_Click);
+            // 
             // flashtimer1
             // 
             this.flashtimer1.Interval = 500;
@@ -1080,38 +1112,6 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(1008, 697);
             this.toolStripContainer1.TabIndex = 7;
             this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // pnlTop
-            // 
-            this.pnlTop.Controls.Add(this.btnSendVettingDetails);
-            this.pnlTop.Controls.Add(this.btnSendNotification);
-            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTop.Location = new System.Drawing.Point(3, 3);
-            this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1002, 44);
-            this.pnlTop.TabIndex = 7;
-            // 
-            // btnSendNotification
-            // 
-            this.btnSendNotification.Location = new System.Drawing.Point(23, 9);
-            this.btnSendNotification.Name = "btnSendNotification";
-            this.btnSendNotification.Size = new System.Drawing.Size(117, 27);
-            this.btnSendNotification.TabIndex = 14;
-            this.btnSendNotification.Text = "Send Notification";
-            this.toolTip1.SetToolTip(this.btnSendNotification, "Send email to teacher");
-            this.btnSendNotification.UseVisualStyleBackColor = true;
-            this.btnSendNotification.Click += new System.EventHandler(this.btnSendNotification_Click);
-            // 
-            // btnSendVettingDetails
-            // 
-            this.btnSendVettingDetails.Location = new System.Drawing.Point(157, 9);
-            this.btnSendVettingDetails.Name = "btnSendVettingDetails";
-            this.btnSendVettingDetails.Size = new System.Drawing.Size(117, 27);
-            this.btnSendVettingDetails.TabIndex = 15;
-            this.btnSendVettingDetails.Text = "Send Details";
-            this.toolTip1.SetToolTip(this.btnSendVettingDetails, "Send vetting details to school");
-            this.btnSendVettingDetails.UseVisualStyleBackColor = true;
-            this.btnSendVettingDetails.Click += new System.EventHandler(this.btnSendVettingDetails_Click);
             // 
             // frmMasterBooking
             // 
@@ -1143,10 +1143,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            this.pnlTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.pnlTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

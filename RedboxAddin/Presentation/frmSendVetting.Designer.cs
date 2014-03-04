@@ -47,11 +47,11 @@
             this.SchoolID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelBot = new System.Windows.Forms.Panel();
+            this.chkSendAuto = new System.Windows.Forms.CheckBox();
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.radAny = new System.Windows.Forms.RadioButton();
             this.radShowConfirmed = new System.Windows.Forms.RadioButton();
-            this.chkSendAuto = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -116,6 +116,8 @@
             this.SchoolID});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // Selected
             // 
@@ -232,6 +234,17 @@
             this.panelBot.Size = new System.Drawing.Size(991, 69);
             this.panelBot.TabIndex = 0;
             // 
+            // chkSendAuto
+            // 
+            this.chkSendAuto.AutoSize = true;
+            this.chkSendAuto.Location = new System.Drawing.Point(666, 31);
+            this.chkSendAuto.Name = "chkSendAuto";
+            this.chkSendAuto.Size = new System.Drawing.Size(142, 20);
+            this.chkSendAuto.TabIndex = 2;
+            this.chkSendAuto.Text = "Send Automatically";
+            this.toolTip1.SetToolTip(this.chkSendAuto, "If you tick this the emails will be sent without being seen by you.");
+            this.chkSendAuto.UseVisualStyleBackColor = true;
+            // 
             // panelTop
             // 
             this.panelTop.Controls.Add(this.btnRefresh);
@@ -275,17 +288,6 @@
             this.radShowConfirmed.TabStop = true;
             this.radShowConfirmed.Text = "Confirmed Only";
             this.radShowConfirmed.UseVisualStyleBackColor = true;
-            // 
-            // chkSendAuto
-            // 
-            this.chkSendAuto.AutoSize = true;
-            this.chkSendAuto.Location = new System.Drawing.Point(666, 31);
-            this.chkSendAuto.Name = "chkSendAuto";
-            this.chkSendAuto.Size = new System.Drawing.Size(142, 20);
-            this.chkSendAuto.TabIndex = 2;
-            this.chkSendAuto.Text = "Send Automatically";
-            this.toolTip1.SetToolTip(this.chkSendAuto, "If you tick this the emails will be sent without being seen by you.");
-            this.chkSendAuto.UseVisualStyleBackColor = true;
             // 
             // frmSendVetting
             // 

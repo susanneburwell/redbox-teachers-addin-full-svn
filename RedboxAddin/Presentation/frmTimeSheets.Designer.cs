@@ -50,6 +50,7 @@
             this.numDays = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DayRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Total = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkSendAuto = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -75,6 +76,7 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.chkSendAuto);
             this.panelTop.Controls.Add(this.btnSend);
             this.panelTop.Controls.Add(this.cmbSchool);
             this.panelTop.Controls.Add(this.btnNext);
@@ -95,7 +97,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(560, 21);
+            this.btnSend.Location = new System.Drawing.Point(504, 5);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(70, 26);
             this.btnSend.TabIndex = 33;
@@ -299,6 +301,16 @@
             this.Total.VisibleIndex = 5;
             this.Total.Width = 80;
             // 
+            // chkSendAuto
+            // 
+            this.chkSendAuto.AutoSize = true;
+            this.chkSendAuto.Location = new System.Drawing.Point(504, 39);
+            this.chkSendAuto.Name = "chkSendAuto";
+            this.chkSendAuto.Size = new System.Drawing.Size(142, 20);
+            this.chkSendAuto.TabIndex = 34;
+            this.chkSendAuto.Text = "Send Automatically";
+            this.chkSendAuto.UseVisualStyleBackColor = true;
+            // 
             // frmTimeSheets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,5 +352,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Total;
         private DevExpress.XtraGrid.Columns.GridColumn days;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.CheckBox chkSendAuto;
     }
 }

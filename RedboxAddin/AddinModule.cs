@@ -342,7 +342,7 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 20;
+            this.commandBarRedboxAddin.UpdateCounter = 21;
             // 
             // cbBtnNewContact
             // 
@@ -1213,7 +1213,7 @@ namespace RedboxAddin
             openFileDialog1.FileName = "*.xls";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ExcelImporter.Import(openFileDialog1.FileName, false, false, false, 81, 247);
+                ExcelImporter.Import(openFileDialog1.FileName, false, false, false, 0, 252);
             }
         }
 

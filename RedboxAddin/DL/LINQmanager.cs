@@ -332,5 +332,54 @@ namespace RedboxAddin.DL
                 return null;
             }
         }
+
+        public static decimal? GetRateForContact(long contactID, string requiredRate)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var cd = db.ContactDatas.FirstOrDefault(s => s.ContactID == contactID);
+
+                    if (cd == null) return null;
+
+                    switch (requiredRate)
+                    {
+                        case "DayRate":
+                            return cd.DayRate;
+                            break;
+                        case "HalfDayRate":
+                            return cd.HalfDayRate;
+                            break;
+                        case "DayRateLT":
+                            return cd.DayRateLT;
+                            break;
+                        case "HalfDayRateLT":
+                            return cd.HalfDayRateLT;
+                            break;
+                        case "DayRateTA":
+                            return cd.DayRateTA;
+                            break;
+                        case "HalfDayRateTA":
+                            return cd.HalfDayRateTA;
+                            break;
+                        case "DayRateLTTA":
+                            return cd.DayRateLTTA;
+                            break;
+                        case "HalfDayRateLTTA":
+                            return cd.HalfDayRateLTTA;
+                            break;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetContactbyID: " + ex.Message);
+                return null;
+            }
+        }
+    
     }
 }

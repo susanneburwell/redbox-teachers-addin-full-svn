@@ -272,7 +272,7 @@ namespace RedboxAddin.DL
                                 //Find SEN, QNN, TA, in year Group
                                 if (cd.YearGroup.IndexOf("QNN") > -1) cd.QNN = true;
                                 if (cd.YearGroup.IndexOf("SEN") > -1) cd.SEN = true;
-                                if (Utils.CheckString(dt.Rows[iRow][7].ToString()).IndexOf("TA") > -1) cd.TA = true;
+                                //if (Utils.CheckString(dt.Rows[iRow][7].ToString()).IndexOf("TA") > -1) cd.TA = true;
 
 
                                 db.ContactDatas.InsertOnSubmit(cd);

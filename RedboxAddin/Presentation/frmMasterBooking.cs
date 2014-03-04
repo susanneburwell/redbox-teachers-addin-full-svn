@@ -277,7 +277,78 @@ namespace RedboxAddin.Presentation
                 }
                 _masterBookingID = mb.ID;
 
+                //Get rate for teacher
+                string rateType = "";
+                if (chkTA.Checked)
+                {
+                    //TA
+                    if (chkHalfDay.Checked)
+                    {
+                        //HalfDay
+                        if (chkLongTerm.Checked)
+                        {
+                            //LongTerm
+                            rateType = "HalfDayRateLTTA";
+                        }
+                        else
+                        {
+                            rateType = "HalfDayRateTA";
+                        }
+                    }
+                    else
+                    {
+                        //FullDay
+                        if (chkLongTerm.Checked)
+                        {
+                            //LongTerm
+                            rateType = "DayRateLTTA";
+                        }
+                        else
+                        {
+                            rateType = "DayRateTA";
+                        }
+                    }
+                }
+                else
+                {
+                    //Teacher
+                    if (chkHalfDay.Checked)
+                    {
+                        //Half Day
+                        if (chkLongTerm.Checked)
+                        {
+                            //LongTerm
+                            rateType = "HalfDayRateLT";
+                        }
+                        else
+                        {
+                            rateType = "HalfDayRate";
+                        }
+                    }
+                    else
+                    {
+                        //Full Day
+                        if (chkLongTerm.Checked)
+                        {
+                            //LongTerm
+                            rateType = "DayRateLT";
+                        }
+                        else
+                        {
+                            rateType = "DayRate";
+                        }
+                    }
+                }
+                
                 //Create IndividualBookings
+                long contID = -1;
+                decimal? rate = null;
+                if (mb.ContactID != null)
+                {
+                    contID = (long)mb.ContactID;
+                    rate = LINQmanager.GetRateForContact(contID, rateType);
+                }
+
                 DateTime bookingdate = (System.DateTime)mb.StartDate;
                 int iCatch = 0;
                 do
@@ -289,7 +360,8 @@ namespace RedboxAddin.Presentation
                         nb.MasterBookingID = mb.ID;
                         nb.Date = bookingdate;
                         nb.Charge = Utils.CheckDecimal(txtCharge.Text);
-                        nb.Rate = Globals.TeacherDailyRate;
+                        if (rateType == null) nb.Rate = 0;
+                        else nb.Rate = (decimal)rate;
                         nb.HalfDay = chkHalfDay.Checked;
                         if (lblDescription.Visible) nb.Description = lblDescription.Text;
                         else nb.Description = txtDescription.Text;
@@ -629,7 +701,7 @@ namespace RedboxAddin.Presentation
                 long schoolID = mb.SchoolID;
 
                 long contactID = (long)mb.ContactID;
-                if (Utils.SendVettingDetails(schoolID, contactID) == false)
+                if (RedemptionCode.SendVettingDetails(contactID.ToString(),schoolID.ToString(),false ) == false)
                 {
                     MessageBox.Show("Error. The email could not be created at this time.");
                 }
