@@ -57,15 +57,21 @@
     <Reference Include="DevExpress.XtraPrinting.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 11.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>Interops\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Interops\Microsoft.Office.Interop.Outlook.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 11.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Word.dll</HintPath>
+      <HintPath>Interops\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -88,10 +94,6 @@
     </Reference>
     <Reference Include="Office.dll">
       <HintPath>Interops\Office.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Outlook.dll">
-      <HintPath>Interops\Microsoft.Office.Interop.Outlook.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -187,6 +189,12 @@
     </Compile>
     <Compile Include="Presentation\frmExtractData.Designer.cs">
       <DependentUpon>frmExtractData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmFileName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmFileName.Designer.cs">
+      <DependentUpon>frmFileName.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmImport.cs">
       <SubType>Form</SubType>
@@ -296,15 +304,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="Redemption">
       <Guid>{2D5E2D34-BED5-4B9F-9793-A31E26E6806E}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -363,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmExtractData.resx">
       <DependentUpon>frmExtractData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmFileName.resx">
+      <DependentUpon>frmFileName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>

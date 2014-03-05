@@ -4,12 +4,15 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using AddinExpress.MSO;
 using Outlook = Microsoft.Office.Interop.Outlook;
+using Word = Microsoft.Office.Interop.Word;
 using RedboxAddin.Presentation;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
 using RedboxAddin.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
+
 
 
 
@@ -94,6 +97,8 @@ namespace RedboxAddin
         private ADXCommandBarButton adxCommandBarButton16;
         private ADXCommandBarButton adxCommandBarButton17;
         private ADXCommandBarButton adxCommandBarButton18;
+        private ADXRibbonButton adxCapture;
+        private ADXCommandBarButton adxcbCapture;
 
         #region Component Designer generated code
         /// <summary>
@@ -175,6 +180,8 @@ namespace RedboxAddin
             this.adxCommandBarButton16 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCapture = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxcbCapture = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             // 
             // adxTabMail
             // 
@@ -280,12 +287,12 @@ namespace RedboxAddin
             // 
             // olFrmBotNavi
             // 
-            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmBotNavi.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.BottomNavigationPane;
             this.olFrmBotNavi.FormClassName = "RedboxAddin.Presentation.frmBotNavi";
@@ -298,12 +305,12 @@ namespace RedboxAddin
             // olFrmExplorer
             // 
             this.olFrmExplorer.Enabled = false;
-            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmExplorer.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmExplorer.FolderName = "Inbox";
@@ -313,12 +320,12 @@ namespace RedboxAddin
             // olFrmReminders
             // 
             this.olFrmReminders.Enabled = false;
-            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmReminders.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmReminders.FolderName = "Redbox";
@@ -334,15 +341,15 @@ namespace RedboxAddin
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnNewReminders);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnCheckForUpdates);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnAbout);
-            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
+            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 21;
+            this.commandBarRedboxAddin.UpdateCounter = 22;
             // 
             // cbBtnNewContact
             // 
@@ -426,6 +433,7 @@ namespace RedboxAddin
             this.adxGRPRedbox2.Controls.Add(this.adxTeacherContacts);
             this.adxGRPRedbox2.Controls.Add(this.adxSchoolContacts);
             this.adxGRPRedbox2.Controls.Add(this.adxRibbonMenu1);
+            this.adxGRPRedbox2.Controls.Add(this.adxCapture);
             this.adxGRPRedbox2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
             this.adxGRPRedbox2.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxGRPRedbox2.InsertBeforeIdMso = "GroupMailDelete";
@@ -674,10 +682,11 @@ namespace RedboxAddin
             this.adxCommandBar2.Controls.Add(this.adxcbViewBookings);
             this.adxCommandBar2.Controls.Add(this.adxcbAvail);
             this.adxCommandBar2.Controls.Add(this.adxcbTeacherContacts);
+            this.adxCommandBar2.Controls.Add(this.adxcbCapture);
             this.adxCommandBar2.Controls.Add(this.adxCommandBarPopup1);
             this.adxCommandBar2.Controls.Add(this.adxCommandBarPopup2);
             this.adxCommandBar2.Temporary = true;
-            this.adxCommandBar2.UpdateCounter = 6;
+            this.adxCommandBar2.UpdateCounter = 7;
             // 
             // adxcbNewRequest
             // 
@@ -860,6 +869,23 @@ namespace RedboxAddin
             this.adxCommandBarButton18.Temporary = true;
             this.adxCommandBarButton18.UpdateCounter = 1;
             // 
+            // adxCapture
+            // 
+            this.adxCapture.Caption = "Capture Message";
+            this.adxCapture.Id = "adxRibbonButton_b440cc27e09a4637ba135bb104383e5f";
+            this.adxCapture.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCapture.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxCapture.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxCapture_OnClick);
+            // 
+            // adxcbCapture
+            // 
+            this.adxcbCapture.Caption = "Capture Message";
+            this.adxcbCapture.ControlTag = "5324fa66-098b-4c1d-8b2e-1092fccbadac";
+            this.adxcbCapture.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbCapture.Temporary = true;
+            this.adxcbCapture.UpdateCounter = 4;
+            this.adxcbCapture.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbCapture_Click);
+            // 
             // AddinModule
             // 
             this.AddinName = "RedboxAddin";
@@ -983,7 +1009,7 @@ namespace RedboxAddin
             {
                 currentExplorer = Globals.objOutlook.ActiveExplorer();
                 oInbox = Globals.objNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-                oPublicFolderRoot = (Outlook.MAPIFolder)oInbox.Parent;
+                oPublicFolderRoot = oInbox.Parent as Outlook.MAPIFolder;
                 oFolders = oPublicFolderRoot.Folders;
                 bool folderFound = false;
 
@@ -1037,7 +1063,7 @@ namespace RedboxAddin
             {
                 currentExplorer = Globals.objOutlook.ActiveExplorer();
                 oInbox = Globals.objNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-                oPublicFolderRoot = (Outlook.MAPIFolder)oInbox.Parent;
+                oPublicFolderRoot = oInbox.Parent as Outlook.MAPIFolder;
                 oFolders = oPublicFolderRoot.Folders;
                 bool folderFound = false;
 
@@ -1102,7 +1128,7 @@ namespace RedboxAddin
             {
                 currentExplorer = Globals.objOutlook.ActiveExplorer();
                 oInbox = Globals.objNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-                oPublicFolderRoot = (Outlook.MAPIFolder)oInbox.Parent;
+                oPublicFolderRoot = oInbox.Parent as Outlook.MAPIFolder;
                 oFolders = oPublicFolderRoot.Folders;
                 bool folderFound = false;
 
@@ -1392,6 +1418,15 @@ namespace RedboxAddin
             NewRequest();
         }
 
+        private void adxcbCapture_Click(object sender)
+        {
+            CaptureMessage();
+        }
+
+        private void adxCapture_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            CaptureMessage();
+        }
 
         #region actions
 
@@ -1476,7 +1511,7 @@ namespace RedboxAddin
             {
                 currentExplorer = Globals.objOutlook.ActiveExplorer();
                 oInbox = Globals.objNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-                oPublicFolderRoot = (Outlook.MAPIFolder)oInbox.Parent;
+                oPublicFolderRoot = oInbox.Parent as Outlook.MAPIFolder;
                 oFolders = oPublicFolderRoot.Folders;
                 bool folderFound = false;
 
@@ -1563,27 +1598,129 @@ namespace RedboxAddin
             }
         }
 
+        private void CaptureMessage()
+        {
+
+            try
+            {
+                Outlook.Explorer oEx = Globals.objOutlook.ActiveExplorer();
+                Outlook.Selection oSel = oEx.Selection;
+
+                Outlook.MailItem oMail = null;
+                try
+                {
+                    oMail = oSel[1] as Outlook.MailItem;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Please select a Mail item to capture.");
+                    return;
+                }
+                if (oMail == null)
+                {
+                    MessageBox.Show("Error: The mail item could not be selected.");
+                    return;
+                }
+
+                string from = oMail.SenderName;
+                string fromAddress = oMail.SenderEmailAddress;
+                if (from == fromAddress) fromAddress = "";
+                else fromAddress = "<" + fromAddress + ">";
+                string sent = oMail.ReceivedTime.ToLongDateString() + " " + oMail.ReceivedTime.ToShortTimeString();
+                string to = oMail.To;
+                string subject = oMail.Subject;
+                string filename = subject.Replace("re:", "").Replace("RE:", "").Replace("Re:", "");
+
+                string timeSheetfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\Confirmed TimeSheets";
+                if (!Directory.Exists(timeSheetfolder)) Directory.CreateDirectory(timeSheetfolder);
+
+                //get the required filename
+                frmFileName fn = new frmFileName(filename, timeSheetfolder);
+                fn.ShowDialog();
+                string fileNameToUse = fn.FileName;
+                if (fileNameToUse == null) return;
+                if (fn.FolderName != null) timeSheetfolder = fn.FolderName;
+                //***********************************
+
+
+
+                Outlook.Inspector oInsp = oMail.GetInspector;
+                Word.Document wDoc = oInsp.WordEditor;
+                Word.Application wApp = wDoc.Parent as Word.Application;
+                string tempwordfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\Confirmed TimeSheets\\temp";
+                if (!Directory.Exists(tempwordfolder)) Directory.CreateDirectory(tempwordfolder);
+                string tempwordpath = tempwordfolder + "\\temp.doc";
+                wDoc.SaveAs(tempwordpath);
+
+                if (oInsp != null) Marshal.ReleaseComObject(oInsp);
+                if (oMail != null) Marshal.ReleaseComObject(oMail);
+                if (oSel != null) Marshal.ReleaseComObject(oSel);
+                if (oEx != null) Marshal.ReleaseComObject(oEx);
+                if (wDoc != null) Marshal.ReleaseComObject(wDoc);
+
+                Word.Application wApp2 = new Word.Application();
+                Word.Document wDoc2 = wApp2.Documents.Add(tempwordpath);
+
+                Word.Range rng = wDoc2.Range(0, 0);
+                rng.Text = "\n\n\n";
+
+                Word.Range rng1 = wDoc2.Range(0, 0);
+                rng1.Paragraphs.TabStops.Add(80, Word.WdTabAlignment.wdAlignTabLeft);
+                rng1.Text = "Subject:\t" + subject + "\n\n\n";
+                rng1.Font.Size = 12;
+                rng1.Font.Name = "Arial";
+                rng1.Font.Bold = 1;
+                Word.Border border = rng1.Paragraphs[1].Borders[Word.WdBorderType.wdBorderBottom];
+                border.LineStyle = Word.WdLineStyle.wdLineStyleSingle;
+                border.LineWidth = Word.WdLineWidth.wdLineWidth600pt;
+                border.Visible = true;
+
+                Word.Range rng2 = wDoc2.Range(0, 0);
+                rng2.Paragraphs.TabStops.Add(80, Word.WdTabAlignment.wdAlignTabLeft);
+                rng2.Text = "To:\t" + to + "\n";
+                rng2.Font.Size = 12;
+                rng2.Font.Name = "Arial";
+                rng2.Font.Bold = 1;
+
+                Word.Range rng3 = wDoc2.Range(0, 0);
+                rng3.Paragraphs.TabStops.Add(80, Word.WdTabAlignment.wdAlignTabLeft);
+                rng3.Text = "Sent:\t" + sent + "\n";
+                rng3.Font.Size = 12;
+                rng3.Font.Name = "Arial";
+                rng3.Font.Bold = 1;
+
+                Word.Range rng4 = wDoc2.Range(0, 0);
+                rng4.Paragraphs.TabStops.Add(80, Word.WdTabAlignment.wdAlignTabLeft);
+                rng4.Text = "From:\t" + from + " " + fromAddress + "\n";
+                rng4.Font.Size = 12;
+                rng4.Font.Name = "Arial";
+                rng4.Font.Bold = 1;
+
+
+
+
+                 string timesheetpath = timeSheetfolder + "\\" + fileNameToUse + ".pdf";
+                wDoc2.SaveAs(timesheetpath, Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                // wApp2.Visible = true;
+                wDoc2.Close(Word.WdSaveOptions.wdDoNotSaveChanges);
+                wApp2.Quit();
+                if (wDoc2 != null) Marshal.ReleaseComObject(wDoc2);
+                if (wApp2 != null) Marshal.ReleaseComObject(wApp2);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CaptureMessage :- " + ex.Message);
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
+
+
         #endregion
-
-        
-
-        
-
-        
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

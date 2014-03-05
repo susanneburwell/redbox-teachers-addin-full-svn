@@ -101,6 +101,7 @@ namespace RedboxAddin.Presentation
                         chkUseFaxForTimeSheets.Checked = school.FaxTimeSheet;
                         txtAddress.Text= school.Address;
                         txtSageAccountRef.Text = school.SageName;
+                        txtNotes.Text = school.Notes;
 
 
                         return;
@@ -144,7 +145,7 @@ namespace RedboxAddin.Presentation
                         school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
                         school.Address = txtAddress.Text;
                         school.SageName = txtSageAccountRef.Text;
-                        
+                        school.Notes = txtNotes.Text;
 
                         db.Schools.InsertOnSubmit(school);
                         db.SubmitChanges();
@@ -176,6 +177,7 @@ namespace RedboxAddin.Presentation
                             school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
                             school.Address = txtAddress.Text;
                             school.SageName = txtSageAccountRef.Text;
+                            school.Notes = txtNotes.Text;
 
                             db.SubmitChanges();
 
@@ -255,6 +257,18 @@ namespace RedboxAddin.Presentation
             if (!Utils.validateDecimal(txtLTHfDay.Text))
             {
                 txtDayCharge.Text = "0.00";
+            }
+        }
+
+        private void btnAddNotes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtNotes.Text = DateTime.Now.ToString() + "  " + RedemptionCode.OutlookUserName + Environment.NewLine + "*********************************************************" + Environment.NewLine + txtNotes.Text;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error adding notes " + ex.Message);
             }
         }
 

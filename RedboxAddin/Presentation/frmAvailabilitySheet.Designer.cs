@@ -94,9 +94,9 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.52381F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.47619F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1007, 525);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 662);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -114,14 +114,14 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 43);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1001, 137);
+            this.panelTop.Size = new System.Drawing.Size(1002, 169);
             this.panelTop.TabIndex = 0;
             // 
             // chkJustBookings
             // 
             this.chkJustBookings.AutoSize = true;
             this.chkJustBookings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkJustBookings.Location = new System.Drawing.Point(848, 100);
+            this.chkJustBookings.Location = new System.Drawing.Point(848, 129);
             this.chkJustBookings.Name = "chkJustBookings";
             this.chkJustBookings.Size = new System.Drawing.Size(147, 20);
             this.chkJustBookings.TabIndex = 89;
@@ -133,9 +133,9 @@
             // 
             this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
-            this.btnDblBkgs.Location = new System.Drawing.Point(757, 43);
+            this.btnDblBkgs.Location = new System.Drawing.Point(740, 56);
             this.btnDblBkgs.Name = "btnDblBkgs";
-            this.btnDblBkgs.Size = new System.Drawing.Size(238, 23);
+            this.btnDblBkgs.Size = new System.Drawing.Size(255, 30);
             this.btnDblBkgs.TabIndex = 86;
             this.btnDblBkgs.Text = "Double Bookings Detected";
             this.btnDblBkgs.UseVisualStyleBackColor = false;
@@ -175,7 +175,7 @@
             this.grpQual.Controls.Add(this.chkQTS);
             this.grpQual.Location = new System.Drawing.Point(9, 48);
             this.grpQual.Name = "grpQual";
-            this.grpQual.Size = new System.Drawing.Size(349, 97);
+            this.grpQual.Size = new System.Drawing.Size(349, 106);
             this.grpQual.TabIndex = 82;
             this.grpQual.TabStop = false;
             this.grpQual.Text = "Qualifications";
@@ -183,7 +183,7 @@
             // chkTeacher
             // 
             this.chkTeacher.AutoSize = true;
-            this.chkTeacher.Location = new System.Drawing.Point(17, 71);
+            this.chkTeacher.Location = new System.Drawing.Point(17, 76);
             this.chkTeacher.Name = "chkTeacher";
             this.chkTeacher.Size = new System.Drawing.Size(78, 20);
             this.chkTeacher.TabIndex = 19;
@@ -204,7 +204,7 @@
             // chkSEN
             // 
             this.chkSEN.AutoSize = true;
-            this.chkSEN.Location = new System.Drawing.Point(139, 45);
+            this.chkSEN.Location = new System.Drawing.Point(172, 50);
             this.chkSEN.Name = "chkSEN";
             this.chkSEN.Size = new System.Drawing.Size(55, 20);
             this.chkSEN.TabIndex = 17;
@@ -215,7 +215,7 @@
             // chkNN
             // 
             this.chkNN.AutoSize = true;
-            this.chkNN.Location = new System.Drawing.Point(77, 45);
+            this.chkNN.Location = new System.Drawing.Point(93, 50);
             this.chkNN.Name = "chkNN";
             this.chkNN.Size = new System.Drawing.Size(47, 20);
             this.chkNN.TabIndex = 16;
@@ -226,7 +226,7 @@
             // chkTA
             // 
             this.chkTA.AutoSize = true;
-            this.chkTA.Location = new System.Drawing.Point(139, 71);
+            this.chkTA.Location = new System.Drawing.Point(172, 76);
             this.chkTA.Name = "chkTA";
             this.chkTA.Size = new System.Drawing.Size(45, 20);
             this.chkTA.TabIndex = 15;
@@ -237,7 +237,7 @@
             // chkQNN
             // 
             this.chkQNN.AutoSize = true;
-            this.chkQNN.Location = new System.Drawing.Point(17, 47);
+            this.chkQNN.Location = new System.Drawing.Point(17, 50);
             this.chkQNN.Name = "chkQNN";
             this.chkQNN.Size = new System.Drawing.Size(57, 20);
             this.chkQNN.TabIndex = 14;
@@ -248,7 +248,7 @@
             // chkOTT
             // 
             this.chkOTT.AutoSize = true;
-            this.chkOTT.Location = new System.Drawing.Point(139, 21);
+            this.chkOTT.Location = new System.Drawing.Point(172, 21);
             this.chkOTT.Name = "chkOTT";
             this.chkOTT.Size = new System.Drawing.Size(55, 20);
             this.chkOTT.TabIndex = 13;
@@ -259,7 +259,7 @@
             // chkNQT
             // 
             this.chkNQT.AutoSize = true;
-            this.chkNQT.Location = new System.Drawing.Point(78, 21);
+            this.chkNQT.Location = new System.Drawing.Point(93, 21);
             this.chkNQT.Name = "chkNQT";
             this.chkNQT.Size = new System.Drawing.Size(56, 20);
             this.chkNQT.TabIndex = 12;
@@ -299,7 +299,7 @@
             this.grpYearGroups.Controls.Add(this.btnKS2);
             this.grpYearGroups.Location = new System.Drawing.Point(384, 9);
             this.grpYearGroups.Name = "grpYearGroups";
-            this.grpYearGroups.Size = new System.Drawing.Size(350, 136);
+            this.grpYearGroups.Size = new System.Drawing.Size(350, 145);
             this.grpYearGroups.TabIndex = 81;
             this.grpYearGroups.TabStop = false;
             this.grpYearGroups.Text = "Year Groups";
@@ -307,7 +307,7 @@
             // chkGuaranteed
             // 
             this.chkGuaranteed.AutoSize = true;
-            this.chkGuaranteed.Location = new System.Drawing.Point(231, 110);
+            this.chkGuaranteed.Location = new System.Drawing.Point(231, 116);
             this.chkGuaranteed.Name = "chkGuaranteed";
             this.chkGuaranteed.Size = new System.Drawing.Size(98, 20);
             this.chkGuaranteed.TabIndex = 88;
@@ -328,7 +328,7 @@
             // chkLongTerm
             // 
             this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(109, 110);
+            this.chkLongTerm.Location = new System.Drawing.Point(79, 116);
             this.chkLongTerm.Name = "chkLongTerm";
             this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
             this.chkLongTerm.TabIndex = 87;
@@ -340,7 +340,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(15, 82);
+            this.label9.Location = new System.Drawing.Point(15, 90);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(27, 13);
             this.label9.TabIndex = 25;
@@ -350,7 +350,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(15, 53);
+            this.label8.Location = new System.Drawing.Point(15, 59);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 24;
@@ -380,7 +380,7 @@
             // chkRec
             // 
             this.chkRec.AutoSize = true;
-            this.chkRec.Location = new System.Drawing.Point(174, 24);
+            this.chkRec.Location = new System.Drawing.Point(168, 24);
             this.chkRec.Name = "chkRec";
             this.chkRec.Size = new System.Drawing.Size(52, 20);
             this.chkRec.TabIndex = 11;
@@ -391,7 +391,7 @@
             // chkYr1
             // 
             this.chkYr1.AutoSize = true;
-            this.chkYr1.Location = new System.Drawing.Point(109, 50);
+            this.chkYr1.Location = new System.Drawing.Point(79, 56);
             this.chkYr1.Name = "chkYr1";
             this.chkYr1.Size = new System.Drawing.Size(47, 20);
             this.chkYr1.TabIndex = 12;
@@ -402,7 +402,7 @@
             // chkNur
             // 
             this.chkNur.AutoSize = true;
-            this.chkNur.Location = new System.Drawing.Point(110, 24);
+            this.chkNur.Location = new System.Drawing.Point(80, 24);
             this.chkNur.Name = "chkNur";
             this.chkNur.Size = new System.Drawing.Size(48, 20);
             this.chkNur.TabIndex = 10;
@@ -413,7 +413,7 @@
             // chkYr2
             // 
             this.chkYr2.AutoSize = true;
-            this.chkYr2.Location = new System.Drawing.Point(173, 50);
+            this.chkYr2.Location = new System.Drawing.Point(167, 56);
             this.chkYr2.Name = "chkYr2";
             this.chkYr2.Size = new System.Drawing.Size(47, 20);
             this.chkYr2.TabIndex = 13;
@@ -424,7 +424,7 @@
             // chkYr3
             // 
             this.chkYr3.AutoSize = true;
-            this.chkYr3.Location = new System.Drawing.Point(109, 79);
+            this.chkYr3.Location = new System.Drawing.Point(79, 87);
             this.chkYr3.Name = "chkYr3";
             this.chkYr3.Size = new System.Drawing.Size(47, 20);
             this.chkYr3.TabIndex = 14;
@@ -435,7 +435,7 @@
             // chkYr4
             // 
             this.chkYr4.AutoSize = true;
-            this.chkYr4.Location = new System.Drawing.Point(173, 79);
+            this.chkYr4.Location = new System.Drawing.Point(167, 87);
             this.chkYr4.Name = "chkYr4";
             this.chkYr4.Size = new System.Drawing.Size(47, 20);
             this.chkYr4.TabIndex = 15;
@@ -446,7 +446,7 @@
             // chkYr5
             // 
             this.chkYr5.AutoSize = true;
-            this.chkYr5.Location = new System.Drawing.Point(231, 79);
+            this.chkYr5.Location = new System.Drawing.Point(231, 87);
             this.chkYr5.Name = "chkYr5";
             this.chkYr5.Size = new System.Drawing.Size(47, 20);
             this.chkYr5.TabIndex = 16;
@@ -457,7 +457,7 @@
             // chkYr6
             // 
             this.chkYr6.AutoSize = true;
-            this.chkYr6.Location = new System.Drawing.Point(293, 79);
+            this.chkYr6.Location = new System.Drawing.Point(293, 87);
             this.chkYr6.Name = "chkYr6";
             this.chkYr6.Size = new System.Drawing.Size(47, 20);
             this.chkYr6.TabIndex = 17;
@@ -468,7 +468,7 @@
             // btnKS1
             // 
             this.btnKS1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKS1.Location = new System.Drawing.Point(42, 53);
+            this.btnKS1.Location = new System.Drawing.Point(42, 59);
             this.btnKS1.Name = "btnKS1";
             this.btnKS1.Size = new System.Drawing.Size(15, 15);
             this.btnKS1.TabIndex = 21;
@@ -478,7 +478,7 @@
             // btnKS2
             // 
             this.btnKS2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKS2.Location = new System.Drawing.Point(42, 78);
+            this.btnKS2.Location = new System.Drawing.Point(42, 86);
             this.btnKS2.Name = "btnKS2";
             this.btnKS2.Size = new System.Drawing.Size(15, 15);
             this.btnKS2.TabIndex = 22;
@@ -489,7 +489,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(750, 9);
+            this.label1.Location = new System.Drawing.Point(739, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(258, 37);
             this.label1.TabIndex = 16;
@@ -497,9 +497,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(859, 69);
+            this.btnSearch.Location = new System.Drawing.Point(804, 91);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(136, 23);
+            this.btnSearch.Size = new System.Drawing.Size(191, 30);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -525,10 +525,10 @@
             // availabilityGrid1
             // 
             this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 187);
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 219);
             this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(999, 334);
+            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 439);
             this.availabilityGrid1.TabIndex = 1;
             // 
             // panelRibbon
@@ -537,14 +537,14 @@
             this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRibbon.Location = new System.Drawing.Point(3, 3);
             this.panelRibbon.Name = "panelRibbon";
-            this.panelRibbon.Size = new System.Drawing.Size(1001, 34);
+            this.panelRibbon.Size = new System.Drawing.Size(1002, 34);
             this.panelRibbon.TabIndex = 2;
             // 
             // btnCreatePaySheets
             // 
-            this.btnCreatePaySheets.Location = new System.Drawing.Point(886, 3);
+            this.btnCreatePaySheets.Location = new System.Drawing.Point(804, 3);
             this.btnCreatePaySheets.Name = "btnCreatePaySheets";
-            this.btnCreatePaySheets.Size = new System.Drawing.Size(135, 28);
+            this.btnCreatePaySheets.Size = new System.Drawing.Size(188, 28);
             this.btnCreatePaySheets.TabIndex = 88;
             this.btnCreatePaySheets.Text = "Create PaySheets";
             this.btnCreatePaySheets.UseVisualStyleBackColor = true;
@@ -563,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 525);
+            this.ClientSize = new System.Drawing.Size(1008, 662);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

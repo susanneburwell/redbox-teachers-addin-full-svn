@@ -116,22 +116,24 @@ namespace RedboxAddin.Presentation
         private void SendTimeSheet()
         {
             string tempfilepath = "";
+            string timesheetfilepath = "";
             try
             {
 
                 //save file to temp folder
-                string tempfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\TimeSheets";
-                if (!Directory.Exists(tempfolder)) Directory.CreateDirectory(tempfolder);
+                string timeSheetfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\TimeSheets";
+                if (!Directory.Exists(timeSheetfolder)) Directory.CreateDirectory(timeSheetfolder);
 
-                tempfilepath = tempfolder + "\\" + "TimeSheet_" + cmbSchool.Text + "_" + dtFrom.Value.ToString("dd-MMM-yyyy") + ".pdf";
+                timesheetfilepath = timeSheetfolder + "\\" + "TimeSheet_" + cmbSchool.Text + "_" + dtFrom.Value.ToString("dd-MMM-yyyy") + ".pdf";
 
-                using (System.IO.FileStream myPDF = new FileStream(tempfilepath, FileMode.Create))
+                using (System.IO.FileStream myPDF = new FileStream(timesheetfilepath, FileMode.Create))
                 {
                     gridControl1.ExportToPdf(myPDF);
                     myPDF.Flush();
                     myPDF.Close();
                 }
 
+                
                 //get contact details for school
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                 string emailAddress = LINQmanager.GetEmailAddressforSchoolID(schoolID);
@@ -141,12 +143,13 @@ namespace RedboxAddin.Presentation
                 //create email
                 Outlook.MailItem oMail = Globals.objOutlook.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
                 Outlook.Attachments atts = oMail.Attachments;
-                atts.Add(tempfilepath);
+                atts.Add(timesheetfilepath);
                 oMail.Subject = "Redbox Timesheet Week Beginning: " + dtFrom.Value.ToString("dd-MMM-yyyy");
                 oMail.To = emailAddress;
                 oMail.CC = "admin@redboxteachers.co.uk";
-                oMail.Body = "Please find attached the Timesheet for week beginning " + dtFrom.Value.ToString("dd-MMM-yyyy") +
-                    "/R" + "Please check and confirm the details by replying to this message";
+                oMail.BodyFormat = Outlook.OlBodyFormat.olFormatHTML;
+                oMail.HTMLBody = timesheetText();
+
 
                 if (chkSendAuto.Checked)
                 {
@@ -194,7 +197,58 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private string timesheetText()
+        {
+            string myText = "<BODY><p><SPAN style=\"FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #666; FONT-FAMILY: arial\">" + 
+                             "Please find attached the Timesheet for week beginning " + dtFrom.Value.ToString("dd-MMM-yyyy")
+                          + ".  Please check and confirm the details by replying to this message.</SPAN></p>"
+                          + "<TABLE  border:1px solid black; cellSpacing=0 cellPadding=10 width=\"100%\"\">"
+                          +"<TBODY>";
 
+            //Header Text
+            string myRowText = "<TR style=\"FONT-WEIGHT: bold; FONT-SIZE: 14px; FONT-FAMILY: arial\">";
+            myRowText += "<TD>Teacher</TD>";
+            myRowText += "<TD>Days Worked</TD>";
+            myRowText += "<TD>Total days</TD>";
+            myRowText += "<TD>Rate</TD>";
+            myRowText += "<TD>Total</TD>";
+
+            myRowText += "</TR>";
+            myText += myRowText;
+            try
+            {
+                int numrows = gridView1.RowCount;
+
+                for (int myRow = 0; myRow < numrows; myRow++)
+                {
+                    string myName = gridView1.GetRowCellValue(myRow, "FullName").ToString();
+                    string mydays = gridView1.GetRowCellValue(myRow, "days").ToString();
+                    string mynumDays = gridView1.GetRowCellValue(myRow, "numDays").ToString();
+                    string myDayRate = gridView1.GetRowCellValue(myRow, "DayRate").ToString();
+                    string myTotal = gridView1.GetRowCellValue(myRow, "Total").ToString();
+
+                    myRowText = "<TR style=\"FONT-SIZE: 12px; FONT-FAMILY: arial\">";
+                    myRowText += "<TD>" + myName + "</TD>";
+                    myRowText += "<TD>" + mydays + "</TD>";
+                    myRowText += "<TD>" + mynumDays + "</TD>";
+                    myRowText += "<TD>" + myDayRate + "</TD>";
+                    myRowText += "<TD>" + myTotal + "</TD>";
+
+                    myRowText += "</TR>";
+                    myText += myRowText;
+                }
+
+                myText += "</TBODY></BODY>";
+
+            return myText;
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in timesheetTable: " + ex.Message);
+                return "There was an erropr creating the timesheet";
+            }
+        }
 
 
     }
