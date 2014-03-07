@@ -119,12 +119,13 @@ namespace RedboxAddin.Presentation
             string timesheetfilepath = "";
             try
             {
+                string weekEnding = dtFrom.Value.AddDays(4).ToString("dd-MMM-yyyy");
 
                 //save file to temp folder
                 string timeSheetfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\TimeSheets";
                 if (!Directory.Exists(timeSheetfolder)) Directory.CreateDirectory(timeSheetfolder);
 
-                timesheetfilepath = timeSheetfolder + "\\" + "TimeSheet_" + cmbSchool.Text + "_" + dtFrom.Value.ToString("dd-MMM-yyyy") + ".pdf";
+                timesheetfilepath = timeSheetfolder + "\\" + "TimeSheet_" + cmbSchool.Text + "_" + weekEnding + ".pdf";
 
                 using (System.IO.FileStream myPDF = new FileStream(timesheetfilepath, FileMode.Create))
                 {
@@ -144,7 +145,7 @@ namespace RedboxAddin.Presentation
                 Outlook.MailItem oMail = Globals.objOutlook.CreateItem(Outlook.OlItemType.olMailItem) as Outlook.MailItem;
                 Outlook.Attachments atts = oMail.Attachments;
                 atts.Add(timesheetfilepath);
-                oMail.Subject = "Redbox Timesheet Week Beginning: " + dtFrom.Value.ToString("dd-MMM-yyyy");
+                oMail.Subject = "Redbox Timesheet " + cmbSchool.Text + " Week Ending: " + weekEnding;
                 oMail.To = emailAddress;
                 oMail.CC = "admin@redboxteachers.co.uk";
                 oMail.BodyFormat = Outlook.OlBodyFormat.olFormatHTML;

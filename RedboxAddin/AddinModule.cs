@@ -1631,11 +1631,10 @@ namespace RedboxAddin
                 string subject = oMail.Subject;
                 string filename = subject.Replace("re:", "").Replace("RE:", "").Replace("Re:", "");
 
-                string timeSheetfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\Confirmed TimeSheets";
-                if (!Directory.Exists(timeSheetfolder)) Directory.CreateDirectory(timeSheetfolder);
+                string timeSheetfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
                 //get the required filename
-                frmFileName fn = new frmFileName(filename, timeSheetfolder);
+                frmFileName fn = new frmFileName(filename);
                 fn.ShowDialog();
                 string fileNameToUse = fn.FileName;
                 if (fileNameToUse == null) return;

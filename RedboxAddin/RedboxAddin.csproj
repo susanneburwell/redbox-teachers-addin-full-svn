@@ -73,6 +73,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Interops\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
+    <Reference Include="QlmControlLicenseWizard.Net4">
+      <HintPath>C:\Program Files\Soraco\QuickLicenseMgr\Redistrib\.net 4.0\QlmControlLicenseWizard.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
