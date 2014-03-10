@@ -13,7 +13,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 
-
+//2.0.22 10th Mar 2014 DT  Fixed colours in availability sheet
 
 
 namespace RedboxAddin
@@ -1624,14 +1624,16 @@ namespace RedboxAddin
 
                 string from = oMail.SenderName;
                 string fromAddress = oMail.SenderEmailAddress;
+                
                 if (from == fromAddress) fromAddress = "";
+                else if (fromAddress.IndexOf('=') != -1) fromAddress = ""; //this removes exchange type email addresses
                 else fromAddress = "<" + fromAddress + ">";
                 string sent = oMail.ReceivedTime.ToLongDateString() + " " + oMail.ReceivedTime.ToShortTimeString();
                 string to = oMail.To;
                 string subject = oMail.Subject;
                 string filename = subject.Replace("re:", "").Replace("RE:", "").Replace("Re:", "");
 
-                string timeSheetfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+                string timeSheetfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ "\\Davton Files\\TimeSheets";
 
                 //get the required filename
                 frmFileName fn = new frmFileName(filename);
@@ -1639,6 +1641,7 @@ namespace RedboxAddin
                 string fileNameToUse = fn.FileName;
                 if (fileNameToUse == null) return;
                 if (fn.FolderName != null) timeSheetfolder = fn.FolderName;
+                if (!Directory.Exists(timeSheetfolder)) Directory.CreateDirectory(timeSheetfolder);
                 //***********************************
 
 
@@ -1646,7 +1649,7 @@ namespace RedboxAddin
                 Outlook.Inspector oInsp = oMail.GetInspector;
                 Word.Document wDoc = oInsp.WordEditor;
                 Word.Application wApp = wDoc.Parent as Word.Application;
-                string tempwordfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\Confirmed TimeSheets\\temp";
+                string tempwordfolder = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)) + "\\Davton Files\\temp";
                 if (!Directory.Exists(tempwordfolder)) Directory.CreateDirectory(tempwordfolder);
                 string tempwordpath = tempwordfolder + "\\temp.doc";
                 wDoc.SaveAs(tempwordpath);
@@ -1710,6 +1713,7 @@ namespace RedboxAddin
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in CaptureMessage :- " + ex.Message);
+                MessageBox.Show("Message capture failed! (" + ex.Message + ")");
             }
             finally
             {

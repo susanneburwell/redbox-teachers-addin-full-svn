@@ -156,10 +156,10 @@ namespace RedboxAddin.UC
                         e.Appearance.BackColor = System.Drawing.Color.LightGray;
                         break;
                     case "lblu":
-                        e.Appearance.BackColor = System.Drawing.Color.LightBlue;
+                        e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
                         break;
                     case "dblu":
-                        e.Appearance.BackColor = System.Drawing.Color.DarkBlue;
+                        e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
                         break;
                     case "purp":
                         e.Appearance.BackColor = System.Drawing.Color.Violet;
@@ -173,13 +173,13 @@ namespace RedboxAddin.UC
                 switch (forecolor)
                 {
                     case "redd":
-                        e.Appearance.BackColor = System.Drawing.Color.Red;
+                        e.Appearance.ForeColor = System.Drawing.Color.Red;
                         break;
                     case "purp":
-                        e.Appearance.BackColor = System.Drawing.Color.Purple;
+                        e.Appearance.ForeColor = System.Drawing.Color.Purple;
                         break;
                     case "blck":
-                        e.Appearance.BackColor = System.Drawing.Color.Black;
+                        e.Appearance.ForeColor = System.Drawing.Color.Black;
                         break;
 
                     default:

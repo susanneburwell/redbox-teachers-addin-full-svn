@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 	<Product 
-    Id="e2f9be08-48e8-41d2-92b2-080c14a2e85c" 
+    Id="*" 
     Name="RedboxAddin" 
     Language="1033" 
-    Version="2.0.14" 
+    Version="2.0.21" 
     Manufacturer="Davton" 
     UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" 
     Codepage="1252">
