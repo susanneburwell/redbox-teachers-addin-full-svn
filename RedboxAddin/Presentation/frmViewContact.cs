@@ -192,6 +192,7 @@ namespace RedboxAddin.Presentation
                 txtVisaType.Text = contactObj.VisaType;
                 txtVisaLocation.Text = contactObj.VisaLocation;
                 txtYearGroup.Text = contactObj.YearGroup;
+                chkMMRV.Checked = contactObj.AttendMMRV;
                 CheckReminderButtonColors();
 
                 LoadSummaryInfo();
@@ -313,6 +314,7 @@ namespace RedboxAddin.Presentation
                 contactObj.VisaType = txtVisaType.Text;
                 contactObj.VisaLocation = txtVisaLocation.Text;
                 contactObj.YearGroup = txtYearGroup.Text;
+                contactObj.AttendMMRV = chkMMRV.Checked;
                 bool result = false;
                 if (CurrentContactID != 0)
                 {

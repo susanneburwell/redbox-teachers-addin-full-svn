@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 
 //2.0.22 10th Mar 2014 DT  Fixed colours in availability sheet
+//2.0.23 17th Mar 2014 DT  Updates to Master Booking form for existing items. Add 'Attend School that has MMRV' checkbox.
 
 
 namespace RedboxAddin

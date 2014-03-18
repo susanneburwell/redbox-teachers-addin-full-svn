@@ -303,6 +303,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkMMRV = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -1226,7 +1227,7 @@
             // 
             this.dtRedboxLeaveDate.CustomFormat = " ";
             this.dtRedboxLeaveDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRedboxLeaveDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtRedboxLeaveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtRedboxLeaveDate.Location = new System.Drawing.Point(853, 122);
             this.dtRedboxLeaveDate.Name = "dtRedboxLeaveDate";
             this.dtRedboxLeaveDate.Size = new System.Drawing.Size(100, 21);
@@ -1562,7 +1563,7 @@
             // 
             this.dtUpdateServiceRegDate.CustomFormat = " ";
             this.dtUpdateServiceRegDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtUpdateServiceRegDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtUpdateServiceRegDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtUpdateServiceRegDate.Location = new System.Drawing.Point(99, 158);
             this.dtUpdateServiceRegDate.Name = "dtUpdateServiceRegDate";
             this.dtUpdateServiceRegDate.Size = new System.Drawing.Size(93, 21);
@@ -1594,7 +1595,7 @@
             // 
             this.dtGradDate.CustomFormat = " ";
             this.dtGradDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtGradDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtGradDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtGradDate.Location = new System.Drawing.Point(617, 181);
             this.dtGradDate.Name = "dtGradDate";
             this.dtGradDate.Size = new System.Drawing.Size(93, 21);
@@ -1615,7 +1616,7 @@
             // 
             this.dtProtabilityReceivedDate.CustomFormat = " ";
             this.dtProtabilityReceivedDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtProtabilityReceivedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtProtabilityReceivedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtProtabilityReceivedDate.Location = new System.Drawing.Point(887, 58);
             this.dtProtabilityReceivedDate.Name = "dtProtabilityReceivedDate";
             this.dtProtabilityReceivedDate.Size = new System.Drawing.Size(93, 21);
@@ -1626,7 +1627,7 @@
             // 
             this.dtProtabilityCheckSent.CustomFormat = " ";
             this.dtProtabilityCheckSent.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtProtabilityCheckSent.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtProtabilityCheckSent.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtProtabilityCheckSent.Location = new System.Drawing.Point(887, 32);
             this.dtProtabilityCheckSent.Name = "dtProtabilityCheckSent";
             this.dtProtabilityCheckSent.Size = new System.Drawing.Size(93, 21);
@@ -1637,7 +1638,7 @@
             // 
             this.dtLongTermStart.CustomFormat = " ";
             this.dtLongTermStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtLongTermStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtLongTermStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtLongTermStart.Location = new System.Drawing.Point(305, 10);
             this.dtLongTermStart.Name = "dtLongTermStart";
             this.dtLongTermStart.Size = new System.Drawing.Size(93, 21);
@@ -1648,7 +1649,7 @@
             // 
             this.dtCRBValidFrom.CustomFormat = " ";
             this.dtCRBValidFrom.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtCRBValidFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtCRBValidFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtCRBValidFrom.Location = new System.Drawing.Point(305, 97);
             this.dtCRBValidFrom.Name = "dtCRBValidFrom";
             this.dtCRBValidFrom.Size = new System.Drawing.Size(93, 21);
@@ -1659,7 +1660,7 @@
             // 
             this.dtCRBExpiry.CustomFormat = " ";
             this.dtCRBExpiry.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtCRBExpiry.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtCRBExpiry.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtCRBExpiry.Location = new System.Drawing.Point(305, 126);
             this.dtCRBExpiry.Name = "dtCRBExpiry";
             this.dtCRBExpiry.Size = new System.Drawing.Size(93, 21);
@@ -1670,7 +1671,7 @@
             // 
             this.dtRedboxStart.CustomFormat = " ";
             this.dtRedboxStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRedboxStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtRedboxStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtRedboxStart.Location = new System.Drawing.Point(305, 184);
             this.dtRedboxStart.Name = "dtRedboxStart";
             this.dtRedboxStart.Size = new System.Drawing.Size(93, 21);
@@ -1681,7 +1682,7 @@
             // 
             this.dtCRBDateSent.CustomFormat = " ";
             this.dtCRBDateSent.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtCRBDateSent.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtCRBDateSent.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtCRBDateSent.Location = new System.Drawing.Point(305, 155);
             this.dtCRBDateSent.Name = "dtCRBDateSent";
             this.dtCRBDateSent.Size = new System.Drawing.Size(93, 21);
@@ -1692,7 +1693,7 @@
             // 
             this.dtRegistrationDate.CustomFormat = " ";
             this.dtRegistrationDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRegistrationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtRegistrationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtRegistrationDate.Location = new System.Drawing.Point(618, 126);
             this.dtRegistrationDate.Name = "dtRegistrationDate";
             this.dtRegistrationDate.Size = new System.Drawing.Size(93, 21);
@@ -1703,7 +1704,7 @@
             // 
             this.dtVisaExpiryDate.CustomFormat = " ";
             this.dtVisaExpiryDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtVisaExpiryDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtVisaExpiryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtVisaExpiryDate.Location = new System.Drawing.Point(617, 96);
             this.dtVisaExpiryDate.Name = "dtVisaExpiryDate";
             this.dtVisaExpiryDate.Size = new System.Drawing.Size(93, 21);
@@ -1714,7 +1715,7 @@
             // 
             this.dtDateOfSupply.CustomFormat = " ";
             this.dtDateOfSupply.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDateOfSupply.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDateOfSupply.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDateOfSupply.Location = new System.Drawing.Point(887, 162);
             this.dtDateOfSupply.Name = "dtDateOfSupply";
             this.dtDateOfSupply.Size = new System.Drawing.Size(93, 21);
@@ -1725,7 +1726,7 @@
             // 
             this.dtGTCCheckDate.CustomFormat = " ";
             this.dtGTCCheckDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtGTCCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtGTCCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtGTCCheckDate.Location = new System.Drawing.Point(887, 135);
             this.dtGTCCheckDate.Name = "dtGTCCheckDate";
             this.dtGTCCheckDate.Size = new System.Drawing.Size(93, 21);
@@ -1736,7 +1737,7 @@
             // 
             this.dtFirstDayTeachingUK.CustomFormat = " ";
             this.dtFirstDayTeachingUK.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtFirstDayTeachingUK.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFirstDayTeachingUK.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtFirstDayTeachingUK.Location = new System.Drawing.Point(887, 109);
             this.dtFirstDayTeachingUK.Name = "dtFirstDayTeachingUK";
             this.dtFirstDayTeachingUK.Size = new System.Drawing.Size(93, 21);
@@ -1747,7 +1748,7 @@
             // 
             this.dtUKArrivalDate.CustomFormat = " ";
             this.dtUKArrivalDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtUKArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtUKArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtUKArrivalDate.Location = new System.Drawing.Point(887, 84);
             this.dtUKArrivalDate.Name = "dtUKArrivalDate";
             this.dtUKArrivalDate.Size = new System.Drawing.Size(93, 21);
@@ -2125,6 +2126,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkMMRV);
             this.panel1.Controls.Add(this.chkReferencesChecked);
             this.panel1.Controls.Add(this.chkProofOfAddress);
             this.panel1.Controls.Add(this.chkOverseasTrainedTeacher);
@@ -2911,7 +2913,7 @@
             // 
             this.dtOTTEndDate.CustomFormat = " ";
             this.dtOTTEndDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtOTTEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtOTTEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtOTTEndDate.Location = new System.Drawing.Point(728, 93);
             this.dtOTTEndDate.Name = "dtOTTEndDate";
             this.dtOTTEndDate.Size = new System.Drawing.Size(106, 21);
@@ -3288,6 +3290,17 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // chkMMRV
+            // 
+            this.chkMMRV.AutoSize = true;
+            this.chkMMRV.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMMRV.Location = new System.Drawing.Point(174, 118);
+            this.chkMMRV.Name = "chkMMRV";
+            this.chkMMRV.Size = new System.Drawing.Size(167, 17);
+            this.chkMMRV.TabIndex = 54;
+            this.chkMMRV.Text = "Attend school that has MMRV";
+            this.chkMMRV.UseVisualStyleBackColor = true;
+            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3621,5 +3634,6 @@
         private System.Windows.Forms.TextBox txtHfDayRateTA;
         private System.Windows.Forms.Label label89;
         private System.Windows.Forms.CheckBox chkDBSDirectPayment;
+        private System.Windows.Forms.CheckBox chkMMRV;
     }
 }

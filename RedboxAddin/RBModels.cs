@@ -1787,6 +1787,8 @@ namespace RedboxAddin
 		
 		private System.Nullable<bool> _DBSDirectPayment;
 		
+		private System.Nullable<bool> _AttendMMRV;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2019,6 +2021,8 @@ namespace RedboxAddin
     partial void OnKeyRefChanged();
     partial void OnDBSDirectPaymentChanging(System.Nullable<bool> value);
     partial void OnDBSDirectPaymentChanged();
+    partial void OnAttendMMRVChanging(System.Nullable<bool> value);
+    partial void OnAttendMMRVChanged();
     #endregion
 		
 		public Contact()
@@ -4302,6 +4306,26 @@ namespace RedboxAddin
 					this._DBSDirectPayment = value;
 					this.SendPropertyChanged("DBSDirectPayment");
 					this.OnDBSDirectPaymentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttendMMRV", DbType="Bit")]
+		public System.Nullable<bool> AttendMMRV
+		{
+			get
+			{
+				return this._AttendMMRV;
+			}
+			set
+			{
+				if ((this._AttendMMRV != value))
+				{
+					this.OnAttendMMRVChanging(value);
+					this.SendPropertyChanging();
+					this._AttendMMRV = value;
+					this.SendPropertyChanged("AttendMMRV");
+					this.OnAttendMMRVChanged();
 				}
 			}
 		}

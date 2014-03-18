@@ -1162,6 +1162,7 @@ namespace RedboxAddin.DL
                             _3rdRefChecked = CheckBool(dr["3rdRefChecked"].ToString()),
                             AccountName = dr["AccountName"].ToString(),
                             AdditionalInfoOnCRB = CheckBool(dr["AdditionalInfoOnCRB"].ToString()),
+                            AttendMMRV = CheckBool(dr["AttendMMRV"].ToString()),
                             BankAccountNumber = dr["BankAccountNumber"].ToString(),
                             BankName = dr["BankName"].ToString(),
                             BankSortCode = dr["BankSortCode"].ToString(),
@@ -1389,6 +1390,7 @@ namespace RedboxAddin.DL
                     + "[3rdRefChecked],"
                     + "AccountName,"
                     + "AdditionalInfoOnCRB,"
+                    + "AttendMMRV,"
                     + "BankAccountNumber,"
                     + "BankName,"
                     + "BankSortCode,"
@@ -1491,6 +1493,7 @@ namespace RedboxAddin.DL
                     + "@AddressState,"
                     + "@AddressPostcode,"
                     + "@AddressCountry,"
+                    + "@AttendMMRV,"
                     + "@PhoneHome,"
                     + "@PhoneMobile,"
                     + "@PhoneBusiness,"
@@ -1616,6 +1619,8 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.Add("@3rdRefChecked", SqlDbType.Bit);
                 CmdAddContact.Parameters.Add("@AccountName", SqlDbType.VarChar, 500);
                 CmdAddContact.Parameters.Add("@AdditionalInfoOnCRB", SqlDbType.Bit);
+                CmdAddContact.Parameters.Add("@AttendMMRV", SqlDbType.Bit);
+
                 CmdAddContact.Parameters.Add("@BankAccountNumber", SqlDbType.VarChar, 100);
                 CmdAddContact.Parameters.Add("@BankName", SqlDbType.VarChar, 500);
                 CmdAddContact.Parameters.Add("@BankSortCode", SqlDbType.VarChar, 500);
@@ -1730,6 +1735,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@3rdRefChecked"].Value = CheckVals(contactObj._3rdRefChecked);
                 CmdAddContact.Parameters["@AccountName"].Value = CheckVals(contactObj.AccountName);
                 CmdAddContact.Parameters["@AdditionalInfoOnCRB"].Value = CheckVals(contactObj.AdditionalInfoOnCRB);
+                CmdAddContact.Parameters["@AttendMMRV"].Value = CheckVals(contactObj.AttendMMRV);
                 CmdAddContact.Parameters["@BankAccountNumber"].Value = CheckVals(contactObj.BankAccountNumber);
                 CmdAddContact.Parameters["@BankName"].Value = CheckVals(contactObj.BankName);
                 CmdAddContact.Parameters["@BankSortCode"].Value = CheckVals(contactObj.BankSortCode);
@@ -1863,6 +1869,7 @@ namespace RedboxAddin.DL
                        + "[3rdRefChecked] = @3rdRefChecked, "
                        + "AccountName = @AccountName, "
                        + "AdditionalInfoOnCRB = @AdditionalInfoOnCRB, "
+                       + "AttendMMRV = @AttendMMRV, "
                        + "BankAccountNumber = @BankAccountNumber, "
                        + "BankName = @BankName, "
                        + "BankSortCode = @BankSortCode, "
@@ -1977,6 +1984,7 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.Add("@3rdRefChecked", SqlDbType.Bit);
                 CmdUpdateContact.Parameters.Add("@AccountName", SqlDbType.VarChar, 500);
                 CmdUpdateContact.Parameters.Add("@AdditionalInfoOnCRB", SqlDbType.Bit);
+                CmdUpdateContact.Parameters.Add("@AttendMMRV", SqlDbType.Bit);
                 CmdUpdateContact.Parameters.Add("@BankAccountNumber", SqlDbType.VarChar, 100);
                 CmdUpdateContact.Parameters.Add("@BankName", SqlDbType.VarChar, 500);
                 CmdUpdateContact.Parameters.Add("@BankSortCode", SqlDbType.VarChar, 500);
@@ -2091,6 +2099,8 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters["@3rdRefChecked"].Value = CheckVals(contactObj._3rdRefChecked);
                 CmdUpdateContact.Parameters["@AccountName"].Value = CheckVals(contactObj.AccountName);
                 CmdUpdateContact.Parameters["@AdditionalInfoOnCRB"].Value = CheckVals(contactObj.AdditionalInfoOnCRB);
+                CmdUpdateContact.Parameters["@AdditionalInfoOnCRB"].Value = CheckVals(contactObj.AdditionalInfoOnCRB);
+                CmdUpdateContact.Parameters["@AttendMMRV"].Value = CheckVals(contactObj.AttendMMRV);
                 CmdUpdateContact.Parameters["@BankAccountNumber"].Value = CheckVals(contactObj.BankAccountNumber);
                 CmdUpdateContact.Parameters["@BankName"].Value = CheckVals(contactObj.BankName);
                 CmdUpdateContact.Parameters["@BankSortCode"].Value = CheckVals(contactObj.BankSortCode);

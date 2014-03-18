@@ -35,6 +35,7 @@ namespace RedboxAddin.Models
         public bool _3rdRefChecked { get; set; }
         public string AccountName { get; set; }
         public bool AdditionalInfoOnCRB { get; set; }
+        public bool AttendMMRV { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
         public string BankSortCode { get; set; }

@@ -301,9 +301,10 @@ namespace RedboxAddin.UC
             gridView1.TopRowIndex = topRow;
         }
 
-        
-
-
+        public void Clear()
+        {
+            gridControl1.DataSource = null;
+        }
     }
 
     public class GridViewCustomMenu : GridViewMenu
