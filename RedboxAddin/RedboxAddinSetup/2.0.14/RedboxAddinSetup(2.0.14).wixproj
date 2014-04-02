@@ -6,7 +6,7 @@
     <ProductVersion>3.5</ProductVersion>
     <ProjectGuid>{f8945502-3116-429f-9c1f-fd862a013b60}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>RedboxAddinSetup(2.0.14)</OutputName>
+    <OutputName>RedboxAddinSetup</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
@@ -48,6 +48,6 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <GenerateBootstrapper ApplicationFile="$(TargetFileName)" ApplicationName="RedboxAddin" BootstrapperItems="@(BootstrapperFile)" ComponentsLocation="HomeSite" CopyComponents="False" OutputPath="$(OutputPath)" Path="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\Bootstrapper\" ApplicationRequiresElevation="False"  />
+    <GenerateBootstrapper ApplicationFile="$(TargetFileName)" ApplicationName="RedboxAddin" BootstrapperItems="@(BootstrapperFile)" ComponentsLocation="HomeSite" CopyComponents="False" OutputPath="$(OutputPath)" Path="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\Bootstrapper\" ApplicationRequiresElevation="False" />
   </Target>
 </Project>

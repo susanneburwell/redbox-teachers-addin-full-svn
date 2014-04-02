@@ -32,6 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.lblShowing = new System.Windows.Forms.Label();
+            this.grpFilter = new System.Windows.Forms.GroupBox();
+            this.chkShowTeachers = new System.Windows.Forms.CheckBox();
+            this.chkShowTAs = new System.Windows.Forms.CheckBox();
+            this.chkShowD2D = new System.Windows.Forms.CheckBox();
+            this.chkShowLT = new System.Windows.Forms.CheckBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.chkJustBookings = new System.Windows.Forms.CheckBox();
             this.btnDblBkgs = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
@@ -68,14 +75,18 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnLayout = new System.Windows.Forms.Button();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
+            this.chkFloat = new System.Windows.Forms.CheckBox();
+            this.chkPPA = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
+            this.grpFilter.SuspendLayout();
             this.grpQual.SuspendLayout();
             this.grpYearGroups.SuspendLayout();
             this.panelRibbon.SuspendLayout();
@@ -94,13 +105,17 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 199F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 662);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnLayout);
+            this.panelTop.Controls.Add(this.lblShowing);
+            this.panelTop.Controls.Add(this.grpFilter);
+            this.panelTop.Controls.Add(this.btnRefresh);
             this.panelTop.Controls.Add(this.chkJustBookings);
             this.panelTop.Controls.Add(this.btnDblBkgs);
             this.panelTop.Controls.Add(this.bnFwd);
@@ -114,14 +129,98 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 43);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1002, 169);
+            this.panelTop.Size = new System.Drawing.Size(1002, 193);
             this.panelTop.TabIndex = 0;
+            // 
+            // lblShowing
+            // 
+            this.lblShowing.AutoSize = true;
+            this.lblShowing.BackColor = System.Drawing.SystemColors.Control;
+            this.lblShowing.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowing.Location = new System.Drawing.Point(15, 164);
+            this.lblShowing.Name = "lblShowing";
+            this.lblShowing.Size = new System.Drawing.Size(51, 13);
+            this.lblShowing.TabIndex = 89;
+            this.lblShowing.Text = "Showing:";
+            // 
+            // grpFilter
+            // 
+            this.grpFilter.Controls.Add(this.chkShowTeachers);
+            this.grpFilter.Controls.Add(this.chkShowTAs);
+            this.grpFilter.Controls.Add(this.chkShowD2D);
+            this.grpFilter.Controls.Add(this.chkShowLT);
+            this.grpFilter.Location = new System.Drawing.Point(734, 78);
+            this.grpFilter.Name = "grpFilter";
+            this.grpFilter.Size = new System.Drawing.Size(261, 76);
+            this.grpFilter.TabIndex = 95;
+            this.grpFilter.TabStop = false;
+            // 
+            // chkShowTeachers
+            // 
+            this.chkShowTeachers.AutoSize = true;
+            this.chkShowTeachers.Checked = true;
+            this.chkShowTeachers.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowTeachers.Location = new System.Drawing.Point(6, 12);
+            this.chkShowTeachers.Name = "chkShowTeachers";
+            this.chkShowTeachers.Size = new System.Drawing.Size(121, 20);
+            this.chkShowTeachers.TabIndex = 90;
+            this.chkShowTeachers.Text = "Show Teachers";
+            this.chkShowTeachers.UseVisualStyleBackColor = true;
+            this.chkShowTeachers.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkShowTAs
+            // 
+            this.chkShowTAs.AutoSize = true;
+            this.chkShowTAs.Checked = true;
+            this.chkShowTAs.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowTAs.Location = new System.Drawing.Point(6, 44);
+            this.chkShowTAs.Name = "chkShowTAs";
+            this.chkShowTAs.Size = new System.Drawing.Size(88, 20);
+            this.chkShowTAs.TabIndex = 91;
+            this.chkShowTAs.Text = "Show TAs";
+            this.chkShowTAs.UseVisualStyleBackColor = true;
+            this.chkShowTAs.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkShowD2D
+            // 
+            this.chkShowD2D.AutoSize = true;
+            this.chkShowD2D.Checked = true;
+            this.chkShowD2D.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowD2D.Location = new System.Drawing.Point(150, 44);
+            this.chkShowD2D.Name = "chkShowD2D";
+            this.chkShowD2D.Size = new System.Drawing.Size(90, 20);
+            this.chkShowD2D.TabIndex = 93;
+            this.chkShowD2D.Text = "Show D2D";
+            this.chkShowD2D.UseVisualStyleBackColor = true;
+            this.chkShowD2D.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkShowLT
+            // 
+            this.chkShowLT.AutoSize = true;
+            this.chkShowLT.Checked = true;
+            this.chkShowLT.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowLT.Location = new System.Drawing.Point(150, 12);
+            this.chkShowLT.Name = "chkShowLT";
+            this.chkShowLT.Size = new System.Drawing.Size(79, 20);
+            this.chkShowLT.TabIndex = 92;
+            this.chkShowLT.Text = "Show LT";
+            this.chkShowLT.UseVisualStyleBackColor = true;
+            this.chkShowLT.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(387, 160);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(124, 30);
+            this.btnRefresh.TabIndex = 94;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // chkJustBookings
             // 
             this.chkJustBookings.AutoSize = true;
-            this.chkJustBookings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkJustBookings.Location = new System.Drawing.Point(848, 129);
+            this.chkJustBookings.Location = new System.Drawing.Point(741, 160);
             this.chkJustBookings.Name = "chkJustBookings";
             this.chkJustBookings.Size = new System.Drawing.Size(147, 20);
             this.chkJustBookings.TabIndex = 89;
@@ -133,7 +232,7 @@
             // 
             this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
-            this.btnDblBkgs.Location = new System.Drawing.Point(740, 56);
+            this.btnDblBkgs.Location = new System.Drawing.Point(740, 47);
             this.btnDblBkgs.Name = "btnDblBkgs";
             this.btnDblBkgs.Size = new System.Drawing.Size(255, 30);
             this.btnDblBkgs.TabIndex = 86;
@@ -144,9 +243,9 @@
             // 
             // bnFwd
             // 
-            this.bnFwd.Location = new System.Drawing.Point(323, 18);
+            this.bnFwd.Location = new System.Drawing.Point(319, 18);
             this.bnFwd.Name = "bnFwd";
-            this.bnFwd.Size = new System.Drawing.Size(35, 23);
+            this.bnFwd.Size = new System.Drawing.Size(46, 26);
             this.bnFwd.TabIndex = 84;
             this.bnFwd.Text = ">>";
             this.bnFwd.UseVisualStyleBackColor = true;
@@ -154,9 +253,9 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(280, 17);
+            this.btnBack.Location = new System.Drawing.Point(277, 17);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(37, 23);
+            this.btnBack.Size = new System.Drawing.Size(37, 27);
             this.btnBack.TabIndex = 83;
             this.btnBack.Text = "<<";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -175,7 +274,7 @@
             this.grpQual.Controls.Add(this.chkQTS);
             this.grpQual.Location = new System.Drawing.Point(9, 48);
             this.grpQual.Name = "grpQual";
-            this.grpQual.Size = new System.Drawing.Size(349, 106);
+            this.grpQual.Size = new System.Drawing.Size(356, 106);
             this.grpQual.TabIndex = 82;
             this.grpQual.TabStop = false;
             this.grpQual.Text = "Qualifications";
@@ -193,13 +292,13 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(249, 52);
+            this.label2.Location = new System.Drawing.Point(284, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(59, 54);
             this.label2.TabIndex = 18;
             this.label2.Text = "Match ANY ticked";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkSEN
             // 
@@ -280,7 +379,9 @@
             // 
             // grpYearGroups
             // 
+            this.grpYearGroups.Controls.Add(this.chkFloat);
             this.grpYearGroups.Controls.Add(this.chkGuaranteed);
+            this.grpYearGroups.Controls.Add(this.chkPPA);
             this.grpYearGroups.Controls.Add(this.label3);
             this.grpYearGroups.Controls.Add(this.chkLongTerm);
             this.grpYearGroups.Controls.Add(this.label9);
@@ -297,7 +398,7 @@
             this.grpYearGroups.Controls.Add(this.chkYr6);
             this.grpYearGroups.Controls.Add(this.btnKS1);
             this.grpYearGroups.Controls.Add(this.btnKS2);
-            this.grpYearGroups.Location = new System.Drawing.Point(384, 9);
+            this.grpYearGroups.Location = new System.Drawing.Point(375, 9);
             this.grpYearGroups.Name = "grpYearGroups";
             this.grpYearGroups.Size = new System.Drawing.Size(350, 145);
             this.grpYearGroups.TabIndex = 81;
@@ -307,11 +408,11 @@
             // chkGuaranteed
             // 
             this.chkGuaranteed.AutoSize = true;
-            this.chkGuaranteed.Location = new System.Drawing.Point(231, 116);
+            this.chkGuaranteed.Location = new System.Drawing.Point(293, 116);
             this.chkGuaranteed.Name = "chkGuaranteed";
-            this.chkGuaranteed.Size = new System.Drawing.Size(98, 20);
+            this.chkGuaranteed.Size = new System.Drawing.Size(51, 20);
             this.chkGuaranteed.TabIndex = 88;
-            this.chkGuaranteed.Text = "Guaranteed";
+            this.chkGuaranteed.Text = "G\'td";
             this.chkGuaranteed.UseVisualStyleBackColor = true;
             this.chkGuaranteed.Click += new System.EventHandler(this.CheckedChanged);
             // 
@@ -319,7 +420,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(253, 18);
+            this.label3.Location = new System.Drawing.Point(230, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 26;
@@ -328,7 +429,7 @@
             // chkLongTerm
             // 
             this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(79, 116);
+            this.chkLongTerm.Location = new System.Drawing.Point(168, 116);
             this.chkLongTerm.Name = "chkLongTerm";
             this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
             this.chkLongTerm.TabIndex = 87;
@@ -370,7 +471,7 @@
             // btnEY
             // 
             this.btnEY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEY.Location = new System.Drawing.Point(42, 27);
+            this.btnEY.Location = new System.Drawing.Point(51, 30);
             this.btnEY.Name = "btnEY";
             this.btnEY.Size = new System.Drawing.Size(15, 15);
             this.btnEY.TabIndex = 20;
@@ -391,7 +492,7 @@
             // chkYr1
             // 
             this.chkYr1.AutoSize = true;
-            this.chkYr1.Location = new System.Drawing.Point(79, 56);
+            this.chkYr1.Location = new System.Drawing.Point(84, 56);
             this.chkYr1.Name = "chkYr1";
             this.chkYr1.Size = new System.Drawing.Size(47, 20);
             this.chkYr1.TabIndex = 12;
@@ -402,7 +503,7 @@
             // chkNur
             // 
             this.chkNur.AutoSize = true;
-            this.chkNur.Location = new System.Drawing.Point(80, 24);
+            this.chkNur.Location = new System.Drawing.Point(85, 24);
             this.chkNur.Name = "chkNur";
             this.chkNur.Size = new System.Drawing.Size(48, 20);
             this.chkNur.TabIndex = 10;
@@ -424,7 +525,7 @@
             // chkYr3
             // 
             this.chkYr3.AutoSize = true;
-            this.chkYr3.Location = new System.Drawing.Point(79, 87);
+            this.chkYr3.Location = new System.Drawing.Point(84, 87);
             this.chkYr3.Name = "chkYr3";
             this.chkYr3.Size = new System.Drawing.Size(47, 20);
             this.chkYr3.TabIndex = 14;
@@ -468,7 +569,7 @@
             // btnKS1
             // 
             this.btnKS1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKS1.Location = new System.Drawing.Point(42, 59);
+            this.btnKS1.Location = new System.Drawing.Point(51, 62);
             this.btnKS1.Name = "btnKS1";
             this.btnKS1.Size = new System.Drawing.Size(15, 15);
             this.btnKS1.TabIndex = 21;
@@ -478,7 +579,7 @@
             // btnKS2
             // 
             this.btnKS2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKS2.Location = new System.Drawing.Point(42, 86);
+            this.btnKS2.Location = new System.Drawing.Point(51, 89);
             this.btnKS2.Name = "btnKS2";
             this.btnKS2.Size = new System.Drawing.Size(15, 15);
             this.btnKS2.TabIndex = 22;
@@ -497,7 +598,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(804, 91);
+            this.btnSearch.Location = new System.Drawing.Point(534, 160);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(191, 30);
             this.btnSearch.TabIndex = 15;
@@ -516,20 +617,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 22);
+            this.label4.Location = new System.Drawing.Point(14, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
-            // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 219);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 439);
-            this.availabilityGrid1.TabIndex = 1;
             // 
             // panelRibbon
             // 
@@ -559,6 +651,48 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
+            // btnLayout
+            // 
+            this.btnLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLayout.Location = new System.Drawing.Point(894, 161);
+            this.btnLayout.Name = "btnLayout";
+            this.btnLayout.Size = new System.Drawing.Size(98, 23);
+            this.btnLayout.TabIndex = 96;
+            this.btnLayout.Text = "Save Layout";
+            this.btnLayout.UseVisualStyleBackColor = true;
+            this.btnLayout.Click += new System.EventHandler(this.btnLayout_Click);
+            // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 415);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
+            // chkFloat
+            // 
+            this.chkFloat.AutoSize = true;
+            this.chkFloat.Location = new System.Drawing.Point(84, 116);
+            this.chkFloat.Name = "chkFloat";
+            this.chkFloat.Size = new System.Drawing.Size(57, 20);
+            this.chkFloat.TabIndex = 31;
+            this.chkFloat.Text = "Float";
+            this.chkFloat.UseVisualStyleBackColor = true;
+            this.chkFloat.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkPPA
+            // 
+            this.chkPPA.AutoSize = true;
+            this.chkPPA.Location = new System.Drawing.Point(12, 116);
+            this.chkPPA.Name = "chkPPA";
+            this.chkPPA.Size = new System.Drawing.Size(54, 20);
+            this.chkPPA.TabIndex = 30;
+            this.chkPPA.Text = "PPA";
+            this.chkPPA.UseVisualStyleBackColor = true;
+            this.chkPPA.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
             // frmAvailabilitySheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -575,6 +709,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.grpFilter.ResumeLayout(false);
+            this.grpFilter.PerformLayout();
             this.grpQual.ResumeLayout(false);
             this.grpQual.PerformLayout();
             this.grpYearGroups.ResumeLayout(false);
@@ -631,5 +767,15 @@
         private System.Windows.Forms.Button btnCreatePaySheets;
         private System.Windows.Forms.CheckBox chkJustBookings;
         private System.Windows.Forms.Panel panelRibbon;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.CheckBox chkShowD2D;
+        private System.Windows.Forms.CheckBox chkShowLT;
+        private System.Windows.Forms.CheckBox chkShowTAs;
+        private System.Windows.Forms.CheckBox chkShowTeachers;
+        private System.Windows.Forms.GroupBox grpFilter;
+        private System.Windows.Forms.Label lblShowing;
+        private System.Windows.Forms.Button btnLayout;
+        private System.Windows.Forms.CheckBox chkFloat;
+        private System.Windows.Forms.CheckBox chkPPA;
     }
 }

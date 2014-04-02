@@ -59,7 +59,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.44898F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.55102F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(406, 221);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(404, 214);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel1
@@ -70,7 +70,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(406, 49);
+            this.panel1.Size = new System.Drawing.Size(404, 48);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -80,7 +80,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(10, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 35);
+            this.label1.Size = new System.Drawing.Size(127, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "About ";
             // 
@@ -97,10 +97,10 @@
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 49);
+            this.panel2.Location = new System.Drawing.Point(0, 48);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(406, 172);
+            this.panel2.Size = new System.Drawing.Size(404, 166);
             this.panel2.TabIndex = 1;
             // 
             // button3
@@ -141,7 +141,7 @@
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(291, 130);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 30);
+            this.button1.Size = new System.Drawing.Size(59, 30);
             this.button1.TabIndex = 21;
             this.button1.Text = "Import";
             this.button1.UseVisualStyleBackColor = false;
@@ -154,7 +154,7 @@
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(149, 52);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(14, 14);
+            this.lblVersion.Size = new System.Drawing.Size(16, 18);
             this.lblVersion.TabIndex = 20;
             this.lblVersion.Text = "*";
             // 
@@ -164,7 +164,7 @@
             this.lblRedemptionVersion.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRedemptionVersion.Location = new System.Drawing.Point(149, 85);
             this.lblRedemptionVersion.Name = "lblRedemptionVersion";
-            this.lblRedemptionVersion.Size = new System.Drawing.Size(14, 14);
+            this.lblRedemptionVersion.Size = new System.Drawing.Size(16, 18);
             this.lblRedemptionVersion.TabIndex = 19;
             this.lblRedemptionVersion.Text = "*";
             // 
@@ -174,7 +174,7 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(12, 85);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 14);
+            this.label4.Size = new System.Drawing.Size(137, 18);
             this.label4.TabIndex = 18;
             this.label4.Text = "Redemption Version";
             // 
@@ -184,7 +184,7 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(13, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 14);
+            this.label3.Size = new System.Drawing.Size(55, 18);
             this.label3.TabIndex = 17;
             this.label3.Text = "Version";
             // 
@@ -194,7 +194,7 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(347, 130);
+            this.btnOK.Location = new System.Drawing.Point(350, 130);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(47, 30);
             this.btnOK.TabIndex = 16;
@@ -208,15 +208,15 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 14);
+            this.label2.Size = new System.Drawing.Size(247, 18);
             this.label2.TabIndex = 15;
             this.label2.Text = "Outlook Addin for Redbox by Davton";
             // 
             // frmAbout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 221);
+            this.ClientSize = new System.Drawing.Size(404, 214);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

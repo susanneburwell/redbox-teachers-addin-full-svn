@@ -38,6 +38,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.txtNewAttribute = new System.Windows.Forms.TextBox();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.lboxAttAddables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lboxAttAdded)).BeginInit();
             this.panelAtt.SuspendLayout();
@@ -127,11 +128,21 @@
             this.txtNewAttribute.Size = new System.Drawing.Size(220, 21);
             this.txtNewAttribute.TabIndex = 2;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(312, 263);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmAttributePicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 295);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.txtNewAttribute);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnOK);
@@ -165,5 +176,6 @@
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private DevExpress.XtraEditors.SimpleButton btnNew;
         private System.Windows.Forms.TextBox txtNewAttribute;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
     }
 }

@@ -773,6 +773,16 @@ namespace RedboxAddin
 		
 		private bool _Current;
 		
+		private bool _Float;
+		
+		private string _Location;
+		
+		private bool _RWInc;
+		
+		private bool _BSL;
+		
+		private bool _FirstAid;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -845,6 +855,16 @@ namespace RedboxAddin
     partial void OnRGDChanged();
     partial void OnCurrentChanging(bool value);
     partial void OnCurrentChanged();
+    partial void OnFloatChanging(bool value);
+    partial void OnFloatChanged();
+    partial void OnLocationChanging(string value);
+    partial void OnLocationChanged();
+    partial void OnRWIncChanging(bool value);
+    partial void OnRWIncChanged();
+    partial void OnBSLChanging(bool value);
+    partial void OnBSLChanged();
+    partial void OnFirstAidChanging(bool value);
+    partial void OnFirstAidChanged();
     #endregion
 		
 		public ContactData()
@@ -1528,6 +1548,106 @@ namespace RedboxAddin
 					this._Current = value;
 					this.SendPropertyChanged("Current");
 					this.OnCurrentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Float", DbType="Bit NOT NULL")]
+		public bool Float
+		{
+			get
+			{
+				return this._Float;
+			}
+			set
+			{
+				if ((this._Float != value))
+				{
+					this.OnFloatChanging(value);
+					this.SendPropertyChanging();
+					this._Float = value;
+					this.SendPropertyChanged("Float");
+					this.OnFloatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Location", DbType="NVarChar(50)")]
+		public string Location
+		{
+			get
+			{
+				return this._Location;
+			}
+			set
+			{
+				if ((this._Location != value))
+				{
+					this.OnLocationChanging(value);
+					this.SendPropertyChanging();
+					this._Location = value;
+					this.SendPropertyChanged("Location");
+					this.OnLocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RWInc", DbType="Bit NOT NULL")]
+		public bool RWInc
+		{
+			get
+			{
+				return this._RWInc;
+			}
+			set
+			{
+				if ((this._RWInc != value))
+				{
+					this.OnRWIncChanging(value);
+					this.SendPropertyChanging();
+					this._RWInc = value;
+					this.SendPropertyChanged("RWInc");
+					this.OnRWIncChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BSL", DbType="Bit NOT NULL")]
+		public bool BSL
+		{
+			get
+			{
+				return this._BSL;
+			}
+			set
+			{
+				if ((this._BSL != value))
+				{
+					this.OnBSLChanging(value);
+					this.SendPropertyChanging();
+					this._BSL = value;
+					this.SendPropertyChanged("BSL");
+					this.OnBSLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstAid", DbType="Bit NOT NULL")]
+		public bool FirstAid
+		{
+			get
+			{
+				return this._FirstAid;
+			}
+			set
+			{
+				if ((this._FirstAid != value))
+				{
+					this.OnFirstAidChanging(value);
+					this.SendPropertyChanging();
+					this._FirstAid = value;
+					this.SendPropertyChanged("FirstAid");
+					this.OnFirstAidChanged();
 				}
 			}
 		}
@@ -4563,6 +4683,10 @@ namespace RedboxAddin
 		
 		private string _Color;
 		
+		private bool _Float;
+		
+		private bool _PPA;
+		
 		private EntitySet<Booking> _Bookings;
 		
     #region Extensibility Method Definitions
@@ -4641,6 +4765,10 @@ namespace RedboxAddin
     partial void OnBookingStatusChanged();
     partial void OnColorChanging(string value);
     partial void OnColorChanged();
+    partial void OnFloatChanging(bool value);
+    partial void OnFloatChanged();
+    partial void OnPPAChanging(bool value);
+    partial void OnPPAChanged();
     #endregion
 		
 		public MasterBooking()
@@ -5365,6 +5493,46 @@ namespace RedboxAddin
 					this._Color = value;
 					this.SendPropertyChanged("Color");
 					this.OnColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Float", DbType="Bit NOT NULL")]
+		public bool Float
+		{
+			get
+			{
+				return this._Float;
+			}
+			set
+			{
+				if ((this._Float != value))
+				{
+					this.OnFloatChanging(value);
+					this.SendPropertyChanging();
+					this._Float = value;
+					this.SendPropertyChanged("Float");
+					this.OnFloatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PPA", DbType="Bit NOT NULL")]
+		public bool PPA
+		{
+			get
+			{
+				return this._PPA;
+			}
+			set
+			{
+				if ((this._PPA != value))
+				{
+					this.OnPPAChanging(value);
+					this.SendPropertyChanging();
+					this._PPA = value;
+					this.SendPropertyChanged("PPA");
+					this.OnPPAChanged();
 				}
 			}
 		}

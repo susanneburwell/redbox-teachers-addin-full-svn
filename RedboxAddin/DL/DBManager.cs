@@ -288,6 +288,8 @@ namespace RedboxAddin.DL
         {
 
             List<RAvailability> availabilityList = new List<RAvailability>();
+
+            //********* Get Assigned Bookings *************
             try
             {
                 string SQLstr = GetAvailabilitySQL(weekbegining);
@@ -300,9 +302,10 @@ namespace RedboxAddin.DL
                     {
                         RAvailability objAvail = new RAvailability();
 
-                        objAvail.Teacher = dr["Teacher"].ToString();
+                        objAvail.Teacher = dr["TeacherName"].ToString();
                         //CRB = dr["CRB"].ToString();
                         objAvail.Live = dr["Live"].ToString();
+                        objAvail.Location = dr["Location"].ToString();
                         objAvail.NoGo = dr["NoGo"].ToString();
                         objAvail.PofA = dr["ProofofAddress"].ToString();
                         objAvail.QTS = dr["QTS"].ToString();
@@ -324,31 +327,68 @@ namespace RedboxAddin.DL
                         objAvail.WedStatus = dr["WedStatus"].ToString();
                         objAvail.ThuStatus = dr["ThuStatus"].ToString();
                         objAvail.FriStatus = dr["FriStatus"].ToString();
-
-                        //objAvail.MonG = Utils.CheckLong(dr["MonG"]);
-                        //objAvail.TueG = Utils.CheckLong(dr["TueG"]);
-                        //objAvail.WedG = Utils.CheckLong(dr["WedG"]);
-                        //objAvail.ThuG = Utils.CheckLong(dr["ThuG"]);
-                        //objAvail.FriG = Utils.CheckLong(dr["FriG"]);
-                        //if (Utils.CheckLong(dr["MonG"]) > 0) objAvail.MonG = true;
-                        //if (Utils.CheckLong(dr["TueG"]) > 0) objAvail.TueG = true;
-                        //if (Utils.CheckLong(dr["WedG"]) > 0) objAvail.WedG = true;
-                        //if (Utils.CheckLong(dr["ThuG"]) > 0) objAvail.ThuG = true;
-                        //if (Utils.CheckLong(dr["FriG"]) > 0) objAvail.FriG = true;
+                        objAvail.FirstAid = Utils.CheckBool(dr["FirstAid"]);
+                        objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
+                        objAvail.BSL = Utils.CheckBool(dr["BSL"]);
 
                         availabilityList.Add(objAvail);
 
                     }
 
-                    return availabilityList;
                 }
-                else return null;
+
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
-                return null;
             }
+
+            //*******  Get Unassigned Bookings ***********
+            try
+            {
+                string SQLstr = GetUnassignedAvailabilitySQL(weekbegining);
+                string wheresql2 = " WHERE [MasterBookings].contactID = -1 ";
+                DataSet msgDs = GetDataSet(SQLstr + wheresql2);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RAvailability objAvail = new RAvailability();
+
+                        objAvail.Monday = dr["Monday"].ToString();
+                        objAvail.Tuesday = dr["Tuesday"].ToString();
+                        objAvail.Wednesday = dr["Wednesday"].ToString();
+                        objAvail.Thursday = dr["Thursday"].ToString();
+                        objAvail.Friday = dr["Friday"].ToString();
+                        objAvail.MonColor = dr["MonColor"].ToString();
+                        objAvail.TueColor = dr["TueColor"].ToString();
+                        objAvail.WedColor = dr["WedColor"].ToString();
+                        objAvail.ThuColor = dr["ThuColor"].ToString();
+                        objAvail.FriColor = dr["FriColor"].ToString();
+                        objAvail.MonStatus = dr["MonStatus"].ToString();
+                        objAvail.TueStatus = dr["TueStatus"].ToString();
+                        objAvail.WedStatus = dr["WedStatus"].ToString();
+                        objAvail.ThuStatus = dr["ThuStatus"].ToString();
+                        objAvail.FriStatus = dr["FriStatus"].ToString();
+
+
+                        availabilityList.Add(objAvail);
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
+            }
+
+            return availabilityList;
+
+
         }
 
         public List<RTeacherday> GetTeacherDays(Int64 teacherID, bool past, bool future, bool guarantee)
@@ -2463,6 +2503,98 @@ namespace RedboxAddin.DL
 
         #region SQLQueries
 
+         private string GetUnassignedAvailabilitySQL(DateTime weekbegining)
+        {
+            string monday = weekbegining.ToString("yyyyMMdd");
+            string tuesday = weekbegining.AddDays(1).ToString("yyyyMMdd");
+            string wednesday = weekbegining.AddDays(2).ToString("yyyyMMdd");
+            string thursday = weekbegining.AddDays(3).ToString("yyyyMMdd");
+            string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
+
+            string SQLstr = "Select  " +
+                            "s1.School as Monday, s2.School as Tuesday,  s3.School as Wednesday, " +
+                            "s4.School as Thursday, s5.School as Friday,  " +
+                            "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +
+                            "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus " +
+                            "FROM [MasterBookings] " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, MasterBookingID " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + monday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + monday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + monday + "' " +
+                            ") as s1 " +
+                            "ON s1.MasterBookingID = [MasterBookings].ID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, MasterBookingID " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + tuesday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + tuesday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + tuesday + "' " +
+                            ") as s2 " +
+                            "ON s2.MasterBookingID = [MasterBookings].ID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, MasterBookingID " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + wednesday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + wednesday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + wednesday + "' " +
+                            ") as s3 " +
+                            "ON s3.MasterBookingID = [MasterBookings].ID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, MasterBookingID " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + thursday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + thursday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + thursday + "' " +
+                            ") as s4 " +
+                            "ON s4.MasterBookingID = [MasterBookings].ID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, MasterBookingID " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + friday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + friday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + friday + "' " +
+                            ") as s5 " +
+                            "ON s5.MasterBookingID = [MasterBookings].ID ";
+
+            return SQLstr;
+         }
+
         private string GetAvailabilitySQL(DateTime weekbegining)
         {
             string monday = weekbegining.ToString("yyyyMMdd");
@@ -2471,9 +2603,9 @@ namespace RedboxAddin.DL
             string thursday = weekbegining.AddDays(3).ToString("yyyyMMdd");
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
-            string SQLstr = "Select Lastname+', '+FirstName as Teacher,Live, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
-                            "OverseasTrainedTeacher, NQT, TA, QNN, SEN, NN, " +
-                            "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, " +
+            string SQLstr = "Select Lastname+', '+FirstName as TeacherName,Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
+                            "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, " +
+                            "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, Float, LT, D2D, RWInc, BSL, FirstAid, " +
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
                             "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
                             "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +

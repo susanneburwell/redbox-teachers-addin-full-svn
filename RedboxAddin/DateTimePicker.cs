@@ -23,6 +23,9 @@ namespace UIComponent
 
 		public DateTimePicker() : base()
 		{
+            //dt
+            this.CustomFormat = " ";
+            this.Format = DateTimePickerFormat.Custom;
 		}
 
 		public new DateTime Value 
@@ -45,16 +48,19 @@ namespace UIComponent
 						bIsNull = true;
 					}
 
-					this.Format = DateTimePickerFormat.Custom;
 					this.CustomFormat = " ";
+					this.Format = DateTimePickerFormat.Custom;
 				}
 				else 
 				{
 					if (bIsNull) 
 					{
-						this.Format = oldFormat;
-						this.CustomFormat = oldCustomFormat;
-						bIsNull = false;
+                        //this.Format = oldFormat;
+                        //this.CustomFormat = oldCustomFormat;
+                        //bIsNull = false;
+                        this.Format = DateTimePickerFormat.Short;
+                        this.CustomFormat = " ";
+                        bIsNull = false;
 					}
 					base.Value = value;
 				}
@@ -63,15 +69,16 @@ namespace UIComponent
 
 		protected override void OnCloseUp(EventArgs eventargs)
 		{
-			if (Control.MouseButtons == MouseButtons.None) 
-			{
-				if (bIsNull) 
-				{
-					this.Format = oldFormat;
-					this.CustomFormat = oldCustomFormat;
-					bIsNull = false;
-				}
-			}
+			if (Control.MouseButtons == MouseButtons.None)
+            {
+                if (bIsNull)
+                {
+                    this.Format = DateTimePickerFormat.Short;  //oldFormat;
+                    //this.CustomFormat = oldCustomFormat;
+                    bIsNull = false;
+                }
+               
+            }
 			base.OnCloseUp (eventargs);
 		}
 

@@ -211,7 +211,7 @@ namespace RedboxAddin.BL
         //    }
         //}
 
-        public static string TeacherQuals(bool TA, bool QTS, bool NQT, bool OTT, bool QNN, bool NN, bool SEN)
+        public static string TeacherQuals(bool TA, bool QTS, bool NQT, bool OTT, bool QNN, bool NN, bool SEN, bool PPA, bool Float)
         {
             string Quals = "";
             if (TA) Quals += "/TA";
@@ -221,6 +221,8 @@ namespace RedboxAddin.BL
             if (QNN) Quals += "/QNN";
             if (NN) Quals += "/NN";
             if (SEN) Quals += "/SEN";
+            if (PPA) Quals += "/PPA";
+            if (Float) Quals += "/Float";
 
             if (Quals != "") Quals = Quals.Substring(1);
             return Quals;
@@ -291,13 +293,14 @@ namespace RedboxAddin.BL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
                     var q = from s in db.Contacts
-                            where s.LastName != null
+                            join c in db.ContactDatas on s.ContactID equals c.ContactID
+                            where s.LastName != null && c.Current == true
                             orderby s.LastName
                             select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
                     //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
-                    var schools = q.ToList();
+                    var teachers = q.ToList();
 
-                    cmb1.DataSource = schools;
+                    cmb1.DataSource = teachers;
                     cmb1.DisplayMember = "FullName";
                     cmb1.ValueMember = "ContactID";
                     cmb1.Text = "";

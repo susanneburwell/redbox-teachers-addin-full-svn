@@ -79,9 +79,9 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 713);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 713);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -104,14 +104,14 @@
             this.panelTop.Location = new System.Drawing.Point(4, 4);
             this.panelTop.Margin = new System.Windows.Forms.Padding(4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(936, 62);
+            this.panelTop.Size = new System.Drawing.Size(998, 89);
             this.panelTop.TabIndex = 0;
             // 
             // btnCreateInvoices
             // 
-            this.btnCreateInvoices.Location = new System.Drawing.Point(655, 12);
+            this.btnCreateInvoices.Location = new System.Drawing.Point(567, 32);
             this.btnCreateInvoices.Name = "btnCreateInvoices";
-            this.btnCreateInvoices.Size = new System.Drawing.Size(86, 44);
+            this.btnCreateInvoices.Size = new System.Drawing.Size(156, 28);
             this.btnCreateInvoices.TabIndex = 90;
             this.btnCreateInvoices.Text = "Create Invoices";
             this.btnCreateInvoices.UseVisualStyleBackColor = true;
@@ -119,9 +119,9 @@
             // 
             // btnCreatePaySheets
             // 
-            this.btnCreatePaySheets.Location = new System.Drawing.Point(563, 12);
+            this.btnCreatePaySheets.Location = new System.Drawing.Point(567, 4);
             this.btnCreatePaySheets.Name = "btnCreatePaySheets";
-            this.btnCreatePaySheets.Size = new System.Drawing.Size(86, 44);
+            this.btnCreatePaySheets.Size = new System.Drawing.Size(156, 28);
             this.btnCreatePaySheets.TabIndex = 89;
             this.btnCreatePaySheets.Text = "Create PaySheets";
             this.btnCreatePaySheets.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             // 
             this.bnFwd.Location = new System.Drawing.Point(362, 36);
             this.bnFwd.Name = "bnFwd";
-            this.bnFwd.Size = new System.Drawing.Size(47, 23);
+            this.bnFwd.Size = new System.Drawing.Size(51, 23);
             this.bnFwd.TabIndex = 27;
             this.bnFwd.Text = ">>";
             this.bnFwd.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             // 
             this.btnBack.Location = new System.Drawing.Point(296, 36);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(47, 23);
+            this.btnBack.Size = new System.Drawing.Size(60, 23);
             this.btnBack.TabIndex = 26;
             this.btnBack.Text = "<<";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             this.lblTo.AutoSize = true;
             this.lblTo.Location = new System.Drawing.Point(65, 36);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(39, 16);
+            this.lblTo.Size = new System.Drawing.Size(45, 20);
             this.lblTo.TabIndex = 25;
             this.lblTo.Text = "lblTo";
             // 
@@ -161,7 +161,7 @@
             this.radCustom.AutoSize = true;
             this.radCustom.Location = new System.Drawing.Point(473, 10);
             this.radCustom.Name = "radCustom";
-            this.radCustom.Size = new System.Drawing.Size(71, 20);
+            this.radCustom.Size = new System.Drawing.Size(88, 24);
             this.radCustom.TabIndex = 24;
             this.radCustom.Text = "Custom";
             this.radCustom.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@
             this.radMonth.AutoSize = true;
             this.radMonth.Location = new System.Drawing.Point(384, 10);
             this.radMonth.Name = "radMonth";
-            this.radMonth.Size = new System.Drawing.Size(62, 20);
+            this.radMonth.Size = new System.Drawing.Size(76, 24);
             this.radMonth.TabIndex = 23;
             this.radMonth.Text = "Month";
             this.radMonth.UseVisualStyleBackColor = true;
@@ -186,7 +186,7 @@
             this.radWeek.Checked = true;
             this.radWeek.Location = new System.Drawing.Point(296, 11);
             this.radWeek.Name = "radWeek";
-            this.radWeek.Size = new System.Drawing.Size(62, 20);
+            this.radWeek.Size = new System.Drawing.Size(72, 24);
             this.radWeek.TabIndex = 22;
             this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
@@ -198,7 +198,7 @@
             // 
             this.dtFrom.Location = new System.Drawing.Point(68, 8);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 22);
+            this.dtFrom.Size = new System.Drawing.Size(200, 26);
             this.dtFrom.TabIndex = 18;
             this.dtFrom.ValueChanged += new System.EventHandler(this.RefreshGrid);
             // 
@@ -207,7 +207,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(23, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "From:";
             // 
@@ -215,7 +215,7 @@
             // 
             this.dtTo.Location = new System.Drawing.Point(68, 32);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(200, 22);
+            this.dtTo.Size = new System.Drawing.Size(200, 26);
             this.dtTo.TabIndex = 20;
             this.dtTo.Visible = false;
             this.dtTo.ValueChanged += new System.EventHandler(this.dtTo_ValueChanged);
@@ -225,7 +225,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(23, 37);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 16);
+            this.label5.Size = new System.Drawing.Size(33, 20);
             this.label5.TabIndex = 21;
             this.label5.Text = "To:";
             // 
@@ -233,10 +233,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(739, 11);
+            this.label1.Location = new System.Drawing.Point(747, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 37);
+            this.label1.Size = new System.Drawing.Size(200, 46);
             this.label1.TabIndex = 17;
             this.label1.Text = "Load Plan";
             // 
@@ -247,11 +247,11 @@
             gridLevelNode1.RelationName = "Level1";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gridControl1.Location = new System.Drawing.Point(4, 74);
+            this.gridControl1.Location = new System.Drawing.Point(4, 101);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(936, 635);
+            this.gridControl1.Size = new System.Drawing.Size(998, 608);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -462,9 +462,9 @@
             // 
             // frmLoadPlan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 713);
+            this.ClientSize = new System.Drawing.Size(1006, 713);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

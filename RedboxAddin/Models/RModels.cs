@@ -50,6 +50,7 @@ namespace RedboxAddin.Models
     {
         public string Teacher { get; set; }
         public string Live { get; set; }
+        public string Location { get; set; }
         public string Wants { get; set; }
         public string YrGroup { get; set; }
         public string QTS { get; set; }
@@ -73,6 +74,10 @@ namespace RedboxAddin.Models
         public string WedStatus { get; set; }
         public string ThuStatus { get; set; }
         public string FriStatus { get; set; }
+        public bool FirstAid { get; set; }
+        public bool RWInc { get; set; }
+        public bool BSL { get; set; }
+
     }
 
     class RTimeSheet

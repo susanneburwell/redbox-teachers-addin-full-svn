@@ -116,7 +116,7 @@ namespace RedboxAddin.Presentation
                 txtCRBFormRef.Text = contactObj.CRBFormRef;
                 txtCRBNumber.Text = contactObj.CRBNumber;
                 dtCRBValidFrom.Value = contactObj.CRBValidFrom;
-                chkDBSDirectPayment.Checked =contactObj.DBSDirectPayment;
+                chkDBSDirectPayment.Checked = contactObj.DBSDirectPayment;
                 txtCurrentPayScale.Text = contactObj.CurrentPayScale;
                 chkCVReceived.Checked = contactObj.CVReceived;
                 dtDateOfSupply.Value = contactObj.DateOfSupply;
@@ -315,6 +315,7 @@ namespace RedboxAddin.Presentation
                 contactObj.VisaLocation = txtVisaLocation.Text;
                 contactObj.YearGroup = txtYearGroup.Text;
                 contactObj.AttendMMRV = chkMMRV.Checked;
+
                 bool result = false;
                 if (CurrentContactID != 0)
                 {
@@ -380,6 +381,31 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in SaveContact :- " + ex.Message);
                 return false;
             }
+        }
+
+        private string GetLocation()
+        {
+            string location = "";
+            if (chkNorth.Checked) location += ", North";
+            if (chkSouth.Checked) location += ", South";
+            if (chkEast.Checked) location += ", East";
+            if (chkWest.Checked) location += ", West";
+            if (location == "") return "";
+            else return location.Substring(2);
+        }
+
+        private void SetLocation(string location)
+        {
+            if (location == null) return;
+
+            if (location.IndexOf("North") > -1) chkNorth.Checked = true;
+            else chkNorth.Checked = false;
+            if (location.IndexOf("South") > -1) chkSouth.Checked = true;
+            else chkSouth.Checked = false;
+            if (location.IndexOf("East") > -1) chkEast.Checked = true;
+            else chkEast.Checked = false;
+            if (location.IndexOf("West") > -1) chkWest.Checked = true;
+            else chkWest.Checked = false;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1084,6 +1110,12 @@ namespace RedboxAddin.Presentation
                     cd.LT = chkLT.Checked;
                     cd.D2D = chkD2D.Checked;
                     cd.RGD = chkRGD.Checked;
+                    cd.Location = GetLocation();
+
+                    cd.FirstAid = chkFirstAid.Checked;
+                    cd.RWInc = chkRWInc.Checked;
+                    cd.BSL = chkBSL.Checked;
+
 
                     db.SubmitChanges();
                     return;
@@ -1154,6 +1186,10 @@ namespace RedboxAddin.Presentation
                         chkLT.Checked = cd.LT;
                         chkD2D.Checked = cd.D2D;
                         chkRGD.Checked = cd.RGD;
+                        SetLocation(cd.Location);
+                        chkFirstAid.Checked = cd.FirstAid;
+                        chkRWInc.Checked = cd.RWInc;
+                        chkBSL.Checked = cd.BSL;
 
                     }
 

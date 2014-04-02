@@ -33,6 +33,11 @@
             this.tableLayoutPanelContainer = new System.Windows.Forms.TableLayoutPanel();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.chkWest = new System.Windows.Forms.CheckBox();
+            this.chkEast = new System.Windows.Forms.CheckBox();
+            this.chkSouth = new System.Windows.Forms.CheckBox();
+            this.chkNorth = new System.Windows.Forms.CheckBox();
+            this.label90 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label82 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
@@ -197,6 +202,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkMMRV = new System.Windows.Forms.CheckBox();
             this.chkReferencesChecked = new System.Windows.Forms.CheckBox();
             this.chkProofOfAddress = new System.Windows.Forms.CheckBox();
             this.chkOverseasTrainedTeacher = new System.Windows.Forms.CheckBox();
@@ -303,7 +309,9 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chkMMRV = new System.Windows.Forms.CheckBox();
+            this.chkRWInc = new System.Windows.Forms.CheckBox();
+            this.chkBSL = new System.Windows.Forms.CheckBox();
+            this.chkFirstAid = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -364,6 +372,11 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.chkWest);
+            this.tabPage5.Controls.Add(this.chkEast);
+            this.tabPage5.Controls.Add(this.chkSouth);
+            this.tabPage5.Controls.Add(this.chkNorth);
+            this.tabPage5.Controls.Add(this.label90);
             this.tabPage5.Controls.Add(this.groupBox7);
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Controls.Add(this.chkCurrent);
@@ -395,6 +408,55 @@
             this.tabPage5.Text = "Summary";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // chkWest
+            // 
+            this.chkWest.AutoSize = true;
+            this.chkWest.Location = new System.Drawing.Point(572, 193);
+            this.chkWest.Name = "chkWest";
+            this.chkWest.Size = new System.Drawing.Size(58, 20);
+            this.chkWest.TabIndex = 91;
+            this.chkWest.Text = "West";
+            this.chkWest.UseVisualStyleBackColor = true;
+            // 
+            // chkEast
+            // 
+            this.chkEast.AutoSize = true;
+            this.chkEast.Location = new System.Drawing.Point(472, 193);
+            this.chkEast.Name = "chkEast";
+            this.chkEast.Size = new System.Drawing.Size(54, 20);
+            this.chkEast.TabIndex = 90;
+            this.chkEast.Text = "East";
+            this.chkEast.UseVisualStyleBackColor = true;
+            // 
+            // chkSouth
+            // 
+            this.chkSouth.AutoSize = true;
+            this.chkSouth.Location = new System.Drawing.Point(366, 193);
+            this.chkSouth.Name = "chkSouth";
+            this.chkSouth.Size = new System.Drawing.Size(61, 20);
+            this.chkSouth.TabIndex = 89;
+            this.chkSouth.Text = "South";
+            this.chkSouth.UseVisualStyleBackColor = true;
+            // 
+            // chkNorth
+            // 
+            this.chkNorth.AutoSize = true;
+            this.chkNorth.Location = new System.Drawing.Point(253, 193);
+            this.chkNorth.Name = "chkNorth";
+            this.chkNorth.Size = new System.Drawing.Size(59, 20);
+            this.chkNorth.TabIndex = 88;
+            this.chkNorth.Text = "North";
+            this.chkNorth.UseVisualStyleBackColor = true;
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(32, 194);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(172, 16);
+            this.label90.TabIndex = 87;
+            this.label90.Text = "Location (Prepared to work)";
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label82);
@@ -409,7 +471,7 @@
             this.groupBox7.Controls.Add(this.label80);
             this.groupBox7.Controls.Add(this.txtHfDayRate);
             this.groupBox7.Controls.Add(this.label81);
-            this.groupBox7.Location = new System.Drawing.Point(24, 356);
+            this.groupBox7.Location = new System.Drawing.Point(24, 380);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(694, 95);
             this.groupBox7.TabIndex = 80;
@@ -530,7 +592,7 @@
             this.groupBox9.Controls.Add(this.label88);
             this.groupBox9.Controls.Add(this.txtHfDayRateTA);
             this.groupBox9.Controls.Add(this.label89);
-            this.groupBox9.Location = new System.Drawing.Point(24, 457);
+            this.groupBox9.Location = new System.Drawing.Point(24, 481);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(694, 100);
             this.groupBox9.TabIndex = 86;
@@ -740,7 +802,7 @@
             this.groupBox6.Controls.Add(this.chkYr6);
             this.groupBox6.Controls.Add(this.btnKS1);
             this.groupBox6.Controls.Add(this.btnKS2);
-            this.groupBox6.Location = new System.Drawing.Point(24, 225);
+            this.groupBox6.Location = new System.Drawing.Point(24, 249);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(418, 125);
             this.groupBox6.TabIndex = 79;
@@ -865,7 +927,7 @@
             this.groupBox5.Controls.Add(this.chkQNN);
             this.groupBox5.Controls.Add(this.chkQTS1);
             this.groupBox5.Controls.Add(this.chkSEN);
-            this.groupBox5.Location = new System.Drawing.Point(477, 225);
+            this.groupBox5.Location = new System.Drawing.Point(477, 249);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(241, 125);
             this.groupBox5.TabIndex = 78;
@@ -937,7 +999,7 @@
             // 
             // txtNoGo
             // 
-            this.txtNoGo.Location = new System.Drawing.Point(153, 192);
+            this.txtNoGo.Location = new System.Drawing.Point(153, 220);
             this.txtNoGo.Name = "txtNoGo";
             this.txtNoGo.Size = new System.Drawing.Size(565, 22);
             this.txtNoGo.TabIndex = 5;
@@ -945,7 +1007,7 @@
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(32, 199);
+            this.label74.Location = new System.Drawing.Point(32, 223);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(44, 16);
             this.label74.TabIndex = 59;
@@ -1024,7 +1086,7 @@
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(76, 16);
             this.label60.TabIndex = 36;
-            this.label60.Text = "CRB Status";
+            this.label60.Text = "DBS Status";
             // 
             // label59
             // 
@@ -2126,6 +2188,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkFirstAid);
+            this.panel1.Controls.Add(this.chkBSL);
+            this.panel1.Controls.Add(this.chkRWInc);
             this.panel1.Controls.Add(this.chkMMRV);
             this.panel1.Controls.Add(this.chkReferencesChecked);
             this.panel1.Controls.Add(this.chkProofOfAddress);
@@ -2145,6 +2210,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 178);
             this.panel1.TabIndex = 2;
+            // 
+            // chkMMRV
+            // 
+            this.chkMMRV.AutoSize = true;
+            this.chkMMRV.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMMRV.Location = new System.Drawing.Point(174, 118);
+            this.chkMMRV.Name = "chkMMRV";
+            this.chkMMRV.Size = new System.Drawing.Size(167, 17);
+            this.chkMMRV.TabIndex = 54;
+            this.chkMMRV.Text = "Attend school that has MMRV";
+            this.chkMMRV.UseVisualStyleBackColor = true;
             // 
             // chkReferencesChecked
             // 
@@ -3290,16 +3366,38 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // chkMMRV
+            // chkRWInc
             // 
-            this.chkMMRV.AutoSize = true;
-            this.chkMMRV.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMMRV.Location = new System.Drawing.Point(174, 118);
-            this.chkMMRV.Name = "chkMMRV";
-            this.chkMMRV.Size = new System.Drawing.Size(167, 17);
-            this.chkMMRV.TabIndex = 54;
-            this.chkMMRV.Text = "Attend school that has MMRV";
-            this.chkMMRV.UseVisualStyleBackColor = true;
+            this.chkRWInc.AutoSize = true;
+            this.chkRWInc.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRWInc.Location = new System.Drawing.Point(10, 118);
+            this.chkRWInc.Name = "chkRWInc";
+            this.chkRWInc.Size = new System.Drawing.Size(58, 17);
+            this.chkRWInc.TabIndex = 55;
+            this.chkRWInc.Text = "RWInc";
+            this.chkRWInc.UseVisualStyleBackColor = true;
+            // 
+            // chkBSL
+            // 
+            this.chkBSL.AutoSize = true;
+            this.chkBSL.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBSL.Location = new System.Drawing.Point(10, 141);
+            this.chkBSL.Name = "chkBSL";
+            this.chkBSL.Size = new System.Drawing.Size(43, 17);
+            this.chkBSL.TabIndex = 56;
+            this.chkBSL.Text = "BSL";
+            this.chkBSL.UseVisualStyleBackColor = true;
+            // 
+            // chkFirstAid
+            // 
+            this.chkFirstAid.AutoSize = true;
+            this.chkFirstAid.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFirstAid.Location = new System.Drawing.Point(174, 141);
+            this.chkFirstAid.Name = "chkFirstAid";
+            this.chkFirstAid.Size = new System.Drawing.Size(65, 17);
+            this.chkFirstAid.TabIndex = 57;
+            this.chkFirstAid.Text = "First Aid";
+            this.chkFirstAid.UseVisualStyleBackColor = true;
             // 
             // frmViewContact
             // 
@@ -3635,5 +3733,13 @@
         private System.Windows.Forms.Label label89;
         private System.Windows.Forms.CheckBox chkDBSDirectPayment;
         private System.Windows.Forms.CheckBox chkMMRV;
+        private System.Windows.Forms.CheckBox chkWest;
+        private System.Windows.Forms.CheckBox chkEast;
+        private System.Windows.Forms.CheckBox chkSouth;
+        private System.Windows.Forms.CheckBox chkNorth;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.CheckBox chkFirstAid;
+        private System.Windows.Forms.CheckBox chkBSL;
+        private System.Windows.Forms.CheckBox chkRWInc;
     }
 }

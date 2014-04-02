@@ -34,7 +34,8 @@ namespace RedboxAddin.Presentation
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
                 db = new RedBoxDB(CONNSTR);
 
-                PopulateTeacher(cmbTeacher);
+                //PopulateTeacher(cmbTeacher);
+                Utils.PopulateTeacher(cmbTeacher);
 
                 if (_teacherID != 0) LoadTeacherDates(_teacherID);
 
@@ -46,27 +47,27 @@ namespace RedboxAddin.Presentation
 
         }
 
-        private void PopulateTeacher(ComboBox cmb1)
-        {
-            try
-            {
-                var q = from s in db.Contacts
-                        where s.LastName != null
-                        orderby s.LastName
-                        select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
-                //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
-                var schools = q.ToList();
+        //private void PopulateTeacher(ComboBox cmb1)
+        //{
+        //    try
+        //    {
+        //        var q = from s in db.Contacts
+        //                where s.LastName != null && s.c
+        //                orderby s.LastName
+        //                select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
+        //        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+        //        var schools = q.ToList();
 
-                cmb1.DataSource = schools;
-                cmb1.DisplayMember = "FullName";
-                cmb1.ValueMember = "ContactID";
-                cmb1.Text = "";
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
-            }
-        }
+        //        cmb1.DataSource = schools;
+        //        cmb1.DisplayMember = "FullName";
+        //        cmb1.ValueMember = "ContactID";
+        //        cmb1.Text = "";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+        //    }
+        //}
 
         private void LoadTeacherDates(Int64 teacherID)
         {
@@ -119,7 +120,10 @@ namespace RedboxAddin.Presentation
                         gd.Date = bookingdate;
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
-                        db.GuaranteedDays.InsertOnSubmit(gd);
+
+                        //don't add twice
+                        var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID );
+                        if (numFound == 0)   db.GuaranteedDays.InsertOnSubmit(gd);
 
                         bookingdate = bookingdate.AddDays(1);
                         iCatch += 1;
@@ -196,6 +200,7 @@ namespace RedboxAddin.Presentation
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveRequest();
+            LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
         }
 
         private void radAbs_CheckedChanged(object sender, EventArgs e)
@@ -222,6 +227,11 @@ namespace RedboxAddin.Presentation
          private void chkPast_CheckedChanged(object sender, EventArgs e)
          {
              LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
+         }
+
+         private void dtFrom_ValueChanged(object sender, EventArgs e)
+         {
+             dtTo.Value = dtFrom.Value;
          }
 
 

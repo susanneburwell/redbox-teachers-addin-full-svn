@@ -61,6 +61,10 @@ namespace RedboxAddin.Presentation
                     SetGridVisibility();
                     ShowSavedDetails();
                 }
+                else
+                {
+                    txtDetails.Text = DateTime.Now.ToShortDateString() + " : ";
+                }
                 loading = false;
             }
             catch (Exception ex)
@@ -162,27 +166,28 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void PopulateTeacher(ComboBox cmb1)
-        {
-            try
-            {
-                var q = from s in db.Contacts
-                        where s.LastName != null
-                        orderby s.LastName
-                        select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
-                //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
-                var schools = q.ToList();
+        //private void PopulateTeacher(ComboBox cmb1)
+        //{
+        //    try
+        //    {
+        //        var q = from s in db.Contacts
+        //                join c in db.ContactDatas on s.ContactID equals c.ContactID
+        //                where s.LastName != null && c.Current == true
+        //                orderby s.LastName
+        //                select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
+        //        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+        //        var schools = q.ToList();
 
-                cmb1.DataSource = schools;
-                cmb1.DisplayMember = "FullName";
-                cmb1.ValueMember = "ContactID";
-                cmb1.Text = "";
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
-            }
-        }
+        //        cmb1.DataSource = schools;
+        //        cmb1.DisplayMember = "FullName";
+        //        cmb1.ValueMember = "ContactID";
+        //        cmb1.Text = "";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+        //    }
+        //}
 
         #endregion
 
@@ -412,7 +417,6 @@ namespace RedboxAddin.Presentation
 
                 db.SubmitChanges();
 
-                ShowSavedDetails();
 
                 return true;
             }
@@ -493,39 +497,12 @@ namespace RedboxAddin.Presentation
 
                 //get Teacher Status
                 //TeacherLevel tl = cmbTeacherLevel.SelectedItem as TeacherLevel;
-                string teacherStatus = Utils.TeacherQuals(chkTA.Checked, chkQTS.Checked, chkNQT.Checked, chkOTT.Checked, chkQNN.Checked, chkNN.Checked, chkSEN.Checked);
+                string teacherStatus = Utils.TeacherQuals(chkTA.Checked, chkQTS.Checked, chkNQT.Checked, chkOTT.Checked, chkQNN.Checked, 
+                    chkNN.Checked, chkSEN.Checked, chkPPA.Checked, chkFloat.Checked);
 
                 //Get AgeGroup
                 string agegroup = Utils.YearGroup(chkNur.Checked, chkRec.Checked, chkYr1.Checked, chkYr2.Checked, chkYr3.Checked, chkYr4.Checked, chkYr5.Checked, chkYr6.Checked);
-                //if (chkNur.Checked) agegroup += "Nur/";
-                //if (chkRec.Checked) agegroup += "Rec/";
-                //if (chkYr1.Checked) agegroup += "Yr1/";
-                //if (chkYr2.Checked) agegroup += "Yr2/";
-                //if (chkYr3.Checked) agegroup += "Yr3/";
-                //if (chkYr4.Checked) agegroup += "Yr4/";
-                //if (chkYr5.Checked) agegroup += "Yr5/";
-                //if (chkYr6.Checked) agegroup += "Yr6";
-
-                //agegroup = agegroup.Replace("Nur/Rec", "Nur-Rec");
-                //agegroup = agegroup.Replace("Rec/Yr1", "Rec-Yr1");
-                //agegroup = agegroup.Replace("Yr1/Yr2", "Yr1-Yr2");
-                //agegroup = agegroup.Replace("Yr2/Yr3", "Yr2-Yr3");
-                //agegroup = agegroup.Replace("Yr3/Yr4", "Yr3-Yr4");
-                //agegroup = agegroup.Replace("Yr4/Yr5", "Yr4-Yr5");
-                //agegroup = agegroup.Replace("Yr5/Yr6", "Yr5-Yr6");
-
-                //agegroup = agegroup.Replace("-Rec-", "-");
-                //agegroup = agegroup.Replace("-Yr1-", "-");
-                //agegroup = agegroup.Replace("-Yr2-", "-");
-                //agegroup = agegroup.Replace("-Yr3-", "-");
-                //agegroup = agegroup.Replace("-Yr4-", "-");
-                //agegroup = agegroup.Replace("-Yr5-", "-");
-
-                //if (agegroup.Length > 0)
-                //{
-                //    if (agegroup.Substring(agegroup.Length - 1) == "/") agegroup = agegroup.Substring(0, agegroup.Length - 1);
-                //}
-
+               
                 lblDescription.Text = shortname + " " + teacherStatus + " " + agegroup;
 
                 //Check Halfday
@@ -741,10 +718,28 @@ namespace RedboxAddin.Presentation
                 if (chkYr4.Checked) wheresql += "AND ([Yr4] = 'true') ";
                 if (chkYr5.Checked) wheresql += "AND ([Yr5] = 'true') ";
                 if (chkYr6.Checked) wheresql += "AND ([Yr6] = 'true') ";
+                if (chkPPA.Checked) wheresql += "AND ([PPA] = 'true') ";
+                //if (chkFloat.Checked) wheresql += "AND ([Float] = 'true') ";
 
                 wheresql = " WHERE [current] = 'true' AND [Lastname] IS NOT NULL " + wheresql;
-                wheresql = wheresql + " ORDER BY [LastName]";
 
+                //Get qualifications
+                string SQL = "";
+                if (chkQTS.Checked) SQL += " OR [QTS] = 'true' ";
+                if (chkNQT.Checked) SQL += " OR [NQT] = 'true' ";
+                if (chkOTT.Checked) SQL += " OR [OverseasTrainedTeacher]  = 'true' ";
+                if (chkTA.Checked) SQL += " OR [TA]  = 'true' ";
+                if (chkQNN.Checked) SQL += " OR [QNN]  = 'true' ";
+                if (chkNN.Checked) SQL += " OR [NN]  = 'true' ";
+                if (chkSEN.Checked) SQL += " OR [SEN]  = 'true' ";
+                if (chkTeacher.Checked) SQL += " OR [Teacher]  = 'true' ";
+
+                if (SQL != "")
+                {
+                    wheresql = wheresql + " AND (" + SQL.Substring(3) + ") ";
+                }
+
+                wheresql = wheresql + " ORDER BY [LastName]";
 
 
                 return wheresql;
@@ -955,6 +950,8 @@ namespace RedboxAddin.Presentation
         {
             if (SaveRequest())
             {
+                ShowSavedDetails();
+
                 btnView.Text = "Edit Daily Bookings";
                 SetGridVisibility();
                 btnSave.Text = "Save Updates";
@@ -983,6 +980,7 @@ namespace RedboxAddin.Presentation
             if (SaveRequest())
             {
                 clearControls();
+                txtDetails.Text = DateTime.Now.ToShortDateString() + " : ";
                 btnView.Text = "Edit Daily Bookings";
                 availabilityGrid1.Clear();
                 availabilityGrid1.Visible = false;
@@ -1130,6 +1128,15 @@ namespace RedboxAddin.Presentation
                 dgcBookings.Dock = DockStyle.Fill;
                 dgcBookings.Show();
             }
+        }
+
+        private void DateChanged(object sender, EventArgs e)
+        {
+            dtTo.Value = dtFrom.Value;
+
+            UpdateDescription();
+            if (availabilityGrid1.Visible) LoadAvailabilityTable();
+            SetColours();
         }
 
         private void CheckedChanged(object sender, EventArgs e)

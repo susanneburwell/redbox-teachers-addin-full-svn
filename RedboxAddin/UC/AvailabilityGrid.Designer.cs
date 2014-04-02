@@ -35,6 +35,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Live = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Location = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Wants = new DevExpress.XtraGrid.Columns.GridColumn();
             this.YrGroup = new DevExpress.XtraGrid.Columns.GridColumn();
             this.QTS = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,12 +53,15 @@
             this.WedColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThuColor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FriColor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.MonStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TueStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.WedStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThuStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FriStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RWInc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BSL = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FirstAid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +97,7 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Teacher,
             this.Live,
+            this.Location,
             this.Wants,
             this.YrGroup,
             this.QTS,
@@ -114,7 +119,10 @@
             this.TueStatus,
             this.WedStatus,
             this.ThuStatus,
-            this.FriStatus});
+            this.FriStatus,
+            this.RWInc,
+            this.BSL,
+            this.FirstAid});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,6 +152,16 @@
             this.Live.Visible = true;
             this.Live.VisibleIndex = 1;
             // 
+            // Location
+            // 
+            this.Location.Caption = "Location";
+            this.Location.FieldName = "Location";
+            this.Location.Name = "Location";
+            this.Location.OptionsColumn.AllowEdit = false;
+            this.Location.OptionsColumn.ReadOnly = true;
+            this.Location.Visible = true;
+            this.Location.VisibleIndex = 2;
+            // 
             // Wants
             // 
             this.Wants.Caption = "Wants";
@@ -154,7 +172,7 @@
             this.Wants.OptionsColumn.AllowEdit = false;
             this.Wants.OptionsColumn.ReadOnly = true;
             this.Wants.Visible = true;
-            this.Wants.VisibleIndex = 2;
+            this.Wants.VisibleIndex = 3;
             // 
             // YrGroup
             // 
@@ -166,7 +184,7 @@
             this.YrGroup.OptionsColumn.AllowEdit = false;
             this.YrGroup.OptionsColumn.ReadOnly = true;
             this.YrGroup.Visible = true;
-            this.YrGroup.VisibleIndex = 3;
+            this.YrGroup.VisibleIndex = 4;
             this.YrGroup.Width = 70;
             // 
             // QTS
@@ -179,7 +197,7 @@
             this.QTS.OptionsColumn.AllowEdit = false;
             this.QTS.OptionsColumn.ReadOnly = true;
             this.QTS.Visible = true;
-            this.QTS.VisibleIndex = 4;
+            this.QTS.VisibleIndex = 5;
             this.QTS.Width = 40;
             // 
             // PofA
@@ -192,7 +210,7 @@
             this.PofA.OptionsColumn.AllowEdit = false;
             this.PofA.OptionsColumn.ReadOnly = true;
             this.PofA.Visible = true;
-            this.PofA.VisibleIndex = 5;
+            this.PofA.VisibleIndex = 6;
             this.PofA.Width = 40;
             // 
             // CRB
@@ -202,7 +220,7 @@
             this.CRB.OptionsColumn.AllowEdit = false;
             this.CRB.OptionsColumn.ReadOnly = true;
             this.CRB.Visible = true;
-            this.CRB.VisibleIndex = 6;
+            this.CRB.VisibleIndex = 7;
             // 
             // NoGo
             // 
@@ -212,7 +230,7 @@
             this.NoGo.OptionsColumn.AllowEdit = false;
             this.NoGo.OptionsColumn.ReadOnly = true;
             this.NoGo.Visible = true;
-            this.NoGo.VisibleIndex = 7;
+            this.NoGo.VisibleIndex = 8;
             // 
             // Mon
             // 
@@ -222,15 +240,17 @@
             this.Mon.OptionsColumn.AllowEdit = false;
             this.Mon.OptionsColumn.ReadOnly = true;
             this.Mon.Visible = true;
-            this.Mon.VisibleIndex = 8;
+            this.Mon.VisibleIndex = 9;
             // 
             // MonG
             // 
             this.MonG.Caption = "Guaranteed";
             this.MonG.FieldName = "MonG";
             this.MonG.Name = "MonG";
-            this.MonG.Visible = true;
-            this.MonG.VisibleIndex = 13;
+            this.MonG.OptionsColumn.AllowEdit = false;
+            this.MonG.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.MonG.OptionsColumn.AllowShowHide = false;
+            this.MonG.OptionsColumn.ReadOnly = true;
             // 
             // Tue
             // 
@@ -240,7 +260,7 @@
             this.Tue.OptionsColumn.AllowEdit = false;
             this.Tue.OptionsColumn.ReadOnly = true;
             this.Tue.Visible = true;
-            this.Tue.VisibleIndex = 9;
+            this.Tue.VisibleIndex = 10;
             // 
             // Wed
             // 
@@ -250,7 +270,7 @@
             this.Wed.OptionsColumn.AllowEdit = false;
             this.Wed.OptionsColumn.ReadOnly = true;
             this.Wed.Visible = true;
-            this.Wed.VisibleIndex = 10;
+            this.Wed.VisibleIndex = 11;
             // 
             // Thur
             // 
@@ -260,7 +280,7 @@
             this.Thur.OptionsColumn.AllowEdit = false;
             this.Thur.OptionsColumn.ReadOnly = true;
             this.Thur.Visible = true;
-            this.Thur.VisibleIndex = 11;
+            this.Thur.VisibleIndex = 12;
             // 
             // Fri
             // 
@@ -270,13 +290,18 @@
             this.Fri.OptionsColumn.AllowEdit = false;
             this.Fri.OptionsColumn.ReadOnly = true;
             this.Fri.Visible = true;
-            this.Fri.VisibleIndex = 12;
+            this.Fri.VisibleIndex = 13;
             // 
             // MonColor
             // 
             this.MonColor.Caption = "MonColor";
             this.MonColor.FieldName = "MonColor";
             this.MonColor.Name = "MonColor";
+            this.MonColor.OptionsColumn.AllowEdit = false;
+            this.MonColor.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.MonColor.OptionsColumn.AllowMove = false;
+            this.MonColor.OptionsColumn.AllowShowHide = false;
+            this.MonColor.OptionsColumn.ReadOnly = true;
             this.MonColor.ShowUnboundExpressionMenu = true;
             // 
             // TueColor
@@ -284,24 +309,125 @@
             this.TueColor.Caption = "TueColor";
             this.TueColor.FieldName = "TueColor";
             this.TueColor.Name = "TueColor";
+            this.TueColor.OptionsColumn.AllowEdit = false;
+            this.TueColor.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.TueColor.OptionsColumn.AllowMove = false;
+            this.TueColor.OptionsColumn.AllowShowHide = false;
+            this.TueColor.OptionsColumn.ReadOnly = true;
             // 
             // WedColor
             // 
             this.WedColor.Caption = "WedColor";
             this.WedColor.FieldName = "WedColor";
             this.WedColor.Name = "WedColor";
+            this.WedColor.OptionsColumn.AllowEdit = false;
+            this.WedColor.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.WedColor.OptionsColumn.AllowMove = false;
+            this.WedColor.OptionsColumn.AllowShowHide = false;
+            this.WedColor.OptionsColumn.ReadOnly = true;
             // 
             // ThuColor
             // 
             this.ThuColor.Caption = "ThuColor";
             this.ThuColor.FieldName = "ThuColor";
             this.ThuColor.Name = "ThuColor";
+            this.ThuColor.OptionsColumn.AllowEdit = false;
+            this.ThuColor.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ThuColor.OptionsColumn.AllowMove = false;
+            this.ThuColor.OptionsColumn.AllowShowHide = false;
+            this.ThuColor.OptionsColumn.ReadOnly = true;
             // 
             // FriColor
             // 
             this.FriColor.Caption = "FriColor";
             this.FriColor.FieldName = "FriColor";
             this.FriColor.Name = "FriColor";
+            this.FriColor.OptionsColumn.AllowEdit = false;
+            this.FriColor.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.FriColor.OptionsColumn.AllowMove = false;
+            this.FriColor.OptionsColumn.AllowShowHide = false;
+            this.FriColor.OptionsColumn.ReadOnly = true;
+            // 
+            // MonStatus
+            // 
+            this.MonStatus.Caption = "MonStatus";
+            this.MonStatus.FieldName = "MonStatus";
+            this.MonStatus.Name = "MonStatus";
+            this.MonStatus.OptionsColumn.AllowEdit = false;
+            this.MonStatus.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.MonStatus.OptionsColumn.AllowMove = false;
+            this.MonStatus.OptionsColumn.AllowShowHide = false;
+            this.MonStatus.OptionsColumn.ReadOnly = true;
+            // 
+            // TueStatus
+            // 
+            this.TueStatus.Caption = "TueStatus";
+            this.TueStatus.Name = "TueStatus";
+            this.TueStatus.OptionsColumn.AllowEdit = false;
+            this.TueStatus.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.TueStatus.OptionsColumn.AllowMove = false;
+            this.TueStatus.OptionsColumn.AllowShowHide = false;
+            this.TueStatus.OptionsColumn.ReadOnly = true;
+            // 
+            // WedStatus
+            // 
+            this.WedStatus.Caption = "WedStatus";
+            this.WedStatus.Name = "WedStatus";
+            this.WedStatus.OptionsColumn.AllowEdit = false;
+            this.WedStatus.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.WedStatus.OptionsColumn.AllowMove = false;
+            this.WedStatus.OptionsColumn.AllowShowHide = false;
+            this.WedStatus.OptionsColumn.ReadOnly = true;
+            // 
+            // ThuStatus
+            // 
+            this.ThuStatus.Caption = "ThuStatus";
+            this.ThuStatus.Name = "ThuStatus";
+            this.ThuStatus.OptionsColumn.AllowEdit = false;
+            this.ThuStatus.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.ThuStatus.OptionsColumn.AllowMove = false;
+            this.ThuStatus.OptionsColumn.AllowShowHide = false;
+            this.ThuStatus.OptionsColumn.ReadOnly = true;
+            // 
+            // FriStatus
+            // 
+            this.FriStatus.Caption = "FriStatus";
+            this.FriStatus.Name = "FriStatus";
+            this.FriStatus.OptionsColumn.AllowEdit = false;
+            this.FriStatus.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.FriStatus.OptionsColumn.AllowMove = false;
+            this.FriStatus.OptionsColumn.AllowShowHide = false;
+            this.FriStatus.OptionsColumn.ReadOnly = true;
+            // 
+            // RWInc
+            // 
+            this.RWInc.Caption = "RWInc";
+            this.RWInc.FieldName = "RWInc";
+            this.RWInc.Name = "RWInc";
+            this.RWInc.OptionsColumn.AllowEdit = false;
+            this.RWInc.OptionsColumn.ReadOnly = true;
+            this.RWInc.Visible = true;
+            this.RWInc.VisibleIndex = 14;
+            // 
+            // BSL
+            // 
+            this.BSL.Caption = "BSL";
+            this.BSL.FieldName = "BSL";
+            this.BSL.Name = "BSL";
+            this.BSL.OptionsColumn.AllowEdit = false;
+            this.BSL.OptionsColumn.ReadOnly = true;
+            this.BSL.Visible = true;
+            this.BSL.VisibleIndex = 15;
+            // 
+            // FirstAid
+            // 
+            this.FirstAid.Caption = "FirstAid";
+            this.FirstAid.FieldName = "FirstAid";
+            this.FirstAid.Name = "FirstAid";
+            this.FirstAid.OptionsColumn.AllowEdit = false;
+            this.FirstAid.OptionsColumn.ReadOnly = true;
+            this.FirstAid.Visible = true;
+            this.FirstAid.VisibleIndex = 16;
             // 
             // imageList1
             // 
@@ -309,32 +435,6 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
-            // 
-            // MonStatus
-            // 
-            this.MonStatus.Caption = "MonStatus";
-            this.MonStatus.FieldName = "MonStatus";
-            this.MonStatus.Name = "MonStatus";
-            // 
-            // TueStatus
-            // 
-            this.TueStatus.Caption = "TueStatus";
-            this.TueStatus.Name = "TueStatus";
-            // 
-            // WedStatus
-            // 
-            this.WedStatus.Caption = "WedStatus";
-            this.WedStatus.Name = "WedStatus";
-            // 
-            // ThuStatus
-            // 
-            this.ThuStatus.Caption = "ThuStatus";
-            this.ThuStatus.Name = "ThuStatus";
-            // 
-            // FriStatus
-            // 
-            this.FriStatus.Caption = "FriStatus";
-            this.FriStatus.Name = "FriStatus";
             // 
             // AvailabilityGrid
             // 
@@ -379,5 +479,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn WedStatus;
         private DevExpress.XtraGrid.Columns.GridColumn ThuStatus;
         private DevExpress.XtraGrid.Columns.GridColumn FriStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn Location;
+        private DevExpress.XtraGrid.Columns.GridColumn RWInc;
+        private DevExpress.XtraGrid.Columns.GridColumn BSL;
+        private DevExpress.XtraGrid.Columns.GridColumn FirstAid;
     }
 }

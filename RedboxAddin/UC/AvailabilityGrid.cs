@@ -44,7 +44,7 @@ namespace RedboxAddin.UC
                 DateTime monday = input.AddDays(delta).Date;
 
 
-                DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
+                //DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
                 //bindingSource1.DataSource = msgDs;
                 gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
                 gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
@@ -197,88 +197,107 @@ namespace RedboxAddin.UC
 
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
-            //bubble the event up to the parent
-            EventHandler handler = this.DblClick;
-            if (handler != null)
+            try
             {
-                REventArgs rowInfo = new REventArgs();
-                try
+                //bubble the event up to the parent
+                EventHandler handler = this.DblClick;
+                if (handler != null)
                 {
-                    Point pt = gridControl1.PointToClient(Control.MousePosition);
-                    GridHitInfo info = gridView1.CalcHitInfo(pt);
-                    if (info.InRow || info.InRowCell)
+                    REventArgs rowInfo = new REventArgs();
+                    try
                     {
-                        rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                        rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
-                        rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+                        Point pt = gridControl1.PointToClient(Control.MousePosition);
+                        GridHitInfo info = gridView1.CalcHitInfo(pt);
+                        if (info.InRow || info.InRowCell)
+                        {
+                            try { rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption(); }
+                            catch { }
+                            try {rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();}
+                            catch { rowInfo.Teacher = ""; }
+                            try { rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString(); }
+                            catch { rowInfo.Description = "zxcvbnmkl"; }
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Debug.DebugMessage(2, "Error in AvailabilityGrid_DoubleClick: " + ex.Message);
-                }
+                    catch (Exception ex)
+                    {
+                        Debug.DebugMessage(2, "Error in AvailabilityGrid_DoubleClick: " + ex.Message);
+                    }
 
-                this.DblClick(this, rowInfo);
+                    this.DblClick(this, rowInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in DoubleClick: " + ex.Message);
             }
 
         }
 
         private void gridControl1_MouseDown(object sender, MouseEventArgs e)
         {
-            // Check if the end-user has right clicked the grid control. 
-            if (e.Button == MouseButtons.Right)
+            try
             {
-                REventArgs rowInfo = new REventArgs();
-                GridHitInfo info = gridView1.CalcHitInfo(new Point(e.X, e.Y));
 
-                //******************88
-                if (info.InRow || info.InRowCell)
+
+                // Check if the end-user has right clicked the grid control. 
+                if (e.Button == MouseButtons.Right)
                 {
-                    rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                    rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
-                    rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+                    REventArgs rowInfo = new REventArgs();
+                    GridHitInfo info = gridView1.CalcHitInfo(new Point(e.X, e.Y));
 
-                    switch (rowInfo.ColumnCaption.Substring(0,3))
+                    //******************88
+                    if (info.InRow || info.InRowCell)
                     {
-                        case "Mon":
-                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "MonStatus").ToString();
-                            break;
-                        case "Tue":
-                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "TueStatus").ToString();
-                            break;
-                        case "Wed":
-                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "WedStatus").ToString();
-                            break;
-                        case "Thu":
-                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "ThuStatus").ToString();
-                            break;
-                        case "Fri":
-                            rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "FriStatus").ToString();
-                            break;
+                        rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                        rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                        rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+
+                        switch (rowInfo.ColumnCaption.Substring(0, 3))
+                        {
+                            case "Mon":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "MonStatus").ToString();
+                                break;
+                            case "Tue":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "TueStatus").ToString();
+                                break;
+                            case "Wed":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "WedStatus").ToString();
+                                break;
+                            case "Thu":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "ThuStatus").ToString();
+                                break;
+                            case "Fri":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "FriStatus").ToString();
+                                break;
+                        }
                     }
+
+                    if (rowInfo.Description.Trim() == "")
+                    {
+                        //System.Media.SystemSounds.Exclamation.Play();
+                        System.Media.SystemSounds.Beep.Play();
+                        return;
+                    }
+
+
+                    //rowInfo.Status = LINQmanager.GetMasterBookingStatus(rowInfo.Teacher, rowInfo.ColumnCaption, rowInfo.Description);
+
+                    //*******************
+                    //if (hi.HitTest == GridHitTest.ColumnButton)
+                    //{
+                    GridViewCustomMenu menu = new GridViewCustomMenu(gridView1);
+                    menu.RepaintRequired += OnRepaintRequired;
+                    menu.SetRowInfo(rowInfo);
+                    menu.imageList = imageList1;
+                    menu.Init(info);
+                    // Display the menu. 
+                    menu.Show(info.HitPoint);
+                    //}
                 }
-
-                if (rowInfo.Description.Trim() == "")
-                {
-                    //System.Media.SystemSounds.Exclamation.Play();
-                    System.Media.SystemSounds.Beep.Play();
-                    return;
-                }
-
-
-                //rowInfo.Status = LINQmanager.GetMasterBookingStatus(rowInfo.Teacher, rowInfo.ColumnCaption, rowInfo.Description);
-
-                //*******************
-                //if (hi.HitTest == GridHitTest.ColumnButton)
-                //{
-                GridViewCustomMenu menu = new GridViewCustomMenu(gridView1);
-                menu.RepaintRequired += OnRepaintRequired;
-                menu.SetRowInfo( rowInfo);
-                menu.imageList = imageList1;
-                menu.Init(info);
-                // Display the menu. 
-                menu.Show(info.HitPoint);
-                //}
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
             }
         }
 
@@ -316,7 +335,7 @@ namespace RedboxAddin.UC
         public event EventHandler RepaintRequired;
 
 
-        public void SetRowInfo( REventArgs rowInfo )
+        public void SetRowInfo(REventArgs rowInfo)
         {
             _rowInfo = rowInfo;
         }

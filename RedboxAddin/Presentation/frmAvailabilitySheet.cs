@@ -81,7 +81,7 @@ namespace RedboxAddin.Presentation
 
                 availabilityGrid1.LoadTable(wheresql, monday);
 
-
+                LoadShowingLabel();
                 //DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
                 ////bindingSource1.DataSource = msgDs;
                 //gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
@@ -91,6 +91,7 @@ namespace RedboxAddin.Presentation
                 //gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 //gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
+                RestoreLayout();
                 Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
@@ -98,6 +99,37 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in LoadTable: " + ex.Message);
                 this.UseWaitCursor = false;
             }
+        }
+
+        private void LoadShowingLabel()
+        {
+            bool TE = chkShowTeachers.Checked;
+            bool TA = chkShowTAs.Checked;
+            bool D2 = chkShowD2D.Checked;
+            bool LT = chkShowLT.Checked;
+
+            string s1 = "";
+            if (TE && TA) s1 = "Teachers and TAs";
+            else if (TE ) s1 = "Teachers";
+            else if (TA) s1 = "Teachers and TAs";
+
+            string s2 = "";
+            if (D2 && LT) s2 = "D2D and LT";
+            else if (D2 ) s2 = "D2D ";
+            else if ( LT) s2 = " LT";
+
+            string showing = "Showing: ";
+            if (s1 != "")
+            {
+                if (s2 != "") showing = "Showing: " + s1 + "; " + s2;
+                else showing = "Showing: " + s1;
+            }
+            else
+            {
+                if (s2 != "") showing = "Showing: " + s2;
+                else showing = "Showing: " ;
+            }
+            lblShowing.Text = showing;
         }
 
         private string WHERESQL()
@@ -116,9 +148,11 @@ namespace RedboxAddin.Presentation
                 if (chkSEN.Checked) SQL += " OR [SEN]  = 'true' ";
                 if (chkTeacher.Checked) SQL += " OR [Teacher]  = 'true' ";
 
+                
+
                 //Get Year Groups
                 string SQL2 = "";
-                if (chkNur.Checked) SQL2 += " AND [Nur] = 'true' ";
+                 if (chkNur.Checked) SQL2 += " AND [Nur] = 'true' ";
                 if (chkRec.Checked) SQL2 += " AND [Rec] = 'true' ";
                 if (chkYr1.Checked) SQL2 += " AND [Yr1] = 'true' ";
                 if (chkYr2.Checked) SQL2 += " AND [Yr2] = 'true' ";
@@ -126,8 +160,31 @@ namespace RedboxAddin.Presentation
                 if (chkYr4.Checked) SQL2 += " AND [Yr4] = 'true' ";
                 if (chkYr5.Checked) SQL2 += " AND [Yr5] = 'true' ";
                 if (chkYr6.Checked) SQL2 += " AND [Yr6] = 'true' ";
+                if (chkFloat.Checked) SQL2 += " AND [Float] = 'true' ";
+                if (chkPPA.Checked) SQL2 += " AND [PPA] = 'true' ";
                 if (chkLongTerm.Checked) SQL2 += " AND [LT] = 'true' ";
                 if (chkGuaranteed.Checked) SQL2 += " AND G1.gar > 0 ";
+
+
+                string SQL3 = "";
+                if (chkShowTeachers.Checked) SQL3 += " OR [Teacher] = 'true' ";
+                if (chkShowTAs.Checked) SQL3 += " OR [TA] = 'true' ";
+
+                string SQL4 = "";
+                if (chkShowLT.Checked) SQL4 += " OR [LT] = 'true' ";
+                if (chkShowD2D.Checked) SQL4 += " OR [D2D] = 'true' ";
+
+
+
+
+                if (SQL3 != "")
+                if (SQL2 == "") SQL2 ="     " + SQL3.Substring(3);
+                else SQL2 = SQL2 + " AND (" + SQL3.Substring(3) + " ) ";
+
+                if (SQL4 != "")
+                if (SQL2 == "") SQL2 = "     " + SQL4.Substring(3);
+                else SQL2 = SQL2 + " AND (" + SQL4.Substring(3) + " ) ";
+               
 
 
                 if (SQL == "")
@@ -141,6 +198,9 @@ namespace RedboxAddin.Presentation
                     else SQL = " WHERE [current] = 'true' AND (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + ")";
 
                 }
+
+
+
 
 
                 return SQL;
@@ -161,6 +221,7 @@ namespace RedboxAddin.Presentation
                 string SQL = "";
                 SQL += "WHERE s1.School <> '' OR s2.School <> '' OR s3.School <> '' OR s4.School <> '' or s5.School <> '' ";
 
+               
 
                 return SQL;
             }
@@ -226,6 +287,11 @@ namespace RedboxAddin.Presentation
         {
             LoadTable();
             CheckDoubleBookings();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTable();
         }
 
         private void CheckedChanged(object sender, EventArgs e)
@@ -450,16 +516,25 @@ namespace RedboxAddin.Presentation
             {
                 grpQual.Visible = false;
                 grpYearGroups.Visible = false;
+                grpFilter.Visible = false;
                 btnCreatePaySheets.Visible = true;
             }
             else
             {
                 grpQual.Visible = true;
                 grpYearGroups.Visible = true;
+                grpFilter.Visible = true;
                 btnCreatePaySheets.Visible = false;
             }
             LoadTable();
         }
+
+        private void btnLayout_Click(object sender, EventArgs e)
+        {
+            SaveLayout();
+        }
+
+       
 
 
 
