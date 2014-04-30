@@ -14,6 +14,7 @@ namespace RedboxAddin.Presentation
     public partial class frmEditSchool : Form
     {
         bool _AddingNew = false;
+        School _selectedItem = null;
 
         public frmEditSchool()
         {
@@ -39,8 +40,12 @@ namespace RedboxAddin.Presentation
 
         private void cmbSchool_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            School selectedItem = cmbSchool.SelectedItem as School;
-            LoadSchoolDetails(selectedItem.SchoolName);
+            if (cmbSchool.SelectedItem != null)
+            {
+                _selectedItem = cmbSchool.SelectedItem as School;
+
+                LoadSchoolDetails(_selectedItem.SchoolName);
+            }
         }
 
         #region LoadControls
@@ -73,38 +78,64 @@ namespace RedboxAddin.Presentation
                 lblSchoolName.Visible = true;
                 txtSchoolName.Visible = false;
 
-                School selectedItem = cmbSchool.SelectedItem as School;
-
-
-                string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                if (schoolName.Trim() == "")
                 {
-                    var schools = (from s in db.Schools
-                                   where s.SchoolName == schoolName
-                                   select s).Distinct();
+                    lblSchoolName.Text = "";
+                    txtShortName.Text = "";
+                    txtMainContact.Text = "";
+                    txtEmailAddress.Text = "";
+                    txtTel.Text = "";
+                    txtFax.Text = "";
+                    txtDayCharge.Text = "";
+                    txtHfDayCharge.Text = "";
+                    txtLTDay.Text = "";
+                    txtLTHfDay.Text = "";
+                    lblID.Text = "";
+                    txtVettingEmails.Text = "";
+                    chkUseFaxForTimeSheets.Checked = false;
+                    txtAddress.Text = "";
+                    txtSageAccountRef.Text = "";
+                    txtNotes.Text = "";
 
-                    foreach (School school in schools)
+
+                    return;
+                }
+                else
+                {
+
+                    //School selectedItem = cmbSchool.SelectedItem as School;
+
+
+                    string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                    using (RedBoxDB db = new RedBoxDB(CONNSTR))
                     {
+                        var schools = (from s in db.Schools
+                                       where s.SchoolName == schoolName
+                                       select s).Distinct();
 
-                        lblSchoolName.Text = school.SchoolName;
-                        txtShortName.Text = school.ShortName;
-                        txtMainContact.Text = school.MainContact;
-                        txtEmailAddress.Text = school.EmailAddress;
-                        txtTel.Text = school.Telephone;
-                        txtFax.Text = school.Fax;
-                        txtDayCharge.Text = school.DayCharge.ToString();
-                        txtHfDayCharge.Text = school.HalfDayCharge.ToString();
-                        txtLTDay.Text = school.DayChargeLT.ToString();
-                        txtLTHfDay.Text = school.HalfDayChargeLT.ToString();
-                        lblID.Text = school.ID.ToString();
-                        txtVettingEmails.Text = school.VettingEmails;
-                        chkUseFaxForTimeSheets.Checked = school.FaxTimeSheet;
-                        txtAddress.Text= school.Address;
-                        txtSageAccountRef.Text = school.SageName;
-                        txtNotes.Text = school.Notes;
+                        foreach (School school in schools)
+                        {
+
+                            lblSchoolName.Text = school.SchoolName;
+                            txtShortName.Text = school.ShortName;
+                            txtMainContact.Text = school.MainContact;
+                            txtEmailAddress.Text = school.EmailAddress;
+                            txtTel.Text = school.Telephone;
+                            txtFax.Text = school.Fax;
+                            txtDayCharge.Text = school.DayCharge.ToString();
+                            txtHfDayCharge.Text = school.HalfDayCharge.ToString();
+                            txtLTDay.Text = school.DayChargeLT.ToString();
+                            txtLTHfDay.Text = school.HalfDayChargeLT.ToString();
+                            lblID.Text = school.ID.ToString();
+                            txtVettingEmails.Text = school.VettingEmails;
+                            chkUseFaxForTimeSheets.Checked = school.FaxTimeSheet;
+                            txtAddress.Text = school.Address;
+                            txtSageAccountRef.Text = school.SageName;
+                            txtNotes.Text = school.Notes;
 
 
-                        return;
+                            return;
+                        }
                     }
                 }
             }
@@ -115,13 +146,13 @@ namespace RedboxAddin.Presentation
 
         }
 
-        private void SaveChanges()
+        private bool SaveChanges()
         {
             //Get school details
             try
             {
-                School selectedItem = cmbSchool.SelectedItem as School;
-
+                //School selectedItem = cmbSchool.SelectedItem as School;
+                if (_selectedItem == null) return false;
 
                 //Update Existing
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -152,18 +183,18 @@ namespace RedboxAddin.Presentation
 
                         PopulateSchools(db);
                         LoadSchoolDetails(txtSchoolName.Text);
-
+                        return true;
                     }
                     else
                     {
 
                         var schools = (from s in db.Schools
-                                       where s.ID == selectedItem.ID
+                                       where s.ID == _selectedItem.ID
                                        select s).Distinct();
 
                         foreach (School school in schools)
                         {
-
+                            school.SchoolName = cmbSchool.Text;
                             school.ShortName = txtShortName.Text;
                             school.MainContact = txtMainContact.Text;
                             school.EmailAddress = txtEmailAddress.Text;
@@ -180,20 +211,15 @@ namespace RedboxAddin.Presentation
                             school.Notes = txtNotes.Text;
 
                             db.SubmitChanges();
-
-                            return;
                         }
-
-
+                        return true;
                     }
-
-                    
-
                 }
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in Save School: " + ex.Message);
+                return false;
             }
         }
         #endregion
@@ -205,7 +231,15 @@ namespace RedboxAddin.Presentation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveChanges();
+            if (SaveChanges())
+            {
+                //do nothing
+                LoadSchoolDetails(cmbSchool.Text);
+            }
+            else
+            {
+                MessageBox.Show("Save School failed!", "Save School");
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -213,6 +247,7 @@ namespace RedboxAddin.Presentation
             _AddingNew = true;
             lblSchoolName.Visible = false;
             txtSchoolName.Visible = true;
+            _selectedItem = null;
 
             //lblSchoolName.Text = cmbSchool.Text;
             txtShortName.Text = "";
@@ -272,7 +307,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        
+
 
     }
 }

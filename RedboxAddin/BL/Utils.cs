@@ -7,6 +7,7 @@ using RedboxAddin.DL;
 using Redemption;
 using Microsoft.Office.Interop.Outlook;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 
 
@@ -607,6 +608,79 @@ namespace RedboxAddin.BL
                 Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
                 return false;
             }
+        }
+
+        public static string SetColours(string status, bool af, bool lt, System.Windows.Forms.ComboBox cmbBookingStatus)
+        {
+            //colours are abbreviated to 4 letters
+            //colour is split fore/back
+            string fore = "";
+            string back = "";
+            if (status == "") status = "Unassigned";
+
+            switch (status)
+            {
+
+                case "Unassigned":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Red;
+                        cmbBookingStatus.BackColor = Color.Yellow;
+                    }
+                    fore = "redd";
+                    back = "yell";
+                    break;
+                case "Contacted":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Purple;
+                        cmbBookingStatus.BackColor = Color.Yellow;
+                    }
+                    fore = "purp";
+                    back = "yell";
+                    break;
+                case "Confirmed":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Black;
+                        cmbBookingStatus.BackColor = Color.Yellow;
+                    }
+                    fore = "blck";
+                    back = "yell";
+                    break;
+                case "Details Sent":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Black;
+                        cmbBookingStatus.BackColor = Color.LightGray;
+                    }
+                    fore = "blck";
+                    back = "gray";
+                    break;
+
+                default:
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = System.Drawing.SystemColors.WindowText;
+                        cmbBookingStatus.BackColor = System.Drawing.SystemColors.Window;
+                    }
+                    break;
+
+            }
+
+            if (af) //asked for
+            {
+                if (status == "Details Sent") back = "dblu"; //darkblue;
+                else back = "lblu";  //light blue
+            }
+
+            if (lt) //LongTerm / Regular Booking
+            {
+                back = "purp";
+            }
+
+
+            return fore + "/" + back;
         }
     }
 }

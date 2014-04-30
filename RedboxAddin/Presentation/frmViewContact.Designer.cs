@@ -202,6 +202,9 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkFirstAid = new System.Windows.Forms.CheckBox();
+            this.chkBSL = new System.Windows.Forms.CheckBox();
+            this.chkRWInc = new System.Windows.Forms.CheckBox();
             this.chkMMRV = new System.Windows.Forms.CheckBox();
             this.chkReferencesChecked = new System.Windows.Forms.CheckBox();
             this.chkProofOfAddress = new System.Windows.Forms.CheckBox();
@@ -309,9 +312,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chkRWInc = new System.Windows.Forms.CheckBox();
-            this.chkBSL = new System.Windows.Forms.CheckBox();
-            this.chkFirstAid = new System.Windows.Forms.CheckBox();
+            this.btnAll = new System.Windows.Forms.Button();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -791,6 +792,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnAll);
             this.groupBox6.Controls.Add(this.btnEY);
             this.groupBox6.Controls.Add(this.chkRec);
             this.groupBox6.Controls.Add(this.chkYr1);
@@ -2211,6 +2213,39 @@
             this.panel1.Size = new System.Drawing.Size(350, 178);
             this.panel1.TabIndex = 2;
             // 
+            // chkFirstAid
+            // 
+            this.chkFirstAid.AutoSize = true;
+            this.chkFirstAid.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFirstAid.Location = new System.Drawing.Point(174, 141);
+            this.chkFirstAid.Name = "chkFirstAid";
+            this.chkFirstAid.Size = new System.Drawing.Size(65, 17);
+            this.chkFirstAid.TabIndex = 57;
+            this.chkFirstAid.Text = "First Aid";
+            this.chkFirstAid.UseVisualStyleBackColor = true;
+            // 
+            // chkBSL
+            // 
+            this.chkBSL.AutoSize = true;
+            this.chkBSL.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBSL.Location = new System.Drawing.Point(10, 141);
+            this.chkBSL.Name = "chkBSL";
+            this.chkBSL.Size = new System.Drawing.Size(43, 17);
+            this.chkBSL.TabIndex = 56;
+            this.chkBSL.Text = "BSL";
+            this.chkBSL.UseVisualStyleBackColor = true;
+            // 
+            // chkRWInc
+            // 
+            this.chkRWInc.AutoSize = true;
+            this.chkRWInc.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRWInc.Location = new System.Drawing.Point(10, 118);
+            this.chkRWInc.Name = "chkRWInc";
+            this.chkRWInc.Size = new System.Drawing.Size(58, 17);
+            this.chkRWInc.TabIndex = 55;
+            this.chkRWInc.Text = "RWInc";
+            this.chkRWInc.UseVisualStyleBackColor = true;
+            // 
             // chkMMRV
             // 
             this.chkMMRV.AutoSize = true;
@@ -3366,38 +3401,15 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // chkRWInc
+            // btnAll
             // 
-            this.chkRWInc.AutoSize = true;
-            this.chkRWInc.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRWInc.Location = new System.Drawing.Point(10, 118);
-            this.chkRWInc.Name = "chkRWInc";
-            this.chkRWInc.Size = new System.Drawing.Size(58, 17);
-            this.chkRWInc.TabIndex = 55;
-            this.chkRWInc.Text = "RWInc";
-            this.chkRWInc.UseVisualStyleBackColor = true;
-            // 
-            // chkBSL
-            // 
-            this.chkBSL.AutoSize = true;
-            this.chkBSL.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBSL.Location = new System.Drawing.Point(10, 141);
-            this.chkBSL.Name = "chkBSL";
-            this.chkBSL.Size = new System.Drawing.Size(43, 17);
-            this.chkBSL.TabIndex = 56;
-            this.chkBSL.Text = "BSL";
-            this.chkBSL.UseVisualStyleBackColor = true;
-            // 
-            // chkFirstAid
-            // 
-            this.chkFirstAid.AutoSize = true;
-            this.chkFirstAid.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFirstAid.Location = new System.Drawing.Point(174, 141);
-            this.chkFirstAid.Name = "chkFirstAid";
-            this.chkFirstAid.Size = new System.Drawing.Size(65, 17);
-            this.chkFirstAid.TabIndex = 57;
-            this.chkFirstAid.Text = "First Aid";
-            this.chkFirstAid.UseVisualStyleBackColor = true;
+            this.btnAll.Location = new System.Drawing.Point(76, 88);
+            this.btnAll.Name = "btnAll";
+            this.btnAll.Size = new System.Drawing.Size(46, 23);
+            this.btnAll.TabIndex = 73;
+            this.btnAll.Text = "all";
+            this.btnAll.UseVisualStyleBackColor = true;
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // frmViewContact
             // 
@@ -3741,5 +3753,6 @@
         private System.Windows.Forms.CheckBox chkFirstAid;
         private System.Windows.Forms.CheckBox chkBSL;
         private System.Windows.Forms.CheckBox chkRWInc;
+        private System.Windows.Forms.Button btnAll;
     }
 }

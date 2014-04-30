@@ -237,8 +237,6 @@ namespace RedboxAddin.UC
         {
             try
             {
-
-
                 // Check if the end-user has right clicked the grid control. 
                 if (e.Button == MouseButtons.Right)
                 {

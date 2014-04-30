@@ -331,7 +331,14 @@ namespace RedboxAddin.DL
                         objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
                         objAvail.BSL = Utils.CheckBool(dr["BSL"]);
 
-                        availabilityList.Add(objAvail);
+                        if (string.IsNullOrWhiteSpace(objAvail.Teacher))
+                        {
+                            //do nothing - don't add
+                        }
+                        else
+                        {
+                            availabilityList.Add(objAvail);
+                        }
 
                     }
 
@@ -373,8 +380,14 @@ namespace RedboxAddin.DL
                         objAvail.ThuStatus = dr["ThuStatus"].ToString();
                         objAvail.FriStatus = dr["FriStatus"].ToString();
 
-
-                        availabilityList.Add(objAvail);
+                        if (string.IsNullOrWhiteSpace(objAvail.Teacher))
+                        {
+                            //do nothing - don't add
+                        }
+                        else
+                        {
+                            availabilityList.Add(objAvail);
+                        }
 
                     }
 
@@ -1533,7 +1546,6 @@ namespace RedboxAddin.DL
                     + "@AddressState,"
                     + "@AddressPostcode,"
                     + "@AddressCountry,"
-                    + "@AttendMMRV,"
                     + "@PhoneHome,"
                     + "@PhoneMobile,"
                     + "@PhoneBusiness,"
@@ -1544,6 +1556,7 @@ namespace RedboxAddin.DL
                     + "@3rdRefChecked,"
                     + "@AccountName,"
                     + "@AdditionalInfoOnCRB,"
+                    + "@AttendMMRV,"
                     + "@BankAccountNumber,"
                     + "@BankName,"
                     + "@BankSortCode,"
@@ -2503,7 +2516,7 @@ namespace RedboxAddin.DL
 
         #region SQLQueries
 
-         private string GetUnassignedAvailabilitySQL(DateTime weekbegining)
+        private string GetUnassignedAvailabilitySQL(DateTime weekbegining)
         {
             string monday = weekbegining.ToString("yyyyMMdd");
             string tuesday = weekbegining.AddDays(1).ToString("yyyyMMdd");
@@ -2593,7 +2606,7 @@ namespace RedboxAddin.DL
                             "ON s5.MasterBookingID = [MasterBookings].ID ";
 
             return SQLstr;
-         }
+        }
 
         private string GetAvailabilitySQL(DateTime weekbegining)
         {

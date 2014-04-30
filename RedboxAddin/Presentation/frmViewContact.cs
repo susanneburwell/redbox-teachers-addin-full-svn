@@ -989,6 +989,32 @@ namespace RedboxAddin.Presentation
 
         #region NewCode
 
+        private void btnAll_Click(object sender, EventArgs e)
+        {
+            if (chkNur.Checked)
+            {
+                chkNur.Checked = false;
+                chkRec.Checked = false;
+                chkYr1.Checked = false;
+                chkYr2.Checked = false;
+                chkYr3.Checked = false;
+                chkYr4.Checked = false;
+                chkYr5.Checked = false;
+                chkYr6.Checked = false;
+            }
+            else
+            {
+                chkNur.Checked = true;
+                chkRec.Checked = true;
+                chkYr1.Checked = true;
+                chkYr2.Checked = true;
+                chkYr3.Checked = true;
+                chkYr4.Checked = true;
+                chkYr5.Checked = true;
+                chkYr6.Checked = true;
+            }
+        }
+
         private void btnEY_Click(object sender, EventArgs e)
         {
             if (chkNur.Checked)
@@ -1217,6 +1243,8 @@ namespace RedboxAddin.Presentation
         }
 
         #endregion
+
+       
 
 
 

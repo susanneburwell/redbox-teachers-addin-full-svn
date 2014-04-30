@@ -210,6 +210,35 @@ namespace RedboxAddin.Presentation
             chkWed.Checked = true;
             chkThu.Checked = true;
             chkFri.Checked = true;
+
+            //**************************
+            cmbSchool.Visible = true;
+            dtFrom.Visible = true;
+            dtTo.Visible = true;
+            lblSchool.Text = "";
+            lblFrom.Text = "";
+            lblTo.Text = "";
+            lblTo.Visible = false;
+            lblFrom.Visible = false;
+            lblSchool.Visible = false;
+
+
+            //replace days
+            chkMon.Visible = true;
+            chkTue.Visible = true;
+            chkWed.Visible = true;
+            chkThu.Visible = true;
+            chkFri.Visible = true;
+
+            chkMon.Checked = true;
+            chkTue.Checked = true;
+            chkWed.Checked = true;
+            chkThu.Checked = true;
+            chkFri.Checked = true;
+            lblDays.Text = "";
+            lblDays.Visible = false;
+
+            //**********************
         }
 
         private bool SaveRequest()
@@ -524,6 +553,15 @@ namespace RedboxAddin.Presentation
 
         private void SetColours()
         {
+
+            this.ActiveControl = lblBooking;
+            //cmbBookingStatus.Select(3, 0);
+
+            lblColor.Text = Utils.SetColours(cmbBookingStatus.Text.ToString(), radAF.Checked, chkLongTerm.Checked, cmbBookingStatus);
+        }
+
+        private void SetColours_old()
+        {
             //colours are abbreviated to 4 letters
             //colour is split fore/back
             string fore = "";
@@ -558,7 +596,6 @@ namespace RedboxAddin.Presentation
                     fore = "purp";
                     back = "gray";
                     break;
-
                 default:
                     cmbBookingStatus.ForeColor = System.Drawing.SystemColors.WindowText;
                     cmbBookingStatus.BackColor = System.Drawing.SystemColors.Window;
@@ -944,6 +981,8 @@ namespace RedboxAddin.Presentation
         {
             if (dgcBookings.Visible) RefreshDGC();
             if (availabilityGrid1.Visible) LoadAvailabilityTable();
+            if (btnDblBkgs.Visible) CheckDoubleBookings();
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -1141,6 +1180,13 @@ namespace RedboxAddin.Presentation
 
         private void CheckedChanged(object sender, EventArgs e)
         {
+            if (loading) return;
+
+            //Check dates
+            if (sender == dtFrom)
+            {
+                if (DateTime.Compare(dtFrom.Value, dtTo.Value) < 0) dtTo.Value = dtFrom.Value;
+            }
             UpdateDescription();
             if (availabilityGrid1.Visible) LoadAvailabilityTable();
             SetColours();

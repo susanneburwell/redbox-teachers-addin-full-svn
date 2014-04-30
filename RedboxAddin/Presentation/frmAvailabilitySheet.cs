@@ -91,6 +91,11 @@ namespace RedboxAddin.Presentation
                 //gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 //gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
+                if (btnDblBkgs.Visible)
+                {
+                    CheckDoubleBookingsTimer1.Enabled = true;
+                }
+
                 RestoreLayout();
                 Cursor.Current = Cursors.Default;
             }
@@ -216,8 +221,6 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-
-                //Get qualifications
                 string SQL = "";
                 SQL += "WHERE s1.School <> '' OR s2.School <> '' OR s3.School <> '' OR s4.School <> '' or s5.School <> '' ";
 
@@ -232,8 +235,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-
-
+        
         private void CheckDoubleBookings()
         {
             try

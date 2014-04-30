@@ -94,6 +94,7 @@ namespace RedboxAddin.DL
                     if (mb != null)
                     {
                         mb.BookingStatus = status;
+                        mb.Color = Utils.SetColours(status, mb.AskedFor, mb.LongTerm, null);
                         db.SubmitChanges();
                         return true;
                     }
