@@ -841,9 +841,12 @@ namespace RedboxAddin.Presentation
             {
                 MasterBooking mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
                 long schoolID = mb.SchoolID;
+                string agegroup = Utils.YearGroup(chkNur.Checked, chkRec.Checked, chkYr1.Checked, chkYr2.Checked, chkYr3.Checked, chkYr4.Checked, chkYr5.Checked, chkYr6.Checked);
 
                 long contactID = (long)mb.ContactID;
-                if (RedemptionCode.SendVettingDetails(contactID.ToString(), schoolID.ToString(), false) == false)
+                bool result = RedemptionCode.SendVettingDetails(contactID.ToString(), schoolID.ToString(), false,
+                    dtFrom.Value.ToShortDateString(), dtTo.Value.ToShortDateString(), agegroup);
+                if (result == false)
                 {
                     MessageBox.Show("Error. The email could not be created at this time.");
                 }
@@ -1185,7 +1188,7 @@ namespace RedboxAddin.Presentation
             //Check dates
             if (sender == dtFrom)
             {
-                if (DateTime.Compare(dtFrom.Value, dtTo.Value) < 0) dtTo.Value = dtFrom.Value;
+                if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0) dtTo.Value = dtFrom.Value;
             }
             UpdateDescription();
             if (availabilityGrid1.Visible) LoadAvailabilityTable();

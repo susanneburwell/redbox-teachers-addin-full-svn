@@ -73,6 +73,7 @@
             this.chkTA = new System.Windows.Forms.CheckBox();
             this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnAll = new System.Windows.Forms.Button();
             this.btnEY = new System.Windows.Forms.Button();
             this.chkRec = new System.Windows.Forms.CheckBox();
             this.chkYr1 = new System.Windows.Forms.CheckBox();
@@ -312,7 +313,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnAll = new System.Windows.Forms.Button();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -811,6 +811,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Year Groups";
             // 
+            // btnAll
+            // 
+            this.btnAll.Location = new System.Drawing.Point(76, 88);
+            this.btnAll.Name = "btnAll";
+            this.btnAll.Size = new System.Drawing.Size(46, 23);
+            this.btnAll.TabIndex = 73;
+            this.btnAll.Text = "all";
+            this.btnAll.UseVisualStyleBackColor = true;
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
+            // 
             // btnEY
             // 
             this.btnEY.Location = new System.Drawing.Point(19, 31);
@@ -1043,6 +1053,7 @@
             this.button1.TabIndex = 54;
             this.button1.Text = "Send Details";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnSendDetails_Click);
             // 
             // txtTeacherStatus
             // 
@@ -3400,16 +3411,6 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // btnAll
-            // 
-            this.btnAll.Location = new System.Drawing.Point(76, 88);
-            this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(46, 23);
-            this.btnAll.TabIndex = 73;
-            this.btnAll.Text = "all";
-            this.btnAll.UseVisualStyleBackColor = true;
-            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // frmViewContact
             // 

@@ -162,7 +162,8 @@ namespace RedboxAddin.BL
         // }
 
 
-        internal static bool SendVettingDetails(string contactID, string schoolID, bool sendImmediately)
+        internal static bool SendVettingDetails(string contactID, string schoolID, bool sendImmediately,
+            string startDate = null, string endDate = null, string yearGroup = null)
         {
             MailItem oMail = null;
             try
@@ -189,7 +190,7 @@ namespace RedboxAddin.BL
 
 
                 //Create the Mail
-                oMail = CreateVettingMessage(contactObj);
+                oMail = CreateVettingMessage(contactObj,  startDate ,  endDate ,  yearGroup );
                 oMail.To = vettingEmailAddresses; //must be a semicolon delimited list
 
 
@@ -262,7 +263,7 @@ namespace RedboxAddin.BL
             }
         }
 
-        private static MailItem CreateVettingMessage(RContact contactObj)
+        private static MailItem CreateVettingMessage(RContact contactObj, string startDate = null, string endDate = null, string yearGroup = null)
         {
             //Create the message
 
@@ -282,6 +283,15 @@ namespace RedboxAddin.BL
                 string myPic = "";
                 string myBody = "";
                 string txtBody = "";
+
+                //set supply date
+                string supplyDate = "01/01/0001"  ;
+                if (startDate != null) supplyDate = startDate;
+                if ((endDate != null) && (endDate != startDate)) supplyDate = supplyDate + " to " + endDate;
+
+                //set year group
+                if (yearGroup==null) yearGroup = "";
+                 
 
                 string contentID = "myident";
                 string TableTop = "<table border=" + (char)(34) + "1" + (char)(34) + "width=" + (char)(34) + "100%" +
@@ -346,10 +356,12 @@ namespace RedboxAddin.BL
 
                 myPic = "<DIV>" + Environment.NewLine + "<IMG style=" + " border=0 hspace=0 alt=myPic align=baseline src=cid:myident width=200 height=200>" + Environment.NewLine + "</DIV>" + Environment.NewLine;
                 TableMiddle = "</td>" + Environment.NewLine + "<td><FONT SIZE=2 FACE=" + (char)34 + "Arial" + (char)34 + ">";
-                txtBody = txtBody + "Date of Supply: " + contactObj.DateOfSupply.ToShortDateString() + Environment.NewLine;
+                //txtBody = txtBody + "Date of Supply: " + contactObj.DateOfSupply.ToShortDateString() + Environment.NewLine;
+                txtBody = txtBody + "Date of Supply: " + supplyDate + Environment.NewLine;
                 txtBody = txtBody + Environment.NewLine + "Supply Requirement: Basic Cover" + Environment.NewLine + Environment.NewLine;
                 txtBody = txtBody + "Teacher Name: " + contactObj.FullName + Environment.NewLine + Environment.NewLine;
-                txtBody = txtBody + "Year Group: " + contactObj.YearGroup + Environment.NewLine;
+                //txtBody = txtBody + "Year Group: " + contactObj.YearGroup + Environment.NewLine;
+                txtBody = txtBody + "Year Group: " + yearGroup + Environment.NewLine;
                 txtBody = txtBody + Environment.NewLine + "Qualification: " + contactObj.Qualification;
                 if (contactObj.QTS)
                 {
