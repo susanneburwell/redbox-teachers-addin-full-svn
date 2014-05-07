@@ -16,7 +16,8 @@ using System.IO;
 //2.0.22 10th Mar 2014 DT  Fixed colours in availability sheet
 //2.0.23 17th Mar 2014 DT  Updates to Master Booking form for existing items. Add 'Attend School that has MMRV' checkbox.
 //2.0.24 18Mar 2014 DT Change teacher drop down to only include current teachers
-
+//2.0.34 7th May 2014 DT Fix Add School so it works!
+//2.0.37 7th May 2014 DT Add option to update or delete bookings from Master Booking View
 
 namespace RedboxAddin
 {

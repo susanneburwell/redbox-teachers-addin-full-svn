@@ -45,6 +45,7 @@ namespace RedboxAddin.Presentation
                 _selectedItem = cmbSchool.SelectedItem as School;
 
                 LoadSchoolDetails(_selectedItem.SchoolName);
+
             }
         }
 
@@ -74,7 +75,6 @@ namespace RedboxAddin.Presentation
             //Get school details
             try
             {
-                _AddingNew = false;
                 lblSchoolName.Visible = true;
                 txtSchoolName.Visible = false;
 
@@ -152,7 +152,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 //School selectedItem = cmbSchool.SelectedItem as School;
-                if (_selectedItem == null) return false;
+                if (!_AddingNew && _selectedItem == null) return false;
 
                 //Update Existing
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -182,6 +182,7 @@ namespace RedboxAddin.Presentation
                         db.SubmitChanges();
 
                         PopulateSchools(db);
+                        cmbSchool.Text = txtSchoolName.Text;
                         LoadSchoolDetails(txtSchoolName.Text);
                         return true;
                     }
@@ -234,7 +235,18 @@ namespace RedboxAddin.Presentation
             if (SaveChanges())
             {
                 //do nothing
-                LoadSchoolDetails(cmbSchool.Text);
+                if (_AddingNew)
+                {
+                    lblSchoolName.Visible = true;
+                    txtSchoolName.Visible = false;
+                    cmbSchool.Visible = true;
+                    _AddingNew = false;
+                }
+                else
+                {
+                    LoadSchoolDetails(cmbSchool.Text);
+
+                }
             }
             else
             {
@@ -247,12 +259,17 @@ namespace RedboxAddin.Presentation
             _AddingNew = true;
             lblSchoolName.Visible = false;
             txtSchoolName.Visible = true;
+            cmbSchool.Visible = false;
+            cmbSchool.Text = "";
             _selectedItem = null;
 
             //lblSchoolName.Text = cmbSchool.Text;
             txtShortName.Text = "";
             txtMainContact.Text = "";
             txtEmailAddress.Text = "";
+            txtAddress.Text = "";
+            txtNotes.Text = "";
+            txtVettingEmails.Text = "";
             txtTel.Text = "";
             txtFax.Text = "";
             txtDayCharge.Text = "00.00";
@@ -260,7 +277,6 @@ namespace RedboxAddin.Presentation
             txtLTDay.Text = "00.00";
             txtLTHfDay.Text = "00.00";
             lblID.Text = "";
-
         }
 
         private void txtDayCharge_Validating(object sender, CancelEventArgs e)

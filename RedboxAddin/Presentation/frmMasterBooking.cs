@@ -982,6 +982,10 @@ namespace RedboxAddin.Presentation
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            //refresh database connection
+            string CONNSTR = DavSettings.getDavValue("CONNSTR");
+            db = new RedBoxDB(CONNSTR);
+
             if (dgcBookings.Visible) RefreshDGC();
             if (availabilityGrid1.Visible) LoadAvailabilityTable();
             if (btnDblBkgs.Visible) CheckDoubleBookings();
@@ -1195,7 +1199,6 @@ namespace RedboxAddin.Presentation
             SetColours();
         }
 
-
         protected void availabilityGrid_DblClick(object sender, EventArgs e)
         {
             try
@@ -1229,10 +1232,6 @@ namespace RedboxAddin.Presentation
             }
             else { fdb.BringToFront(); }
         }
-
-
-
-
 
         private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -1285,6 +1284,26 @@ namespace RedboxAddin.Presentation
                 else MessageBox.Show("Deletion Failed!");
 
             }
+        }
+
+        private void btnUpdateDaily_Click(object sender, EventArgs e)
+        {
+            frmUpdateBookings ub = new frmUpdateBookings();
+            ub.rate = txtRate.Text;
+            ub.charge = txtCharge.Text;
+            ub.description = txtDescription.Text;
+            ub.masterID = _masterBookingID.ToString();
+            ub.ShowDialog();
+
+            dgcBookings.Visible = true;
+            availabilityGrid1.Visible = false;
+
+            //refresh database connection
+            string CONNSTR = DavSettings.getDavValue("CONNSTR");
+            db = new RedBoxDB(CONNSTR);
+
+            RefreshDGC();
+
         }
 
 

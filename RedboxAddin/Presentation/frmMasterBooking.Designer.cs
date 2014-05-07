@@ -131,6 +131,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.btnUpdateDaily = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1227,6 +1228,7 @@
             // pnlTop
             // 
             this.pnlTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTop.Controls.Add(this.btnUpdateDaily);
             this.pnlTop.Controls.Add(this.btnDelete);
             this.pnlTop.Controls.Add(this.btnSendVettingDetails);
             this.pnlTop.Controls.Add(this.btnSendNotification);
@@ -1286,6 +1288,17 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(1008, 697);
             this.toolStripContainer1.TabIndex = 7;
             this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // btnUpdateDaily
+            // 
+            this.btnUpdateDaily.Location = new System.Drawing.Point(442, 8);
+            this.btnUpdateDaily.Name = "btnUpdateDaily";
+            this.btnUpdateDaily.Size = new System.Drawing.Size(190, 27);
+            this.btnUpdateDaily.TabIndex = 17;
+            this.btnUpdateDaily.Text = "Update Daily Bookings";
+            this.toolTip1.SetToolTip(this.btnUpdateDaily, "Send vetting details to school");
+            this.btnUpdateDaily.UseVisualStyleBackColor = true;
+            this.btnUpdateDaily.Click += new System.EventHandler(this.btnUpdateDaily_Click);
             // 
             // frmMasterBooking
             // 
@@ -1428,5 +1441,6 @@
         private System.Windows.Forms.CheckBox chkFloat;
         private System.Windows.Forms.CheckBox chkPPA;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnUpdateDaily;
     }
 }
