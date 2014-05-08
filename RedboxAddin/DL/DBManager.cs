@@ -445,7 +445,7 @@ namespace RedboxAddin.DL
             {
                 try
                 {
-                    string SQLstr = "SELECT [Date],[Note] " +
+                    string SQLstr = "SELECT [Date],[Note],[Accepted] " +
                                     "FROM [GuaranteedDays] " +
                                     "Where [TeacherID] = '" + teacherID.ToString() + "' ";
                     DataSet msgDs = GetDataSet(SQLstr + DateSQL);
@@ -459,6 +459,7 @@ namespace RedboxAddin.DL
                             tDay.dte = Utils.CheckDate(dr["Date"]);
                             tDay.Type = "Guaranteed Day";
                             tDay.Details = Utils.CheckString(dr["Note"]);
+                            tDay.Status = (Utils.CheckBool(dr["Accepted"])) ? "Accepted" : "Offered";
                             teacherDays.Add(tDay);
 
                         }
@@ -477,7 +478,7 @@ namespace RedboxAddin.DL
             //Get Booked days
             try
             {
-                string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, BookingStatus " +
+                string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, BookingStatus, Code " +
                                 "FROM [Bookings] " +
                                 "LEFT JOIN [MasterBookings] ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
                                 "WHERE  [MasterBookings].contactID = '" + teacherID.ToString() + "' ";
@@ -493,6 +494,25 @@ namespace RedboxAddin.DL
                         if (Utils.CheckBool(dr["isAbsence"])) tDay.Type = "Absence";
                         else tDay.Type = Utils.CheckString(dr["BookingStatus"]);
                         tDay.Details = Utils.CheckString(dr["Description"]);
+                        switch (Utils.CheckInt(dr["Code"]))
+                        {
+                            case 1:
+                                tDay.Status = "AA";
+                                break;
+                            case 2:
+                                tDay.Status = "AAL";
+                                break;
+                            case 3:
+                                tDay.Status = "Sick";
+                                break;
+                            case 4:
+                                tDay.Status = "Other";
+                                break;
+                            default:
+                                tDay.Status = "-";
+                                break;
+
+                        }
                         teacherDays.Add(tDay);
 
                     }

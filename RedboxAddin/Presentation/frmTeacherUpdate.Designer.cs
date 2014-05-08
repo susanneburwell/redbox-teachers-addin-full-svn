@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherUpdate));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.chkAccepted = new System.Windows.Forms.CheckBox();
             this.chkShowGuarantees = new System.Windows.Forms.CheckBox();
             this.chkFuture = new System.Windows.Forms.CheckBox();
             this.chkPast = new System.Windows.Forms.CheckBox();
@@ -57,7 +58,9 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpAbsence.SuspendLayout();
@@ -76,16 +79,16 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 222F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 814);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.chkAccepted);
             this.panelTop.Controls.Add(this.chkShowGuarantees);
             this.panelTop.Controls.Add(this.chkFuture);
             this.panelTop.Controls.Add(this.chkPast);
@@ -101,34 +104,45 @@
             this.panelTop.Controls.Add(this.lblTeacher);
             this.panelTop.Controls.Add(this.cmbTeacher);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTop.Location = new System.Drawing.Point(4, 4);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1000, 214);
+            this.panelTop.Size = new System.Drawing.Size(750, 174);
             this.panelTop.TabIndex = 0;
+            // 
+            // chkAccepted
+            // 
+            this.chkAccepted.AutoSize = true;
+            this.chkAccepted.Checked = true;
+            this.chkAccepted.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAccepted.Location = new System.Drawing.Point(534, 144);
+            this.chkAccepted.Name = "chkAccepted";
+            this.chkAccepted.Size = new System.Drawing.Size(85, 20);
+            this.chkAccepted.TabIndex = 19;
+            this.chkAccepted.Text = "Accepted";
+            this.chkAccepted.UseVisualStyleBackColor = true;
+            this.chkAccepted.Visible = false;
             // 
             // chkShowGuarantees
             // 
             this.chkShowGuarantees.AutoSize = true;
             this.chkShowGuarantees.Checked = true;
             this.chkShowGuarantees.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowGuarantees.Location = new System.Drawing.Point(274, 157);
-            this.chkShowGuarantees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkShowGuarantees.Location = new System.Drawing.Point(206, 128);
             this.chkShowGuarantees.Name = "chkShowGuarantees";
-            this.chkShowGuarantees.Size = new System.Drawing.Size(164, 24);
+            this.chkShowGuarantees.Size = new System.Drawing.Size(134, 20);
             this.chkShowGuarantees.TabIndex = 18;
             this.chkShowGuarantees.Text = "Show Guaranteed";
             this.chkShowGuarantees.UseVisualStyleBackColor = true;
+            this.chkShowGuarantees.CheckedChanged += new System.EventHandler(this.chkShowGuarantees_CheckedChanged);
             // 
             // chkFuture
             // 
             this.chkFuture.AutoSize = true;
             this.chkFuture.Checked = true;
             this.chkFuture.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFuture.Location = new System.Drawing.Point(39, 186);
-            this.chkFuture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkFuture.Location = new System.Drawing.Point(29, 151);
             this.chkFuture.Name = "chkFuture";
-            this.chkFuture.Size = new System.Drawing.Size(175, 24);
+            this.chkFuture.Size = new System.Drawing.Size(139, 20);
             this.chkFuture.TabIndex = 17;
             this.chkFuture.Text = "Show Future Dates";
             this.chkFuture.UseVisualStyleBackColor = true;
@@ -137,10 +151,9 @@
             // chkPast
             // 
             this.chkPast.AutoSize = true;
-            this.chkPast.Location = new System.Drawing.Point(39, 157);
-            this.chkPast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPast.Location = new System.Drawing.Point(29, 128);
             this.chkPast.Name = "chkPast";
-            this.chkPast.Size = new System.Drawing.Size(161, 24);
+            this.chkPast.Size = new System.Drawing.Size(129, 20);
             this.chkPast.TabIndex = 16;
             this.chkPast.Text = "Show Past Dates";
             this.chkPast.UseVisualStyleBackColor = true;
@@ -152,11 +165,9 @@
             this.grpAbsence.Controls.Add(this.radSick);
             this.grpAbsence.Controls.Add(this.radAAL);
             this.grpAbsence.Controls.Add(this.radAA);
-            this.grpAbsence.Location = new System.Drawing.Point(272, 59);
-            this.grpAbsence.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpAbsence.Location = new System.Drawing.Point(204, 48);
             this.grpAbsence.Name = "grpAbsence";
-            this.grpAbsence.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpAbsence.Size = new System.Drawing.Size(204, 90);
+            this.grpAbsence.Size = new System.Drawing.Size(153, 73);
             this.grpAbsence.TabIndex = 15;
             this.grpAbsence.TabStop = false;
             this.grpAbsence.Text = "Absence Type";
@@ -165,10 +176,9 @@
             // 
             this.radOther.AutoSize = true;
             this.radOther.Checked = true;
-            this.radOther.Location = new System.Drawing.Point(104, 53);
-            this.radOther.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radOther.Location = new System.Drawing.Point(78, 43);
             this.radOther.Name = "radOther";
-            this.radOther.Size = new System.Drawing.Size(72, 24);
+            this.radOther.Size = new System.Drawing.Size(58, 20);
             this.radOther.TabIndex = 3;
             this.radOther.TabStop = true;
             this.radOther.Text = "Other";
@@ -177,10 +187,9 @@
             // radSick
             // 
             this.radSick.AutoSize = true;
-            this.radSick.Location = new System.Drawing.Point(27, 53);
-            this.radSick.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radSick.Location = new System.Drawing.Point(20, 43);
             this.radSick.Name = "radSick";
-            this.radSick.Size = new System.Drawing.Size(62, 24);
+            this.radSick.Size = new System.Drawing.Size(52, 20);
             this.radSick.TabIndex = 2;
             this.radSick.Text = "Sick";
             this.radSick.UseVisualStyleBackColor = true;
@@ -188,10 +197,9 @@
             // radAAL
             // 
             this.radAAL.AutoSize = true;
-            this.radAAL.Location = new System.Drawing.Point(104, 27);
-            this.radAAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radAAL.Location = new System.Drawing.Point(78, 22);
             this.radAAL.Name = "radAAL";
-            this.radAAL.Size = new System.Drawing.Size(62, 24);
+            this.radAAL.Size = new System.Drawing.Size(51, 20);
             this.radAAL.TabIndex = 1;
             this.radAAL.Text = "AAL";
             this.radAAL.UseVisualStyleBackColor = true;
@@ -199,40 +207,36 @@
             // radAA
             // 
             this.radAA.AutoSize = true;
-            this.radAA.Location = new System.Drawing.Point(27, 27);
-            this.radAA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radAA.Location = new System.Drawing.Point(20, 22);
             this.radAA.Name = "radAA";
-            this.radAA.Size = new System.Drawing.Size(52, 24);
+            this.radAA.Size = new System.Drawing.Size(44, 20);
             this.radAA.TabIndex = 0;
             this.radAA.Text = "AA";
             this.radAA.UseVisualStyleBackColor = true;
             // 
             // txtDetails
             // 
-            this.txtDetails.Location = new System.Drawing.Point(501, 115);
-            this.txtDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDetails.Location = new System.Drawing.Point(376, 93);
             this.txtDetails.Multiline = true;
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDetails.Size = new System.Drawing.Size(451, 51);
+            this.txtDetails.Size = new System.Drawing.Size(339, 42);
             this.txtDetails.TabIndex = 13;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(497, 91);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(373, 74);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 20);
+            this.label6.Size = new System.Drawing.Size(90, 16);
             this.label6.TabIndex = 14;
             this.label6.Text = "Details/Notes";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(852, 174);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Location = new System.Drawing.Point(639, 141);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 28);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -242,11 +246,9 @@
             // 
             this.groupBox1.Controls.Add(this.radGuar);
             this.groupBox1.Controls.Add(this.radAbs);
-            this.groupBox1.Location = new System.Drawing.Point(39, 59);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(29, 48);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(220, 90);
+            this.groupBox1.Size = new System.Drawing.Size(165, 73);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action";
@@ -254,10 +256,9 @@
             // radGuar
             // 
             this.radGuar.AutoSize = true;
-            this.radGuar.Location = new System.Drawing.Point(23, 53);
-            this.radGuar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radGuar.Location = new System.Drawing.Point(17, 43);
             this.radGuar.Name = "radGuar";
-            this.radGuar.Size = new System.Drawing.Size(161, 24);
+            this.radGuar.Size = new System.Drawing.Size(132, 20);
             this.radGuar.TabIndex = 1;
             this.radGuar.Text = "Guaranteed Work";
             this.radGuar.UseVisualStyleBackColor = true;
@@ -266,10 +267,9 @@
             // 
             this.radAbs.AutoSize = true;
             this.radAbs.Checked = true;
-            this.radAbs.Location = new System.Drawing.Point(23, 21);
-            this.radAbs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radAbs.Location = new System.Drawing.Point(17, 17);
             this.radAbs.Name = "radAbs";
-            this.radAbs.Size = new System.Drawing.Size(163, 24);
+            this.radAbs.Size = new System.Drawing.Size(134, 20);
             this.radAbs.TabIndex = 0;
             this.radAbs.TabStop = true;
             this.radAbs.Text = "Register Absence";
@@ -278,82 +278,77 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(588, 27);
-            this.dtFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtFrom.Location = new System.Drawing.Point(441, 22);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(257, 26);
+            this.dtFrom.Size = new System.Drawing.Size(194, 22);
             this.dtFrom.TabIndex = 7;
             this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(497, 27);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(373, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
+            this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "From:";
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(588, 61);
-            this.dtTo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtTo.Location = new System.Drawing.Point(441, 50);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(257, 26);
+            this.dtTo.Size = new System.Drawing.Size(194, 22);
             this.dtTo.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(497, 66);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(373, 54);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 20);
+            this.label5.Size = new System.Drawing.Size(28, 16);
             this.label5.TabIndex = 10;
             this.label5.Text = "To:";
             // 
             // lblTeacher
             // 
             this.lblTeacher.AutoSize = true;
-            this.lblTeacher.Location = new System.Drawing.Point(35, 26);
-            this.lblTeacher.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTeacher.Location = new System.Drawing.Point(26, 21);
             this.lblTeacher.Name = "lblTeacher";
-            this.lblTeacher.Size = new System.Drawing.Size(75, 20);
+            this.lblTeacher.Size = new System.Drawing.Size(62, 16);
             this.lblTeacher.TabIndex = 1;
             this.lblTeacher.Text = "Teacher:";
             // 
             // cmbTeacher
             // 
             this.cmbTeacher.FormattingEnabled = true;
-            this.cmbTeacher.Location = new System.Drawing.Point(169, 22);
-            this.cmbTeacher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTeacher.Location = new System.Drawing.Point(127, 18);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(305, 28);
+            this.cmbTeacher.Size = new System.Drawing.Size(230, 24);
             this.cmbTeacher.TabIndex = 0;
             this.cmbTeacher.SelectionChangeCommitted += new System.EventHandler(this.cmbTeacher_SelectionChangeCommitted);
             // 
             // gcGuaranteed
             // 
             this.gcGuaranteed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcGuaranteed.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gcGuaranteed.Location = new System.Drawing.Point(4, 226);
+            this.gcGuaranteed.Location = new System.Drawing.Point(3, 183);
             this.gcGuaranteed.MainView = this.gvGuaranteed;
-            this.gcGuaranteed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcGuaranteed.Name = "gcGuaranteed";
-            this.gcGuaranteed.Size = new System.Drawing.Size(1000, 584);
+            this.gcGuaranteed.Size = new System.Drawing.Size(750, 475);
             this.gcGuaranteed.TabIndex = 1;
             this.gcGuaranteed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGuaranteed});
+            this.gcGuaranteed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gcGuaranteed_MouseDown);
             // 
             // gvGuaranteed
             // 
             this.gvGuaranteed.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn4});
             this.gvGuaranteed.GridControl = this.gcGuaranteed;
             this.gvGuaranteed.Name = "gvGuaranteed";
+            this.gvGuaranteed.OptionsSelection.MultiSelect = true;
             this.gvGuaranteed.OptionsView.ShowGroupPanel = false;
             this.gvGuaranteed.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)});
@@ -396,14 +391,28 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Status";
+            this.gridColumn4.FieldName = "Status";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "status.png");
+            this.imageList1.Images.SetKeyName(1, "found.png");
+            // 
             // frmTeacherUpdate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 814);
+            this.ClientSize = new System.Drawing.Size(756, 661);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmTeacherUpdate";
             this.Text = "Update Teacher";
             this.Load += new System.EventHandler(this.frmTeacherUpdate_Load);
@@ -451,5 +460,8 @@
         private System.Windows.Forms.CheckBox chkFuture;
         private System.Windows.Forms.CheckBox chkPast;
         private System.Windows.Forms.CheckBox chkShowGuarantees;
+        private System.Windows.Forms.ImageList imageList1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private System.Windows.Forms.CheckBox chkAccepted;
     }
 }

@@ -82,6 +82,8 @@ namespace RedboxAddin.DL
             }
         }
 
+
+
         public static bool SetBookingStatus(long masterBookingID, string status)
         {
             try

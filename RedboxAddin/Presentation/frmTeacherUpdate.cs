@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using RedboxAddin.BL;
 using RedboxAddin.DL;
 using RedboxAddin.Models;
+using DevExpress.XtraGrid.Menu;
+using DevExpress.Utils.Menu;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace RedboxAddin.Presentation
 {
@@ -116,14 +120,15 @@ namespace RedboxAddin.Presentation
                         action = "Creating Guaranteed Day";
                         GuaranteedDay gd = new GuaranteedDay();
 
-                        
+                        if (chkAccepted.Checked) gd.Accepted = true;
+                        else gd.Accepted = false;
                         gd.Date = bookingdate;
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
 
                         //don't add twice
-                        var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID );
-                        if (numFound == 0)   db.GuaranteedDays.InsertOnSubmit(gd);
+                        var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID);
+                        if (numFound == 0) db.GuaranteedDays.InsertOnSubmit(gd);
 
                         bookingdate = bookingdate.AddDays(1);
                         iCatch += 1;
@@ -210,30 +215,206 @@ namespace RedboxAddin.Presentation
 
         private void UpdateAbsenceVisibility()
         {
-            if (radAbs.Checked) grpAbsence.Visible = true;
-            else grpAbsence.Visible = false;
+            if (radAbs.Checked)
+            {
+                grpAbsence.Visible = true;
+                chkAccepted.Visible = false;
+            }
+            else
+            {
+                grpAbsence.Visible = false;
+                chkAccepted.Visible = true;
+            }
         }
 
-         private void cmbTeacher_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cmbTeacher_SelectionChangeCommitted(object sender, EventArgs e)
         {
             LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
         }
 
-         private void chkFuture_CheckedChanged(object sender, EventArgs e)
-         {
-             LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
-         }
+        private void chkFuture_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
+        }
 
-         private void chkPast_CheckedChanged(object sender, EventArgs e)
-         {
-             LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
-         }
+        private void chkPast_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
+        }
 
-         private void dtFrom_ValueChanged(object sender, EventArgs e)
-         {
-             dtTo.Value = dtFrom.Value;
-         }
+        private void chkShowGuarantees_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
+        }
+
+        private void dtFrom_ValueChanged(object sender, EventArgs e)
+        {
+            dtTo.Value = dtFrom.Value;
+        }
+
+
+        private void gcGuaranteed_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                // Check if the end-user has right clicked the grid control. 
+                if (e.Button == MouseButtons.Right)
+                {
+                    REventArgs rowInfo = new REventArgs();
+                    GridHitInfo info = gvGuaranteed.CalcHitInfo(new Point(e.X, e.Y));
+
+                    //******************88
+                    if (info.InRow || info.InRowCell)
+                    {
+                        rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                        rowInfo.Teacher = gvGuaranteed.GetRowCellValue(info.RowHandle, "dte").ToString();
+                        rowInfo.Description = gvGuaranteed.GetRowCellValue(info.RowHandle, info.Column).ToString();
+
+                        //switch (rowInfo.ColumnCaption.Substring(0, 3))
+                        //{
+                        //    case "Mon":
+                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "MonStatus").ToString();
+                        //        break;
+                        //    case "Tue":
+                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "TueStatus").ToString();
+                        //        break;
+                        //    case "Wed":
+                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "WedStatus").ToString();
+                        //        break;
+                        //    case "Thu":
+                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "ThuStatus").ToString();
+                        //        break;
+                        //    case "Fri":
+                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "FriStatus").ToString();
+                        //        break;
+                        //}
+                    }
+
+                    if (rowInfo.Description.Trim() == "")
+                    {
+                        //System.Media.SystemSounds.Exclamation.Play();
+                        System.Media.SystemSounds.Beep.Play();
+                        return;
+                    }
+
+
+                    //rowInfo.Status = LINQmanager.GetMasterBookingStatus(rowInfo.Teacher, rowInfo.ColumnCaption, rowInfo.Description);
+
+                    //*******************
+                    //if (hi.HitTest == GridHitTest.ColumnButton)
+                    //{
+                    GridViewCustomMenu menu = new GridViewCustomMenu(gvGuaranteed);
+                    //menu.RepaintRequired += OnRepaintRequired;
+                    menu.SetRowInfo(rowInfo);
+                    menu.imageList = imageList1;
+                    menu.Init(info);
+                    // Display the menu. 
+                    menu.Show(info.HitPoint);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
+            }
+        }
+
+       
+
+       
 
 
     }
+
+
+    public class GridViewCustomMenu : GridViewMenu
+    {
+        public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) { }
+
+        private REventArgs _rowInfo;
+        public ImageList imageList;
+        public event EventHandler RepaintRequired;
+
+
+        public void SetRowInfo(REventArgs rowInfo)
+        {
+            _rowInfo = rowInfo;
+        }
+        // Create menu items. 
+        // This method is automatically called by the menu's public Init method. 
+        protected override void CreateItems()
+        {
+            //image 0 = dot ; image 1 = tick
+            int unass = 0;
+            int cont = 0;
+            int conf = 0;
+            int dets = 0;
+            int none = 0;
+
+            switch (_rowInfo.Status)
+            {
+                case "Unassigned":
+                    unass = 1;
+                    break;
+
+                case "Contacted":
+                    cont = 1;
+                    break;
+
+                case "Confirmed":
+                    conf = 1;
+                    break;
+
+                case "Details Sent":
+                    dets = 1;
+                    break;
+
+                case "None":
+                    none = 1;
+                    break;
+            }
+
+            Items.Clear();
+            int vv = GridMenuImages.Column.Images.Count;
+            int vw = GridMenuImages.Footer.Images.Count;
+            int vx = GridMenuImages.GroupPanel.Images.Count;
+            Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
+            Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
+            Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
+            Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
+            Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
+
+        }
+
+        protected override void OnMenuItemClick(object sender, EventArgs e)
+        {
+            if (RaiseClickEvent(sender, null)) return;
+            DXMenuItem item = sender as DXMenuItem;
+            string status = item.Tag.ToString();
+
+            string teacher = _rowInfo.Teacher;
+            string description = _rowInfo.Description;
+            string colCaption = _rowInfo.ColumnCaption;
+
+            List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+
+            if (MasterBookingIDs.Count > 0)
+            {
+                if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status))
+                {
+                    EventHandler handler = RepaintRequired;
+                    if (handler != null)
+                    {
+                        handler(this, EventArgs.Empty);
+                    }
+                }
+            }
+
+        }
+
+    }
+
 }
+
+
+

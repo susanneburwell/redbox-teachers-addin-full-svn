@@ -324,6 +324,8 @@ namespace RedboxAddin
 		
 		private string _Description;
 		
+		private int _Code;
+		
 		private EntityRef<MasterBooking> _MasterBooking;
 		
     #region Extensibility Method Definitions
@@ -344,6 +346,8 @@ namespace RedboxAddin
     partial void OnHalfDayChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
+    partial void OnCodeChanging(int value);
+    partial void OnCodeChanged();
     #endregion
 		
 		public Booking()
@@ -492,6 +496,26 @@ namespace RedboxAddin
 					this._Description = value;
 					this.SendPropertyChanged("Description");
 					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="Int NOT NULL")]
+		public int Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
 				}
 			}
 		}
@@ -4485,6 +4509,8 @@ namespace RedboxAddin
 		
 		private string _Note;
 		
+		private bool _Accepted;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4497,6 +4523,8 @@ namespace RedboxAddin
     partial void OnDateChanged();
     partial void OnNoteChanging(string value);
     partial void OnNoteChanged();
+    partial void OnAcceptedChanging(bool value);
+    partial void OnAcceptedChanged();
     #endregion
 		
 		public GuaranteedDay()
@@ -4580,6 +4608,26 @@ namespace RedboxAddin
 					this._Note = value;
 					this.SendPropertyChanged("Note");
 					this.OnNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Accepted", DbType="Bit NOT NULL")]
+		public bool Accepted
+		{
+			get
+			{
+				return this._Accepted;
+			}
+			set
+			{
+				if ((this._Accepted != value))
+				{
+					this.OnAcceptedChanging(value);
+					this.SendPropertyChanging();
+					this._Accepted = value;
+					this.SendPropertyChanged("Accepted");
+					this.OnAcceptedChanged();
 				}
 			}
 		}
