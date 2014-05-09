@@ -43,7 +43,7 @@
             this.CRB = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NoGo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Mon = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.MonG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Tue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Wed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Thur = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,7 +105,7 @@
             this.CRB,
             this.NoGo,
             this.Mon,
-            this.MonG,
+            this.Guar,
             this.Tue,
             this.Wed,
             this.Thur,
@@ -130,14 +130,14 @@
             styleFormatCondition1.Appearance.Options.UseFont = true;
             styleFormatCondition1.Column = this.Teacher;
             styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            styleFormatCondition1.Expression = " !IsNullOrEmpty([MonG])";
+            styleFormatCondition1.Expression = " !IsNullOrEmpty([Guar])";
             this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
             styleFormatCondition1});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.MonG, DevExpress.Data.ColumnSortOrder.Descending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Guar, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             // 
             // Live
@@ -242,15 +242,15 @@
             this.Mon.Visible = true;
             this.Mon.VisibleIndex = 9;
             // 
-            // MonG
+            // Guar
             // 
-            this.MonG.Caption = "Guaranteed";
-            this.MonG.FieldName = "MonG";
-            this.MonG.Name = "MonG";
-            this.MonG.OptionsColumn.AllowEdit = false;
-            this.MonG.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.MonG.OptionsColumn.AllowShowHide = false;
-            this.MonG.OptionsColumn.ReadOnly = true;
+            this.Guar.Caption = "Guaranteed";
+            this.Guar.FieldName = "Guar";
+            this.Guar.Name = "Guar";
+            this.Guar.OptionsColumn.AllowEdit = false;
+            this.Guar.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.Guar.OptionsColumn.AllowShowHide = false;
+            this.Guar.OptionsColumn.ReadOnly = true;
             // 
             // Tue
             // 
@@ -463,7 +463,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn CRB;
         private DevExpress.XtraGrid.Columns.GridColumn NoGo;
         private DevExpress.XtraGrid.Columns.GridColumn Mon;
-        private DevExpress.XtraGrid.Columns.GridColumn MonG;
+        private DevExpress.XtraGrid.Columns.GridColumn Guar;
         private DevExpress.XtraGrid.Columns.GridColumn Tue;
         private DevExpress.XtraGrid.Columns.GridColumn Wed;
         private DevExpress.XtraGrid.Columns.GridColumn Thur;

@@ -63,7 +63,7 @@ namespace RedboxAddin.Models
         public string Wednesday { get; set; }
         public string Thursday { get; set; }
         public string Friday { get; set; }
-        public string MonG { get; set; }
+        public string Guar { get; set; }
         public string MonColor { get; set; }
         public string TueColor { get; set; }
         public string WedColor { get; set; }
@@ -175,6 +175,7 @@ namespace RedboxAddin.Models
 
     public class RTeacherday
     {
+        public Int64 ID { get; set; }
         public DateTime dte { get; set; }
         public string Type { get; set; }
         public string Details { get; set; }
@@ -187,6 +188,8 @@ namespace RedboxAddin.Models
         public string ColumnCaption { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
+        public long[] SelectedRows { get; set; }
+        public bool isGuarantee { get; set; }
     }
 
     public class Payment

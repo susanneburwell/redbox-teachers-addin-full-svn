@@ -19,9 +19,8 @@ namespace RedboxAddin.Presentation
 {
     public partial class frmTeacherUpdate : Form
     {
-
+        long _teacherID = 0;
         RedBoxDB db;
-        long _teacherID;
 
         public frmTeacherUpdate()
         {
@@ -78,7 +77,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 DBManager dbm = new DBManager();
-                List<RTeacherday> teacherdays = dbm.GetTeacherDays(teacherID, chkPast.Checked, chkFuture.Checked, chkShowGuarantees.Checked);
+                List<RTeacherday> teacherdays = dbm.GetTeacherDays(teacherID, chkPast.Checked, chkFuture.Checked, radGuar.Checked);
 
                 gcGuaranteed.DataSource = teacherdays;
 
@@ -156,10 +155,6 @@ namespace RedboxAddin.Presentation
                     mb.EndDate = dtTo.Value.Date;
                     mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                     mb.IsAbsence = true;
-                    if (radAA.Checked) mb.Details = "AA: " + txtDetails.Text;
-                    if (radAAL.Checked) mb.Details = "AAL: " + txtDetails.Text;
-                    if (radSick.Checked) mb.Details = "Sick: " + txtDetails.Text;
-                    if (radOther.Checked) mb.Details = "Absence: " + txtDetails.Text;
 
                     db.MasterBookings.InsertOnSubmit(mb);
                     db.SubmitChanges();
@@ -210,6 +205,7 @@ namespace RedboxAddin.Presentation
 
         private void radAbs_CheckedChanged(object sender, EventArgs e)
         {
+            LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
             UpdateAbsenceVisibility();
         }
 
@@ -217,19 +213,23 @@ namespace RedboxAddin.Presentation
         {
             if (radAbs.Checked)
             {
-                grpAbsence.Visible = true;
                 chkAccepted.Visible = false;
+                grpbx2.Text = "Record Absence";
+                lblType.Text = "Register Absence";
             }
             else
             {
-                grpAbsence.Visible = false;
                 chkAccepted.Visible = true;
+                grpbx2.Text = "Add New 'Guaranteed Pay' days";
+                lblType.Text = "Guaranteed Pay";
+
             }
         }
 
         private void cmbTeacher_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
+            _teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+            LoadTeacherDates(_teacherID);
         }
 
         private void chkFuture_CheckedChanged(object sender, EventArgs e)
@@ -266,51 +266,45 @@ namespace RedboxAddin.Presentation
                     //******************88
                     if (info.InRow || info.InRowCell)
                     {
+                        if (radGuar.Checked) rowInfo.isGuarantee = true;
+                        else rowInfo.isGuarantee = false;
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                         rowInfo.Teacher = gvGuaranteed.GetRowCellValue(info.RowHandle, "dte").ToString();
-                        rowInfo.Description = gvGuaranteed.GetRowCellValue(info.RowHandle, info.Column).ToString();
+                        //rowInfo.Description = gvGuaranteed.GetRowCellValue(info.RowHandle, info.Column).ToString();
+                        rowInfo.Description = txtDetails.Text;
+                        int[] selectedRows = gvGuaranteed.GetSelectedRows();
 
-                        //switch (rowInfo.ColumnCaption.Substring(0, 3))
-                        //{
-                        //    case "Mon":
-                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "MonStatus").ToString();
-                        //        break;
-                        //    case "Tue":
-                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "TueStatus").ToString();
-                        //        break;
-                        //    case "Wed":
-                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "WedStatus").ToString();
-                        //        break;
-                        //    case "Thu":
-                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "ThuStatus").ToString();
-                        //        break;
-                        //    case "Fri":
-                        //        rowInfo.Status = gvGuaranteed.GetRowCellValue(info.RowHandle, "FriStatus").ToString();
-                        //        break;
-                        //}
+                        //Get IDs from selected rows
+                        long[] selectedIDs;
+                        if (selectedRows.Length > 1)
+                        {
+                            //Multiple rows selected
+                            selectedIDs = new long[selectedRows.Length];
+
+                            for (int i = 0; i < selectedRows.Length; i++)
+                            {
+                                int rowNum = selectedRows[i];
+                                long? rowID = gvGuaranteed.GetRowCellValue(rowNum, "ID") as long?;
+                                if (rowID != null) selectedIDs[i] = (long)gvGuaranteed.GetRowCellValue(rowNum, "ID");
+                            }
+                        }
+                        else
+                        {
+                            //single row selected
+                            selectedIDs = new long[1];
+                            selectedIDs[0] = (long)gvGuaranteed.GetRowCellValue(info.RowHandle, "ID");
+                        }
+                        rowInfo.SelectedRows = selectedIDs;
                     }
 
-                    if (rowInfo.Description.Trim() == "")
-                    {
-                        //System.Media.SystemSounds.Exclamation.Play();
-                        System.Media.SystemSounds.Beep.Play();
-                        return;
-                    }
-
-
-                    //rowInfo.Status = LINQmanager.GetMasterBookingStatus(rowInfo.Teacher, rowInfo.ColumnCaption, rowInfo.Description);
-
-                    //*******************
-                    //if (hi.HitTest == GridHitTest.ColumnButton)
-                    //{
                     GridViewCustomMenu menu = new GridViewCustomMenu(gvGuaranteed);
-                    //menu.RepaintRequired += OnRepaintRequired;
                     menu.SetRowInfo(rowInfo);
                     menu.imageList = imageList1;
                     menu.Init(info);
                     // Display the menu. 
                     menu.Show(info.HitPoint);
-                    //}
+
+                    refreshTimer.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -319,9 +313,20 @@ namespace RedboxAddin.Presentation
             }
         }
 
-       
+        private void refreshTimer_Tick(object sender, EventArgs e)
+        {
+            refreshTimer.Enabled = false;
+            LoadTeacherDates(_teacherID);
+        }
 
-       
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadTeacherDates(_teacherID);
+        }
+
+
+
+
 
 
     }
@@ -345,44 +350,44 @@ namespace RedboxAddin.Presentation
         protected override void CreateItems()
         {
             //image 0 = dot ; image 1 = tick
-            int unass = 0;
-            int cont = 0;
+            int off = 0;
+            int acct = 0;
             int conf = 0;
             int dets = 0;
             int none = 0;
 
             switch (_rowInfo.Status)
             {
-                case "Unassigned":
-                    unass = 1;
+                case "Offered":
+                    off = 1;
                     break;
 
-                case "Contacted":
-                    cont = 1;
-                    break;
-
-                case "Confirmed":
-                    conf = 1;
-                    break;
-
-                case "Details Sent":
-                    dets = 1;
-                    break;
-
-                case "None":
-                    none = 1;
+                case "Accepted":
+                    acct = 1;
                     break;
             }
+            if (_rowInfo.isGuarantee)
+            {
+                Items.Clear();
+                int vv = GridMenuImages.Column.Images.Count;
+                int vw = GridMenuImages.Footer.Images.Count;
+                int vx = GridMenuImages.GroupPanel.Images.Count;
+                Items.Add(CreateMenuItem("Offered", imageList.Images[off], "Offered", true));
+                Items.Add(CreateMenuItem("Accepted", imageList.Images[acct], "Accepted", true));
+                Items.Add(CreateMenuItem("Delete", imageList.Images[conf], "Delete", true));
+            }
+            else
+            {
+                Items.Clear();
+                int vv = GridMenuImages.Column.Images.Count;
+                int vw = GridMenuImages.Footer.Images.Count;
+                int vx = GridMenuImages.GroupPanel.Images.Count;
+                Items.Add(CreateMenuItem("AA", imageList.Images[off], "AA", true));
+                Items.Add(CreateMenuItem("AAL", imageList.Images[acct], "AAL", true));
+                Items.Add(CreateMenuItem("Sick", imageList.Images[conf], "Sick", true));
+                Items.Add(CreateMenuItem("Other", imageList.Images[conf], "Other", true));
+            }
 
-            Items.Clear();
-            int vv = GridMenuImages.Column.Images.Count;
-            int vw = GridMenuImages.Footer.Images.Count;
-            int vx = GridMenuImages.GroupPanel.Images.Count;
-            Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
-            Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
-            Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
-            Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
-            Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
 
         }
 
@@ -396,19 +401,44 @@ namespace RedboxAddin.Presentation
             string description = _rowInfo.Description;
             string colCaption = _rowInfo.ColumnCaption;
 
-            List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
-
-            if (MasterBookingIDs.Count > 0)
+            DBManager dbm = new DBManager();
+            int response = -1;
+            if (_rowInfo.isGuarantee)
             {
-                if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status))
+                //Update Guarantees
+                switch (status)
                 {
-                    EventHandler handler = RepaintRequired;
-                    if (handler != null)
-                    {
-                        handler(this, EventArgs.Empty);
-                    }
+                    case "Offered":
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, false);
+                        //MessageBox.Show(response.ToString() + " days were updated.");
+                        break;
+                    case "Accepted":
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, true);
+                        //MessageBox.Show(response.ToString() + " days were updated.");
+                        break;
+                    case "Delete":
+                        response = dbm.DeleteGuarantee(_rowInfo.SelectedRows);
+                        // MessageBox.Show(response.ToString() + " days were deleted.");
+                        break;
+
                 }
+
             }
+            else
+            {
+                //Update Bookings
+                if (string.IsNullOrWhiteSpace(description))
+                {
+                    MessageBox.Show("Please enter the Details/Notes for this absence.");
+                    return;
+                }
+                else
+                {
+                    response = dbm.UpdateBookings(_rowInfo.SelectedRows, status, description);
+                }
+
+            }
+
 
         }
 

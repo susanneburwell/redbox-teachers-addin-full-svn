@@ -332,17 +332,28 @@ namespace RedboxAddin.DL
                         objAvail.Wednesday = dr["Wednesday"].ToString();
                         objAvail.Thursday = dr["Thursday"].ToString();
                         objAvail.Friday = dr["Friday"].ToString();
-                        objAvail.MonG = dr["MonG"].ToString();
-                        objAvail.MonColor = dr["MonColor"].ToString();
-                        objAvail.TueColor = dr["TueColor"].ToString();
-                        objAvail.WedColor = dr["WedColor"].ToString();
-                        objAvail.ThuColor = dr["ThuColor"].ToString();
-                        objAvail.FriColor = dr["FriColor"].ToString();
+                        if (dr["MonG"].ToString() == "1" || dr["TueG"].ToString() == "1" || dr["WedG"].ToString() == "1" || dr["ThuG"].ToString() == "1" || dr["FriG"].ToString() == "1")
+                        {
+                            objAvail.Guar = "1";
+                        }
+                        else objAvail.Guar = "";
                         objAvail.MonStatus = dr["MonStatus"].ToString();
                         objAvail.TueStatus = dr["TueStatus"].ToString();
                         objAvail.WedStatus = dr["WedStatus"].ToString();
                         objAvail.ThuStatus = dr["ThuStatus"].ToString();
                         objAvail.FriStatus = dr["FriStatus"].ToString();
+                        //set colours for guaranteed if necessary
+                        if ((objAvail.MonStatus=="")&&(dr["MonG"].ToString() == "1")) objAvail.MonColor = "blck/gree";
+                        else objAvail.MonColor = dr["MonColor"].ToString();
+                        if ((objAvail.TueStatus == "") && (dr["TueG"].ToString() == "1")) objAvail.TueColor = "blck/gree";
+                        else objAvail.TueColor = dr["TueColor"].ToString();
+                        if ((objAvail.WedStatus == "") && (dr["WedG"].ToString() == "1")) objAvail.WedColor = "blck/gree";
+                        else objAvail.WedColor = dr["WedColor"].ToString();
+                        if ((objAvail.ThuStatus == "") && (dr["ThuG"].ToString() == "1")) objAvail.ThuColor = "blck/gree";
+                        else objAvail.ThuColor = dr["ThuColor"].ToString();
+                        if ((objAvail.FriStatus == "") && (dr["FriG"].ToString() == "1")) objAvail.FriColor = "blck/gree";
+                        else objAvail.FriColor = dr["FriColor"].ToString();
+
                         objAvail.FirstAid = Utils.CheckBool(dr["FirstAid"]);
                         objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
                         objAvail.BSL = Utils.CheckBool(dr["BSL"]);
@@ -445,7 +456,7 @@ namespace RedboxAddin.DL
             {
                 try
                 {
-                    string SQLstr = "SELECT [Date],[Note],[Accepted] " +
+                    string SQLstr = "SELECT [ID],[Date],[Note],[Accepted] " +
                                     "FROM [GuaranteedDays] " +
                                     "Where [TeacherID] = '" + teacherID.ToString() + "' ";
                     DataSet msgDs = GetDataSet(SQLstr + DateSQL);
@@ -456,6 +467,7 @@ namespace RedboxAddin.DL
                         foreach (DataRow dr in msgDs.Tables[0].Rows)
                         {
                             RTeacherday tDay = new RTeacherday();
+                            tDay.ID = Utils.CheckLong(dr["ID"]);
                             tDay.dte = Utils.CheckDate(dr["Date"]);
                             tDay.Type = "Guaranteed Day";
                             tDay.Details = Utils.CheckString(dr["Note"]);
@@ -475,56 +487,59 @@ namespace RedboxAddin.DL
                 }
             }
 
-            //Get Booked days
-            try
+            else
             {
-                string SQLstr = "SELECT Description, [MasterBookings].contactID, Bookings.Date, isAbsence, BookingStatus, Code " +
-                                "FROM [Bookings] " +
-                                "LEFT JOIN [MasterBookings] ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
-                                "WHERE  [MasterBookings].contactID = '" + teacherID.ToString() + "' ";
-                DataSet msgDs = GetDataSet(SQLstr + DateSQL);
-
-
-                if (msgDs != null)
+                //Get Booked days
+                try
                 {
-                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    string SQLstr = "SELECT [Bookings].ID, Description, [MasterBookings].contactID, Bookings.Date, isAbsence, BookingStatus, Code " +
+                                    "FROM [Bookings] " +
+                                    "LEFT JOIN [MasterBookings] ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                                    "WHERE  [MasterBookings].contactID = '" + teacherID.ToString() + "' ";
+                    DataSet msgDs = GetDataSet(SQLstr + DateSQL);
+
+
+                    if (msgDs != null)
                     {
-                        RTeacherday tDay = new RTeacherday();
-                        tDay.dte = Utils.CheckDate(dr["Date"]);
-                        if (Utils.CheckBool(dr["isAbsence"])) tDay.Type = "Absence";
-                        else tDay.Type = Utils.CheckString(dr["BookingStatus"]);
-                        tDay.Details = Utils.CheckString(dr["Description"]);
-                        switch (Utils.CheckInt(dr["Code"]))
+                        foreach (DataRow dr in msgDs.Tables[0].Rows)
                         {
-                            case 1:
-                                tDay.Status = "AA";
-                                break;
-                            case 2:
-                                tDay.Status = "AAL";
-                                break;
-                            case 3:
-                                tDay.Status = "Sick";
-                                break;
-                            case 4:
-                                tDay.Status = "Other";
-                                break;
-                            default:
-                                tDay.Status = "-";
-                                break;
+                            RTeacherday tDay = new RTeacherday();
+                            tDay.ID = Utils.CheckLong(dr["ID"]);
+                            tDay.dte = Utils.CheckDate(dr["Date"]);
+                            if (Utils.CheckBool(dr["isAbsence"])) tDay.Type = "Absence";
+                            else tDay.Type = Utils.CheckString(dr["BookingStatus"]);
+                            tDay.Details = Utils.CheckString(dr["Description"]);
+                            switch (Utils.CheckInt(dr["Code"]))
+                            {
+                                case 1:
+                                    tDay.Status = "AA";
+                                    break;
+                                case 2:
+                                    tDay.Status = "AAL";
+                                    break;
+                                case 3:
+                                    tDay.Status = "Sick";
+                                    break;
+                                case 4:
+                                    tDay.Status = "Other";
+                                    break;
+                                default:
+                                    tDay.Status = "-";
+                                    break;
+
+                            }
+                            teacherDays.Add(tDay);
 
                         }
-                        teacherDays.Add(tDay);
-
                     }
+
                 }
-
+                catch (Exception ex)
+                {
+                    Debug.DebugMessage(2, "Error in GetTeacherDays(Guarantees): " + ex.Message);
+                    return null;
+                }
             }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in GetTeacherDays(Guarantees): " + ex.Message);
-                return null;
-            }
-
 
             return teacherDays;
         }
@@ -956,7 +971,7 @@ namespace RedboxAddin.DL
                 SQL += " WHERE MasterBookingID = '" + masterID + "' ";
                 SQL += " AND DATE >= '" + ddate + "' ";
 
-                 return ExecuteNonQuery(SQL);
+                return ExecuteNonQuery(SQL);
             }
             catch (Exception ex)
             {
@@ -975,7 +990,7 @@ namespace RedboxAddin.DL
         {
             try
             {
-                string SQL = "DELETE FROM Bookings " ;
+                string SQL = "DELETE FROM Bookings ";
 
                 SQL += " WHERE MasterBookingID = '" + masterID + "' ";
                 SQL += " AND DATE >= '" + ddate + "' ";
@@ -1489,6 +1504,123 @@ namespace RedboxAddin.DL
                 Debug.DebugMessage(2, "Error in adding the reminder :- " + ex.Message);
                 return false;
             }
+        }
+
+        public int UpdateGuarantee(long[] guaranteeIDs, bool accepted)
+        {
+            int numUpdated = 0;
+            try
+            {
+                string sqlStr = "UPDATE GuaranteedDays  "
+                    + "SET Accepted = @accepted "
+                    + "WHERE ID = @ID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Parameters.Add("@accepted", SqlDbType.Bit);
+                CmdAddContact.Prepare();
+
+                foreach (long id in guaranteeIDs)
+                {
+
+                    CmdAddContact.Parameters["@ID"].Value = id;
+                    CmdAddContact.Parameters["@accepted"].Value = accepted;
+                    numUpdated += CmdAddContact.ExecuteNonQuery();
+                }
+                return numUpdated;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateGuarantee :- " + ex.Message);
+                return numUpdated;
+            }
+
+        }
+
+        public int DeleteGuarantee(long[] guaranteeIDs)
+        {
+            int numUpdated = 0;
+            try
+            {
+                string sqlStr = "DELETE FROM GuaranteedDays  "
+                    + "WHERE ID = @ID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Prepare();
+
+                foreach (long id in guaranteeIDs)
+                {
+
+                    CmdAddContact.Parameters["@ID"].Value = id;
+                    numUpdated += CmdAddContact.ExecuteNonQuery();
+                }
+                return numUpdated;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in DeleteGuarantee :- " + ex.Message);
+                return numUpdated;
+            }
+
+        }
+
+        public int UpdateBookings(long[] bookingIDs, string status, string description)
+        {
+            int numUpdated = 0;
+            int code = 0;
+
+            switch (status)
+            {
+                case "AA":
+                    code = 1;
+                    break;
+                case "AAL":
+                    code = 2;
+                    break;
+                case "Sick":
+                    code = 3;
+                    break;
+                case "Other":
+                    code = 4;
+                    break;
+                default:
+                    return -1;
+                    break;
+            }
+
+            if (description.Length > 50) description = description.Substring(0, 50);
+
+            try
+            {
+                string sqlStr = "UPDATE Bookings  "
+                    + "SET Code = @code, "
+                    + "Description = @descr, "
+                    + "Rate = 0, " 
+                    + "Charge = 0 " 
+                    + "WHERE ID = @ID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Parameters.Add("@code", SqlDbType.Int);
+                CmdAddContact.Parameters.Add("@descr", SqlDbType.VarChar, 50);
+                CmdAddContact.Prepare();
+
+                foreach (long id in bookingIDs)
+                {
+                    CmdAddContact.Parameters["@ID"].Value = id;
+                    CmdAddContact.Parameters["@code"].Value = code;
+                    CmdAddContact.Parameters["@descr"].Value = description;
+                    numUpdated += CmdAddContact.ExecuteNonQuery();
+                }
+                return numUpdated;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateGuarantee :- " + ex.Message);
+                return numUpdated;
+            }
+
         }
 
         public List<long> CheckDupes(string firstName, string lastName)

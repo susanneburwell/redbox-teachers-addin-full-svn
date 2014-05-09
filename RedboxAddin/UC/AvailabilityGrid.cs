@@ -18,6 +18,7 @@ using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using RedboxAddin;
 using RedboxAddin.Presentation;
+using DevExpress.Data;
 
 namespace RedboxAddin.UC
 {
@@ -53,6 +54,9 @@ namespace RedboxAddin.UC
                 gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
+                gridView1.Columns["Guar"].SortOrder = ColumnSortOrder.Ascending;
+                gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] { 
+                    new GridColumnSortInfo(gridView1.Columns["Guar"], ColumnSortOrder.Ascending)});
                 this.UseWaitCursor = false;
             }
             catch (Exception ex)
@@ -129,7 +133,7 @@ namespace RedboxAddin.UC
                         break;
 
                     case "Teacher":
-                        string myG = gridView1.GetRowCellValue(myRow, "MonG").ToString();
+                        string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
                         if (myG == "1")
                         {
                             e.Appearance.BackColor = System.Drawing.Color.LightGreen;
@@ -142,7 +146,7 @@ namespace RedboxAddin.UC
                         break;
                 }
 
-
+                //  redd/yell  redd forecolr   yel back colour
                 string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
                 string backcolor = myVal.Substring(5, 4);
                 string forecolor = myVal.Substring(0, 4);
@@ -160,6 +164,9 @@ namespace RedboxAddin.UC
                         break;
                     case "dblu":
                         e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+                        break;
+                    case "gree": //guaranteed
+                        e.Appearance.BackColor = System.Drawing.Color.LightGreen;
                         break;
                     case "purp":
                         e.Appearance.BackColor = System.Drawing.Color.Violet;
@@ -212,7 +219,7 @@ namespace RedboxAddin.UC
                         {
                             try { rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption(); }
                             catch { }
-                            try {rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();}
+                            try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString(); }
                             catch { rowInfo.Teacher = ""; }
                             try { rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString(); }
                             catch { rowInfo.Description = "zxcvbnmkl"; }

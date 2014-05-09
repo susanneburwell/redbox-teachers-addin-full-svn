@@ -32,25 +32,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherUpdate));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblType = new System.Windows.Forms.Label();
+            this.grpbx2 = new System.Windows.Forms.GroupBox();
+            this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.chkAccepted = new System.Windows.Forms.CheckBox();
-            this.chkShowGuarantees = new System.Windows.Forms.CheckBox();
-            this.chkFuture = new System.Windows.Forms.CheckBox();
-            this.chkPast = new System.Windows.Forms.CheckBox();
-            this.grpAbsence = new System.Windows.Forms.GroupBox();
-            this.radOther = new System.Windows.Forms.RadioButton();
-            this.radSick = new System.Windows.Forms.RadioButton();
-            this.radAAL = new System.Windows.Forms.RadioButton();
-            this.radAA = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.chkFuture = new System.Windows.Forms.CheckBox();
+            this.chkPast = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radGuar = new System.Windows.Forms.RadioButton();
             this.radAbs = new System.Windows.Forms.RadioButton();
-            this.dtFrom = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtTo = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblTeacher = new System.Windows.Forms.Label();
             this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.gcGuaranteed = new DevExpress.XtraGrid.GridControl();
@@ -59,11 +56,13 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
-            this.grpAbsence.SuspendLayout();
+            this.grpbx2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcGuaranteed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGuaranteed)).BeginInit();
@@ -81,66 +80,143 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 237F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.chkAccepted);
-            this.panelTop.Controls.Add(this.chkShowGuarantees);
+            this.panelTop.Controls.Add(this.btnRefresh);
+            this.panelTop.Controls.Add(this.lblType);
+            this.panelTop.Controls.Add(this.grpbx2);
             this.panelTop.Controls.Add(this.chkFuture);
             this.panelTop.Controls.Add(this.chkPast);
-            this.panelTop.Controls.Add(this.grpAbsence);
-            this.panelTop.Controls.Add(this.txtDetails);
-            this.panelTop.Controls.Add(this.label6);
-            this.panelTop.Controls.Add(this.btnSave);
             this.panelTop.Controls.Add(this.groupBox1);
-            this.panelTop.Controls.Add(this.dtFrom);
-            this.panelTop.Controls.Add(this.label4);
-            this.panelTop.Controls.Add(this.dtTo);
-            this.panelTop.Controls.Add(this.label5);
             this.panelTop.Controls.Add(this.lblTeacher);
             this.panelTop.Controls.Add(this.cmbTeacher);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(750, 174);
+            this.panelTop.Size = new System.Drawing.Size(750, 231);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(653, 19);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 20;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.Location = new System.Drawing.Point(407, 21);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(198, 25);
+            this.lblType.TabIndex = 21;
+            this.lblType.Text = "Register Absence";
+            // 
+            // grpbx2
+            // 
+            this.grpbx2.Controls.Add(this.dtFrom);
+            this.grpbx2.Controls.Add(this.chkAccepted);
+            this.grpbx2.Controls.Add(this.label5);
+            this.grpbx2.Controls.Add(this.dtTo);
+            this.grpbx2.Controls.Add(this.txtDetails);
+            this.grpbx2.Controls.Add(this.label6);
+            this.grpbx2.Controls.Add(this.label4);
+            this.grpbx2.Controls.Add(this.btnSave);
+            this.grpbx2.Location = new System.Drawing.Point(30, 103);
+            this.grpbx2.Name = "grpbx2";
+            this.grpbx2.Size = new System.Drawing.Size(711, 113);
+            this.grpbx2.TabIndex = 20;
+            this.grpbx2.TabStop = false;
+            this.grpbx2.Text = "Record Absence";
+            // 
+            // dtFrom
+            // 
+            this.dtFrom.Location = new System.Drawing.Point(83, 22);
+            this.dtFrom.Name = "dtFrom";
+            this.dtFrom.Size = new System.Drawing.Size(194, 22);
+            this.dtFrom.TabIndex = 7;
+            this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
             // 
             // chkAccepted
             // 
             this.chkAccepted.AutoSize = true;
             this.chkAccepted.Checked = true;
             this.chkAccepted.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAccepted.Location = new System.Drawing.Point(534, 144);
+            this.chkAccepted.Location = new System.Drawing.Point(381, 80);
             this.chkAccepted.Name = "chkAccepted";
-            this.chkAccepted.Size = new System.Drawing.Size(85, 20);
+            this.chkAccepted.Size = new System.Drawing.Size(151, 20);
             this.chkAccepted.TabIndex = 19;
-            this.chkAccepted.Text = "Accepted";
+            this.chkAccepted.Text = "Guarantee Accepted";
             this.chkAccepted.UseVisualStyleBackColor = true;
             this.chkAccepted.Visible = false;
             // 
-            // chkShowGuarantees
+            // label5
             // 
-            this.chkShowGuarantees.AutoSize = true;
-            this.chkShowGuarantees.Checked = true;
-            this.chkShowGuarantees.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowGuarantees.Location = new System.Drawing.Point(206, 128);
-            this.chkShowGuarantees.Name = "chkShowGuarantees";
-            this.chkShowGuarantees.Size = new System.Drawing.Size(134, 20);
-            this.chkShowGuarantees.TabIndex = 18;
-            this.chkShowGuarantees.Text = "Show Guaranteed";
-            this.chkShowGuarantees.UseVisualStyleBackColor = true;
-            this.chkShowGuarantees.CheckedChanged += new System.EventHandler(this.chkShowGuarantees_CheckedChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 16);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "To:";
+            // 
+            // dtTo
+            // 
+            this.dtTo.Location = new System.Drawing.Point(83, 50);
+            this.dtTo.Name = "dtTo";
+            this.dtTo.Size = new System.Drawing.Size(194, 22);
+            this.dtTo.TabIndex = 9;
+            // 
+            // txtDetails
+            // 
+            this.txtDetails.Location = new System.Drawing.Point(381, 24);
+            this.txtDetails.Multiline = true;
+            this.txtDetails.Name = "txtDetails";
+            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDetails.Size = new System.Drawing.Size(317, 42);
+            this.txtDetails.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(302, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 43);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Details/\r\nNotes:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "From:";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(623, 80);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // chkFuture
             // 
             this.chkFuture.AutoSize = true;
             this.chkFuture.Checked = true;
             this.chkFuture.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFuture.Location = new System.Drawing.Point(29, 151);
+            this.chkFuture.Location = new System.Drawing.Point(559, 66);
             this.chkFuture.Name = "chkFuture";
             this.chkFuture.Size = new System.Drawing.Size(139, 20);
             this.chkFuture.TabIndex = 17;
@@ -151,7 +227,7 @@
             // chkPast
             // 
             this.chkPast.AutoSize = true;
-            this.chkPast.Location = new System.Drawing.Point(29, 128);
+            this.chkPast.Location = new System.Drawing.Point(411, 65);
             this.chkPast.Name = "chkPast";
             this.chkPast.Size = new System.Drawing.Size(129, 20);
             this.chkPast.TabIndex = 16;
@@ -159,96 +235,13 @@
             this.chkPast.UseVisualStyleBackColor = true;
             this.chkPast.CheckedChanged += new System.EventHandler(this.chkPast_CheckedChanged);
             // 
-            // grpAbsence
-            // 
-            this.grpAbsence.Controls.Add(this.radOther);
-            this.grpAbsence.Controls.Add(this.radSick);
-            this.grpAbsence.Controls.Add(this.radAAL);
-            this.grpAbsence.Controls.Add(this.radAA);
-            this.grpAbsence.Location = new System.Drawing.Point(204, 48);
-            this.grpAbsence.Name = "grpAbsence";
-            this.grpAbsence.Size = new System.Drawing.Size(153, 73);
-            this.grpAbsence.TabIndex = 15;
-            this.grpAbsence.TabStop = false;
-            this.grpAbsence.Text = "Absence Type";
-            // 
-            // radOther
-            // 
-            this.radOther.AutoSize = true;
-            this.radOther.Checked = true;
-            this.radOther.Location = new System.Drawing.Point(78, 43);
-            this.radOther.Name = "radOther";
-            this.radOther.Size = new System.Drawing.Size(58, 20);
-            this.radOther.TabIndex = 3;
-            this.radOther.TabStop = true;
-            this.radOther.Text = "Other";
-            this.radOther.UseVisualStyleBackColor = true;
-            // 
-            // radSick
-            // 
-            this.radSick.AutoSize = true;
-            this.radSick.Location = new System.Drawing.Point(20, 43);
-            this.radSick.Name = "radSick";
-            this.radSick.Size = new System.Drawing.Size(52, 20);
-            this.radSick.TabIndex = 2;
-            this.radSick.Text = "Sick";
-            this.radSick.UseVisualStyleBackColor = true;
-            // 
-            // radAAL
-            // 
-            this.radAAL.AutoSize = true;
-            this.radAAL.Location = new System.Drawing.Point(78, 22);
-            this.radAAL.Name = "radAAL";
-            this.radAAL.Size = new System.Drawing.Size(51, 20);
-            this.radAAL.TabIndex = 1;
-            this.radAAL.Text = "AAL";
-            this.radAAL.UseVisualStyleBackColor = true;
-            // 
-            // radAA
-            // 
-            this.radAA.AutoSize = true;
-            this.radAA.Location = new System.Drawing.Point(20, 22);
-            this.radAA.Name = "radAA";
-            this.radAA.Size = new System.Drawing.Size(44, 20);
-            this.radAA.TabIndex = 0;
-            this.radAA.Text = "AA";
-            this.radAA.UseVisualStyleBackColor = true;
-            // 
-            // txtDetails
-            // 
-            this.txtDetails.Location = new System.Drawing.Point(376, 93);
-            this.txtDetails.Multiline = true;
-            this.txtDetails.Name = "txtDetails";
-            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDetails.Size = new System.Drawing.Size(339, 42);
-            this.txtDetails.TabIndex = 13;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(373, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 16);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Details/Notes";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(639, 141);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 12;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radGuar);
             this.groupBox1.Controls.Add(this.radAbs);
             this.groupBox1.Location = new System.Drawing.Point(29, 48);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(165, 73);
+            this.groupBox1.Size = new System.Drawing.Size(328, 49);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action";
@@ -256,7 +249,7 @@
             // radGuar
             // 
             this.radGuar.AutoSize = true;
-            this.radGuar.Location = new System.Drawing.Point(17, 43);
+            this.radGuar.Location = new System.Drawing.Point(173, 17);
             this.radGuar.Name = "radGuar";
             this.radGuar.Size = new System.Drawing.Size(132, 20);
             this.radGuar.TabIndex = 1;
@@ -267,7 +260,7 @@
             // 
             this.radAbs.AutoSize = true;
             this.radAbs.Checked = true;
-            this.radAbs.Location = new System.Drawing.Point(17, 17);
+            this.radAbs.Location = new System.Drawing.Point(19, 17);
             this.radAbs.Name = "radAbs";
             this.radAbs.Size = new System.Drawing.Size(134, 20);
             this.radAbs.TabIndex = 0;
@@ -276,43 +269,10 @@
             this.radAbs.UseVisualStyleBackColor = true;
             this.radAbs.CheckedChanged += new System.EventHandler(this.radAbs_CheckedChanged);
             // 
-            // dtFrom
-            // 
-            this.dtFrom.Location = new System.Drawing.Point(441, 22);
-            this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(194, 22);
-            this.dtFrom.TabIndex = 7;
-            this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(373, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "From:";
-            // 
-            // dtTo
-            // 
-            this.dtTo.Location = new System.Drawing.Point(441, 50);
-            this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(194, 22);
-            this.dtTo.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(373, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 16);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "To:";
-            // 
             // lblTeacher
             // 
             this.lblTeacher.AutoSize = true;
-            this.lblTeacher.Location = new System.Drawing.Point(26, 21);
+            this.lblTeacher.Location = new System.Drawing.Point(45, 21);
             this.lblTeacher.Name = "lblTeacher";
             this.lblTeacher.Size = new System.Drawing.Size(62, 16);
             this.lblTeacher.TabIndex = 1;
@@ -321,19 +281,19 @@
             // cmbTeacher
             // 
             this.cmbTeacher.FormattingEnabled = true;
-            this.cmbTeacher.Location = new System.Drawing.Point(127, 18);
+            this.cmbTeacher.Location = new System.Drawing.Point(113, 18);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(230, 24);
+            this.cmbTeacher.Size = new System.Drawing.Size(244, 24);
             this.cmbTeacher.TabIndex = 0;
             this.cmbTeacher.SelectionChangeCommitted += new System.EventHandler(this.cmbTeacher_SelectionChangeCommitted);
             // 
             // gcGuaranteed
             // 
             this.gcGuaranteed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcGuaranteed.Location = new System.Drawing.Point(3, 183);
+            this.gcGuaranteed.Location = new System.Drawing.Point(3, 240);
             this.gcGuaranteed.MainView = this.gvGuaranteed;
             this.gcGuaranteed.Name = "gcGuaranteed";
-            this.gcGuaranteed.Size = new System.Drawing.Size(750, 475);
+            this.gcGuaranteed.Size = new System.Drawing.Size(750, 418);
             this.gcGuaranteed.TabIndex = 1;
             this.gcGuaranteed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGuaranteed});
@@ -345,7 +305,8 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
-            this.gridColumn4});
+            this.gridColumn4,
+            this.ID});
             this.gvGuaranteed.GridControl = this.gcGuaranteed;
             this.gvGuaranteed.Name = "gvGuaranteed";
             this.gvGuaranteed.OptionsSelection.MultiSelect = true;
@@ -399,12 +360,24 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
             // 
+            // ID
+            // 
+            this.ID.Caption = "ID";
+            this.ID.FieldName = "ID";
+            this.ID.Name = "ID";
+            this.ID.OptionsColumn.AllowEdit = false;
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
+            // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Interval = 2500;
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // frmTeacherUpdate
             // 
@@ -419,8 +392,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
-            this.grpAbsence.ResumeLayout(false);
-            this.grpAbsence.PerformLayout();
+            this.grpbx2.ResumeLayout(false);
+            this.grpbx2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcGuaranteed)).EndInit();
@@ -449,19 +422,18 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TextBox txtDetails;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox grpAbsence;
-        private System.Windows.Forms.RadioButton radOther;
-        private System.Windows.Forms.RadioButton radSick;
-        private System.Windows.Forms.RadioButton radAAL;
-        private System.Windows.Forms.RadioButton radAA;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private System.Windows.Forms.CheckBox chkFuture;
         private System.Windows.Forms.CheckBox chkPast;
-        private System.Windows.Forms.CheckBox chkShowGuarantees;
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private System.Windows.Forms.CheckBox chkAccepted;
+        private System.Windows.Forms.GroupBox grpbx2;
+        private System.Windows.Forms.Label lblType;
+        private DevExpress.XtraGrid.Columns.GridColumn ID;
+        private System.Windows.Forms.Timer refreshTimer;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
