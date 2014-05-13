@@ -64,6 +64,7 @@ namespace RedboxAddin.Models
         public string Thursday { get; set; }
         public string Friday { get; set; }
         public string Guar { get; set; }
+        public string LongTerm { get; set; }
         public string MonColor { get; set; }
         public string TueColor { get; set; }
         public string WedColor { get; set; }
@@ -87,6 +88,7 @@ namespace RedboxAddin.Models
         public string FullName { get; set; }
         public string days { get; set; }
         public int numDays { get; set; }
+        public string Description { get; set; }
         public Decimal DayRate { get; set; }
         public Decimal Total { get; set; }
     }

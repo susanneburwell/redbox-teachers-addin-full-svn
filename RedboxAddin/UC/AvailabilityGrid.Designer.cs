@@ -43,7 +43,6 @@
             this.CRB = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NoGo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Mon = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Tue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Wed = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Thur = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -61,6 +60,8 @@
             this.RWInc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BSL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FirstAid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -105,7 +106,6 @@
             this.CRB,
             this.NoGo,
             this.Mon,
-            this.Guar,
             this.Tue,
             this.Wed,
             this.Thur,
@@ -122,7 +122,9 @@
             this.FriStatus,
             this.RWInc,
             this.BSL,
-            this.FirstAid});
+            this.FirstAid,
+            this.Guar,
+            this.LongTerm});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -241,16 +243,6 @@
             this.Mon.OptionsColumn.ReadOnly = true;
             this.Mon.Visible = true;
             this.Mon.VisibleIndex = 9;
-            // 
-            // Guar
-            // 
-            this.Guar.Caption = "Guaranteed";
-            this.Guar.FieldName = "Guar";
-            this.Guar.Name = "Guar";
-            this.Guar.OptionsColumn.AllowEdit = false;
-            this.Guar.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.Guar.OptionsColumn.AllowShowHide = false;
-            this.Guar.OptionsColumn.ReadOnly = true;
             // 
             // Tue
             // 
@@ -429,6 +421,26 @@
             this.FirstAid.Visible = true;
             this.FirstAid.VisibleIndex = 16;
             // 
+            // Guar
+            // 
+            this.Guar.Caption = "Guaranteed";
+            this.Guar.FieldName = "Guar";
+            this.Guar.Name = "Guar";
+            this.Guar.OptionsColumn.AllowEdit = false;
+            this.Guar.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.Guar.OptionsColumn.AllowShowHide = false;
+            this.Guar.OptionsColumn.ReadOnly = true;
+            this.Guar.Visible = true;
+            this.Guar.VisibleIndex = 17;
+            // 
+            // LongTerm
+            // 
+            this.LongTerm.Caption = "Long Term";
+            this.LongTerm.FieldName = "LongTerm";
+            this.LongTerm.Name = "LongTerm";
+            this.LongTerm.Visible = true;
+            this.LongTerm.VisibleIndex = 18;
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -483,5 +495,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn RWInc;
         private DevExpress.XtraGrid.Columns.GridColumn BSL;
         private DevExpress.XtraGrid.Columns.GridColumn FirstAid;
+        private DevExpress.XtraGrid.Columns.GridColumn LongTerm;
     }
 }

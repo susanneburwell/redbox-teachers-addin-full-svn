@@ -124,6 +124,7 @@
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.btnUpdateDaily = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSendVettingDetails = new System.Windows.Forms.Button();
             this.btnSendNotification = new System.Windows.Forms.Button();
@@ -131,7 +132,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.btnUpdateDaily = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1238,6 +1238,17 @@
             this.pnlTop.Size = new System.Drawing.Size(1002, 44);
             this.pnlTop.TabIndex = 7;
             // 
+            // btnUpdateDaily
+            // 
+            this.btnUpdateDaily.Location = new System.Drawing.Point(425, 8);
+            this.btnUpdateDaily.Name = "btnUpdateDaily";
+            this.btnUpdateDaily.Size = new System.Drawing.Size(190, 27);
+            this.btnUpdateDaily.TabIndex = 17;
+            this.btnUpdateDaily.Text = "Update Daily Bookings";
+            this.toolTip1.SetToolTip(this.btnUpdateDaily, "Update or Delete Boolings from a date");
+            this.btnUpdateDaily.UseVisualStyleBackColor = true;
+            this.btnUpdateDaily.Click += new System.EventHandler(this.btnUpdateDaily_Click);
+            // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(31, 8);
@@ -1251,7 +1262,7 @@
             // 
             // btnSendVettingDetails
             // 
-            this.btnSendVettingDetails.Location = new System.Drawing.Point(314, 8);
+            this.btnSendVettingDetails.Location = new System.Drawing.Point(297, 8);
             this.btnSendVettingDetails.Name = "btnSendVettingDetails";
             this.btnSendVettingDetails.Size = new System.Drawing.Size(117, 27);
             this.btnSendVettingDetails.TabIndex = 15;
@@ -1262,7 +1273,7 @@
             // 
             // btnSendNotification
             // 
-            this.btnSendNotification.Location = new System.Drawing.Point(180, 8);
+            this.btnSendNotification.Location = new System.Drawing.Point(163, 8);
             this.btnSendNotification.Name = "btnSendNotification";
             this.btnSendNotification.Size = new System.Drawing.Size(117, 27);
             this.btnSendNotification.TabIndex = 14;
@@ -1288,17 +1299,6 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(1008, 697);
             this.toolStripContainer1.TabIndex = 7;
             this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // btnUpdateDaily
-            // 
-            this.btnUpdateDaily.Location = new System.Drawing.Point(442, 8);
-            this.btnUpdateDaily.Name = "btnUpdateDaily";
-            this.btnUpdateDaily.Size = new System.Drawing.Size(190, 27);
-            this.btnUpdateDaily.TabIndex = 17;
-            this.btnUpdateDaily.Text = "Update Daily Bookings";
-            this.toolTip1.SetToolTip(this.btnUpdateDaily, "Send vetting details to school");
-            this.btnUpdateDaily.UseVisualStyleBackColor = true;
-            this.btnUpdateDaily.Click += new System.EventHandler(this.btnUpdateDaily_Click);
             // 
             // frmMasterBooking
             // 

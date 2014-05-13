@@ -54,9 +54,7 @@ namespace RedboxAddin.UC
                 gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
-                gridView1.Columns["Guar"].SortOrder = ColumnSortOrder.Ascending;
-                gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] { 
-                    new GridColumnSortInfo(gridView1.Columns["Guar"], ColumnSortOrder.Ascending)});
+                
                 this.UseWaitCursor = false;
             }
             catch (Exception ex)
@@ -82,6 +80,18 @@ namespace RedboxAddin.UC
                 gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
             }
             catch (Exception) { }
+        }
+
+        public void ResetSort()
+        {
+            gridView1.Columns["Guar"].SortOrder = ColumnSortOrder.Ascending;
+            gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] 
+            { 
+                new GridColumnSortInfo(gridView1.Columns["Guar"], ColumnSortOrder.Descending),
+                new GridColumnSortInfo(gridView1.Columns["LongTerm"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["Teacher"], ColumnSortOrder.Ascending)
+            });
+
         }
 
         private void AvailabilityGrid_Load(object sender, EventArgs e)
@@ -137,6 +147,11 @@ namespace RedboxAddin.UC
                         if (myG == "1")
                         {
                             e.Appearance.BackColor = System.Drawing.Color.LightGreen;
+                        }
+                        else
+                        {
+                            string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();
+                            if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
                         }
                         return;
                         break;

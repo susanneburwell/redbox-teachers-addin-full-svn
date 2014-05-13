@@ -337,6 +337,11 @@ namespace RedboxAddin.DL
                             objAvail.Guar = "1";
                         }
                         else objAvail.Guar = "";
+                        if (dr["MonLT"].ToString() == "True" || dr["TueLT"].ToString() == "True" || dr["WedLT"].ToString() == "True" || dr["ThuLT"].ToString() == "True" || dr["FriLT"].ToString() == "True")
+                        {
+                            objAvail.LongTerm = "1";
+                        }
+                        else objAvail.LongTerm = "";
                         objAvail.MonStatus = dr["MonStatus"].ToString();
                         objAvail.TueStatus = dr["TueStatus"].ToString();
                         objAvail.WedStatus = dr["WedStatus"].ToString();
@@ -559,18 +564,21 @@ namespace RedboxAddin.DL
                     {
                         try
                         {
+                            string shortname = dr["ShortName"].ToString();
                             RTimeSheet objTS = new RTimeSheet()
                            {
                                ID = Utils.CheckLong(dr["MasterBookingID"]),
                                SchoolName = dr["SchoolName"].ToString(),
                                FullName = dr["FullName"].ToString(),
                                days = GetDay(dr["Date"].ToString()),
+                               Description = dr["Description"].ToString().Replace(shortname,"").Trim(),
                                numDays = 1,
                                DayRate = Utils.CheckDecimal(dr["DayRate"].ToString()),
                                Total = Utils.CheckDecimal(dr["DayRate"].ToString()),
 
                            };
-                            TimeSheets.Add(objTS);
+                            //only add if charge required
+                            if( objTS.DayRate > 0 )  TimeSheets.Add(objTS);
                         }
                         catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
 
@@ -630,6 +638,7 @@ namespace RedboxAddin.DL
                 if (ts1.FullName != ts2.FullName) return false;
                 if (ts1.SchoolName != ts2.SchoolName) return false;
                 if (ts1.DayRate != ts2.DayRate) return false;
+                if (ts1.Description != ts2.Description) return false;
                 return true;
             }
             catch (Exception ex)
@@ -743,17 +752,19 @@ namespace RedboxAddin.DL
                     {
                         try
                         {
+                            string shortname = dr["ShortName"].ToString();
                             RLoad objLoad = new RLoad()
                            {
+                               
                                SchoolName = dr["SchoolName"].ToString(),
                                FirstName = dr["FirstName"].ToString(),
                                LastName = dr["LastName"].ToString(),
                                numDays = Convert.ToInt32(dr["numDays"]),
-                               Monday = dr["Monday"].ToString(),
-                               Tuesday = dr["Tuesday"].ToString(),
-                               Wednesday = dr["Wednesday"].ToString(),
-                               Thursday = dr["Thursday"].ToString(),
-                               Friday = dr["Friday"].ToString(),
+                               Monday = dr["Monday"].ToString().Replace(shortname, "").Trim(),
+                               Tuesday = dr["Tuesday"].ToString().Replace(shortname, "").Trim(),
+                               Wednesday = dr["Wednesday"].ToString().Replace(shortname, "").Trim(),
+                               Thursday = dr["Thursday"].ToString().Replace(shortname, "").Trim(),
+                               Friday = dr["Friday"].ToString().Replace(shortname, "").Trim(),                         
                                srate = Utils.CheckDecimal(dr["srate"].ToString()),
                                TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
                                Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
@@ -2852,7 +2863,8 @@ namespace RedboxAddin.DL
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
                             "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
                             "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +
-                            "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus " +
+                            "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus, " +
+                            "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT " +
                             "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
@@ -2861,7 +2873,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2883,7 +2895,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2906,7 +2918,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2929,7 +2941,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -2952,7 +2964,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm " +
                             "FROM [MasterBookings] " +
                             "LEFT JOIN [Bookings] " +
                             "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
@@ -3088,7 +3100,7 @@ namespace RedboxAddin.DL
 
 
             string SQL = "";
-            SQL += "SELECT SchoolName, FirstName, LastName, s.numDays, s1.Description as Monday, s2.Description as Tuesday, ";
+            SQL += "SELECT SchoolName, ShortName, FirstName, LastName, s.numDays, s1.Description as Monday, s2.Description as Tuesday, ";
             SQL += "s3.Description as Wednesday, s4.Description as Thursday, s5.Description as Friday, Cast(ROUND(total/numDays, 2) as decimal(18,2)) as srate,  ";
             SQL += "Cast(Round(total,2) as decimal(18,2)) as TotalCost, ";
             SQL += "Charge-Cast(ROUND(total/numDays, 2) as decimal(18,2)) as Margin,Charge,  numDays*Charge as Revenue, (numDays*Charge)-total as TMargin ";
@@ -3220,7 +3232,8 @@ namespace RedboxAddin.DL
 
             string SQL = "";
             SQL += "SELECT  Date, ";
-            SQL += "[Bookings].Charge as DayRate, [Bookings].MasterBookingID, SchoolName, LastName+', ' +FirstName as FullName ";
+            SQL += "[Bookings].Charge as DayRate, [Bookings].MasterBookingID, SchoolName, LastName+', ' +FirstName as FullName, ";
+            SQL += "[Bookings].Description, ShortName ";
             SQL += "FROM Bookings  ";
             SQL += "LEFT JOIN MasterBookings ON MasterBookings.ID = MasterBookingID ";
             SQL += "LEFT JOIN [Contacts] ON MasterBookings.contactID = [Contacts].contactID  ";

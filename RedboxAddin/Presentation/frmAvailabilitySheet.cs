@@ -116,7 +116,7 @@ namespace RedboxAddin.Presentation
             string s1 = "";
             if (TE && TA) s1 = "Teachers and TAs";
             else if (TE ) s1 = "Teachers";
-            else if (TA) s1 = "Teachers and TAs";
+            else if (TA) s1 = "TAs";
 
             string s2 = "";
             if (D2 && LT) s2 = "D2D and LT";
@@ -534,6 +534,11 @@ namespace RedboxAddin.Presentation
         private void btnLayout_Click(object sender, EventArgs e)
         {
             SaveLayout();
+        }
+
+        private void btnResetLayout_Click(object sender, EventArgs e)
+        {
+            availabilityGrid1.ResetSort();
         }
 
        

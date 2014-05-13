@@ -78,12 +78,14 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnResetLayout = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpFilter.SuspendLayout();
@@ -112,6 +114,7 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnResetLayout);
             this.panelTop.Controls.Add(this.btnLayout);
             this.panelTop.Controls.Add(this.lblShowing);
             this.panelTop.Controls.Add(this.grpFilter);
@@ -135,7 +138,7 @@
             // btnLayout
             // 
             this.btnLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLayout.Location = new System.Drawing.Point(894, 161);
+            this.btnLayout.Location = new System.Drawing.Point(879, 162);
             this.btnLayout.Name = "btnLayout";
             this.btnLayout.Size = new System.Drawing.Size(98, 23);
             this.btnLayout.TabIndex = 96;
@@ -656,15 +659,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 415);
-            this.availabilityGrid1.TabIndex = 1;
-            // 
             // panelRibbon
             // 
             this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
@@ -692,6 +686,26 @@
             // flashtimer1
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
+            // 
+            // btnResetLayout
+            // 
+            this.btnResetLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetLayout.Location = new System.Drawing.Point(983, 162);
+            this.btnResetLayout.Name = "btnResetLayout";
+            this.btnResetLayout.Size = new System.Drawing.Size(10, 23);
+            this.btnResetLayout.TabIndex = 97;
+            this.toolTip1.SetToolTip(this.btnResetLayout, "Reset Layout");
+            this.btnResetLayout.UseVisualStyleBackColor = true;
+            this.btnResetLayout.Click += new System.EventHandler(this.btnResetLayout_Click);
+            // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 415);
+            this.availabilityGrid1.TabIndex = 1;
             // 
             // frmAvailabilitySheet
             // 
@@ -777,5 +791,7 @@
         private System.Windows.Forms.Button btnLayout;
         private System.Windows.Forms.CheckBox chkFloat;
         private System.Windows.Forms.CheckBox chkPPA;
+        private System.Windows.Forms.Button btnResetLayout;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

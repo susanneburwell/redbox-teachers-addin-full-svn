@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using RedboxAddin.Models;
 using RedboxAddin.DL;
 using RedboxAddin.BL;
+using Microsoft.Office.Interop.Outlook;
+using System.Runtime.InteropServices;
 
 namespace RedboxAddin.Presentation
 {
@@ -24,7 +26,7 @@ namespace RedboxAddin.Presentation
             InitializeComponent();
         }
 
-       
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -41,6 +43,9 @@ namespace RedboxAddin.Presentation
             GReminder.Notes = txtNotes.Text;
             GReminder.CompletedBy = txtCompletedBy.Text;
             new DBManager().UpdateReminder(GReminder, ReminderID);
+
+            AddOutlookReminder(GReminder);
+
             this.Close();
         }
 
@@ -59,12 +64,12 @@ namespace RedboxAddin.Presentation
             if (cmbStatus.Text == "Completed")
             {
                 lblCompletedBy.Visible = true;
-                txtCompletedBy.Visible = true;       
+                txtCompletedBy.Visible = true;
             }
             else
             {
                 lblCompletedBy.Visible = false;
-                txtCompletedBy.Visible = false;                
+                txtCompletedBy.Visible = false;
             }
         }
 
@@ -83,16 +88,57 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        
+
         private void btnAddNotes_Click(object sender, EventArgs e)
         {
             try
             {
                 txtNotes.Text = DateTime.Now.ToString() + "  " + RedemptionCode.OutlookUserName + Environment.NewLine + "*********************************************************" + Environment.NewLine + txtNotes.Text;
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Debug.DebugMessage(2, "Error adding notes " + ex.Message);
+            }
+        }
+
+        private void AddOutlookReminder(RReminder rr)
+        {
+            try
+            {
+                MAPIFolder oCalendar = Globals.objNS.GetDefaultFolder(OlDefaultFolders.olFolderCalendar);
+                Items oItems = oCalendar.Items;
+                AppointmentItem oApp = null;
+                //Find Appointment with BillingInfo =  rr.reminderID
+
+                string searchCriteria = "[BillingInformation] = \"" + rr.reminderID.ToString() + "\"";
+                object resultItem = oItems.Find(searchCriteria);
+                if ((resultItem != null) && (resultItem is _AppointmentItem))
+                {
+                    oApp = resultItem as AppointmentItem;
+                }
+                else
+                {
+                    oApp = oItems.Add("IPM.Appointment");
+                }
+
+                oApp.Start = rr.DueDate;
+                oApp.Subject = rr.Subject;
+                oApp.Body = rr.Notes;
+                oApp.ReminderSet = true;
+                oApp.ReminderMinutesBeforeStart = 0;
+                oApp.BillingInformation = rr.reminderID.ToString();
+                oApp.Save();
+
+                if (oApp != null) Marshal.ReleaseComObject(oApp);
+                if (oItems != null) Marshal.ReleaseComObject(oItems);
+                if (oCalendar != null) Marshal.ReleaseComObject(oCalendar);
+
+
+            }
+            catch (System.Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in AddOutlookReminder " + ex.Message);
+                MessageBox.Show("There was an error adding this notification to your Outlook calendar.\r" + ex.Message);
             }
         }
 
