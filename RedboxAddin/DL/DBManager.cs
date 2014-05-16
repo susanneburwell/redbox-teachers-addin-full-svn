@@ -332,32 +332,80 @@ namespace RedboxAddin.DL
                         objAvail.Wednesday = dr["Wednesday"].ToString();
                         objAvail.Thursday = dr["Thursday"].ToString();
                         objAvail.Friday = dr["Friday"].ToString();
-                        if (dr["MonG"].ToString() == "1" || dr["TueG"].ToString() == "1" || dr["WedG"].ToString() == "1" || dr["ThuG"].ToString() == "1" || dr["FriG"].ToString() == "1")
-                        {
-                            objAvail.Guar = "1";
-                        }
-                        else objAvail.Guar = "";
-                        if (dr["MonLT"].ToString() == "True" || dr["TueLT"].ToString() == "True" || dr["WedLT"].ToString() == "True" || dr["ThuLT"].ToString() == "True" || dr["FriLT"].ToString() == "True")
-                        {
-                            objAvail.LongTerm = "1";
-                        }
-                        else objAvail.LongTerm = "";
                         objAvail.MonStatus = dr["MonStatus"].ToString();
                         objAvail.TueStatus = dr["TueStatus"].ToString();
                         objAvail.WedStatus = dr["WedStatus"].ToString();
                         objAvail.ThuStatus = dr["ThuStatus"].ToString();
                         objAvail.FriStatus = dr["FriStatus"].ToString();
-                        //set colours for guaranteed if necessary
-                        if ((objAvail.MonStatus=="")&&(dr["MonG"].ToString() == "1")) objAvail.MonColor = "blck/gree";
-                        else objAvail.MonColor = dr["MonColor"].ToString();
-                        if ((objAvail.TueStatus == "") && (dr["TueG"].ToString() == "1")) objAvail.TueColor = "blck/gree";
-                        else objAvail.TueColor = dr["TueColor"].ToString();
-                        if ((objAvail.WedStatus == "") && (dr["WedG"].ToString() == "1")) objAvail.WedColor = "blck/gree";
-                        else objAvail.WedColor = dr["WedColor"].ToString();
-                        if ((objAvail.ThuStatus == "") && (dr["ThuG"].ToString() == "1")) objAvail.ThuColor = "blck/gree";
-                        else objAvail.ThuColor = dr["ThuColor"].ToString();
-                        if ((objAvail.FriStatus == "") && (dr["FriG"].ToString() == "1")) objAvail.FriColor = "blck/gree";
-                        else objAvail.FriColor = dr["FriColor"].ToString();
+                        string MonG = dr["MonG"].ToString();
+                        string TueG = dr["TueG"].ToString();
+                        string WedG = dr["WedG"].ToString();
+                        string ThuG = dr["ThuG"].ToString();
+                        string FriG = dr["FriG"].ToString();
+                        if (MonG == "1" || TueG == "1" || WedG == "1" || ThuG == "1" || FriG == "1")
+                        {
+                            objAvail.Guar = "1";
+                        }
+                        else objAvail.Guar = "";
+
+                        if (dr["MonLT"].ToString() == "True" || dr["TueLT"].ToString() == "True" || dr["WedLT"].ToString() == "True" || dr["ThuLT"].ToString() == "True" || dr["FriLT"].ToString() == "True")
+                        {
+                            objAvail.LongTerm = "1";
+                        }
+                        else objAvail.LongTerm = "";
+
+
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Monday != "")
+                        {
+                            objAvail.MonColor = dr["MonColor"].ToString();
+                        }
+                        else if (MonG == "1")
+                        {
+                            objAvail.MonColor = "purp/gree";
+                            if (dr["MonGA"].ToString() == "0") objAvail.Monday = "GP Offered";
+                        }
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Tuesday != "")
+                        {
+                            objAvail.TueColor = dr["TueColor"].ToString();
+                        }
+                        else if (TueG == "1")
+                        {
+                            objAvail.TueColor = "purp/gree";
+                            if (dr["TueGA"].ToString() == "0") objAvail.Tuesday = "GP Offered";
+                        }
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Wednesday != "")
+                        {
+                            objAvail.WedColor = dr["WedColor"].ToString();
+                        }
+                        else if (WedG == "1")
+                        {
+                            objAvail.WedColor = "purp/gree";
+                            if (dr["WedGA"].ToString() == "0") objAvail.Wednesday = "GP Offered";
+                        }
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Thursday != "")
+                        {
+                            objAvail.ThuColor = dr["ThuColor"].ToString();
+                        }
+                        else if (ThuG == "1")
+                        {
+                            objAvail.ThuColor = "purp/gree";
+                            if (dr["ThuGA"].ToString() == "0") objAvail.Thursday = "GP Offered";
+                        }
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Friday != "")
+                        {
+                            objAvail.FriColor = dr["FriColor"].ToString();
+                        }
+                        else if (FriG == "1")
+                        {
+                            objAvail.FriColor = "purp/gree";
+                            if (dr["FriGA"].ToString() == "0") objAvail.Friday = "GP Offered";
+                        }
+
 
                         objAvail.FirstAid = Utils.CheckBool(dr["FirstAid"]);
                         objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
@@ -571,14 +619,14 @@ namespace RedboxAddin.DL
                                SchoolName = dr["SchoolName"].ToString(),
                                FullName = dr["FullName"].ToString(),
                                days = GetDay(dr["Date"].ToString()),
-                               Description = dr["Description"].ToString().Replace(shortname,"").Trim(),
+                               Description = dr["Description"].ToString().Replace(shortname, "").Trim(),
                                numDays = 1,
                                DayRate = Utils.CheckDecimal(dr["DayRate"].ToString()),
                                Total = Utils.CheckDecimal(dr["DayRate"].ToString()),
 
                            };
                             //only add if charge required
-                            if( objTS.DayRate > 0 )  TimeSheets.Add(objTS);
+                            if (objTS.DayRate > 0) TimeSheets.Add(objTS);
                         }
                         catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
 
@@ -755,7 +803,7 @@ namespace RedboxAddin.DL
                             string shortname = dr["ShortName"].ToString();
                             RLoad objLoad = new RLoad()
                            {
-                               
+
                                SchoolName = dr["SchoolName"].ToString(),
                                FirstName = dr["FirstName"].ToString(),
                                LastName = dr["LastName"].ToString(),
@@ -764,13 +812,18 @@ namespace RedboxAddin.DL
                                Tuesday = dr["Tuesday"].ToString().Replace(shortname, "").Trim(),
                                Wednesday = dr["Wednesday"].ToString().Replace(shortname, "").Trim(),
                                Thursday = dr["Thursday"].ToString().Replace(shortname, "").Trim(),
-                               Friday = dr["Friday"].ToString().Replace(shortname, "").Trim(),                         
+                               Friday = dr["Friday"].ToString().Replace(shortname, "").Trim(),
                                srate = Utils.CheckDecimal(dr["srate"].ToString()),
                                TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
-                               Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
-                               Charge = Utils.CheckDecimal(dr["Charge"].ToString()),
+                               //Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
+                               //Charge = Utils.CheckDecimal(dr["Charge"].ToString()),
                                Revenue = Utils.CheckDecimal(dr["Revenue"].ToString()),
                                TMargin = Utils.CheckDecimal(dr["TMargin"].ToString()),
+                               MonID = dr["MonID"].ToString(),
+                               TueID = dr["TueID"].ToString(),
+                               WedID = dr["WedID"].ToString(),
+                               ThuID = dr["ThuID"].ToString(),
+                               FriID = dr["FriID"].ToString(),
 
                            };
                             LoadPlan.Add(objLoad);
@@ -1362,6 +1415,7 @@ namespace RedboxAddin.DL
                             Instructor = CheckBool(dr["Instructor"].ToString()),
                             GTCNumber = dr["GTCNumber"].ToString(),
                             InterviewNotes = dr["InterviewNotes"].ToString(),
+                            KeyRef = dr["KeyRef"].ToString(),
                             LateRecord = dr["LateRecord"].ToString(),
                             List99 = CheckBool(dr["List99"].ToString()),
                             LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
@@ -1576,6 +1630,52 @@ namespace RedboxAddin.DL
 
         }
 
+        public int UpdateBooking(long id, string description, string rate, string charge)
+        {
+            int numUpdated = 0;
+            try
+            {
+                Decimal _rate = Convert.ToDecimal(rate);
+                Decimal _charge = Convert.ToDecimal(charge);
+
+                string sqlStr = "UPDATE Bookings  "
+                    + "SET Description = @descr, "
+                    + "Rate = @rate, "
+                    + "Charge = @charge "
+                    + "WHERE ID = @ID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                SqlParameter pa = new SqlParameter("@rate", SqlDbType.Decimal);
+                pa.Precision = 7;
+                pa.Scale = 2;
+                CmdAddContact.Parameters.Add(pa);
+                SqlParameter pb = new SqlParameter("@charge", SqlDbType.Decimal);
+                pb.Precision = 7;
+                pb.Scale = 2;
+                CmdAddContact.Parameters.Add(pb);
+                CmdAddContact.Parameters.Add("@descr", SqlDbType.VarChar, 50);
+                CmdAddContact.Prepare();
+
+                CmdAddContact.Parameters["@ID"].Value = id;
+                CmdAddContact.Parameters["@descr"].Value = description;
+                CmdAddContact.Parameters["@rate"].Value = _rate;
+                CmdAddContact.Parameters["@charge"].Value = _charge;
+                numUpdated = CmdAddContact.ExecuteNonQuery();
+                return numUpdated;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateGuarantee :- " + ex.Message);
+                return numUpdated;
+            }
+            finally
+            {
+                DBManager.CloseDBConnection();
+            }
+        }
+
         public int UpdateBookings(long[] bookingIDs, string status, string description)
         {
             int numUpdated = 0;
@@ -1607,8 +1707,8 @@ namespace RedboxAddin.DL
                 string sqlStr = "UPDATE Bookings  "
                     + "SET Code = @code, "
                     + "Description = @descr, "
-                    + "Rate = 0, " 
-                    + "Charge = 0 " 
+                    + "Rate = 0, "
+                    + "Charge = 0 "
                     + "WHERE ID = @ID";
                 DBManager.OpenDBConnection();
                 var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
@@ -1707,6 +1807,7 @@ namespace RedboxAddin.DL
                     + "IDChecked,"
                     + "Instructor,"
                     + "InterviewNotes,"
+                    + "KeyRef,"
                     + "LateRecord,"
                     + "List99,"
                     + "LTStartDate,"
@@ -1820,6 +1921,7 @@ namespace RedboxAddin.DL
                     + "@IDChecked,"
                     + "@Instructor,"
                     + "@InterviewNotes,"
+                    + "@KeyRef,"
                     + "@LateRecord,"
                     + "@List99,"
                     + "@LTStartDate,"
@@ -1938,6 +2040,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.Add("@IDChecked", SqlDbType.Bit);
                 CmdAddContact.Parameters.Add("@Instructor", SqlDbType.Bit);
                 CmdAddContact.Parameters.Add("@InterviewNotes", SqlDbType.VarChar, 8000);
+                CmdAddContact.Parameters.Add("@KeyRef", SqlDbType.VarChar, 20);
                 CmdAddContact.Parameters.Add("@LateRecord", SqlDbType.VarChar, 500);
                 CmdAddContact.Parameters.Add("@List99", SqlDbType.Bit);
                 CmdAddContact.Parameters.Add("@LTStartDate", SqlDbType.DateTime);
@@ -2052,6 +2155,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@IDChecked"].Value = CheckVals(contactObj.IDChecked);
                 CmdAddContact.Parameters["@Instructor"].Value = CheckVals(contactObj.Instructor);
                 CmdAddContact.Parameters["@InterviewNotes"].Value = CheckVals(contactObj.InterviewNotes);
+                CmdAddContact.Parameters["@KeyRef"].Value = CheckVals(contactObj.KeyRef);
                 CmdAddContact.Parameters["@LateRecord"].Value = CheckVals(contactObj.LateRecord);
                 CmdAddContact.Parameters["@List99"].Value = CheckVals(contactObj.List99);
                 CmdAddContact.Parameters["@LTStartDate"].Value = FilterSQLDate(contactObj.LTStartDate);
@@ -2186,6 +2290,7 @@ namespace RedboxAddin.DL
                        + "IDChecked = @IDChecked, "
                        + "Instructor = @Instructor, "
                        + "InterviewNotes = @InterviewNotes, "
+                       + "KeyRef = @KeyRef, "
                        + "LateRecord = @LateRecord, "
                        + "List99 = @List99, "
                        + "LTStartDate = @LTStartDate, "
@@ -2302,6 +2407,7 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.Add("@IDChecked", SqlDbType.Bit);
                 CmdUpdateContact.Parameters.Add("@Instructor", SqlDbType.Bit);
                 CmdUpdateContact.Parameters.Add("@InterviewNotes", SqlDbType.VarChar, -1);
+                CmdUpdateContact.Parameters.Add("@KeyRef", SqlDbType.VarChar, 20);
                 CmdUpdateContact.Parameters.Add("@LateRecord", SqlDbType.VarChar, 500);
                 CmdUpdateContact.Parameters.Add("@List99", SqlDbType.Bit);
                 CmdUpdateContact.Parameters.Add("@LTStartDate", SqlDbType.DateTime);
@@ -2417,6 +2523,7 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters["@IDChecked"].Value = CheckVals(contactObj.IDChecked);
                 CmdUpdateContact.Parameters["@Instructor"].Value = CheckVals(contactObj.Instructor);
                 CmdUpdateContact.Parameters["@InterviewNotes"].Value = CheckVals(contactObj.InterviewNotes);
+                CmdUpdateContact.Parameters["@KeyRef"].Value = CheckVals(contactObj.KeyRef);
                 CmdUpdateContact.Parameters["@LateRecord"].Value = CheckVals(contactObj.LateRecord);
                 CmdUpdateContact.Parameters["@List99"].Value = CheckVals(contactObj.List99);
                 CmdUpdateContact.Parameters["@LTStartDate"].Value = FilterSQLDate(contactObj.LTStartDate);
@@ -2864,7 +2971,8 @@ namespace RedboxAddin.DL
                             "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
                             "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +
                             "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus, " +
-                            "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT " +
+                            "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT, " +
+                            "g1.Acc as MonGA, g2.Acc as TueGA, g3.Acc as WedGA, g4.Acc as ThuGA, g5.Acc  as FriGA " +
                             "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
@@ -2887,7 +2995,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Accepted = 1 THEN 1 ELSE 0 END) AS Acc " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + monday + "' " +
                             "GROUP BY TeacherID " +
@@ -2909,7 +3017,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Accepted = 1 THEN 1 ELSE 0 END) AS Acc " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + tuesday + "' " +
                             "GROUP BY TeacherID " +
@@ -2932,7 +3040,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Accepted = 1 THEN 1 ELSE 0 END) AS Acc " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + wednesday + "' " +
                             "GROUP BY TeacherID " +
@@ -2955,7 +3063,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Accepted = 1 THEN 1 ELSE 0 END) AS Acc " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + thursday + "' " +
                             "GROUP BY TeacherID " +
@@ -2978,7 +3086,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Accepted = 1 THEN 1 ELSE 0 END) AS Acc " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + friday + "' " +
                             "GROUP BY TeacherID " +
@@ -3102,8 +3210,15 @@ namespace RedboxAddin.DL
             string SQL = "";
             SQL += "SELECT SchoolName, ShortName, FirstName, LastName, s.numDays, s1.Description as Monday, s2.Description as Tuesday, ";
             SQL += "s3.Description as Wednesday, s4.Description as Thursday, s5.Description as Friday, Cast(ROUND(total/numDays, 2) as decimal(18,2)) as srate,  ";
-            SQL += "Cast(Round(total,2) as decimal(18,2)) as TotalCost, ";
-            SQL += "Charge-Cast(ROUND(total/numDays, 2) as decimal(18,2)) as Margin,Charge,  numDays*Charge as Revenue, (numDays*Charge)-total as TMargin ";
+            SQL += "Cast (s1.ID AS varchar(9)) + ':' + Cast (s1.MasterBookingID AS varchar(9)) as MonID, ";
+            SQL += "Cast (s2.ID AS varchar(9)) + ':' + Cast (s2.MasterBookingID AS varchar(9)) as TueID, ";
+            SQL += "Cast (s3.ID AS varchar(9)) + ':' + Cast (s3.MasterBookingID AS varchar(9)) as WedID, ";
+            SQL += "Cast (s4.ID AS varchar(9)) + ':' + Cast (s4.MasterBookingID AS varchar(9)) as ThuID, ";
+            SQL += "Cast (s5.ID AS varchar(9)) + ':' + Cast (s5.MasterBookingID AS varchar(9)) as FriID,  ";
+            SQL += "Cast(ISNULL(s1.Rate,0) + ISNULL(s2.Rate,0) + ISNULL(s3.Rate,0) + ISNULL(s4.Rate,0) + ISNULL(s5.Rate,0) as decimal(7,2)) as TotalCost, ";
+            SQL += "Cast(ISNULL(s1.Charge,0) + ISNULL(s2.Charge,0) + ISNULL(s3.Charge,0) + ISNULL(s4.Charge,0) + ISNULL(s5.Charge,0) as decimal(7,2)) as Revenue, ";
+            SQL += "Cast(ISNULL(s1.Charge,0) + ISNULL(s2.Charge,0) + ISNULL(s3.Charge,0) + ISNULL(s4.Charge,0) + ISNULL(s5.Charge,0) ";
+            SQL += "-ISNULL(s1.Rate,0) - ISNULL(s2.Rate,0) - ISNULL(s3.Rate,0) - ISNULL(s4.Rate,0) - ISNULL(s5.Rate,0) as decimal(7,2)) as TMargin ";
             SQL += "FROM MasterBookings ";
 
             SQL += "JOIN  ";
@@ -3117,7 +3232,7 @@ namespace RedboxAddin.DL
 
             SQL += "LEFT JOIN  ";
             SQL += "( ";
-            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "SELECT Description, MasterBookingID, Rate, Charge, ID ";
             SQL += "FROM Bookings ";
             SQL += "WHERE Date = '" + monday + "' ";
             SQL += ") As s1 ";
@@ -3125,7 +3240,7 @@ namespace RedboxAddin.DL
 
             SQL += "Left JOIN  ";
             SQL += "( ";
-            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "SELECT Description, MasterBookingID, Rate, Charge, ID ";
             SQL += "FROM Bookings ";
             SQL += "WHERE Date = '" + tuesday + "' ";
             SQL += ") As s2 ";
@@ -3133,7 +3248,7 @@ namespace RedboxAddin.DL
 
             SQL += "Left JOIN  ";
             SQL += "( ";
-            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "SELECT Description, MasterBookingID, Rate, Charge, ID ";
             SQL += "FROM Bookings ";
             SQL += "WHERE Date = '" + wednesday + "' ";
             SQL += ") As s3 ";
@@ -3141,7 +3256,7 @@ namespace RedboxAddin.DL
 
             SQL += "Left JOIN  ";
             SQL += "( ";
-            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "SELECT Description, MasterBookingID, Rate, Charge, ID ";
             SQL += "FROM Bookings ";
             SQL += "WHERE Date = '" + thursday + "' ";
             SQL += ") As s4 ";
@@ -3149,7 +3264,7 @@ namespace RedboxAddin.DL
 
             SQL += "Left JOIN  ";
             SQL += "( ";
-            SQL += "SELECT Description, MasterBookingID, Rate ";
+            SQL += "SELECT Description, MasterBookingID, Rate, Charge, ID ";
             SQL += "FROM Bookings ";
             SQL += "WHERE Date = '" + friday + "' ";
             SQL += ") As s5 ";
@@ -3411,12 +3526,13 @@ namespace RedboxAddin.DL
                         "FROM Contacts " +
                         "JOIN " +
                         "( " +
-                        "SELECT  [Date], COUNT(Date) as num, [MasterBookings].contactID  " +
+                        "SELECT  [Date], COUNT(Date) as num, [MasterBookings].contactID, SUM(CASE WHEN [MasterBookings].HalfDay = 1 THEN 0.5 ELSE 1 END) AS days  " +
                         "FROM [RedboxDB2].[dbo].[Bookings] " +
                         "LEFT JOIN [MasterBookings] ON MasterBookingID = MasterBookings.ID " +
                         "GROUP BY Date, [MasterBookings].contactID " +
                         ") as s1 ON s1.ContactID = Contacts.contactID  " +
-                        "WHERE s1.num > 1 ";
+                        "WHERE s1.days > 1 ";
+                        //"WHERE s1.num > 1 ";
             return SQL;
         }
 

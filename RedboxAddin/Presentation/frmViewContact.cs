@@ -126,6 +126,7 @@ namespace RedboxAddin.Presentation
                 chkInstructor.Checked = contactObj.Instructor;
                 txtGTCNumber.Text = contactObj.GTCNumber;
                 txtInterviewNotes.Text = contactObj.InterviewNotes;
+                txtKeyRef.Text = contactObj.KeyRef;
                 txtLateRecord.Text = contactObj.LateRecord;
                 chkList99Undertaken.Checked = contactObj.List99;
                 dtLongTermStart.Value = contactObj.LTStartDate;
@@ -251,6 +252,7 @@ namespace RedboxAddin.Presentation
                 contactObj.InterviewNotes = txtInterviewNotes.Text;
                 contactObj.LateRecord = txtLateRecord.Text;
                 contactObj.GTCNumber = txtGTCNumber.Text;
+                contactObj.KeyRef = txtKeyRef.Text;
                 contactObj.List99 = chkList99Undertaken.Checked;
                 contactObj.LTStartDate = dtLongTermStart.Value;
                 contactObj.MedicalChecklist = chkMedicalChecklist.Checked;

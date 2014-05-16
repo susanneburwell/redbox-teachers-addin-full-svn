@@ -33,6 +33,7 @@ namespace RedboxAddin
             Excel.Sheets objSheets = null;
             Excel._Worksheet objSheet = null;
             Excel.Range range = null;
+            string fileName = "not set";
 
             try
             {
@@ -62,11 +63,11 @@ namespace RedboxAddin
                 range.set_Value(Excel.XlRangeValueDataType.xlRangeValueDefault, data);
 
                 //Save the file
-                string fileName = "Payrun_" + type + "_" + WeekEnding + ".xlsx";
-                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DavtonFiles\\Paysheets\\";
+                fileName = "Payrun_" + type + "_" + WeekEnding + ".xlsx";
+                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Davton Files\\Paysheets\\";
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
-                objBook.SaveAs(filePath);
+                objBook.SaveAs(filePath + fileName);
                 //Return control of Excel to the user.
                 objApp.Visible = true;
                 objApp.UserControl = true;
@@ -75,6 +76,7 @@ namespace RedboxAddin
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Error creating Paysheet '" + fileName + "': " + ex.Message);
                 Debug.DebugMessage(2, "Error in CreatePaySheet: " + ex.Message);
                 return false;
             }
@@ -201,13 +203,13 @@ namespace RedboxAddin
                 foreach (School sch in schools)
                 {
                     //For each school get list of invoice lines
-                   
+
                     List<InvoiceLine> listItems = dbm.GetInvoice(WeekEnding, sch.SageName);
                     if (listItems == null) continue;
                     if (listItems.Count == 0) continue;
 
                     UpdateList(listItems);  //this processes to show multiple days on one line
-                   if ( CreateInvoice(listItems)) invCount +=1;
+                    if (CreateInvoice(listItems)) invCount += 1;
                 }
             }
             catch (Exception ex)
@@ -302,8 +304,8 @@ namespace RedboxAddin
                 }
                 string fileName = listItems[0].SageAcctRef + "_" + listItems[0].WeekEnding + ".csv";
 
-                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DavtonFiles\\Invoices";
-                if (!Directory.Exists(filePath))  Directory.CreateDirectory(filePath);
+                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Davton Files\\Invoices";
+                if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
                 File.WriteAllText(filePath + "\\" + fileName, sb.ToString());
 

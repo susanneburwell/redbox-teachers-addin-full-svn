@@ -294,6 +294,27 @@ namespace RedboxAddin.DL
             }
         }
 
+        public static Booking GetBookingbyID(long BookingID)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var bb = db.Bookings.FirstOrDefault(s => s.ID == BookingID);
+
+                    if (bb == null) return null;
+                    else return bb;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetBookingbyID: " + ex.Message);
+                return null;
+            }
+        }
+
         public static string GetEmailAddressforSchoolID(long schoolID)
         {
             try

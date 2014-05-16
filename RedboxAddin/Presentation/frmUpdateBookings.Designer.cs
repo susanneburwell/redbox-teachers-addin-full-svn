@@ -164,7 +164,7 @@
             this.grpSet.Controls.Add(this.label5);
             this.grpSet.Controls.Add(this.label4);
             this.grpSet.Controls.Add(this.label3);
-            this.grpSet.Location = new System.Drawing.Point(35, 180);
+            this.grpSet.Location = new System.Drawing.Point(35, 177);
             this.grpSet.Name = "grpSet";
             this.grpSet.Size = new System.Drawing.Size(519, 149);
             this.grpSet.TabIndex = 9;

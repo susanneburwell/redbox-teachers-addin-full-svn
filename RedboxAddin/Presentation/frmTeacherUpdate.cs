@@ -145,44 +145,46 @@ namespace RedboxAddin.Presentation
                 }
 
                 //If Registering Absence
-                else
-                {
-                    //Create a new MasterBooking
-                    action = "Registering Teacher Absence";
+                // We update existing
+                //we do not create new absence record.
+                //else
+                //{
+                //    //Create a new MasterBooking
+                //    action = "Registering Teacher Absence";
 
-                    MasterBooking mb = new MasterBooking();
-                    mb.StartDate = dtFrom.Value.Date;
-                    mb.EndDate = dtTo.Value.Date;
-                    mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
-                    mb.IsAbsence = true;
+                //    MasterBooking mb = new MasterBooking();
+                //    mb.StartDate = dtFrom.Value.Date;
+                //    mb.EndDate = dtTo.Value.Date;
+                //    mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
+                //    mb.IsAbsence = true;
 
-                    db.MasterBookings.InsertOnSubmit(mb);
-                    db.SubmitChanges();
+                //    db.MasterBookings.InsertOnSubmit(mb);
+                //    db.SubmitChanges();
 
-                    //Create individual day bookings
-                    do
-                    {
-                        Booking bb = new Booking();
-                        bb.MasterBookingID = mb.ID;
-                        bb.Date = bookingdate;
-                        bb.Description = mb.Details;
+                //    //Create individual day bookings
+                //    do
+                //    {
+                //        Booking bb = new Booking();
+                //        bb.MasterBookingID = mb.ID;
+                //        bb.Date = bookingdate;
+                //        bb.Description = mb.Details;
 
-                        db.Bookings.InsertOnSubmit(bb);
+                //        db.Bookings.InsertOnSubmit(bb);
 
-                        bookingdate = bookingdate.AddDays(1);
-                        iCatch += 1;
-                        if (iCatch > 365)
-                        {
-                            MessageBox.Show("There was an error while " + action + "Too many created.");
-                            Debug.DebugMessage(2, "Overflow error while " + action);
-                            return false;
-                        }
+                //        bookingdate = bookingdate.AddDays(1);
+                //        iCatch += 1;
+                //        if (iCatch > 365)
+                //        {
+                //            MessageBox.Show("There was an error while " + action + "Too many created.");
+                //            Debug.DebugMessage(2, "Overflow error while " + action);
+                //            return false;
+                //        }
 
-                    } while (bookingdate <= dtTo.Value.Date);
+                //    } while (bookingdate <= dtTo.Value.Date);
 
-                    db.SubmitChanges();
+                //    db.SubmitChanges();
 
-                }
+                //}
 
 
 
@@ -214,13 +216,16 @@ namespace RedboxAddin.Presentation
             if (radAbs.Checked)
             {
                 chkAccepted.Visible = false;
-                grpbx2.Text = "Record Absence";
+                grpAbsence.Visible = true;
+                grpGuarantee.Visible = false;
                 lblType.Text = "Register Absence";
+
             }
             else
             {
                 chkAccepted.Visible = true;
-                grpbx2.Text = "Add New 'Guaranteed Pay' days";
+                grpAbsence.Visible = false;
+                grpGuarantee.Visible = true;
                 lblType.Text = "Guaranteed Pay";
 
             }

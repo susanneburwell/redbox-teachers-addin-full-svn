@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnResetLayout = new System.Windows.Forms.Button();
             this.btnLayout = new System.Windows.Forms.Button();
             this.lblShowing = new System.Windows.Forms.Label();
             this.grpFilter = new System.Windows.Forms.GroupBox();
@@ -78,14 +79,13 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnResetLayout = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpFilter.SuspendLayout();
@@ -135,6 +135,17 @@
             this.panelTop.Size = new System.Drawing.Size(1002, 193);
             this.panelTop.TabIndex = 0;
             // 
+            // btnResetLayout
+            // 
+            this.btnResetLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetLayout.Location = new System.Drawing.Point(983, 162);
+            this.btnResetLayout.Name = "btnResetLayout";
+            this.btnResetLayout.Size = new System.Drawing.Size(10, 23);
+            this.btnResetLayout.TabIndex = 97;
+            this.toolTip1.SetToolTip(this.btnResetLayout, "Reset Layout");
+            this.btnResetLayout.UseVisualStyleBackColor = true;
+            this.btnResetLayout.Click += new System.EventHandler(this.btnResetLayout_Click);
+            // 
             // btnLayout
             // 
             this.btnLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,6 +190,7 @@
             this.chkShowTeachers.Size = new System.Drawing.Size(121, 20);
             this.chkShowTeachers.TabIndex = 90;
             this.chkShowTeachers.Text = "Show Teachers";
+            this.toolTip1.SetToolTip(this.chkShowTeachers, "Show Clients who are registered as Teachers");
             this.chkShowTeachers.UseVisualStyleBackColor = true;
             this.chkShowTeachers.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
@@ -192,6 +204,7 @@
             this.chkShowTAs.Size = new System.Drawing.Size(88, 20);
             this.chkShowTAs.TabIndex = 91;
             this.chkShowTAs.Text = "Show TAs";
+            this.toolTip1.SetToolTip(this.chkShowTAs, "Show clients who are registered as TAs");
             this.chkShowTAs.UseVisualStyleBackColor = true;
             this.chkShowTAs.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
@@ -205,6 +218,7 @@
             this.chkShowD2D.Size = new System.Drawing.Size(90, 20);
             this.chkShowD2D.TabIndex = 93;
             this.chkShowD2D.Text = "Show D2D";
+            this.toolTip1.SetToolTip(this.chkShowD2D, "Show Teachers who have expressed a preference for Day to Day bookings");
             this.chkShowD2D.UseVisualStyleBackColor = true;
             this.chkShowD2D.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
@@ -218,6 +232,7 @@
             this.chkShowLT.Size = new System.Drawing.Size(79, 20);
             this.chkShowLT.TabIndex = 92;
             this.chkShowLT.Text = "Show LT";
+            this.toolTip1.SetToolTip(this.chkShowLT, "Show Teachers who have expressed a preference for LongTerm bookings");
             this.chkShowLT.UseVisualStyleBackColor = true;
             this.chkShowLT.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
@@ -239,6 +254,7 @@
             this.chkJustBookings.Size = new System.Drawing.Size(111, 20);
             this.chkJustBookings.TabIndex = 89;
             this.chkJustBookings.Text = "Just Bookings";
+            this.toolTip1.SetToolTip(this.chkJustBookings, "Just show clients with bookings");
             this.chkJustBookings.UseVisualStyleBackColor = true;
             this.chkJustBookings.CheckedChanged += new System.EventHandler(this.chkJustBookings_CheckedChanged);
             // 
@@ -659,6 +675,15 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 415);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
             // panelRibbon
             // 
             this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
@@ -686,26 +711,6 @@
             // flashtimer1
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
-            // 
-            // btnResetLayout
-            // 
-            this.btnResetLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetLayout.Location = new System.Drawing.Point(983, 162);
-            this.btnResetLayout.Name = "btnResetLayout";
-            this.btnResetLayout.Size = new System.Drawing.Size(10, 23);
-            this.btnResetLayout.TabIndex = 97;
-            this.toolTip1.SetToolTip(this.btnResetLayout, "Reset Layout");
-            this.btnResetLayout.UseVisualStyleBackColor = true;
-            this.btnResetLayout.Click += new System.EventHandler(this.btnResetLayout_Click);
-            // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 415);
-            this.availabilityGrid1.TabIndex = 1;
             // 
             // frmAvailabilitySheet
             // 

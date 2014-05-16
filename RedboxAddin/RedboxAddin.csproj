@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <RegisterForComInterop>false</RegisterForComInterop>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -110,7 +110,9 @@
     <Content Include="Loader\adxloader64.dll" />
     <Content Include="Resources\status.png" />
     <None Include="Resources\red-box-logo.gif" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\1360344418_101.png" />
     <None Include="Resources\1354796819_contact.png" />
     <None Include="Resources\1354184944_Save.png" />
@@ -180,6 +182,12 @@
     </Compile>
     <Compile Include="Presentation\frmContactExp.Designer.cs">
       <DependentUpon>frmContactExp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmEditBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmEditBooking.Designer.cs">
+      <DependentUpon>frmEditBooking.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmEditSchool.cs">
       <SubType>Form</SubType>
@@ -365,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmContactExp.resx">
       <DependentUpon>frmContactExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmEditBooking.resx">
+      <DependentUpon>frmEditBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmEditSchool.resx">
       <DependentUpon>frmEditSchool.cs</DependentUpon>

@@ -295,6 +295,7 @@ namespace RedboxAddin.Presentation
                 mb.NN = chkNN.Checked;
                 mb.PPL = chkPPL.Checked;
                 mb.Charge = Utils.CheckDecimal(txtCharge.Text);
+                
                 mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                 mb.Color = lblColor.Text;
                 mb.BookingStatus = cmbBookingStatus.Text;
@@ -402,7 +403,7 @@ namespace RedboxAddin.Presentation
 
                 try
                 {
-                    rate = Convert.ToInt64(txtRate.Text);
+                    rate = Convert.ToDecimal(txtRate.Text);
                 }
                 catch (Exception) { }
 
@@ -712,7 +713,7 @@ namespace RedboxAddin.Presentation
                     }
                 }
 
-                long contID = Convert.ToInt64(cmbTeacher.ValueMember);
+                long contID = Convert.ToInt64(cmbTeacher.SelectedValue);
                 rate = LINQmanager.GetRateForContact(contID, rateType);
 
             }
@@ -1243,6 +1244,7 @@ namespace RedboxAddin.Presentation
                 long teacherID = Convert.ToInt64(cmbTeacher.SelectedValue);
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                 if (teacherID < 0) return;
+                SetTeacherRate();
 
                 //School school = cmbTeacher.SelectedItem as School;
                 string nogo = LINQmanager.GetNoGoforContactID(teacherID).ToLower();
@@ -1254,7 +1256,6 @@ namespace RedboxAddin.Presentation
                 {
                     MessageBox.Show(cmbTeacher.Text + " has a NoGo flagged for " + shortname, "NoGo Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                SetTeacherRate();
 
             }
             catch (Exception ex)

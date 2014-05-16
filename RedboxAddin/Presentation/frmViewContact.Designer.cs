@@ -313,6 +313,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtKeyRef = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -2737,6 +2738,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtKeyRef);
             this.groupBox2.Controls.Add(this.cmbProofID2);
             this.groupBox2.Controls.Add(this.cmbProofID);
             this.groupBox2.Controls.Add(this.cmbPayDetails);
@@ -2885,7 +2887,7 @@
             this.txtPassportNumber.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassportNumber.Location = new System.Drawing.Point(623, 70);
             this.txtPassportNumber.Name = "txtPassportNumber";
-            this.txtPassportNumber.Size = new System.Drawing.Size(241, 21);
+            this.txtPassportNumber.Size = new System.Drawing.Size(299, 21);
             this.txtPassportNumber.TabIndex = 9;
             // 
             // txtNINumber
@@ -2893,7 +2895,7 @@
             this.txtNINumber.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNINumber.Location = new System.Drawing.Point(623, 18);
             this.txtNINumber.Name = "txtNINumber";
-            this.txtNINumber.Size = new System.Drawing.Size(241, 21);
+            this.txtNINumber.Size = new System.Drawing.Size(299, 21);
             this.txtNINumber.TabIndex = 7;
             // 
             // label1
@@ -3412,6 +3414,14 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // txtKeyRef
+            // 
+            this.txtKeyRef.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKeyRef.Location = new System.Drawing.Point(760, 41);
+            this.txtKeyRef.Name = "txtKeyRef";
+            this.txtKeyRef.Size = new System.Drawing.Size(162, 21);
+            this.txtKeyRef.TabIndex = 9;
+            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3755,5 +3765,6 @@
         private System.Windows.Forms.CheckBox chkBSL;
         private System.Windows.Forms.CheckBox chkRWInc;
         private System.Windows.Forms.Button btnAll;
+        private System.Windows.Forms.TextBox txtKeyRef;
     }
 }

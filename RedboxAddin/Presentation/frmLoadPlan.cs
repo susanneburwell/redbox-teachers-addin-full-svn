@@ -10,6 +10,11 @@ using System.Windows.Forms;
 using RedboxAddin.DL;
 using RedboxAddin.BL;
 using RedboxAddin.Models;
+using RedboxAddin.Presentation;
+using DevExpress.Data;
+using DevExpress.XtraGrid.Menu;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.Utils.Menu;
 
 namespace RedboxAddin.Presentation
 {
@@ -43,15 +48,14 @@ namespace RedboxAddin.Presentation
             UpdateDates();
         }
 
-       
         private void UpdateDates()
         {
             try
             {
                 DateTime dStart = dtFrom.Value.Date;
                 DateTime dEnd = dStart;
-                if (radWeek.Checked)dEnd = dStart.AddDays(7);
-                if (radMonth.Checked)dEnd = dStart.AddMonths(1);
+                if (radWeek.Checked) dEnd = dStart.AddDays(7);
+                if (radMonth.Checked) dEnd = dStart.AddMonths(1);
                 if (radCustom.Checked)
                 {
                     dEnd = dtTo.Value.Date;
@@ -67,12 +71,12 @@ namespace RedboxAddin.Presentation
                 lblTo.Text = dEnd.ToLongDateString();
 
                 gridControl1.DataSource = new DBManager().GetLoadPlan(dStart);
-                    
-                
+
+
             }
             catch (Exception ex)
             {
-               Debug.DebugMessage(2, "Error in UpdateDates: " + ex.Message);
+                Debug.DebugMessage(2, "Error in UpdateDates: " + ex.Message);
             }
         }
 
@@ -96,7 +100,7 @@ namespace RedboxAddin.Presentation
             {
                 dtFrom.Value = dtFrom.Value.AddMonths(-1);
             }
-}
+        }
 
         private void bnFwd_Click(object sender, EventArgs e)
         {
@@ -122,7 +126,7 @@ namespace RedboxAddin.Presentation
             {
                 List<Payment> lp = dbm.GetPayrun(dtFrom.Value);
                 //count successful attempts
-                if (exEx.CreatePaySheet(name, sEnd, lp)) num +=1;
+                if (exEx.CreatePaySheet(name, sEnd, lp)) num += 1;
             }
 
             if (num == 0)
@@ -161,8 +165,198 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private void gridControl1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                REventArgs rowInfo = new REventArgs();
+                try
+                {
+                    Point pt = gridControl1.PointToClient(Control.MousePosition);
+                    GridHitInfo info = gridView1.CalcHitInfo(pt);
+                    if (info.InRow || info.InRowCell)
+                    {
+                        try { rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption(); }
+                        catch { }
+                        try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString(); }
+                        catch { rowInfo.Teacher = ""; }
+                        try { rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString(); }
+                        catch { rowInfo.Description = "zxcvbnmkl"; }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.DebugMessage(2, "Error in AvailabilityGrid_DoubleClick: " + ex.Message);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in DoubleClick: " + ex.Message);
+            }
+
+        }
+
+        private void gridControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                // Check if the end-user has right clicked the grid control. 
+                if (e.Button == MouseButtons.Right)
+                {
+                    REventArgs rowInfo = new REventArgs();
+                    GridHitInfo info = gridView1.CalcHitInfo(new Point(e.X, e.Y));
+
+                    //******************88
+                    if (info.InRow || info.InRowCell)
+                    {
+                        rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                        rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+
+                        switch (rowInfo.ColumnCaption.Substring(0, 3))
+                        {
+                            case "Mon":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "MonID").ToString();
+                                break;
+                            case "Tue":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "TueID").ToString();
+                                break;
+                            case "Wed":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "WedID").ToString();
+                                break;
+                            case "Thu":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "ThuID").ToString();
+                                break;
+                            case "Fri":
+                                rowInfo.Status = gridView1.GetRowCellValue(info.RowHandle, "FriID").ToString();
+                                break;
+                        }
+                    }
+
+                    rowInfo.School = gridView1.GetRowCellValue(info.RowHandle, "SchoolName").ToString();
+                    rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "FirstName").ToString() + " " + gridView1.GetRowCellValue(info.RowHandle, "LastName").ToString();
+
+                    if (rowInfo.Description.Trim() == "")
+                    {
+                        //System.Media.SystemSounds.Exclamation.Play();
+                        System.Media.SystemSounds.Beep.Play();
+                        return;
+                    }
 
 
-      
+                    //rowInfo.Status = LINQmanager.GetMasterBookingStatus(rowInfo.Teacher, rowInfo.ColumnCaption, rowInfo.Description);
+
+                    //*******************
+                    //if (hi.HitTest == GridHitTest.ColumnButton)
+                    //{
+                    LoadPlanCustomMenu menu = new LoadPlanCustomMenu(gridView1);
+                    menu.SetRowInfo(rowInfo);
+                    menu.imageList = imageList1;
+                    menu.Init(info);
+                    // Display the menu. 
+                    menu.Show(info.HitPoint);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
+            }
+        }
     }
+}
+
+public class LoadPlanCustomMenu : GridViewMenu
+{
+    public LoadPlanCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) { }
+
+    private REventArgs _rowInfo;
+    public ImageList imageList;
+    public event EventHandler RepaintRequired;
+
+
+    public void SetRowInfo(REventArgs rowInfo)
+    {
+        _rowInfo = rowInfo;
+    }
+    // Create menu items. 
+    // This method is automatically called by the menu's public Init method. 
+    protected override void CreateItems()
+    {
+        //image 0 = dot ; image 1 = tick
+
+
+        Items.Clear();
+        int vv = GridMenuImages.Column.Images.Count;
+        int vw = GridMenuImages.Footer.Images.Count;
+        int vx = GridMenuImages.GroupPanel.Images.Count;
+        Items.Add(CreateMenuItem("Edit Description", imageList.Images[0], "Edit", true));
+        Items.Add(CreateMenuItem("Open Master Booking", imageList.Images[0], "Open", true));
+
+    }
+
+    protected override void OnMenuItemClick(object sender, EventArgs e)
+    {
+        try
+        {
+
+
+            if (RaiseClickEvent(sender, null)) return;
+            DXMenuItem item = sender as DXMenuItem;
+            string action = item.Tag.ToString();
+
+            string teacher = _rowInfo.Teacher;
+            string description = _rowInfo.Description;
+            string status = _rowInfo.Status;
+            string date = _rowInfo.ColumnCaption;
+            string school = _rowInfo.School;
+
+            if (action == "Open")
+            {
+                try
+                {
+                    string[] ids = status.Split(':');
+                    if (!string.IsNullOrEmpty(ids[1]))
+                    {
+                        long id = Convert.ToInt64(ids[1]);
+                        frmMasterBooking fmb = new frmMasterBooking(id);
+                        fmb.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error trying to open the Master Booking: " + ex.Message);
+                }
+            }
+            else
+            {
+                //Edit
+                try
+                {
+                     string[] ids = status.Split(':');
+                     if (!string.IsNullOrEmpty(ids[0]))
+                     {
+                         long id = Convert.ToInt64(ids[0]);
+                         frmEditBooking eb = new frmEditBooking(id,teacher, school, date);
+                         eb.Show();
+                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error trying to open the  Booking: " + ex.Message);
+                }
+            }
+
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Right Click Error: " + ex.Message);
+        }
+
+    }
+
+
+
+
 }

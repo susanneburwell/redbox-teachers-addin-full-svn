@@ -104,12 +104,28 @@ namespace RedboxAddin.Models
         public string Wednesday { get; set; }
         public string Thursday { get; set; }
         public string Friday { get; set; }
+        public string MonID { get; set; }
+        public string TueID { get; set; }
+        public string WedID { get; set; }
+        public string ThuID { get; set; }
+        public string FriID { get; set; }
         public Decimal srate { get; set; }
         public Decimal TotalCost { get; set; }
         public Decimal Margin { get; set; }
         public Decimal Charge { get; set; }
         public Decimal Revenue { get; set; }
         public Decimal TMargin { get; set; }
+        public Decimal monRate { get; set; }
+        public Decimal tueRate { get; set; }
+        public Decimal wedRate { get; set; }
+        public Decimal thuRate { get; set; }
+        public Decimal friRate { get; set; }
+        public Decimal monCharge { get; set; }
+        public Decimal tueCharge { get; set; }
+        public Decimal wedCharge { get; set; }
+        public Decimal thuCharge { get; set; }
+        public Decimal friCharge { get; set; }
+
     }
 
     class RPivotLoad
@@ -192,6 +208,8 @@ namespace RedboxAddin.Models
         public string Status { get; set; }
         public long[] SelectedRows { get; set; }
         public bool isGuarantee { get; set; }
+        public string School { get; set; }
+        public string Day { get; set; }
     }
 
     public class Payment

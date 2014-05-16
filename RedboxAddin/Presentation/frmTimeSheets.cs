@@ -211,8 +211,7 @@ namespace RedboxAddin.Presentation
             myRowText += "<TD>Teacher</TD>";
             myRowText += "<TD>Days Worked</TD>";
             myRowText += "<TD>Total days</TD>";
-            myRowText += "<TD>Rate</TD>";
-            myRowText += "<TD>Total</TD>";
+            myRowText += "<TD>Description</TD>";
 
             myRowText += "</TR>";
             myText += myRowText;
@@ -225,15 +224,13 @@ namespace RedboxAddin.Presentation
                     string myName = gridView1.GetRowCellValue(myRow, "FullName").ToString();
                     string mydays = gridView1.GetRowCellValue(myRow, "days").ToString();
                     string mynumDays = gridView1.GetRowCellValue(myRow, "numDays").ToString();
-                    string myDayRate = gridView1.GetRowCellValue(myRow, "DayRate").ToString();
-                    string myTotal = gridView1.GetRowCellValue(myRow, "Total").ToString();
+                    string myDescription = gridView1.GetRowCellValue(myRow, "Description").ToString();
 
                     myRowText = "<TR style=\"FONT-SIZE: 12px; FONT-FAMILY: arial\">";
                     myRowText += "<TD>" + myName + "</TD>";
                     myRowText += "<TD>" + mydays + "</TD>";
                     myRowText += "<TD>" + mynumDays + "</TD>";
-                    myRowText += "<TD>" + myDayRate + "</TD>";
-                    myRowText += "<TD>" + myTotal + "</TD>";
+                    myRowText += "<TD>" + myDescription + "</TD>";
 
                     myRowText += "</TR>";
                     myText += myRowText;

@@ -58,6 +58,7 @@ namespace RedboxAddin.Models
         public bool IDChecked { get; set; }
         public bool Instructor { get; set; }
         public string InterviewNotes { get; set; }
+        public string KeyRef { get; set; }
         public string LateRecord { get; set; }
         public bool List99 { get; set; }
         public DateTime LTStartDate { get; set; }
