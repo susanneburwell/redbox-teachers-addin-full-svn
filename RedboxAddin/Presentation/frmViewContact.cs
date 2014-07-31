@@ -364,7 +364,21 @@ namespace RedboxAddin.Presentation
                         }
                     }
 
+                    //create contact
                     CurrentContactID = new DBManager().AddContact(contactObj);
+                    
+                    //create contactdata
+                    string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                    using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                    {
+                        ContactData cd = new ContactData();
+                        cd.ContactID = CurrentContactID;
+                        db.ContactDatas.InsertOnSubmit(cd);
+                        db.SubmitChanges();
+                    }
+
+                    
+
                     if (CurrentContactID != 0)
                     {
                         SaveSummaryInfo();

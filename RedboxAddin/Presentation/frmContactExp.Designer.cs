@@ -40,6 +40,7 @@ namespace RedboxAddin.Presentation
             this.gridColumnEmail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCategories = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Current = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ContextMenu1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,14 +81,12 @@ namespace RedboxAddin.Presentation
             this.gridColumnEmail,
             this.gcCategories,
             this.gridColumn7,
+            this.Current,
             this.gcID});
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office2003;
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gcCategories, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             this.gridView1.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridView1_PopupMenuShowing);
             this.gridView1.EndGrouping += new System.EventHandler(this.gridView1_EndGrouping);
@@ -98,6 +97,7 @@ namespace RedboxAddin.Presentation
             this.gridColumn1.FieldName = "FullName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -115,7 +115,7 @@ namespace RedboxAddin.Presentation
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.VisibleIndex = 2;
             // 
             // gridColumn4
             // 
@@ -124,7 +124,7 @@ namespace RedboxAddin.Presentation
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
+            this.gridColumn4.VisibleIndex = 3;
             // 
             // gridColumnEmail
             // 
@@ -133,7 +133,7 @@ namespace RedboxAddin.Presentation
             this.gridColumnEmail.Name = "gridColumnEmail";
             this.gridColumnEmail.OptionsColumn.AllowEdit = false;
             this.gridColumnEmail.Visible = true;
-            this.gridColumnEmail.VisibleIndex = 3;
+            this.gridColumnEmail.VisibleIndex = 4;
             // 
             // gcCategories
             // 
@@ -142,7 +142,7 @@ namespace RedboxAddin.Presentation
             this.gcCategories.Name = "gcCategories";
             this.gcCategories.OptionsColumn.AllowEdit = false;
             this.gcCategories.Visible = true;
-            this.gcCategories.VisibleIndex = 5;
+            this.gcCategories.VisibleIndex = 1;
             // 
             // gridColumn7
             // 
@@ -151,7 +151,17 @@ namespace RedboxAddin.Presentation
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
+            this.gridColumn7.VisibleIndex = 5;
+            // 
+            // Current
+            // 
+            this.Current.Caption = "Current";
+            this.Current.FieldName = "Current";
+            this.Current.Name = "Current";
+            this.Current.OptionsColumn.AllowEdit = false;
+            this.Current.OptionsColumn.ReadOnly = true;
+            this.Current.Visible = true;
+            this.Current.VisibleIndex = 6;
             // 
             // gcID
             // 
@@ -277,5 +287,6 @@ namespace RedboxAddin.Presentation
         private DevExpress.XtraEditors.SimpleButton btnClear;
         private DevExpress.XtraEditors.SimpleButton btnFind;
         private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn Current;
     }
 }

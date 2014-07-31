@@ -20,6 +20,8 @@ using System.IO;
 //2.0.37 7th May 2014 DT Add option to update or delete bookings from Master Booking View
 //2.0.38 13th May 2014 Changes to load plan, timesheets, events added to outlook calendar
 //2.0.39 16th May 2014 DT Show guaranteed /offered/accepted in load plan. Fixes to load plan and paysheets. Manage double bookings for half days
+//2.0.40       DT show 'Current' in Contacts View
+//2.0.41 30th July 2014 DT Fix bug where new contacts were not saving correctly.
 
 namespace RedboxAddin
 {

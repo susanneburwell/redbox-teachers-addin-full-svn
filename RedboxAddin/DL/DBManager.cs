@@ -136,7 +136,11 @@ namespace RedboxAddin.DL
             List<RContact> contactList = new List<RContact>();
             try
             {
-                DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from Contacts");
+                //DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from Contacts");
+                DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix," +
+                "CategoryStr,Email1,Birthdate,JobTitle,Contacts.contactID,PhoneHome,PhoneMobile,PhoneBusiness," +
+                "LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate,ContactData.[Current] from Contacts " +
+                "join ContactData on ContactData.ContactID = Contacts.contactID");
 
 
                 if (msgDs != null)
@@ -167,7 +171,8 @@ namespace RedboxAddin.DL
                                 LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
                                 VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                                 RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
-                                FullName = dr["Title"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString()
+                                FullName = dr["Title"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString(),
+                                Current = CheckBool(dr["Current"])
                             };
                             contactList.Add(objContact);
                         }
@@ -194,7 +199,8 @@ namespace RedboxAddin.DL
                                     LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
                                     VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                                     RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
-                                    FullName = dr["Title"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString()
+                                    FullName = dr["Title"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString(),
+                                    Current = CheckBool(dr["Current"])
                                 };
                                 contactList.Add(objContact);
                             }

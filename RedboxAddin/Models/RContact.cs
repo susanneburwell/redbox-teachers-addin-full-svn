@@ -123,6 +123,6 @@ namespace RedboxAddin.Models
         public string VisaType { get; set; }
         public string VisaLocation { get; set; }
         public string YearGroup { get; set; }
-
+        public bool Current { get; set; }
     }
 }
