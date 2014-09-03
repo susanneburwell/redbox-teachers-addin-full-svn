@@ -37,7 +37,7 @@
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.cmbSchool = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtDetails = new System.Windows.Forms.TextBox();
+            this.txtNotes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
@@ -207,18 +207,18 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(409, 129);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 16);
+            this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Details/Notes";
+            this.label6.Text = "Notes";
             // 
-            // txtDetails
+            // txtNotes
             // 
-            this.txtDetails.Location = new System.Drawing.Point(409, 149);
-            this.txtDetails.Multiline = true;
-            this.txtDetails.Name = "txtDetails";
-            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDetails.Size = new System.Drawing.Size(427, 78);
-            this.txtDetails.TabIndex = 8;
+            this.txtNotes.Location = new System.Drawing.Point(409, 149);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtNotes.Size = new System.Drawing.Size(427, 78);
+            this.txtNotes.TabIndex = 8;
             // 
             // tableLayoutPanel1
             // 
@@ -274,7 +274,7 @@
             this.panel2.Controls.Add(this.chkHalfDay);
             this.panel2.Controls.Add(this.chkLongTerm);
             this.panel2.Controls.Add(this.groupBox6);
-            this.panel2.Controls.Add(this.txtDetails);
+            this.panel2.Controls.Add(this.txtNotes);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.dtFrom);
@@ -482,6 +482,7 @@
             this.chkTeacher.TabIndex = 102;
             this.chkTeacher.Text = "Teacher";
             this.chkTeacher.UseVisualStyleBackColor = true;
+            this.chkTeacher.CheckedChanged += new System.EventHandler(this.chkTeacher_CheckedChanged);
             // 
             // chkSEN
             // 
@@ -503,7 +504,7 @@
             this.chkTA.TabIndex = 15;
             this.chkTA.Text = "TA";
             this.chkTA.UseVisualStyleBackColor = true;
-            this.chkTA.CheckStateChanged += new System.EventHandler(this.CheckedChanged);
+            this.chkTA.CheckedChanged += new System.EventHandler(this.chkTA_CheckedChanged);
             // 
             // chkNN
             // 
@@ -1347,7 +1348,7 @@
         private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.ComboBox cmbSchool;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtDetails;
+        private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkHalfDay;

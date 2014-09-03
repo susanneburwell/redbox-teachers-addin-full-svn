@@ -326,6 +326,7 @@ namespace RedboxAddin.DL
 
                         objAvail.Teacher = dr["TeacherName"].ToString();
                         //CRB = dr["CRB"].ToString();
+                        objAvail.CRB = dr["CRBStatus"].ToString();
                         objAvail.Live = dr["Live"].ToString();
                         objAvail.Location = dr["Location"].ToString();
                         objAvail.NoGo = dr["NoGo"].ToString();
@@ -1168,6 +1169,7 @@ namespace RedboxAddin.DL
                         objBkg.ContactID = Utils.CheckLong(dr["ContactID"]);
                         objBkg.TeacherName = Utils.CheckString(dr["TeacherName"]);
                         objBkg.Details = Utils.CheckString(dr["Details"]);
+                        objBkg.Notes = Utils.CheckString(dr["Notes"]);
                         objBkg.Startdate = Convert.ToDateTime(dr["StartDate"]).Date;
                         objBkg.EndDate = Convert.ToDateTime(dr["EndDate"]).Date;
                         objBkg.isAbsence = Utils.CheckBool(dr["isAbsence"]);
@@ -1185,6 +1187,7 @@ namespace RedboxAddin.DL
                         objBkg.QTS = Utils.CheckBool(dr["QTS"]);
                         objBkg.NQT = Utils.CheckBool(dr["NQT"]);
                         objBkg.OTT = Utils.CheckBool(dr["OTT"]);
+                        objBkg.Teacher = Utils.CheckBool(dr["Teacher"]);
                         objBkg.TA = Utils.CheckBool(dr["TA"]);
                         objBkg.NN = Utils.CheckBool(dr["NN"]);
                         objBkg.QNN = Utils.CheckBool(dr["QNN"]);
@@ -2866,6 +2869,51 @@ namespace RedboxAddin.DL
             CreateTable("ContactData", sql);
         }
 
+        internal string UpdateDatabase()
+        {
+            try
+            {
+                OpenDBConnection();
+                string response = "";
+                string sql = "ALTER TABLE Schools ADD [TADayCharge] [decimal](7, 2) NOT NULL DEFAULT (0) ";
+                response += UpdateColumn("[TADayCharge]", sql);
+
+                sql = "ALTER TABLE Schools ADD [TAHalfDayCharge] [decimal](7, 2) NOT NULL DEFAULT (0) ";
+                response += UpdateColumn("[TAHalfDayCharge]", sql);
+
+                sql = "ALTER TABLE Schools ADD [TADayChargeLT]  [decimal](7, 2) NOT NULL DEFAULT (0) ";
+                response += UpdateColumn("[TADayChargeLT]", sql);
+
+                sql = "ALTER TABLE Schools ADD [TAHalfDayChargeLT] [decimal](7, 2) NOT NULL DEFAULT (0) ";
+                response += UpdateColumn("[TAHalfDayChargeLT]", sql);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return "Error: " + ex.Message;
+            }
+            finally
+            {
+                CloseDBConnection();
+            }
+        }
+
+        private string UpdateColumn(string columnName,string sql)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, _DBConn);
+                var value = cmd.ExecuteScalar();
+
+                return columnName + ";";
+            }
+            catch (Exception ex)
+            {
+                return "Error " + columnName + ": " + ex.Message + ";";
+            }
+        }
+
         #endregion
 
         #region SQLQueries
@@ -2971,7 +3019,7 @@ namespace RedboxAddin.DL
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
             string SQLstr = "Select Lastname+', '+FirstName as TeacherName,Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
-                            "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, " +
+                            "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, CRBStatus, " +
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, Float, LT, D2D, RWInc, BSL, FirstAid, " +
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
                             "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
@@ -3450,8 +3498,8 @@ namespace RedboxAddin.DL
         private string GetMasterBookingInfoSQL(long masterBookingID)
         {
             string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, MasterBookings.BookingStatus," +
-                            "LastName+', '+FirstName as TeacherName, Details, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
-                            "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, TA,SEN, QNN, NN, PPL, " +
+                            "LastName+', '+FirstName as TeacherName, Details, MasterBookings.Notes, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
+                            "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, Teacher, TA,SEN, QNN, NN, PPL, " +
                             "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName, Color " +
 
                             "FROM MasterBookings " +

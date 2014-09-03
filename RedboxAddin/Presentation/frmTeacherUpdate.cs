@@ -329,8 +329,35 @@ namespace RedboxAddin.Presentation
             LoadTeacherDates(_teacherID);
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DBManager dbm = new DBManager();
+
+                int[] myRowIDs = gvGuaranteed.GetSelectedRows();
+                long[] itemIDs = new long[myRowIDs.Length];
+                int i = 0;
+                foreach (int iD in myRowIDs)
+                {
+                    long itemID = (long)gvGuaranteed.GetRowCellValue(iD, "ID");
+                    itemIDs[i] = itemID;
+                    i += 1;
+                }
+                dbm.DeleteGuarantee(itemIDs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting items: " + ex.Message);
+            }
+            finally
+            {
+                LoadTeacherDates(_teacherID);
+
+            }
 
 
+        }
 
 
 

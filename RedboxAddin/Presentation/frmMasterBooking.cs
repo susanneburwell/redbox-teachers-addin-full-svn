@@ -63,7 +63,7 @@ namespace RedboxAddin.Presentation
                 }
                 else
                 {
-                    txtDetails.Text = DateTime.Now.ToShortDateString() + " : ";
+                    txtNotes.Text = DateTime.Now.ToShortDateString() + " : ";
                 }
                 loading = false;
             }
@@ -125,7 +125,9 @@ namespace RedboxAddin.Presentation
                 //=rMB.ContactID ;
                 cmbTeacher.Text = rMB.TeacherName;
                 //cmbTeacher.SelectedValue = rMB.ContactID;
-                txtDetails.Text = rMB.Details;
+                txtDescription.Text = rMB.Details;
+                lblDescription.Text = rMB.Details;
+                txtNotes.Text = rMB.Notes;
                 dtFrom.Value = rMB.Startdate;
                 dtTo.Value = rMB.EndDate;
                 //=rMB.isAbsence ;
@@ -143,6 +145,7 @@ namespace RedboxAddin.Presentation
                 chkQTS.Checked = rMB.QTS;
                 chkNQT.Checked = rMB.NQT;
                 chkOTT.Checked = rMB.OTT;
+                chkTeacher.Checked = rMB.Teacher;
                 chkTA.Checked = rMB.TA;
                 chkNN.Checked = rMB.NN;
                 chkQNN.Checked = rMB.QNN;
@@ -199,7 +202,7 @@ namespace RedboxAddin.Presentation
             _masterBookingID = -1;
             cmbSchool.Text = "";
             cmbRequestedTeacher.Text = "";
-            txtDetails.Text = "";
+            txtNotes.Text = "";
             txtDescription.Text = "";
             lblDescription.Text = "";
             cmbTeacher.Text = "";
@@ -275,6 +278,7 @@ namespace RedboxAddin.Presentation
                 mb.StartDate = dtFrom.Value;
                 mb.EndDate = dtTo.Value;
                 mb.Details = txtDescription.Text;
+                mb.Notes = txtNotes.Text;
                 mb.HalfDay = chkHalfDay.Checked;
                 mb.LongTerm = chkLongTerm.Checked;
                 mb.Nur = chkNur.Checked;
@@ -329,72 +333,8 @@ namespace RedboxAddin.Presentation
                     MessageBox.Show("There was an error creating the Master Booking.");
                     Debug.DebugMessage(2, "There was an error creating the Master Booking. MasterBookingID 0 or Null");
                     return false;
-
                 }
                 _masterBookingID = mb.ID;
-
-                ////Get rate for teacher
-                //string rateType = "";
-                //if (chkTA.Checked)
-                //{
-                //    //TA
-                //    if (chkHalfDay.Checked)
-                //    {
-                //        //HalfDay
-                //        if (chkLongTerm.Checked)
-                //        {
-                //            //LongTerm
-                //            rateType = "HalfDayRateLTTA";
-                //        }
-                //        else
-                //        {
-                //            rateType = "HalfDayRateTA";
-                //        }
-                //    }
-                //    else
-                //    {
-                //        //FullDay
-                //        if (chkLongTerm.Checked)
-                //        {
-                //            //LongTerm
-                //            rateType = "DayRateLTTA";
-                //        }
-                //        else
-                //        {
-                //            rateType = "DayRateTA";
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    //Teacher
-                //    if (chkHalfDay.Checked)
-                //    {
-                //        //Half Day
-                //        if (chkLongTerm.Checked)
-                //        {
-                //            //LongTerm
-                //            rateType = "HalfDayRateLT";
-                //        }
-                //        else
-                //        {
-                //            rateType = "HalfDayRate";
-                //        }
-                //    }
-                //    else
-                //    {
-                //        //Full Day
-                //        if (chkLongTerm.Checked)
-                //        {
-                //            //LongTerm
-                //            rateType = "DayRateLT";
-                //        }
-                //        else
-                //        {
-                //            rateType = "DayRate";
-                //        }
-                //    }
-                //}
 
                 //Create IndividualBookings
                 long contID = -1;
@@ -407,12 +347,6 @@ namespace RedboxAddin.Presentation
                 }
                 catch (Exception) { }
 
-
-                //if (mb.ContactID != null)
-                //{
-                //    contID = (long)mb.ContactID;
-                //    rate = LINQmanager.GetRateForContact(contID, rateType);
-                //}
 
                 DateTime bookingdate = (System.DateTime)mb.StartDate;
                 int iCatch = 0;
@@ -628,15 +562,31 @@ namespace RedboxAddin.Presentation
             {
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                 School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
-                if (chkHalfDay.Checked)
+                if (chkTA.Checked)
                 {
-                    if (chkLongTerm.Checked) txtCharge.Text = school.HalfDayChargeLT.ToString();
-                    else txtCharge.Text = school.HalfDayCharge.ToString();
+                    if (chkHalfDay.Checked)
+                    {
+                        if (chkLongTerm.Checked) txtCharge.Text = school.TAHalfDayChargeLT.ToString();
+                        else txtCharge.Text = school.TAHalfDayCharge.ToString();
+                    }
+                    else
+                    {
+                        if (chkLongTerm.Checked) txtCharge.Text = school.TADayChargeLT.ToString();
+                        else txtCharge.Text = school.TADayCharge.ToString();
+                    }
                 }
                 else
                 {
-                    if (chkLongTerm.Checked) txtCharge.Text = school.DayChargeLT.ToString();
-                    else txtCharge.Text = school.DayCharge.ToString();
+                    if (chkHalfDay.Checked)
+                    {
+                        if (chkLongTerm.Checked) txtCharge.Text = school.HalfDayChargeLT.ToString();
+                        else txtCharge.Text = school.HalfDayCharge.ToString();
+                    }
+                    else
+                    {
+                        if (chkLongTerm.Checked) txtCharge.Text = school.DayChargeLT.ToString();
+                        else txtCharge.Text = school.DayCharge.ToString();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1027,7 +977,7 @@ namespace RedboxAddin.Presentation
             if (SaveRequest())
             {
                 clearControls();
-                txtDetails.Text = DateTime.Now.ToShortDateString() + " : ";
+                txtNotes.Text = DateTime.Now.ToShortDateString() + " : ";
                 btnView.Text = "Edit Daily Bookings";
                 availabilityGrid1.Clear();
                 availabilityGrid1.Visible = false;
@@ -1096,6 +1046,20 @@ namespace RedboxAddin.Presentation
 
         }
 
+        private void chkTeacher_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            CheckChanged();
+        }
+
+        private void chkTA_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            SetChargeRate();
+            SetTeacherRate();
+            CheckChanged();
+
+        }
         private void radAF_CheckedChanged(object sender, EventArgs e)
         {
             SetColours();
@@ -1132,6 +1096,7 @@ namespace RedboxAddin.Presentation
             txtDescription.Visible = lblDescription.Visible;
             lblDescription.Visible = !txtDescription.Visible;
             if (txtDescription.Visible) txtDescription.Text = lblDescription.Text;
+            if (lblDescription.Visible) lblDescription.Text = txtDescription.Text;
 
         }
 
@@ -1189,12 +1154,17 @@ namespace RedboxAddin.Presentation
         private void CheckedChanged(object sender, EventArgs e)
         {
             if (loading) return;
-
             //Check dates
             if (sender == dtFrom)
             {
                 if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0) dtTo.Value = dtFrom.Value;
             }
+            CheckChanged();
+        }
+
+        private void CheckChanged()
+        {
+            if (loading) return;
             UpdateDescription();
             if (availabilityGrid1.Visible) LoadAvailabilityTable();
             SetColours();
@@ -1306,6 +1276,10 @@ namespace RedboxAddin.Presentation
             RefreshDGC();
 
         }
+
+       
+
+        
 
        
 

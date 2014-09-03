@@ -30,6 +30,7 @@ namespace RedboxAddin.Presentation
                 {
                     PopulateSchools(db);
                     LoadSchoolDetails(cmbSchool.Text);
+                     if (cmbSchool.SelectedItem != null) _selectedItem = cmbSchool.SelectedItem as School;
                 }
             }
             catch (Exception ex)
@@ -90,6 +91,10 @@ namespace RedboxAddin.Presentation
                     txtHfDayCharge.Text = "";
                     txtLTDay.Text = "";
                     txtLTHfDay.Text = "";
+                    txtTADayCharge.Text = "";
+                    txtTAHfDayCharge.Text = "";
+                    txtTALTDay.Text = "";
+                    txtTALTHfDay.Text = "";
                     lblID.Text = "";
                     txtVettingEmails.Text = "";
                     chkUseFaxForTimeSheets.Checked = false;
@@ -126,6 +131,10 @@ namespace RedboxAddin.Presentation
                             txtHfDayCharge.Text = school.HalfDayCharge.ToString();
                             txtLTDay.Text = school.DayChargeLT.ToString();
                             txtLTHfDay.Text = school.HalfDayChargeLT.ToString();
+                            txtTADayCharge.Text = school.TADayCharge.ToString();
+                            txtTAHfDayCharge.Text = school.TAHalfDayCharge.ToString();
+                            txtTALTDay.Text = school.TADayChargeLT.ToString();
+                            txtTALTHfDay.Text = school.TAHalfDayChargeLT.ToString();
                             lblID.Text = school.ID.ToString();
                             txtVettingEmails.Text = school.VettingEmails;
                             chkUseFaxForTimeSheets.Checked = school.FaxTimeSheet;
@@ -172,6 +181,10 @@ namespace RedboxAddin.Presentation
                         school.HalfDayCharge = Convert.ToDecimal(txtHfDayCharge.Text);
                         school.DayChargeLT = Convert.ToDecimal(txtLTDay.Text);
                         school.HalfDayChargeLT = Convert.ToDecimal(txtLTHfDay.Text);
+                        school.TADayCharge = Convert.ToDecimal(txtTADayCharge.Text);
+                        school.TAHalfDayCharge = Convert.ToDecimal(txtTAHfDayCharge.Text);
+                        school.TADayChargeLT = Convert.ToDecimal(txtTALTDay.Text);
+                        school.TAHalfDayChargeLT = Convert.ToDecimal(txtTALTHfDay.Text);
                         school.VettingEmails = txtVettingEmails.Text;
                         school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
                         school.Address = txtAddress.Text;
@@ -205,6 +218,10 @@ namespace RedboxAddin.Presentation
                             school.HalfDayCharge = Convert.ToDecimal(txtHfDayCharge.Text);
                             school.DayChargeLT = Convert.ToDecimal(txtLTDay.Text);
                             school.HalfDayChargeLT = Convert.ToDecimal(txtLTHfDay.Text);
+                            school.TADayCharge = Convert.ToDecimal(txtTADayCharge.Text);
+                            school.TAHalfDayCharge = Convert.ToDecimal(txtTAHfDayCharge.Text);
+                            school.TADayChargeLT = Convert.ToDecimal(txtTALTDay.Text);
+                            school.TAHalfDayChargeLT = Convert.ToDecimal(txtTALTHfDay.Text);
                             school.VettingEmails = txtVettingEmails.Text;
                             school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
                             school.Address = txtAddress.Text;

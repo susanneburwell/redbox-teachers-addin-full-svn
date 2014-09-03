@@ -20,8 +20,10 @@ using System.IO;
 //2.0.37 7th May 2014 DT Add option to update or delete bookings from Master Booking View
 //2.0.38 13th May 2014 Changes to load plan, timesheets, events added to outlook calendar
 //2.0.39 16th May 2014 DT Show guaranteed /offered/accepted in load plan. Fixes to load plan and paysheets. Manage double bookings for half days
-//2.0.40       DT show 'Current' in Contacts View
+//2.0.40 DT show 'Current' in Contacts View
 //2.0.41 30th July 2014 DT Fix bug where new contacts were not saving correctly.
+//2.0.42 15Aug 2014 DT TA Rates for schools were not saved anywhere. Implemented in database and MasterBooking
+//2.0.47 03 Sept 2014 DT Interim build before starting full availability for teachers
 
 namespace RedboxAddin
 {
@@ -81,7 +83,6 @@ namespace RedboxAddin
         private ADXRibbonTab adxTabAppt;
         private ADXRibbonMenu adxRibbonMenu1;
         private ADXRibbonButton adxTeacherContacts;
-        private ADXRibbonButton adxSchoolContacts;
         private ImageList imageList32;
         private ADXOlExplorerCommandBar adxCommandBar2;
         private ADXCommandBarButton adxcbNewRequest;
@@ -106,6 +107,7 @@ namespace RedboxAddin
         private ADXCommandBarButton adxCommandBarButton18;
         private ADXRibbonButton adxCapture;
         private ADXCommandBarButton adxcbCapture;
+        private ADXCommandBarButton adxCommandBarButton1;
 
         #region Component Designer generated code
         /// <summary>
@@ -153,7 +155,6 @@ namespace RedboxAddin
             this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTeacherContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxSchoolContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxRibbonMenu1 = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxImportSchools = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -189,6 +190,7 @@ namespace RedboxAddin
             this.adxCommandBarButton16 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxCommandBarButton1 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             // 
             // adxTabMail
             // 
@@ -356,7 +358,7 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 23;
+            this.commandBarRedboxAddin.UpdateCounter = 27;
             // 
             // cbBtnNewContact
             // 
@@ -438,7 +440,6 @@ namespace RedboxAddin
             this.adxGRPRedbox2.Controls.Add(this.adxAvail);
             this.adxGRPRedbox2.Controls.Add(this.adxOptions);
             this.adxGRPRedbox2.Controls.Add(this.adxTeacherContacts);
-            this.adxGRPRedbox2.Controls.Add(this.adxSchoolContacts);
             this.adxGRPRedbox2.Controls.Add(this.adxRibbonMenu1);
             this.adxGRPRedbox2.Controls.Add(this.adxCapture);
             this.adxGRPRedbox2.Id = "adxRibbonGroup_b645fd8a59e6427e97a0a4d666af69d2";
@@ -566,16 +567,6 @@ namespace RedboxAddin
             this.adxTeacherContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxTeacherContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxTeacherContacts_OnClick);
             // 
-            // adxSchoolContacts
-            // 
-            this.adxSchoolContacts.Caption = "School Contacts";
-            this.adxSchoolContacts.Id = "adxRibbonButton_4583c1d3b7e94cdabe3c3da91a6fd656";
-            this.adxSchoolContacts.Image = 16;
-            this.adxSchoolContacts.ImageList = this.imageList32;
-            this.adxSchoolContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxSchoolContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxSchoolContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxSchoolContacts_OnClick);
-            // 
             // adxRibbonMenu1
             // 
             this.adxRibbonMenu1.Caption = "Maintenance";
@@ -702,7 +693,7 @@ namespace RedboxAddin
             this.adxCommandBar2.Controls.Add(this.adxCommandBarPopup1);
             this.adxCommandBar2.Controls.Add(this.adxCommandBarPopup2);
             this.adxCommandBar2.Temporary = true;
-            this.adxCommandBar2.UpdateCounter = 8;
+            this.adxCommandBar2.UpdateCounter = 12;
             // 
             // adxcbNewRequest
             // 
@@ -817,9 +808,10 @@ namespace RedboxAddin
             this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton16);
             this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton17);
             this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton18);
+            this.adxCommandBarPopup2.Controls.Add(this.adxCommandBarButton1);
             this.adxCommandBarPopup2.ControlTag = "996554fe-616d-4125-9176-8496a9599f0b";
             this.adxCommandBarPopup2.Temporary = true;
-            this.adxCommandBarPopup2.UpdateCounter = 2;
+            this.adxCommandBarPopup2.UpdateCounter = 4;
             this.adxCommandBarPopup2.Visible = false;
             // 
             // adxCommandBarButton10
@@ -893,6 +885,15 @@ namespace RedboxAddin
             this.adxCommandBarButton18.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxCommandBarButton18.Temporary = true;
             this.adxCommandBarButton18.UpdateCounter = 1;
+            // 
+            // adxCommandBarButton1
+            // 
+            this.adxCommandBarButton1.Caption = "Update Database";
+            this.adxCommandBarButton1.ControlTag = "e80fbd5c-4cd3-4284-bdad-7a7faead1575";
+            this.adxCommandBarButton1.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxCommandBarButton1.Temporary = true;
+            this.adxCommandBarButton1.UpdateCounter = 3;
+            this.adxCommandBarButton1.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxCommandBarButton1_Click);
             // 
             // AddinModule
             // 
@@ -1436,10 +1437,14 @@ namespace RedboxAddin
             CaptureMessage();
         }
 
-        private void adxSchoolContacts_OnClick(object sender, IRibbonControl control, bool pressed)
+        private void adxCommandBarButton1_Click(object sender)
         {
-
+            //updateDatabase
+            DBManager dbm = new DBManager();
+            string response = dbm.UpdateDatabase();
+            MessageBox.Show(response);
         }
+       
 
         #region actions
 
@@ -1737,6 +1742,8 @@ namespace RedboxAddin
 
 
         #endregion
+
+       
 
        
 

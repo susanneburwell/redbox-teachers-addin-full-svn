@@ -4735,6 +4735,8 @@ namespace RedboxAddin
 		
 		private bool _PPA;
 		
+		private string _Notes;
+		
 		private EntitySet<Booking> _Bookings;
 		
     #region Extensibility Method Definitions
@@ -4817,6 +4819,8 @@ namespace RedboxAddin
     partial void OnFloatChanged();
     partial void OnPPAChanging(bool value);
     partial void OnPPAChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
     #endregion
 		
 		public MasterBooking()
@@ -5585,6 +5589,26 @@ namespace RedboxAddin
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK__Bookings__Master__070CFC19", Storage="_Bookings", ThisKey="ID", OtherKey="MasterBookingID", DeleteRule="NO ACTION")]
 		public EntitySet<Booking> Bookings
 		{
@@ -6222,6 +6246,14 @@ namespace RedboxAddin
 		
 		private string _Notes;
 		
+		private decimal _TADayCharge;
+		
+		private decimal _TAHalfDayCharge;
+		
+		private decimal _TADayChargeLT;
+		
+		private decimal _TAHalfDayChargeLT;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6262,6 +6294,14 @@ namespace RedboxAddin
     partial void OnAddressChanged();
     partial void OnNotesChanging(string value);
     partial void OnNotesChanged();
+    partial void OnTADayChargeChanging(decimal value);
+    partial void OnTADayChargeChanged();
+    partial void OnTAHalfDayChargeChanging(decimal value);
+    partial void OnTAHalfDayChargeChanged();
+    partial void OnTADayChargeLTChanging(decimal value);
+    partial void OnTADayChargeLTChanged();
+    partial void OnTAHalfDayChargeLTChanging(decimal value);
+    partial void OnTAHalfDayChargeLTChanged();
     #endregion
 		
 		public School()
@@ -6625,6 +6665,86 @@ namespace RedboxAddin
 					this._Notes = value;
 					this.SendPropertyChanged("Notes");
 					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TADayCharge", DbType="Decimal(7,2) NOT NULL")]
+		public decimal TADayCharge
+		{
+			get
+			{
+				return this._TADayCharge;
+			}
+			set
+			{
+				if ((this._TADayCharge != value))
+				{
+					this.OnTADayChargeChanging(value);
+					this.SendPropertyChanging();
+					this._TADayCharge = value;
+					this.SendPropertyChanged("TADayCharge");
+					this.OnTADayChargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAHalfDayCharge", DbType="Decimal(7,2) NOT NULL")]
+		public decimal TAHalfDayCharge
+		{
+			get
+			{
+				return this._TAHalfDayCharge;
+			}
+			set
+			{
+				if ((this._TAHalfDayCharge != value))
+				{
+					this.OnTAHalfDayChargeChanging(value);
+					this.SendPropertyChanging();
+					this._TAHalfDayCharge = value;
+					this.SendPropertyChanged("TAHalfDayCharge");
+					this.OnTAHalfDayChargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TADayChargeLT", DbType="Decimal(7,2) NOT NULL")]
+		public decimal TADayChargeLT
+		{
+			get
+			{
+				return this._TADayChargeLT;
+			}
+			set
+			{
+				if ((this._TADayChargeLT != value))
+				{
+					this.OnTADayChargeLTChanging(value);
+					this.SendPropertyChanging();
+					this._TADayChargeLT = value;
+					this.SendPropertyChanged("TADayChargeLT");
+					this.OnTADayChargeLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAHalfDayChargeLT", DbType="Decimal(7,2) NOT NULL")]
+		public decimal TAHalfDayChargeLT
+		{
+			get
+			{
+				return this._TAHalfDayChargeLT;
+			}
+			set
+			{
+				if ((this._TAHalfDayChargeLT != value))
+				{
+					this.OnTAHalfDayChargeLTChanging(value);
+					this.SendPropertyChanging();
+					this._TAHalfDayChargeLT = value;
+					this.SendPropertyChanged("TAHalfDayChargeLT");
+					this.OnTAHalfDayChargeLTChanged();
 				}
 			}
 		}

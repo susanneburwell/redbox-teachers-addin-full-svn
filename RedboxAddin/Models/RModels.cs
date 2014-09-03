@@ -14,6 +14,7 @@ namespace RedboxAddin.Models
         public long ContactID { get; set; }
         public string TeacherName { get; set; }
         public string Details { get; set; }
+        public string Notes { get; set; }
         public DateTime Startdate { get; set; }
         public DateTime EndDate { get; set; }
         public bool isAbsence { get; set; }
@@ -31,6 +32,7 @@ namespace RedboxAddin.Models
         public bool QTS { get; set; }
         public bool NQT { get; set; }
         public bool OTT { get; set; }
+        public bool Teacher { get; set; }
         public bool TA { get; set; }
         public bool NN { get; set; }
         public bool QNN { get; set; }

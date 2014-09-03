@@ -217,7 +217,8 @@
             // 
             // CRB
             // 
-            this.CRB.Caption = "CRB";
+            this.CRB.Caption = "DBS";
+            this.CRB.FieldName = "CRB";
             this.CRB.Name = "CRB";
             this.CRB.OptionsColumn.AllowEdit = false;
             this.CRB.OptionsColumn.ReadOnly = true;

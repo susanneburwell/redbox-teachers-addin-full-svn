@@ -2,9 +2,9 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 	<Product 
     Id="*" 
-    Name="RedboxAddin 2.0.41" 
+    Name="RedboxAddin 2.0.46" 
     Language="1033" 
-    Version="2.0.41" 
+    Version="2.0.46" 
     Manufacturer="Davton" 
     UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" 
     Codepage="1252">
@@ -55,7 +55,7 @@
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="LocalAppDataFolder">
+			<Directory Id="AppDataFolder">
 				<Directory Id="INSTALLFOLDER" Name="RedboxAddin" >
          <Component Id="INSTALLFOLDER" Guid="168f881a-8c58-4f8e-9c62-cabc0d26c18c">
             <RemoveFolder On="both" Id="INSTALLFOLDER"/>

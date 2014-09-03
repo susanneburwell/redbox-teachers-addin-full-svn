@@ -78,6 +78,12 @@
             this.btnAddNotes = new System.Windows.Forms.Button();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTADayCharge = new System.Windows.Forms.TextBox();
+            this.txtTAHfDayCharge = new System.Windows.Forms.TextBox();
+            this.txtTALTDay = new System.Windows.Forms.TextBox();
+            this.txtTALTHfDay = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -155,7 +161,7 @@
             // 
             this.chkRequirePofA.AutoSize = true;
             this.chkRequirePofA.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkRequirePofA.Location = new System.Drawing.Point(403, 114);
+            this.chkRequirePofA.Location = new System.Drawing.Point(403, 79);
             this.chkRequirePofA.Name = "chkRequirePofA";
             this.chkRequirePofA.Size = new System.Drawing.Size(225, 20);
             this.chkRequirePofA.TabIndex = 10;
@@ -230,7 +236,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(403, 152);
+            this.label8.Location = new System.Drawing.Point(393, 152);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 16);
             this.label8.TabIndex = 16;
@@ -239,7 +245,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(403, 189);
+            this.label9.Location = new System.Drawing.Point(393, 189);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(101, 16);
             this.label9.TabIndex = 17;
@@ -248,20 +254,20 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(403, 232);
+            this.label10.Location = new System.Drawing.Point(393, 232);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(148, 16);
+            this.label10.Size = new System.Drawing.Size(101, 16);
             this.label10.TabIndex = 18;
-            this.label10.Text = "Long Term Day Charge";
+            this.label10.Text = "Long Term Day";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(403, 269);
+            this.label11.Location = new System.Drawing.Point(393, 269);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(169, 16);
+            this.label11.Size = new System.Drawing.Size(122, 16);
             this.label11.TabIndex = 19;
-            this.label11.Text = "Long Term 1/2 Day Charge";
+            this.label11.Text = "Long Term 1/2 Day";
             // 
             // btnSave
             // 
@@ -306,7 +312,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(612, 155);
+            this.label13.Location = new System.Drawing.Point(552, 155);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(15, 16);
             this.label13.TabIndex = 28;
@@ -315,7 +321,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(612, 189);
+            this.label14.Location = new System.Drawing.Point(552, 189);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(15, 16);
             this.label14.TabIndex = 29;
@@ -324,7 +330,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(612, 232);
+            this.label15.Location = new System.Drawing.Point(552, 232);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(15, 16);
             this.label15.TabIndex = 30;
@@ -333,7 +339,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(612, 272);
+            this.label16.Location = new System.Drawing.Point(552, 272);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(15, 16);
             this.label16.TabIndex = 31;
@@ -349,33 +355,33 @@
             // 
             // txtDayCharge
             // 
-            this.txtDayCharge.Location = new System.Drawing.Point(633, 149);
+            this.txtDayCharge.Location = new System.Drawing.Point(573, 149);
             this.txtDayCharge.Name = "txtDayCharge";
-            this.txtDayCharge.Size = new System.Drawing.Size(100, 22);
+            this.txtDayCharge.Size = new System.Drawing.Size(68, 22);
             this.txtDayCharge.TabIndex = 11;
             this.txtDayCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtDayCharge_Validating);
             // 
             // txtHfDayCharge
             // 
-            this.txtHfDayCharge.Location = new System.Drawing.Point(633, 186);
+            this.txtHfDayCharge.Location = new System.Drawing.Point(573, 186);
             this.txtHfDayCharge.Name = "txtHfDayCharge";
-            this.txtHfDayCharge.Size = new System.Drawing.Size(100, 22);
+            this.txtHfDayCharge.Size = new System.Drawing.Size(68, 22);
             this.txtHfDayCharge.TabIndex = 12;
             this.txtHfDayCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtHfDayCharge_Validating);
             // 
             // txtLTDay
             // 
-            this.txtLTDay.Location = new System.Drawing.Point(633, 229);
+            this.txtLTDay.Location = new System.Drawing.Point(573, 229);
             this.txtLTDay.Name = "txtLTDay";
-            this.txtLTDay.Size = new System.Drawing.Size(100, 22);
+            this.txtLTDay.Size = new System.Drawing.Size(68, 22);
             this.txtLTDay.TabIndex = 13;
             this.txtLTDay.Validating += new System.ComponentModel.CancelEventHandler(this.txtLTDay_Validating);
             // 
             // txtLTHfDay
             // 
-            this.txtLTHfDay.Location = new System.Drawing.Point(633, 269);
+            this.txtLTHfDay.Location = new System.Drawing.Point(573, 269);
             this.txtLTHfDay.Name = "txtLTHfDay";
-            this.txtLTHfDay.Size = new System.Drawing.Size(100, 22);
+            this.txtLTHfDay.Size = new System.Drawing.Size(68, 22);
             this.txtLTHfDay.TabIndex = 14;
             this.txtLTHfDay.Validating += new System.ComponentModel.CancelEventHandler(this.txtLTHfDay_Validating);
             // 
@@ -423,7 +429,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.txtAddress.Size = new System.Drawing.Size(230, 94);
-            this.txtAddress.TabIndex = 15;
+            this.txtAddress.TabIndex = 19;
             // 
             // label19
             // 
@@ -435,10 +441,10 @@
             // 
             // txtSageAccountRef
             // 
-            this.txtSageAccountRef.Location = new System.Drawing.Point(757, 269);
+            this.txtSageAccountRef.Location = new System.Drawing.Point(756, 269);
             this.txtSageAccountRef.Name = "txtSageAccountRef";
             this.txtSageAccountRef.Size = new System.Drawing.Size(230, 22);
-            this.txtSageAccountRef.TabIndex = 16;
+            this.txtSageAccountRef.TabIndex = 20;
             // 
             // label20
             // 
@@ -517,6 +523,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.label22);
+            this.panel1.Controls.Add(this.txtTALTHfDay);
+            this.panel1.Controls.Add(this.txtTALTDay);
+            this.panel1.Controls.Add(this.txtTAHfDayCharge);
+            this.panel1.Controls.Add(this.txtTADayCharge);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.txtVettingEmails);
             this.panel1.Controls.Add(this.label17);
@@ -563,6 +575,52 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1000, 494);
             this.panel1.TabIndex = 1;
+            // 
+            // txtTADayCharge
+            // 
+            this.txtTADayCharge.Location = new System.Drawing.Point(672, 149);
+            this.txtTADayCharge.Name = "txtTADayCharge";
+            this.txtTADayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtTADayCharge.TabIndex = 15;
+            // 
+            // txtTAHfDayCharge
+            // 
+            this.txtTAHfDayCharge.Location = new System.Drawing.Point(672, 186);
+            this.txtTAHfDayCharge.Name = "txtTAHfDayCharge";
+            this.txtTAHfDayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtTAHfDayCharge.TabIndex = 16;
+            // 
+            // txtTALTDay
+            // 
+            this.txtTALTDay.Location = new System.Drawing.Point(672, 229);
+            this.txtTALTDay.Name = "txtTALTDay";
+            this.txtTALTDay.Size = new System.Drawing.Size(68, 22);
+            this.txtTALTDay.TabIndex = 17;
+            // 
+            // txtTALTHfDay
+            // 
+            this.txtTALTHfDay.Location = new System.Drawing.Point(672, 269);
+            this.txtTALTHfDay.Name = "txtTALTHfDay";
+            this.txtTALTHfDay.Size = new System.Drawing.Size(68, 22);
+            this.txtTALTHfDay.TabIndex = 18;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(570, 130);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(59, 16);
+            this.label22.TabIndex = 48;
+            this.label22.Text = "Teacher";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(669, 130);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(26, 16);
+            this.label23.TabIndex = 49;
+            this.label23.Text = "TA";
             // 
             // frmEditSchool
             // 
@@ -639,5 +697,11 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button btnAddNotes;
         private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtTALTHfDay;
+        private System.Windows.Forms.TextBox txtTALTDay;
+        private System.Windows.Forms.TextBox txtTAHfDayCharge;
+        private System.Windows.Forms.TextBox txtTADayCharge;
     }
 }

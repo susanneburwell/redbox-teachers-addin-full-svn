@@ -61,6 +61,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpAbsence.SuspendLayout();
@@ -82,17 +83,23 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 237F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 296F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnDelete);
             this.panelTop.Controls.Add(this.grpAbsence);
+            this.panelTop.Controls.Add(this.btnSave);
+            this.panelTop.Controls.Add(this.dtTo);
             this.panelTop.Controls.Add(this.grpGuarantee);
             this.panelTop.Controls.Add(this.btnRefresh);
+            this.panelTop.Controls.Add(this.dtFrom);
             this.panelTop.Controls.Add(this.lblType);
+            this.panelTop.Controls.Add(this.label4);
+            this.panelTop.Controls.Add(this.label5);
             this.panelTop.Controls.Add(this.chkFuture);
             this.panelTop.Controls.Add(this.chkPast);
             this.panelTop.Controls.Add(this.groupBox1);
@@ -101,14 +108,14 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(750, 231);
+            this.panelTop.Size = new System.Drawing.Size(750, 290);
             this.panelTop.TabIndex = 0;
             // 
             // grpAbsence
             // 
             this.grpAbsence.Controls.Add(this.txtDetails);
             this.grpAbsence.Controls.Add(this.label6);
-            this.grpAbsence.Location = new System.Drawing.Point(29, 103);
+            this.grpAbsence.Location = new System.Drawing.Point(29, 167);
             this.grpAbsence.Name = "grpAbsence";
             this.grpAbsence.Size = new System.Drawing.Size(368, 113);
             this.grpAbsence.TabIndex = 22;
@@ -135,14 +142,9 @@
             // grpGuarantee
             // 
             this.grpGuarantee.Controls.Add(this.chkAccepted);
-            this.grpGuarantee.Controls.Add(this.dtTo);
-            this.grpGuarantee.Controls.Add(this.btnSave);
-            this.grpGuarantee.Controls.Add(this.dtFrom);
-            this.grpGuarantee.Controls.Add(this.label4);
-            this.grpGuarantee.Controls.Add(this.label5);
-            this.grpGuarantee.Location = new System.Drawing.Point(412, 103);
+            this.grpGuarantee.Location = new System.Drawing.Point(29, 103);
             this.grpGuarantee.Name = "grpGuarantee";
-            this.grpGuarantee.Size = new System.Drawing.Size(316, 113);
+            this.grpGuarantee.Size = new System.Drawing.Size(368, 58);
             this.grpGuarantee.TabIndex = 20;
             this.grpGuarantee.TabStop = false;
             this.grpGuarantee.Text = "Guaranteed Pay";
@@ -153,7 +155,7 @@
             this.chkAccepted.AutoSize = true;
             this.chkAccepted.Checked = true;
             this.chkAccepted.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAccepted.Location = new System.Drawing.Point(19, 84);
+            this.chkAccepted.Location = new System.Drawing.Point(19, 31);
             this.chkAccepted.Name = "chkAccepted";
             this.chkAccepted.Size = new System.Drawing.Size(151, 20);
             this.chkAccepted.TabIndex = 19;
@@ -163,14 +165,14 @@
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(84, 52);
+            this.dtTo.Location = new System.Drawing.Point(496, 155);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(194, 22);
             this.dtTo.TabIndex = 9;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(203, 81);
+            this.btnSave.Location = new System.Drawing.Point(653, 257);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 12;
@@ -180,7 +182,7 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(84, 24);
+            this.dtFrom.Location = new System.Drawing.Point(496, 127);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(194, 22);
             this.dtFrom.TabIndex = 7;
@@ -189,7 +191,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 24);
+            this.label4.Location = new System.Drawing.Point(428, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 8;
@@ -198,7 +200,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 56);
+            this.label5.Location = new System.Drawing.Point(428, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 16);
             this.label5.TabIndex = 10;
@@ -303,10 +305,10 @@
             // gcGuaranteed
             // 
             this.gcGuaranteed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcGuaranteed.Location = new System.Drawing.Point(3, 240);
+            this.gcGuaranteed.Location = new System.Drawing.Point(3, 299);
             this.gcGuaranteed.MainView = this.gvGuaranteed;
             this.gcGuaranteed.Name = "gcGuaranteed";
-            this.gcGuaranteed.Size = new System.Drawing.Size(750, 418);
+            this.gcGuaranteed.Size = new System.Drawing.Size(750, 359);
             this.gcGuaranteed.TabIndex = 1;
             this.gcGuaranteed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGuaranteed});
@@ -392,6 +394,16 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(561, 257);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 23;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmTeacherUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,5 +463,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.GroupBox grpAbsence;
         private System.Windows.Forms.GroupBox grpGuarantee;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
