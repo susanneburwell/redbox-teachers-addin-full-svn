@@ -77,7 +77,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 DBManager dbm = new DBManager();
-                List<RTeacherday> teacherdays = dbm.GetTeacherDays(teacherID, chkPast.Checked, chkFuture.Checked, radGuar.Checked);
+                List<RTeacherday> teacherdays = dbm.GetTeacherDays(teacherID, chkPast.Checked, chkFuture.Checked, radAvailability.Checked);
 
                 gcGuaranteed.DataSource = teacherdays;
 
@@ -93,7 +93,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 //Check dates are valid
-                if (dtTo.Value < dtFrom.Value)
+                if (dtTo.Value.Date < dtFrom.Value.Date)
                 {
                     MessageBox.Show("Your end date can not be earlier than your start date.");
                     return false;
@@ -111,7 +111,7 @@ namespace RedboxAddin.Presentation
                 string action;
 
                 //If Guaranteed Days
-                if (radGuar.Checked)
+                if (radAvailability.Checked)
                 {
                     do
                     {
@@ -119,8 +119,15 @@ namespace RedboxAddin.Presentation
                         action = "Creating Guaranteed Day";
                         GuaranteedDay gd = new GuaranteedDay();
 
-                        if (chkAccepted.Checked) gd.Accepted = true;
-                        else gd.Accepted = false;
+                        //1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable
+                        //if (chkAccepted.Checked) gd.Accepted = true; else gd.Accepted = false;
+                        if (radOffered.Checked) gd.Type = 1;
+                        if (radGuaranteed.Checked) gd.Type = 2;
+                        if (radTexted.Checked) gd.Type = 3;
+                        if (radAvail.Checked) gd.Type = 4;
+                        if (radUnavail.Checked) gd.Type = 5;
+
+                        
                         gd.Date = bookingdate;
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
@@ -147,44 +154,7 @@ namespace RedboxAddin.Presentation
                 //If Registering Absence
                 // We update existing
                 //we do not create new absence record.
-                //else
-                //{
-                //    //Create a new MasterBooking
-                //    action = "Registering Teacher Absence";
-
-                //    MasterBooking mb = new MasterBooking();
-                //    mb.StartDate = dtFrom.Value.Date;
-                //    mb.EndDate = dtTo.Value.Date;
-                //    mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
-                //    mb.IsAbsence = true;
-
-                //    db.MasterBookings.InsertOnSubmit(mb);
-                //    db.SubmitChanges();
-
-                //    //Create individual day bookings
-                //    do
-                //    {
-                //        Booking bb = new Booking();
-                //        bb.MasterBookingID = mb.ID;
-                //        bb.Date = bookingdate;
-                //        bb.Description = mb.Details;
-
-                //        db.Bookings.InsertOnSubmit(bb);
-
-                //        bookingdate = bookingdate.AddDays(1);
-                //        iCatch += 1;
-                //        if (iCatch > 365)
-                //        {
-                //            MessageBox.Show("There was an error while " + action + "Too many created.");
-                //            Debug.DebugMessage(2, "Overflow error while " + action);
-                //            return false;
-                //        }
-
-                //    } while (bookingdate <= dtTo.Value.Date);
-
-                //    db.SubmitChanges();
-
-                //}
+               
 
 
 
@@ -217,7 +187,7 @@ namespace RedboxAddin.Presentation
             {
                 chkAccepted.Visible = false;
                 grpAbsence.Visible = true;
-                grpGuarantee.Visible = false;
+                grpAvailability.Visible = false;
                 lblType.Text = "Register Absence";
 
             }
@@ -225,7 +195,7 @@ namespace RedboxAddin.Presentation
             {
                 chkAccepted.Visible = true;
                 grpAbsence.Visible = false;
-                grpGuarantee.Visible = true;
+                grpAvailability.Visible = true;
                 lblType.Text = "Guaranteed Pay";
 
             }
@@ -271,7 +241,7 @@ namespace RedboxAddin.Presentation
                     //******************88
                     if (info.InRow || info.InRowCell)
                     {
-                        if (radGuar.Checked) rowInfo.isGuarantee = true;
+                        if (radAvailability.Checked) rowInfo.isGuarantee = true;
                         else rowInfo.isGuarantee = false;
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                         rowInfo.Teacher = gvGuaranteed.GetRowCellValue(info.RowHandle, "dte").ToString();
@@ -404,8 +374,11 @@ namespace RedboxAddin.Presentation
                 int vv = GridMenuImages.Column.Images.Count;
                 int vw = GridMenuImages.Footer.Images.Count;
                 int vx = GridMenuImages.GroupPanel.Images.Count;
-                Items.Add(CreateMenuItem("Offered", imageList.Images[off], "Offered", true));
-                Items.Add(CreateMenuItem("Accepted", imageList.Images[acct], "Accepted", true));
+                Items.Add(CreateMenuItem("Guarantee Offered", imageList.Images[off], "Offered", true));
+                Items.Add(CreateMenuItem("Guarantee Accepted", imageList.Images[acct], "Accepted", true));
+                Items.Add(CreateMenuItem("Texted", imageList.Images[acct], "Texted", true));
+                Items.Add(CreateMenuItem("Available", imageList.Images[acct], "Available", true));
+                Items.Add(CreateMenuItem("Unavailable", imageList.Images[acct], "Unavailable", true));
                 Items.Add(CreateMenuItem("Delete", imageList.Images[conf], "Delete", true));
             }
             else
@@ -438,19 +411,26 @@ namespace RedboxAddin.Presentation
             if (_rowInfo.isGuarantee)
             {
                 //Update Guarantees
+                //1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable
                 switch (status)
                 {
                     case "Offered":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, false);
-                        //MessageBox.Show(response.ToString() + " days were updated.");
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 1);
                         break;
                     case "Accepted":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, true);
-                        //MessageBox.Show(response.ToString() + " days were updated.");
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 2);
+                        break;
+                    case "Texted":
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 3);
+                        break;
+                    case "Available":
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 4);
+                        break;
+                    case "Unavailable":
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 5);
                         break;
                     case "Delete":
                         response = dbm.DeleteGuarantee(_rowInfo.SelectedRows);
-                        // MessageBox.Show(response.ToString() + " days were deleted.");
                         break;
 
                 }

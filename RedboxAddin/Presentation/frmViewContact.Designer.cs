@@ -252,6 +252,7 @@
             this.txtReferee1Mobile = new System.Windows.Forms.TextBox();
             this.txtReferee1Name = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtKeyRef = new System.Windows.Forms.TextBox();
             this.cmbProofID2 = new System.Windows.Forms.ComboBox();
             this.cmbProofID = new System.Windows.Forms.ComboBox();
             this.cmbPayDetails = new System.Windows.Forms.ComboBox();
@@ -313,7 +314,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txtKeyRef = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -704,6 +704,7 @@
             // chkCurrent
             // 
             this.chkCurrent.AutoSize = true;
+            this.chkCurrent.ForeColor = System.Drawing.Color.Purple;
             this.chkCurrent.Location = new System.Drawing.Point(419, 76);
             this.chkCurrent.Name = "chkCurrent";
             this.chkCurrent.Size = new System.Drawing.Size(69, 20);
@@ -717,6 +718,7 @@
             this.groupBox8.Controls.Add(this.chkD2D);
             this.groupBox8.Controls.Add(this.chkLT);
             this.groupBox8.Controls.Add(this.chkPPA);
+            this.groupBox8.ForeColor = System.Drawing.Color.Purple;
             this.groupBox8.Location = new System.Drawing.Point(398, 128);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(320, 57);
@@ -727,6 +729,7 @@
             // chkRGD
             // 
             this.chkRGD.AutoSize = true;
+            this.chkRGD.ForeColor = System.Drawing.Color.Purple;
             this.chkRGD.Location = new System.Drawing.Point(240, 21);
             this.chkRGD.Name = "chkRGD";
             this.chkRGD.Size = new System.Drawing.Size(57, 20);
@@ -739,6 +742,7 @@
             // chkD2D
             // 
             this.chkD2D.AutoSize = true;
+            this.chkD2D.ForeColor = System.Drawing.Color.Purple;
             this.chkD2D.Location = new System.Drawing.Point(153, 21);
             this.chkD2D.Name = "chkD2D";
             this.chkD2D.Size = new System.Drawing.Size(54, 20);
@@ -751,6 +755,7 @@
             // chkLT
             // 
             this.chkLT.AutoSize = true;
+            this.chkLT.ForeColor = System.Drawing.Color.Purple;
             this.chkLT.Location = new System.Drawing.Point(84, 21);
             this.chkLT.Name = "chkLT";
             this.chkLT.Size = new System.Drawing.Size(43, 20);
@@ -763,6 +768,7 @@
             // chkPPA
             // 
             this.chkPPA.AutoSize = true;
+            this.chkPPA.ForeColor = System.Drawing.Color.Purple;
             this.chkPPA.Location = new System.Drawing.Point(21, 21);
             this.chkPPA.Name = "chkPPA";
             this.chkPPA.Size = new System.Drawing.Size(54, 20);
@@ -774,6 +780,7 @@
             // chkTA
             // 
             this.chkTA.AutoSize = true;
+            this.chkTA.ForeColor = System.Drawing.Color.Purple;
             this.chkTA.Location = new System.Drawing.Point(511, 102);
             this.chkTA.Name = "chkTA";
             this.chkTA.Size = new System.Drawing.Size(45, 20);
@@ -784,6 +791,7 @@
             // chkTeacher
             // 
             this.chkTeacher.AutoSize = true;
+            this.chkTeacher.ForeColor = System.Drawing.Color.Purple;
             this.chkTeacher.Location = new System.Drawing.Point(419, 102);
             this.chkTeacher.Name = "chkTeacher";
             this.chkTeacher.Size = new System.Drawing.Size(78, 20);
@@ -2766,6 +2774,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bank Details";
             // 
+            // txtKeyRef
+            // 
+            this.txtKeyRef.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKeyRef.Location = new System.Drawing.Point(760, 41);
+            this.txtKeyRef.Name = "txtKeyRef";
+            this.txtKeyRef.Size = new System.Drawing.Size(162, 21);
+            this.txtKeyRef.TabIndex = 9;
+            // 
             // cmbProofID2
             // 
             this.cmbProofID2.BackColor = System.Drawing.Color.White;
@@ -3413,14 +3429,6 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // txtKeyRef
-            // 
-            this.txtKeyRef.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKeyRef.Location = new System.Drawing.Point(760, 41);
-            this.txtKeyRef.Name = "txtKeyRef";
-            this.txtKeyRef.Size = new System.Drawing.Size(162, 21);
-            this.txtKeyRef.TabIndex = 9;
             // 
             // frmViewContact
             // 

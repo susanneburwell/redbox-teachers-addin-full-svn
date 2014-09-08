@@ -32,22 +32,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherUpdate));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.grpAbsence = new System.Windows.Forms.GroupBox();
-            this.txtDetails = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.grpGuarantee = new System.Windows.Forms.GroupBox();
+            this.grpAvailability = new System.Windows.Forms.GroupBox();
+            this.radGuaranteed = new System.Windows.Forms.RadioButton();
+            this.radOffered = new System.Windows.Forms.RadioButton();
+            this.radUnavail = new System.Windows.Forms.RadioButton();
+            this.radAvail = new System.Windows.Forms.RadioButton();
+            this.radTexted = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.chkAccepted = new System.Windows.Forms.CheckBox();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.dtFrom = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtFrom = new System.Windows.Forms.DateTimePicker();
+            this.grpAbsence = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDetails = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.lblType = new System.Windows.Forms.Label();
             this.chkFuture = new System.Windows.Forms.CheckBox();
             this.chkPast = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radGuar = new System.Windows.Forms.RadioButton();
+            this.radAvailability = new System.Windows.Forms.RadioButton();
             this.radAbs = new System.Windows.Forms.RadioButton();
             this.lblTeacher = new System.Windows.Forms.Label();
             this.cmbTeacher = new System.Windows.Forms.ComboBox();
@@ -61,11 +71,10 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
+            this.grpAvailability.SuspendLayout();
             this.grpAbsence.SuspendLayout();
-            this.grpGuarantee.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcGuaranteed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGuaranteed)).BeginInit();
@@ -90,16 +99,10 @@
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.btnDelete);
+            this.panelTop.Controls.Add(this.grpAvailability);
             this.panelTop.Controls.Add(this.grpAbsence);
-            this.panelTop.Controls.Add(this.btnSave);
-            this.panelTop.Controls.Add(this.dtTo);
-            this.panelTop.Controls.Add(this.grpGuarantee);
             this.panelTop.Controls.Add(this.btnRefresh);
-            this.panelTop.Controls.Add(this.dtFrom);
             this.panelTop.Controls.Add(this.lblType);
-            this.panelTop.Controls.Add(this.label4);
-            this.panelTop.Controls.Add(this.label5);
             this.panelTop.Controls.Add(this.chkFuture);
             this.panelTop.Controls.Add(this.chkPast);
             this.panelTop.Controls.Add(this.groupBox1);
@@ -111,51 +114,140 @@
             this.panelTop.Size = new System.Drawing.Size(750, 290);
             this.panelTop.TabIndex = 0;
             // 
-            // grpAbsence
+            // grpAvailability
             // 
-            this.grpAbsence.Controls.Add(this.txtDetails);
-            this.grpAbsence.Controls.Add(this.label6);
-            this.grpAbsence.Location = new System.Drawing.Point(29, 167);
-            this.grpAbsence.Name = "grpAbsence";
-            this.grpAbsence.Size = new System.Drawing.Size(368, 113);
-            this.grpAbsence.TabIndex = 22;
-            this.grpAbsence.TabStop = false;
-            this.grpAbsence.Text = "Record Absence";
+            this.grpAvailability.Controls.Add(this.radGuaranteed);
+            this.grpAvailability.Controls.Add(this.radOffered);
+            this.grpAvailability.Controls.Add(this.radUnavail);
+            this.grpAvailability.Controls.Add(this.radAvail);
+            this.grpAvailability.Controls.Add(this.radTexted);
+            this.grpAvailability.Controls.Add(this.label7);
+            this.grpAvailability.Controls.Add(this.label3);
+            this.grpAvailability.Controls.Add(this.label2);
+            this.grpAvailability.Controls.Add(this.btnDelete);
+            this.grpAvailability.Controls.Add(this.btnSave);
+            this.grpAvailability.Controls.Add(this.chkAccepted);
+            this.grpAvailability.Controls.Add(this.dtTo);
+            this.grpAvailability.Controls.Add(this.label5);
+            this.grpAvailability.Controls.Add(this.label4);
+            this.grpAvailability.Controls.Add(this.dtFrom);
+            this.grpAvailability.Location = new System.Drawing.Point(29, 103);
+            this.grpAvailability.Name = "grpAvailability";
+            this.grpAvailability.Size = new System.Drawing.Size(699, 184);
+            this.grpAvailability.TabIndex = 20;
+            this.grpAvailability.TabStop = false;
+            this.grpAvailability.Text = "Availability";
             // 
-            // txtDetails
+            // radGuaranteed
             // 
-            this.txtDetails.Location = new System.Drawing.Point(19, 54);
-            this.txtDetails.Multiline = true;
-            this.txtDetails.Name = "txtDetails";
-            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDetails.Size = new System.Drawing.Size(309, 42);
-            this.txtDetails.TabIndex = 13;
+            this.radGuaranteed.AutoSize = true;
+            this.radGuaranteed.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.radGuaranteed.Location = new System.Drawing.Point(564, 49);
+            this.radGuaranteed.Name = "radGuaranteed";
+            this.radGuaranteed.Size = new System.Drawing.Size(95, 20);
+            this.radGuaranteed.TabIndex = 31;
+            this.radGuaranteed.Text = "guaranteed";
+            this.radGuaranteed.UseVisualStyleBackColor = false;
             // 
-            // label6
+            // radOffered
             // 
-            this.label6.Location = new System.Drawing.Point(16, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(115, 20);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Details/Notes:";
+            this.radOffered.AutoSize = true;
+            this.radOffered.Location = new System.Drawing.Point(383, 49);
+            this.radOffered.Name = "radOffered";
+            this.radOffered.Size = new System.Drawing.Size(132, 20);
+            this.radOffered.TabIndex = 30;
+            this.radOffered.Text = "guarantee offered";
+            this.radOffered.UseVisualStyleBackColor = true;
             // 
-            // grpGuarantee
+            // radUnavail
             // 
-            this.grpGuarantee.Controls.Add(this.chkAccepted);
-            this.grpGuarantee.Location = new System.Drawing.Point(29, 103);
-            this.grpGuarantee.Name = "grpGuarantee";
-            this.grpGuarantee.Size = new System.Drawing.Size(368, 58);
-            this.grpGuarantee.TabIndex = 20;
-            this.grpGuarantee.TabStop = false;
-            this.grpGuarantee.Text = "Guaranteed Pay";
-            this.grpGuarantee.Visible = false;
+            this.radUnavail.AutoSize = true;
+            this.radUnavail.BackColor = System.Drawing.Color.Orange;
+            this.radUnavail.Location = new System.Drawing.Point(564, 24);
+            this.radUnavail.Name = "radUnavail";
+            this.radUnavail.Size = new System.Drawing.Size(96, 20);
+            this.radUnavail.TabIndex = 29;
+            this.radUnavail.Text = "unavailable";
+            this.radUnavail.UseVisualStyleBackColor = false;
+            // 
+            // radAvail
+            // 
+            this.radAvail.AutoSize = true;
+            this.radAvail.BackColor = System.Drawing.Color.LightGreen;
+            this.radAvail.Location = new System.Drawing.Point(472, 24);
+            this.radAvail.Name = "radAvail";
+            this.radAvail.Size = new System.Drawing.Size(82, 20);
+            this.radAvail.TabIndex = 28;
+            this.radAvail.Text = "available";
+            this.radAvail.UseVisualStyleBackColor = false;
+            // 
+            // radTexted
+            // 
+            this.radTexted.AutoSize = true;
+            this.radTexted.BackColor = System.Drawing.Color.Pink;
+            this.radTexted.Checked = true;
+            this.radTexted.Location = new System.Drawing.Point(383, 24);
+            this.radTexted.Name = "radTexted";
+            this.radTexted.Size = new System.Drawing.Size(62, 20);
+            this.radTexted.TabIndex = 27;
+            this.radTexted.TabStop = true;
+            this.radTexted.Text = "texted";
+            this.radTexted.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(470, 119);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(223, 54);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Highlight existing guaranteed days (below) and select delete to remove the guaran" +
+    "tee.";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(467, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(226, 35);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Select Save to save the guaranteed days";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(346, 80);
+            this.label2.TabIndex = 24;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(383, 114);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 23;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(384, 77);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // chkAccepted
             // 
             this.chkAccepted.AutoSize = true;
             this.chkAccepted.Checked = true;
             this.chkAccepted.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAccepted.Location = new System.Drawing.Point(19, 31);
+            this.chkAccepted.Location = new System.Drawing.Point(294, 158);
             this.chkAccepted.Name = "chkAccepted";
             this.chkAccepted.Size = new System.Drawing.Size(151, 20);
             this.chkAccepted.TabIndex = 19;
@@ -165,46 +257,77 @@
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(496, 155);
+            this.dtTo.Location = new System.Drawing.Point(84, 49);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(194, 22);
             this.dtTo.TabIndex = 9;
             // 
-            // btnSave
+            // label5
             // 
-            this.btnSave.Location = new System.Drawing.Point(653, 257);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 12;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // dtFrom
-            // 
-            this.dtFrom.Location = new System.Drawing.Point(496, 127);
-            this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(194, 22);
-            this.dtFrom.TabIndex = 7;
-            this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 16);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "To:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(428, 127);
+            this.label4.Location = new System.Drawing.Point(16, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "From:";
             // 
-            // label5
+            // dtFrom
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(428, 159);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 16);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "To:";
+            this.dtFrom.Location = new System.Drawing.Point(84, 21);
+            this.dtFrom.Name = "dtFrom";
+            this.dtFrom.Size = new System.Drawing.Size(194, 22);
+            this.dtFrom.TabIndex = 7;
+            this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
+            // 
+            // grpAbsence
+            // 
+            this.grpAbsence.Controls.Add(this.label1);
+            this.grpAbsence.Controls.Add(this.txtDetails);
+            this.grpAbsence.Controls.Add(this.label6);
+            this.grpAbsence.Location = new System.Drawing.Point(29, 103);
+            this.grpAbsence.Name = "grpAbsence";
+            this.grpAbsence.Size = new System.Drawing.Size(699, 176);
+            this.grpAbsence.TabIndex = 22;
+            this.grpAbsence.TabStop = false;
+            this.grpAbsence.Text = "Record Absence";
+            this.grpAbsence.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(391, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(302, 59);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "This lets you record an absence on an existing booking record for billing/payment" +
+    " puposes. \r\nPlease enter any notes (left) and then right click the booking (belo" +
+    "w) and select the absence type";
+            // 
+            // txtDetails
+            // 
+            this.txtDetails.Location = new System.Drawing.Point(97, 21);
+            this.txtDetails.Multiline = true;
+            this.txtDetails.Name = "txtDetails";
+            this.txtDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDetails.Size = new System.Drawing.Size(288, 56);
+            this.txtDetails.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(29, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 39);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Details Notes:";
             // 
             // btnRefresh
             // 
@@ -222,9 +345,9 @@
             this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblType.Location = new System.Drawing.Point(407, 21);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(198, 25);
+            this.lblType.Size = new System.Drawing.Size(127, 25);
             this.lblType.TabIndex = 21;
-            this.lblType.Text = "Register Absence";
+            this.lblType.Text = "Availability";
             // 
             // chkFuture
             // 
@@ -252,7 +375,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radGuar);
+            this.groupBox1.Controls.Add(this.radAvailability);
             this.groupBox1.Controls.Add(this.radAbs);
             this.groupBox1.Location = new System.Drawing.Point(29, 48);
             this.groupBox1.Name = "groupBox1";
@@ -261,25 +384,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action";
             // 
-            // radGuar
+            // radAvailability
             // 
-            this.radGuar.AutoSize = true;
-            this.radGuar.Location = new System.Drawing.Point(173, 17);
-            this.radGuar.Name = "radGuar";
-            this.radGuar.Size = new System.Drawing.Size(132, 20);
-            this.radGuar.TabIndex = 1;
-            this.radGuar.Text = "Guaranteed Work";
-            this.radGuar.UseVisualStyleBackColor = true;
+            this.radAvailability.AutoSize = true;
+            this.radAvailability.Checked = true;
+            this.radAvailability.Location = new System.Drawing.Point(19, 21);
+            this.radAvailability.Name = "radAvailability";
+            this.radAvailability.Size = new System.Drawing.Size(91, 20);
+            this.radAvailability.TabIndex = 1;
+            this.radAvailability.TabStop = true;
+            this.radAvailability.Text = "Availability";
+            this.radAvailability.UseVisualStyleBackColor = true;
             // 
             // radAbs
             // 
             this.radAbs.AutoSize = true;
-            this.radAbs.Checked = true;
-            this.radAbs.Location = new System.Drawing.Point(19, 17);
+            this.radAbs.Location = new System.Drawing.Point(162, 21);
             this.radAbs.Name = "radAbs";
             this.radAbs.Size = new System.Drawing.Size(134, 20);
             this.radAbs.TabIndex = 0;
-            this.radAbs.TabStop = true;
             this.radAbs.Text = "Register Absence";
             this.radAbs.UseVisualStyleBackColor = true;
             this.radAbs.CheckedChanged += new System.EventHandler(this.radAbs_CheckedChanged);
@@ -346,8 +469,8 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Type";
-            this.gridColumn2.FieldName = "Type";
+            this.gridColumn2.Caption = "Description";
+            this.gridColumn2.FieldName = "Text";
             this.gridColumn2.MaxWidth = 300;
             this.gridColumn2.MinWidth = 300;
             this.gridColumn2.Name = "gridColumn2";
@@ -394,16 +517,6 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(561, 257);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 23;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // frmTeacherUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,10 +530,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.grpAvailability.ResumeLayout(false);
+            this.grpAvailability.PerformLayout();
             this.grpAbsence.ResumeLayout(false);
             this.grpAbsence.PerformLayout();
-            this.grpGuarantee.ResumeLayout(false);
-            this.grpGuarantee.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcGuaranteed)).EndInit();
@@ -437,7 +550,7 @@
         private System.Windows.Forms.Label lblTeacher;
         private System.Windows.Forms.ComboBox cmbTeacher;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radGuar;
+        private System.Windows.Forms.RadioButton radAvailability;
         private System.Windows.Forms.RadioButton radAbs;
         private System.Windows.Forms.DateTimePicker dtFrom;
         private System.Windows.Forms.Label label4;
@@ -462,7 +575,16 @@
         private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.GroupBox grpAbsence;
-        private System.Windows.Forms.GroupBox grpGuarantee;
+        private System.Windows.Forms.GroupBox grpAvailability;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radGuaranteed;
+        private System.Windows.Forms.RadioButton radOffered;
+        private System.Windows.Forms.RadioButton radUnavail;
+        private System.Windows.Forms.RadioButton radAvail;
+        private System.Windows.Forms.RadioButton radTexted;
     }
 }

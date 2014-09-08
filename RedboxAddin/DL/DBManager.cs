@@ -323,6 +323,260 @@ namespace RedboxAddin.DL
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
                     {
                         RAvailability objAvail = new RAvailability();
+                        string monType = dr["MonType"].ToString();
+                        string tueType = dr["TueType"].ToString();
+                        string wedType = dr["WedType"].ToString();
+                        string thuType = dr["ThuType"].ToString();
+                        string friType = dr["FriType"].ToString();
+                        bool monProv = Utils.CheckBool(dr["MonPr"]);
+                        bool tueProv = Utils.CheckBool(dr["TuePr"]);
+                        bool wedProv = Utils.CheckBool(dr["WedPr"]);
+                        bool thuProv = Utils.CheckBool(dr["ThuPr"]);
+                        bool friProv = Utils.CheckBool(dr["FriPr"]);
+
+                        objAvail.Teacher = dr["TeacherName"].ToString();
+                        //CRB = dr["CRB"].ToString();
+                        objAvail.CRB = dr["CRBStatus"].ToString();
+                        objAvail.Live = dr["Live"].ToString();
+                        objAvail.Location = dr["Location"].ToString();
+                        objAvail.NoGo = dr["NoGo"].ToString();
+                        objAvail.PofA = dr["ProofofAddress"].ToString();
+                        objAvail.QTS = dr["QTS"].ToString();
+                        objAvail.Wants = dr["Wants"].ToString();
+                        objAvail.YrGroup = dr["YearGroup"].ToString();
+                        objAvail.Monday = dr["Monday"].ToString();
+                        objAvail.Tuesday = dr["Tuesday"].ToString();
+                        objAvail.Wednesday = dr["Wednesday"].ToString();
+                        objAvail.Thursday = dr["Thursday"].ToString();
+                        objAvail.Friday = dr["Friday"].ToString();
+                        objAvail.MonStatus = dr["MonStatus"].ToString();
+                        objAvail.TueStatus = dr["TueStatus"].ToString();
+                        objAvail.WedStatus = dr["WedStatus"].ToString();
+                        objAvail.ThuStatus = dr["ThuStatus"].ToString();
+                        objAvail.FriStatus = dr["FriStatus"].ToString();
+                        string MonG = dr["MonG"].ToString();
+                        string TueG = dr["TueG"].ToString();
+                        string WedG = dr["WedG"].ToString();
+                        string ThuG = dr["ThuG"].ToString();
+                        string FriG = dr["FriG"].ToString();
+
+                        //Set whetehr any guarantees are offered (1) or Guaranteed (2)
+                        //if (MonG == "1" || TueG == "1" || WedG == "1" || ThuG == "1" || FriG == "1")
+                        if (monType == "1" || tueType == "1" || wedType == "1" || thuType == "1" || friType == "1" ||
+                            monType == "2" || tueType == "2" || wedType == "2" || thuType == "2" || friType == "2")
+                                {
+                            objAvail.Guar = "1";
+                        }
+                        else objAvail.Guar = "";
+
+                        if (dr["MonLT"].ToString() == "True" || dr["TueLT"].ToString() == "True" || dr["WedLT"].ToString() == "True" || dr["ThuLT"].ToString() == "True" || dr["FriLT"].ToString() == "True")
+                        {
+                            objAvail.LongTerm = "1";
+                        }
+                        else objAvail.LongTerm = "";
+
+
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Monday != "")
+                        {
+                            objAvail.MonColor = dr["MonColor"].ToString();
+                        }
+                        else if (MonG == "1")
+                        {
+                            objAvail.MonColor = GetColor(monType);
+                            if (monType == "1") objAvail.Monday = "GP Offered";
+                        }
+                        //If provisional show text in italics
+                        if (monProv) objAvail.MonColor += "i";
+                        else objAvail.MonColor += "o";
+
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Tuesday != "")
+                        {
+                            objAvail.TueColor = dr["TueColor"].ToString();
+                        }
+                        else if (TueG == "1")
+                        {
+                            objAvail.TueColor = GetColor(tueType);
+                            if (tueType == "1") objAvail.Tuesday = "GP Offered";
+                        }
+                        if (tueProv) objAvail.TueColor += "i";
+                        else objAvail.TueColor += "o";
+
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Wednesday != "")
+                        {
+                            objAvail.WedColor = dr["WedColor"].ToString();
+                        }
+                        else if (WedG == "1")
+                        {
+                            objAvail.WedColor = GetColor(wedType);
+                            if (wedType == "1") objAvail.Wednesday = "GP Offered";
+                        }
+                        if (wedProv) objAvail.WedColor += "i";
+                        else objAvail.WedColor += "o";
+
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Thursday != "")
+                        {
+                            objAvail.ThuColor = dr["ThuColor"].ToString();
+                        }
+                        else if (ThuG == "1")
+                        {
+                            objAvail.ThuColor = GetColor(thuType);
+                            if (thuType == "1") objAvail.Thursday = "GP Offered";
+                        }
+                        if (thuProv) objAvail.ThuColor += "i";
+                        else objAvail.ThuColor += "o";
+
+                        //****** Set Guaranteed colours and status for each day if required
+                        if (objAvail.Friday != "")
+                        {
+                            objAvail.FriColor = dr["FriColor"].ToString();
+                        }
+                        else if (FriG == "1")
+                        {
+                            objAvail.FriColor = GetColor(friType);
+                            if (friType == "1") objAvail.Friday = "GP Offered";
+                        }
+                        if (friProv) objAvail.FriColor += "i";
+                        else objAvail.FriColor += "o";
+
+
+                        objAvail.FirstAid = Utils.CheckBool(dr["FirstAid"]);
+                        objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
+                        objAvail.BSL = Utils.CheckBool(dr["BSL"]);
+
+                        if (string.IsNullOrWhiteSpace(objAvail.Teacher))
+                        {
+                            //do nothing - don't add
+                        }
+                        else
+                        {
+                            availabilityList.Add(objAvail);
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
+            }
+
+            //*******  Get Unassigned Bookings ***********
+            try
+            {
+                string SQLstr = GetUnassignedAvailabilitySQL(weekbegining);
+                string wheresql2 = " WHERE [MasterBookings].contactID = -1 ";
+                DataSet msgDs = GetDataSet(SQLstr + wheresql2);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RAvailability objAvail = new RAvailability();
+
+                        objAvail.Monday = dr["Monday"].ToString();
+                        objAvail.Tuesday = dr["Tuesday"].ToString();
+                        objAvail.Wednesday = dr["Wednesday"].ToString();
+                        objAvail.Thursday = dr["Thursday"].ToString();
+                        objAvail.Friday = dr["Friday"].ToString();
+                        objAvail.MonColor = dr["MonColor"].ToString();
+                        objAvail.TueColor = dr["TueColor"].ToString();
+                        objAvail.WedColor = dr["WedColor"].ToString();
+                        objAvail.ThuColor = dr["ThuColor"].ToString();
+                        objAvail.FriColor = dr["FriColor"].ToString();
+                        objAvail.MonStatus = dr["MonStatus"].ToString();
+                        objAvail.TueStatus = dr["TueStatus"].ToString();
+                        objAvail.WedStatus = dr["WedStatus"].ToString();
+                        objAvail.ThuStatus = dr["ThuStatus"].ToString();
+                        objAvail.FriStatus = dr["FriStatus"].ToString();
+
+                        if (string.IsNullOrWhiteSpace(objAvail.Teacher))
+                        {
+                            //do nothing - don't add
+                        }
+                        else
+                        {
+                            availabilityList.Add(objAvail);
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetAvailability: " + ex.Message);
+            }
+
+            return availabilityList;
+
+
+        }
+
+        private string GetColor(string type)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(type)) return null;
+
+                switch(type)
+                {
+                    case "1": //guarantee offered
+                        return "purp/gree";
+                        break;
+                    case "2": //gurantee acceopted
+                        return "purp/gree";
+                        break;
+                    case "3": //texted
+                        return "purp/pink";
+                        break;
+                    case "4": //available
+                        return "purp/lgre";
+                        break;
+                    case "5": //unavailable
+                        return "purp/orng";
+                        break;
+                    default:
+                        return "";
+                        break;
+
+                }
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public List<RAvailability> GetAvailability_old(DateTime weekbegining, string wheresql)
+        {
+
+            List<RAvailability> availabilityList = new List<RAvailability>();
+
+            //********* Get Assigned Bookings *************
+            try
+            {
+                string SQLstr = GetAvailabilitySQL(weekbegining);
+                DataSet msgDs = GetDataSet(SQLstr + wheresql);
+
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        RAvailability objAvail = new RAvailability();
+                        string monType = dr["MonType"].ToString();
+                        string tueType = dr["TueType"].ToString();
+                        string wedType = dr["WedType"].ToString();
+                        string thuType = dr["ThuType"].ToString();
+                        string friType = dr["FriType"].ToString();
 
                         objAvail.Teacher = dr["TeacherName"].ToString();
                         //CRB = dr["CRB"].ToString();
@@ -516,7 +770,7 @@ namespace RedboxAddin.DL
             {
                 try
                 {
-                    string SQLstr = "SELECT [ID],[Date],[Note],[Accepted] " +
+                    string SQLstr = "SELECT [ID],[Date],[Note],[Accepted],[Type] " +
                                     "FROM [GuaranteedDays] " +
                                     "Where [TeacherID] = '" + teacherID.ToString() + "' ";
                     DataSet msgDs = GetDataSet(SQLstr + DateSQL);
@@ -529,9 +783,37 @@ namespace RedboxAddin.DL
                             RTeacherday tDay = new RTeacherday();
                             tDay.ID = Utils.CheckLong(dr["ID"]);
                             tDay.dte = Utils.CheckDate(dr["Date"]);
-                            tDay.Type = "Guaranteed Day";
                             tDay.Details = Utils.CheckString(dr["Note"]);
-                            tDay.Status = (Utils.CheckBool(dr["Accepted"])) ? "Accepted" : "Offered";
+                            //tDay.Status = (Utils.CheckBool(dr["Accepted"])) ? "Accepted" : "Offered";
+                            tDay.Type = Utils.CheckInt(dr["Type"]);
+
+                            switch (tDay.Type)
+                            {
+                                case 1:
+                                    tDay.Text = "Guarantee";
+                                    tDay.Status = "Guarantee Offered";
+                                    break;
+                                case 2:
+                                    tDay.Text = "Guarantee";
+                                    tDay.Status = "Guarantee Accepted";
+                                    break;
+                                case 3:
+                                    tDay.Text = "Availability";
+                                    tDay.Status = "Texted";
+                                    break;
+                                case 4:
+                                    tDay.Text = "Availability";
+                                    tDay.Status = "Available";
+                                    break;
+                                case 5:
+                                    tDay.Text = "Availability";
+                                    tDay.Status = "Unavailable";
+                                    break;
+                                default:
+                                    tDay.Status = "-";
+                                    break;
+                            }
+                            
                             teacherDays.Add(tDay);
 
                         }
@@ -566,27 +848,30 @@ namespace RedboxAddin.DL
                             RTeacherday tDay = new RTeacherday();
                             tDay.ID = Utils.CheckLong(dr["ID"]);
                             tDay.dte = Utils.CheckDate(dr["Date"]);
-                            if (Utils.CheckBool(dr["isAbsence"])) tDay.Type = "Absence";
-                            else tDay.Type = Utils.CheckString(dr["BookingStatus"]);
-                            tDay.Details = Utils.CheckString(dr["Description"]);
+                            if (Utils.CheckBool(dr["isAbsence"])) tDay.Status = "Absence";
+                            else tDay.Status = Utils.CheckString(dr["BookingStatus"]);
+                            tDay.Text = Utils.CheckString(dr["Description"]);
                             switch (Utils.CheckInt(dr["Code"]))
                             {
                                 case 1:
-                                    tDay.Status = "AA";
+                                    tDay.Details = "AA";
+                                    tDay.Status = "Absence";
                                     break;
                                 case 2:
-                                    tDay.Status = "AAL";
+                                    tDay.Details = "AAL";
+                                    tDay.Status = "Absence";
                                     break;
                                 case 3:
-                                    tDay.Status = "Sick";
+                                    tDay.Details = "Sick";
+                                    tDay.Status = "Absence";
                                     break;
                                 case 4:
-                                    tDay.Status = "Other";
+                                    tDay.Details = "Other";
+                                    tDay.Status = "Absence";
                                     break;
                                 default:
-                                    tDay.Status = "-";
+                                    tDay.Details = "-";
                                     break;
-
                             }
                             teacherDays.Add(tDay);
 
@@ -918,6 +1203,23 @@ namespace RedboxAddin.DL
                             MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
                             BookingStatus = dr["BookingStatus"].ToString()
                         };
+                        switch (Utils.CheckInt(dr["Code"]))
+                        {
+                            case 1:
+                                objBkg.BookingStatus = "Absence:AA";
+                                break;
+                            case 2:
+                                objBkg.BookingStatus = "Absence:AAL";
+                                break;
+                            case 3:
+                                objBkg.BookingStatus = "Absence:Sick";
+                                break;
+                            case 4:
+                                objBkg.BookingStatus = "Absence:Other";
+                                break;
+                            default:
+                                break;
+                        }
                         bookingList.Add(objBkg);
 
                     }
@@ -1201,6 +1503,7 @@ namespace RedboxAddin.DL
                         objBkg.TrialDay = Utils.CheckBool(dr["TrialDay"]);
                         objBkg.Color = Utils.CheckString(dr["Color"]);
                         objBkg.BookingStatus = Utils.CheckString(dr["BookingStatus"]);
+                        objBkg.Provisional = Utils.CheckBool(dr["Provisional"]);
 
                         return objBkg;
                     }
@@ -1580,25 +1883,47 @@ namespace RedboxAddin.DL
             }
         }
 
-        public int UpdateGuarantee(long[] guaranteeIDs, bool accepted)
+        public int UpdateGuarantee(long[] guaranteeIDs, int status)
         {
             int numUpdated = 0;
             try
             {
-                string sqlStr = "UPDATE GuaranteedDays  "
-                    + "SET Accepted = @accepted "
-                    + "WHERE ID = @ID";
+
+                string sqlStr = "UPDATE GuaranteedDays  ";
+                    
+                switch (status)
+                {
+                    case 1:
+                        sqlStr += "SET Type = 1 ";
+                        break;
+                    case 2:
+                        sqlStr += "SET Type = 2 ";
+                        break;
+                    case 3:
+                         sqlStr += "SET Type = 3 ";
+                       break;
+                    case 4:
+                        sqlStr += "SET Type = 4 ";
+                        break;
+                    case 5:
+                        sqlStr += "SET Type = 5 ";
+                       break;
+
+                    default:
+                        break;
+                }
+                sqlStr +=  "WHERE ID = @ID";
+
+                
                 DBManager.OpenDBConnection();
                 var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
                 CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
-                CmdAddContact.Parameters.Add("@accepted", SqlDbType.Bit);
                 CmdAddContact.Prepare();
 
                 foreach (long id in guaranteeIDs)
                 {
 
                     CmdAddContact.Parameters["@ID"].Value = id;
-                    CmdAddContact.Parameters["@accepted"].Value = accepted;
                     numUpdated += CmdAddContact.ExecuteNonQuery();
                 }
                 return numUpdated;
@@ -3026,6 +3351,149 @@ namespace RedboxAddin.DL
                             "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +
                             "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus, " +
                             "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT, " +
+                            "s1.Provisional as MonPr, s2.Provisional as TuePr, s3.Provisional as WedPr, s4.Provisional as ThuPr, s5.Provisional  as FriPr, " +
+                            "g1.Acc as MonGA, g2.Acc as TueGA, g3.Acc as WedGA, g4.Acc as ThuGA, g5.Acc  as FriGA, " +
+                            "g1.Type1 as MonType, g2.Type1 as TueType, g3.Type1 as WedType, g4.Type1 as ThuType, g5.Type1 as FriType " +
+                            "FROM [Contacts] " +
+
+                            "LEFT JOIN [ContactData] " +
+                            "ON [Contacts].contactID = [ContactData].ContactID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm, Provisional " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + monday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + monday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + monday + "' " +
+                            ") as s1 " +
+                            "ON s1.contactID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + monday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g1 ON g1.TeacherID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm, Provisional " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + tuesday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + tuesday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + tuesday + "' " +
+                            ") as s2 " +
+                            "ON s2.contactID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + tuesday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g2 ON g2.TeacherID = [Contacts].contactID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm, Provisional " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + wednesday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + wednesday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + wednesday + "' " +
+                            ") as s3 " +
+                            "ON s3.contactID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + wednesday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g3 ON g3.TeacherID = [Contacts].contactID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm, Provisional " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + thursday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + thursday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + thursday + "' " +
+                            ") as s4 " +
+                            "ON s4.contactID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + thursday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g4 ON g4.TeacherID = [Contacts].contactID " +
+
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT [Bookings].Description as School , [MasterBookings].contactID, Color, BookingStatus, LongTerm, Provisional " +
+                            "FROM [MasterBookings] " +
+                            "LEFT JOIN [Bookings] " +
+                            "ON [Bookings].MasterBookingID = [MasterBookings].ID  " +
+                            "WHERE  " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].StartDate, 112) <= '" + friday + "' " +
+                            "AND " +
+                            "CONVERT(VARCHAR(10), [MasterBookings].EndDate, 112) >= '" + friday + "' " +
+                            "AND CONVERT(VARCHAR(10), [Bookings].Date, 112) ='" + friday + "' " +
+                            ") as s5 " +
+                            "ON s5.contactID = [Contacts].contactID " +
+
+                            "LEFT JOIN " +
+                            "( " +
+                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "FROM GuaranteedDays " +
+                            "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + friday + "' " +
+                            "GROUP BY TeacherID " +
+                            ") AS g5 ON g5.TeacherID = [Contacts].contactID ";
+
+
+            return SQLstr;
+        }
+
+        private string GetAvailabilitySQL1(DateTime weekbegining)
+        {
+            //copied 4Sept2014 before changes to guarantee
+            string monday = weekbegining.ToString("yyyyMMdd");
+            string tuesday = weekbegining.AddDays(1).ToString("yyyyMMdd");
+            string wednesday = weekbegining.AddDays(2).ToString("yyyyMMdd");
+            string thursday = weekbegining.AddDays(3).ToString("yyyyMMdd");
+            string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
+
+            string SQLstr = "Select Lastname+', '+FirstName as TeacherName,Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
+                            "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, CRBStatus, " +
+                            "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, Float, LT, D2D, RWInc, BSL, FirstAid, " +
+                            "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
+                            "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
+                            "s1.Color as MonColor, s2.Color as TueColor, s3.Color as WedColor, s4.Color as ThuColor, s5.Color  as FriColor, " +
+                            "s1.BookingStatus as MonStatus, s2.BookingStatus as TueStatus, s3.BookingStatus as WedStatus, s4.BookingStatus as ThuStatus, s5.BookingStatus  as FriStatus, " +
+                            "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT, " +
                             "g1.Acc as MonGA, g2.Acc as TueGA, g3.Acc as WedGA, g4.Acc as ThuGA, g5.Acc  as FriGA " +
                             "FROM [Contacts] " +
 
@@ -3497,7 +3965,7 @@ namespace RedboxAddin.DL
 
         private string GetMasterBookingInfoSQL(long masterBookingID)
         {
-            string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, MasterBookings.BookingStatus," +
+            string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, MasterBookings.BookingStatus, MasterBookings.Provisional, " +
                             "LastName+', '+FirstName as TeacherName, Details, MasterBookings.Notes, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
                             "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, Teacher, TA,SEN, QNN, NN, PPL, " +
                             "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName, Color " +
@@ -3521,7 +3989,7 @@ namespace RedboxAddin.DL
         private string GetViewBookingsSQL(string SchoolID, string teacherID, string dtStart, string dtEnd, string status)
         {
             string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
-                         "LastName+', ' + FirstName as FullName, BookingStatus " +
+                         "LastName+', ' + FirstName as FullName, BookingStatus, Code " +
                          "FROM [Bookings] " +
                          "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
                          "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +

@@ -46,6 +46,7 @@ namespace RedboxAddin.Models
         public bool TrialDay { get; set; }
         public string Color { get; set; }
         public string BookingStatus { get; set; }
+        public bool Provisional { get; set; }
     }
 
     class RAvailability
@@ -197,9 +198,10 @@ namespace RedboxAddin.Models
     {
         public Int64 ID { get; set; }
         public DateTime dte { get; set; }
-        public string Type { get; set; }
+        public string Text { get; set; }
         public string Details { get; set; }
         public string Status { get; set; }
+        public int Type { get; set; } //0- nothing, 1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable
     }
 
     public class REventArgs: EventArgs

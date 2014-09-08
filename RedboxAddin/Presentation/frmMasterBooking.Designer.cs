@@ -132,6 +132,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.chkProvisional = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -240,6 +241,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkProvisional);
             this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label14);
@@ -392,6 +394,7 @@
             // 
             this.cmbBookingStatus.FormattingEnabled = true;
             this.cmbBookingStatus.Items.AddRange(new object[] {
+            "Tentative",
             "Unassigned",
             "Contacted",
             "Confirmed",
@@ -1301,6 +1304,16 @@
             this.toolStripContainer1.TabIndex = 7;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
+            // chkProvisional
+            // 
+            this.chkProvisional.AutoSize = true;
+            this.chkProvisional.Location = new System.Drawing.Point(843, 98);
+            this.chkProvisional.Name = "chkProvisional";
+            this.chkProvisional.Size = new System.Drawing.Size(94, 20);
+            this.chkProvisional.TabIndex = 119;
+            this.chkProvisional.Text = "Provisional";
+            this.chkProvisional.UseVisualStyleBackColor = true;
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1443,5 +1456,6 @@
         private System.Windows.Forms.CheckBox chkPPA;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnUpdateDaily;
+        private System.Windows.Forms.CheckBox chkProvisional;
     }
 }

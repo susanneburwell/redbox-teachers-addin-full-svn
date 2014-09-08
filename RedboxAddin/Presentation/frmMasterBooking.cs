@@ -161,7 +161,7 @@ namespace RedboxAddin.Presentation
 
                 lblColor.Text = rMB.Color;
                 cmbBookingStatus.Text = rMB.BookingStatus;
-
+                chkProvisional.Checked = rMB.Provisional;
             }
             catch (Exception ex)
             {
@@ -303,6 +303,7 @@ namespace RedboxAddin.Presentation
                 mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                 mb.Color = lblColor.Text;
                 mb.BookingStatus = cmbBookingStatus.Text;
+                mb.Provisional = chkProvisional.Checked;
 
                 //Check teacher is real
                 string teachername = cmbTeacher.Text.Replace(',', ' ');

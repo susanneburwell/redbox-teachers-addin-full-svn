@@ -4511,6 +4511,8 @@ namespace RedboxAddin
 		
 		private bool _Accepted;
 		
+		private int _Type;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4525,6 +4527,8 @@ namespace RedboxAddin
     partial void OnNoteChanged();
     partial void OnAcceptedChanging(bool value);
     partial void OnAcceptedChanged();
+    partial void OnTypeChanging(int value);
+    partial void OnTypeChanged();
     #endregion
 		
 		public GuaranteedDay()
@@ -4628,6 +4632,26 @@ namespace RedboxAddin
 					this._Accepted = value;
 					this.SendPropertyChanged("Accepted");
 					this.OnAcceptedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
+		public int Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
 				}
 			}
 		}
@@ -4737,6 +4761,8 @@ namespace RedboxAddin
 		
 		private string _Notes;
 		
+		private bool _Provisional;
+		
 		private EntitySet<Booking> _Bookings;
 		
     #region Extensibility Method Definitions
@@ -4821,6 +4847,8 @@ namespace RedboxAddin
     partial void OnPPAChanged();
     partial void OnNotesChanging(string value);
     partial void OnNotesChanged();
+    partial void OnProvisionalChanging(bool value);
+    partial void OnProvisionalChanged();
     #endregion
 		
 		public MasterBooking()
@@ -5589,7 +5617,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
 		public string Notes
 		{
 			get
@@ -5605,6 +5633,26 @@ namespace RedboxAddin
 					this._Notes = value;
 					this.SendPropertyChanged("Notes");
 					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provisional", DbType="Bit NOT NULL")]
+		public bool Provisional
+		{
+			get
+			{
+				return this._Provisional;
+			}
+			set
+			{
+				if ((this._Provisional != value))
+				{
+					this.OnProvisionalChanging(value);
+					this.SendPropertyChanging();
+					this._Provisional = value;
+					this.SendPropertyChanged("Provisional");
+					this.OnProvisionalChanged();
 				}
 			}
 		}

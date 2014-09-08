@@ -146,7 +146,7 @@ namespace RedboxAddin.UC
                         string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
                         if (myG == "1")
                         {
-                            e.Appearance.BackColor = System.Drawing.Color.LightGreen;
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
                         }
                         else
                         {
@@ -163,53 +163,74 @@ namespace RedboxAddin.UC
 
                 //  redd/yell  redd forecolr   yel back colour
                 string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
-                string backcolor = myVal.Substring(5, 4);
-                string forecolor = myVal.Substring(0, 4);
 
-                switch (backcolor)
+                //If colours are set
+                if (myVal.Length > 8) 
+                
                 {
-                    case "yell":
-                        e.Appearance.BackColor = System.Drawing.Color.Yellow;
-                        break;
-                    case "gray":
-                        e.Appearance.BackColor = System.Drawing.Color.LightGray;
-                        break;
-                    case "lblu":
-                        e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
-                        break;
-                    case "dblu":
-                        e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-                        break;
-                    case "gree": //guaranteed
-                        e.Appearance.BackColor = System.Drawing.Color.LightGreen;
-                        break;
-                    case "purp":
-                        e.Appearance.BackColor = System.Drawing.Color.Violet;
-                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                    string backcolor = myVal.Substring(5, 4);
+                    string forecolor = myVal.Substring(0, 4);
+                    string italics = "e";
+                    if (myVal.Length > 9) italics = myVal.Substring(9, 1);
 
-                        break;
-                    default:
-                        break;
+                    switch (backcolor)
+                    {
+                        case "yell":
+                            e.Appearance.BackColor = System.Drawing.Color.Yellow;
+                            break;
+                        case "gray":
+                            e.Appearance.BackColor = System.Drawing.Color.LightGray;
+                            break;
+                        case "lblu":
+                            e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+                            break;
+                        case "dblu":
+                            e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+                            break;
+                        case "gree": //guaranteed
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+                            break;
+                        case "pink": //texted
+                            e.Appearance.BackColor = System.Drawing.Color.LightPink;
+                            break;
+                        case "orng": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.Orange;
+                            break;
+                        case "lgre": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
+                            break;
+                        case "purp":
+                            e.Appearance.BackColor = System.Drawing.Color.Violet;
+                            e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+
+                            break;
+                        default:
+                            break;
+                    }
+
+                    switch (forecolor)
+                    {
+                        case "redd":
+                            e.Appearance.ForeColor = System.Drawing.Color.Red;
+                            break;
+                        case "purp":
+                            e.Appearance.ForeColor = System.Drawing.Color.Purple;
+                            break;
+                        case "blck":
+                            e.Appearance.ForeColor = System.Drawing.Color.Black;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    if (italics == "i")
+                    {
+                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
+
+                    }
+
                 }
-
-                switch (forecolor)
-                {
-                    case "redd":
-                        e.Appearance.ForeColor = System.Drawing.Color.Red;
-                        break;
-                    case "purp":
-                        e.Appearance.ForeColor = System.Drawing.Color.Purple;
-                        break;
-                    case "blck":
-                        e.Appearance.ForeColor = System.Drawing.Color.Black;
-                        break;
-
-                    default:
-                        break;
-                }
-
-
-
             }
             catch (Exception ex)
             {
