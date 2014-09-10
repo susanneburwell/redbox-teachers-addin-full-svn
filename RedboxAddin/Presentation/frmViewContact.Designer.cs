@@ -314,6 +314,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label91 = new System.Windows.Forms.Label();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -374,6 +375,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label91);
             this.tabPage5.Controls.Add(this.chkWest);
             this.tabPage5.Controls.Add(this.chkEast);
             this.tabPage5.Controls.Add(this.chkSouth);
@@ -707,9 +709,9 @@
             this.chkCurrent.ForeColor = System.Drawing.Color.Purple;
             this.chkCurrent.Location = new System.Drawing.Point(419, 76);
             this.chkCurrent.Name = "chkCurrent";
-            this.chkCurrent.Size = new System.Drawing.Size(69, 20);
+            this.chkCurrent.Size = new System.Drawing.Size(74, 20);
             this.chkCurrent.TabIndex = 85;
-            this.chkCurrent.Text = "Current";
+            this.chkCurrent.Text = "Current*";
             this.chkCurrent.UseVisualStyleBackColor = true;
             // 
             // groupBox8
@@ -724,7 +726,7 @@
             this.groupBox8.Size = new System.Drawing.Size(320, 57);
             this.groupBox8.TabIndex = 84;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Wants";
+            this.groupBox8.Text = "Wants*";
             // 
             // chkRGD
             // 
@@ -783,9 +785,9 @@
             this.chkTA.ForeColor = System.Drawing.Color.Purple;
             this.chkTA.Location = new System.Drawing.Point(511, 102);
             this.chkTA.Name = "chkTA";
-            this.chkTA.Size = new System.Drawing.Size(45, 20);
+            this.chkTA.Size = new System.Drawing.Size(50, 20);
             this.chkTA.TabIndex = 82;
-            this.chkTA.Text = "TA";
+            this.chkTA.Text = "TA*";
             this.chkTA.UseVisualStyleBackColor = true;
             // 
             // chkTeacher
@@ -794,9 +796,9 @@
             this.chkTeacher.ForeColor = System.Drawing.Color.Purple;
             this.chkTeacher.Location = new System.Drawing.Point(419, 102);
             this.chkTeacher.Name = "chkTeacher";
-            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
+            this.chkTeacher.Size = new System.Drawing.Size(83, 20);
             this.chkTeacher.TabIndex = 81;
-            this.chkTeacher.Text = "Teacher";
+            this.chkTeacher.Text = "Teacher*";
             this.chkTeacher.UseVisualStyleBackColor = true;
             // 
             // groupBox6
@@ -3430,6 +3432,17 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // label91
+            // 
+            this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label91.ForeColor = System.Drawing.Color.Purple;
+            this.label91.Location = new System.Drawing.Point(724, 139);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(232, 87);
+            this.label91.TabIndex = 92;
+            this.label91.Text = "*You must tick Current; \r\nTeacher or TA;\r\nand at least one of LT, D2D \r\nin order " +
+    "for teacher to show on availability sheet";
+            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3774,5 +3787,6 @@
         private System.Windows.Forms.CheckBox chkRWInc;
         private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.TextBox txtKeyRef;
+        private System.Windows.Forms.Label label91;
     }
 }

@@ -162,6 +162,8 @@ namespace RedboxAddin.Presentation
                 lblColor.Text = rMB.Color;
                 cmbBookingStatus.Text = rMB.BookingStatus;
                 chkProvisional.Checked = rMB.Provisional;
+
+                txtCharge.Text = rMB.Charge.ToString();
             }
             catch (Exception ex)
             {
@@ -929,10 +931,7 @@ namespace RedboxAddin.Presentation
             }
         }
 
-
-        #region buttons
-
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void Refresh()
         {
             //refresh database connection
             string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -942,6 +941,14 @@ namespace RedboxAddin.Presentation
             if (availabilityGrid1.Visible) LoadAvailabilityTable();
             if (btnDblBkgs.Visible) CheckDoubleBookings();
 
+        }
+
+
+        #region buttons
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Refresh();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -1207,7 +1214,8 @@ namespace RedboxAddin.Presentation
 
         private void cmbTeacher_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (loading) return;
+            //this sets the rate when we load
+            //if (loading) return;
 
             //check nogo status
             try
@@ -1276,6 +1284,26 @@ namespace RedboxAddin.Presentation
 
             RefreshDGC();
 
+        }
+
+        private void btnUpdateRate_Click(object sender, EventArgs e)
+        {
+            DBManager dbm = new DBManager();
+            int result = dbm.UpdateBookings(_masterBookingID, null, txtRate.Text);
+            if (result == -1) MessageBox.Show("Error updating bookings");
+            else if (result == 1) MessageBox.Show("1 booking updated");
+            else MessageBox.Show( result.ToString() + " bookings updated");
+            Refresh();
+        }
+
+        private void btnUpdateCharge_Click(object sender, EventArgs e)
+        {
+            DBManager dbm = new DBManager();
+            int result = dbm.UpdateBookings(_masterBookingID, txtCharge.Text, null);
+            if (result == -1) MessageBox.Show("Error updating bookings");
+            else if (result == 1) MessageBox.Show("1 booking updated");
+            else MessageBox.Show(result.ToString() + " bookings updated");
+            Refresh();
         }
 
        

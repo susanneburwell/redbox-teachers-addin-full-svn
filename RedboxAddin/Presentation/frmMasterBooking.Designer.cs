@@ -40,6 +40,9 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnUpdateCharge = new System.Windows.Forms.Button();
+            this.btnUpdateRate = new System.Windows.Forms.Button();
+            this.chkProvisional = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -132,7 +135,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.chkProvisional = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -206,7 +208,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(409, 129);
+            this.label6.Location = new System.Drawing.Point(409, 114);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 11;
@@ -214,7 +216,7 @@
             // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(409, 149);
+            this.txtNotes.Location = new System.Drawing.Point(409, 135);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -241,6 +243,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnUpdateCharge);
+            this.panel2.Controls.Add(this.btnUpdateRate);
             this.panel2.Controls.Add(this.chkProvisional);
             this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.label13);
@@ -294,6 +298,38 @@
             this.panel2.Size = new System.Drawing.Size(1002, 386);
             this.panel2.TabIndex = 1;
             // 
+            // btnUpdateCharge
+            // 
+            this.btnUpdateCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateCharge.Location = new System.Drawing.Point(412, 302);
+            this.btnUpdateCharge.Name = "btnUpdateCharge";
+            this.btnUpdateCharge.Size = new System.Drawing.Size(70, 26);
+            this.btnUpdateCharge.TabIndex = 121;
+            this.btnUpdateCharge.Text = "Update";
+            this.btnUpdateCharge.UseVisualStyleBackColor = true;
+            this.btnUpdateCharge.Click += new System.EventHandler(this.btnUpdateCharge_Click);
+            // 
+            // btnUpdateRate
+            // 
+            this.btnUpdateRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateRate.Location = new System.Drawing.Point(412, 275);
+            this.btnUpdateRate.Name = "btnUpdateRate";
+            this.btnUpdateRate.Size = new System.Drawing.Size(70, 26);
+            this.btnUpdateRate.TabIndex = 120;
+            this.btnUpdateRate.Text = "Update";
+            this.btnUpdateRate.UseVisualStyleBackColor = true;
+            this.btnUpdateRate.Click += new System.EventHandler(this.btnUpdateRate_Click);
+            // 
+            // chkProvisional
+            // 
+            this.chkProvisional.AutoSize = true;
+            this.chkProvisional.Location = new System.Drawing.Point(743, 89);
+            this.chkProvisional.Name = "chkProvisional";
+            this.chkProvisional.Size = new System.Drawing.Size(94, 20);
+            this.chkProvisional.TabIndex = 119;
+            this.chkProvisional.Text = "Provisional";
+            this.chkProvisional.UseVisualStyleBackColor = true;
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -307,7 +343,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(470, 294);
+            this.label13.Location = new System.Drawing.Point(488, 281);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 16);
             this.label13.TabIndex = 111;
@@ -316,7 +352,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(531, 294);
+            this.label14.Location = new System.Drawing.Point(554, 281);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(15, 16);
             this.label14.TabIndex = 112;
@@ -324,7 +360,7 @@
             // 
             // txtRate
             // 
-            this.txtRate.Location = new System.Drawing.Point(550, 291);
+            this.txtRate.Location = new System.Drawing.Point(574, 278);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(63, 22);
             this.txtRate.TabIndex = 110;
@@ -374,7 +410,7 @@
             // lblColor
             // 
             this.lblColor.AutoSize = true;
-            this.lblColor.Location = new System.Drawing.Point(849, 176);
+            this.lblColor.Location = new System.Drawing.Point(849, 163);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(40, 16);
             this.lblColor.TabIndex = 104;
@@ -384,7 +420,7 @@
             // lblBooking
             // 
             this.lblBooking.AutoSize = true;
-            this.lblBooking.Location = new System.Drawing.Point(849, 129);
+            this.lblBooking.Location = new System.Drawing.Point(849, 116);
             this.lblBooking.Name = "lblBooking";
             this.lblBooking.Size = new System.Drawing.Size(98, 16);
             this.lblBooking.TabIndex = 103;
@@ -399,7 +435,7 @@
             "Contacted",
             "Confirmed",
             "Details Sent"});
-            this.cmbBookingStatus.Location = new System.Drawing.Point(843, 149);
+            this.cmbBookingStatus.Location = new System.Drawing.Point(843, 136);
             this.cmbBookingStatus.Name = "cmbBookingStatus";
             this.cmbBookingStatus.Size = new System.Drawing.Size(150, 24);
             this.cmbBookingStatus.TabIndex = 102;
@@ -409,7 +445,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(409, 264);
+            this.label11.Location = new System.Drawing.Point(409, 253);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(119, 16);
             this.label11.TabIndex = 101;
@@ -420,7 +456,7 @@
             this.cmbTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbTeacher.FormattingEnabled = true;
             this.cmbTeacher.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.cmbTeacher.Location = new System.Drawing.Point(550, 261);
+            this.cmbTeacher.Location = new System.Drawing.Point(550, 248);
             this.cmbTeacher.Name = "cmbTeacher";
             this.cmbTeacher.Size = new System.Drawing.Size(287, 24);
             this.cmbTeacher.TabIndex = 100;
@@ -577,7 +613,7 @@
             // btnEditDesc
             // 
             this.btnEditDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDesc.Location = new System.Drawing.Point(495, 233);
+            this.btnEditDesc.Location = new System.Drawing.Point(495, 222);
             this.btnEditDesc.Name = "btnEditDesc";
             this.btnEditDesc.Size = new System.Drawing.Size(53, 22);
             this.btnEditDesc.TabIndex = 96;
@@ -599,7 +635,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(554, 236);
+            this.lblDescription.Location = new System.Drawing.Point(554, 226);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(79, 16);
             this.lblDescription.TabIndex = 95;
@@ -607,7 +643,7 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(550, 233);
+            this.txtDescription.Location = new System.Drawing.Point(550, 223);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(287, 22);
             this.txtDescription.TabIndex = 94;
@@ -626,7 +662,7 @@
             // lblDes
             // 
             this.lblDes.AutoSize = true;
-            this.lblDes.Location = new System.Drawing.Point(409, 236);
+            this.lblDes.Location = new System.Drawing.Point(409, 225);
             this.lblDes.Name = "lblDes";
             this.lblDes.Size = new System.Drawing.Size(79, 16);
             this.lblDes.TabIndex = 93;
@@ -785,7 +821,7 @@
             // label78
             // 
             this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(633, 99);
+            this.label78.Location = new System.Drawing.Point(486, 308);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(55, 16);
             this.label78.TabIndex = 82;
@@ -794,7 +830,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(701, 99);
+            this.label76.Location = new System.Drawing.Point(554, 307);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(15, 16);
             this.label76.TabIndex = 83;
@@ -802,7 +838,7 @@
             // 
             // txtCharge
             // 
-            this.txtCharge.Location = new System.Drawing.Point(723, 96);
+            this.txtCharge.Location = new System.Drawing.Point(574, 305);
             this.txtCharge.Name = "txtCharge";
             this.txtCharge.Size = new System.Drawing.Size(63, 22);
             this.txtCharge.TabIndex = 81;
@@ -811,7 +847,7 @@
             // chkHalfDay
             // 
             this.chkHalfDay.AutoSize = true;
-            this.chkHalfDay.Location = new System.Drawing.Point(529, 98);
+            this.chkHalfDay.Location = new System.Drawing.Point(566, 88);
             this.chkHalfDay.Name = "chkHalfDay";
             this.chkHalfDay.Size = new System.Drawing.Size(79, 20);
             this.chkHalfDay.TabIndex = 6;
@@ -822,7 +858,7 @@
             // chkLongTerm
             // 
             this.chkLongTerm.AutoSize = true;
-            this.chkLongTerm.Location = new System.Drawing.Point(414, 98);
+            this.chkLongTerm.Location = new System.Drawing.Point(451, 88);
             this.chkLongTerm.Name = "chkLongTerm";
             this.chkLongTerm.Size = new System.Drawing.Size(92, 20);
             this.chkLongTerm.TabIndex = 7;
@@ -1304,16 +1340,6 @@
             this.toolStripContainer1.TabIndex = 7;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // chkProvisional
-            // 
-            this.chkProvisional.AutoSize = true;
-            this.chkProvisional.Location = new System.Drawing.Point(843, 98);
-            this.chkProvisional.Name = "chkProvisional";
-            this.chkProvisional.Size = new System.Drawing.Size(94, 20);
-            this.chkProvisional.TabIndex = 119;
-            this.chkProvisional.Text = "Provisional";
-            this.chkProvisional.UseVisualStyleBackColor = true;
-            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1457,5 +1483,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnUpdateDaily;
         private System.Windows.Forms.CheckBox chkProvisional;
+        private System.Windows.Forms.Button btnUpdateCharge;
+        private System.Windows.Forms.Button btnUpdateRate;
     }
 }

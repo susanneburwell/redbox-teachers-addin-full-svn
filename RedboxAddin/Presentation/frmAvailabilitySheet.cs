@@ -168,7 +168,10 @@ namespace RedboxAddin.Presentation
                 if (chkFloat.Checked) SQL2 += " AND [Float] = 'true' ";
                 if (chkPPA.Checked) SQL2 += " AND [PPA] = 'true' ";
                 if (chkLongTerm.Checked) SQL2 += " AND [LT] = 'true' ";
-                if (chkGuaranteed.Checked) SQL2 += " AND G1.gar > 0 ";
+
+                if (chkGuaranteed.Checked) SQL2 += " AND  "
+                + " (g1.Type1 = '1' OR g2.Type1 = '1' OR g3.Type1 = '1' OR  g4.Type1 = '1' OR  g5.Type1 = '1' OR "
+                + "  g1.Type1 = '2' OR g2.Type1 = '2' OR g3.Type1 = '2' OR  g4.Type1 = '2' OR  g5.Type1 = '2' ) ";
 
 
                 string SQL3 = "";

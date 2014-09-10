@@ -24,6 +24,9 @@ using System.IO;
 //2.0.41 30th July 2014 DT Fix bug where new contacts were not saving correctly.
 //2.0.42 15Aug 2014 DT TA Rates for schools were not saved anywhere. Implemented in database and MasterBooking
 //2.0.47 03 Sept 2014 DT Interim build before starting full availability for teachers
+//2.0.48 09 Sept 2014 DT Availability includes Guarantee and texted, available, unavailable. New bookings are provisional and confirmed plus other bug fixes
+//2.0.49 10Sept14 DT Swapped to per machine installation. Master bookings can now update rate and charge for all sub bookings
+//2.0.52 10Sept14 DT Per machine installation and relevant changes to file locations (Redemption / Settings)
 
 namespace RedboxAddin
 {
@@ -898,6 +901,7 @@ namespace RedboxAddin
             // AddinModule
             // 
             this.AddinName = "RedboxAddin";
+            this.RegisterForAllUsers = true;
             this.SupportedApps = AddinExpress.MSO.ADXOfficeHostApp.ohaOutlook;
             this.AddinInitialize += new AddinExpress.MSO.ADXEvents_EventHandler(this.AddinModule_AddinInitialize);
 

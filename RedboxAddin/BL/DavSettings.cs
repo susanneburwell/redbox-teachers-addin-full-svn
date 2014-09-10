@@ -23,15 +23,10 @@ public static class DavSettings
                 PropList.Clear();
                 string XMLSTring = "";
                 StreamReader ioFile = null;
-                var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\Davton\\" + ProductName + "\\Settings.xml";
-                var myAllUserFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\Davton\\" + ProductName + "\\Settings.xml";
-                if (File.Exists(myFilePath))
-                {
-                    ioFile = new StreamReader(myFilePath);
-                    XMLSTring = ioFile.ReadToEnd();
-                    ioFile.Close();
-                }
-                else if (File.Exists(myAllUserFilePath))
+                //var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\Davton\\" + ProductName + "\\Settings.xml";
+                var myAllUserFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\RedboxAddin\\Settings.xml";
+                Debug.DebugMessage(1, "AllUserFilePath: " + myAllUserFilePath);
+                if (File.Exists(myAllUserFilePath))
                 {
                     ioFile = new StreamReader(myAllUserFilePath);
                     XMLSTring = ioFile.ReadToEnd();
@@ -194,7 +189,7 @@ public static class DavSettings
             set { fPropValue = (string)value; }
         }
     }
-    
+
     public static void AddField(XmlDocument XMLdoc, XmlElement xmlParent, string Name, string myData, string myType = "text")
     {
         //* This adds a child Field to a parent Appointment

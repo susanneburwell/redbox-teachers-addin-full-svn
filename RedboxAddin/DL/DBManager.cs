@@ -1315,6 +1315,33 @@ namespace RedboxAddin.DL
             }
         }
 
+        public int UpdateBookings(long MasterBookingID, string charge, string rate )
+        {
+            try
+            {
+
+                string updateSQL = "";
+                if (rate != null) updateSQL = " Rate = '" + rate + "' ";
+                if (charge != null) updateSQL += ", Charge = '" + charge + "' ";
+
+                //remove leading comma if necessary
+                if (updateSQL.Substring(0, 1) == ",") updateSQL = updateSQL.Substring(1);
+                if (updateSQL.Length < 1) return 0;
+
+                string SQL = "UPDATE Bookings SET " + updateSQL;
+
+                SQL += " WHERE MasterBookingID = '" + MasterBookingID + "' ";
+
+                return ExecuteNonQuery(SQL);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateBookingsFromDate: " + ex.Message);
+                return -1;
+            }
+
+        }
+
         /// <summary>
         /// Pass null values for rate, charge, description if they should not be updated
         /// ddate should be in format (yyyy-MM-dd)
@@ -3027,6 +3054,8 @@ namespace RedboxAddin.DL
                 Debug.DebugMessage(2, "Error in CleanContactNames: " + ex.Message);
             }
         }
+
+
 
         #region Create tables
 

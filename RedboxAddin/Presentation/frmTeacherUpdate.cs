@@ -196,7 +196,7 @@ namespace RedboxAddin.Presentation
                 chkAccepted.Visible = true;
                 grpAbsence.Visible = false;
                 grpAvailability.Visible = true;
-                lblType.Text = "Guaranteed Pay";
+                lblType.Text = "Availability";
 
             }
         }
