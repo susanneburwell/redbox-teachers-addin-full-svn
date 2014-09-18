@@ -27,6 +27,8 @@ using System.IO;
 //2.0.48 09 Sept 2014 DT Availability includes Guarantee and texted, available, unavailable. New bookings are provisional and confirmed plus other bug fixes
 //2.0.49 10Sept14 DT Swapped to per machine installation. Master bookings can now update rate and charge for all sub bookings
 //2.0.52 10Sept14 DT Per machine installation and relevant changes to file locations (Redemption / Settings)
+//2.0.53 18Sept14 DT Fixes to invoices and payruns to manage missing data. Password protect totals on load plan.
+//2.0.54 18Sept04 DT Add ability to delete individual bookings using the right click key on Masterbookings
 
 namespace RedboxAddin
 {

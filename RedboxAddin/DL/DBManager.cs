@@ -1053,7 +1053,7 @@ namespace RedboxAddin.DL
                                 WeekEnding = WeekEnding,
                                 SageAcctRef = SageAccountRef,
                                 Address = dr["Address"].ToString(),
-                                PayDetails = dr["PayDetails"].ToString(),
+                                Description = dr["Description"].ToString(),
                                 LastName = dr["LastName"].ToString(),
                                 FirstName = dr["FirstName"].ToString(),
                                 TotalDays = 1,
@@ -1315,7 +1315,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public int UpdateBookings(long MasterBookingID, string charge, string rate )
+        public int UpdateBookings(long MasterBookingID, string charge, string rate, string description )
         {
             try
             {
@@ -1323,6 +1323,7 @@ namespace RedboxAddin.DL
                 string updateSQL = "";
                 if (rate != null) updateSQL = " Rate = '" + rate + "' ";
                 if (charge != null) updateSQL += ", Charge = '" + charge + "' ";
+                if (description != null) updateSQL += ", Description = '" + description + "' ";
 
                 //remove leading comma if necessary
                 if (updateSQL.Substring(0, 1) == ",") updateSQL = updateSQL.Substring(1);
@@ -1989,6 +1990,32 @@ namespace RedboxAddin.DL
                 return numUpdated;
             }
 
+        }
+
+        public int DeleteBookings(long[] bookingIDs)
+        {
+            int numUpdated = 0;
+            try
+            {
+                string sqlStr = "DELETE FROM Bookings  "
+                    + "WHERE ID = @ID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Prepare();
+
+                foreach (long id in bookingIDs)
+                {
+                    CmdAddContact.Parameters["@ID"].Value = id;
+                    numUpdated += CmdAddContact.ExecuteNonQuery();
+                }
+                return numUpdated;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in DeleteBookings :- " + ex.Message);
+                return numUpdated;
+            }
         }
 
         public int UpdateBooking(long id, string description, string rate, string charge)

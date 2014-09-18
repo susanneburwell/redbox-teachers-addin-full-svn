@@ -40,6 +40,7 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnUpdateDescription = new System.Windows.Forms.Button();
             this.btnUpdateCharge = new System.Windows.Forms.Button();
             this.btnUpdateRate = new System.Windows.Forms.Button();
             this.chkProvisional = new System.Windows.Forms.CheckBox();
@@ -123,6 +124,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -135,6 +137,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -243,6 +247,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnUpdateDescription);
             this.panel2.Controls.Add(this.btnUpdateCharge);
             this.panel2.Controls.Add(this.btnUpdateRate);
             this.panel2.Controls.Add(this.chkProvisional);
@@ -297,6 +302,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1002, 386);
             this.panel2.TabIndex = 1;
+            // 
+            // btnUpdateDescription
+            // 
+            this.btnUpdateDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateDescription.Location = new System.Drawing.Point(412, 222);
+            this.btnUpdateDescription.Name = "btnUpdateDescription";
+            this.btnUpdateDescription.Size = new System.Drawing.Size(51, 26);
+            this.btnUpdateDescription.TabIndex = 122;
+            this.btnUpdateDescription.Text = "Update";
+            this.btnUpdateDescription.UseVisualStyleBackColor = true;
+            this.btnUpdateDescription.Click += new System.EventHandler(this.btnUpdateDescription_Click);
             // 
             // btnUpdateCharge
             // 
@@ -456,9 +472,9 @@
             this.cmbTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbTeacher.FormattingEnabled = true;
             this.cmbTeacher.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.cmbTeacher.Location = new System.Drawing.Point(550, 248);
+            this.cmbTeacher.Location = new System.Drawing.Point(557, 248);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(287, 24);
+            this.cmbTeacher.Size = new System.Drawing.Size(280, 24);
             this.cmbTeacher.TabIndex = 100;
             this.cmbTeacher.SelectedValueChanged += new System.EventHandler(this.cmbTeacher_SelectedValueChanged);
             // 
@@ -613,9 +629,9 @@
             // btnEditDesc
             // 
             this.btnEditDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDesc.Location = new System.Drawing.Point(495, 222);
+            this.btnEditDesc.Location = new System.Drawing.Point(557, 222);
             this.btnEditDesc.Name = "btnEditDesc";
-            this.btnEditDesc.Size = new System.Drawing.Size(53, 22);
+            this.btnEditDesc.Size = new System.Drawing.Size(22, 22);
             this.btnEditDesc.TabIndex = 96;
             this.btnEditDesc.Text = "Edit";
             this.btnEditDesc.UseVisualStyleBackColor = true;
@@ -635,7 +651,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(554, 226);
+            this.lblDescription.Location = new System.Drawing.Point(588, 225);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(79, 16);
             this.lblDescription.TabIndex = 95;
@@ -643,15 +659,15 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(550, 223);
+            this.txtDescription.Location = new System.Drawing.Point(587, 223);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(287, 22);
+            this.txtDescription.Size = new System.Drawing.Size(250, 22);
             this.txtDescription.TabIndex = 94;
             this.txtDescription.Visible = false;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(842, 228);
+            this.btnSave.Location = new System.Drawing.Point(843, 220);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(150, 27);
             this.btnSave.TabIndex = 13;
@@ -662,7 +678,7 @@
             // lblDes
             // 
             this.lblDes.AutoSize = true;
-            this.lblDes.Location = new System.Drawing.Point(409, 225);
+            this.lblDes.Location = new System.Drawing.Point(469, 226);
             this.lblDes.Name = "lblDes";
             this.lblDes.Size = new System.Drawing.Size(79, 16);
             this.lblDes.TabIndex = 93;
@@ -1152,6 +1168,7 @@
             this.dgcBookings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ViewBookings});
             this.dgcBookings.Visible = false;
+            this.dgcBookings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgcBookings_MouseDown);
             // 
             // ViewBookings
             // 
@@ -1160,10 +1177,12 @@
             this.gridColumn1,
             this.gridColumn3,
             this.gridColumn4,
-            this.gridColumn5});
+            this.gridColumn5,
+            this.ID});
             this.ViewBookings.GridControl = this.dgcBookings;
             this.ViewBookings.Name = "ViewBookings";
             this.ViewBookings.OptionsCustomization.AllowGroup = false;
+            this.ViewBookings.OptionsSelection.MultiSelect = true;
             this.ViewBookings.OptionsView.ShowGroupPanel = false;
             this.ViewBookings.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn0, DevExpress.Data.ColumnSortOrder.Ascending)});
@@ -1244,6 +1263,12 @@
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             this.gridColumn5.Width = 200;
+            // 
+            // ID
+            // 
+            this.ID.Caption = "ID";
+            this.ID.FieldName = "ID";
+            this.ID.Name = "ID";
             // 
             // repositoryItemCheckEdit1
             // 
@@ -1339,6 +1364,18 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(1008, 697);
             this.toolStripContainer1.TabIndex = 7;
             this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "status.png");
+            this.imageList1.Images.SetKeyName(1, "found.png");
+            // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Interval = 2500;
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // frmMasterBooking
             // 
@@ -1485,5 +1522,9 @@
         private System.Windows.Forms.CheckBox chkProvisional;
         private System.Windows.Forms.Button btnUpdateCharge;
         private System.Windows.Forms.Button btnUpdateRate;
+        private System.Windows.Forms.Button btnUpdateDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn ID;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Timer refreshTimer;
     }
 }

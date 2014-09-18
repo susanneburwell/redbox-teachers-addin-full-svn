@@ -263,6 +263,21 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
             }
         }
+
+        private void btnTotals_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtPwd.Text.ToLower() == "totals!")
+                {
+                    gridView1.OptionsView.ShowFooter = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in TotalsButton: " + ex.Message);
+            }
+        }
     }
 }
 

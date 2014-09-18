@@ -14,6 +14,9 @@ using RedboxAddin;
 using RedboxAddin.Models;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraGrid.Menu;
+using DevExpress.Utils.Menu;
+
 
 
 
@@ -83,7 +86,7 @@ namespace RedboxAddin.Presentation
             {
                 var q = from s in db.Schools
                         orderby s.SchoolName
-                        select s ;
+                        select s;
                 var schools = q.ToList();
                 cmbSchool.DataSource = schools;
                 cmbSchool.DisplayMember = "SchoolName";
@@ -301,7 +304,7 @@ namespace RedboxAddin.Presentation
                 mb.NN = chkNN.Checked;
                 mb.PPL = chkPPL.Checked;
                 mb.Charge = Utils.CheckDecimal(txtCharge.Text);
-                
+
                 mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                 mb.Color = lblColor.Text;
                 mb.BookingStatus = cmbBookingStatus.Text;
@@ -464,12 +467,12 @@ namespace RedboxAddin.Presentation
 
                 //get Teacher Status
                 //TeacherLevel tl = cmbTeacherLevel.SelectedItem as TeacherLevel;
-                string teacherStatus = Utils.TeacherQuals(chkTA.Checked, chkQTS.Checked, chkNQT.Checked, chkOTT.Checked, chkQNN.Checked, 
+                string teacherStatus = Utils.TeacherQuals(chkTA.Checked, chkQTS.Checked, chkNQT.Checked, chkOTT.Checked, chkQNN.Checked,
                     chkNN.Checked, chkSEN.Checked, chkPPA.Checked, chkFloat.Checked);
 
                 //Get AgeGroup
                 string agegroup = Utils.YearGroup(chkNur.Checked, chkRec.Checked, chkYr1.Checked, chkYr2.Checked, chkYr3.Checked, chkYr4.Checked, chkYr5.Checked, chkYr6.Checked);
-               
+
                 lblDescription.Text = shortname + " " + teacherStatus + " " + agegroup;
 
                 //Check Halfday
@@ -866,7 +869,7 @@ namespace RedboxAddin.Presentation
                 //Delete Booking
                 var mBooking = from b in db.MasterBookings
                                where b.ID == _masterBookingID
-                                   select b;
+                               select b;
                 foreach (var mbkg in mBooking)
                 {
                     db.MasterBookings.DeleteOnSubmit(mbkg);
@@ -1254,6 +1257,12 @@ namespace RedboxAddin.Presentation
             else btnDblBkgs.BackColor = Color.Crimson;
         }
 
+        private void refreshTimer_Tick(object sender, EventArgs e)
+        {
+            refreshTimer.Enabled = false;
+            RefreshDGC();
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("This will delete the entire booking from the system. There is no UNDO option.\r" +
@@ -1289,28 +1298,152 @@ namespace RedboxAddin.Presentation
         private void btnUpdateRate_Click(object sender, EventArgs e)
         {
             DBManager dbm = new DBManager();
-            int result = dbm.UpdateBookings(_masterBookingID, null, txtRate.Text);
-            if (result == -1) MessageBox.Show("Error updating bookings");
-            else if (result == 1) MessageBox.Show("1 booking updated");
-            else MessageBox.Show( result.ToString() + " bookings updated");
-            Refresh();
-        }
-
-        private void btnUpdateCharge_Click(object sender, EventArgs e)
-        {
-            DBManager dbm = new DBManager();
-            int result = dbm.UpdateBookings(_masterBookingID, txtCharge.Text, null);
+            int result = dbm.UpdateBookings(_masterBookingID, null, txtRate.Text, null);
             if (result == -1) MessageBox.Show("Error updating bookings");
             else if (result == 1) MessageBox.Show("1 booking updated");
             else MessageBox.Show(result.ToString() + " bookings updated");
             Refresh();
         }
 
-       
+        private void btnUpdateCharge_Click(object sender, EventArgs e)
+        {
+            DBManager dbm = new DBManager();
+            int result = dbm.UpdateBookings(_masterBookingID, txtCharge.Text, null, null);
+            if (result == -1) MessageBox.Show("Error updating bookings");
+            else if (result == 1) MessageBox.Show("1 booking updated");
+            else MessageBox.Show(result.ToString() + " bookings updated");
+            Refresh();
+        }
 
-        
+        private void btnUpdateDescription_Click(object sender, EventArgs e)
+        {
+            DBManager dbm = new DBManager();
+            int result = dbm.UpdateBookings(_masterBookingID, null, null, txtDescription.Text);
+            if (result == -1) MessageBox.Show("Error updating bookings");
+            else if (result == 1) MessageBox.Show("1 booking updated");
+            else MessageBox.Show(result.ToString() + " bookings updated");
+            Refresh();
+        }
 
-       
+        private void dgcBookings_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                // Check if the end-user has right clicked the grid control. 
+                if (e.Button == MouseButtons.Right)
+                {
+                    REventArgs rowInfo = new REventArgs();
+                    GridHitInfo info = ViewBookings.CalcHitInfo(new Point(e.X, e.Y));
+
+                    //******************88
+                    if (info.InRow || info.InRowCell)
+                    {
+                        rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                        //rowInfo.Teacher = ViewBookings.GetRowCellValue(info.RowHandle, "dte").ToString();
+                        int[] selectedRows = ViewBookings.GetSelectedRows();
+
+                        //Get IDs from selected rows
+                        long[] selectedIDs;
+                        if (selectedRows.Length > 1)
+                        {
+                            //Multiple rows selected
+                            selectedIDs = new long[selectedRows.Length];
+
+                            for (int i = 0; i < selectedRows.Length; i++)
+                            {
+                                int rowNum = selectedRows[i];
+                                long? rowID = ViewBookings.GetRowCellValue(rowNum, "ID") as long?;
+                                if (rowID != null) selectedIDs[i] = (long)ViewBookings.GetRowCellValue(rowNum, "ID");
+                            }
+                        }
+                        else
+                        {
+                            //single row selected
+                            selectedIDs = new long[1];
+                            selectedIDs[0] = (long)ViewBookings.GetRowCellValue(info.RowHandle, "ID");
+                        }
+                        rowInfo.SelectedRows = selectedIDs;
+                    }
+
+                    GridViewCustomMenu menu = new GridViewCustomMenu(ViewBookings);
+                    menu.SetRowInfo(rowInfo);
+                    menu.imageList = imageList1;
+                    menu.Init(info);
+                    // Display the menu. 
+                    menu.Show(info.HitPoint);
+
+                    refreshTimer.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
+            }
+        }
+
+
+        public class GridViewCustomMenu : GridViewMenu
+        {
+            public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) { }
+
+            private REventArgs _rowInfo;
+            public ImageList imageList;
+            public event EventHandler RepaintRequired;
+
+
+            public void SetRowInfo(REventArgs rowInfo)
+            {
+                _rowInfo = rowInfo;
+            }
+            // Create menu items. 
+            // This method is automatically called by the menu's public Init method. 
+            protected override void CreateItems()
+            {
+                //image 0 = dot ; image 1 = tick
+                int off = 0;
+                int acct = 0;
+                int conf = 0;
+                int dets = 0;
+                int none = 0;
+
+                Items.Clear();
+                int vv = GridMenuImages.Column.Images.Count;
+                int vw = GridMenuImages.Footer.Images.Count;
+                int vx = GridMenuImages.GroupPanel.Images.Count;
+                Items.Add(CreateMenuItem("Delete", imageList.Images[conf], "Delete", true));
+
+
+            }
+
+            protected override void OnMenuItemClick(object sender, EventArgs e)
+            {
+                if (RaiseClickEvent(sender, null)) return;
+                DXMenuItem item = sender as DXMenuItem;
+                string status = item.Tag.ToString();
+
+                string teacher = _rowInfo.Teacher;
+                string description = _rowInfo.Description;
+                string colCaption = _rowInfo.ColumnCaption;
+
+                DBManager dbm = new DBManager();
+                int response = -1;
+                switch (status)
+                {
+                    case "Delete":
+                        response = dbm.DeleteBookings(_rowInfo.SelectedRows);
+                        break;
+
+                }
+
+                if (response < 1) MessageBox.Show("No Items Deleted.");
+                else MessageBox.Show(response.ToString() + " Items Deleted.");
+            }
+
+        }
+
+
+
+
 
 
 

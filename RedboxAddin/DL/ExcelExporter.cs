@@ -104,7 +104,8 @@ namespace RedboxAddin
                 {
                     if (type == "Key")
                     {
-                        if (payments[listPointer].PayDetails.Substring(0, 3).ToLower() != "key") payments.RemoveAt(listPointer);
+                        if (payments[listPointer].PayDetails.Length < 3) payments.RemoveAt(listPointer);
+                        else if (payments[listPointer].PayDetails.Substring(0, 3).ToLower() != "key") payments.RemoveAt(listPointer);
                         else listPointer += 1;
                     }
                     else if (type != payments[listPointer].PayDetails)
@@ -209,7 +210,7 @@ namespace RedboxAddin
                     if (listItems.Count == 0) continue;
 
                     UpdateList(listItems);  //this processes to show multiple days on one line
-                    if (CreateInvoice(listItems)) invCount += 1;
+                    if (CreateInvoice(listItems, sch.ShortName)) invCount += 1;
                 }
             }
             catch (Exception ex)
@@ -245,7 +246,7 @@ namespace RedboxAddin
         {
             try
             {
-                if (line1.PayDetails != line2.PayDetails) return false;
+                if (line1.Description != line2.Description) return false;
                 if (line1.Charge != line2.Charge) return false;
                 if (line1.LastName != line2.LastName) return false;
                 if (line1.FirstName != line2.FirstName) return false;
@@ -260,7 +261,7 @@ namespace RedboxAddin
             }
         }
 
-        private bool CreateInvoice(List<InvoiceLine> listItems)
+        private bool CreateInvoice(List<InvoiceLine> listItems, string shortName)
         {
             try
             {
@@ -278,13 +279,17 @@ namespace RedboxAddin
                     string addressFull = invLine.Address.Replace(',', ';');
                     string[] myAddress = invLine.Address.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
                     string myAddress1 = (myAddress.Length > 0) ? myAddress[0] : "";
-                    string myAddress2 = (myAddress.Length > 1) ? myAddress[0] : "";
-                    string myAddress3 = (myAddress.Length > 2) ? myAddress[0] : "";
-                    string myAddress4 = (myAddress.Length > 3) ? myAddress[0] : "";
-                    string myAddress5 = (myAddress.Length > 4) ? myAddress[0] : "";
+                    string myAddress2 = (myAddress.Length > 1) ? myAddress[1] : "";
+                    string myAddress3 = (myAddress.Length > 2) ? myAddress[2] : "";
+                    string myAddress4 = (myAddress.Length > 3) ? myAddress[3] : "";
+                    string myAddress5 = (myAddress.Length > 4) ? myAddress[4] : "";
 
+                    //remove school name from description
+                    string updatedDescription = invLine.Description.Replace(shortName, "").Trim();
+                    string initial = (invLine.FirstName.Length > 0)?" " + invLine.FirstName.Substring(0,1):"";
+                    string nameWithInitial = invLine.LastName + initial;
 
-                    string myDesc = invLine.FirstName + " " + invLine.LastName + ": " + invLine.PayDetails;
+                    string myDesc = nameWithInitial + ": " + updatedDescription;
                     myDesc.Replace(',', ';');
 
                     string myLine = invLine.WeekEnding + ",";
@@ -304,9 +309,10 @@ namespace RedboxAddin
                 }
                 string fileName = listItems[0].SageAcctRef + "_" + listItems[0].WeekEnding + ".csv";
 
-                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Davton Files\\Invoices";
-                if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
+                string filePath = DavSettings.getDavValue("INVOICEFOLDERPATH");
+                if( filePath== null) filePath = "Y:\\A. Sage Invoices Imports";
 
+                if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
                 File.WriteAllText(filePath + "\\" + fileName, sb.ToString());
 
                 return true;

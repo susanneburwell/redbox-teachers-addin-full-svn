@@ -33,6 +33,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoadPlan));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnTotals = new System.Windows.Forms.Button();
+            this.txtPwd = new System.Windows.Forms.TextBox();
             this.btnCreateInvoices = new System.Windows.Forms.Button();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
@@ -57,12 +59,12 @@
             this.Wednesday = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Thursday = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Friday = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Rate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.sMargin = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Charge = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Revenue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TMargin = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Charge = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Rate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.sMargin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MonID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TueID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.WedID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -93,6 +95,8 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnTotals);
+            this.panelTop.Controls.Add(this.txtPwd);
             this.panelTop.Controls.Add(this.btnCreateInvoices);
             this.panelTop.Controls.Add(this.btnCreatePaySheets);
             this.panelTop.Controls.Add(this.bnFwd);
@@ -113,6 +117,25 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(998, 89);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnTotals
+            // 
+            this.btnTotals.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTotals.Location = new System.Drawing.Point(758, 50);
+            this.btnTotals.Name = "btnTotals";
+            this.btnTotals.Size = new System.Drawing.Size(68, 22);
+            this.btnTotals.TabIndex = 92;
+            this.btnTotals.Text = "Extra";
+            this.btnTotals.UseVisualStyleBackColor = true;
+            this.btnTotals.Click += new System.EventHandler(this.btnTotals_Click);
+            // 
+            // txtPwd
+            // 
+            this.txtPwd.Location = new System.Drawing.Point(832, 50);
+            this.txtPwd.Name = "txtPwd";
+            this.txtPwd.PasswordChar = '*';
+            this.txtPwd.Size = new System.Drawing.Size(66, 22);
+            this.txtPwd.TabIndex = 91;
             // 
             // btnCreateInvoices
             // 
@@ -293,7 +316,6 @@
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TMargin", null, "£{0}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", null, "£{0}")});
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowFooter = true;
             // 
             // School
             // 
@@ -390,18 +412,19 @@
             this.Friday.Visible = true;
             this.Friday.VisibleIndex = 8;
             // 
-            // Rate
+            // Revenue
             // 
-            this.Rate.Caption = "Rate";
-            this.Rate.DisplayFormat.FormatString = "{0:c}";
-            this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.Rate.FieldName = "srate";
-            this.Rate.MaxWidth = 50;
-            this.Rate.MinWidth = 50;
-            this.Rate.Name = "Rate";
-            this.Rate.OptionsColumn.AllowEdit = false;
-            this.Rate.OptionsColumn.ReadOnly = true;
-            this.Rate.Width = 50;
+            this.Revenue.Caption = "Revenue";
+            this.Revenue.FieldName = "Revenue";
+            this.Revenue.MaxWidth = 100;
+            this.Revenue.MinWidth = 75;
+            this.Revenue.Name = "Revenue";
+            this.Revenue.OptionsColumn.AllowEdit = false;
+            this.Revenue.OptionsColumn.ReadOnly = true;
+            this.Revenue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", "{0:c}")});
+            this.Revenue.Visible = true;
+            this.Revenue.VisibleIndex = 9;
             // 
             // TotalCost
             // 
@@ -416,42 +439,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCost", "{0:c}")});
             this.TotalCost.Visible = true;
             this.TotalCost.VisibleIndex = 10;
-            // 
-            // sMargin
-            // 
-            this.sMargin.Caption = "Margin";
-            this.sMargin.FieldName = "Margin";
-            this.sMargin.MaxWidth = 80;
-            this.sMargin.MinWidth = 10;
-            this.sMargin.Name = "sMargin";
-            this.sMargin.OptionsColumn.AllowEdit = false;
-            this.sMargin.OptionsColumn.ReadOnly = true;
-            // 
-            // Charge
-            // 
-            this.Charge.Caption = "Charge";
-            this.Charge.DisplayFormat.FormatString = "{0:c}";
-            this.Charge.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.Charge.FieldName = "Charge";
-            this.Charge.MaxWidth = 80;
-            this.Charge.MinWidth = 10;
-            this.Charge.Name = "Charge";
-            this.Charge.OptionsColumn.AllowEdit = false;
-            this.Charge.OptionsColumn.ReadOnly = true;
-            // 
-            // Revenue
-            // 
-            this.Revenue.Caption = "Revenue";
-            this.Revenue.FieldName = "Revenue";
-            this.Revenue.MaxWidth = 100;
-            this.Revenue.MinWidth = 75;
-            this.Revenue.Name = "Revenue";
-            this.Revenue.OptionsColumn.AllowEdit = false;
-            this.Revenue.OptionsColumn.ReadOnly = true;
-            this.Revenue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", "{0:c}")});
-            this.Revenue.Visible = true;
-            this.Revenue.VisibleIndex = 9;
             // 
             // TMargin
             // 
@@ -469,6 +456,41 @@
             this.TMargin.Visible = true;
             this.TMargin.VisibleIndex = 11;
             this.TMargin.Width = 80;
+            // 
+            // Charge
+            // 
+            this.Charge.Caption = "Charge";
+            this.Charge.DisplayFormat.FormatString = "{0:c}";
+            this.Charge.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Charge.FieldName = "Charge";
+            this.Charge.MaxWidth = 80;
+            this.Charge.MinWidth = 10;
+            this.Charge.Name = "Charge";
+            this.Charge.OptionsColumn.AllowEdit = false;
+            this.Charge.OptionsColumn.ReadOnly = true;
+            // 
+            // Rate
+            // 
+            this.Rate.Caption = "Rate";
+            this.Rate.DisplayFormat.FormatString = "{0:c}";
+            this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Rate.FieldName = "srate";
+            this.Rate.MaxWidth = 50;
+            this.Rate.MinWidth = 50;
+            this.Rate.Name = "Rate";
+            this.Rate.OptionsColumn.AllowEdit = false;
+            this.Rate.OptionsColumn.ReadOnly = true;
+            this.Rate.Width = 50;
+            // 
+            // sMargin
+            // 
+            this.sMargin.Caption = "Margin";
+            this.sMargin.FieldName = "Margin";
+            this.sMargin.MaxWidth = 80;
+            this.sMargin.MinWidth = 10;
+            this.sMargin.Name = "sMargin";
+            this.sMargin.OptionsColumn.AllowEdit = false;
+            this.sMargin.OptionsColumn.ReadOnly = true;
             // 
             // MonID
             // 
@@ -568,5 +590,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn WedID;
         private DevExpress.XtraGrid.Columns.GridColumn ThuID;
         private DevExpress.XtraGrid.Columns.GridColumn FriID;
+        private System.Windows.Forms.Button btnTotals;
+        private System.Windows.Forms.TextBox txtPwd;
     }
 }

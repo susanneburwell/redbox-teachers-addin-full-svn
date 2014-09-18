@@ -235,7 +235,7 @@ namespace RedboxAddin.Models
         public string WeekEnding { get; set; }
         public string SageAcctRef { get; set; }
         public string Address { get; set; }
-        public string PayDetails { get; set; }
+        public string Description { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public int TotalDays { get; set; }
