@@ -139,7 +139,9 @@ namespace RedboxAddin.DL
                 //DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix,CategoryStr,Email1,Birthdate,JobTitle,contactID,PhoneHome,PhoneMobile,PhoneBusiness,LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate from Contacts");
                 DataSet msgDs = GetDataSet("Select FirstName,LastName,Title,MiddleName,Suffix," +
                 "CategoryStr,Email1,Birthdate,JobTitle,Contacts.contactID,PhoneHome,PhoneMobile,PhoneBusiness," +
-                "LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate,ContactData.[Current] from Contacts " +
+                "LTStartDate,RedboxStartDate,VisaExpiryDate,CRBExpiryDate, PayDetails, " +
+                "ContactData.[Current],ContactData.[Wants],ContactData.[Teacher],ContactData.[TA],ContactData.[NoGo],ContactData.[LT], " +
+                "ContactData.[D2D],ContactData.[PPA],ContactData.[RGD] from Contacts " +
                 "join ContactData on ContactData.ContactID = Contacts.contactID");
 
 
@@ -149,6 +151,7 @@ namespace RedboxAddin.DL
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
                     {
                         string categoryString = dr["CategoryStr"].ToString();
+                        if (categoryString == null) categoryString = "";
                         var arr = categoryString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                         if (arr.Length == 0)
                         {
@@ -164,6 +167,7 @@ namespace RedboxAddin.DL
                                 JobTitle = dr["JobTitle"].ToString(),
                                 PhoneHome = dr["PhoneHome"].ToString(),
                                 PhoneBusiness = dr["PhoneBusiness"].ToString(),
+                                PayDetails = dr["PayDetails"].ToString(),
                                 CategoryStr = "",
                                 PhoneMobile = dr["PhoneMobile"].ToString(),
                                 contactID = Convert.ToInt64(dr["contactID"].ToString()),
@@ -172,7 +176,15 @@ namespace RedboxAddin.DL
                                 VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                                 RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
                                 FullName = dr["Title"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString(),
-                                Current = CheckBool(dr["Current"])
+                                Current = CheckBool(dr["Current"]),
+                                Teacher = CheckBool(dr["Teacher"]),
+                                TA = CheckBool(dr["TA"]),
+                                LT = CheckBool(dr["LT"]),
+                                D2D = CheckBool(dr["D2D"]),
+                                PPA = CheckBool(dr["PPA"]),
+                                RGD = CheckBool(dr["RGD"]),
+                                NoGo = dr["NoGo"].ToString(),
+                                Wants = dr["Wants"].ToString()
                             };
                             contactList.Add(objContact);
                         }
@@ -192,6 +204,7 @@ namespace RedboxAddin.DL
                                     JobTitle = dr["JobTitle"].ToString(),
                                     PhoneHome = dr["PhoneHome"].ToString(),
                                     PhoneBusiness = dr["PhoneBusiness"].ToString(),
+                                    PayDetails = dr["PayDetails"].ToString(),
                                     CategoryStr = arr[i],
                                     PhoneMobile = dr["PhoneMobile"].ToString(),
                                     contactID = Convert.ToInt64(dr["contactID"].ToString()),
@@ -200,7 +213,15 @@ namespace RedboxAddin.DL
                                     VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                                     RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
                                     FullName = dr["Title"].ToString() + " " + dr["FirstName"].ToString() + " " + dr["LastName"].ToString(),
-                                    Current = CheckBool(dr["Current"])
+                                    Current = CheckBool(dr["Current"]),
+                                    Teacher = CheckBool(dr["Teacher"]),
+                                    TA = CheckBool(dr["TA"]),
+                                    LT = CheckBool(dr["LT"]),
+                                    D2D = CheckBool(dr["D2D"]),
+                                    PPA = CheckBool(dr["PPA"]),
+                                    RGD = CheckBool(dr["RGD"]),
+                                    NoGo = dr["NoGo"].ToString(),
+                                    Wants = dr["Wants"].ToString()
                                 };
                                 contactList.Add(objContact);
                             }
@@ -364,7 +385,7 @@ namespace RedboxAddin.DL
                         //if (MonG == "1" || TueG == "1" || WedG == "1" || ThuG == "1" || FriG == "1")
                         if (monType == "1" || tueType == "1" || wedType == "1" || thuType == "1" || friType == "1" ||
                             monType == "2" || tueType == "2" || wedType == "2" || thuType == "2" || friType == "2")
-                                {
+                        {
                             objAvail.Guar = "1";
                         }
                         else objAvail.Guar = "";
@@ -526,7 +547,7 @@ namespace RedboxAddin.DL
             {
                 if (string.IsNullOrWhiteSpace(type)) return null;
 
-                switch(type)
+                switch (type)
                 {
                     case "1": //guarantee offered
                         return "purp/gree";
@@ -813,7 +834,7 @@ namespace RedboxAddin.DL
                                     tDay.Status = "-";
                                     break;
                             }
-                            
+
                             teacherDays.Add(tDay);
 
                         }
@@ -1315,7 +1336,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public int UpdateBookings(long MasterBookingID, string charge, string rate, string description )
+        public int UpdateBookings(long MasterBookingID, string charge, string rate, string description)
         {
             try
             {
@@ -1675,6 +1696,81 @@ namespace RedboxAddin.DL
 
         }
 
+        public bool DeleteSchool(long schoolID)
+        {
+            try
+            {
+                string sqlStr = "DELETE FROM Schools  "
+                    + "WHERE ID = @ID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Prepare();
+
+                CmdAddContact.Parameters["@ID"].Value = schoolID;
+                int numUpdated = CmdAddContact.ExecuteNonQuery();
+
+                DBManager.CloseDBConnection();
+                if (numUpdated > 0) return true;
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in DeleteGuarantee :- " + ex.Message);
+                return false;
+            }
+
+        }
+
+        public bool DeletePaymentType(string name)
+        {
+            try
+            {
+                name = name.PadRight(25);
+                string sqlStr = "DELETE FROM PaymentTypes  "
+                    + "WHERE Name = @Name";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.AddWithValue("@Name", name);
+
+                int numUpdated = CmdAddContact.ExecuteNonQuery();
+
+                DBManager.CloseDBConnection();
+                if (numUpdated > 0) return true;
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in DeletePaymentType :- " + ex.Message);
+                return false;
+            }
+
+        }
+
+        public bool AddPaymentType(string name)
+        {
+            try
+            {
+                name = name.PadRight(25);
+                string sqlStr = "Insert Into PaymentTypes (Name)  VALUES(@Name) ";
+
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.AddWithValue("@Name", name);
+                int numUpdated = CmdAddContact.ExecuteNonQuery();
+
+                DBManager.CloseDBConnection();
+                if (numUpdated > 0) return true;
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in AddPaymentType :- " + ex.Message);
+                return false;
+            }
+
+        }
+       
         public string GetVettingEmailAddresses(string SchoolID)
         {
             try
@@ -1918,7 +2014,7 @@ namespace RedboxAddin.DL
             {
 
                 string sqlStr = "UPDATE GuaranteedDays  ";
-                    
+
                 switch (status)
                 {
                     case 1:
@@ -1928,21 +2024,21 @@ namespace RedboxAddin.DL
                         sqlStr += "SET Type = 2 ";
                         break;
                     case 3:
-                         sqlStr += "SET Type = 3 ";
-                       break;
+                        sqlStr += "SET Type = 3 ";
+                        break;
                     case 4:
                         sqlStr += "SET Type = 4 ";
                         break;
                     case 5:
                         sqlStr += "SET Type = 5 ";
-                       break;
+                        break;
 
                     default:
                         break;
                 }
-                sqlStr +=  "WHERE ID = @ID";
+                sqlStr += "WHERE ID = @ID";
 
-                
+
                 DBManager.OpenDBConnection();
                 var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
                 CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
@@ -3280,7 +3376,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        private string UpdateColumn(string columnName,string sql)
+        private string UpdateColumn(string columnName, string sql)
         {
             try
             {
@@ -4110,7 +4206,7 @@ namespace RedboxAddin.DL
                         "GROUP BY Date, [MasterBookings].contactID " +
                         ") as s1 ON s1.ContactID = Contacts.contactID  " +
                         "WHERE s1.days > 1 ";
-                        //"WHERE s1.num > 1 ";
+            //"WHERE s1.num > 1 ";
             return SQL;
         }
 

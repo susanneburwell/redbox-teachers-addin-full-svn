@@ -189,6 +189,12 @@
     <Compile Include="Presentation\frmEditBooking.Designer.cs">
       <DependentUpon>frmEditBooking.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmEditPaymentTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmEditPaymentTypes.Designer.cs">
+      <DependentUpon>frmEditPaymentTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmEditSchool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -376,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmEditBooking.resx">
       <DependentUpon>frmEditBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmEditPaymentTypes.resx">
+      <DependentUpon>frmEditPaymentTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmEditSchool.resx">
       <DependentUpon>frmEditSchool.cs</DependentUpon>

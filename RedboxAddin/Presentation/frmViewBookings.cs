@@ -30,6 +30,7 @@ namespace RedboxAddin.Presentation
                 {
                     Utils.PopulateSchools(cmbSchool);
                     Utils.PopulateTeacher(cmbTeacher);
+                    Utils.PopulateBookingStatuses(cmbStatus);
                 }
 
                 //set dates

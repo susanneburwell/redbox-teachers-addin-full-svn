@@ -43,6 +43,11 @@ namespace RedboxAddin.Presentation
 
         private void frmNewRequest_Load(object sender, EventArgs e)
         {
+            InitialLoad();
+        }
+
+        private void InitialLoad()
+        {
             loading = true;
             dgcBookings.DataSource = bindingSource1;
             dgcBookings.Hide();
@@ -995,6 +1000,8 @@ namespace RedboxAddin.Presentation
                 dgcBookings.DataSource = null;
                 dgcBookings.Visible = false;
 
+                InitialLoad();
+
                 btnSave.Text = "Save";
                 btnDblBkgs.Visible = false;
                 flashtimer1.Enabled = false;
@@ -1114,6 +1121,53 @@ namespace RedboxAddin.Presentation
         private void cmbBookingStatus_SelectedValueChanged(object sender, EventArgs e)
         {
             SetColours();
+            if (loading) return;
+            
+            if (cmbBookingStatus.Text == "Cancelled" ||cmbBookingStatus.Text == "Cancelled - ttbt")
+            {
+                manageCancelledBooking(cmbBookingStatus.Text);
+            }
+        }
+
+        private void manageCancelledBooking(string status)
+        {
+            try
+            {
+                if (status == "Cancelled")
+                {
+                    DialogResult response = MessageBox.Show("You have set the Status to Cancelled. \rThis should be set when the school has cancelled AND the teacher has been told.\r" +
+                        "If this is correct select Yes to remove the individual bookings from the availability sheet, or No to leave them.\r" +
+                        "You should normally remove them.\r" +
+                        "Do not use this method if the teacher has already worked one or more days on this booking.", "Cancelled Booking - Teacher TOLD", MessageBoxButtons.YesNoCancel);
+                    if (response == DialogResult.Yes)
+                    {
+                        DBManager dbm = new DBManager();
+
+                        int result = dbm.DeleteBookingsFromDate(_masterBookingID.ToString(), "1901-01-01");
+                        MessageBox.Show(result.ToString() + " individual bookings removed.");
+                        SaveRequest();
+                    }
+                }
+                else if (status == "Cancelled - ttbt")
+                {
+                    DialogResult response = MessageBox.Show("You have set the Status to Cancelled - ttbt. \rThis should be set when the school has cancelled BUT the teacher has NOT been told.\r" +
+                        "If this is correct select Yes to update the individual booking text to Cancelled.\r" +
+                        "Once the Teacher has been told, the individual bookings can be deleted.\r" +
+                        "Do not use this method if the teacher has already worked one or more days on this booking.", "Cancelled - ttbt - Teacher To Be Told", MessageBoxButtons.YesNoCancel);
+                    if (response == DialogResult.Yes)
+                    {
+                        DBManager dbm = new DBManager();
+
+                        int result = dbm.UpdateBookings(_masterBookingID, null, null, "Cancelled");
+                        MessageBox.Show(result.ToString() + " individual bookings updated.");
+                        SaveRequest();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in manageCancelledBooking: " + ex.Message);
+            }
         }
 
         private void frmNewRequest_FormClosing(object sender, FormClosingEventArgs e)
@@ -1153,23 +1207,31 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void DateChanged(object sender, EventArgs e)
-        {
-            dtTo.Value = dtFrom.Value;
+        //private void DateChanged(object sender, EventArgs e)
+        //{
+        //    dtTo.Value = dtFrom.Value;
 
-            UpdateDescription();
-            if (availabilityGrid1.Visible) LoadAvailabilityTable();
-            SetColours();
+        //    UpdateDescription();
+        //    if (availabilityGrid1.Visible) LoadAvailabilityTable();
+        //    SetColours();
+        //}
+
+        private void ValueChanged(object sender, EventArgs e)
+        {
+            if (sender == dtFrom)
+            {
+                if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0) dtTo.Value = dtFrom.Value;
+            }
+            if (sender == dtTo)
+            {
+                if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0)  dtFrom.Value = dtTo.Value ;
+            }
         }
 
         private void CheckedChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            //Check dates
-            if (sender == dtFrom)
-            {
-                if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0) dtTo.Value = dtFrom.Value;
-            }
+           
             CheckChanged();
         }
 
@@ -1440,6 +1502,8 @@ namespace RedboxAddin.Presentation
             }
 
         }
+
+        
 
 
 

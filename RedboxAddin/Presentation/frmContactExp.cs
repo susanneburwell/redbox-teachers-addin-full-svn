@@ -10,11 +10,15 @@ using System.Data;
 using System.Collections.Generic;
 using RedboxAddin.Models;
 using RedboxAddin.BL;
+using System.IO;
 
 namespace RedboxAddin.Presentation
 {
     public partial class frmContactExp : AddinExpress.OL.ADXOlForm
     {
+        private string directoryPath = null;
+        private string contactLayoutFilepath = null;
+
         public frmContactExp()
         {
             InitializeComponent();
@@ -22,11 +26,16 @@ namespace RedboxAddin.Presentation
 
         private void frmContactExp_Load(object sender, EventArgs e)
         {
-
+            directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin";
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            contactLayoutFilepath = directoryPath + "\\ContactFormDump.xml";
             gridControl1.DataSource = new DBManager().GetContacts();
             try
             {
-                gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+                gridView1.RestoreLayoutFromXml(contactLayoutFilepath);
             }
             catch (Exception) { }
 
@@ -123,14 +132,14 @@ namespace RedboxAddin.Presentation
 
         private void frmContactExp_VisibleChanged(object sender, EventArgs e)
         {
-            gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+            gridView1.SaveLayoutToXml(contactLayoutFilepath);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+            gridView1.SaveLayoutToXml(contactLayoutFilepath);
             gridControl1.DataSource = new DBManager().GetContacts();
-            gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+            gridView1.RestoreLayoutFromXml(contactLayoutFilepath);
         }
 
         private void textEdit1_EditValueChanged(object sender, EventArgs e)
@@ -152,22 +161,22 @@ namespace RedboxAddin.Presentation
 
         private void gridView1_EndGrouping(object sender, EventArgs e)
         {
-            if (gcCategories.GroupIndex == -1)
+            if (CategoryStr.GroupIndex == -1)
             {
                 if (previousIndexGrouped) return;
                 previousIndexGrouped = true;
-                gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+                gridView1.SaveLayoutToXml(contactLayoutFilepath);
                 gridControl1.DataSource = new DBManager().GetContactsEx();
-                gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+                gridView1.RestoreLayoutFromXml(contactLayoutFilepath);
 
             }
             else
             {
                 if (!previousIndexGrouped) return;
                 previousIndexGrouped = false;
-                gridView1.SaveLayoutToXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+                gridView1.SaveLayoutToXml(contactLayoutFilepath);
                 gridControl1.DataSource = new DBManager().GetContacts();
-                gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\ContactFormDump.xml");
+                gridView1.RestoreLayoutFromXml(contactLayoutFilepath);
 
             }
         }

@@ -313,6 +313,31 @@ namespace RedboxAddin.BL
             }
         }
 
+        public static void PopulateBookingStatuses(ComboBox cmb1)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR)) 
+                {
+
+                    var q = from s in db.BookingStatuses
+                            //orderby s.Status
+                            select s;
+                    var bookingStatuses = q.ToList();
+                    cmb1.Items.Clear();
+                    foreach (var pt in bookingStatuses)
+                    {
+                        cmb1.Items.Add(pt.Status);
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in PopulateBookingStatuses: " + ex.Message);
+            }
+        }
+
         public static DateTime GetFirstDayoftheWeek(DateTime mydate)
         {
             //Get first day of week
@@ -656,6 +681,26 @@ namespace RedboxAddin.BL
                     }
                     fore = "blck";
                     back = "gray";
+                    break;
+
+                case "Cancelled":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Black;
+                        cmbBookingStatus.BackColor = Color.LightGreen;
+                    }
+                    fore = "blck";
+                    back = "lgre";
+                    break;
+
+                case "Cancelled - ttbt":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Black;
+                        cmbBookingStatus.BackColor = Color.LightGreen;
+                    }
+                    fore = "blck";
+                    back = "lgre";
                     break;
 
                 default:

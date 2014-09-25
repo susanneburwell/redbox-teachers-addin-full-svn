@@ -197,6 +197,8 @@ namespace RedboxAddin.Presentation
                 CheckReminderButtonColors();
 
                 LoadSummaryInfo();
+                PopulatePaymentTypes();
+
             }
         }
 
@@ -433,6 +435,7 @@ namespace RedboxAddin.Presentation
         {
             if (SaveContact()) this.Close();
         }
+        
         private void btnPickAddress_Click(object sender, EventArgs e)
         {
             frmAddress frmObj = new frmAddress();
@@ -445,7 +448,34 @@ namespace RedboxAddin.Presentation
             lblAddress.Text = Utils.GetAddress(addressStreet, addressCity, addressState, addressPostcode, addressCountry);
         }
 
+        private void PopulatePaymentTypes()
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
 
+                    var q = from s in db.PaymentTypes
+                            orderby s.Name
+                            select s;
+                    var paymentTypes = q.ToList();
+                    cmbPayDetails.Items.Clear();
+                    foreach (var pt in paymentTypes)
+                    {
+                        cmbPayDetails.Items.Add(pt.Name.Trim());
+                    }
+                    if (cmbPayDetails.Text.Substring(0, 3).ToLower() == "key")
+                    {
+                        cmbPayDetails.Items.Add(cmbPayDetails.Text);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+            }
+        }
 
 
         #region Reminders

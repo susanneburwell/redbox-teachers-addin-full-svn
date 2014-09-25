@@ -83,10 +83,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 149);
+            this.gridControl1.Location = new System.Drawing.Point(3, 150);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(857, 393);
+            this.gridControl1.Size = new System.Drawing.Size(857, 392);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -203,7 +203,7 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TopPanel.Location = new System.Drawing.Point(3, 3);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(857, 140);
+            this.TopPanel.Size = new System.Drawing.Size(857, 141);
             this.TopPanel.TabIndex = 0;
             // 
             // radMonth
@@ -211,7 +211,7 @@
             this.radMonth.AutoSize = true;
             this.radMonth.Location = new System.Drawing.Point(758, 44);
             this.radMonth.Name = "radMonth";
-            this.radMonth.Size = new System.Drawing.Size(76, 24);
+            this.radMonth.Size = new System.Drawing.Size(62, 20);
             this.radMonth.TabIndex = 88;
             this.radMonth.Text = "Month";
             this.radMonth.UseVisualStyleBackColor = true;
@@ -222,7 +222,7 @@
             this.radWeek.Checked = true;
             this.radWeek.Location = new System.Drawing.Point(758, 16);
             this.radWeek.Name = "radWeek";
-            this.radWeek.Size = new System.Drawing.Size(72, 24);
+            this.radWeek.Size = new System.Drawing.Size(62, 20);
             this.radWeek.TabIndex = 87;
             this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
@@ -254,7 +254,7 @@
             this.chkUnassigned.AutoSize = true;
             this.chkUnassigned.Location = new System.Drawing.Point(99, 105);
             this.chkUnassigned.Name = "chkUnassigned";
-            this.chkUnassigned.Size = new System.Drawing.Size(230, 24);
+            this.chkUnassigned.Size = new System.Drawing.Size(189, 20);
             this.chkUnassigned.TabIndex = 20;
             this.chkUnassigned.Text = "Find Unassigned Bookings";
             this.chkUnassigned.UseVisualStyleBackColor = true;
@@ -265,7 +265,7 @@
             this.chkStatus.AutoSize = true;
             this.chkStatus.Location = new System.Drawing.Point(305, 75);
             this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(227, 24);
+            this.chkStatus.Size = new System.Drawing.Size(182, 20);
             this.chkStatus.TabIndex = 19;
             this.chkStatus.Text = "Search By Booking Status";
             this.chkStatus.UseVisualStyleBackColor = true;
@@ -273,14 +273,9 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "Unassigned",
-            "Contacted",
-            "Confirmed",
-            "Details Sent"});
             this.cmbStatus.Location = new System.Drawing.Point(99, 75);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(200, 28);
+            this.cmbStatus.Size = new System.Drawing.Size(200, 24);
             this.cmbStatus.TabIndex = 18;
             // 
             // lblStatus
@@ -288,7 +283,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(30, 76);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(62, 20);
+            this.lblStatus.Size = new System.Drawing.Size(48, 16);
             this.lblStatus.TabIndex = 17;
             this.lblStatus.Text = "Status:";
             // 
@@ -307,7 +302,7 @@
             this.chkTeach.AutoSize = true;
             this.chkTeach.Location = new System.Drawing.Point(305, 47);
             this.chkTeach.Name = "chkTeach";
-            this.chkTeach.Size = new System.Drawing.Size(175, 24);
+            this.chkTeach.Size = new System.Drawing.Size(143, 20);
             this.chkTeach.TabIndex = 15;
             this.chkTeach.Text = "Search By Teacher";
             this.chkTeach.UseVisualStyleBackColor = true;
@@ -317,7 +312,7 @@
             this.chkSch.AutoSize = true;
             this.chkSch.Location = new System.Drawing.Point(305, 15);
             this.chkSch.Name = "chkSch";
-            this.chkSch.Size = new System.Drawing.Size(165, 24);
+            this.chkSch.Size = new System.Drawing.Size(134, 20);
             this.chkSch.TabIndex = 14;
             this.chkSch.Text = "Search By School";
             this.chkSch.UseVisualStyleBackColor = true;
@@ -329,7 +324,7 @@
             this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDate.Location = new System.Drawing.Point(549, 110);
             this.chkDate.Name = "chkDate";
-            this.chkDate.Size = new System.Drawing.Size(150, 24);
+            this.chkDate.Size = new System.Drawing.Size(121, 20);
             this.chkDate.TabIndex = 13;
             this.chkDate.Text = "Search By Date";
             this.chkDate.UseVisualStyleBackColor = true;
@@ -339,7 +334,7 @@
             this.lblTeacher.AutoSize = true;
             this.lblTeacher.Location = new System.Drawing.Point(30, 48);
             this.lblTeacher.Name = "lblTeacher";
-            this.lblTeacher.Size = new System.Drawing.Size(75, 20);
+            this.lblTeacher.Size = new System.Drawing.Size(62, 16);
             this.lblTeacher.TabIndex = 11;
             this.lblTeacher.Text = "Teacher:";
             // 
@@ -348,14 +343,14 @@
             this.cmbTeacher.FormattingEnabled = true;
             this.cmbTeacher.Location = new System.Drawing.Point(99, 44);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(200, 28);
+            this.cmbTeacher.Size = new System.Drawing.Size(200, 24);
             this.cmbTeacher.TabIndex = 12;
             // 
             // dtFrom
             // 
             this.dtFrom.Location = new System.Drawing.Point(549, 13);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 26);
+            this.dtFrom.Size = new System.Drawing.Size(200, 22);
             this.dtFrom.TabIndex = 7;
             // 
             // label4
@@ -363,7 +358,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(501, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
+            this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "From:";
             // 
@@ -371,7 +366,7 @@
             // 
             this.dtTo.Location = new System.Drawing.Point(549, 43);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(200, 26);
+            this.dtTo.Size = new System.Drawing.Size(200, 22);
             this.dtTo.TabIndex = 9;
             // 
             // label5
@@ -379,7 +374,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(501, 43);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 20);
+            this.label5.Size = new System.Drawing.Size(28, 16);
             this.label5.TabIndex = 10;
             this.label5.Text = "To:";
             // 
@@ -388,7 +383,7 @@
             this.lblSchool.AutoSize = true;
             this.lblSchool.Location = new System.Drawing.Point(30, 15);
             this.lblSchool.Name = "lblSchool";
-            this.lblSchool.Size = new System.Drawing.Size(65, 20);
+            this.lblSchool.Size = new System.Drawing.Size(53, 16);
             this.lblSchool.TabIndex = 2;
             this.lblSchool.Text = "School:";
             // 
@@ -397,12 +392,12 @@
             this.cmbSchool.FormattingEnabled = true;
             this.cmbSchool.Location = new System.Drawing.Point(99, 13);
             this.cmbSchool.Name = "cmbSchool";
-            this.cmbSchool.Size = new System.Drawing.Size(200, 28);
+            this.cmbSchool.Size = new System.Drawing.Size(200, 24);
             this.cmbSchool.TabIndex = 3;
             // 
             // frmViewBookings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 545);
             this.Controls.Add(this.tableLayoutPanel1);

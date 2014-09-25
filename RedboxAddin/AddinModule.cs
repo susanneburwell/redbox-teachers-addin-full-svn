@@ -29,6 +29,8 @@ using System.IO;
 //2.0.52 10Sept14 DT Per machine installation and relevant changes to file locations (Redemption / Settings)
 //2.0.53 18Sept14 DT Fixes to invoices and payruns to manage missing data. Password protect totals on load plan.
 //2.0.54 18Sept04 DT Add ability to delete individual bookings using the right click key on Masterbookings
+//2.0.55 25Sept 2014 Add columns to Contacts View. Bulk update for descritpion. Delete option for schools. Fix save and new.
+//                   Bulk delete for individual bookings, Fix dates when selecting, Cancelled bookings management
 
 namespace RedboxAddin
 {
@@ -113,6 +115,8 @@ namespace RedboxAddin
         private ADXRibbonButton adxCapture;
         private ADXCommandBarButton adxcbCapture;
         private ADXCommandBarButton adxCommandBarButton1;
+        private ADXCommandBarButton adxcbEditPaymentTypes;
+        private ADXRibbonButton adxEditPaymentTypes;
 
         #region Component Designer generated code
         /// <summary>
@@ -196,6 +200,8 @@ namespace RedboxAddin
             this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton1 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbEditPaymentTypes = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxEditPaymentTypes = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxTabMail
             // 
@@ -363,7 +369,7 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 27;
+            this.commandBarRedboxAddin.UpdateCounter = 28;
             // 
             // cbBtnNewContact
             // 
@@ -524,6 +530,7 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxTimeSheet);
             this.adxOptions.Controls.Add(this.adxSendVetting);
             this.adxOptions.Controls.Add(this.adxEditSchool);
+            this.adxOptions.Controls.Add(this.adxEditPaymentTypes);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.Image = 5;
             this.adxOptions.ImageList = this.imageList32;
@@ -761,6 +768,7 @@ namespace RedboxAddin
             this.adxCommandBarPopup1.Controls.Add(this.adxcbTimeSheets);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbSendVetting);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbEditSchools);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbEditPaymentTypes);
             this.adxCommandBarPopup1.ControlTag = "049113cd-d4a7-4d94-9e8a-f9bcc775fb2f";
             this.adxCommandBarPopup1.Temporary = true;
             this.adxCommandBarPopup1.UpdateCounter = 1;
@@ -899,6 +907,23 @@ namespace RedboxAddin
             this.adxCommandBarButton1.Temporary = true;
             this.adxCommandBarButton1.UpdateCounter = 3;
             this.adxCommandBarButton1.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxCommandBarButton1_Click);
+            // 
+            // adxcbEditPaymentTypes
+            // 
+            this.adxcbEditPaymentTypes.Caption = "Edit Payment Types";
+            this.adxcbEditPaymentTypes.ControlTag = "18bcc0de-4932-4246-bdbc-e04045ec7dd0";
+            this.adxcbEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbEditPaymentTypes.Temporary = true;
+            this.adxcbEditPaymentTypes.UpdateCounter = 4;
+            this.adxcbEditPaymentTypes.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbEditPaymentTypes_Click);
+            // 
+            // adxEditPaymentTypes
+            // 
+            this.adxEditPaymentTypes.Caption = "Edit Payment Types";
+            this.adxEditPaymentTypes.Id = "adxRibbonButton_4fad77e7b36048b893b8582a9888c3f4";
+            this.adxEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxEditPaymentTypes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxEditPaymentTypes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditPaymentTypes_OnClick);
             // 
             // AddinModule
             // 
@@ -1450,9 +1475,32 @@ namespace RedboxAddin
             string response = dbm.UpdateDatabase();
             MessageBox.Show(response);
         }
-       
+
+        private void adxcbEditPaymentTypes_Click(object sender)
+        {
+            EditPaymentTypes();
+        }
+
+        private void adxEditPaymentTypes_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            EditPaymentTypes();
+        }
 
         #region actions
+
+        private void EditPaymentTypes()
+        {
+            frmEditPaymentTypes fep = Application.OpenForms["frmEditPaymentTypes"] as frmEditPaymentTypes;
+            if (fep == null)
+            {
+                fep = new frmEditPaymentTypes();
+                fep.Show();
+            }
+            else
+            {
+                fep.BringToFront();
+            }
+        }
 
         private void NewRequest()
         {
@@ -1748,6 +1796,10 @@ namespace RedboxAddin
 
 
         #endregion
+
+        
+
+        
 
        
 

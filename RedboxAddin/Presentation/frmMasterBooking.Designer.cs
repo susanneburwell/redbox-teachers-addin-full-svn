@@ -171,7 +171,7 @@
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(186, 22);
             this.dtFrom.TabIndex = 4;
-            this.dtFrom.ValueChanged += new System.EventHandler(this.CheckedChanged);
+            this.dtFrom.ValueChanged += new System.EventHandler(this.ValueChanged);
             // 
             // label4
             // 
@@ -197,7 +197,7 @@
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(170, 22);
             this.dtTo.TabIndex = 5;
-            this.dtTo.ValueChanged += new System.EventHandler(this.CheckedChanged);
+            this.dtTo.ValueChanged += new System.EventHandler(this.ValueChanged);
             // 
             // cmbSchool
             // 

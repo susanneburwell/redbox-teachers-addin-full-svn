@@ -78,12 +78,13 @@
             this.btnAddNotes = new System.Windows.Forms.Button();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtTADayCharge = new System.Windows.Forms.TextBox();
-            this.txtTAHfDayCharge = new System.Windows.Forms.TextBox();
-            this.txtTALTDay = new System.Windows.Forms.TextBox();
-            this.txtTALTHfDay = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtTALTHfDay = new System.Windows.Forms.TextBox();
+            this.txtTALTDay = new System.Windows.Forms.TextBox();
+            this.txtTAHfDayCharge = new System.Windows.Forms.TextBox();
+            this.txtTADayCharge = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -523,6 +524,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.txtTALTHfDay);
@@ -576,33 +578,14 @@
             this.panel1.Size = new System.Drawing.Size(1000, 494);
             this.panel1.TabIndex = 1;
             // 
-            // txtTADayCharge
+            // label23
             // 
-            this.txtTADayCharge.Location = new System.Drawing.Point(672, 149);
-            this.txtTADayCharge.Name = "txtTADayCharge";
-            this.txtTADayCharge.Size = new System.Drawing.Size(68, 22);
-            this.txtTADayCharge.TabIndex = 15;
-            // 
-            // txtTAHfDayCharge
-            // 
-            this.txtTAHfDayCharge.Location = new System.Drawing.Point(672, 186);
-            this.txtTAHfDayCharge.Name = "txtTAHfDayCharge";
-            this.txtTAHfDayCharge.Size = new System.Drawing.Size(68, 22);
-            this.txtTAHfDayCharge.TabIndex = 16;
-            // 
-            // txtTALTDay
-            // 
-            this.txtTALTDay.Location = new System.Drawing.Point(672, 229);
-            this.txtTALTDay.Name = "txtTALTDay";
-            this.txtTALTDay.Size = new System.Drawing.Size(68, 22);
-            this.txtTALTDay.TabIndex = 17;
-            // 
-            // txtTALTHfDay
-            // 
-            this.txtTALTHfDay.Location = new System.Drawing.Point(672, 269);
-            this.txtTALTHfDay.Name = "txtTALTHfDay";
-            this.txtTALTHfDay.Size = new System.Drawing.Size(68, 22);
-            this.txtTALTHfDay.TabIndex = 18;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(669, 130);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(26, 16);
+            this.label23.TabIndex = 49;
+            this.label23.Text = "TA";
             // 
             // label22
             // 
@@ -613,14 +596,44 @@
             this.label22.TabIndex = 48;
             this.label22.Text = "Teacher";
             // 
-            // label23
+            // txtTALTHfDay
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(669, 130);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(26, 16);
-            this.label23.TabIndex = 49;
-            this.label23.Text = "TA";
+            this.txtTALTHfDay.Location = new System.Drawing.Point(672, 269);
+            this.txtTALTHfDay.Name = "txtTALTHfDay";
+            this.txtTALTHfDay.Size = new System.Drawing.Size(68, 22);
+            this.txtTALTHfDay.TabIndex = 18;
+            // 
+            // txtTALTDay
+            // 
+            this.txtTALTDay.Location = new System.Drawing.Point(672, 229);
+            this.txtTALTDay.Name = "txtTALTDay";
+            this.txtTALTDay.Size = new System.Drawing.Size(68, 22);
+            this.txtTALTDay.TabIndex = 17;
+            // 
+            // txtTAHfDayCharge
+            // 
+            this.txtTAHfDayCharge.Location = new System.Drawing.Point(672, 186);
+            this.txtTAHfDayCharge.Name = "txtTAHfDayCharge";
+            this.txtTAHfDayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtTAHfDayCharge.TabIndex = 16;
+            // 
+            // txtTADayCharge
+            // 
+            this.txtTADayCharge.Location = new System.Drawing.Point(672, 149);
+            this.txtTADayCharge.Name = "txtTADayCharge";
+            this.txtTADayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtTADayCharge.TabIndex = 15;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(929, 17);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(58, 27);
+            this.btnDelete.TabIndex = 50;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmEditSchool
             // 
@@ -703,5 +716,6 @@
         private System.Windows.Forms.TextBox txtTALTDay;
         private System.Windows.Forms.TextBox txtTAHfDayCharge;
         private System.Windows.Forms.TextBox txtTADayCharge;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RedboxAddin.BL;
+using RedboxAddin.DL;
 
 namespace RedboxAddin.Presentation
 {
@@ -296,6 +297,21 @@ namespace RedboxAddin.Presentation
             lblID.Text = "";
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var ans = MessageBox.Show("Delete "  +_selectedItem.SchoolName + "? This can not be undone.", "Delete?", MessageBoxButtons.YesNo);
+            if (ans == DialogResult.Yes)
+            {
+                DBManager dbm = new DBManager();
+                if (dbm.DeleteSchool(_selectedItem.ID))
+                {
+                    MessageBox.Show("Deleted " + _selectedItem.SchoolName);
+                    this.Close();
+                }
+                else MessageBox.Show(_selectedItem.SchoolName + " could not be Deleted");
+            }
+         }
+
         private void txtDayCharge_Validating(object sender, CancelEventArgs e)
         {
             if (!Utils.validateDecimal(txtDayCharge.Text))
@@ -339,6 +355,8 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error adding notes " + ex.Message);
             }
         }
+
+       
 
 
 

@@ -123,6 +123,15 @@ namespace RedboxAddin.Models
         public string VisaType { get; set; }
         public string VisaLocation { get; set; }
         public string YearGroup { get; set; }
+
         public bool Current { get; set; }
+        public bool Teacher { get; set; }
+        public bool TA { get; set; }
+        public bool LT { get; set; }
+        public bool D2D { get; set; }
+        public bool PPA { get; set; }
+        public bool RGD { get; set; }
+        public string NoGo { get; set; }
+        public string Wants { get; set; }
     }
 }
