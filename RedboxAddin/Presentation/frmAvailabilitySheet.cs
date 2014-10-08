@@ -119,25 +119,123 @@ namespace RedboxAddin.Presentation
             else if (TA) s1 = "TAs";
 
             string s2 = "";
-            if (D2 && LT) s2 = "D2D and LT";
-            else if (D2 ) s2 = "D2D ";
-            else if ( LT) s2 = " LT";
+            if (D2 && LT) s2 = "D2D or LT Bookings";
+            else if (D2) s2 = "D2D Bookings";
+            else if (LT) s2 = "LT Bookings";
 
             string showing = "Showing: ";
             if (s1 != "")
             {
-                if (s2 != "") showing = "Showing: " + s1 + "; " + s2;
-                else showing = "Showing: " + s1;
+                if (s2 != "") showing = "Only showing: " + s1 + " with " + s2;
+                else showing = "Showing all " + s1;
             }
             else
             {
-                if (s2 != "") showing = "Showing: " + s2;
-                else showing = "Showing: " ;
+                if (s2 != "") showing = "Showing only " + s2;
+                else showing = "Showing all current " ;
             }
             lblShowing.Text = showing;
         }
 
         private string WHERESQL()
+        {
+            try
+            {
+                
+
+                //Get qualifications
+                string SQL = "";
+                if (chkQTS.Checked) SQL += " OR [QTS] = 'true' ";
+                if (chkNQT.Checked) SQL += " OR [NQT] = 'true' ";
+                if (chkOTT.Checked) SQL += " OR [OverseasTrainedTeacher]  = 'true' ";
+                if (chkTA.Checked) SQL += " OR [TA]  = 'true' ";
+                if (chkQNN.Checked) SQL += " OR [QNN]  = 'true' ";
+                if (chkNN.Checked) SQL += " OR [NN]  = 'true' ";
+                if (chkSEN.Checked) SQL += " OR [SEN]  = 'true' ";
+                if (chkTeacher.Checked) SQL += " OR [Teacher]  = 'true' ";
+
+
+
+                //Get Year Groups
+                string SQL2 = "";
+                if (chkNur.Checked) SQL2 += " AND [Nur] = 'true' ";
+                if (chkRec.Checked) SQL2 += " AND [Rec] = 'true' ";
+                if (chkYr1.Checked) SQL2 += " AND [Yr1] = 'true' ";
+                if (chkYr2.Checked) SQL2 += " AND [Yr2] = 'true' ";
+                if (chkYr3.Checked) SQL2 += " AND [Yr3] = 'true' ";
+                if (chkYr4.Checked) SQL2 += " AND [Yr4] = 'true' ";
+                if (chkYr5.Checked) SQL2 += " AND [Yr5] = 'true' ";
+                if (chkYr6.Checked) SQL2 += " AND [Yr6] = 'true' ";
+                if (chkFloat.Checked) SQL2 += " AND [Float] = 'true' ";
+                if (chkPPA.Checked) SQL2 += " AND [PPA] = 'true' ";
+                if (chkLongTerm.Checked) SQL2 += " AND [LT] = 'true' ";
+
+                if (chkGuaranteed.Checked) SQL2 += " AND  "
+                + " (g1.Type1 = '1' OR g2.Type1 = '1' OR g3.Type1 = '1' OR  g4.Type1 = '1' OR  g5.Type1 = '1' OR "
+                + "  g1.Type1 = '2' OR g2.Type1 = '2' OR g3.Type1 = '2' OR  g4.Type1 = '2' OR  g5.Type1 = '2' ) ";
+
+
+                string SQL3 = "";
+                if (chkShowTeachers.Checked) SQL3 += " OR [Teacher] = 'true' ";
+                if (chkShowTAs.Checked) SQL3 += " OR [TA] = 'true' ";
+
+                //Changed 8thOct - LT and D2D should be based on booking type, not teacher requirement
+                //LT checked  D2D Checked  - all
+                //LT checked D2D unchecked - only LT
+
+                //LT unchecked D2D checked - only D2D
+                //LT unchecked  D2D unchecked - none
+
+                //LT = " [MonLT] = 'true' OR [TueLT] = 'true' OR [WedLT] = 'true' OR [ThuLT] = 'true' OR [FriLT] = 'true' "
+                //D2D = " [MonLT] = 'false' OR [TueLT] = 'false' OR [WedLT] = 'false' OR [ThuLT] = 'false' OR [FriLT] = 'false' "
+
+                string SQL4 = "";
+                if (chkShowLT.Checked) SQL4 += " OR (s1.LongTerm = 'true' OR s2.LongTerm = 'true' OR s3.LongTerm = 'true' OR s4.LongTerm = 'true' OR s5.LongTerm = 'true' ) ";
+                if (chkShowD2D.Checked) SQL4 += " OR (s1.LongTerm = 'false' OR s2.LongTerm = 'false' OR s3.LongTerm = 'false' OR s4.LongTerm = 'false' OR s5.LongTerm = 'false') ";
+
+                //if (chkShowLT.Checked) SQL4 += " OR [LT] = 'true' ";
+                //if (chkShowD2D.Checked) SQL4 += " OR [D2D] = 'true' ";
+
+
+
+
+                if (SQL3 != "")
+                    if (SQL2 == "") SQL2 = "    ( " + SQL3.Substring(3) + " ) ";
+                    else SQL2 = SQL2 + " AND (" + SQL3.Substring(3) + " ) ";
+
+                if (SQL4 != "")
+                    if (SQL2 == "") SQL2 = "     (" + SQL4.Substring(3) + " ) ";
+                    else SQL2 = SQL2 + " AND (" + SQL4.Substring(3) + " ) ";
+
+
+
+                if (SQL == "")
+                {
+                    if (SQL2 != "") SQL = " WHERE ([current] = 'true' AND (" + SQL2.Substring(4) + ") )";
+                    else SQL = " WHERE ([current] = 'true' )";
+                }
+                else
+                {
+                    if (SQL2 == "") SQL = "WHERE ([current] = 'true' AND (" + SQL.Substring(3) + ")) ";
+                    else SQL = " WHERE ([current] = 'true' AND (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + "))";
+
+                }
+
+                //Need to mop up any Non current with bookings still in place
+
+                SQL = SQL + " OR ([current] = 'false'  AND ( s1.School <> '' OR s2.School <> '' OR s3.School <> '' OR s4.School <> '' or s5.School <> '' ) ) ";
+
+
+
+                return SQL;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in WHERESQL: " + ex.Message);
+                return "";
+            }
+        }
+        private string WHERESQL_original()
         {
             try
             {
@@ -178,6 +276,7 @@ namespace RedboxAddin.Presentation
                 if (chkShowTeachers.Checked) SQL3 += " OR [Teacher] = 'true' ";
                 if (chkShowTAs.Checked) SQL3 += " OR [TA] = 'true' ";
 
+
                 string SQL4 = "";
                 if (chkShowLT.Checked) SQL4 += " OR [LT] = 'true' ";
                 if (chkShowD2D.Checked) SQL4 += " OR [D2D] = 'true' ";
@@ -197,17 +296,19 @@ namespace RedboxAddin.Presentation
 
                 if (SQL == "")
                 {
-                    if (SQL2 != "") SQL = " WHERE [current] = 'true' AND (" + SQL2.Substring(4) + ") ";
-                    else SQL = " WHERE [current] = 'true' ";
+                    if (SQL2 != "") SQL = " WHERE ([current] = 'true' AND (" + SQL2.Substring(4) + ") )";
+                    else SQL = " WHERE ([current] = 'true' )";
                 }
                 else
                 {
-                    if (SQL2 == "") SQL = "WHERE [current] = 'true' AND (" + SQL.Substring(3) + ") ";
-                    else SQL = " WHERE [current] = 'true' AND (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + ")";
+                    if (SQL2 == "") SQL = "WHERE ([current] = 'true' AND (" + SQL.Substring(3) + ")) ";
+                    else SQL = " WHERE ([current] = 'true' AND (" + SQL.Substring(3) + ") AND (" + SQL2.Substring(4) + "))";
 
                 }
 
+                //Need to mop up any Non current with bookings still in place
 
+                SQL = SQL + " OR ([current] = 'false'  AND ( s1.School <> '' OR s2.School <> '' OR s3.School <> '' OR s4.School <> '' or s5.School <> '' ) ) ";
 
 
 

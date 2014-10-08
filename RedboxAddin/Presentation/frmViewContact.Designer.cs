@@ -1362,7 +1362,7 @@
             this.txtYearGroup.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtYearGroup.Location = new System.Drawing.Point(73, 155);
             this.txtYearGroup.Name = "txtYearGroup";
-            this.txtYearGroup.Size = new System.Drawing.Size(13, 21);
+            this.txtYearGroup.Size = new System.Drawing.Size(22, 21);
             this.txtYearGroup.TabIndex = 1;
             this.txtYearGroup.Visible = false;
             // 

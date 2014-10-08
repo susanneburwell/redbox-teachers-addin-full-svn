@@ -79,13 +79,14 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpFilter.SuspendLayout();
@@ -93,6 +94,7 @@
             this.grpYearGroups.SuspendLayout();
             this.panelRibbon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -109,11 +111,12 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 199F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 662);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1014, 662);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.groupBox1);
             this.panelTop.Controls.Add(this.btnResetLayout);
             this.panelTop.Controls.Add(this.btnLayout);
             this.panelTop.Controls.Add(this.lblShowing);
@@ -132,7 +135,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 43);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1002, 193);
+            this.panelTop.Size = new System.Drawing.Size(1008, 193);
             this.panelTop.TabIndex = 0;
             // 
             // btnResetLayout
@@ -162,7 +165,7 @@
             this.lblShowing.AutoSize = true;
             this.lblShowing.BackColor = System.Drawing.SystemColors.Control;
             this.lblShowing.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowing.Location = new System.Drawing.Point(15, 164);
+            this.lblShowing.Location = new System.Drawing.Point(23, 159);
             this.lblShowing.Name = "lblShowing";
             this.lblShowing.Size = new System.Drawing.Size(51, 13);
             this.lblShowing.TabIndex = 89;
@@ -172,13 +175,12 @@
             // 
             this.grpFilter.Controls.Add(this.chkShowTeachers);
             this.grpFilter.Controls.Add(this.chkShowTAs);
-            this.grpFilter.Controls.Add(this.chkShowD2D);
-            this.grpFilter.Controls.Add(this.chkShowLT);
             this.grpFilter.Location = new System.Drawing.Point(734, 78);
             this.grpFilter.Name = "grpFilter";
-            this.grpFilter.Size = new System.Drawing.Size(261, 67);
+            this.grpFilter.Size = new System.Drawing.Size(134, 67);
             this.grpFilter.TabIndex = 95;
             this.grpFilter.TabStop = false;
+            this.toolTip1.SetToolTip(this.grpFilter, "Both unticked means \'Ignore this Filter\'");
             // 
             // chkShowTeachers
             // 
@@ -211,9 +213,7 @@
             // chkShowD2D
             // 
             this.chkShowD2D.AutoSize = true;
-            this.chkShowD2D.Checked = true;
-            this.chkShowD2D.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowD2D.Location = new System.Drawing.Point(150, 40);
+            this.chkShowD2D.Location = new System.Drawing.Point(15, 39);
             this.chkShowD2D.Name = "chkShowD2D";
             this.chkShowD2D.Size = new System.Drawing.Size(90, 20);
             this.chkShowD2D.TabIndex = 93;
@@ -225,9 +225,7 @@
             // chkShowLT
             // 
             this.chkShowLT.AutoSize = true;
-            this.chkShowLT.Checked = true;
-            this.chkShowLT.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowLT.Location = new System.Drawing.Point(150, 12);
+            this.chkShowLT.Location = new System.Drawing.Point(15, 14);
             this.chkShowLT.Name = "chkShowLT";
             this.chkShowLT.Size = new System.Drawing.Size(79, 20);
             this.chkShowLT.TabIndex = 92;
@@ -251,9 +249,9 @@
             this.chkJustBookings.AutoSize = true;
             this.chkJustBookings.Location = new System.Drawing.Point(741, 160);
             this.chkJustBookings.Name = "chkJustBookings";
-            this.chkJustBookings.Size = new System.Drawing.Size(111, 20);
+            this.chkJustBookings.Size = new System.Drawing.Size(102, 20);
             this.chkJustBookings.TabIndex = 89;
-            this.chkJustBookings.Text = "Just Bookings";
+            this.chkJustBookings.Text = "All Bookings";
             this.toolTip1.SetToolTip(this.chkJustBookings, "Just show clients with bookings");
             this.chkJustBookings.UseVisualStyleBackColor = true;
             this.chkJustBookings.CheckedChanged += new System.EventHandler(this.chkJustBookings_CheckedChanged);
@@ -262,9 +260,9 @@
             // 
             this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
-            this.btnDblBkgs.Location = new System.Drawing.Point(740, 47);
+            this.btnDblBkgs.Location = new System.Drawing.Point(740, 48);
             this.btnDblBkgs.Name = "btnDblBkgs";
-            this.btnDblBkgs.Size = new System.Drawing.Size(255, 30);
+            this.btnDblBkgs.Size = new System.Drawing.Size(255, 31);
             this.btnDblBkgs.TabIndex = 86;
             this.btnDblBkgs.Text = "Double Bookings Detected";
             this.btnDblBkgs.UseVisualStyleBackColor = false;
@@ -304,7 +302,7 @@
             this.grpQual.Controls.Add(this.chkQTS);
             this.grpQual.Location = new System.Drawing.Point(9, 48);
             this.grpQual.Name = "grpQual";
-            this.grpQual.Size = new System.Drawing.Size(356, 97);
+            this.grpQual.Size = new System.Drawing.Size(356, 100);
             this.grpQual.TabIndex = 82;
             this.grpQual.TabStop = false;
             this.grpQual.Text = "Qualifications";
@@ -428,7 +426,7 @@
             this.grpYearGroups.Controls.Add(this.chkYr6);
             this.grpYearGroups.Controls.Add(this.btnKS1);
             this.grpYearGroups.Controls.Add(this.btnKS2);
-            this.grpYearGroups.Location = new System.Drawing.Point(375, 9);
+            this.grpYearGroups.Location = new System.Drawing.Point(375, 12);
             this.grpYearGroups.Name = "grpYearGroups";
             this.grpYearGroups.Size = new System.Drawing.Size(350, 136);
             this.grpYearGroups.TabIndex = 81;
@@ -675,22 +673,13 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1000, 415);
-            this.availabilityGrid1.TabIndex = 1;
-            // 
             // panelRibbon
             // 
             this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
             this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRibbon.Location = new System.Drawing.Point(3, 3);
             this.panelRibbon.Name = "panelRibbon";
-            this.panelRibbon.Size = new System.Drawing.Size(1002, 34);
+            this.panelRibbon.Size = new System.Drawing.Size(1008, 34);
             this.panelRibbon.TabIndex = 2;
             // 
             // btnCreatePaySheets
@@ -712,11 +701,31 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkShowLT);
+            this.groupBox1.Controls.Add(this.chkShowD2D);
+            this.groupBox1.Location = new System.Drawing.Point(874, 79);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(118, 66);
+            this.groupBox1.TabIndex = 98;
+            this.groupBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox1, "Both unticked means \'Ignore this Filter\'");
+            // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1006, 415);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
             // frmAvailabilitySheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 662);
+            this.ClientSize = new System.Drawing.Size(1014, 662);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -736,6 +745,8 @@
             this.grpYearGroups.PerformLayout();
             this.panelRibbon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -798,5 +809,6 @@
         private System.Windows.Forms.CheckBox chkPPA;
         private System.Windows.Forms.Button btnResetLayout;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

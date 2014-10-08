@@ -318,7 +318,6 @@
     <Compile Include="RBModels.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RBModels2.cs" />
     <Compile Include="UC\AvailabilityGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
