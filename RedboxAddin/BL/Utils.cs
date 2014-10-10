@@ -286,25 +286,43 @@ namespace RedboxAddin.BL
             }
         }
 
-        public static void PopulateTeacher(ComboBox cmb1)
+        public static void PopulateTeacher(ComboBox cmb1, bool sortByLastName)
         {
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
-                    var q = from s in db.Contacts
-                            join c in db.ContactDatas on s.ContactID equals c.ContactID
-                            where s.LastName != null && c.Current == true
-                            orderby s.LastName
-                            select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
-                    //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
-                    var teachers = q.ToList();
+                    if (sortByLastName)
+                    {
+                        var q = from s in db.Contacts
+                                join c in db.ContactDatas on s.ContactID equals c.ContactID
+                                where s.LastName != null && c.Current == true
+                                orderby s.LastName
+                                select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
+                        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+                        var teachers = q.ToList();
 
-                    cmb1.DataSource = teachers;
-                    cmb1.DisplayMember = "FullName";
-                    cmb1.ValueMember = "ContactID";
-                    cmb1.Text = "";
+                        cmb1.DataSource = teachers;
+                        cmb1.DisplayMember = "FullName";
+                        cmb1.ValueMember = "ContactID";
+                        cmb1.Text = "";
+                    }
+                    else
+                    {
+                        var q = from s in db.Contacts
+                                join c in db.ContactDatas on s.ContactID equals c.ContactID
+                                where s.LastName != null && c.Current == true
+                                orderby s.FirstName
+                                select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
+                        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+                        var teachers = q.ToList();
+
+                        cmb1.DataSource = teachers;
+                        cmb1.DisplayMember = "FullName";
+                        cmb1.ValueMember = "ContactID";
+                        cmb1.Text = "";
+                    }                    
                 }
             }
             catch (System.Exception ex)

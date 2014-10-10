@@ -29,7 +29,7 @@ namespace RedboxAddin.Presentation
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
                     Utils.PopulateSchools(cmbSchool);
-                    Utils.PopulateTeacher(cmbTeacher);
+                    Utils.PopulateTeacher(cmbTeacher, true);
                     Utils.PopulateBookingStatuses(cmbStatus);
                 }
 

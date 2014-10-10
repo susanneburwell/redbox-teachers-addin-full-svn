@@ -38,7 +38,7 @@ namespace RedboxAddin.Presentation
                 db = new RedBoxDB(CONNSTR);
 
                 //PopulateTeacher(cmbTeacher);
-                Utils.PopulateTeacher(cmbTeacher);
+                Utils.PopulateTeacher(cmbTeacher, rdoLastName.Checked);
 
                 if (_teacherID != 0) LoadTeacherDates(_teacherID);
 
@@ -327,6 +327,16 @@ namespace RedboxAddin.Presentation
             }
 
 
+        }
+
+        private void rdoLastName_CheckedChanged(object sender, EventArgs e)
+        {
+            Utils.PopulateTeacher(cmbTeacher, rdoLastName.Checked);
+        }
+
+        private void rdoFirstName_CheckedChanged(object sender, EventArgs e)
+        {
+            Utils.PopulateTeacher(cmbTeacher, rdoLastName.Checked);
         }
 
 

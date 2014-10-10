@@ -56,11 +56,15 @@
             this.lblType = new System.Windows.Forms.Label();
             this.chkFuture = new System.Windows.Forms.CheckBox();
             this.chkPast = new System.Windows.Forms.CheckBox();
+            this.groupBoxTeacher = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.rdoLastName = new System.Windows.Forms.RadioButton();
+            this.rdoFirstName = new System.Windows.Forms.RadioButton();
+            this.cmbTeacher = new System.Windows.Forms.ComboBox();
+            this.lblTeacher = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radAvailability = new System.Windows.Forms.RadioButton();
             this.radAbs = new System.Windows.Forms.RadioButton();
-            this.lblTeacher = new System.Windows.Forms.Label();
-            this.cmbTeacher = new System.Windows.Forms.ComboBox();
             this.gcGuaranteed = new DevExpress.XtraGrid.GridControl();
             this.gvGuaranteed = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -75,6 +79,7 @@
             this.panelTop.SuspendLayout();
             this.grpAvailability.SuspendLayout();
             this.grpAbsence.SuspendLayout();
+            this.groupBoxTeacher.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcGuaranteed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGuaranteed)).BeginInit();
@@ -92,7 +97,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 296F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 348F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 661);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -105,13 +110,12 @@
             this.panelTop.Controls.Add(this.lblType);
             this.panelTop.Controls.Add(this.chkFuture);
             this.panelTop.Controls.Add(this.chkPast);
+            this.panelTop.Controls.Add(this.groupBoxTeacher);
             this.panelTop.Controls.Add(this.groupBox1);
-            this.panelTop.Controls.Add(this.lblTeacher);
-            this.panelTop.Controls.Add(this.cmbTeacher);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(750, 290);
+            this.panelTop.Size = new System.Drawing.Size(750, 342);
             this.panelTop.TabIndex = 0;
             // 
             // grpAvailability
@@ -131,7 +135,7 @@
             this.grpAvailability.Controls.Add(this.label5);
             this.grpAvailability.Controls.Add(this.label4);
             this.grpAvailability.Controls.Add(this.dtFrom);
-            this.grpAvailability.Location = new System.Drawing.Point(29, 103);
+            this.grpAvailability.Location = new System.Drawing.Point(29, 148);
             this.grpAvailability.Name = "grpAvailability";
             this.grpAvailability.Size = new System.Drawing.Size(699, 184);
             this.grpAvailability.TabIndex = 20;
@@ -293,7 +297,7 @@
             this.grpAbsence.Controls.Add(this.label1);
             this.grpAbsence.Controls.Add(this.txtDetails);
             this.grpAbsence.Controls.Add(this.label6);
-            this.grpAbsence.Location = new System.Drawing.Point(29, 103);
+            this.grpAbsence.Location = new System.Drawing.Point(29, 148);
             this.grpAbsence.Name = "grpAbsence";
             this.grpAbsence.Size = new System.Drawing.Size(699, 176);
             this.grpAbsence.TabIndex = 22;
@@ -354,7 +358,7 @@
             this.chkFuture.AutoSize = true;
             this.chkFuture.Checked = true;
             this.chkFuture.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFuture.Location = new System.Drawing.Point(561, 65);
+            this.chkFuture.Location = new System.Drawing.Point(561, 110);
             this.chkFuture.Name = "chkFuture";
             this.chkFuture.Size = new System.Drawing.Size(139, 20);
             this.chkFuture.TabIndex = 17;
@@ -365,7 +369,7 @@
             // chkPast
             // 
             this.chkPast.AutoSize = true;
-            this.chkPast.Location = new System.Drawing.Point(413, 64);
+            this.chkPast.Location = new System.Drawing.Point(413, 109);
             this.chkPast.Name = "chkPast";
             this.chkPast.Size = new System.Drawing.Size(129, 20);
             this.chkPast.TabIndex = 16;
@@ -373,13 +377,78 @@
             this.chkPast.UseVisualStyleBackColor = true;
             this.chkPast.CheckedChanged += new System.EventHandler(this.chkPast_CheckedChanged);
             // 
+            // groupBoxTeacher
+            // 
+            this.groupBoxTeacher.Controls.Add(this.label8);
+            this.groupBoxTeacher.Controls.Add(this.rdoLastName);
+            this.groupBoxTeacher.Controls.Add(this.rdoFirstName);
+            this.groupBoxTeacher.Controls.Add(this.cmbTeacher);
+            this.groupBoxTeacher.Controls.Add(this.lblTeacher);
+            this.groupBoxTeacher.Location = new System.Drawing.Point(29, 9);
+            this.groupBoxTeacher.Name = "groupBoxTeacher";
+            this.groupBoxTeacher.Size = new System.Drawing.Size(347, 76);
+            this.groupBoxTeacher.TabIndex = 11;
+            this.groupBoxTeacher.TabStop = false;
+            this.groupBoxTeacher.Text = "Teacher";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(85, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 16);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Sort by :";
+            // 
+            // rdoLastName
+            // 
+            this.rdoLastName.AutoSize = true;
+            this.rdoLastName.Checked = true;
+            this.rdoLastName.Location = new System.Drawing.Point(146, 16);
+            this.rdoLastName.Name = "rdoLastName";
+            this.rdoLastName.Size = new System.Drawing.Size(88, 20);
+            this.rdoLastName.TabIndex = 1;
+            this.rdoLastName.TabStop = true;
+            this.rdoLastName.Text = "Last name";
+            this.rdoLastName.UseVisualStyleBackColor = true;
+            this.rdoLastName.CheckedChanged += new System.EventHandler(this.rdoLastName_CheckedChanged);
+            // 
+            // rdoFirstName
+            // 
+            this.rdoFirstName.AutoSize = true;
+            this.rdoFirstName.Location = new System.Drawing.Point(240, 16);
+            this.rdoFirstName.Name = "rdoFirstName";
+            this.rdoFirstName.Size = new System.Drawing.Size(88, 20);
+            this.rdoFirstName.TabIndex = 0;
+            this.rdoFirstName.Text = "First name";
+            this.rdoFirstName.UseVisualStyleBackColor = true;
+            this.rdoFirstName.CheckedChanged += new System.EventHandler(this.rdoFirstName_CheckedChanged);
+            // 
+            // cmbTeacher
+            // 
+            this.cmbTeacher.FormattingEnabled = true;
+            this.cmbTeacher.Location = new System.Drawing.Point(84, 40);
+            this.cmbTeacher.Name = "cmbTeacher";
+            this.cmbTeacher.Size = new System.Drawing.Size(244, 24);
+            this.cmbTeacher.TabIndex = 0;
+            this.cmbTeacher.SelectionChangeCommitted += new System.EventHandler(this.cmbTeacher_SelectionChangeCommitted);
+            // 
+            // lblTeacher
+            // 
+            this.lblTeacher.AutoSize = true;
+            this.lblTeacher.Location = new System.Drawing.Point(16, 43);
+            this.lblTeacher.Name = "lblTeacher";
+            this.lblTeacher.Size = new System.Drawing.Size(62, 16);
+            this.lblTeacher.TabIndex = 1;
+            this.lblTeacher.Text = "Teacher:";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radAvailability);
             this.groupBox1.Controls.Add(this.radAbs);
-            this.groupBox1.Location = new System.Drawing.Point(29, 48);
+            this.groupBox1.Location = new System.Drawing.Point(29, 93);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 49);
+            this.groupBox1.Size = new System.Drawing.Size(347, 49);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action";
@@ -388,7 +457,7 @@
             // 
             this.radAvailability.AutoSize = true;
             this.radAvailability.Checked = true;
-            this.radAvailability.Location = new System.Drawing.Point(19, 21);
+            this.radAvailability.Location = new System.Drawing.Point(16, 21);
             this.radAvailability.Name = "radAvailability";
             this.radAvailability.Size = new System.Drawing.Size(91, 20);
             this.radAvailability.TabIndex = 1;
@@ -399,7 +468,7 @@
             // radAbs
             // 
             this.radAbs.AutoSize = true;
-            this.radAbs.Location = new System.Drawing.Point(162, 21);
+            this.radAbs.Location = new System.Drawing.Point(121, 23);
             this.radAbs.Name = "radAbs";
             this.radAbs.Size = new System.Drawing.Size(134, 20);
             this.radAbs.TabIndex = 0;
@@ -407,31 +476,13 @@
             this.radAbs.UseVisualStyleBackColor = true;
             this.radAbs.CheckedChanged += new System.EventHandler(this.radAbs_CheckedChanged);
             // 
-            // lblTeacher
-            // 
-            this.lblTeacher.AutoSize = true;
-            this.lblTeacher.Location = new System.Drawing.Point(45, 21);
-            this.lblTeacher.Name = "lblTeacher";
-            this.lblTeacher.Size = new System.Drawing.Size(62, 16);
-            this.lblTeacher.TabIndex = 1;
-            this.lblTeacher.Text = "Teacher:";
-            // 
-            // cmbTeacher
-            // 
-            this.cmbTeacher.FormattingEnabled = true;
-            this.cmbTeacher.Location = new System.Drawing.Point(113, 18);
-            this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(244, 24);
-            this.cmbTeacher.TabIndex = 0;
-            this.cmbTeacher.SelectionChangeCommitted += new System.EventHandler(this.cmbTeacher_SelectionChangeCommitted);
-            // 
             // gcGuaranteed
             // 
             this.gcGuaranteed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcGuaranteed.Location = new System.Drawing.Point(3, 299);
+            this.gcGuaranteed.Location = new System.Drawing.Point(3, 351);
             this.gcGuaranteed.MainView = this.gvGuaranteed;
             this.gcGuaranteed.Name = "gcGuaranteed";
-            this.gcGuaranteed.Size = new System.Drawing.Size(750, 359);
+            this.gcGuaranteed.Size = new System.Drawing.Size(750, 307);
             this.gcGuaranteed.TabIndex = 1;
             this.gcGuaranteed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGuaranteed});
@@ -534,6 +585,8 @@
             this.grpAvailability.PerformLayout();
             this.grpAbsence.ResumeLayout(false);
             this.grpAbsence.PerformLayout();
+            this.groupBoxTeacher.ResumeLayout(false);
+            this.groupBoxTeacher.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcGuaranteed)).EndInit();
@@ -586,5 +639,9 @@
         private System.Windows.Forms.RadioButton radUnavail;
         private System.Windows.Forms.RadioButton radAvail;
         private System.Windows.Forms.RadioButton radTexted;
+        private System.Windows.Forms.GroupBox groupBoxTeacher;
+        private System.Windows.Forms.RadioButton rdoLastName;
+        private System.Windows.Forms.RadioButton rdoFirstName;
+        private System.Windows.Forms.Label label8;
     }
 }

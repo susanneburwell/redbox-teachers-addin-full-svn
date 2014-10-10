@@ -60,8 +60,8 @@ namespace RedboxAddin.Presentation
 
                 PopulateSchools();
                 PopulateBookingStatus();
-                Utils.PopulateTeacher(cmbTeacher);
-                Utils.PopulateTeacher(cmbRequestedTeacher);
+                Utils.PopulateTeacher(cmbTeacher, true);
+                Utils.PopulateTeacher(cmbRequestedTeacher, true);
 
                 if (_masterBookingID != -1)
                 {
