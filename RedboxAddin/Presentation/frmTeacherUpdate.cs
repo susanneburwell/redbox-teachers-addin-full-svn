@@ -131,6 +131,7 @@ namespace RedboxAddin.Presentation
                         gd.Date = bookingdate;
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+                        gd.Note = txtNotes.Text.Trim();
 
                         //don't add twice
                         var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID);
@@ -143,7 +144,7 @@ namespace RedboxAddin.Presentation
                             MessageBox.Show("There was an error while " + action + "Too many created.");
                             Debug.DebugMessage(2, "Overflow error while " + action);
                             return false;
-                        }
+                        }                       
 
 
                     } while (bookingdate <= dtTo.Value.Date);

@@ -365,6 +365,22 @@ namespace RedboxAddin.UC
         {
             gridControl1.DataSource = null;
         }
+
+        private void gridView1_Click(object sender, EventArgs e)
+        {
+            Point clickPoint = gridControl1.PointToClient(Control.MousePosition);
+            var hitInfo = gridView1.CalcHitInfo(clickPoint);
+            if (hitInfo.InRowCell)
+            {
+                int rowHandle = hitInfo.RowHandle;
+                GridColumn column = hitInfo.Column;
+                MessageBox.Show("row : " + rowHandle + " column : " + hitInfo.Column);
+
+            }
+
+        }
+
+
     }
 
     public class GridViewCustomMenu : GridViewMenu

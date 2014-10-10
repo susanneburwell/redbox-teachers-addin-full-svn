@@ -33,6 +33,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
             this.grpAvailability = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtNotes = new System.Windows.Forms.TextBox();
             this.radGuaranteed = new System.Windows.Forms.RadioButton();
             this.radOffered = new System.Windows.Forms.RadioButton();
             this.radUnavail = new System.Windows.Forms.RadioButton();
@@ -99,7 +101,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 348F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 661);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(718, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -115,11 +117,13 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(750, 342);
+            this.panelTop.Size = new System.Drawing.Size(712, 342);
             this.panelTop.TabIndex = 0;
             // 
             // grpAvailability
             // 
+            this.grpAvailability.Controls.Add(this.label9);
+            this.grpAvailability.Controls.Add(this.txtNotes);
             this.grpAvailability.Controls.Add(this.radGuaranteed);
             this.grpAvailability.Controls.Add(this.radOffered);
             this.grpAvailability.Controls.Add(this.radUnavail);
@@ -135,18 +139,36 @@
             this.grpAvailability.Controls.Add(this.label5);
             this.grpAvailability.Controls.Add(this.label4);
             this.grpAvailability.Controls.Add(this.dtFrom);
-            this.grpAvailability.Location = new System.Drawing.Point(29, 148);
+            this.grpAvailability.Location = new System.Drawing.Point(12, 148);
             this.grpAvailability.Name = "grpAvailability";
-            this.grpAvailability.Size = new System.Drawing.Size(699, 184);
+            this.grpAvailability.Size = new System.Drawing.Size(735, 191);
             this.grpAvailability.TabIndex = 20;
             this.grpAvailability.TabStop = false;
             this.grpAvailability.Text = "Availability";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 143);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 16);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Notes :";
+            // 
+            // txtNotes
+            // 
+            this.txtNotes.Location = new System.Drawing.Point(72, 143);
+            this.txtNotes.MaxLength = 75;
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(290, 44);
+            this.txtNotes.TabIndex = 32;
             // 
             // radGuaranteed
             // 
             this.radGuaranteed.AutoSize = true;
             this.radGuaranteed.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.radGuaranteed.Location = new System.Drawing.Point(564, 49);
+            this.radGuaranteed.Location = new System.Drawing.Point(551, 49);
             this.radGuaranteed.Name = "radGuaranteed";
             this.radGuaranteed.Size = new System.Drawing.Size(95, 20);
             this.radGuaranteed.TabIndex = 31;
@@ -156,7 +178,7 @@
             // radOffered
             // 
             this.radOffered.AutoSize = true;
-            this.radOffered.Location = new System.Drawing.Point(383, 49);
+            this.radOffered.Location = new System.Drawing.Point(394, 49);
             this.radOffered.Name = "radOffered";
             this.radOffered.Size = new System.Drawing.Size(132, 20);
             this.radOffered.TabIndex = 30;
@@ -167,7 +189,7 @@
             // 
             this.radUnavail.AutoSize = true;
             this.radUnavail.BackColor = System.Drawing.Color.Orange;
-            this.radUnavail.Location = new System.Drawing.Point(564, 24);
+            this.radUnavail.Location = new System.Drawing.Point(550, 24);
             this.radUnavail.Name = "radUnavail";
             this.radUnavail.Size = new System.Drawing.Size(96, 20);
             this.radUnavail.TabIndex = 29;
@@ -178,7 +200,7 @@
             // 
             this.radAvail.AutoSize = true;
             this.radAvail.BackColor = System.Drawing.Color.LightGreen;
-            this.radAvail.Location = new System.Drawing.Point(472, 24);
+            this.radAvail.Location = new System.Drawing.Point(462, 24);
             this.radAvail.Name = "radAvail";
             this.radAvail.Size = new System.Drawing.Size(82, 20);
             this.radAvail.TabIndex = 28;
@@ -190,7 +212,7 @@
             this.radTexted.AutoSize = true;
             this.radTexted.BackColor = System.Drawing.Color.Pink;
             this.radTexted.Checked = true;
-            this.radTexted.Location = new System.Drawing.Point(383, 24);
+            this.radTexted.Location = new System.Drawing.Point(394, 24);
             this.radTexted.Name = "radTexted";
             this.radTexted.Size = new System.Drawing.Size(62, 20);
             this.radTexted.TabIndex = 27;
@@ -201,9 +223,9 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(470, 119);
+            this.label7.Location = new System.Drawing.Point(484, 121);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(223, 54);
+            this.label7.Size = new System.Drawing.Size(223, 28);
             this.label7.TabIndex = 26;
             this.label7.Text = "Highlight existing guaranteed days (below) and select delete to remove the guaran" +
     "tee.";
@@ -211,9 +233,9 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(467, 82);
+            this.label3.Location = new System.Drawing.Point(484, 84);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(226, 35);
+            this.label3.Size = new System.Drawing.Size(226, 18);
             this.label3.TabIndex = 25;
             this.label3.Text = "Select Save to save the guaranteed days";
             // 
@@ -222,13 +244,13 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(16, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(346, 80);
+            this.label2.Size = new System.Drawing.Size(346, 54);
             this.label2.TabIndex = 24;
             this.label2.Text = resources.GetString("label2.Text");
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(383, 114);
+            this.btnDelete.Location = new System.Drawing.Point(394, 122);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 23;
@@ -238,7 +260,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(384, 77);
+            this.btnSave.Location = new System.Drawing.Point(394, 82);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 12;
@@ -251,7 +273,7 @@
             this.chkAccepted.AutoSize = true;
             this.chkAccepted.Checked = true;
             this.chkAccepted.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAccepted.Location = new System.Drawing.Point(294, 158);
+            this.chkAccepted.Location = new System.Drawing.Point(394, 165);
             this.chkAccepted.Name = "chkAccepted";
             this.chkAccepted.Size = new System.Drawing.Size(151, 20);
             this.chkAccepted.TabIndex = 19;
@@ -261,7 +283,7 @@
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(84, 49);
+            this.dtTo.Location = new System.Drawing.Point(76, 49);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(194, 22);
             this.dtTo.TabIndex = 9;
@@ -286,7 +308,7 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(84, 21);
+            this.dtFrom.Location = new System.Drawing.Point(76, 21);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(194, 22);
             this.dtFrom.TabIndex = 7;
@@ -297,7 +319,7 @@
             this.grpAbsence.Controls.Add(this.label1);
             this.grpAbsence.Controls.Add(this.txtDetails);
             this.grpAbsence.Controls.Add(this.label6);
-            this.grpAbsence.Location = new System.Drawing.Point(29, 148);
+            this.grpAbsence.Location = new System.Drawing.Point(12, 148);
             this.grpAbsence.Name = "grpAbsence";
             this.grpAbsence.Size = new System.Drawing.Size(699, 176);
             this.grpAbsence.TabIndex = 22;
@@ -335,7 +357,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(653, 19);
+            this.btnRefresh.Location = new System.Drawing.Point(628, 20);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 20;
@@ -347,7 +369,7 @@
             // 
             this.lblType.AutoSize = true;
             this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.Location = new System.Drawing.Point(407, 21);
+            this.lblType.Location = new System.Drawing.Point(401, 20);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(127, 25);
             this.lblType.TabIndex = 21;
@@ -358,7 +380,7 @@
             this.chkFuture.AutoSize = true;
             this.chkFuture.Checked = true;
             this.chkFuture.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFuture.Location = new System.Drawing.Point(561, 110);
+            this.chkFuture.Location = new System.Drawing.Point(554, 115);
             this.chkFuture.Name = "chkFuture";
             this.chkFuture.Size = new System.Drawing.Size(139, 20);
             this.chkFuture.TabIndex = 17;
@@ -369,7 +391,7 @@
             // chkPast
             // 
             this.chkPast.AutoSize = true;
-            this.chkPast.Location = new System.Drawing.Point(413, 109);
+            this.chkPast.Location = new System.Drawing.Point(406, 114);
             this.chkPast.Name = "chkPast";
             this.chkPast.Size = new System.Drawing.Size(129, 20);
             this.chkPast.TabIndex = 16;
@@ -384,9 +406,9 @@
             this.groupBoxTeacher.Controls.Add(this.rdoFirstName);
             this.groupBoxTeacher.Controls.Add(this.cmbTeacher);
             this.groupBoxTeacher.Controls.Add(this.lblTeacher);
-            this.groupBoxTeacher.Location = new System.Drawing.Point(29, 9);
+            this.groupBoxTeacher.Location = new System.Drawing.Point(12, 9);
             this.groupBoxTeacher.Name = "groupBoxTeacher";
-            this.groupBoxTeacher.Size = new System.Drawing.Size(347, 76);
+            this.groupBoxTeacher.Size = new System.Drawing.Size(362, 76);
             this.groupBoxTeacher.TabIndex = 11;
             this.groupBoxTeacher.TabStop = false;
             this.groupBoxTeacher.Text = "Teacher";
@@ -394,7 +416,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(85, 18);
+            this.label8.Location = new System.Drawing.Point(94, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 16);
             this.label8.TabIndex = 2;
@@ -404,7 +426,7 @@
             // 
             this.rdoLastName.AutoSize = true;
             this.rdoLastName.Checked = true;
-            this.rdoLastName.Location = new System.Drawing.Point(146, 16);
+            this.rdoLastName.Location = new System.Drawing.Point(155, 16);
             this.rdoLastName.Name = "rdoLastName";
             this.rdoLastName.Size = new System.Drawing.Size(88, 20);
             this.rdoLastName.TabIndex = 1;
@@ -416,7 +438,7 @@
             // rdoFirstName
             // 
             this.rdoFirstName.AutoSize = true;
-            this.rdoFirstName.Location = new System.Drawing.Point(240, 16);
+            this.rdoFirstName.Location = new System.Drawing.Point(249, 16);
             this.rdoFirstName.Name = "rdoFirstName";
             this.rdoFirstName.Size = new System.Drawing.Size(88, 20);
             this.rdoFirstName.TabIndex = 0;
@@ -426,10 +448,11 @@
             // 
             // cmbTeacher
             // 
+            this.cmbTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbTeacher.FormattingEnabled = true;
-            this.cmbTeacher.Location = new System.Drawing.Point(84, 40);
+            this.cmbTeacher.Location = new System.Drawing.Point(76, 40);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(244, 24);
+            this.cmbTeacher.Size = new System.Drawing.Size(261, 24);
             this.cmbTeacher.TabIndex = 0;
             this.cmbTeacher.SelectionChangeCommitted += new System.EventHandler(this.cmbTeacher_SelectionChangeCommitted);
             // 
@@ -446,9 +469,9 @@
             // 
             this.groupBox1.Controls.Add(this.radAvailability);
             this.groupBox1.Controls.Add(this.radAbs);
-            this.groupBox1.Location = new System.Drawing.Point(29, 93);
+            this.groupBox1.Location = new System.Drawing.Point(12, 93);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(347, 49);
+            this.groupBox1.Size = new System.Drawing.Size(362, 49);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action";
@@ -482,7 +505,7 @@
             this.gcGuaranteed.Location = new System.Drawing.Point(3, 351);
             this.gcGuaranteed.MainView = this.gvGuaranteed;
             this.gcGuaranteed.Name = "gcGuaranteed";
-            this.gcGuaranteed.Size = new System.Drawing.Size(750, 307);
+            this.gcGuaranteed.Size = new System.Drawing.Size(712, 307);
             this.gcGuaranteed.TabIndex = 1;
             this.gcGuaranteed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGuaranteed});
@@ -572,7 +595,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 661);
+            this.ClientSize = new System.Drawing.Size(718, 661);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTeacherUpdate";
@@ -643,5 +666,7 @@
         private System.Windows.Forms.RadioButton rdoLastName;
         private System.Windows.Forms.RadioButton rdoFirstName;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtNotes;
     }
 }

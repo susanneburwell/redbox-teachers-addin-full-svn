@@ -351,6 +351,8 @@ namespace RedboxAddin.DL
                         if (dr["Yr6"].ToString() == "True") yearGroup += "6";
 
                         objAvail.Teacher = dr["TeacherName"].ToString();
+                        //objAvail.TeacherID = dr["TeacherID"].ToString();
+
                         //CRB = dr["CRB"].ToString();
                         objAvail.CRB = dr["CRBStatus"].ToString();
                         objAvail.Live = dr["Live"].ToString();
@@ -745,10 +747,11 @@ namespace RedboxAddin.DL
 
                            };
                             //only add if charge required
-                            if (objTS.DayRate > 0) TimeSheets.Add(objTS);
+                            //if (objTS.DayRate > 0) TimeSheets.Add(objTS);
+                            //10/10/2014 Add all items to timesheet
+                            TimeSheets.Add(objTS);
                         }
                         catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
-
                     }
 
                     //
@@ -3301,7 +3304,7 @@ namespace RedboxAddin.DL
             string thursday = weekbegining.AddDays(3).ToString("yyyyMMdd");
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
-            string SQLstr = "Select Lastname+', '+FirstName as TeacherName,Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
+            string SQLstr = "Select Lastname+', '+FirstName as TeacherName, Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
                             "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, CRBStatus, " +
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, Float, LT, D2D, RWInc, BSL, FirstAid, " +
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +

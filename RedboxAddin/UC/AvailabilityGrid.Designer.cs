@@ -63,6 +63,7 @@
             this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -124,7 +125,8 @@
             this.BSL,
             this.FirstAid,
             this.Guar,
-            this.LongTerm});
+            this.LongTerm,
+            this.TeacherID});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -141,6 +143,7 @@
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Guar, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
+            this.gridView1.Click += new System.EventHandler(this.gridView1_Click);
             // 
             // Live
             // 
@@ -449,6 +452,13 @@
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
             // 
+            // TeacherID
+            // 
+            this.TeacherID.Caption = "TeacherID";
+            this.TeacherID.Name = "TeacherID";
+            this.TeacherID.Visible = true;
+            this.TeacherID.VisibleIndex = 19;
+            // 
             // AvailabilityGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,5 +507,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn BSL;
         private DevExpress.XtraGrid.Columns.GridColumn FirstAid;
         private DevExpress.XtraGrid.Columns.GridColumn LongTerm;
+        private DevExpress.XtraGrid.Columns.GridColumn TeacherID;
     }
 }

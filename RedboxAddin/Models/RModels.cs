@@ -52,6 +52,7 @@ namespace RedboxAddin.Models
     class RAvailability
     {
         public string Teacher { get; set; }
+        //public string TeacherID { get; set; }//1010
         public string Live { get; set; }
         public string Location { get; set; }
         public string Wants { get; set; }
