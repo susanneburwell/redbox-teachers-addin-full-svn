@@ -314,8 +314,7 @@ namespace RedboxAddin.BL
                                 join c in db.ContactDatas on s.ContactID equals c.ContactID
                                 where s.LastName != null && c.Current == true
                                 orderby s.FirstName
-                                select new { FullName = (s.LastName + ',' + ' ' + s.FirstName), s.ContactID };
-                        //select new CHTest { FullName = (s.LastName + ','+' ' + s.FirstName),ContactID= s.ContactID };
+                                select new { FullName = (s.FirstName + ',' + ' ' + s.LastName), s.ContactID };
                         var teachers = q.ToList();
 
                         cmb1.DataSource = teachers;

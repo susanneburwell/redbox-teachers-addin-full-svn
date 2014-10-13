@@ -14,6 +14,7 @@ using DevExpress.XtraGrid.Menu;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
+using System.Data.SqlClient;
 
 namespace RedboxAddin.Presentation
 {
@@ -127,11 +128,14 @@ namespace RedboxAddin.Presentation
                         if (radAvail.Checked) gd.Type = 4;
                         if (radUnavail.Checked) gd.Type = 5;
 
-                        
+
                         gd.Date = bookingdate;
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
                         gd.Note = txtNotes.Text.Trim();
+
+
+
 
                         //don't add twice
                         var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID);
@@ -144,7 +148,7 @@ namespace RedboxAddin.Presentation
                             MessageBox.Show("There was an error while " + action + "Too many created.");
                             Debug.DebugMessage(2, "Overflow error while " + action);
                             return false;
-                        }                       
+                        }
 
 
                     } while (bookingdate <= dtTo.Value.Date);
@@ -155,7 +159,7 @@ namespace RedboxAddin.Presentation
                 //If Registering Absence
                 // We update existing
                 //we do not create new absence record.
-               
+
 
 
 
@@ -167,6 +171,40 @@ namespace RedboxAddin.Presentation
             {
                 Debug.DebugMessage(2, "Teacher Update: Error SaveRequest: " + ex.Message);
                 return false;
+            }
+        }
+
+        public int UpdateBooking(long id, string description)
+        {
+            int numUpdated = 0;
+            try
+            {               
+                string sqlStr = "UPDATE GuaranteedDays  "
+                    + "SET Note = @descr "                   
+                    + "WHERE ID = @ID";
+
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);                
+                CmdAddContact.Parameters.Add("@descr", SqlDbType.VarChar, 50);
+
+                CmdAddContact.Prepare();
+
+                CmdAddContact.Parameters["@ID"].Value = id;
+                CmdAddContact.Parameters["@descr"].Value = description;
+               
+                numUpdated = CmdAddContact.ExecuteNonQuery();
+                return numUpdated;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateGuarantee :- " + ex.Message);
+                return numUpdated;
+            }
+            finally
+            {
+                DBManager.CloseDBConnection();
             }
         }
 
@@ -340,7 +378,36 @@ namespace RedboxAddin.Presentation
             Utils.PopulateTeacher(cmbTeacher, rdoLastName.Checked);
         }
 
+        private void gvGuaranteed_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
 
+                if (e.Column.Caption != "Details") return;
+
+                string cellValue = e.Value.ToString();
+                int updatedRowCount = 0;
+                long id = 0;
+
+                string cellValueDate = gvGuaranteed.GetRowCellValue(e.RowHandle, "dte").ToString();
+                DateTime date = DateTime.Parse(cellValueDate);
+                long teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+
+                GuaranteedDay gDay = db.GuaranteedDays.Where(p => p.Date == date && p.TeacherID == teacherID).FirstOrDefault();
+                id = gDay.ID;
+
+                updatedRowCount = UpdateBooking(id, cellValue);
+
+                if (updatedRowCount > 0)
+                    MessageBox.Show("Note Updated");
+                else
+                    MessageBox.Show("Error! Note update failed");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! Note update failed : " + ex.Message);
+            }
+        }
 
     }
 

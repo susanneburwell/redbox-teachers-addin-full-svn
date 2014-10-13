@@ -525,6 +525,7 @@
             this.gvGuaranteed.OptionsView.ShowGroupPanel = false;
             this.gvGuaranteed.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gvGuaranteed.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvGuaranteed_CellValueChanged);
             // 
             // gridColumn1
             // 
@@ -559,8 +560,6 @@
             this.gridColumn3.Caption = "Details";
             this.gridColumn3.FieldName = "Details";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
             // 
