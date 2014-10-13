@@ -62,8 +62,9 @@
             this.FirstAid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -89,6 +90,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(1024, 504);
             this.gridControl1.TabIndex = 4;
+            this.gridControl1.ToolTipController = this.toolTipController1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
@@ -142,8 +144,9 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Guar, DevExpress.Data.ColumnSortOrder.Descending)});
+            //this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
-            this.gridView1.Click += new System.EventHandler(this.gridView1_Click);
+           // this.gridView1.Click += new System.EventHandler(this.gridView1_Click);
             // 
             // Live
             // 
@@ -445,6 +448,14 @@
             this.LongTerm.Visible = true;
             this.LongTerm.VisibleIndex = 18;
             // 
+            // TeacherID
+            // 
+            this.TeacherID.Caption = "TeacherID";
+            this.TeacherID.FieldName = "TeacherID";
+            this.TeacherID.Name = "TeacherID";
+            this.TeacherID.Visible = true;
+            this.TeacherID.VisibleIndex = 19;
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -452,12 +463,9 @@
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
             // 
-            // TeacherID
+            // toolTipController1
             // 
-            this.TeacherID.Caption = "TeacherID";
-            this.TeacherID.Name = "TeacherID";
-            this.TeacherID.Visible = true;
-            this.TeacherID.VisibleIndex = 19;
+            this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
             // 
             // AvailabilityGrid
             // 
@@ -508,5 +516,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn FirstAid;
         private DevExpress.XtraGrid.Columns.GridColumn LongTerm;
         private DevExpress.XtraGrid.Columns.GridColumn TeacherID;
+        private DevExpress.Utils.ToolTipController toolTipController1;
     }
 }

@@ -26,10 +26,23 @@ namespace RedboxAddin.UC
     {
         public event EventHandler DblClick;
         public event EventHandler RepaintRequired;
+        RedBoxDB db;
+
 
         public AvailabilityGrid()
         {
             InitializeComponent();
+
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                db = new RedBoxDB(CONNSTR);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in AvailabilityGrid(): " + ex.Message);
+            }
+            
         }
 
         public void LoadTable(string wheresql, DateTime input)
@@ -44,8 +57,7 @@ namespace RedboxAddin.UC
                 if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
-
-                //DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
+                List<RedboxAddin.Models.RAvailability> msgDs = new DBManager().GetAvailability(monday, wheresql);
                 //bindingSource1.DataSource = msgDs;
                 gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
                 gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
@@ -53,7 +65,6 @@ namespace RedboxAddin.UC
                 gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
                 gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
-
                 
                 this.UseWaitCursor = false;
             }
@@ -366,21 +377,96 @@ namespace RedboxAddin.UC
             gridControl1.DataSource = null;
         }
 
-        private void gridView1_Click(object sender, EventArgs e)
+        //private void gridView1_Click(object sender, EventArgs e)
+        //{
+        //    Point clickPoint = gridControl1.PointToClient(Control.MousePosition);
+        //    var hitInfo = gridView1.CalcHitInfo(clickPoint);
+        //    if (hitInfo.InRowCell)
+        //    {
+        //        int rowHandle = hitInfo.RowHandle;
+        //        GridColumn column = hitInfo.Column;
+        //        MessageBox.Show("row : " + rowHandle + " column : " + hitInfo.Column);
+        //    }
+
+        //}
+
+
+        private void toolTipController1_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
         {
-            Point clickPoint = gridControl1.PointToClient(Control.MousePosition);
-            var hitInfo = gridView1.CalcHitInfo(clickPoint);
-            if (hitInfo.InRowCell)
+            bool validColumn = false;
+            if (e.SelectedControl != gridControl1)
+                return;
+
+            GridHitInfo hitInfo = gridView1.CalcHitInfo(e.ControlMousePosition);
+
+            if (hitInfo.InRow == false)
+                return;
+
+            if (hitInfo.Column == null)
+                return;
+
+            //concern only the following fields
+            if (hitInfo.Column.FieldName == "Monday" || hitInfo.Column.FieldName == "Tuesday" || hitInfo.Column.FieldName == "Wednesday" || hitInfo.Column.FieldName == "Thursday" || hitInfo.Column.FieldName == "Friday")
+                validColumn = true;
+
+            if (!validColumn)
+                return;
+
+            string toolTip = string.Empty;
+            SuperToolTipSetupArgs toolTipArgs = new SuperToolTipSetupArgs();
+            toolTipArgs.Title.Text = string.Empty;
+
+            //Get the data from this row
+            string columnCaption = hitInfo.Column.Caption;
+            DateTime dateOK = new DateTime(2000,1,1);
+            if (DateTime.TryParse(columnCaption, out dateOK))
             {
-                int rowHandle = hitInfo.RowHandle;
-                GridColumn column = hitInfo.Column;
-                MessageBox.Show("row : " + rowHandle + " column : " + hitInfo.Column);
 
+                DateTime date = DateTime.Parse(columnCaption);
+                int row = hitInfo.RowHandle;
+                long teacherID = long.Parse(gridView1.GetRowCellValue(row, "TeacherID").ToString());
+
+                GuaranteedDay gDay = db.GuaranteedDays.Where(p => p.Date == date && p.TeacherID == teacherID && p.Type == 5).FirstOrDefault();
+                if (gDay != null)
+                {
+                    if (gDay.Note != string.Empty)
+                    {
+                        //Set description for the tool-tip
+                        string description = string.Empty;
+                        int type = gDay.Type;
+                        switch (type)
+                        {
+                            case 1:
+                                description = "guarantee offered";
+                                break;
+                            case 2:
+                                description = "guaranteed";
+                                break;
+                            case 3:
+                                description = "texted";
+                                break;
+                            case 4:
+                                description = "available";
+                                break;
+                            case 5:
+                                description = "unavailable";
+                                break;
+                        }
+                        //Add Notes & description for the tool-tip
+                        toolTip = "Notes : " + gDay.Note + "\nDescription : " + description;
+
+                        string BodyText = toolTip;
+
+                        toolTipArgs.Contents.Text = BodyText;
+                        e.Info = new ToolTipControlInfo();
+                        e.Info.Object = hitInfo.HitTest.ToString() + hitInfo.RowHandle.ToString(); 
+                        e.Info.ToolTipType = ToolTipType.SuperTip;
+                        e.Info.SuperTip = new SuperToolTip();
+                        e.Info.SuperTip.Setup(toolTipArgs);
+                    }
+                }
             }
-
         }
-
-
     }
 
     public class GridViewCustomMenu : GridViewMenu

@@ -264,6 +264,7 @@ namespace RedboxAddin.Presentation
         private void dtFrom_ValueChanged(object sender, EventArgs e)
         {
             dtTo.Value = dtFrom.Value;
+            txtNotes.Clear();
         }
 
 
@@ -407,6 +408,11 @@ namespace RedboxAddin.Presentation
             {
                 MessageBox.Show("Error! Note update failed : " + ex.Message);
             }
+        }
+
+        private void cmbTeacher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtNotes.Clear();
         }
 
     }
