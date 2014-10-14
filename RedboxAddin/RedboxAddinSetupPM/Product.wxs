@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 	<Product 
     Id="*" 
-    Name="RedboxAddin 2.0.56" 
+    Name="RedboxAddin 2.0.57" 
     Language="1033" 
     Version="2.0.56" 
     Manufacturer="Davton" 
@@ -88,8 +88,6 @@
 				<File Id="_DevExpress_XtraPivotGrid_v11_2_dll" Name="DevExpress.XtraPivotGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPivotGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
 				<File Id="_Microsoft_Vbe_Interop_dll" Name="Microsoft.Vbe.Interop.dll" Source="$(var.RedboxAddin.TargetDir)" />
 				<File Id="_Office_dll" Name="Office.dll" Source="$(var.RedboxAddin.TargetDir)" />
-				<File Id="_QlmControlLicenseWizard_Net4_dll" Name="QlmControlLicenseWizard.Net4.dll" Source="$(var.RedboxAddin.TargetDir)" />
-				<File Id="_QlmLicenseLib_Net4_dll" Name="QlmLicenseLib.Net4.dll" Source="$(var.RedboxAddin.TargetDir)" />
 				<File Id="_RedboxAddin_dll_config" Name="RedboxAddin.dll.config" Source="$(var.RedboxAddin.TargetDir)" />
       </Component>
 		</ComponentGroup>

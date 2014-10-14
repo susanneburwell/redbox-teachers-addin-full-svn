@@ -346,6 +346,7 @@ namespace RedboxAddin.Presentation
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadTeacherDates(_teacherID);
+            btnDblBkgs.Visible = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
