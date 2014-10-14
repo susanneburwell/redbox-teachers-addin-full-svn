@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherUpdate));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnDblBkgs = new System.Windows.Forms.Button();
             this.grpAvailability = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
@@ -77,7 +78,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnTest = new System.Windows.Forms.Button();
+            this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpAvailability.SuspendLayout();
@@ -107,7 +108,7 @@
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.btnTest);
+            this.panelTop.Controls.Add(this.btnDblBkgs);
             this.panelTop.Controls.Add(this.grpAvailability);
             this.panelTop.Controls.Add(this.grpAbsence);
             this.panelTop.Controls.Add(this.btnRefresh);
@@ -122,6 +123,19 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(712, 342);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnDblBkgs
+            // 
+            this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
+            this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
+            this.btnDblBkgs.Location = new System.Drawing.Point(465, 52);
+            this.btnDblBkgs.Name = "btnDblBkgs";
+            this.btnDblBkgs.Size = new System.Drawing.Size(187, 48);
+            this.btnDblBkgs.TabIndex = 107;
+            this.btnDblBkgs.Text = "Clashing Bookings Found";
+            this.btnDblBkgs.UseVisualStyleBackColor = false;
+            this.btnDblBkgs.Visible = false;
+            this.btnDblBkgs.Click += new System.EventHandler(this.btnDblBkgs_Click);
             // 
             // grpAvailability
             // 
@@ -594,15 +608,10 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // btnTest
+            // flashtimer1
             // 
-            this.btnTest.Location = new System.Drawing.Point(406, 62);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 33;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            this.flashtimer1.Interval = 500;
+            this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
             // frmTeacherUpdate
             // 
@@ -682,6 +691,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNotes;
-        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnDblBkgs;
+        private System.Windows.Forms.Timer flashtimer1;
     }
 }

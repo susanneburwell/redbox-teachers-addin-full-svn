@@ -276,6 +276,12 @@
     <Compile Include="Presentation\frmViewBookings.Designer.cs">
       <DependentUpon>frmViewBookings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmViewClashingBookings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmViewClashingBookings.Designer.cs">
+      <DependentUpon>frmViewClashingBookings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmViewContact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmViewBookings.resx">
       <DependentUpon>frmViewBookings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmViewClashingBookings.resx">
+      <DependentUpon>frmViewClashingBookings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmViewContact.resx">
       <DependentUpon>frmViewContact.cs</DependentUpon>
