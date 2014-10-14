@@ -459,7 +459,7 @@ namespace RedboxAddin.UC
 
                         toolTipArgs.Contents.Text = BodyText;
                         e.Info = new ToolTipControlInfo();
-                        e.Info.Object = hitInfo.HitTest.ToString() + hitInfo.RowHandle.ToString(); 
+                        e.Info.Object = hitInfo.HitTest.ToString() + hitInfo.RowHandle.ToString() + hitInfo.Column.FieldName; 
                         e.Info.ToolTipType = ToolTipType.SuperTip;
                         e.Info.SuperTip = new SuperToolTip();
                         e.Info.SuperTip.Setup(toolTipArgs);

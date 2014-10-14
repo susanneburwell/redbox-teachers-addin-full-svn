@@ -77,6 +77,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnTest = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpAvailability.SuspendLayout();
@@ -106,6 +107,7 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnTest);
             this.panelTop.Controls.Add(this.grpAvailability);
             this.panelTop.Controls.Add(this.grpAbsence);
             this.panelTop.Controls.Add(this.btnRefresh);
@@ -592,6 +594,16 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(406, 62);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 33;
+            this.btnTest.Text = "Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // frmTeacherUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -670,5 +682,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.Button btnTest;
     }
 }

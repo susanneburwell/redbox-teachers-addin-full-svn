@@ -415,6 +415,27 @@ namespace RedboxAddin.Presentation
             txtNotes.Clear();
         }
 
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            DateTime sDate = dtFrom.Value.Date;
+            DateTime eDate = dtTo.Value.Date;
+            long teacherID = -1;
+            teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+
+            if (teacherID != -1)
+            {
+                List<MasterBooking> oMasterBookings = db.MasterBookings.ToList().OrderBy(a=>a.ContactID).Where(a => ((a.ContactID == teacherID) && (
+                                (sDate.Date >= (a.StartDate.Date) && sDate.Date <= (a.EndDate.Date) && eDate.Date >  (a.StartDate.Date) && eDate.Date >= (a.EndDate.Date)) ||
+                                (sDate.Date >= (a.StartDate.Date) && sDate.Date <  (a.EndDate.Date) && eDate.Date >  (a.StartDate.Date) && eDate.Date <= (a.EndDate.Date))  ||
+                                (sDate.Date <= (a.StartDate.Date) && sDate.Date <  (a.EndDate.Date) && eDate.Date >= (a.StartDate.Date) && eDate.Date <= (a.EndDate.Date)) ||
+                                (sDate.Date <= (a.StartDate.Date) && eDate.Date >= (a.EndDate.Date))))).ToList();
+               
+            }
+
+
+           
+        }
+
     }
 
 
