@@ -50,7 +50,7 @@ namespace RedboxAddin.Presentation
                 table.Columns.Add("StartDate", typeof(DateTime));
                 table.Columns.Add("EndDate", typeof(DateTime));
 
-
+                TickAllDateCheckBoxes();
             }
             catch (Exception ex)
             {
@@ -101,6 +101,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 //Check dates are valid
                 if (dtTo.Value.Date < dtFrom.Value.Date)
                 {
@@ -116,14 +117,31 @@ namespace RedboxAddin.Presentation
 
 
                 DateTime bookingdate = dtFrom.Value.Date;
+                List<DayOfWeek> listOfDays = new List<DayOfWeek>();
+                bool isTicked = false;
                 int iCatch = 0;
                 string action;
+
+                //Add ticked days to listOfDays
+                if (chkMon.Checked)
+                    listOfDays.Add(DayOfWeek.Monday);
+                if (chkTue.Checked)
+                    listOfDays.Add(DayOfWeek.Tuesday);
+                if (chkWed.Checked)
+                    listOfDays.Add(DayOfWeek.Wednesday);
+                if (chkThu.Checked)
+                    listOfDays.Add(DayOfWeek.Thursday);
+                if (chkFri.Checked)
+                    listOfDays.Add(DayOfWeek.Friday);
+
 
                 //If Guaranteed Days
                 if (radAvailability.Checked)
                 {
                     do
                     {
+                        isTicked = false;
+
                         //Create a new Guaranteed Day
                         action = "Creating Guaranteed Day";
                         GuaranteedDay gd = new GuaranteedDay();
@@ -143,14 +161,22 @@ namespace RedboxAddin.Presentation
                         gd.Note = txtNotes.Text.Trim();
 
 
+                        foreach (DayOfWeek day in listOfDays)
+                        {
+                            if (bookingdate.DayOfWeek == day)
+                                isTicked = true;
+                        }
 
-
-                        //don't add twice
-                        var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID);
-                        if (numFound == 0) db.GuaranteedDays.InsertOnSubmit(gd);
+                        if (isTicked)
+                        {
+                            //don't add twice
+                            var numFound = db.GuaranteedDays.Count(g => g.Date == bookingdate && g.TeacherID == gd.TeacherID);
+                            if (numFound == 0) db.GuaranteedDays.InsertOnSubmit(gd);
+                        }
 
                         bookingdate = bookingdate.AddDays(1);
                         iCatch += 1;
+
                         if (iCatch > 365)
                         {
                             MessageBox.Show("There was an error while " + action + "Too many created.");
@@ -167,18 +193,16 @@ namespace RedboxAddin.Presentation
                 //If Registering Absence
                 // We update existing
                 //we do not create new absence record.
-
-
-
-
-
                 return true;
-
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Teacher Update: Error SaveRequest: " + ex.Message);
                 return false;
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -347,6 +371,7 @@ namespace RedboxAddin.Presentation
         {
             LoadTeacherDates(_teacherID);
             btnDblBkgs.Visible = false;
+            TickAllDateCheckBoxes();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -425,9 +450,9 @@ namespace RedboxAddin.Presentation
             txtNotes.Clear();
         }
 
-       
+
         private void CheckForClashingDates()
-        { 
+        {
             DateTime sDate = dtFrom.Value.Date;
             DateTime eDate = dtTo.Value.Date;
             long teacherID = -1;
@@ -497,9 +522,19 @@ namespace RedboxAddin.Presentation
             }
             else btnDblBkgs.BackColor = Color.Crimson;
         }
+
+        private void TickAllDateCheckBoxes()
+        {
+            //Tick date check boxes
+            chkMon.Checked = true;
+            chkTue.Checked = true;
+            chkWed.Checked = true;
+            chkThu.Checked = true;
+            chkFri.Checked = true;
+        }
     }
 
-    
+
 
 
     public class GridViewCustomMenu : GridViewMenu

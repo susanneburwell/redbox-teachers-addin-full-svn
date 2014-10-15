@@ -76,11 +76,6 @@
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblDes = new System.Windows.Forms.Label();
-            this.chkFri = new System.Windows.Forms.CheckBox();
-            this.chkThu = new System.Windows.Forms.CheckBox();
-            this.chkWed = new System.Windows.Forms.CheckBox();
-            this.chkTue = new System.Windows.Forms.CheckBox();
-            this.chkMon = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radTD = new System.Windows.Forms.RadioButton();
             this.radNG = new System.Windows.Forms.RadioButton();
@@ -111,7 +106,6 @@
             this.chkYr6 = new System.Windows.Forms.CheckBox();
             this.btnKS1 = new System.Windows.Forms.Button();
             this.btnKS2 = new System.Windows.Forms.Button();
-            this.lblDays = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
             this.lblSchool = new System.Windows.Forms.Label();
@@ -139,6 +133,12 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblDays = new System.Windows.Forms.Label();
+            this.chkMon = new System.Windows.Forms.CheckBox();
+            this.chkTue = new System.Windows.Forms.CheckBox();
+            this.chkWed = new System.Windows.Forms.CheckBox();
+            this.chkThu = new System.Windows.Forms.CheckBox();
+            this.chkFri = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -684,71 +684,6 @@
             this.lblDes.TabIndex = 93;
             this.lblDes.Text = "Description:";
             // 
-            // chkFri
-            // 
-            this.chkFri.AutoSize = true;
-            this.chkFri.Checked = true;
-            this.chkFri.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFri.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFri.Location = new System.Drawing.Point(700, 45);
-            this.chkFri.Name = "chkFri";
-            this.chkFri.Size = new System.Drawing.Size(37, 17);
-            this.chkFri.TabIndex = 92;
-            this.chkFri.Text = "Fri";
-            this.chkFri.UseVisualStyleBackColor = true;
-            // 
-            // chkThu
-            // 
-            this.chkThu.AutoSize = true;
-            this.chkThu.Checked = true;
-            this.chkThu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu.Location = new System.Drawing.Point(639, 45);
-            this.chkThu.Name = "chkThu";
-            this.chkThu.Size = new System.Drawing.Size(45, 17);
-            this.chkThu.TabIndex = 91;
-            this.chkThu.Text = "Thu";
-            this.chkThu.UseVisualStyleBackColor = true;
-            // 
-            // chkWed
-            // 
-            this.chkWed.AutoSize = true;
-            this.chkWed.Checked = true;
-            this.chkWed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkWed.Location = new System.Drawing.Point(573, 45);
-            this.chkWed.Name = "chkWed";
-            this.chkWed.Size = new System.Drawing.Size(49, 17);
-            this.chkWed.TabIndex = 90;
-            this.chkWed.Text = "Wed";
-            this.chkWed.UseVisualStyleBackColor = true;
-            // 
-            // chkTue
-            // 
-            this.chkTue.AutoSize = true;
-            this.chkTue.Checked = true;
-            this.chkTue.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTue.Location = new System.Drawing.Point(512, 45);
-            this.chkTue.Name = "chkTue";
-            this.chkTue.Size = new System.Drawing.Size(45, 17);
-            this.chkTue.TabIndex = 89;
-            this.chkTue.Text = "Tue";
-            this.chkTue.UseVisualStyleBackColor = true;
-            // 
-            // chkMon
-            // 
-            this.chkMon.AutoSize = true;
-            this.chkMon.Checked = true;
-            this.chkMon.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMon.Location = new System.Drawing.Point(450, 45);
-            this.chkMon.Name = "chkMon";
-            this.chkMon.Size = new System.Drawing.Size(47, 17);
-            this.chkMon.TabIndex = 88;
-            this.chkMon.Text = "Mon";
-            this.chkMon.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.radTD);
@@ -1088,16 +1023,6 @@
             this.btnKS2.UseVisualStyleBackColor = true;
             this.btnKS2.Click += new System.EventHandler(this.btnKS2_Click);
             // 
-            // lblDays
-            // 
-            this.lblDays.AutoSize = true;
-            this.lblDays.Location = new System.Drawing.Point(447, 44);
-            this.lblDays.Name = "lblDays";
-            this.lblDays.Size = new System.Drawing.Size(54, 16);
-            this.lblDays.TabIndex = 116;
-            this.lblDays.Text = "lblDays";
-            this.lblDays.Visible = false;
-            // 
             // lblFrom
             // 
             this.lblFrom.AutoSize = true;
@@ -1377,6 +1302,81 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // lblDays
+            // 
+            this.lblDays.AutoSize = true;
+            this.lblDays.Location = new System.Drawing.Point(447, 44);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(54, 16);
+            this.lblDays.TabIndex = 116;
+            this.lblDays.Text = "lblDays";
+            this.lblDays.Visible = false;
+            // 
+            // chkMon
+            // 
+            this.chkMon.AutoSize = true;
+            this.chkMon.Checked = true;
+            this.chkMon.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMon.Location = new System.Drawing.Point(450, 45);
+            this.chkMon.Name = "chkMon";
+            this.chkMon.Size = new System.Drawing.Size(47, 17);
+            this.chkMon.TabIndex = 88;
+            this.chkMon.Text = "Mon";
+            this.chkMon.UseVisualStyleBackColor = true;
+            // 
+            // chkTue
+            // 
+            this.chkTue.AutoSize = true;
+            this.chkTue.Checked = true;
+            this.chkTue.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTue.Location = new System.Drawing.Point(512, 45);
+            this.chkTue.Name = "chkTue";
+            this.chkTue.Size = new System.Drawing.Size(45, 17);
+            this.chkTue.TabIndex = 89;
+            this.chkTue.Text = "Tue";
+            this.chkTue.UseVisualStyleBackColor = true;
+            // 
+            // chkWed
+            // 
+            this.chkWed.AutoSize = true;
+            this.chkWed.Checked = true;
+            this.chkWed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWed.Location = new System.Drawing.Point(573, 45);
+            this.chkWed.Name = "chkWed";
+            this.chkWed.Size = new System.Drawing.Size(49, 17);
+            this.chkWed.TabIndex = 90;
+            this.chkWed.Text = "Wed";
+            this.chkWed.UseVisualStyleBackColor = true;
+            // 
+            // chkThu
+            // 
+            this.chkThu.AutoSize = true;
+            this.chkThu.Checked = true;
+            this.chkThu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThu.Location = new System.Drawing.Point(639, 45);
+            this.chkThu.Name = "chkThu";
+            this.chkThu.Size = new System.Drawing.Size(45, 17);
+            this.chkThu.TabIndex = 91;
+            this.chkThu.Text = "Thu";
+            this.chkThu.UseVisualStyleBackColor = true;
+            // 
+            // chkFri
+            // 
+            this.chkFri.AutoSize = true;
+            this.chkFri.Checked = true;
+            this.chkFri.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFri.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFri.Location = new System.Drawing.Point(700, 45);
+            this.chkFri.Name = "chkFri";
+            this.chkFri.Size = new System.Drawing.Size(37, 17);
+            this.chkFri.TabIndex = 92;
+            this.chkFri.Text = "Fri";
+            this.chkFri.UseVisualStyleBackColor = true;
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1451,11 +1451,6 @@
         private System.Windows.Forms.RadioButton radNS;
         private System.Windows.Forms.ComboBox cmbRequestedTeacher;
         private System.Windows.Forms.Label lblTS2;
-        private System.Windows.Forms.CheckBox chkFri;
-        private System.Windows.Forms.CheckBox chkThu;
-        private System.Windows.Forms.CheckBox chkWed;
-        private System.Windows.Forms.CheckBox chkTue;
-        private System.Windows.Forms.CheckBox chkMon;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -1510,7 +1505,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtRate;
-        private System.Windows.Forms.Label lblDays;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblTo;
         private System.Windows.Forms.Label lblSchool;
@@ -1526,5 +1520,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn ID;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Timer refreshTimer;
+        private System.Windows.Forms.CheckBox chkFri;
+        private System.Windows.Forms.CheckBox chkThu;
+        private System.Windows.Forms.CheckBox chkWed;
+        private System.Windows.Forms.CheckBox chkTue;
+        private System.Windows.Forms.CheckBox chkMon;
+        private System.Windows.Forms.Label lblDays;
     }
 }

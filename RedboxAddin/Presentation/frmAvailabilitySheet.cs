@@ -645,6 +645,12 @@ namespace RedboxAddin.Presentation
             availabilityGrid1.ResetSort();
         }
 
+        private void btnMasterBooking_Click(object sender, EventArgs e)
+        {
+            frmMasterBooking frm = new frmMasterBooking();
+            frm.Show();
+        }
+
        
 
 

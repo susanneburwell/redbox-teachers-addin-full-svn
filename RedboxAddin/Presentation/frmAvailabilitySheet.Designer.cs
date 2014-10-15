@@ -32,14 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkShowLT = new System.Windows.Forms.CheckBox();
+            this.chkShowD2D = new System.Windows.Forms.CheckBox();
             this.btnResetLayout = new System.Windows.Forms.Button();
             this.btnLayout = new System.Windows.Forms.Button();
             this.lblShowing = new System.Windows.Forms.Label();
             this.grpFilter = new System.Windows.Forms.GroupBox();
             this.chkShowTeachers = new System.Windows.Forms.CheckBox();
             this.chkShowTAs = new System.Windows.Forms.CheckBox();
-            this.chkShowD2D = new System.Windows.Forms.CheckBox();
-            this.chkShowLT = new System.Windows.Forms.CheckBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.chkJustBookings = new System.Windows.Forms.CheckBox();
             this.btnDblBkgs = new System.Windows.Forms.Button();
@@ -85,16 +86,16 @@
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMasterBooking = new System.Windows.Forms.Button();
             this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.grpFilter.SuspendLayout();
             this.grpQual.SuspendLayout();
             this.grpYearGroups.SuspendLayout();
             this.panelRibbon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -116,6 +117,7 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnMasterBooking);
             this.panelTop.Controls.Add(this.groupBox1);
             this.panelTop.Controls.Add(this.btnResetLayout);
             this.panelTop.Controls.Add(this.btnLayout);
@@ -137,6 +139,41 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1008, 193);
             this.panelTop.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkShowLT);
+            this.groupBox1.Controls.Add(this.chkShowD2D);
+            this.groupBox1.Location = new System.Drawing.Point(874, 79);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(118, 66);
+            this.groupBox1.TabIndex = 98;
+            this.groupBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox1, "Both unticked means \'Ignore this Filter\'");
+            // 
+            // chkShowLT
+            // 
+            this.chkShowLT.AutoSize = true;
+            this.chkShowLT.Location = new System.Drawing.Point(15, 14);
+            this.chkShowLT.Name = "chkShowLT";
+            this.chkShowLT.Size = new System.Drawing.Size(79, 20);
+            this.chkShowLT.TabIndex = 92;
+            this.chkShowLT.Text = "Show LT";
+            this.toolTip1.SetToolTip(this.chkShowLT, "Show Teachers who have expressed a preference for LongTerm bookings");
+            this.chkShowLT.UseVisualStyleBackColor = true;
+            this.chkShowLT.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkShowD2D
+            // 
+            this.chkShowD2D.AutoSize = true;
+            this.chkShowD2D.Location = new System.Drawing.Point(15, 39);
+            this.chkShowD2D.Name = "chkShowD2D";
+            this.chkShowD2D.Size = new System.Drawing.Size(90, 20);
+            this.chkShowD2D.TabIndex = 93;
+            this.chkShowD2D.Text = "Show D2D";
+            this.toolTip1.SetToolTip(this.chkShowD2D, "Show Teachers who have expressed a preference for Day to Day bookings");
+            this.chkShowD2D.UseVisualStyleBackColor = true;
+            this.chkShowD2D.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // btnResetLayout
             // 
@@ -210,35 +247,11 @@
             this.chkShowTAs.UseVisualStyleBackColor = true;
             this.chkShowTAs.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
-            // chkShowD2D
-            // 
-            this.chkShowD2D.AutoSize = true;
-            this.chkShowD2D.Location = new System.Drawing.Point(15, 39);
-            this.chkShowD2D.Name = "chkShowD2D";
-            this.chkShowD2D.Size = new System.Drawing.Size(90, 20);
-            this.chkShowD2D.TabIndex = 93;
-            this.chkShowD2D.Text = "Show D2D";
-            this.toolTip1.SetToolTip(this.chkShowD2D, "Show Teachers who have expressed a preference for Day to Day bookings");
-            this.chkShowD2D.UseVisualStyleBackColor = true;
-            this.chkShowD2D.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkShowLT
-            // 
-            this.chkShowLT.AutoSize = true;
-            this.chkShowLT.Location = new System.Drawing.Point(15, 14);
-            this.chkShowLT.Name = "chkShowLT";
-            this.chkShowLT.Size = new System.Drawing.Size(79, 20);
-            this.chkShowLT.TabIndex = 92;
-            this.chkShowLT.Text = "Show LT";
-            this.toolTip1.SetToolTip(this.chkShowLT, "Show Teachers who have expressed a preference for LongTerm bookings");
-            this.chkShowLT.UseVisualStyleBackColor = true;
-            this.chkShowLT.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(387, 155);
+            this.btnRefresh.Location = new System.Drawing.Point(375, 155);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(124, 30);
+            this.btnRefresh.Size = new System.Drawing.Size(101, 28);
             this.btnRefresh.TabIndex = 94;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -262,7 +275,7 @@
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
             this.btnDblBkgs.Location = new System.Drawing.Point(740, 48);
             this.btnDblBkgs.Name = "btnDblBkgs";
-            this.btnDblBkgs.Size = new System.Drawing.Size(255, 31);
+            this.btnDblBkgs.Size = new System.Drawing.Size(253, 31);
             this.btnDblBkgs.TabIndex = 86;
             this.btnDblBkgs.Text = "Double Bookings Detected";
             this.btnDblBkgs.UseVisualStyleBackColor = false;
@@ -648,9 +661,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(534, 155);
+            this.btnSearch.Location = new System.Drawing.Point(493, 155);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(191, 30);
+            this.btnSearch.Size = new System.Drawing.Size(101, 28);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -701,16 +714,15 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
-            // groupBox1
+            // btnMasterBooking
             // 
-            this.groupBox1.Controls.Add(this.chkShowLT);
-            this.groupBox1.Controls.Add(this.chkShowD2D);
-            this.groupBox1.Location = new System.Drawing.Point(874, 79);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(118, 66);
-            this.groupBox1.TabIndex = 98;
-            this.groupBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox1, "Both unticked means \'Ignore this Filter\'");
+            this.btnMasterBooking.Location = new System.Drawing.Point(608, 155);
+            this.btnMasterBooking.Name = "btnMasterBooking";
+            this.btnMasterBooking.Size = new System.Drawing.Size(117, 28);
+            this.btnMasterBooking.TabIndex = 88;
+            this.btnMasterBooking.Text = "Master Booking";
+            this.btnMasterBooking.UseVisualStyleBackColor = true;
+            this.btnMasterBooking.Click += new System.EventHandler(this.btnMasterBooking_Click);
             // 
             // availabilityGrid1
             // 
@@ -737,6 +749,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.grpFilter.ResumeLayout(false);
             this.grpFilter.PerformLayout();
             this.grpQual.ResumeLayout(false);
@@ -745,8 +759,6 @@
             this.grpYearGroups.PerformLayout();
             this.panelRibbon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -810,5 +822,6 @@
         private System.Windows.Forms.Button btnResetLayout;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnMasterBooking;
     }
 }
