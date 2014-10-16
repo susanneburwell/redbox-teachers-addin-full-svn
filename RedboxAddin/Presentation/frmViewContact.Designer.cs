@@ -315,6 +315,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ckActor = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -385,6 +386,7 @@
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Controls.Add(this.chkCurrent);
             this.tabPage5.Controls.Add(this.groupBox8);
+            this.tabPage5.Controls.Add(this.ckActor);
             this.tabPage5.Controls.Add(this.chkTA);
             this.tabPage5.Controls.Add(this.chkTeacher);
             this.tabPage5.Controls.Add(this.groupBox6);
@@ -718,7 +720,7 @@
             // 
             this.chkCurrent.AutoSize = true;
             this.chkCurrent.ForeColor = System.Drawing.Color.Purple;
-            this.chkCurrent.Location = new System.Drawing.Point(419, 76);
+            this.chkCurrent.Location = new System.Drawing.Point(399, 79);
             this.chkCurrent.Name = "chkCurrent";
             this.chkCurrent.Size = new System.Drawing.Size(74, 20);
             this.chkCurrent.TabIndex = 85;
@@ -794,7 +796,7 @@
             // 
             this.chkTA.AutoSize = true;
             this.chkTA.ForeColor = System.Drawing.Color.Purple;
-            this.chkTA.Location = new System.Drawing.Point(511, 102);
+            this.chkTA.Location = new System.Drawing.Point(491, 105);
             this.chkTA.Name = "chkTA";
             this.chkTA.Size = new System.Drawing.Size(50, 20);
             this.chkTA.TabIndex = 82;
@@ -805,7 +807,7 @@
             // 
             this.chkTeacher.AutoSize = true;
             this.chkTeacher.ForeColor = System.Drawing.Color.Purple;
-            this.chkTeacher.Location = new System.Drawing.Point(419, 102);
+            this.chkTeacher.Location = new System.Drawing.Point(399, 105);
             this.chkTeacher.Name = "chkTeacher";
             this.chkTeacher.Size = new System.Drawing.Size(83, 20);
             this.chkTeacher.TabIndex = 81;
@@ -1050,7 +1052,7 @@
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(425, 36);
+            this.lblID.Location = new System.Drawing.Point(405, 39);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(72, 16);
             this.lblID.TabIndex = 58;
@@ -3439,6 +3441,17 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // ckActor
+            // 
+            this.ckActor.AutoSize = true;
+            this.ckActor.ForeColor = System.Drawing.Color.Purple;
+            this.ckActor.Location = new System.Drawing.Point(547, 105);
+            this.ckActor.Name = "ckActor";
+            this.ckActor.Size = new System.Drawing.Size(58, 20);
+            this.ckActor.TabIndex = 82;
+            this.ckActor.Text = "Actor";
+            this.ckActor.UseVisualStyleBackColor = true;
+            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3784,5 +3797,6 @@
         private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.TextBox txtKeyRef;
         private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.CheckBox ckActor;
     }
 }

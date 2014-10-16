@@ -1153,7 +1153,6 @@ namespace RedboxAddin.Presentation
                     cd.CRBStatus = txtCRBstatus.Text;
                     cd.TeacherStatus = txtTeacherStatus.Text;
                     cd.Teacher = chkTeacher.Checked;
-                    cd.TA = chkTA.Checked;
                     cd.NN = chkNN.Checked;
                     cd.QNN = chkQNN.Checked;
                     cd.SEN = chkSEN.Checked;
@@ -1187,7 +1186,6 @@ namespace RedboxAddin.Presentation
                     cd.FirstAid = chkFirstAid.Checked;
                     cd.RWInc = chkRWInc.Checked;
                     cd.BSL = chkBSL.Checked;
-
 
                     db.SubmitChanges();
                     return;

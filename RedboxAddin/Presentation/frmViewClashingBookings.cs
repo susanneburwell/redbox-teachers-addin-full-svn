@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using RedboxAddin.BL;
+using RedboxAddin.DL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,10 @@ namespace RedboxAddin.Presentation
     public partial class frmViewClashingBookings : Form
     {
         string teacherName = string.Empty;
+        long teacherID = 0;
         DataTable dtClashingMasterBookings = null;
+        DataSet dsClashingMasterBookings = null;
+
         DateTime sDate;
         DateTime eDate;
         RedBoxDB db;
@@ -24,15 +28,26 @@ namespace RedboxAddin.Presentation
             InitializeComponent();
         }
 
-        public frmViewClashingBookings(string teacherName, DateTime startDate, DateTime endDate, DataTable clashingMasterBookings)
+        public frmViewClashingBookings(long teacherID, string teacherName, DateTime startDate, DateTime endDate, DataTable clashingMasterBookings)
         {
             InitializeComponent();
+            this.teacherID = teacherID;
             this.teacherName = teacherName;
             this.dtClashingMasterBookings = clashingMasterBookings;
             this.sDate = startDate;
             this.eDate = endDate;
             gridControl1.DataSource = clashingMasterBookings;
         }
+
+        public frmViewClashingBookings(DataSet clashingMasterBookings)
+        {
+            InitializeComponent();
+
+            DataTable table = clashingMasterBookings.Tables[0];
+            gridControl1.DataSource = table;
+
+        }
+
 
         private void frmViewClashingBookings_Load(object sender, EventArgs e)
         {
@@ -41,7 +56,7 @@ namespace RedboxAddin.Presentation
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
                 db = new RedBoxDB(CONNSTR);
 
-                this.Text = "Clash Bookings for " + this.teacherName;
+                //this.Text = "Clash Bookings for " + this.teacherName;
             }
             catch (Exception ex)
             {
@@ -73,53 +88,69 @@ namespace RedboxAddin.Presentation
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
-            bool isClashing = false;
-            List<School> oSchools = db.Schools.ToList();
-
-            DataTable table = new DataTable();
-            table.Columns.Add("MasterBookingID", typeof(long));
-            table.Columns.Add("School", typeof(string));
-            table.Columns.Add("StartDate", typeof(DateTime));
-            table.Columns.Add("EndDate", typeof(DateTime));
-
-            try
-            {
-                foreach (DataRow row in dtClashingMasterBookings.Rows)
-                {
-                    long masterBookingID = long.Parse(row["MasterBookingID"].ToString());
-                    MasterBooking oMasterBooking = db.MasterBookings.ToList().Where(p => p.ID == masterBookingID).SingleOrDefault();
-
-                    List<Booking> oBookings = db.Bookings.ToList().Where(p => p.MasterBookingID == masterBookingID).ToList();
-                    if (oBookings.Count > 0)
-                    {
-                        foreach (Booking oBooking in oBookings)
-                        {
-                            if (oBooking.Date >= sDate && oBooking.Date <= eDate)
-                            {
-                                isClashing = true;
-                            }
-                        }
-
-                        if (isClashing)
-                        {
-                            string schoolName = "N/A";
-                            if (oMasterBooking.SchoolID > 0)
-                                schoolName = oSchools.Where(p => p.ID == oMasterBooking.SchoolID).SingleOrDefault().SchoolName;
-                            table.Rows.Add(oMasterBooking.ID, schoolName, oMasterBooking.StartDate, oMasterBooking.EndDate);
-                        }
-                    }
-                }
+            DataTable table = new DBManager().GetClashes().Tables[0];
+            if (table.Rows.Count > 0)
                 gridControl1.DataSource = table;
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in btnRefresh_Click: " + ex.Message);
-            }
+            else
+                gridControl1.DataSource = null;
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
 
+
+        //private void Test()
+        //{
+
+        //    bool isClashing = false;
+        //    List<School> oSchools = db.Schools.ToList();
+
+        //    DataTable table = new DataTable();
+        //    table.Columns.Add("MasterBookingID", typeof(long));
+        //    table.Columns.Add("TeacherName", typeof(string));
+        //    table.Columns.Add("School", typeof(string));
+        //    table.Columns.Add("StartDate", typeof(DateTime));
+        //    table.Columns.Add("EndDate", typeof(DateTime));
+
+        //    try
+        //    {
+        //        List<MasterBooking> oMasterBookings = db.MasterBookings.ToList().ToList();
+
+        //        foreach (MasterBooking oMasterBooking in oMasterBookings)
+        //        {
+        //            List<Booking> oBookings = db.Bookings.ToList().Where(p => p.MasterBookingID == oMasterBooking.ID).ToList();
+        //            if (oBookings.Count > 0)
+        //            {
+        //                foreach (Booking oBooking in oBookings)
+        //                {
+        //                    int count =  db.GuaranteedDays.ToList().Where(p => p.TeacherID == oMasterBooking.ContactID && p.Date == oBooking.Date).Count();
+        //                    if (count > 0)
+        //                        isClashing = true;
+        //                }
+
+        //                if (isClashing)
+        //                {
+        //                    string schoolName = "N/A";
+        //                    if (oMasterBooking.SchoolID > 0)
+        //                        schoolName = oSchools.Where(p => p.ID == oMasterBooking.SchoolID).SingleOrDefault().SchoolName;
+        //                    table.Rows.Add(oMasterBooking.ID, schoolName, oMasterBooking.StartDate, oMasterBooking.EndDate);
+        //                }
+        //            }
+        //        }
+        //        gridControl1.DataSource = table;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in btnRefresh_Click: " + ex.Message);
+        //    }
+        //}
+
+        //private void btnTest_Click(object sender, EventArgs e)
+        //{
+        //    Test();
+        //}
 
 
     }

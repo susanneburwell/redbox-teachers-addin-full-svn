@@ -21,8 +21,7 @@ namespace RedboxAddin.Presentation
     public partial class frmTeacherUpdate : Form
     {
         long _teacherID = 0;
-        bool isClashing = false;
-        DataTable table = new DataTable();
+        DataSet dsClashingDates = new DataSet();
         RedBoxDB db;
 
         public frmTeacherUpdate()
@@ -34,7 +33,6 @@ namespace RedboxAddin.Presentation
         {
             gcGuaranteed.DataSource = bindingSource1;
 
-
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -43,14 +41,10 @@ namespace RedboxAddin.Presentation
                 //PopulateTeacher(cmbTeacher);
                 Utils.PopulateTeacher(cmbTeacher, rdoLastName.Checked);
 
-                if (_teacherID != 0) LoadTeacherDates(_teacherID);
-
-                table.Columns.Add("MasterBookingID", typeof(long));
-                table.Columns.Add("School", typeof(string));
-                table.Columns.Add("StartDate", typeof(DateTime));
-                table.Columns.Add("EndDate", typeof(DateTime));
+                if (_teacherID != 0) LoadTeacherDates(_teacherID);              
 
                 TickAllDateCheckBoxes();
+                CheckForClashingDates();
             }
             catch (Exception ex)
             {
@@ -245,6 +239,7 @@ namespace RedboxAddin.Presentation
             SaveRequest();
             LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
             CheckForClashingDates();
+
         }
 
         private void radAbs_CheckedChanged(object sender, EventArgs e)
@@ -372,6 +367,7 @@ namespace RedboxAddin.Presentation
             LoadTeacherDates(_teacherID);
             btnDblBkgs.Visible = false;
             TickAllDateCheckBoxes();
+            CheckForClashingDates();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -453,65 +449,80 @@ namespace RedboxAddin.Presentation
 
         private void CheckForClashingDates()
         {
-            DateTime sDate = dtFrom.Value.Date;
-            DateTime eDate = dtTo.Value.Date;
-            long teacherID = -1;
-            teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
 
-            if (teacherID != -1)
+            dsClashingDates = new DBManager().GetClashes();
+            if (dsClashingDates.Tables[0].Rows.Count > 0)
             {
-                table.Rows.Clear();
-                isClashing = false;
-
-                List<MasterBooking> oMasterBookings = db.MasterBookings.ToList().OrderBy(a => a.ContactID).Where(a => ((a.ContactID == teacherID) && (
-                                (sDate.Date >= (a.StartDate.Date) && sDate.Date <= (a.EndDate.Date) && eDate.Date > (a.StartDate.Date) && eDate.Date >= (a.EndDate.Date)) ||
-                                (sDate.Date >= (a.StartDate.Date) && sDate.Date < (a.EndDate.Date) && eDate.Date > (a.StartDate.Date) && eDate.Date <= (a.EndDate.Date)) ||
-                                (sDate.Date <= (a.StartDate.Date) && sDate.Date < (a.EndDate.Date) && eDate.Date >= (a.StartDate.Date) && eDate.Date <= (a.EndDate.Date)) ||
-                                (sDate.Date <= (a.StartDate.Date) && eDate.Date >= (a.EndDate.Date))))).ToList();
-
-
-                List<School> oSchools = db.Schools.ToList();
-
-                foreach (MasterBooking oMasterBooking in oMasterBookings)
-                {
-                    List<Booking> oBookings = db.Bookings.ToList().Where(p => p.MasterBookingID == oMasterBooking.ID).ToList();
-                    if (oBookings.Count > 0)
-                    {
-                        foreach (Booking oBooking in oBookings)
-                        {
-                            if (oBooking.Date >= sDate && oBooking.Date <= eDate)
-                            {
-                                isClashing = true;
-                            }
-                        }
-
-                        if (isClashing)
-                        {
-                            string schoolName = "N/A";
-                            if (oMasterBooking.SchoolID > 0)
-                                schoolName = oSchools.Where(p => p.ID == oMasterBooking.SchoolID).SingleOrDefault().SchoolName;
-                            table.Rows.Add(oMasterBooking.ID, schoolName, oMasterBooking.StartDate, oMasterBooking.EndDate);
-
-                            btnDblBkgs.Visible = true;
-                            flashtimer1.Interval = 500;
-                            flashtimer1.Enabled = true;
-                        }
-                        else
-                        {
-                            btnDblBkgs.Visible = false;
-                            flashtimer1.Enabled = false;
-                        }
-
-                    }
-                }
+                btnDblBkgs.Visible = true;
+                flashtimer1.Interval = 500;
+                flashtimer1.Enabled = true;
             }
+            else
+            {
+                btnDblBkgs.Visible = false;
+                flashtimer1.Enabled = false;
+            }
+
+            //DateTime sDate = dtFrom.Value.Date;
+            //DateTime eDate = dtTo.Value.Date;
+            //long teacherID = -1;
+            //teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+
+            //if (teacherID != -1)
+            //{
+            //    table.Rows.Clear();
+            //    isClashing = false;
+
+            //    List<MasterBooking> oMasterBookings = db.MasterBookings.ToList().OrderBy(a => a.ContactID).Where(a => ((a.ContactID == teacherID) && (
+            //                    (sDate.Date >= (a.StartDate.Date) && sDate.Date <= (a.EndDate.Date) && eDate.Date > (a.StartDate.Date) && eDate.Date >= (a.EndDate.Date)) ||
+            //                    (sDate.Date >= (a.StartDate.Date) && sDate.Date < (a.EndDate.Date) && eDate.Date > (a.StartDate.Date) && eDate.Date <= (a.EndDate.Date)) ||
+            //                    (sDate.Date <= (a.StartDate.Date) && sDate.Date < (a.EndDate.Date) && eDate.Date >= (a.StartDate.Date) && eDate.Date <= (a.EndDate.Date)) ||
+            //                    (sDate.Date <= (a.StartDate.Date) && eDate.Date >= (a.EndDate.Date))))).ToList();
+
+
+            //    List<School> oSchools = db.Schools.ToList();
+
+            //    foreach (MasterBooking oMasterBooking in oMasterBookings)
+            //    {
+            //        List<Booking> oBookings = db.Bookings.ToList().Where(p => p.MasterBookingID == oMasterBooking.ID).ToList();
+            //        if (oBookings.Count > 0)
+            //        {
+            //            foreach (Booking oBooking in oBookings)
+            //            {
+            //                if (oBooking.Date >= sDate && oBooking.Date <= eDate)
+            //                {
+            //                    isClashing = true;
+            //                }
+            //            }
+
+            //            if (isClashing)
+            //            {
+            //                string schoolName = "N/A";
+            //                if (oMasterBooking.SchoolID > 0)
+            //                    schoolName = oSchools.Where(p => p.ID == oMasterBooking.SchoolID).SingleOrDefault().SchoolName;
+            //                table.Rows.Add(oMasterBooking.ID, schoolName, oMasterBooking.StartDate, oMasterBooking.EndDate);
+
+            //                btnDblBkgs.Visible = true;
+            //                flashtimer1.Interval = 500;
+            //                flashtimer1.Enabled = true;
+            //            }
+            //            else
+            //            {
+            //                btnDblBkgs.Visible = false;
+            //                flashtimer1.Enabled = false;
+            //            }
+
+            //        }
+            //    }
+            //}
         }
 
         private void btnDblBkgs_Click(object sender, EventArgs e)
         {
-            frmViewClashingBookings frm = new frmViewClashingBookings(cmbTeacher.Text.Trim(), dtFrom.Value.Date, dtTo.Value.Date, table);
-            frm.ShowDialog();
-            CheckForClashingDates();
+            frmViewClashingBookings frm = new frmViewClashingBookings(dsClashingDates);
+            frm.StartPosition = FormStartPosition.CenterParent;
+            //frm.TopMost = true;
+            frm.Show();
         }
 
         private void flashtimer1_Tick(object sender, EventArgs e)
@@ -531,6 +542,16 @@ namespace RedboxAddin.Presentation
             chkWed.Checked = true;
             chkThu.Checked = true;
             chkFri.Checked = true;
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DBManager().GetClashes();
+
+            frmViewClashingBookings frm = new frmViewClashingBookings(ds);
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.TopMost = true;
+            frm.Show();
         }
     }
 

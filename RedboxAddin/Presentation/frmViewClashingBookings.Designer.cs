@@ -36,10 +36,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.School = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.StartDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.EndDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.contactID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FirstName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LastName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SchoolName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.num = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.days = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -60,7 +64,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 97.47634F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.523659F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(514, 298);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(514, 467);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panelTop
@@ -121,7 +125,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 103);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(508, 187);
+            this.gridControl1.Size = new System.Drawing.Size(508, 351);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -130,42 +134,16 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.MasterBookingID,
-            this.School,
-            this.StartDate,
-            this.EndDate});
+            this.contactID,
+            this.FirstName,
+            this.LastName,
+            this.SchoolName,
+            this.Date,
+            this.num,
+            this.days});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
-            // 
-            // School
-            // 
-            this.School.Caption = "School";
-            this.School.FieldName = "School";
-            this.School.Name = "School";
-            this.School.OptionsColumn.AllowEdit = false;
-            this.School.Visible = true;
-            this.School.VisibleIndex = 0;
-            this.School.Width = 150;
-            // 
-            // StartDate
-            // 
-            this.StartDate.Caption = "StartDate";
-            this.StartDate.FieldName = "StartDate";
-            this.StartDate.Name = "StartDate";
-            this.StartDate.OptionsColumn.AllowEdit = false;
-            this.StartDate.Visible = true;
-            this.StartDate.VisibleIndex = 1;
-            this.StartDate.Width = 100;
-            // 
-            // EndDate
-            // 
-            this.EndDate.Caption = "EndDate";
-            this.EndDate.FieldName = "EndDate";
-            this.EndDate.Name = "EndDate";
-            this.EndDate.OptionsColumn.AllowEdit = false;
-            this.EndDate.Visible = true;
-            this.EndDate.VisibleIndex = 2;
-            this.EndDate.Width = 100;
             // 
             // MasterBookingID
             // 
@@ -173,11 +151,73 @@
             this.MasterBookingID.FieldName = "MasterBookingID";
             this.MasterBookingID.Name = "MasterBookingID";
             // 
+            // contactID
+            // 
+            this.contactID.Caption = "contactID";
+            this.contactID.FieldName = "contactID";
+            this.contactID.Name = "contactID";
+            // 
+            // FirstName
+            // 
+            this.FirstName.Caption = "FirstName";
+            this.FirstName.FieldName = "FirstName";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.OptionsColumn.AllowEdit = false;
+            this.FirstName.OptionsColumn.ReadOnly = true;
+            this.FirstName.Visible = true;
+            this.FirstName.VisibleIndex = 0;
+            this.FirstName.Width = 80;
+            // 
+            // LastName
+            // 
+            this.LastName.Caption = "LastName";
+            this.LastName.FieldName = "LastName";
+            this.LastName.Name = "LastName";
+            this.LastName.OptionsColumn.AllowEdit = false;
+            this.LastName.OptionsColumn.ReadOnly = true;
+            this.LastName.Visible = true;
+            this.LastName.VisibleIndex = 1;
+            this.LastName.Width = 81;
+            // 
+            // SchoolName
+            // 
+            this.SchoolName.Caption = "SchoolName";
+            this.SchoolName.FieldName = "SchoolName";
+            this.SchoolName.Name = "SchoolName";
+            this.SchoolName.OptionsColumn.AllowEdit = false;
+            this.SchoolName.OptionsColumn.ReadOnly = true;
+            this.SchoolName.Visible = true;
+            this.SchoolName.VisibleIndex = 2;
+            this.SchoolName.Width = 85;
+            // 
+            // Date
+            // 
+            this.Date.Caption = "Date";
+            this.Date.FieldName = "Date";
+            this.Date.Name = "Date";
+            this.Date.OptionsColumn.AllowEdit = false;
+            this.Date.OptionsColumn.ReadOnly = true;
+            this.Date.Visible = true;
+            this.Date.VisibleIndex = 3;
+            this.Date.Width = 50;
+            // 
+            // num
+            // 
+            this.num.Caption = "num";
+            this.num.FieldName = "num";
+            this.num.Name = "num";
+            // 
+            // days
+            // 
+            this.days.Caption = "days";
+            this.days.FieldName = "days";
+            this.days.Name = "days";
+            // 
             // frmViewClashingBookings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 298);
+            this.ClientSize = new System.Drawing.Size(514, 467);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmViewClashingBookings";
@@ -202,9 +242,13 @@
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn School;
-        private DevExpress.XtraGrid.Columns.GridColumn StartDate;
-        private DevExpress.XtraGrid.Columns.GridColumn EndDate;
+        private DevExpress.XtraGrid.Columns.GridColumn SchoolName;
+        private DevExpress.XtraGrid.Columns.GridColumn Date;
         private DevExpress.XtraGrid.Columns.GridColumn MasterBookingID;
+        private DevExpress.XtraGrid.Columns.GridColumn contactID;
+        private DevExpress.XtraGrid.Columns.GridColumn FirstName;
+        private DevExpress.XtraGrid.Columns.GridColumn LastName;
+        private DevExpress.XtraGrid.Columns.GridColumn num;
+        private DevExpress.XtraGrid.Columns.GridColumn days;
     }
 }
