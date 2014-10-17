@@ -450,7 +450,7 @@ namespace RedboxAddin.Presentation
         private void CheckForClashingDates()
         {
 
-            dsClashingDates = new DBManager().GetClashes();
+            dsClashingDates = new DBManager().GetClashingBookingDetails();
             if (dsClashingDates.Tables[0].Rows.Count > 0)
             {
                 btnDblBkgs.Visible = true;
@@ -519,7 +519,7 @@ namespace RedboxAddin.Presentation
 
         private void btnDblBkgs_Click(object sender, EventArgs e)
         {
-            frmViewClashingBookings frm = new frmViewClashingBookings(dsClashingDates);
+            frmViewClashingBookings frm = new frmViewClashingBookings();
             frm.StartPosition = FormStartPosition.CenterParent;
             //frm.TopMost = true;
             frm.Show();
@@ -546,9 +546,9 @@ namespace RedboxAddin.Presentation
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DBManager().GetClashes();
+            DataSet ds = new DBManager().GetClashingBookingDetails();
 
-            frmViewClashingBookings frm = new frmViewClashingBookings(ds);
+            frmViewClashingBookings frm = new frmViewClashingBookings();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.TopMost = true;
             frm.Show();

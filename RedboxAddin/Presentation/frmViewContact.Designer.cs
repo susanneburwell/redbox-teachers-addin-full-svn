@@ -71,6 +71,7 @@
             this.chkD2D = new System.Windows.Forms.CheckBox();
             this.chkLT = new System.Windows.Forms.CheckBox();
             this.chkPPA = new System.Windows.Forms.CheckBox();
+            this.chkActor = new System.Windows.Forms.CheckBox();
             this.chkTA = new System.Windows.Forms.CheckBox();
             this.chkTeacher = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -315,7 +316,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ckActor = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -386,7 +386,7 @@
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Controls.Add(this.chkCurrent);
             this.tabPage5.Controls.Add(this.groupBox8);
-            this.tabPage5.Controls.Add(this.ckActor);
+            this.tabPage5.Controls.Add(this.chkActor);
             this.tabPage5.Controls.Add(this.chkTA);
             this.tabPage5.Controls.Add(this.chkTeacher);
             this.tabPage5.Controls.Add(this.groupBox6);
@@ -791,6 +791,17 @@
             this.chkPPA.Text = "PPA";
             this.chkPPA.UseVisualStyleBackColor = true;
             this.chkPPA.Click += new System.EventHandler(this.chkPPA_Click);
+            // 
+            // chkActor
+            // 
+            this.chkActor.AutoSize = true;
+            this.chkActor.ForeColor = System.Drawing.Color.Purple;
+            this.chkActor.Location = new System.Drawing.Point(547, 105);
+            this.chkActor.Name = "chkActor";
+            this.chkActor.Size = new System.Drawing.Size(58, 20);
+            this.chkActor.TabIndex = 82;
+            this.chkActor.Text = "Actor";
+            this.chkActor.UseVisualStyleBackColor = true;
             // 
             // chkTA
             // 
@@ -3441,17 +3452,6 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // ckActor
-            // 
-            this.ckActor.AutoSize = true;
-            this.ckActor.ForeColor = System.Drawing.Color.Purple;
-            this.ckActor.Location = new System.Drawing.Point(547, 105);
-            this.ckActor.Name = "ckActor";
-            this.ckActor.Size = new System.Drawing.Size(58, 20);
-            this.ckActor.TabIndex = 82;
-            this.ckActor.Text = "Actor";
-            this.ckActor.UseVisualStyleBackColor = true;
-            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3797,6 +3797,6 @@
         private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.TextBox txtKeyRef;
         private System.Windows.Forms.Label label91;
-        private System.Windows.Forms.CheckBox ckActor;
+        private System.Windows.Forms.CheckBox chkActor;
     }
 }

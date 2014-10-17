@@ -573,7 +573,7 @@ namespace RedboxAddin.DL
             }
         }
 
-       
+
         public List<RTeacherday> GetTeacherDays(Int64 teacherID, bool past, bool future, bool guarantee)
         {
 
@@ -1105,7 +1105,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public DataSet GetClashes()
+        public DataSet GetClashingBookingDetails()
         {
             try
             {
@@ -1118,30 +1118,39 @@ namespace RedboxAddin.DL
 "dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
 
                 DataSet msgDs = GetDataSet(SQLstr);
-
-
-                //if (msgDs != null)
-                //{
-                //    foreach (DataRow dr in msgDs.Tables[0].Rows)
-                //    {
-                //        RBookings objBkg = new RBookings()
-                //        {
-                //            Teacher = dr["FullName"].ToString(),
-                //            SchoolName = dr["SchoolName"].ToString(),
-                //            Description = dr["Description"].ToString(),
-                //            Date = Utils.CheckDate(dr["Date"]),
-                //            ContactID = dr["ContactID"].ToString(),
-                //            SchoolID = dr["SchoolID"].ToString(),
-                //            MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
-                //            BookingStatus = dr["BookingStatus"].ToString()
-
-                //        };
-                //        bookingList.Add(objBkg);
-
-                //    }
-
-                //}
                 return msgDs;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
+                return null;
+            }
+        }
+
+        public DataTable GetClashingBookingDetails(DateTime dateFrom, DateTime dateTo, long teacherID)
+        {
+            try
+            {
+                string SQLstr = "SELECT dbo.MasterBookings.ID AS MasterBookingID, dbo.MasterBookings.contactID, dbo.Contacts.FirstName, dbo.Contacts.LastName, " +
+"dbo.Schools.SchoolName, dbo.Bookings.Date, COUNT(dbo.Bookings.Date) AS num, SUM(CASE WHEN [MasterBookings].HalfDay = 1 THEN 0.5 ELSE 1 END) AS days " +
+"FROM dbo.Bookings LEFT OUTER JOIN dbo.MasterBookings ON dbo.Bookings.MasterBookingID = dbo.MasterBookings.ID INNER JOIN" +
+"(SELECT TeacherID, Date FROM dbo.GuaranteedDays WHERE (Type = 5) GROUP BY TeacherID, Date) AS a1 ON a1.TeacherID = dbo.MasterBookings.contactID AND " +
+"a1.Date = dbo.Bookings.Date INNER JOIN dbo.Contacts ON dbo.MasterBookings.contactID = dbo.Contacts.contactID INNER JOIN " +
+"dbo.Schools ON dbo.MasterBookings.SchoolID = dbo.Schools.ID"+
+" WHERE Bookings.Date >= '" + dateFrom.ToString("yyyy-MM-dd") + "' AND Bookings.Date <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND a1.TeacherID = " + teacherID +
+" GROUP BY dbo.Bookings.Date, dbo.MasterBookings.contactID, dbo.MasterBookings.ID, dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
+
+                DataSet msgDs = GetDataSet(SQLstr);
+                if (msgDs != null)
+                {
+                    DataTable table = msgDs.Tables[0];
+                    if (table.Rows.Count > 0)
+                        return table;
+                    else
+                        return null;
+                }
+                else
+                    return null;
             }
             catch (Exception ex)
             {
@@ -1624,7 +1633,7 @@ namespace RedboxAddin.DL
             }
 
         }
-       
+
         public string GetVettingEmailAddresses(string SchoolID)
         {
             try
@@ -3483,7 +3492,7 @@ namespace RedboxAddin.DL
             return SQLstr;
         }
 
-        
+
         private string GetBookingSQL(DateTime weekbegining)
         {
             string monday = weekbegining.ToString("yyyyMMdd");

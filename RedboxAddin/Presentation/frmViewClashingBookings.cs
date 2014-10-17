@@ -22,31 +22,33 @@ namespace RedboxAddin.Presentation
         DateTime sDate;
         DateTime eDate;
         RedBoxDB db;
+        
 
         public frmViewClashingBookings()
         {
             InitializeComponent();
+            btnRefresh_Click(null, null);
         }
 
-        public frmViewClashingBookings(long teacherID, string teacherName, DateTime startDate, DateTime endDate, DataTable clashingMasterBookings)
-        {
-            InitializeComponent();
-            this.teacherID = teacherID;
-            this.teacherName = teacherName;
-            this.dtClashingMasterBookings = clashingMasterBookings;
-            this.sDate = startDate;
-            this.eDate = endDate;
-            gridControl1.DataSource = clashingMasterBookings;
-        }
+        //public frmViewClashingBookings(long teacherID, string teacherName, DateTime startDate, DateTime endDate, DataTable clashingMasterBookings)
+        //{
+        //    InitializeComponent();
+        //    this.teacherID = teacherID;
+        //    this.teacherName = teacherName;
+        //    this.dtClashingMasterBookings = clashingMasterBookings;
+        //    this.sDate = startDate;
+        //    this.eDate = endDate;
+        //    gridControl1.DataSource = clashingMasterBookings;
+        //}
 
-        public frmViewClashingBookings(DataSet clashingMasterBookings)
-        {
-            InitializeComponent();
+        //public frmViewClashingBookings(DataSet clashingMasterBookings)
+        //{
+        //    InitializeComponent();
 
-            DataTable table = clashingMasterBookings.Tables[0];
-            gridControl1.DataSource = table;
+        //    DataTable table = clashingMasterBookings.Tables[0];
+        //    gridControl1.DataSource = table;
 
-        }
+        //}
 
 
         private void frmViewClashingBookings_Load(object sender, EventArgs e)
@@ -56,7 +58,6 @@ namespace RedboxAddin.Presentation
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
                 db = new RedBoxDB(CONNSTR);
 
-                //this.Text = "Clash Bookings for " + this.teacherName;
             }
             catch (Exception ex)
             {
@@ -73,7 +74,6 @@ namespace RedboxAddin.Presentation
                 if (info.InRow || info.InRowCell)
                 {
                     string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                    //MessageBox.Show(string.Format("DoubleClick on row: {0}, column: {1}.", info.RowHandle, colCaption));
                     string masterbooking = gridView1.GetRowCellValue(info.RowHandle, "MasterBookingID").ToString();
                     long id = Convert.ToInt64(masterbooking);
                     frmMasterBooking fq = new frmMasterBooking(id);
@@ -88,7 +88,7 @@ namespace RedboxAddin.Presentation
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            DataTable table = new DBManager().GetClashes().Tables[0];
+            DataTable table = new DBManager().GetClashingBookingDetails().Tables[0];
             if (table.Rows.Count > 0)
                 gridControl1.DataSource = table;
             else

@@ -296,13 +296,16 @@ namespace RedboxAddin.UC
                 {
                     REventArgs rowInfo = new REventArgs();
                     GridHitInfo info = gridView1.CalcHitInfo(new Point(e.X, e.Y));
-
+                    Color backColor = Color.Black;
                     //******************88
                     if (info.InRow || info.InRowCell)
                     {
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                         rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
                         rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
+
+                        backColor = ((GridViewInfo)gridView1.GetViewInfo()).GetGridCellInfo(info.RowHandle, info.Column).Appearance.BackColor;
+
 
                         switch (rowInfo.ColumnCaption.Substring(0, 3))
                         {
@@ -326,9 +329,17 @@ namespace RedboxAddin.UC
 
                     if (rowInfo.Description.Trim() == "")
                     {
-                        //System.Media.SystemSounds.Exclamation.Play();
-                        System.Media.SystemSounds.Beep.Play();
-                        return;
+                        if (backColor != Color.White)
+                        {
+                            //System.Media.SystemSounds.Exclamation.Play();
+                            System.Media.SystemSounds.Beep.Play();
+                            return;
+                        }
+                        else
+                        {
+                            long teacherID = long.Parse(gridView1.GetRowCellValue(info.RowHandle, "TeacherID").ToString());
+                            rowInfo.Status = "New." + teacherID;
+                        }
                     }
 
 
@@ -452,6 +463,7 @@ namespace RedboxAddin.UC
                                 description = "unavailable";
                                 break;
                         }
+
                         //Add Notes & description for the tool-tip
                         toolTip = "Notes : " + gDay.Note + "\nDescription : " + description;
 
@@ -476,6 +488,7 @@ namespace RedboxAddin.UC
         private REventArgs _rowInfo;
         public ImageList imageList;
         public event EventHandler RepaintRequired;
+        string teacherIDForANewBooking = string.Empty;
 
 
         public void SetRowInfo(REventArgs rowInfo)
@@ -487,45 +500,52 @@ namespace RedboxAddin.UC
         protected override void CreateItems()
         {
             //image 0 = dot ; image 1 = tick
-            int unass = 0;
-            int cont = 0;
-            int conf = 0;
-            int dets = 0;
-            int none = 0;
-
-            switch (_rowInfo.Status)
+            if (!(_rowInfo.Status.Contains( "New")))
             {
-                case "Unassigned":
-                    unass = 1;
-                    break;
+                int unass = 0;
+                int cont = 0;
+                int conf = 0;
+                int dets = 0;
+                int none = 0;
 
-                case "Contacted":
-                    cont = 1;
-                    break;
+                switch (_rowInfo.Status)
+                {
+                    case "Unassigned":
+                        unass = 1;
+                        break;
 
-                case "Confirmed":
-                    conf = 1;
-                    break;
+                    case "Contacted":
+                        cont = 1;
+                        break;
 
-                case "Details Sent":
-                    dets = 1;
-                    break;
+                    case "Confirmed":
+                        conf = 1;
+                        break;
 
-                case "None":
-                    none = 1;
-                    break;
+                    case "Details Sent":
+                        dets = 1;
+                        break;
+
+                    case "None":
+                        none = 1;
+                        break;
+                }
+
+                Items.Clear();
+                int vv = GridMenuImages.Column.Images.Count;
+                int vw = GridMenuImages.Footer.Images.Count;
+                int vx = GridMenuImages.GroupPanel.Images.Count;
+                Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
+                Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
+                Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
+                Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
+                Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
             }
-
-            Items.Clear();
-            int vv = GridMenuImages.Column.Images.Count;
-            int vw = GridMenuImages.Footer.Images.Count;
-            int vx = GridMenuImages.GroupPanel.Images.Count;
-            Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
-            Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
-            Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
-            Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
-            Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
-
+            else
+            {                
+                teacherIDForANewBooking = _rowInfo.Status.Split('.')[1];
+                Items.Add(CreateMenuItem("New item", imageList.Images[0], "NEW", true));                
+            }
         }
 
         protected override void OnMenuItemClick(object sender, EventArgs e)
@@ -534,20 +554,31 @@ namespace RedboxAddin.UC
             DXMenuItem item = sender as DXMenuItem;
             string status = item.Tag.ToString();
 
-            string teacher = _rowInfo.Teacher;
-            string description = _rowInfo.Description;
-            string colCaption = _rowInfo.ColumnCaption;
 
-            List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
 
-            if (MasterBookingIDs.Count > 0)
+            if (status == "NEW")
             {
-                if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status))
+                frmMasterBooking frm = new frmMasterBooking(teacherIDForANewBooking);
+                frm.Show();
+            }
+            else
+            {
+
+                string teacher = _rowInfo.Teacher;
+                string description = _rowInfo.Description;
+                string colCaption = _rowInfo.ColumnCaption;
+
+                List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+
+                if (MasterBookingIDs.Count > 0)
                 {
-                    EventHandler handler = RepaintRequired;
-                    if (handler != null)
+                    if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status))
                     {
-                        handler(this, EventArgs.Empty);
+                        EventHandler handler = RepaintRequired;
+                        if (handler != null)
+                        {
+                            handler(this, EventArgs.Empty);
+                        }
                     }
                 }
             }

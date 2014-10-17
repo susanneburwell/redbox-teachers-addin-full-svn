@@ -1177,6 +1177,7 @@ namespace RedboxAddin.Presentation
                     cd.Current = chkCurrent.Checked;
                     cd.Teacher = chkTeacher.Checked;
                     cd.TA = chkTA.Checked;
+                    cd.Actor = chkActor.Checked;
                     cd.PPA = chkPPA.Checked;
                     cd.LT = chkLT.Checked;
                     cd.D2D = chkD2D.Checked;
@@ -1225,6 +1226,7 @@ namespace RedboxAddin.Presentation
                         txtTeacherStatus.Text = cd.TeacherStatus;
                         chkTeacher.Checked = cd.Teacher;
                         chkTA.Checked = cd.TA;
+                        chkActor.Checked = cd.Actor;
                         chkNN.Checked = cd.NN;
                         chkQNN.Checked = cd.QNN;
                         chkSEN.Checked = cd.SEN;

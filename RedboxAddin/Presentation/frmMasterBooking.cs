@@ -26,11 +26,19 @@ namespace RedboxAddin.Presentation
     {
         RedBoxDB db;
         long _masterBookingID = -1;
+        long contactIDLong = -1;
         bool loading = false;
 
         public frmMasterBooking()
         {
             InitializeComponent();
+            availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
+        }
+
+        public frmMasterBooking(string contactID)
+        {
+            InitializeComponent();
+            this.contactIDLong = long.Parse(contactID);           
             availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
@@ -44,6 +52,9 @@ namespace RedboxAddin.Presentation
         private void frmNewRequest_Load(object sender, EventArgs e)
         {
             InitialLoad();
+            if (contactIDLong != -1)
+                cmbTeacher.SelectedValue = contactIDLong;
+
         }
 
         private void InitialLoad()
@@ -963,12 +974,56 @@ namespace RedboxAddin.Presentation
         {
             if (SaveRequest())
             {
-                ShowSavedDetails();
+                bool isClashing = false;
+                List<DayOfWeek> listOfDays = new List<DayOfWeek>();
 
-                btnView.Text = "Edit Daily Bookings";
-                SetGridVisibility();
-                btnSave.Text = "Save Updates";
-                CheckDoubleBookings();
+                //Add ticked days to listOfDays
+                if (chkMon.Checked)
+                    listOfDays.Add(DayOfWeek.Monday);
+                if (chkTue.Checked)
+                    listOfDays.Add(DayOfWeek.Tuesday);
+                if (chkWed.Checked)
+                    listOfDays.Add(DayOfWeek.Wednesday);
+                if (chkThu.Checked)
+                    listOfDays.Add(DayOfWeek.Thursday);
+                if (chkFri.Checked)
+                    listOfDays.Add(DayOfWeek.Friday);
+
+
+                DataTable dtClashingBookings = new DBManager().GetClashingBookingDetails(dtFrom.Value.Date, dtTo.Value.Date, Utils.CheckLong(cmbTeacher.SelectedValue));
+                if (dtClashingBookings != null)
+                {
+                    foreach (DataRow row in dtClashingBookings.Rows)
+                    {
+                        DateTime bookingDate = DateTime.Parse(row["Date"].ToString());
+                        foreach (DayOfWeek day in listOfDays)
+                        {
+                            if (bookingDate.DayOfWeek == day)
+                            {
+                                isClashing = true;
+                                break;
+                            }
+                        }
+                        if (isClashing)
+                            break;
+                    }
+                }
+                else
+                    isClashing = false;
+
+                if (!isClashing)
+                {
+                    ShowSavedDetails();
+
+                    btnView.Text = "Edit Daily Bookings";
+                    SetGridVisibility();
+                    btnSave.Text = "Save Updates";
+                    CheckDoubleBookings();
+                }
+                else
+                {
+                    MessageBox.Show("Not Saved! The selected date(s) are already reserved for this teacher.");
+                }
             }
             else
             {
