@@ -28,6 +28,7 @@ namespace RedboxAddin.Presentation
         long _masterBookingID = -1;
         long contactIDLong = -1;
         bool loading = false;
+        string errorMessage = "Not Saved";
 
         public frmMasterBooking()
         {
@@ -269,142 +270,138 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-
-                if (dtTo.Value < dtFrom.Value)
+                errorMessage = "Not Saved";
+                if (!IsCalshing())
                 {
-                    MessageBox.Show("Your end date can not be earlier than your start date.");
-                    return false;
-                }
+                    MasterBooking mb;
+                    //If this is a new request - create a new item
 
-                if ((dtTo.Value == null) || (dtFrom.Value == null))
-                {
-                    MessageBox.Show("Please pick a start and end date.");
-                    return false;
-                }
+                    if (_masterBookingID < 1) mb = new MasterBooking();
 
+                    else mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
 
-                MasterBooking mb;
-                //If this is a new request - create a new item
-
-                if (_masterBookingID < 1) mb = new MasterBooking();
-
-                else mb = db.MasterBookings.Where<MasterBooking>(b => b.ID == _masterBookingID).FirstOrDefault();
-
-                //Table<MasterBooking> mbs = db.GetTable<MasterBooking>();
+                    //Table<MasterBooking> mbs = db.GetTable<MasterBooking>();
 
 
-                mb.SchoolID = Convert.ToInt64(cmbSchool.SelectedValue);
-                //mb.YearGroup = cmbYearGroup.Text;
-                //mb.TeacherLevel = cmbTeacherLevel.Text;
-                mb.StartDate = dtFrom.Value;
-                mb.EndDate = dtTo.Value;
-                mb.Details = txtDescription.Text;
-                mb.Notes = txtNotes.Text;
-                mb.HalfDay = chkHalfDay.Checked;
-                mb.LongTerm = chkLongTerm.Checked;
-                mb.Nur = chkNur.Checked;
-                mb.Rec = chkRec.Checked;
-                mb.Yr1 = chkYr1.Checked;
-                mb.Yr2 = chkYr2.Checked;
-                mb.Yr3 = chkYr3.Checked;
-                mb.Yr4 = chkYr4.Checked;
-                mb.Yr5 = chkYr5.Checked;
-                mb.Yr6 = chkYr6.Checked;
-                mb.Teacher = chkTeacher.Checked;
-                mb.TA = chkTA.Checked;
-                mb.SEN = chkSEN.Checked;
-                mb.QTS = chkQTS.Checked;
-                mb.NQT = chkNQT.Checked;
-                mb.OTT = chkOTT.Checked;
-                mb.QNN = chkQNN.Checked;
-                mb.NN = chkNN.Checked;
-                mb.PPL = chkPPL.Checked;
-                mb.Charge = Utils.CheckDecimal(txtCharge.Text);
+                    mb.SchoolID = Convert.ToInt64(cmbSchool.SelectedValue);
+                    //mb.YearGroup = cmbYearGroup.Text;
+                    //mb.TeacherLevel = cmbTeacherLevel.Text;
+                    mb.StartDate = dtFrom.Value;
+                    mb.EndDate = dtTo.Value;
+                    mb.Details = txtDescription.Text;
+                    mb.Notes = txtNotes.Text;
+                    mb.HalfDay = chkHalfDay.Checked;
+                    mb.LongTerm = chkLongTerm.Checked;
+                    mb.Nur = chkNur.Checked;
+                    mb.Rec = chkRec.Checked;
+                    mb.Yr1 = chkYr1.Checked;
+                    mb.Yr2 = chkYr2.Checked;
+                    mb.Yr3 = chkYr3.Checked;
+                    mb.Yr4 = chkYr4.Checked;
+                    mb.Yr5 = chkYr5.Checked;
+                    mb.Yr6 = chkYr6.Checked;
+                    mb.Teacher = chkTeacher.Checked;
+                    mb.TA = chkTA.Checked;
+                    mb.SEN = chkSEN.Checked;
+                    mb.QTS = chkQTS.Checked;
+                    mb.NQT = chkNQT.Checked;
+                    mb.OTT = chkOTT.Checked;
+                    mb.QNN = chkQNN.Checked;
+                    mb.NN = chkNN.Checked;
+                    mb.PPL = chkPPL.Checked;
+                    mb.Charge = Utils.CheckDecimal(txtCharge.Text);
 
-                mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
-                mb.Color = lblColor.Text;
-                mb.BookingStatus = cmbBookingStatus.Text;
-                mb.Provisional = chkProvisional.Checked;
+                    mb.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
+                    mb.Color = lblColor.Text;
+                    mb.BookingStatus = cmbBookingStatus.Text;
+                    mb.Provisional = chkProvisional.Checked;
 
-                //Check teacher is real
-                string teachername = cmbTeacher.Text.Replace(',', ' ');
-                if (teachername.Trim() == "") mb.ContactID = -1;
-
-
-                //If Teacher named
-                mb.NameGiven = radNG.Checked;
-                mb.AskedFor = radAF.Checked;
-                mb.TrialDay = radTD.Checked;
-                if (radNS.Checked == false) mb.LinkedTeacherID = Convert.ToInt64(cmbRequestedTeacher.SelectedValue);
-                else mb.LinkedTeacherID = -1;
-
-                //If this is not a new booking, submit changes and exit
-                if (_masterBookingID > 0)
-                {
-                    db.SubmitChanges();
-                    return true;
-                }
+                    //Check teacher is real
+                    string teachername = cmbTeacher.Text.Replace(',', ' ');
+                    if (teachername.Trim() == "") mb.ContactID = -1;
 
 
-                //This is a new Master booking so create new bookings
-                db.MasterBookings.InsertOnSubmit(mb);
-                db.SubmitChanges();
+                    //If Teacher named
+                    mb.NameGiven = radNG.Checked;
+                    mb.AskedFor = radAF.Checked;
+                    mb.TrialDay = radTD.Checked;
+                    if (radNS.Checked == false) mb.LinkedTeacherID = Convert.ToInt64(cmbRequestedTeacher.SelectedValue);
+                    else mb.LinkedTeacherID = -1;
 
-                if (mb.ID < 1)
-                {
-                    MessageBox.Show("There was an error creating the Master Booking.");
-                    Debug.DebugMessage(2, "There was an error creating the Master Booking. MasterBookingID 0 or Null");
-                    return false;
-                }
-                _masterBookingID = mb.ID;
-
-                //Create IndividualBookings
-                long contID = -1;
-                decimal? rate = null;
-
-
-                try
-                {
-                    rate = Convert.ToDecimal(txtRate.Text);
-                }
-                catch (Exception) { }
-
-
-                DateTime bookingdate = (System.DateTime)mb.StartDate;
-                int iCatch = 0;
-                do
-                {
-                    //only create new booking if relevant day tickbox is ticked
-                    if (CheckIfRequiredDay(bookingdate))
+                    //If this is not a new booking, submit changes and exit
+                    if (_masterBookingID > 0)
                     {
-                        var nb = new Booking();
-                        nb.MasterBookingID = mb.ID;
-                        nb.Date = bookingdate;
-                        nb.Charge = Utils.CheckDecimal(txtCharge.Text);
-                        if (rate == null) nb.Rate = 0;
-                        else nb.Rate = (decimal)rate;
-                        nb.HalfDay = chkHalfDay.Checked;
-                        if (lblDescription.Visible) nb.Description = lblDescription.Text;
-                        else nb.Description = txtDescription.Text;
-
-                        db.Bookings.InsertOnSubmit(nb);
+                        db.SubmitChanges();
+                        return true;
                     }
 
-                    bookingdate = bookingdate.AddDays(1);
-                    iCatch += 1;
-                    if (iCatch > 365)
+
+                    //This is a new Master booking so create new bookings
+                    db.MasterBookings.InsertOnSubmit(mb);
+                    db.SubmitChanges();
+
+                    if (mb.ID < 1)
                     {
-                        MessageBox.Show("There was an error creating the daily bookings. Too many booking created.");
-                        Debug.DebugMessage(2, "Overflow error creating the daily bookings. MasterBookingID: " + mb.ID);
+                        MessageBox.Show("There was an error creating the Master Booking.");
+                        Debug.DebugMessage(2, "There was an error creating the Master Booking. MasterBookingID 0 or Null");
                         return false;
                     }
+                    _masterBookingID = mb.ID;
 
-                } while (bookingdate <= mb.EndDate);
+                    //Create IndividualBookings
+                    long contID = -1;
+                    decimal? rate = null;
 
-                db.SubmitChanges();
+
+                    try
+                    {
+                        rate = Convert.ToDecimal(txtRate.Text);
+                    }
+                    catch (Exception) { }
 
 
-                return true;
+                    DateTime bookingdate = (System.DateTime)mb.StartDate;
+                    int iCatch = 0;
+                    do
+                    {
+                        //only create new booking if relevant day tickbox is ticked
+                        if (CheckIfRequiredDay(bookingdate))
+                        {
+                            var nb = new Booking();
+                            nb.MasterBookingID = mb.ID;
+                            nb.Date = bookingdate;
+                            nb.Charge = Utils.CheckDecimal(txtCharge.Text);
+                            if (rate == null) nb.Rate = 0;
+                            else nb.Rate = (decimal)rate;
+                            nb.HalfDay = chkHalfDay.Checked;
+                            if (lblDescription.Visible) nb.Description = lblDescription.Text;
+                            else nb.Description = txtDescription.Text;
+
+                            db.Bookings.InsertOnSubmit(nb);
+                        }
+
+                        bookingdate = bookingdate.AddDays(1);
+                        iCatch += 1;
+                        if (iCatch > 365)
+                        {
+                            MessageBox.Show("There was an error creating the daily bookings. Too many booking created.");
+                            Debug.DebugMessage(2, "Overflow error creating the daily bookings. MasterBookingID: " + mb.ID);
+                            return false;
+                        }
+
+                    } while (bookingdate <= mb.EndDate);
+
+                    db.SubmitChanges();
+
+
+                    return true;
+                }
+                else
+                {
+                    errorMessage = "Save Error, Selected teacher is not availble on one or more dates of the booking";
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -974,60 +971,16 @@ namespace RedboxAddin.Presentation
         {
             if (SaveRequest())
             {
-                bool isClashing = false;
-                List<DayOfWeek> listOfDays = new List<DayOfWeek>();
+                ShowSavedDetails();
 
-                //Add ticked days to listOfDays
-                if (chkMon.Checked)
-                    listOfDays.Add(DayOfWeek.Monday);
-                if (chkTue.Checked)
-                    listOfDays.Add(DayOfWeek.Tuesday);
-                if (chkWed.Checked)
-                    listOfDays.Add(DayOfWeek.Wednesday);
-                if (chkThu.Checked)
-                    listOfDays.Add(DayOfWeek.Thursday);
-                if (chkFri.Checked)
-                    listOfDays.Add(DayOfWeek.Friday);
-
-
-                DataTable dtClashingBookings = new DBManager().GetClashingBookingDetails(dtFrom.Value.Date, dtTo.Value.Date, Utils.CheckLong(cmbTeacher.SelectedValue));
-                if (dtClashingBookings != null)
-                {
-                    foreach (DataRow row in dtClashingBookings.Rows)
-                    {
-                        DateTime bookingDate = DateTime.Parse(row["Date"].ToString());
-                        foreach (DayOfWeek day in listOfDays)
-                        {
-                            if (bookingDate.DayOfWeek == day)
-                            {
-                                isClashing = true;
-                                break;
-                            }
-                        }
-                        if (isClashing)
-                            break;
-                    }
-                }
-                else
-                    isClashing = false;
-
-                if (!isClashing)
-                {
-                    ShowSavedDetails();
-
-                    btnView.Text = "Edit Daily Bookings";
-                    SetGridVisibility();
-                    btnSave.Text = "Save Updates";
-                    CheckDoubleBookings();
-                }
-                else
-                {
-                    MessageBox.Show("Not Saved! The selected date(s) are already reserved for this teacher.");
-                }
+                btnView.Text = "Edit Daily Bookings";
+                SetGridVisibility();
+                btnSave.Text = "Save Updates";
+                CheckDoubleBookings();
             }
             else
             {
-                MessageBox.Show("Not Saved", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage, "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1496,6 +1449,46 @@ namespace RedboxAddin.Presentation
             {
                 Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
             }
+        }
+
+        private bool IsCalshing()
+        {
+            bool isClashing = false;
+            List<DayOfWeek> listOfDays = new List<DayOfWeek>();
+
+            //Add ticked days to listOfDays
+            if (chkMon.Checked)
+                listOfDays.Add(DayOfWeek.Monday);
+            if (chkTue.Checked)
+                listOfDays.Add(DayOfWeek.Tuesday);
+            if (chkWed.Checked)
+                listOfDays.Add(DayOfWeek.Wednesday);
+            if (chkThu.Checked)
+                listOfDays.Add(DayOfWeek.Thursday);
+            if (chkFri.Checked)
+                listOfDays.Add(DayOfWeek.Friday);
+
+
+            DataTable dtClashingBookings = new DBManager().GetClashingBookingDetails(dtFrom.Value.Date, dtTo.Value.Date, Utils.CheckLong(cmbTeacher.SelectedValue));
+            if (dtClashingBookings != null)
+            {
+                foreach (DataRow row in dtClashingBookings.Rows)
+                {
+                    DateTime bookingDate = DateTime.Parse(row["Date"].ToString());
+                    foreach (DayOfWeek day in listOfDays)
+                    {
+                        if (bookingDate.DayOfWeek == day)
+                        {
+                            isClashing = true;
+                            break;
+                        }
+                    }
+                    if (isClashing)
+                        break;
+                }
+            }           
+
+            return isClashing;
         }
 
 

@@ -561,6 +561,9 @@ namespace RedboxAddin.DL
                     case "5": //unavailable
                         return "purp/orng";
                         break;
+                    case "6":  //priority
+                        return "blck/pech";
+                        break;
                     default:
                         return "";
                         break;
@@ -637,6 +640,10 @@ namespace RedboxAddin.DL
                                 case 5:
                                     tDay.Text = "Availability";
                                     tDay.Status = "Unavailable";
+                                    break;
+                                case 6:
+                                    tDay.Text = "Availability";
+                                    tDay.Status = "Priority";
                                     break;
                                 default:
                                     tDay.Status = "-";
@@ -1131,15 +1138,17 @@ namespace RedboxAddin.DL
         {
             try
             {
-                string SQLstr = "SELECT dbo.MasterBookings.ID AS MasterBookingID, dbo.MasterBookings.contactID, dbo.Contacts.FirstName, dbo.Contacts.LastName, " +
-"dbo.Schools.SchoolName, dbo.Bookings.Date, COUNT(dbo.Bookings.Date) AS num, SUM(CASE WHEN [MasterBookings].HalfDay = 1 THEN 0.5 ELSE 1 END) AS days " +
-"FROM dbo.Bookings LEFT OUTER JOIN dbo.MasterBookings ON dbo.Bookings.MasterBookingID = dbo.MasterBookings.ID INNER JOIN" +
-"(SELECT TeacherID, Date FROM dbo.GuaranteedDays WHERE (Type = 5) GROUP BY TeacherID, Date) AS a1 ON a1.TeacherID = dbo.MasterBookings.contactID AND " +
-"a1.Date = dbo.Bookings.Date INNER JOIN dbo.Contacts ON dbo.MasterBookings.contactID = dbo.Contacts.contactID INNER JOIN " +
-"dbo.Schools ON dbo.MasterBookings.SchoolID = dbo.Schools.ID"+
-" WHERE Bookings.Date >= '" + dateFrom.ToString("yyyy-MM-dd") + "' AND Bookings.Date <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND a1.TeacherID = " + teacherID +
-" GROUP BY dbo.Bookings.Date, dbo.MasterBookings.contactID, dbo.MasterBookings.ID, dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
+//                string SQLstr = "SELECT dbo.MasterBookings.ID AS MasterBookingID, dbo.MasterBookings.contactID, dbo.Contacts.FirstName, dbo.Contacts.LastName, " +
+//"dbo.Schools.SchoolName, dbo.Bookings.Date, COUNT(dbo.Bookings.Date) AS num, SUM(CASE WHEN [MasterBookings].HalfDay = 1 THEN 0.5 ELSE 1 END) AS days " +
+//"FROM dbo.Bookings LEFT OUTER JOIN dbo.MasterBookings ON dbo.Bookings.MasterBookingID = dbo.MasterBookings.ID INNER JOIN" +
+//"(SELECT TeacherID, Date FROM dbo.GuaranteedDays WHERE (Type = 5) GROUP BY TeacherID, Date) AS a1 ON a1.TeacherID = dbo.MasterBookings.contactID AND " +
+//"a1.Date = dbo.Bookings.Date INNER JOIN dbo.Contacts ON dbo.MasterBookings.contactID = dbo.Contacts.contactID INNER JOIN " +
+//"dbo.Schools ON dbo.MasterBookings.SchoolID = dbo.Schools.ID"+
+//" WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd") + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID +
+//" GROUP BY dbo.Bookings.Date, dbo.MasterBookings.contactID, dbo.MasterBookings.ID, dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
 
+                string SQLstr = "SELECT [TeacherID],[Date] FROM [dbo].[GuaranteedDays] WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd") 
+                    + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID;
                 DataSet msgDs = GetDataSet(SQLstr);
                 if (msgDs != null)
                 {
@@ -1894,6 +1903,9 @@ namespace RedboxAddin.DL
                         break;
                     case 5:
                         sqlStr += "SET Type = 5 ";
+                        break;
+                    case 6:
+                        sqlStr += "SET Type = 6 ";
                         break;
 
                     default:

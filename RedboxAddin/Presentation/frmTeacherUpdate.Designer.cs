@@ -34,6 +34,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnDblBkgs = new System.Windows.Forms.Button();
             this.grpAvailability = new System.Windows.Forms.GroupBox();
+            this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.chkFri = new System.Windows.Forms.CheckBox();
             this.chkThu = new System.Windows.Forms.CheckBox();
             this.chkWed = new System.Windows.Forms.CheckBox();
@@ -42,6 +43,7 @@
             this.lblDays = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
+            this.radPriority = new System.Windows.Forms.RadioButton();
             this.radGuaranteed = new System.Windows.Forms.RadioButton();
             this.radOffered = new System.Windows.Forms.RadioButton();
             this.radUnavail = new System.Windows.Forms.RadioButton();
@@ -56,7 +58,6 @@
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.grpAbsence = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtDetails = new System.Windows.Forms.TextBox();
@@ -138,13 +139,14 @@
             this.btnDblBkgs.Name = "btnDblBkgs";
             this.btnDblBkgs.Size = new System.Drawing.Size(187, 48);
             this.btnDblBkgs.TabIndex = 107;
-            this.btnDblBkgs.Text = "Clashing Bookings Found";
+            this.btnDblBkgs.Text = "Booking clash found";
             this.btnDblBkgs.UseVisualStyleBackColor = false;
             this.btnDblBkgs.Visible = false;
             this.btnDblBkgs.Click += new System.EventHandler(this.btnDblBkgs_Click);
             // 
             // grpAvailability
             // 
+            this.grpAvailability.Controls.Add(this.dtFrom);
             this.grpAvailability.Controls.Add(this.chkFri);
             this.grpAvailability.Controls.Add(this.chkThu);
             this.grpAvailability.Controls.Add(this.chkWed);
@@ -153,6 +155,7 @@
             this.grpAvailability.Controls.Add(this.lblDays);
             this.grpAvailability.Controls.Add(this.label9);
             this.grpAvailability.Controls.Add(this.txtNotes);
+            this.grpAvailability.Controls.Add(this.radPriority);
             this.grpAvailability.Controls.Add(this.radGuaranteed);
             this.grpAvailability.Controls.Add(this.radOffered);
             this.grpAvailability.Controls.Add(this.radUnavail);
@@ -167,13 +170,20 @@
             this.grpAvailability.Controls.Add(this.dtTo);
             this.grpAvailability.Controls.Add(this.label5);
             this.grpAvailability.Controls.Add(this.label4);
-            this.grpAvailability.Controls.Add(this.dtFrom);
             this.grpAvailability.Location = new System.Drawing.Point(12, 148);
             this.grpAvailability.Name = "grpAvailability";
             this.grpAvailability.Size = new System.Drawing.Size(723, 211);
             this.grpAvailability.TabIndex = 20;
             this.grpAvailability.TabStop = false;
             this.grpAvailability.Text = "Log new Availability";
+            // 
+            // dtFrom
+            // 
+            this.dtFrom.Location = new System.Drawing.Point(19, 43);
+            this.dtFrom.Name = "dtFrom";
+            this.dtFrom.Size = new System.Drawing.Size(151, 23);
+            this.dtFrom.TabIndex = 7;
+            this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
             // 
             // chkFri
             // 
@@ -268,6 +278,17 @@
             this.txtNotes.Size = new System.Drawing.Size(290, 44);
             this.txtNotes.TabIndex = 32;
             // 
+            // radPriority
+            // 
+            this.radPriority.AutoSize = true;
+            this.radPriority.BackColor = System.Drawing.Color.PeachPuff;
+            this.radPriority.Location = new System.Drawing.Point(404, 75);
+            this.radPriority.Name = "radPriority";
+            this.radPriority.Size = new System.Drawing.Size(66, 20);
+            this.radPriority.TabIndex = 31;
+            this.radPriority.Text = "Priority";
+            this.radPriority.UseVisualStyleBackColor = false;
+            // 
             // radGuaranteed
             // 
             this.radGuaranteed.AutoSize = true;
@@ -327,7 +348,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(494, 121);
+            this.label7.Location = new System.Drawing.Point(494, 141);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(223, 28);
             this.label7.TabIndex = 26;
@@ -337,7 +358,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(494, 84);
+            this.label3.Location = new System.Drawing.Point(494, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(226, 18);
             this.label3.TabIndex = 25;
@@ -354,7 +375,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(404, 122);
+            this.btnDelete.Location = new System.Drawing.Point(404, 142);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 23;
@@ -364,7 +385,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(404, 82);
+            this.btnSave.Location = new System.Drawing.Point(404, 109);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 12;
@@ -377,7 +398,7 @@
             this.chkAccepted.AutoSize = true;
             this.chkAccepted.Checked = true;
             this.chkAccepted.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAccepted.Location = new System.Drawing.Point(404, 165);
+            this.chkAccepted.Location = new System.Drawing.Point(404, 185);
             this.chkAccepted.Name = "chkAccepted";
             this.chkAccepted.Size = new System.Drawing.Size(142, 20);
             this.chkAccepted.TabIndex = 19;
@@ -409,14 +430,6 @@
             this.label4.Size = new System.Drawing.Size(43, 16);
             this.label4.TabIndex = 8;
             this.label4.Text = "From:";
-            // 
-            // dtFrom
-            // 
-            this.dtFrom.Location = new System.Drawing.Point(19, 43);
-            this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(151, 23);
-            this.dtFrom.TabIndex = 7;
-            this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
             // 
             // grpAbsence
             // 
@@ -461,7 +474,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(638, 27);
+            this.btnRefresh.Location = new System.Drawing.Point(636, 24);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 20;
@@ -473,7 +486,7 @@
             // 
             this.lblType.AutoSize = true;
             this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.Location = new System.Drawing.Point(411, 27);
+            this.lblType.Location = new System.Drawing.Point(411, 20);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(127, 25);
             this.lblType.TabIndex = 21;
@@ -645,20 +658,20 @@
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 100;
+            this.gridColumn1.Width = 132;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Description";
             this.gridColumn2.FieldName = "Text";
             this.gridColumn2.MaxWidth = 300;
-            this.gridColumn2.MinWidth = 300;
+            this.gridColumn2.MinWidth = 100;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 300;
+            this.gridColumn2.Width = 100;
             // 
             // gridColumn3
             // 
@@ -667,6 +680,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 300;
             // 
             // gridColumn4
             // 
@@ -675,6 +689,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 194;
             // 
             // ID
             // 
@@ -786,5 +801,6 @@
         private System.Windows.Forms.CheckBox chkTue;
         private System.Windows.Forms.CheckBox chkMon;
         private System.Windows.Forms.Label lblDays;
+        private System.Windows.Forms.RadioButton radPriority;
     }
 }

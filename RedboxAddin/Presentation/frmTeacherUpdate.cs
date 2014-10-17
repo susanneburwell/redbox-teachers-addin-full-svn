@@ -109,7 +109,6 @@ namespace RedboxAddin.Presentation
                     return false;
                 }
 
-
                 DateTime bookingdate = dtFrom.Value.Date;
                 List<DayOfWeek> listOfDays = new List<DayOfWeek>();
                 bool isTicked = false;
@@ -140,20 +139,19 @@ namespace RedboxAddin.Presentation
                         action = "Creating Guaranteed Day";
                         GuaranteedDay gd = new GuaranteedDay();
 
-                        //1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable
+                        //1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable, 6-priority
                         //if (chkAccepted.Checked) gd.Accepted = true; else gd.Accepted = false;
                         if (radOffered.Checked) gd.Type = 1;
                         if (radGuaranteed.Checked) gd.Type = 2;
                         if (radTexted.Checked) gd.Type = 3;
                         if (radAvail.Checked) gd.Type = 4;
                         if (radUnavail.Checked) gd.Type = 5;
-
+                        if (radPriority.Checked) gd.Type = 6;
 
                         gd.Date = bookingdate;
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
                         gd.Note = txtNotes.Text.Trim();
-
 
                         foreach (DayOfWeek day in listOfDays)
                         {
@@ -239,7 +237,6 @@ namespace RedboxAddin.Presentation
             SaveRequest();
             LoadTeacherDates(Utils.CheckLong(cmbTeacher.SelectedValue));
             CheckForClashingDates();
-
         }
 
         private void radAbs_CheckedChanged(object sender, EventArgs e)
@@ -463,6 +460,7 @@ namespace RedboxAddin.Presentation
                 flashtimer1.Enabled = false;
             }
 
+            #region Old method using Linq
             //DateTime sDate = dtFrom.Value.Date;
             //DateTime eDate = dtTo.Value.Date;
             //long teacherID = -1;
@@ -514,7 +512,8 @@ namespace RedboxAddin.Presentation
 
             //        }
             //    }
-            //}
+            //} 
+            #endregion
         }
 
         private void btnDblBkgs_Click(object sender, EventArgs e)
@@ -603,6 +602,7 @@ namespace RedboxAddin.Presentation
                 Items.Add(CreateMenuItem("Texted", imageList.Images[acct], "Texted", true));
                 Items.Add(CreateMenuItem("Available", imageList.Images[acct], "Available", true));
                 Items.Add(CreateMenuItem("Unavailable", imageList.Images[acct], "Unavailable", true));
+                Items.Add(CreateMenuItem("Priority", imageList.Images[acct], "Priority", true));//Ask
                 Items.Add(CreateMenuItem("Delete", imageList.Images[conf], "Delete", true));
             }
             else
@@ -650,6 +650,9 @@ namespace RedboxAddin.Presentation
                         break;
                     case "Unavailable":
                         response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 5);
+                        break;
+                    case "Priority":
+                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 6);
                         break;
                     case "Delete":
                         response = dbm.DeleteGuarantee(_rowInfo.SelectedRows);

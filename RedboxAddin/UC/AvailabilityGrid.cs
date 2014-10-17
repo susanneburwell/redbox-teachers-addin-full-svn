@@ -210,6 +210,9 @@ namespace RedboxAddin.UC
                         case "lgre": //unavailable
                             e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
                             break;
+                        case "pech": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+                            break;
                         case "purp":
                             e.Appearance.BackColor = System.Drawing.Color.Violet;
                             e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -437,7 +440,7 @@ namespace RedboxAddin.UC
                 int row = hitInfo.RowHandle;
                 long teacherID = long.Parse(gridView1.GetRowCellValue(row, "TeacherID").ToString());
 
-                GuaranteedDay gDay = db.GuaranteedDays.Where(p => p.Date == date && p.TeacherID == teacherID && p.Type == 5).FirstOrDefault();
+                GuaranteedDay gDay = db.GuaranteedDays.Where(p => p.Date == date && p.TeacherID == teacherID ).FirstOrDefault();
                 if (gDay != null)
                 {
                     if (gDay.Note != string.Empty)
@@ -465,7 +468,7 @@ namespace RedboxAddin.UC
                         }
 
                         //Add Notes & description for the tool-tip
-                        toolTip = "Notes : " + gDay.Note + "\nDescription : " + description;
+                        toolTip = "Notes : " + gDay.Note + "\nDetails : " + description; //ASK : "p.Type == 5" is that correct??
 
                         string BodyText = toolTip;
 
@@ -544,7 +547,7 @@ namespace RedboxAddin.UC
             else
             {                
                 teacherIDForANewBooking = _rowInfo.Status.Split('.')[1];
-                Items.Add(CreateMenuItem("New item", imageList.Images[0], "NEW", true));                
+                Items.Add(CreateMenuItem("New booking", imageList.Images[0], "NEW", true));                
             }
         }
 

@@ -80,14 +80,13 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnMasterBooking = new System.Windows.Forms.Button();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -117,7 +116,6 @@
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.btnMasterBooking);
             this.panelTop.Controls.Add(this.groupBox1);
             this.panelTop.Controls.Add(this.btnResetLayout);
             this.panelTop.Controls.Add(this.btnLayout);
@@ -251,7 +249,7 @@
             // 
             this.btnRefresh.Location = new System.Drawing.Point(375, 155);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(101, 28);
+            this.btnRefresh.Size = new System.Drawing.Size(170, 28);
             this.btnRefresh.TabIndex = 94;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -260,7 +258,7 @@
             // chkJustBookings
             // 
             this.chkJustBookings.AutoSize = true;
-            this.chkJustBookings.Location = new System.Drawing.Point(741, 160);
+            this.chkJustBookings.Location = new System.Drawing.Point(741, 159);
             this.chkJustBookings.Name = "chkJustBookings";
             this.chkJustBookings.Size = new System.Drawing.Size(102, 20);
             this.chkJustBookings.TabIndex = 89;
@@ -661,9 +659,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(493, 155);
+            this.btnSearch.Location = new System.Drawing.Point(555, 155);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(101, 28);
+            this.btnSearch.Size = new System.Drawing.Size(170, 28);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -685,6 +683,15 @@
             this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
+            // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1006, 415);
+            this.availabilityGrid1.TabIndex = 1;
             // 
             // panelRibbon
             // 
@@ -713,25 +720,6 @@
             // flashtimer1
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
-            // 
-            // btnMasterBooking
-            // 
-            this.btnMasterBooking.Location = new System.Drawing.Point(608, 155);
-            this.btnMasterBooking.Name = "btnMasterBooking";
-            this.btnMasterBooking.Size = new System.Drawing.Size(117, 28);
-            this.btnMasterBooking.TabIndex = 88;
-            this.btnMasterBooking.Text = "Master Booking";
-            this.btnMasterBooking.UseVisualStyleBackColor = true;
-            this.btnMasterBooking.Click += new System.EventHandler(this.btnMasterBooking_Click);
-            // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1006, 415);
-            this.availabilityGrid1.TabIndex = 1;
             // 
             // frmAvailabilitySheet
             // 
@@ -822,6 +810,5 @@
         private System.Windows.Forms.Button btnResetLayout;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnMasterBooking;
     }
 }

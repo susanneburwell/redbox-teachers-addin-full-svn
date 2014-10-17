@@ -63,8 +63,8 @@
             this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -144,9 +144,7 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Guar, DevExpress.Data.ColumnSortOrder.Descending)});
-            //this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
-           // this.gridView1.Click += new System.EventHandler(this.gridView1_Click);
             // 
             // Live
             // 
@@ -453,8 +451,10 @@
             this.TeacherID.Caption = "TeacherID";
             this.TeacherID.FieldName = "TeacherID";
             this.TeacherID.Name = "TeacherID";
-            this.TeacherID.Visible = true;
-            this.TeacherID.VisibleIndex = 19;
+            // 
+            // toolTipController1
+            // 
+            this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
             // 
             // imageList1
             // 
@@ -462,10 +462,6 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
-            // 
-            // toolTipController1
-            // 
-            this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
             // 
             // AvailabilityGrid
             // 
