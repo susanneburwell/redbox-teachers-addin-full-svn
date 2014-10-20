@@ -550,6 +550,12 @@ namespace RedboxAddin.Presentation
                     fore = "purp";
                     back = "gray";
                     break;
+                //case "Confirmed - Morning Only":
+                //    cmbBookingStatus.ForeColor = Color.Black;
+                //    cmbBookingStatus.BackColor = Color.BurlyWood;
+                //    fore = "purp";
+                //    back = "gray";
+                    break;
                 default:
                     cmbBookingStatus.ForeColor = System.Drawing.SystemColors.WindowText;
                     cmbBookingStatus.BackColor = System.Drawing.SystemColors.Window;

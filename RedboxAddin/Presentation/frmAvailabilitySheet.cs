@@ -457,90 +457,100 @@ namespace RedboxAddin.Presentation
 
         }
 
-        private void createGridViewConditions(GridColumn gridColumn, string expName)
-        {
-            //Foreground: Red , Purple, Black
-            //Background: yello, gray, light blue, darkblue , purple
+        //private void createGridViewConditions(GridColumn gridColumn, string expName)
+        //{
+        //    //Foreground: Red , Purple, Black
+        //    //Background: yello, gray, light blue, darkblue , purple, brown
 
-            //Foreground: Red 
-            StyleFormatCondition st1 = new StyleFormatCondition();
-            st1.Appearance.ForeColor = System.Drawing.Color.Red;
-            st1.Appearance.Options.UseForeColor = true;
-            st1.Column = gridColumn; // this.Mon;
-            st1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st1.Expression = "Substring([" + expName + "],0,4)= \'redd\'";
+        //    //Foreground: Red 
+        //    StyleFormatCondition st1 = new StyleFormatCondition();
+        //    st1.Appearance.ForeColor = System.Drawing.Color.Red;
+        //    st1.Appearance.Options.UseForeColor = true;
+        //    st1.Column = gridColumn; // this.Mon;
+        //    st1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st1.Expression = "Substring([" + expName + "],0,4)= \'redd\'";
 
-            //Foreground: Purple
-            StyleFormatCondition st2 = new StyleFormatCondition();
-            st2.Appearance.ForeColor = System.Drawing.Color.Purple;
-            st2.Appearance.Options.UseForeColor = true;
-            st2.Column = gridColumn; // this.Mon;
-            st2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st2.Expression = "Substring([" + expName + "],0,4)= \'purp\'";
+        //    //Foreground: Purple
+        //    StyleFormatCondition st2 = new StyleFormatCondition();
+        //    st2.Appearance.ForeColor = System.Drawing.Color.Purple;
+        //    st2.Appearance.Options.UseForeColor = true;
+        //    st2.Column = gridColumn; // this.Mon;
+        //    st2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st2.Expression = "Substring([" + expName + "],0,4)= \'purp\'";
 
-            //Foreground: Black
-            StyleFormatCondition st3 = new StyleFormatCondition();
-            st3.Appearance.ForeColor = System.Drawing.Color.Black;
-            st3.Appearance.Options.UseForeColor = true;
-            st3.Column = gridColumn; // this.Mon;
-            st3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st3.Expression = "Substring([" + expName + "],0,4)= \'blck\'";
-
-
-            //Background: yellow
-            StyleFormatCondition st4 = new StyleFormatCondition();
-            st4.Appearance.BackColor = System.Drawing.Color.Yellow;
-            st4.Appearance.Options.UseBackColor = true;
-            st4.Column = gridColumn;
-            st4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st4.Expression = "Substring([" + expName + "],5,4)= \'yell\'";
-
-            //Background: gray
-            StyleFormatCondition st5 = new StyleFormatCondition();
-            st5.Appearance.BackColor = System.Drawing.Color.LightGray;
-            st5.Appearance.Options.UseBackColor = true;
-            st5.Column = gridColumn; ;
-            st5.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st5.Expression = "Substring([" + expName + "],5,4)= \'gray\'";
-
-            //Background: light blue
-            StyleFormatCondition st6 = new StyleFormatCondition();
-            st6.Appearance.BackColor = System.Drawing.Color.LightBlue;
-            st6.Appearance.Options.UseBackColor = true;
-            st6.Column = gridColumn; ;
-            st6.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st6.Expression = "Substring([" + expName + "],5,4)= \'lblu\'";
-
-            //Background: darkblue
-            StyleFormatCondition st7 = new StyleFormatCondition();
-            st7.Appearance.BackColor = System.Drawing.Color.DarkBlue;
-            st7.Appearance.Options.UseBackColor = true;
-            st7.Column = gridColumn; ;
-            st7.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st7.Expression = "Substring([" + expName + "],5,4)= \'dblu\'";
-
-            //Background: purple
-            StyleFormatCondition st8 = new StyleFormatCondition();
-            st8.Appearance.BackColor = System.Drawing.Color.Violet;
-            st8.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            st8.Appearance.Options.UseFont = true;
-            st8.Appearance.Options.UseBackColor = true;
-            st8.Column = gridColumn; ;
-            st8.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            st8.Expression = "Substring([" + expName + "],5,4)= \'purp\'";
-
-            // this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1, st2, st3, st4, st5, st6, st7, st8 });
+        //    //Foreground: Black
+        //    StyleFormatCondition st3 = new StyleFormatCondition();
+        //    st3.Appearance.ForeColor = System.Drawing.Color.Black;
+        //    st3.Appearance.Options.UseForeColor = true;
+        //    st3.Column = gridColumn; // this.Mon;
+        //    st3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st3.Expression = "Substring([" + expName + "],0,4)= \'blck\'";
 
 
-            //st2.Appearance.BackColor = System.Drawing.Color.Purple;
-            //st2.Appearance.Options.UseBackColor = true;
-            //st2.Column = this.Mon;
-            //st2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
-            //st2.Expression = "Substring([MonColor],5,4)= \'purp\'";
+        //    //Background: yellow
+        //    StyleFormatCondition st4 = new StyleFormatCondition();
+        //    st4.Appearance.BackColor = System.Drawing.Color.Yellow;
+        //    st4.Appearance.Options.UseBackColor = true;
+        //    st4.Column = gridColumn;
+        //    st4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st4.Expression = "Substring([" + expName + "],5,4)= \'yell\'";
+
+        //    //Background: gray
+        //    StyleFormatCondition st5 = new StyleFormatCondition();
+        //    st5.Appearance.BackColor = System.Drawing.Color.LightGray;
+        //    st5.Appearance.Options.UseBackColor = true;
+        //    st5.Column = gridColumn; ;
+        //    st5.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st5.Expression = "Substring([" + expName + "],5,4)= \'gray\'";
+
+        //    //Background: light blue
+        //    StyleFormatCondition st6 = new StyleFormatCondition();
+        //    st6.Appearance.BackColor = System.Drawing.Color.LightBlue;
+        //    st6.Appearance.Options.UseBackColor = true;
+        //    st6.Column = gridColumn; ;
+        //    st6.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st6.Expression = "Substring([" + expName + "],5,4)= \'lblu\'";
+
+        //    //Background: darkblue
+        //    StyleFormatCondition st7 = new StyleFormatCondition();
+        //    st7.Appearance.BackColor = System.Drawing.Color.DarkBlue;
+        //    st7.Appearance.Options.UseBackColor = true;
+        //    st7.Column = gridColumn; ;
+        //    st7.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st7.Expression = "Substring([" + expName + "],5,4)= \'dblu\'";
+
+        //    //Background: purple
+        //    StyleFormatCondition st8 = new StyleFormatCondition();
+        //    st8.Appearance.BackColor = System.Drawing.Color.Violet;
+        //    st8.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+        //    st8.Appearance.Options.UseFont = true;
+        //    st8.Appearance.Options.UseBackColor = true;
+        //    st8.Column = gridColumn; ;
+        //    st8.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st8.Expression = "Substring([" + expName + "],5,4)= \'purp\'";
+
+        //    //Background: purple
+        //    StyleFormatCondition st9 = new StyleFormatCondition();
+        //    st9.Appearance.BackColor = System.Drawing.Color.BurlyWood;
+        //    st9.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+        //    st9.Appearance.Options.UseFont = true;
+        //    st9.Appearance.Options.UseBackColor = true;
+        //    st9.Column = gridColumn; ;
+        //    st9.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    st9.Expression = "Substring([" + expName + "],5,4)= \'purp\'";
+
+        //    // this.gridView1.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] { st1, st2, st3, st4, st5, st6, st7, st8 });
+
+
+        //    //st2.Appearance.BackColor = System.Drawing.Color.Purple;
+        //    //st2.Appearance.Options.UseBackColor = true;
+        //    //st2.Column = this.Mon;
+        //    //st2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Expression;
+        //    //st2.Expression = "Substring([MonColor],5,4)= \'purp\'";
 
 
 
-        }
+        //}
 
         private void btnEY_Click(object sender, EventArgs e)
         {

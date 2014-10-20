@@ -720,6 +720,16 @@ namespace RedboxAddin.BL
                     back = "lgre";
                     break;
 
+                case "Confirmed - Morning Only":
+                    if (cmbBookingStatus != null)
+                    {
+                        cmbBookingStatus.ForeColor = Color.Black;
+                        cmbBookingStatus.BackColor = Color.BurlyWood;
+                    }
+                    fore = "blck";
+                    back = "brwn";
+                    break;
+
                 default:
                     if (cmbBookingStatus != null)
                     {

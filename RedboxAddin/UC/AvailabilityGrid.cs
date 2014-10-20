@@ -198,6 +198,9 @@ namespace RedboxAddin.UC
                         case "dblu":
                             e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
                             break;
+                        case "brwn":
+                            e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
+                            break;
                         case "gree": //guaranteed
                             e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
                             break;
