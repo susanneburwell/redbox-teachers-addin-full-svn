@@ -506,51 +506,61 @@ namespace RedboxAddin.UC
         protected override void CreateItems()
         {
             //image 0 = dot ; image 1 = tick
-            if (!(_rowInfo.Status.Contains( "New")))
+            try
             {
-                int unass = 0;
-                int cont = 0;
-                int conf = 0;
-                int dets = 0;
-                int none = 0;
-
-                switch (_rowInfo.Status)
+                if (_rowInfo != null && _rowInfo.Status != null)
                 {
-                    case "Unassigned":
-                        unass = 1;
-                        break;
+                    if (!(_rowInfo.Status.Contains("New")))
+                    {
+                        int unass = 0;
+                        int cont = 0;
+                        int conf = 0;
+                        int dets = 0;
+                        int none = 0;
 
-                    case "Contacted":
-                        cont = 1;
-                        break;
+                        switch (_rowInfo.Status)
+                        {
+                            case "Unassigned":
+                                unass = 1;
+                                break;
 
-                    case "Confirmed":
-                        conf = 1;
-                        break;
+                            case "Contacted":
+                                cont = 1;
+                                break;
 
-                    case "Details Sent":
-                        dets = 1;
-                        break;
+                            case "Confirmed":
+                                conf = 1;
+                                break;
 
-                    case "None":
-                        none = 1;
-                        break;
+                            case "Details Sent":
+                                dets = 1;
+                                break;
+
+                            case "None":
+                                none = 1;
+                                break;
+                        }
+
+                        Items.Clear();
+                        int vv = GridMenuImages.Column.Images.Count;
+                        int vw = GridMenuImages.Footer.Images.Count;
+                        int vx = GridMenuImages.GroupPanel.Images.Count;
+                        Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
+                        Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
+                        Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
+                        Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
+                        Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
+                    }
+                    else
+                    {
+                        teacherIDForANewBooking = _rowInfo.Status.Split('.')[1];
+                        Items.Add(CreateMenuItem("New booking", imageList.Images[0], "NEW", true));
+                    }
                 }
-
-                Items.Clear();
-                int vv = GridMenuImages.Column.Images.Count;
-                int vw = GridMenuImages.Footer.Images.Count;
-                int vx = GridMenuImages.GroupPanel.Images.Count;
-                Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
-                Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
-                Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
-                Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
-                Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
             }
-            else
-            {                
-                teacherIDForANewBooking = _rowInfo.Status.Split('.')[1];
-                Items.Add(CreateMenuItem("New booking", imageList.Images[0], "NEW", true));                
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in CreateItems(): " + ex.Message);
             }
         }
 
@@ -560,8 +570,6 @@ namespace RedboxAddin.UC
             DXMenuItem item = sender as DXMenuItem;
             string status = item.Tag.ToString();
 
-
-
             if (status == "NEW")
             {
                 frmMasterBooking frm = new frmMasterBooking(teacherIDForANewBooking);
@@ -569,7 +577,6 @@ namespace RedboxAddin.UC
             }
             else
             {
-
                 string teacher = _rowInfo.Teacher;
                 string description = _rowInfo.Description;
                 string colCaption = _rowInfo.ColumnCaption;
@@ -588,8 +595,6 @@ namespace RedboxAddin.UC
                     }
                 }
             }
-
         }
-
     }
 }

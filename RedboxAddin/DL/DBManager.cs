@@ -957,7 +957,7 @@ namespace RedboxAddin.DL
                            };
                             LoadPlan.Add(objLoad);
                         }
-                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List: " + ex.Message); }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
 
                     }
 
@@ -1001,7 +1001,7 @@ namespace RedboxAddin.DL
                             };
                             LoadPlan.Add(objLoad);
                         }
-                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List: " + ex.Message); }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetPivotLoadPlan): " + ex.Message); }
 
                     }
 

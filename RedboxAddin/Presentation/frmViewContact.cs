@@ -473,7 +473,7 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+                Debug.DebugMessage(2, "Error in PopulatePaymentTypes: " + ex.Message);
             }
         }
 

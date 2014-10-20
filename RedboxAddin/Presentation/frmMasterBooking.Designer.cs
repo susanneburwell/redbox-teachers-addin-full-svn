@@ -139,6 +139,7 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.Notes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1178,6 +1179,7 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
+            this.Notes,
             this.ID});
             this.ViewBookings.GridControl = this.dgcBookings;
             this.ViewBookings.Name = "ViewBookings";
@@ -1379,6 +1381,20 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // Notes
+            // 
+            this.Notes.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.Notes.AppearanceCell.Options.UseFont = true;
+            this.Notes.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.Notes.AppearanceHeader.Options.UseFont = true;
+            this.Notes.Caption = "Notes";
+            this.Notes.FieldName = "Notes";
+            this.Notes.MinWidth = 100;
+            this.Notes.Name = "Notes";
+            this.Notes.Visible = true;
+            this.Notes.VisibleIndex = 5;
+            this.Notes.Width = 200;
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1528,5 +1544,6 @@
         private System.Windows.Forms.CheckBox chkTue;
         private System.Windows.Forms.CheckBox chkMon;
         private System.Windows.Forms.Label lblDays;
+        private DevExpress.XtraGrid.Columns.GridColumn Notes;
     }
 }

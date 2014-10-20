@@ -112,7 +112,7 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+                Debug.DebugMessage(2, "Error in PopulateSchools(frmMasterbooking): " + ex.Message);
             }
         }
 
@@ -130,7 +130,7 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+                Debug.DebugMessage(2, "Error in PopulateBookingStatus: " + ex.Message);
             }
         }
 
@@ -360,7 +360,7 @@ namespace RedboxAddin.Presentation
                     catch (Exception) { }
 
 
-                    DateTime bookingdate = (System.DateTime)mb.StartDate;
+                    DateTime bookingdate = (System.DateTime)mb.StartDate.Date;
                     int iCatch = 0;
                     do
                     {
@@ -371,11 +371,16 @@ namespace RedboxAddin.Presentation
                             nb.MasterBookingID = mb.ID;
                             nb.Date = bookingdate;
                             nb.Charge = Utils.CheckDecimal(txtCharge.Text);
+
                             if (rate == null) nb.Rate = 0;
                             else nb.Rate = (decimal)rate;
+
                             nb.HalfDay = chkHalfDay.Checked;
+
                             if (lblDescription.Visible) nb.Description = lblDescription.Text;
                             else nb.Description = txtDescription.Text;
+
+                            nb.Notes = string.Empty;
 
                             db.Bookings.InsertOnSubmit(nb);
                         }
@@ -389,7 +394,7 @@ namespace RedboxAddin.Presentation
                             return false;
                         }
 
-                    } while (bookingdate <= mb.EndDate);
+                    } while (bookingdate.Date <= mb.EndDate.Date.AddMinutes(1));//1 minute added to ensure comparison works
 
                     db.SubmitChanges();
 
@@ -1315,6 +1320,10 @@ namespace RedboxAddin.Presentation
                     MessageBox.Show(cmbTeacher.Text + " has a NoGo flagged for " + shortname, "NoGo Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
+            }
+            catch (InvalidCastException ex)
+            {
+                Debug.DebugMessage(4, "Error: InvalidCastException in cmbTeacher_SelectedValueChanged: " + ex.Message);
             }
             catch (Exception ex)
             {

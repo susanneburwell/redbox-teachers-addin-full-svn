@@ -326,6 +326,8 @@ namespace RedboxAddin
 		
 		private int _Code;
 		
+		private string _Notes;
+		
 		private EntityRef<MasterBooking> _MasterBooking;
 		
     #region Extensibility Method Definitions
@@ -348,6 +350,8 @@ namespace RedboxAddin
     partial void OnDescriptionChanged();
     partial void OnCodeChanging(int value);
     partial void OnCodeChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
     #endregion
 		
 		public Booking()
@@ -516,6 +520,26 @@ namespace RedboxAddin
 					this._Code = value;
 					this.SendPropertyChanged("Code");
 					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(200)")]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
 				}
 			}
 		}

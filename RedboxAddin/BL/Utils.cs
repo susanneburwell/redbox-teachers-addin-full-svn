@@ -282,7 +282,7 @@ namespace RedboxAddin.BL
             }
             catch (System.Exception ex)
             {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+                Debug.DebugMessage(2, "Error in PopulateSchools(utils): " + ex.Message);
             }
         }
 
@@ -326,7 +326,7 @@ namespace RedboxAddin.BL
             }
             catch (System.Exception ex)
             {
-                Debug.DebugMessage(2, "Error in PopulateSchools: " + ex.Message);
+                Debug.DebugMessage(2, "Error in PopulateTeacher: " + ex.Message);
             }
         }
 
