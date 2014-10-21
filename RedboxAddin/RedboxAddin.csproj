@@ -138,6 +138,12 @@
     <Compile Include="Models\DatesForSearch.cs" />
     <Compile Include="Models\RModels.cs" />
     <Compile Include="Models\RContact.cs" />
+    <Compile Include="Presentation\frmChangeTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmChangeTeacher.Designer.cs">
+      <DependentUpon>frmChangeTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AddinModule.resx">
       <DependentUpon>AddinModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmChangeTeacher.resx">
+      <DependentUpon>frmChangeTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>

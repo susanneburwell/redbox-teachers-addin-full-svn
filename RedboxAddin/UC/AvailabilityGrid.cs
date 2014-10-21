@@ -309,7 +309,6 @@ namespace RedboxAddin.UC
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                         rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
                         rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
-
                         backColor = ((GridViewInfo)gridView1.GetViewInfo()).GetGridCellInfo(info.RowHandle, info.Column).Appearance.BackColor;
 
 
@@ -545,11 +544,16 @@ namespace RedboxAddin.UC
                         int vv = GridMenuImages.Column.Images.Count;
                         int vw = GridMenuImages.Footer.Images.Count;
                         int vx = GridMenuImages.GroupPanel.Images.Count;
+
                         Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
                         Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
                         Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
                         Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
-                        Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
+                        Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));  
+
+                        if (_rowInfo.Description != string.Empty)
+                            Items.Add(CreateMenuItem("Change Teacher", imageList.Images[0], "Change Teacher", true));  
+
                     }
                     else
                     {
@@ -574,6 +578,11 @@ namespace RedboxAddin.UC
             {
                 frmMasterBooking frm = new frmMasterBooking(teacherIDForANewBooking);
                 frm.Show();
+            }
+            else if (status == "Change Teacher")
+            {
+                frmChangeTeacher frm = new frmChangeTeacher();
+                frm.ShowDialog();
             }
             else
             {
