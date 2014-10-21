@@ -72,7 +72,6 @@ namespace RedboxAddin.Presentation
                         isClashing = true;
                         break;
                     }
-                   
                 }
             }
 

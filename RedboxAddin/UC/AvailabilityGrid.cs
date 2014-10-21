@@ -312,6 +312,26 @@ namespace RedboxAddin.UC
                         backColor = ((GridViewInfo)gridView1.GetViewInfo()).GetGridCellInfo(info.RowHandle, info.Column).Appearance.BackColor;
 
 
+                        string teacher = rowInfo.Teacher;
+                        string description = rowInfo.Description;
+                        string colCaption = rowInfo.ColumnCaption;
+                        long masterBookingID = -1;
+
+                        List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+                        if (MasterBookingIDs.Count > 0)
+                        {
+                            masterBookingID = MasterBookingIDs[0];
+                            MasterBooking oMasterBooking = db.MasterBookings.Where(p => p.ID == masterBookingID).SingleOrDefault();
+                            if (oMasterBooking != null)
+                            {
+                                School oSchool = db.Schools.Where(p => p.ID == oMasterBooking.SchoolID).SingleOrDefault();
+                                if (oSchool != null && oSchool.ID != null)
+                                    rowInfo.School = oSchool.ID.ToString();
+                            }
+
+
+                        }
+
                         switch (rowInfo.ColumnCaption.Substring(0, 3))
                         {
                             case "Mon":
@@ -488,7 +508,12 @@ namespace RedboxAddin.UC
 
     public class GridViewCustomMenu : GridViewMenu
     {
-        public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) { }
+        RedBoxDB db;
+
+        public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) {
+            string CONNSTR = DavSettings.getDavValue("CONNSTR");
+            db = new RedBoxDB(CONNSTR);
+        }
 
         private REventArgs _rowInfo;
         public ImageList imageList;
@@ -514,6 +539,7 @@ namespace RedboxAddin.UC
                         int unass = 0;
                         int cont = 0;
                         int conf = 0;
+                        int confMorningOnly = 0;
                         int dets = 0;
                         int none = 0;
 
@@ -529,6 +555,10 @@ namespace RedboxAddin.UC
 
                             case "Confirmed":
                                 conf = 1;
+                                break;
+
+                            case "Confirmed - Morning Only":
+                                confMorningOnly = 1;
                                 break;
 
                             case "Details Sent":
@@ -547,12 +577,26 @@ namespace RedboxAddin.UC
 
                         Items.Add(CreateMenuItem("Unassigned", imageList.Images[unass], "Unassigned", true));
                         Items.Add(CreateMenuItem("Contacted", imageList.Images[cont], "Contacted", true));
-                        Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
-                        Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
-                        Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));  
+                        if (_rowInfo.School != string.Empty)
+                        {
+                            long schoolID = long.Parse(_rowInfo.School);
 
-                        if (_rowInfo.Description != string.Empty)
-                            Items.Add(CreateMenuItem("Change Teacher", imageList.Images[0], "Change Teacher", true));  
+                            School oSchool = db.Schools.Where(p => p.ID == schoolID).SingleOrDefault();
+                            if (oSchool != null)
+                            {
+                                if (oSchool.VettingAM)
+                                    Items.Add(CreateMenuItem("Confirmed - Morning Only", imageList.Images[confMorningOnly], "Confirmed - Morning Only", true));
+                                else
+                                    Items.Add(CreateMenuItem("Confirmed", imageList.Images[conf], "Confirmed", true));
+
+                            }
+                        }
+                        Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
+                        Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
+                        if (_rowInfo.School != string.Empty)
+                            Items.Add(CreateMenuItem("Change Teacher", imageList.Images[0], "Change Teacher", true));
+                        
+                        
 
                     }
                     else

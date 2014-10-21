@@ -411,7 +411,7 @@ namespace RedboxAddin.Presentation
                 }
                 else
                 {
-                    errorMessage = "Save Error, Selected teacher is not availble on one or more dates of the booking";
+                    errorMessage = "Availability Error: Selected teacher is not available on one or more dates of the booking";
                     return false;
                 }
 
