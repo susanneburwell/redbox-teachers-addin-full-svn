@@ -78,13 +78,14 @@
             this.btnAddNotes = new System.Windows.Forms.Button();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtTALTHfDay = new System.Windows.Forms.TextBox();
             this.txtTALTDay = new System.Windows.Forms.TextBox();
             this.txtTAHfDayCharge = new System.Windows.Forms.TextBox();
             this.txtTADayCharge = new System.Windows.Forms.TextBox();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.chkVettingAM = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -272,9 +273,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(757, 406);
+            this.btnSave.Location = new System.Drawing.Point(756, 401);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(214, 40);
+            this.btnSave.Size = new System.Drawing.Size(230, 40);
             this.btnSave.TabIndex = 18;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -302,9 +303,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(757, 362);
+            this.btnClose.Location = new System.Drawing.Point(757, 358);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(214, 40);
+            this.btnClose.Size = new System.Drawing.Size(230, 40);
             this.btnClose.TabIndex = 17;
             this.btnClose.Text = "Close without Saving";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -406,9 +407,9 @@
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(139, 449);
+            this.label18.Location = new System.Drawing.Point(139, 443);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(787, 26);
+            this.label18.Size = new System.Drawing.Size(787, 18);
             this.label18.TabIndex = 39;
             this.label18.Text = "* separate multiple emails with a semi colon. e.g. admin@school1.com; bursar@scho" +
     "ol1.com";
@@ -442,7 +443,7 @@
             // 
             // txtSageAccountRef
             // 
-            this.txtSageAccountRef.Location = new System.Drawing.Point(756, 269);
+            this.txtSageAccountRef.Location = new System.Drawing.Point(757, 269);
             this.txtSageAccountRef.Name = "txtSageAccountRef";
             this.txtSageAccountRef.Size = new System.Drawing.Size(230, 22);
             this.txtSageAccountRef.TabIndex = 20;
@@ -450,7 +451,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(757, 250);
+            this.label20.Location = new System.Drawing.Point(754, 250);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(94, 16);
             this.label20.TabIndex = 43;
@@ -524,6 +525,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkVettingAM);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
@@ -578,10 +580,21 @@
             this.panel1.Size = new System.Drawing.Size(1000, 494);
             this.panel1.TabIndex = 1;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(929, 17);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(58, 27);
+            this.btnDelete.TabIndex = 50;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(669, 130);
+            this.label23.Location = new System.Drawing.Point(669, 127);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(26, 16);
             this.label23.TabIndex = 49;
@@ -590,7 +603,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(570, 130);
+            this.label22.Location = new System.Drawing.Point(570, 127);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(59, 16);
             this.label22.TabIndex = 48;
@@ -624,16 +637,16 @@
             this.txtTADayCharge.Size = new System.Drawing.Size(68, 22);
             this.txtTADayCharge.TabIndex = 15;
             // 
-            // btnDelete
+            // chkVettingAM
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(929, 17);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(58, 27);
-            this.btnDelete.TabIndex = 50;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.chkVettingAM.AutoSize = true;
+            this.chkVettingAM.Location = new System.Drawing.Point(14, 464);
+            this.chkVettingAM.Name = "chkVettingAM";
+            this.chkVettingAM.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkVettingAM.Size = new System.Drawing.Size(136, 20);
+            this.chkVettingAM.TabIndex = 51;
+            this.chkVettingAM.Text = "               Vetting AM";
+            this.chkVettingAM.UseVisualStyleBackColor = true;
             // 
             // frmEditSchool
             // 
@@ -717,5 +730,6 @@
         private System.Windows.Forms.TextBox txtTAHfDayCharge;
         private System.Windows.Forms.TextBox txtTADayCharge;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.CheckBox chkVettingAM;
     }
 }

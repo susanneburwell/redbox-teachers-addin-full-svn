@@ -6350,6 +6350,8 @@ namespace RedboxAddin
 		
 		private decimal _TAHalfDayChargeLT;
 		
+		private bool _VettingAM;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6398,6 +6400,8 @@ namespace RedboxAddin
     partial void OnTADayChargeLTChanged();
     partial void OnTAHalfDayChargeLTChanging(decimal value);
     partial void OnTAHalfDayChargeLTChanged();
+    partial void OnVettingAMChanging(bool value);
+    partial void OnVettingAMChanged();
     #endregion
 		
 		public School()
@@ -6841,6 +6845,26 @@ namespace RedboxAddin
 					this._TAHalfDayChargeLT = value;
 					this.SendPropertyChanged("TAHalfDayChargeLT");
 					this.OnTAHalfDayChargeLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VettingAM", DbType="Bit NOT NULL")]
+		public bool VettingAM
+		{
+			get
+			{
+				return this._VettingAM;
+			}
+			set
+			{
+				if ((this._VettingAM != value))
+				{
+					this.OnVettingAMChanging(value);
+					this.SendPropertyChanging();
+					this._VettingAM = value;
+					this.SendPropertyChanged("VettingAM");
+					this.OnVettingAMChanged();
 				}
 			}
 		}
