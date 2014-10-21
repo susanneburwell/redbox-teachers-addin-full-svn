@@ -1112,6 +1112,34 @@ namespace RedboxAddin.DL
             }
         }
 
+        public DataTable GetClashingBookingDetailsForUpdate(long masterBookingID, long newTeacherID)
+        {
+            try
+            {
+                string SQLstr = "SELECT Date FROM GuaranteedDays WHERE (TeacherID = " + newTeacherID + ") AND (Date IN " +
+                                "(SELECT Bookings.Date FROM Bookings INNER JOIN MasterBookings ON " +
+                                "Bookings.MasterBookingID = MasterBookings.ID WHERE (MasterBookings.ID = " + masterBookingID + ")))";
+
+                DataSet msgDs = GetDataSet(SQLstr);
+                if (msgDs != null)
+                {
+                    DataTable table = msgDs.Tables[0];
+                    if (table.Rows.Count > 0)
+                        return table;
+                    else
+                        return null;
+                }
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetBookings: " + ex.Message);
+                return null;
+            }
+        }
+
+
         public DataSet GetClashingBookingDetails()
         {
             try
@@ -1138,16 +1166,16 @@ namespace RedboxAddin.DL
         {
             try
             {
-//                string SQLstr = "SELECT dbo.MasterBookings.ID AS MasterBookingID, dbo.MasterBookings.contactID, dbo.Contacts.FirstName, dbo.Contacts.LastName, " +
-//"dbo.Schools.SchoolName, dbo.Bookings.Date, COUNT(dbo.Bookings.Date) AS num, SUM(CASE WHEN [MasterBookings].HalfDay = 1 THEN 0.5 ELSE 1 END) AS days " +
-//"FROM dbo.Bookings LEFT OUTER JOIN dbo.MasterBookings ON dbo.Bookings.MasterBookingID = dbo.MasterBookings.ID INNER JOIN" +
-//"(SELECT TeacherID, Date FROM dbo.GuaranteedDays WHERE (Type = 5) GROUP BY TeacherID, Date) AS a1 ON a1.TeacherID = dbo.MasterBookings.contactID AND " +
-//"a1.Date = dbo.Bookings.Date INNER JOIN dbo.Contacts ON dbo.MasterBookings.contactID = dbo.Contacts.contactID INNER JOIN " +
-//"dbo.Schools ON dbo.MasterBookings.SchoolID = dbo.Schools.ID"+
-//" WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd") + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID +
-//" GROUP BY dbo.Bookings.Date, dbo.MasterBookings.contactID, dbo.MasterBookings.ID, dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
+                //                string SQLstr = "SELECT dbo.MasterBookings.ID AS MasterBookingID, dbo.MasterBookings.contactID, dbo.Contacts.FirstName, dbo.Contacts.LastName, " +
+                //"dbo.Schools.SchoolName, dbo.Bookings.Date, COUNT(dbo.Bookings.Date) AS num, SUM(CASE WHEN [MasterBookings].HalfDay = 1 THEN 0.5 ELSE 1 END) AS days " +
+                //"FROM dbo.Bookings LEFT OUTER JOIN dbo.MasterBookings ON dbo.Bookings.MasterBookingID = dbo.MasterBookings.ID INNER JOIN" +
+                //"(SELECT TeacherID, Date FROM dbo.GuaranteedDays WHERE (Type = 5) GROUP BY TeacherID, Date) AS a1 ON a1.TeacherID = dbo.MasterBookings.contactID AND " +
+                //"a1.Date = dbo.Bookings.Date INNER JOIN dbo.Contacts ON dbo.MasterBookings.contactID = dbo.Contacts.contactID INNER JOIN " +
+                //"dbo.Schools ON dbo.MasterBookings.SchoolID = dbo.Schools.ID"+
+                //" WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd") + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID +
+                //" GROUP BY dbo.Bookings.Date, dbo.MasterBookings.contactID, dbo.MasterBookings.ID, dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
 
-                string SQLstr = "SELECT [TeacherID],[Date] FROM [dbo].[GuaranteedDays] WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd") 
+                string SQLstr = "SELECT [TeacherID],[Date] FROM [dbo].[GuaranteedDays] WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd")
                     + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID;
                 DataSet msgDs = GetDataSet(SQLstr);
                 if (msgDs != null)

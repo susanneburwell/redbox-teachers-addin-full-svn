@@ -1477,38 +1477,48 @@ namespace RedboxAddin.Presentation
         private bool IsCalshing()
         {
             bool isClashing = false;
-            List<DayOfWeek> listOfDays = new List<DayOfWeek>();
 
-            //Add ticked days to listOfDays
-            if (chkMon.Checked)
-                listOfDays.Add(DayOfWeek.Monday);
-            if (chkTue.Checked)
-                listOfDays.Add(DayOfWeek.Tuesday);
-            if (chkWed.Checked)
-                listOfDays.Add(DayOfWeek.Wednesday);
-            if (chkThu.Checked)
-                listOfDays.Add(DayOfWeek.Thursday);
-            if (chkFri.Checked)
-                listOfDays.Add(DayOfWeek.Friday);
-
-
-            DataTable dtClashingBookings = new DBManager().GetClashingBookingDetails(dtFrom.Value.Date, dtTo.Value.Date, Utils.CheckLong(cmbTeacher.SelectedValue));
-            if (dtClashingBookings != null)
+            if (_masterBookingID < 1)
             {
-                foreach (DataRow row in dtClashingBookings.Rows)
+                List<DayOfWeek> listOfDays = new List<DayOfWeek>();
+
+                //Add ticked days to listOfDays
+                if (chkMon.Checked)
+                    listOfDays.Add(DayOfWeek.Monday);
+                if (chkTue.Checked)
+                    listOfDays.Add(DayOfWeek.Tuesday);
+                if (chkWed.Checked)
+                    listOfDays.Add(DayOfWeek.Wednesday);
+                if (chkThu.Checked)
+                    listOfDays.Add(DayOfWeek.Thursday);
+                if (chkFri.Checked)
+                    listOfDays.Add(DayOfWeek.Friday);
+
+
+                DataTable dtClashingBookings = new DBManager().GetClashingBookingDetails(dtFrom.Value.Date, dtTo.Value.Date, Utils.CheckLong(cmbTeacher.SelectedValue));
+                if (dtClashingBookings != null)
                 {
-                    DateTime bookingDate = DateTime.Parse(row["Date"].ToString());
-                    foreach (DayOfWeek day in listOfDays)
+                    foreach (DataRow row in dtClashingBookings.Rows)
                     {
-                        if (bookingDate.DayOfWeek == day)
+                        DateTime bookingDate = DateTime.Parse(row["Date"].ToString());
+                        foreach (DayOfWeek day in listOfDays)
                         {
-                            isClashing = true;
-                            break;
+                            if (bookingDate.DayOfWeek == day)
+                            {
+                                isClashing = true;
+                                break;
+                            }
                         }
+                        if (isClashing)
+                            break;
                     }
-                    if (isClashing)
-                        break;
                 }
+            }
+            else
+            {
+                DataTable dtClashingBookings = new DBManager().GetClashingBookingDetailsForUpdate(_masterBookingID, Utils.CheckLong(cmbTeacher.SelectedValue));
+                if (dtClashingBookings != null && dtClashingBookings.Rows.Count > 0)
+                    isClashing = true;
             }
 
             return isClashing;

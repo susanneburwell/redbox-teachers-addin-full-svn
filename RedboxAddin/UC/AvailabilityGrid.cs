@@ -42,7 +42,7 @@ namespace RedboxAddin.UC
             {
                 Debug.DebugMessage(2, "Error in AvailabilityGrid(): " + ex.Message);
             }
-            
+
         }
 
         public void LoadTable(string wheresql, DateTime input)
@@ -65,7 +65,7 @@ namespace RedboxAddin.UC
                 gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
                 gridView1.Columns["Thursday"].Caption = monday.AddDays(3).ToString("ddd d MMM yy");
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
-                
+
                 this.UseWaitCursor = false;
             }
             catch (Exception ex)
@@ -176,8 +176,7 @@ namespace RedboxAddin.UC
                 string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
 
                 //If colours are set
-                if (myVal.Length > 8) 
-                
+                if (myVal.Length > 8)
                 {
                     string backcolor = myVal.Substring(5, 4);
                     string forecolor = myVal.Substring(0, 4);
@@ -306,11 +305,13 @@ namespace RedboxAddin.UC
                     //******************88
                     if (info.InRow || info.InRowCell)
                     {
+                        
+
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                         rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
                         rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
                         backColor = ((GridViewInfo)gridView1.GetViewInfo()).GetGridCellInfo(info.RowHandle, info.Column).Appearance.BackColor;
-
+                        rowInfo.BookingDate = Convert.ToDateTime(rowInfo.ColumnCaption).Date;
 
                         string teacher = rowInfo.Teacher;
                         string description = rowInfo.Description;
@@ -324,11 +325,11 @@ namespace RedboxAddin.UC
                             MasterBooking oMasterBooking = db.MasterBookings.Where(p => p.ID == masterBookingID).SingleOrDefault();
                             if (oMasterBooking != null)
                             {
+                                rowInfo.MasterBookingID = oMasterBooking.ID;
                                 School oSchool = db.Schools.Where(p => p.ID == oMasterBooking.SchoolID).SingleOrDefault();
                                 if (oSchool != null && oSchool.ID != null)
                                     rowInfo.School = oSchool.ID.ToString();
                             }
-
 
                         }
 
@@ -454,7 +455,7 @@ namespace RedboxAddin.UC
 
             //Get the data from this row
             string columnCaption = hitInfo.Column.Caption;
-            DateTime dateOK = new DateTime(2000,1,1);
+            DateTime dateOK = new DateTime(2000, 1, 1);
             if (DateTime.TryParse(columnCaption, out dateOK))
             {
 
@@ -462,7 +463,7 @@ namespace RedboxAddin.UC
                 int row = hitInfo.RowHandle;
                 long teacherID = long.Parse(gridView1.GetRowCellValue(row, "TeacherID").ToString());
 
-                GuaranteedDay gDay = db.GuaranteedDays.Where(p => p.Date == date && p.TeacherID == teacherID ).FirstOrDefault();
+                GuaranteedDay gDay = db.GuaranteedDays.Where(p => p.Date == date && p.TeacherID == teacherID).FirstOrDefault();
                 if (gDay != null)
                 {
                     if (gDay.Note != string.Empty)
@@ -496,7 +497,7 @@ namespace RedboxAddin.UC
 
                         toolTipArgs.Contents.Text = BodyText;
                         e.Info = new ToolTipControlInfo();
-                        e.Info.Object = hitInfo.HitTest.ToString() + hitInfo.RowHandle.ToString() + hitInfo.Column.FieldName; 
+                        e.Info.Object = hitInfo.HitTest.ToString() + hitInfo.RowHandle.ToString() + hitInfo.Column.FieldName;
                         e.Info.ToolTipType = ToolTipType.SuperTip;
                         e.Info.SuperTip = new SuperToolTip();
                         e.Info.SuperTip.Setup(toolTipArgs);
@@ -510,7 +511,9 @@ namespace RedboxAddin.UC
     {
         RedBoxDB db;
 
-        public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view) : base(view) {
+        public GridViewCustomMenu(DevExpress.XtraGrid.Views.Grid.GridView view)
+            : base(view)
+        {
             string CONNSTR = DavSettings.getDavValue("CONNSTR");
             db = new RedBoxDB(CONNSTR);
         }
@@ -519,7 +522,8 @@ namespace RedboxAddin.UC
         public ImageList imageList;
         public event EventHandler RepaintRequired;
         string teacherIDForANewBooking = string.Empty;
-
+        long masterBookingID = 0;
+        DateTime bookingDate = new DateTime(2000, 01, 01);
 
         public void SetRowInfo(REventArgs rowInfo)
         {
@@ -595,9 +599,8 @@ namespace RedboxAddin.UC
                         Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
                         if (_rowInfo.School != string.Empty)
                             Items.Add(CreateMenuItem("Change Teacher", imageList.Images[0], "Change Teacher", true));
-                        
-                        
-
+                        masterBookingID = _rowInfo.MasterBookingID;
+                        bookingDate = _rowInfo.BookingDate;
                     }
                     else
                     {
@@ -625,8 +628,13 @@ namespace RedboxAddin.UC
             }
             else if (status == "Change Teacher")
             {
-                frmChangeTeacher frm = new frmChangeTeacher();
+                frmChangeTeacher frm = new frmChangeTeacher(bookingDate,masterBookingID);
                 frm.ShowDialog();
+                EventHandler handler = RepaintRequired;
+                if (handler != null)
+                {
+                    handler(this, EventArgs.Empty);
+                }
             }
             else
             {

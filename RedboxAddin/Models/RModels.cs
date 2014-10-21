@@ -215,6 +215,8 @@ namespace RedboxAddin.Models
         public bool isGuarantee { get; set; }
         public string School { get; set; }
         public string Day { get; set; }
+        public long MasterBookingID { get; set; } //Added
+        public DateTime BookingDate { get; set; } //Added
     }
 
     public class Payment
