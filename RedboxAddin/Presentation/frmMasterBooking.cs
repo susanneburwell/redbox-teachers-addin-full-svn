@@ -39,7 +39,7 @@ namespace RedboxAddin.Presentation
         public frmMasterBooking(string contactID)
         {
             InitializeComponent();
-            this.contactIDLong = long.Parse(contactID);           
+            this.contactIDLong = long.Parse(contactID);
             availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
@@ -105,6 +105,7 @@ namespace RedboxAddin.Presentation
                         orderby s.SchoolName
                         select s;
                 var schools = q.ToList();
+
                 cmbSchool.DataSource = schools;
                 cmbSchool.DisplayMember = "SchoolName";
                 cmbSchool.ValueMember = "ID";
@@ -123,6 +124,13 @@ namespace RedboxAddin.Presentation
                 var q = from s in db.BookingStatuses
                         select s;
                 var bs = q.ToList();
+
+                //If selected school has 'Vetting Details Morning Only' then remove the status of "Confirmed" else remove the status of "Confirmed - Morning Only"
+                if (IsVettingDetailsMorningOnly())                
+                    bs.RemoveAt(2);                
+                else                
+                    bs.RemoveAt(6);
+
                 cmbBookingStatus.DataSource = bs;
                 cmbBookingStatus.DisplayMember = "Status";
                 cmbBookingStatus.ValueMember = "ID";
@@ -555,11 +563,11 @@ namespace RedboxAddin.Presentation
                     fore = "purp";
                     back = "gray";
                     break;
-                //case "Confirmed - Morning Only":
-                //    cmbBookingStatus.ForeColor = Color.Black;
-                //    cmbBookingStatus.BackColor = Color.BurlyWood;
-                //    fore = "purp";
-                //    back = "gray";
+                    //case "Confirmed - Morning Only":
+                    //    cmbBookingStatus.ForeColor = Color.Black;
+                    //    cmbBookingStatus.BackColor = Color.BurlyWood;
+                    //    fore = "purp";
+                    //    back = "gray";
                     break;
                 default:
                     cmbBookingStatus.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1141,8 +1149,8 @@ namespace RedboxAddin.Presentation
         {
             SetColours();
             if (loading) return;
-            
-            if (cmbBookingStatus.Text == "Cancelled" ||cmbBookingStatus.Text == "Cancelled - ttbt")
+
+            if (cmbBookingStatus.Text == "Cancelled" || cmbBookingStatus.Text == "Cancelled - ttbt")
             {
                 manageCancelledBooking(cmbBookingStatus.Text);
             }
@@ -1243,14 +1251,14 @@ namespace RedboxAddin.Presentation
             }
             if (sender == dtTo)
             {
-                if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0)  dtFrom.Value = dtTo.Value ;
+                if (DateTime.Compare(dtFrom.Value, dtTo.Value) > 0) dtFrom.Value = dtTo.Value;
             }
         }
 
         private void CheckedChanged(object sender, EventArgs e)
         {
             if (loading) return;
-           
+
             CheckChanged();
         }
 
@@ -1501,7 +1509,7 @@ namespace RedboxAddin.Presentation
                     if (isClashing)
                         break;
                 }
-            }           
+            }
 
             return isClashing;
         }
@@ -1566,7 +1574,37 @@ namespace RedboxAddin.Presentation
 
         }
 
-        
+        private void cmbSchool_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateBookingStatus();
+        }
+
+        private bool IsVettingDetailsMorningOnly()
+        {            
+            try
+            {
+                bool isVettingAM = false;
+                if (cmbSchool.SelectedValue != null)
+                {
+                    long selectedSchoolID = long.Parse(cmbSchool.SelectedValue.ToString());
+                    School oSchool = db.Schools.Where(p => p.ID == selectedSchoolID).FirstOrDefault();
+                    if (oSchool != null)
+                    {
+                        if (oSchool.VettingAM)
+                            isVettingAM = true;
+                    }
+
+                }
+                return isVettingAM;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in IsVettingDetailsMorningOnly: " + ex.Message);
+                return false;
+            }
+        }
+
+
 
 
 

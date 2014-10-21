@@ -124,6 +124,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Notes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -139,7 +140,6 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.Notes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -208,6 +208,7 @@
             this.cmbSchool.Name = "cmbSchool";
             this.cmbSchool.Size = new System.Drawing.Size(279, 24);
             this.cmbSchool.TabIndex = 1;
+            this.cmbSchool.SelectedIndexChanged += new System.EventHandler(this.cmbSchool_SelectedIndexChanged);
             this.cmbSchool.SelectionChangeCommitted += new System.EventHandler(this.cmbSchool_SelectionChangeCommitted);
             // 
             // label6
@@ -1268,6 +1269,20 @@
             this.gridColumn5.VisibleIndex = 4;
             this.gridColumn5.Width = 200;
             // 
+            // Notes
+            // 
+            this.Notes.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.Notes.AppearanceCell.Options.UseFont = true;
+            this.Notes.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.Notes.AppearanceHeader.Options.UseFont = true;
+            this.Notes.Caption = "Notes";
+            this.Notes.FieldName = "Notes";
+            this.Notes.MinWidth = 100;
+            this.Notes.Name = "Notes";
+            this.Notes.Visible = true;
+            this.Notes.VisibleIndex = 5;
+            this.Notes.Width = 200;
+            // 
             // ID
             // 
             this.ID.Caption = "ID";
@@ -1380,20 +1395,6 @@
             // 
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
-            // 
-            // Notes
-            // 
-            this.Notes.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.Notes.AppearanceCell.Options.UseFont = true;
-            this.Notes.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.Notes.AppearanceHeader.Options.UseFont = true;
-            this.Notes.Caption = "Notes";
-            this.Notes.FieldName = "Notes";
-            this.Notes.MinWidth = 100;
-            this.Notes.Name = "Notes";
-            this.Notes.Visible = true;
-            this.Notes.VisibleIndex = 5;
-            this.Notes.Width = 200;
             // 
             // frmMasterBooking
             // 
