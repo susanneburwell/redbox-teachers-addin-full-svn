@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 	<Product 
     Id="*" 
-    Name="RedboxAddin 2.0.58" 
+    Name="RedboxAddin 2.0.59" 
     Language="1033" 
     Version="2.0.48" 
     Manufacturer="Davton" 
