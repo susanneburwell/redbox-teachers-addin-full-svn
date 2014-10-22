@@ -82,6 +82,8 @@ namespace RedboxAddin.Models
         public bool FirstAid { get; set; }
         public bool RWInc { get; set; }
         public bool BSL { get; set; }
+        public string Prio { get; set; }
+
 
     }
 
@@ -154,6 +156,8 @@ namespace RedboxAddin.Models
         public long MasterBookingID { get; set; }
         public string BookingStatus { get; set; }
         public bool Selected { get; set; }
+        public bool LT { get; set; }
+
     }
 
     class RDoubleBookings

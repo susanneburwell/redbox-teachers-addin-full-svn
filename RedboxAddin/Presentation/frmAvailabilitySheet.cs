@@ -398,6 +398,7 @@ namespace RedboxAddin.Presentation
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadTable();
+            CheckDoubleBookings();
         }
 
         private void CheckedChanged(object sender, EventArgs e)
@@ -435,6 +436,7 @@ namespace RedboxAddin.Presentation
             {
                 int topRow = availabilityGrid1.getTopRow();
                 LoadTable();
+                CheckDoubleBookings();                
                 availabilityGrid1.setTopRow(topRow);
             }
             catch (Exception ex)

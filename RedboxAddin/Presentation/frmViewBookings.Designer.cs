@@ -38,6 +38,7 @@
             this.Details = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BookingStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.radMonth = new System.Windows.Forms.RadioButton();
             this.radWeek = new System.Windows.Forms.RadioButton();
@@ -99,11 +100,13 @@
             this.Teacher,
             this.Details,
             this.MasterBookingID,
-            this.BookingStatus});
+            this.BookingStatus,
+            this.LT});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Date, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView1_CustomColumnDisplayText);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // Date
@@ -119,7 +122,7 @@
             this.Date.OptionsColumn.ReadOnly = true;
             this.Date.Visible = true;
             this.Date.VisibleIndex = 0;
-            this.Date.Width = 150;
+            this.Date.Width = 137;
             // 
             // School
             // 
@@ -132,7 +135,7 @@
             this.School.OptionsColumn.ReadOnly = true;
             this.School.Visible = true;
             this.School.VisibleIndex = 1;
-            this.School.Width = 200;
+            this.School.Width = 183;
             // 
             // Teacher
             // 
@@ -145,7 +148,7 @@
             this.Teacher.OptionsColumn.ReadOnly = true;
             this.Teacher.Visible = true;
             this.Teacher.VisibleIndex = 2;
-            this.Teacher.Width = 200;
+            this.Teacher.Width = 183;
             // 
             // Details
             // 
@@ -158,7 +161,7 @@
             this.Details.OptionsColumn.ReadOnly = true;
             this.Details.Visible = true;
             this.Details.VisibleIndex = 3;
-            this.Details.Width = 110;
+            this.Details.Width = 100;
             // 
             // MasterBookingID
             // 
@@ -176,7 +179,17 @@
             this.BookingStatus.Name = "BookingStatus";
             this.BookingStatus.Visible = true;
             this.BookingStatus.VisibleIndex = 4;
-            this.BookingStatus.Width = 180;
+            this.BookingStatus.Width = 165;
+            // 
+            // LT
+            // 
+            this.LT.Caption = "LT";
+            this.LT.FieldName = "LT";
+            this.LT.Name = "LT";
+            this.LT.OptionsColumn.ReadOnly = true;
+            this.LT.Visible = true;
+            this.LT.VisibleIndex = 5;
+            this.LT.Width = 50;
             // 
             // TopPanel
             // 
@@ -448,6 +461,7 @@
         private System.Windows.Forms.RadioButton radWeek;
         private System.Windows.Forms.Button bnFwd;
         private System.Windows.Forms.Button btnBack;
+        private DevExpress.XtraGrid.Columns.GridColumn LT;
 
     }
 }

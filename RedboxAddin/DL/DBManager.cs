@@ -387,6 +387,12 @@ namespace RedboxAddin.DL
                         }
                         else objAvail.Guar = "";
 
+                        if (monType == "6" || tueType == "6" || wedType == "6" || thuType == "6" || friType == "6")
+                        {
+                            objAvail.Prio = "1";
+                        }
+                        else objAvail.Prio = "";
+
                         if (dr["MonLT"].ToString() == "True" || dr["TueLT"].ToString() == "True" || dr["WedLT"].ToString() == "True" || dr["ThuLT"].ToString() == "True" || dr["FriLT"].ToString() == "True")
                         {
                             objAvail.LongTerm = "1";
@@ -1038,7 +1044,9 @@ namespace RedboxAddin.DL
                             ContactID = dr["ContactID"].ToString(),
                             SchoolID = dr["SchoolID"].ToString(),
                             MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
-                            BookingStatus = dr["BookingStatus"].ToString()
+                            BookingStatus = dr["BookingStatus"].ToString(),
+                            LT = Utils.CheckBool(dr["LT"])
+
                         };
                         switch (Utils.CheckInt(dr["Code"]))
                         {
@@ -1196,12 +1204,12 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RBookings> GetBookingsForDate(string ddate, bool confirmed)
+        public List<RBookings> GetBookingsForDate(string ddate, string status)
         {
             List<RBookings> bookingList = new List<RBookings>();
             try
             {
-                string SQLstr = GetMasterBookingsforDateSQL(ddate, confirmed);
+                string SQLstr = GetMasterBookingsforDateSQL(ddate, status);
                 DataSet msgDs = GetDataSet(SQLstr);
 
 
@@ -1348,7 +1356,8 @@ namespace RedboxAddin.DL
                             ContactID = dr["ContactID"].ToString(),
                             SchoolID = dr["SchoolID"].ToString(),
                             MasterBookingID = Utils.CheckLong(dr["MasterBookingID"]),
-                            BookingStatus = dr["BookingStatus"].ToString()
+                            BookingStatus = dr["BookingStatus"].ToString(),
+                            LT = Utils.CheckBool(dr["LT"])
 
                         };
                         bookingList.Add(objBkg);
@@ -3904,7 +3913,7 @@ namespace RedboxAddin.DL
         private string GetViewBookingsSQL(string SchoolID, string teacherID, string dtStart, string dtEnd, string status)
         {
             string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
-                         "LastName+', ' + FirstName as FullName, BookingStatus, Code " +
+                         "LastName+', ' + FirstName as FullName, BookingStatus, Code, MasterBookings.LongTerm AS LT " +
                          "FROM [Bookings] " +
                          "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
                          "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
@@ -3938,7 +3947,7 @@ namespace RedboxAddin.DL
             return SQL;
         }
 
-        private string GetMasterBookingsforDateSQL(string ddate, bool confirmed)
+        private string GetMasterBookingsforDateSQL(string ddate, string status)
         {
             string SQL = "SELECT [Schools].SchoolName, Bookings.Date, Contacts.LastName+', '+Contacts.FirstName as FullName,  " +
                         "[Bookings].Description, MasterBookings.ID as MasterBookingID, Contacts.contactID, Schools.ID as SchoolID , BookingStatus " +
@@ -3947,9 +3956,9 @@ namespace RedboxAddin.DL
                         "Left Join [Schools] ON Schools.ID = MasterBookings.SchoolID " +
                         "Left Join [Contacts] on MasterBookings.contactID = Contacts.contactID " +
                         "WHERE [Bookings].Date = '" + ddate + "'";
-            if (confirmed)
+            if (!string.IsNullOrEmpty(status))
             {
-                SQL += " AND MasterBookings.BookingStatus = 'Confirmed'  ";
+                SQL += " AND MasterBookings.BookingStatus = '"+status+"'  ";
             }
 
 
@@ -3976,7 +3985,7 @@ namespace RedboxAddin.DL
         private string GetUnassignedBookingsSQL(string dtStart, string dtEnd)
         {
             string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
-                         "LastName+', ' + FirstName as FullName , BookingStatus " +
+                         "LastName+', ' + FirstName as FullName , BookingStatus, MasterBookings.LongTerm AS LT" +
                          "FROM [Bookings] " +
                          "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
                          "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +

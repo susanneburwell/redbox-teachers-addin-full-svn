@@ -11,6 +11,7 @@ using RedboxAddin.BL;
 using RedboxAddin.DL;
 using RedboxAddin.Models;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraEditors.Repository;
 
 namespace RedboxAddin.Presentation
 {
@@ -19,6 +20,14 @@ namespace RedboxAddin.Presentation
         public frmViewBookings()
         {
             InitializeComponent();
+
+            //RepositoryItemCheckEdit checkEdit = gridControl1.RepositoryItems.Add("CheckEdit") as RepositoryItemCheckEdit;
+
+            //checkEdit.ValueChecked = "Yes";
+            //checkEdit.ValueUnchecked = "No";
+
+            //checkEdit.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
+            //gridView1.Columns["LT"].ColumnEdit = checkEdit;
         }
 
         private void frmViewBookings_Load(object sender, EventArgs e)
@@ -208,6 +217,17 @@ namespace RedboxAddin.Presentation
         private void radWeek_CheckedChanged(object sender, EventArgs e)
         {
             SetToDate();
+        }
+
+        private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            //if (e.Column == LT)
+            //{
+            //    if ((bool)e.Value)
+            //        e.DisplayText = "Yes";
+            //    else
+            //        e.DisplayText = "No";
+            //}
         }
 
     }

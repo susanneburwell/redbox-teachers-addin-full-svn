@@ -51,6 +51,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.radAny = new System.Windows.Forms.RadioButton();
+            this.radShowConfirmedMorning = new System.Windows.Forms.RadioButton();
             this.radShowConfirmed = new System.Windows.Forms.RadioButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -83,7 +84,7 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(25, 11);
+            this.dtFrom.Location = new System.Drawing.Point(25, 10);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(200, 22);
             this.dtFrom.TabIndex = 7;
@@ -127,7 +128,7 @@
             this.Selected.Name = "Selected";
             this.Selected.Visible = true;
             this.Selected.VisibleIndex = 0;
-            this.Selected.Width = 28;
+            this.Selected.Width = 30;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -143,7 +144,7 @@
             this.Date.Name = "Date";
             this.Date.Visible = true;
             this.Date.VisibleIndex = 1;
-            this.Date.Width = 70;
+            this.Date.Width = 138;
             // 
             // School
             // 
@@ -154,7 +155,7 @@
             this.School.Name = "School";
             this.School.Visible = true;
             this.School.VisibleIndex = 2;
-            this.School.Width = 150;
+            this.School.Width = 200;
             // 
             // Teacher
             // 
@@ -165,7 +166,7 @@
             this.Teacher.Name = "Teacher";
             this.Teacher.Visible = true;
             this.Teacher.VisibleIndex = 3;
-            this.Teacher.Width = 150;
+            this.Teacher.Width = 200;
             // 
             // Booking
             // 
@@ -176,17 +177,18 @@
             this.Booking.Name = "Booking";
             this.Booking.Visible = true;
             this.Booking.VisibleIndex = 4;
-            this.Booking.Width = 150;
+            this.Booking.Width = 100;
             // 
             // Status
             // 
             this.Status.Caption = "Status";
             this.Status.FieldName = "BookingStatus";
-            this.Status.MaxWidth = 100;
+            this.Status.MaxWidth = 150;
             this.Status.MinWidth = 50;
             this.Status.Name = "Status";
             this.Status.Visible = true;
             this.Status.VisibleIndex = 5;
+            this.Status.Width = 100;
             // 
             // BookingID
             // 
@@ -249,6 +251,7 @@
             // 
             this.panelTop.Controls.Add(this.btnRefresh);
             this.panelTop.Controls.Add(this.radAny);
+            this.panelTop.Controls.Add(this.radShowConfirmedMorning);
             this.panelTop.Controls.Add(this.radShowConfirmed);
             this.panelTop.Controls.Add(this.dtFrom);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -270,18 +273,28 @@
             // radAny
             // 
             this.radAny.AutoSize = true;
-            this.radAny.Location = new System.Drawing.Point(700, 11);
+            this.radAny.Location = new System.Drawing.Point(823, 11);
             this.radAny.Name = "radAny";
             this.radAny.Size = new System.Drawing.Size(89, 20);
             this.radAny.TabIndex = 9;
             this.radAny.Text = "Any Status";
             this.radAny.UseVisualStyleBackColor = true;
             // 
+            // radShowConfirmedMorning
+            // 
+            this.radShowConfirmedMorning.AutoSize = true;
+            this.radShowConfirmedMorning.Location = new System.Drawing.Point(649, 11);
+            this.radShowConfirmedMorning.Name = "radShowConfirmedMorning";
+            this.radShowConfirmedMorning.Size = new System.Drawing.Size(168, 20);
+            this.radShowConfirmedMorning.TabIndex = 8;
+            this.radShowConfirmedMorning.Text = "Confirmed Morning Only";
+            this.radShowConfirmedMorning.UseVisualStyleBackColor = true;
+            // 
             // radShowConfirmed
             // 
             this.radShowConfirmed.AutoSize = true;
             this.radShowConfirmed.Checked = true;
-            this.radShowConfirmed.Location = new System.Drawing.Point(795, 11);
+            this.radShowConfirmed.Location = new System.Drawing.Point(526, 11);
             this.radShowConfirmed.Name = "radShowConfirmed";
             this.radShowConfirmed.Size = new System.Drawing.Size(117, 20);
             this.radShowConfirmed.TabIndex = 8;
@@ -337,5 +350,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.CheckBox chkSendAuto;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.RadioButton radShowConfirmedMorning;
     }
 }

@@ -29,7 +29,13 @@ namespace RedboxAddin.Presentation
             try
             {
                 string date = dtFrom.Value.ToString("yyyy-MM-dd");
-                gridControl1.DataSource = new DBManager().GetBookingsForDate(date, radShowConfirmed.Checked);
+                string status = string.Empty;
+                if (radShowConfirmed.Checked)
+                    status = "Confirmed";
+                else if (radShowConfirmedMorning.Checked)
+                    status = "Confirmed - Morning Only";
+
+                gridControl1.DataSource = new DBManager().GetBookingsForDate(date, status);
                 SetSelected(); //set the checkboxes to the required values
             }
             catch (Exception ex)

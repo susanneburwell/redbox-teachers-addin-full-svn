@@ -155,13 +155,18 @@ namespace RedboxAddin.UC
 
                     case "Teacher":
                         string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
+                        string myP = gridView1.GetRowCellValue(myRow, "Prio").ToString();
                         if (myG == "1")
                         {
                             e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
                         }
+                        else if (myP == "1")
+                        {
+                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;                               
+                        }
                         else
                         {
-                            string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();
+                            string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
                             if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
                         }
                         return;
@@ -299,13 +304,14 @@ namespace RedboxAddin.UC
                 // Check if the end-user has right clicked the grid control. 
                 if (e.Button == MouseButtons.Right)
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     REventArgs rowInfo = new REventArgs();
                     GridHitInfo info = gridView1.CalcHitInfo(new Point(e.X, e.Y));
                     Color backColor = Color.Black;
                     //******************88
                     if (info.InRow || info.InRowCell)
                     {
-                        
+
 
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                         rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
@@ -387,6 +393,10 @@ namespace RedboxAddin.UC
             catch (Exception ex)
             {
                 Debug.DebugMessage(1, "Error in Mouse Down: " + ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;                
             }
         }
 
@@ -491,7 +501,7 @@ namespace RedboxAddin.UC
                         }
 
                         //Add Notes & description for the tool-tip
-                        toolTip = "Notes : " + gDay.Note + "\nDetails : " + description; //ASK : "p.Type == 5" is that correct??
+                        toolTip = "Notes : " + gDay.Note + "\nDetails : " + description; 
 
                         string BodyText = toolTip;
 

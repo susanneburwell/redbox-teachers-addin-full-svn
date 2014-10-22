@@ -87,7 +87,6 @@ namespace RedboxAddin
         private ADXRibbonButton adxTimeSheet;
         private ADXRibbonButton adxCheckContactnames;
         private ADXRibbonButton adxSendVetting;
-        private ADXRibbonTab adxTabAppt;
         private ADXRibbonMenu adxRibbonMenu1;
         private ADXRibbonButton adxTeacherContacts;
         private ImageList imageList32;
@@ -163,6 +162,7 @@ namespace RedboxAddin
             this.adxTimeSheet = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxEditPaymentTypes = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTeacherContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxRibbonMenu1 = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -176,7 +176,6 @@ namespace RedboxAddin
             this.adxCheckContactnames = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxPivot = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxCapture = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxTabAppt = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxCommandBar2 = new AddinExpress.MSO.ADXOlExplorerCommandBar(this.components);
             this.adxcbNewRequest = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxcbTeacherUpdate = new AddinExpress.MSO.ADXCommandBarButton(this.components);
@@ -189,6 +188,7 @@ namespace RedboxAddin
             this.adxcbTimeSheets = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxcbSendVetting = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxcbEditSchools = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbEditPaymentTypes = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarPopup2 = new AddinExpress.MSO.ADXCommandBarPopup(this.components);
             this.adxCommandBarButton10 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton11 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
@@ -200,8 +200,6 @@ namespace RedboxAddin
             this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton1 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
-            this.adxcbEditPaymentTypes = new AddinExpress.MSO.ADXCommandBarButton(this.components);
-            this.adxEditPaymentTypes = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxTabMail
             // 
@@ -569,6 +567,14 @@ namespace RedboxAddin
             this.adxEditSchool.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxEditSchool.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditSchool_OnClick);
             // 
+            // adxEditPaymentTypes
+            // 
+            this.adxEditPaymentTypes.Caption = "Edit Payment Types";
+            this.adxEditPaymentTypes.Id = "adxRibbonButton_4fad77e7b36048b893b8582a9888c3f4";
+            this.adxEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxEditPaymentTypes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxEditPaymentTypes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditPaymentTypes_OnClick);
+            // 
             // adxTeacherContacts
             // 
             this.adxTeacherContacts.Caption = "Teacher Contacts";
@@ -685,12 +691,6 @@ namespace RedboxAddin
             this.adxCapture.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxCapture.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxCapture.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxCapture_OnClick);
-            // 
-            // adxTabAppt
-            // 
-            this.adxTabAppt.Caption = "adxRibbonTab1";
-            this.adxTabAppt.Id = "adxRibbonTab_b1048884135f4ceabfd13019f1b726d7";
-            this.adxTabAppt.Ribbons = ((AddinExpress.MSO.ADXRibbons)((AddinExpress.MSO.ADXRibbons.msrOutlookMailRead | AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose)));
             // 
             // adxCommandBar2
             // 
@@ -809,6 +809,15 @@ namespace RedboxAddin
             this.adxcbEditSchools.UpdateCounter = 4;
             this.adxcbEditSchools.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbEditSchools_Click);
             // 
+            // adxcbEditPaymentTypes
+            // 
+            this.adxcbEditPaymentTypes.Caption = "Edit Payment Types";
+            this.adxcbEditPaymentTypes.ControlTag = "18bcc0de-4932-4246-bdbc-e04045ec7dd0";
+            this.adxcbEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbEditPaymentTypes.Temporary = true;
+            this.adxcbEditPaymentTypes.UpdateCounter = 4;
+            this.adxcbEditPaymentTypes.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbEditPaymentTypes_Click);
+            // 
             // adxCommandBarPopup2
             // 
             this.adxCommandBarPopup2.Caption = "Maintenance";
@@ -907,23 +916,6 @@ namespace RedboxAddin
             this.adxCommandBarButton1.Temporary = true;
             this.adxCommandBarButton1.UpdateCounter = 3;
             this.adxCommandBarButton1.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxCommandBarButton1_Click);
-            // 
-            // adxcbEditPaymentTypes
-            // 
-            this.adxcbEditPaymentTypes.Caption = "Edit Payment Types";
-            this.adxcbEditPaymentTypes.ControlTag = "18bcc0de-4932-4246-bdbc-e04045ec7dd0";
-            this.adxcbEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxcbEditPaymentTypes.Temporary = true;
-            this.adxcbEditPaymentTypes.UpdateCounter = 4;
-            this.adxcbEditPaymentTypes.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbEditPaymentTypes_Click);
-            // 
-            // adxEditPaymentTypes
-            // 
-            this.adxEditPaymentTypes.Caption = "Edit Payment Types";
-            this.adxEditPaymentTypes.Id = "adxRibbonButton_4fad77e7b36048b893b8582a9888c3f4";
-            this.adxEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxEditPaymentTypes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxEditPaymentTypes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditPaymentTypes_OnClick);
             // 
             // AddinModule
             // 

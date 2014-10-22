@@ -76,6 +76,7 @@ namespace RedboxAddin.Presentation
                 {
                     oMasterBooking.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                     db.SubmitChanges();
+                    this.Close();
                 }
             }
         }

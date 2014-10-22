@@ -786,6 +786,7 @@ namespace RedboxAddin.Presentation
                 string myPic = "";
                 string myBody = "";
                 string txtBody = "";
+                string yearGroup = "";
 
                 string contentID = "myident";
                 string TableTop = "<table border=" + (char)(34) + "1" + (char)(34) + "width=" + (char)(34) + "100%" +
@@ -813,12 +814,25 @@ namespace RedboxAddin.Presentation
 
                 oMail = (MailItem)Globals.objNS.GetItemFromID(myEntryID);
 
+                yearGroup = (false) ? yearGroup += "Float, " : yearGroup; //ToDo
+                yearGroup = (chkNur.Checked) ? yearGroup += "Nur, " : yearGroup;
+                yearGroup = (chkRec.Checked) ? yearGroup += "Rec, " : yearGroup;
+                yearGroup = (chkYr1.Checked) ? yearGroup += "Yr1, " : yearGroup;
+                yearGroup = (chkYr2.Checked) ? yearGroup += "Yr2, " : yearGroup;
+                yearGroup = (chkYr3.Checked) ? yearGroup += "Yr3, " : yearGroup;
+                yearGroup = (chkYr4.Checked) ? yearGroup += "Yr4, " : yearGroup;
+                yearGroup = (chkYr5.Checked) ? yearGroup += "Yr5, " : yearGroup;
+                yearGroup = (chkYr6.Checked) ? yearGroup += "Yr6, " : yearGroup;
+                yearGroup = (chkTA.Checked) ? yearGroup += "TA, " : yearGroup;
+                if (yearGroup.Length > 0)
+                    yearGroup = yearGroup.Remove(yearGroup.Length - 2, 1);
+
                 myPic = "<DIV>" + Environment.NewLine + "<IMG style=" + " border=0 hspace=0 alt=myPic align=baseline src=cid:myident width=200 height=200>" + Environment.NewLine + "</DIV>" + Environment.NewLine;
                 TableMiddle = "</td>" + Environment.NewLine + "<td><FONT SIZE=2 FACE=" + (char)34 + "Arial" + (char)34 + ">";
                 txtBody = txtBody + "Date of Supply: " + dtDateOfSupply.Value.ToShortDateString() + Environment.NewLine;
                 txtBody = txtBody + Environment.NewLine + "Supply Requirement: Basic Cover" + Environment.NewLine + Environment.NewLine;
                 txtBody = txtBody + "Teacher Name: " + lblFullName.Text + Environment.NewLine + Environment.NewLine;
-                txtBody = txtBody + "Year Group: " + txtYearGroup.Text + Environment.NewLine;
+                txtBody = txtBody + "Year Group: " + txtYearGroup.Text + " " + yearGroup + Environment.NewLine;
                 txtBody = txtBody + Environment.NewLine + "Qualification: " + txtQualification.Text;
                 if (chkQTS.Checked)
                 {

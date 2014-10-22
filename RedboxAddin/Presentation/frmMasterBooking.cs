@@ -125,11 +125,29 @@ namespace RedboxAddin.Presentation
                         select s;
                 var bs = q.ToList();
 
-                //If selected school has 'Vetting Details Morning Only' then remove the status of "Confirmed" else remove the status of "Confirmed - Morning Only"
-                if (IsVettingDetailsMorningOnly())                
-                    bs.RemoveAt(2);                
-                else                
-                    bs.RemoveAt(6);
+                if (!string.IsNullOrEmpty(cmbSchool.Text))
+                {
+                    //If selected school has 'Vetting Details Morning Only' then remove the status of "Confirmed" else remove the status of "Confirmed - Morning Only"
+                    if (IsVettingDetailsMorningOnly())
+                    {
+                        BookingStatuse obj = bs.ElementAt(6);
+                        bs.RemoveAt(2);
+                        bs.Insert(2, obj);
+                        bs.RemoveAt(6);
+                    }
+                    else
+                    {
+                        bs.RemoveAt(6);
+                    }
+                }
+                else
+                {
+                    BookingStatuse obj = bs.ElementAt(6);
+                    bs.Insert(3, obj);
+                    bs.RemoveAt(7);
+                }
+
+                //
 
                 cmbBookingStatus.DataSource = bs;
                 cmbBookingStatus.DisplayMember = "Status";
@@ -405,8 +423,6 @@ namespace RedboxAddin.Presentation
                     } while (bookingdate.Date <= mb.EndDate.Date.AddMinutes(1));//1 minute added to ensure comparison works
 
                     db.SubmitChanges();
-
-
                     return true;
                 }
                 else
@@ -832,6 +848,10 @@ namespace RedboxAddin.Presentation
                 long schoolID = mb.SchoolID;
                 string agegroup = Utils.YearGroup(chkNur.Checked, chkRec.Checked, chkYr1.Checked, chkYr2.Checked, chkYr3.Checked, chkYr4.Checked, chkYr5.Checked, chkYr6.Checked);
 
+                //agegroup = (chkPPA.Checked) ? agegroup += "/PPA" : agegroup;
+                agegroup = (chkFloat.Checked) ? agegroup += "/Float" : agegroup;
+                agegroup = (chkTA.Checked) ? agegroup += "/TA" : agegroup;
+
                 long contactID = (long)mb.ContactID;
                 bool result = RedemptionCode.SendVettingDetails(contactID.ToString(), schoolID.ToString(), false,
                     dtFrom.Value.ToShortDateString(), dtTo.Value.ToShortDateString(), agegroup);
@@ -1011,7 +1031,7 @@ namespace RedboxAddin.Presentation
             }
             else
             {
-                MessageBox.Show("Not Saved", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage, "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1035,7 +1055,7 @@ namespace RedboxAddin.Presentation
             }
             else
             {
-                MessageBox.Show("Not Saved", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage, "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1478,7 +1498,7 @@ namespace RedboxAddin.Presentation
         {
             bool isClashing = false;
 
-            if (_masterBookingID < 1)
+            if (_masterBookingID < 1) //For insert a new record
             {
                 List<DayOfWeek> listOfDays = new List<DayOfWeek>();
 
@@ -1514,7 +1534,7 @@ namespace RedboxAddin.Presentation
                     }
                 }
             }
-            else
+            else //For update a record
             {
                 DataTable dtClashingBookings = new DBManager().GetClashingBookingDetailsForUpdate(_masterBookingID, Utils.CheckLong(cmbTeacher.SelectedValue));
                 if (dtClashingBookings != null && dtClashingBookings.Rows.Count > 0)

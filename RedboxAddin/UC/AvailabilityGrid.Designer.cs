@@ -65,6 +65,7 @@
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -128,7 +129,8 @@
             this.FirstAid,
             this.Guar,
             this.LongTerm,
-            this.TeacherID});
+            this.TeacherID,
+            this.Prio});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -463,6 +465,12 @@
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
             // 
+            // Prio
+            // 
+            this.Prio.Caption = "Prio";
+            this.Prio.FieldName = "Prio";
+            this.Prio.Name = "Prio";
+            // 
             // AvailabilityGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,5 +521,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn LongTerm;
         private DevExpress.XtraGrid.Columns.GridColumn TeacherID;
         private DevExpress.Utils.ToolTipController toolTipController1;
+        private DevExpress.XtraGrid.Columns.GridColumn Prio;
     }
 }
