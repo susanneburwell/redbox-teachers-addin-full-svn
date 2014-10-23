@@ -64,7 +64,9 @@ namespace RedboxAddin
 
                 //Save the file
                 fileName = "Payrun_" + type + "_" + WeekEnding + ".xlsx";
-                string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Davton Files\\Paysheets\\";
+
+                string filePath = DavSettings.getDavValue("PAYSHEETFOLDERPATH");
+                if (filePath == null) filePath = "Y:\\A. Paysheets";
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
                 objBook.SaveAs(filePath + fileName);
@@ -173,8 +175,9 @@ namespace RedboxAddin
         {
             try
             {
-                if (pay1.PayDetails != pay2.PayDetails) return false;
-                if (pay1.AgencyRef != pay2.AgencyRef) return false;
+                //different paydetails and agencyref (ie schools) shoudl be combined into one line
+                //if (pay1.PayDetails != pay2.PayDetails) return false;
+                //if (pay1.AgencyRef != pay2.AgencyRef) return false;
                 if (pay1.LastName != pay2.LastName) return false;
                 if (pay1.FirstName != pay2.FirstName) return false;
                 if (pay1.Rate != pay2.Rate) return false;

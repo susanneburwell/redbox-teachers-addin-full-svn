@@ -361,17 +361,19 @@ namespace RedboxAddin.UC
 
                     if (rowInfo.Description.Trim() == "")
                     {
-                        if (backColor != Color.White)
-                        {
-                            //System.Media.SystemSounds.Exclamation.Play();
-                            System.Media.SystemSounds.Beep.Play();
-                            return;
-                        }
-                        else
-                        {
+                        //This should work for ALL colours (maybe except orange - unavailable)
+
+                        //if (backColor != Color.White)
+                        //{
+                        //    //System.Media.SystemSounds.Exclamation.Play();
+                        //    System.Media.SystemSounds.Beep.Play();
+                        //    return;
+                        //}
+                        //else
+                        //{
                             long teacherID = long.Parse(gridView1.GetRowCellValue(info.RowHandle, "TeacherID").ToString());
                             rowInfo.Status = "New." + teacherID;
-                        }
+                        //}
                     }
 
 

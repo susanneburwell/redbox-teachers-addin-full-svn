@@ -895,10 +895,10 @@ namespace RedboxAddin.DL
                             {
                                 WeekEnding = WeekEnding,
                                 SageAcctRef = SageAccountRef,
-                                Address = dr["Address"].ToString(),
-                                Description = dr["Description"].ToString(),
-                                LastName = dr["LastName"].ToString(),
-                                FirstName = dr["FirstName"].ToString(),
+                                Address = dr["Address"].ToString().Replace(",",""),
+                                Description = dr["Description"].ToString().Replace(",", ";"),
+                                LastName = dr["LastName"].ToString().Replace(",", ""),
+                                FirstName = dr["FirstName"].ToString().Replace(",", ""),
                                 TotalDays = 1,
                                 Charge = Utils.CheckDecimal(dr["Charge"])
                             };
@@ -1126,7 +1126,7 @@ namespace RedboxAddin.DL
             {
                 string SQLstr = "SELECT Date FROM GuaranteedDays WHERE (TeacherID = " + newTeacherID + ") AND (Date IN " +
                                 "(SELECT Bookings.Date FROM Bookings INNER JOIN MasterBookings ON " +
-                                "Bookings.MasterBookingID = MasterBookings.ID WHERE (MasterBookings.ID = " + masterBookingID + ")))";
+                                "Bookings.MasterBookingID = MasterBookings.ID WHERE (MasterBookings.ID = " + masterBookingID + "))) AND Type = 5  ";
 
                 DataSet msgDs = GetDataSet(SQLstr);
                 if (msgDs != null)
@@ -1184,7 +1184,7 @@ namespace RedboxAddin.DL
                 //" GROUP BY dbo.Bookings.Date, dbo.MasterBookings.contactID, dbo.MasterBookings.ID, dbo.Contacts.FirstName, dbo.Contacts.LastName, dbo.Schools.SchoolName";
 
                 string SQLstr = "SELECT [TeacherID],[Date] FROM [dbo].[GuaranteedDays] WHERE [Date] >= '" + dateFrom.ToString("yyyy-MM-dd")
-                    + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID;
+                    + "' AND [Date] <= '" + dateTo.ToString("yyyy-MM-dd") + "' AND [TeacherID] = " + teacherID + " AND Type = 5 ";
                 DataSet msgDs = GetDataSet(SQLstr);
                 if (msgDs != null)
                 {
@@ -3749,6 +3749,8 @@ namespace RedboxAddin.DL
             SQL += "ON MasterBookings.SchoolID = [Schools].ID ";
             SQL += "WHERE isAbsence != 1 ";
 
+            SQL += "ORDER BY SchoolName, sCharge DESC, LastName, FirstName ";
+
             return SQL;
         }
 
@@ -3807,7 +3809,7 @@ namespace RedboxAddin.DL
             SQL += "ON [MasterBookings].SchoolID = [Schools].ID ";
             SQL += "WHERE [Date] >= '" + sStart + "' AND [Date] <= '" + WeekEnding + "'  ";
             SQL += "AND [Schools].SageName = '" + SageAccountRef + "' ";
-            SQL += "ORDER BY contactID, Rate  ";
+            SQL += "ORDER BY [Schools].SchoolName,[Bookings].[Charge] DESC, [Contacts].LastName,[Contacts].FirstName  ";
 
             return SQL;
         }
@@ -3827,7 +3829,7 @@ namespace RedboxAddin.DL
             SQL += "LEFT JOIN [Schools]  ON MasterBookings.SchoolID = [Schools].ID  ";
             SQL += "WHERE (Date >= '" + start + "' ) AND (Date <= '" + dEnd + "') ";
             SQL += "AND ( isAbsence != 1) AND (MasterBookings.SchoolID = '" + schoolID + "') ";
-            SQL += "ORDER BY [Bookings].MasterBookingID, [Bookings].Charge, [Bookings].Date ";
+            SQL += "ORDER BY [Bookings].MasterBookingID, [Bookings].Charge, [Bookings].Date, LastName, Firstname ";
             return SQL;
         }
 
