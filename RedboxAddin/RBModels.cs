@@ -32,6 +32,9 @@ namespace RedboxAddin
     partial void InsertAbsenceReason(AbsenceReason instance);
     partial void UpdateAbsenceReason(AbsenceReason instance);
     partial void DeleteAbsenceReason(AbsenceReason instance);
+    partial void InsertBookingOverTime(BookingOverTime instance);
+    partial void UpdateBookingOverTime(BookingOverTime instance);
+    partial void DeleteBookingOverTime(BookingOverTime instance);
     partial void InsertBooking(Booking instance);
     partial void UpdateBooking(Booking instance);
     partial void DeleteBooking(Booking instance);
@@ -102,6 +105,14 @@ namespace RedboxAddin
 			get
 			{
 				return this.GetTable<AbsenceReason>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BookingOverTime> BookingOverTimes
+		{
+			get
+			{
+				return this.GetTable<BookingOverTime>();
 			}
 		}
 		
@@ -304,6 +315,212 @@ namespace RedboxAddin
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BookingOverTime")]
+	public partial class BookingOverTime : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _MasterBookingID;
+		
+		private long _BookingID;
+		
+		private decimal _RateAdditional;
+		
+		private decimal _ChargeAdditional;
+		
+		private decimal _Hours;
+		
+		private string _Notes;
+		
+		private bool _IsCredit;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMasterBookingIDChanging(long value);
+    partial void OnMasterBookingIDChanged();
+    partial void OnBookingIDChanging(long value);
+    partial void OnBookingIDChanged();
+    partial void OnRateAdditionalChanging(decimal value);
+    partial void OnRateAdditionalChanged();
+    partial void OnChargeAdditionalChanging(decimal value);
+    partial void OnChargeAdditionalChanged();
+    partial void OnHoursChanging(decimal value);
+    partial void OnHoursChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    partial void OnIsCreditChanging(bool value);
+    partial void OnIsCreditChanged();
+    #endregion
+		
+		public BookingOverTime()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterBookingID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long MasterBookingID
+		{
+			get
+			{
+				return this._MasterBookingID;
+			}
+			set
+			{
+				if ((this._MasterBookingID != value))
+				{
+					this.OnMasterBookingIDChanging(value);
+					this.SendPropertyChanging();
+					this._MasterBookingID = value;
+					this.SendPropertyChanged("MasterBookingID");
+					this.OnMasterBookingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long BookingID
+		{
+			get
+			{
+				return this._BookingID;
+			}
+			set
+			{
+				if ((this._BookingID != value))
+				{
+					this.OnBookingIDChanging(value);
+					this.SendPropertyChanging();
+					this._BookingID = value;
+					this.SendPropertyChanged("BookingID");
+					this.OnBookingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RateAdditional", DbType="Decimal(7,2) NOT NULL")]
+		public decimal RateAdditional
+		{
+			get
+			{
+				return this._RateAdditional;
+			}
+			set
+			{
+				if ((this._RateAdditional != value))
+				{
+					this.OnRateAdditionalChanging(value);
+					this.SendPropertyChanging();
+					this._RateAdditional = value;
+					this.SendPropertyChanged("RateAdditional");
+					this.OnRateAdditionalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChargeAdditional", DbType="Decimal(7,2) NOT NULL")]
+		public decimal ChargeAdditional
+		{
+			get
+			{
+				return this._ChargeAdditional;
+			}
+			set
+			{
+				if ((this._ChargeAdditional != value))
+				{
+					this.OnChargeAdditionalChanging(value);
+					this.SendPropertyChanging();
+					this._ChargeAdditional = value;
+					this.SendPropertyChanged("ChargeAdditional");
+					this.OnChargeAdditionalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hours", DbType="Decimal(2,2) NOT NULL")]
+		public decimal Hours
+		{
+			get
+			{
+				return this._Hours;
+			}
+			set
+			{
+				if ((this._Hours != value))
+				{
+					this.OnHoursChanging(value);
+					this.SendPropertyChanging();
+					this._Hours = value;
+					this.SendPropertyChanged("Hours");
+					this.OnHoursChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCredit", DbType="Bit NOT NULL")]
+		public bool IsCredit
+		{
+			get
+			{
+				return this._IsCredit;
+			}
+			set
+			{
+				if ((this._IsCredit != value))
+				{
+					this.OnIsCreditChanging(value);
+					this.SendPropertyChanging();
+					this._IsCredit = value;
+					this.SendPropertyChanged("IsCredit");
+					this.OnIsCreditChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bookings")]
 	public partial class Booking : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -327,6 +544,8 @@ namespace RedboxAddin
 		private int _Code;
 		
 		private string _Notes;
+		
+		private bool _IsOverTimeAvailable;
 		
 		private EntityRef<MasterBooking> _MasterBooking;
 		
@@ -352,6 +571,8 @@ namespace RedboxAddin
     partial void OnCodeChanged();
     partial void OnNotesChanging(string value);
     partial void OnNotesChanged();
+    partial void OnIsOverTimeAvailableChanging(bool value);
+    partial void OnIsOverTimeAvailableChanged();
     #endregion
 		
 		public Booking()
@@ -540,6 +761,26 @@ namespace RedboxAddin
 					this._Notes = value;
 					this.SendPropertyChanged("Notes");
 					this.OnNotesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOverTimeAvailable", DbType="Bit NOT NULL")]
+		public bool IsOverTimeAvailable
+		{
+			get
+			{
+				return this._IsOverTimeAvailable;
+			}
+			set
+			{
+				if ((this._IsOverTimeAvailable != value))
+				{
+					this.OnIsOverTimeAvailableChanging(value);
+					this.SendPropertyChanging();
+					this._IsOverTimeAvailable = value;
+					this.SendPropertyChanged("IsOverTimeAvailable");
+					this.OnIsOverTimeAvailableChanged();
 				}
 			}
 		}
