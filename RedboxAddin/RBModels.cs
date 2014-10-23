@@ -329,7 +329,9 @@ namespace RedboxAddin
 		
 		private decimal _ChargeAdditional;
 		
-		private decimal _Hours;
+		private int _Hours;
+		
+		private int _Minutes;
 		
 		private string _Notes;
 		
@@ -347,8 +349,10 @@ namespace RedboxAddin
     partial void OnRateAdditionalChanged();
     partial void OnChargeAdditionalChanging(decimal value);
     partial void OnChargeAdditionalChanged();
-    partial void OnHoursChanging(decimal value);
+    partial void OnHoursChanging(int value);
     partial void OnHoursChanged();
+    partial void OnMinutesChanging(int value);
+    partial void OnMinutesChanged();
     partial void OnNotesChanging(string value);
     partial void OnNotesChanged();
     partial void OnIsCreditChanging(bool value);
@@ -440,8 +444,8 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hours", DbType="Decimal(2,2) NOT NULL")]
-		public decimal Hours
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hours", DbType="Int NOT NULL")]
+		public int Hours
 		{
 			get
 			{
@@ -456,6 +460,26 @@ namespace RedboxAddin
 					this._Hours = value;
 					this.SendPropertyChanged("Hours");
 					this.OnHoursChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Minutes", DbType="Int NOT NULL")]
+		public int Minutes
+		{
+			get
+			{
+				return this._Minutes;
+			}
+			set
+			{
+				if ((this._Minutes != value))
+				{
+					this.OnMinutesChanging(value);
+					this.SendPropertyChanging();
+					this._Minutes = value;
+					this.SendPropertyChanged("Minutes");
+					this.OnMinutesChanged();
 				}
 			}
 		}

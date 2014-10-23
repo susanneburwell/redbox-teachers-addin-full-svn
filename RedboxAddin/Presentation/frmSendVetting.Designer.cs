@@ -266,7 +266,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(64, 24);
             this.btnRefresh.TabIndex = 10;
-            this.btnRefresh.Text = "refresh";
+            this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -279,6 +279,7 @@
             this.radAny.TabIndex = 9;
             this.radAny.Text = "Any Status";
             this.radAny.UseVisualStyleBackColor = true;
+            this.radAny.CheckedChanged += new System.EventHandler(this.radAny_CheckedChanged);
             // 
             // radShowConfirmedMorning
             // 
@@ -289,6 +290,7 @@
             this.radShowConfirmedMorning.TabIndex = 8;
             this.radShowConfirmedMorning.Text = "Confirmed Morning Only";
             this.radShowConfirmedMorning.UseVisualStyleBackColor = true;
+            this.radShowConfirmedMorning.CheckedChanged += new System.EventHandler(this.radShowConfirmedMorning_CheckedChanged);
             // 
             // radShowConfirmed
             // 
@@ -301,6 +303,7 @@
             this.radShowConfirmed.TabStop = true;
             this.radShowConfirmed.Text = "Confirmed Only";
             this.radShowConfirmed.UseVisualStyleBackColor = true;
+            this.radShowConfirmed.CheckedChanged += new System.EventHandler(this.radShowConfirmed_CheckedChanged);
             // 
             // frmSendVetting
             // 

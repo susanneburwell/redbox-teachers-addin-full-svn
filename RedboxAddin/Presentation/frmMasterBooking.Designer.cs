@@ -126,6 +126,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Notes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.IsOverTimeAvailable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -1170,6 +1172,7 @@
             this.dgcBookings.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ViewBookings});
             this.dgcBookings.Visible = false;
+            this.dgcBookings.DoubleClick += new System.EventHandler(this.dgcBookings_DoubleClick);
             this.dgcBookings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgcBookings_MouseDown);
             // 
             // ViewBookings
@@ -1181,7 +1184,9 @@
             this.gridColumn4,
             this.gridColumn5,
             this.Notes,
-            this.ID});
+            this.ID,
+            this.MasterBookingID,
+            this.IsOverTimeAvailable});
             this.ViewBookings.GridControl = this.dgcBookings;
             this.ViewBookings.Name = "ViewBookings";
             this.ViewBookings.OptionsCustomization.AllowGroup = false;
@@ -1263,7 +1268,7 @@
             this.gridColumn5.AppearanceHeader.Options.UseFont = true;
             this.gridColumn5.Caption = "Description";
             this.gridColumn5.FieldName = "Description";
-            this.gridColumn5.MinWidth = 200;
+            this.gridColumn5.MinWidth = 150;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
@@ -1277,17 +1282,32 @@
             this.Notes.AppearanceHeader.Options.UseFont = true;
             this.Notes.Caption = "Notes";
             this.Notes.FieldName = "Notes";
-            this.Notes.MinWidth = 100;
+            this.Notes.MinWidth = 90;
             this.Notes.Name = "Notes";
             this.Notes.Visible = true;
             this.Notes.VisibleIndex = 5;
-            this.Notes.Width = 200;
+            this.Notes.Width = 100;
             // 
             // ID
             // 
             this.ID.Caption = "ID";
             this.ID.FieldName = "ID";
             this.ID.Name = "ID";
+            // 
+            // MasterBookingID
+            // 
+            this.MasterBookingID.Caption = "MasterBookingID";
+            this.MasterBookingID.FieldName = "MasterBookingID";
+            this.MasterBookingID.Name = "MasterBookingID";
+            // 
+            // IsOverTimeAvailable
+            // 
+            this.IsOverTimeAvailable.Caption = "OT";
+            this.IsOverTimeAvailable.FieldName = "IsOverTimeAvailable";
+            this.IsOverTimeAvailable.Name = "IsOverTimeAvailable";
+            this.IsOverTimeAvailable.Visible = true;
+            this.IsOverTimeAvailable.VisibleIndex = 6;
+            this.IsOverTimeAvailable.Width = 20;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -1546,5 +1566,7 @@
         private System.Windows.Forms.CheckBox chkMon;
         private System.Windows.Forms.Label lblDays;
         private DevExpress.XtraGrid.Columns.GridColumn Notes;
+        private DevExpress.XtraGrid.Columns.GridColumn MasterBookingID;
+        private DevExpress.XtraGrid.Columns.GridColumn IsOverTimeAvailable;
     }
 }

@@ -908,6 +908,15 @@ namespace RedboxAddin.Presentation
         {
             try
             {
+                //Delete bookings overtime information
+                var bookingOTList = from b in db.BookingOverTimes
+                                    where b.MasterBookingID == _masterBookingID
+                                    select b;
+                foreach (var bOT in bookingOTList)
+                {
+                    db.BookingOverTimes.DeleteOnSubmit(bOT);
+                }
+
                 //Delete bookings
                 var bookingList = from b in db.Bookings
                                   where b.MasterBookingID == _masterBookingID
@@ -1631,6 +1640,31 @@ namespace RedboxAddin.Presentation
             {
                 Debug.DebugMessage(1, "Error in IsVettingDetailsMorningOnly: " + ex.Message);
                 return false;
+            }
+        }    
+
+        private void dgcBookings_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Point pt = dgcBookings.PointToClient(Control.MousePosition);
+                GridHitInfo info = ViewBookings.CalcHitInfo(pt);
+                if (info.InRow || info.InRowCell)
+                {
+                    string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
+                    long masterbookingID = Convert.ToInt64(ViewBookings.GetRowCellValue(info.RowHandle, "MasterBookingID").ToString());
+                    long bookingID = Convert.ToInt64(ViewBookings.GetRowCellValue(info.RowHandle, "ID").ToString());
+
+                    if (masterbookingID > -1 && bookingID > -1)
+                    {
+                        frmBookingOverTime fq = new frmBookingOverTime(masterbookingID, bookingID);
+                        fq.Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in gridView1_DoubleClick: " + ex.Message);
             }
         }
 

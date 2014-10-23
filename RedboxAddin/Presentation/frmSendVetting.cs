@@ -28,6 +28,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 string date = dtFrom.Value.ToString("yyyy-MM-dd");
                 string status = string.Empty;
                 if (radShowConfirmed.Checked)
@@ -41,6 +42,10 @@ namespace RedboxAddin.Presentation
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in LoadGrid(): " + ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;                
             }
         }
 
@@ -162,6 +167,21 @@ namespace RedboxAddin.Presentation
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
+        private void radShowConfirmed_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
+        private void radShowConfirmedMorning_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
+        private void radAny_CheckedChanged(object sender, EventArgs e)
         {
             LoadGrid();
         }

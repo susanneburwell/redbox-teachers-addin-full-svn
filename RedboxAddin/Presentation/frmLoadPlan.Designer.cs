@@ -300,11 +300,11 @@
             this.Wednesday,
             this.Thursday,
             this.Friday,
+            this.Rate,
+            this.Charge,
             this.Revenue,
             this.TotalCost,
             this.TMargin,
-            this.Charge,
-            this.Rate,
             this.sMargin,
             this.MonID,
             this.TueID,
@@ -328,7 +328,7 @@
             this.School.OptionsColumn.ReadOnly = true;
             this.School.Visible = true;
             this.School.VisibleIndex = 0;
-            this.School.Width = 121;
+            this.School.Width = 110;
             // 
             // FirstName
             // 
@@ -339,6 +339,7 @@
             this.FirstName.OptionsColumn.ReadOnly = true;
             this.FirstName.Visible = true;
             this.FirstName.VisibleIndex = 1;
+            this.FirstName.Width = 68;
             // 
             // LastName
             // 
@@ -349,6 +350,7 @@
             this.LastName.OptionsColumn.ReadOnly = true;
             this.LastName.Visible = true;
             this.LastName.VisibleIndex = 2;
+            this.LastName.Width = 68;
             // 
             // numDays
             // 
@@ -361,6 +363,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "numDays", "{0} days")});
             this.numDays.Visible = true;
             this.numDays.VisibleIndex = 3;
+            this.numDays.Width = 68;
             // 
             // Monday
             // 
@@ -371,6 +374,7 @@
             this.Monday.OptionsColumn.ReadOnly = true;
             this.Monday.Visible = true;
             this.Monday.VisibleIndex = 4;
+            this.Monday.Width = 68;
             // 
             // Tuesday
             // 
@@ -381,6 +385,7 @@
             this.Tuesday.OptionsColumn.ReadOnly = true;
             this.Tuesday.Visible = true;
             this.Tuesday.VisibleIndex = 5;
+            this.Tuesday.Width = 68;
             // 
             // Wednesday
             // 
@@ -391,6 +396,7 @@
             this.Wednesday.OptionsColumn.ReadOnly = true;
             this.Wednesday.Visible = true;
             this.Wednesday.VisibleIndex = 6;
+            this.Wednesday.Width = 68;
             // 
             // Thursday
             // 
@@ -401,6 +407,7 @@
             this.Thursday.OptionsColumn.ReadOnly = true;
             this.Thursday.Visible = true;
             this.Thursday.VisibleIndex = 7;
+            this.Thursday.Width = 68;
             // 
             // Friday
             // 
@@ -411,6 +418,7 @@
             this.Friday.OptionsColumn.ReadOnly = true;
             this.Friday.Visible = true;
             this.Friday.VisibleIndex = 8;
+            this.Friday.Width = 68;
             // 
             // Revenue
             // 
@@ -424,7 +432,7 @@
             this.Revenue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", "{0:c}")});
             this.Revenue.Visible = true;
-            this.Revenue.VisibleIndex = 9;
+            this.Revenue.VisibleIndex = 11;
             // 
             // TotalCost
             // 
@@ -438,7 +446,8 @@
             this.TotalCost.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCost", "{0:c}")});
             this.TotalCost.Visible = true;
-            this.TotalCost.VisibleIndex = 10;
+            this.TotalCost.VisibleIndex = 12;
+            this.TotalCost.Width = 68;
             // 
             // TMargin
             // 
@@ -454,7 +463,7 @@
             this.TMargin.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TMargin", "{0:c}")});
             this.TMargin.Visible = true;
-            this.TMargin.VisibleIndex = 11;
+            this.TMargin.VisibleIndex = 13;
             this.TMargin.Width = 80;
             // 
             // Charge
@@ -468,6 +477,9 @@
             this.Charge.Name = "Charge";
             this.Charge.OptionsColumn.AllowEdit = false;
             this.Charge.OptionsColumn.ReadOnly = true;
+            this.Charge.Visible = true;
+            this.Charge.VisibleIndex = 10;
+            this.Charge.Width = 50;
             // 
             // Rate
             // 
@@ -475,11 +487,13 @@
             this.Rate.DisplayFormat.FormatString = "{0:c}";
             this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Rate.FieldName = "srate";
-            this.Rate.MaxWidth = 50;
-            this.Rate.MinWidth = 50;
+            this.Rate.MaxWidth = 80;
+            this.Rate.MinWidth = 10;
             this.Rate.Name = "Rate";
             this.Rate.OptionsColumn.AllowEdit = false;
             this.Rate.OptionsColumn.ReadOnly = true;
+            this.Rate.Visible = true;
+            this.Rate.VisibleIndex = 9;
             this.Rate.Width = 50;
             // 
             // sMargin

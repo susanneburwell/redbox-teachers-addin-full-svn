@@ -951,7 +951,7 @@ namespace RedboxAddin.DL
                                srate = Utils.CheckDecimal(dr["srate"].ToString()),
                                TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
                                //Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
-                               //Charge = Utils.CheckDecimal(dr["Charge"].ToString()),
+                               Charge = Utils.CheckDecimal(dr["sCharge"].ToString()),
                                Revenue = Utils.CheckDecimal(dr["Revenue"].ToString()),
                                TMargin = Utils.CheckDecimal(dr["TMargin"].ToString()),
                                MonID = dr["MonID"].ToString(),
@@ -2005,6 +2005,8 @@ namespace RedboxAddin.DL
             int numUpdated = 0;
             try
             {
+                DeleteBookingsOTInformation(bookingIDs);
+
                 string sqlStr = "DELETE FROM Bookings  "
                     + "WHERE ID = @ID";
                 DBManager.OpenDBConnection();
@@ -2023,6 +2025,29 @@ namespace RedboxAddin.DL
             {
                 Debug.DebugMessage(2, "Error in DeleteBookings :- " + ex.Message);
                 return numUpdated;
+            }
+        }
+
+        public void DeleteBookingsOTInformation(long[] bookingIDs)
+        {
+            try
+            {
+                string sqlStr = "DELETE FROM BookingOverTime  "
+                    + "WHERE BookingID = @BookingID";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@BookingID", SqlDbType.BigInt);
+                CmdAddContact.Prepare();
+
+                foreach (long id in bookingIDs)
+                {
+                    CmdAddContact.Parameters["@BookingID"].Value = id;
+                    CmdAddContact.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in DeleteBookingsOTInformation :- " + ex.Message);
             }
         }
 
@@ -3656,6 +3681,7 @@ namespace RedboxAddin.DL
             string SQL = "";
             SQL += "SELECT SchoolName, ShortName, FirstName, LastName, s.numDays, s1.Description as Monday, s2.Description as Tuesday, ";
             SQL += "s3.Description as Wednesday, s4.Description as Thursday, s5.Description as Friday, Cast(ROUND(total/numDays, 2) as decimal(18,2)) as srate,  ";
+            SQL += "Cast((ISNULL(s1.Charge,0) + ISNULL(s2.Charge,0) + ISNULL(s3.Charge,0) + ISNULL(s4.Charge,0) + ISNULL(s5.Charge,0))/numDays as decimal(7,2)) as sCharge, ";
             SQL += "Cast (s1.ID AS varchar(9)) + ':' + Cast (s1.MasterBookingID AS varchar(9)) as MonID, ";
             SQL += "Cast (s2.ID AS varchar(9)) + ':' + Cast (s2.MasterBookingID AS varchar(9)) as TueID, ";
             SQL += "Cast (s3.ID AS varchar(9)) + ':' + Cast (s3.MasterBookingID AS varchar(9)) as WedID, ";
