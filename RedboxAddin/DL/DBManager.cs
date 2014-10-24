@@ -932,7 +932,9 @@ namespace RedboxAddin.DL
             try
             {
                 string SQLstr = GetLoadPlanSQL(dStart);
+                string SQLstr2 = GetOverTimeDetailsSQL(dStart);
                 DataSet msgDs = GetDataSet(SQLstr);
+                DataSet msgDs2 = GetDataSet(SQLstr2);
 
                 if (msgDs != null)
                 {
@@ -966,6 +968,92 @@ namespace RedboxAddin.DL
                                FriID = dr["FriID"].ToString(),
 
                            };
+                            LoadPlan.Add(objLoad);
+                        }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
+                    }
+
+                    //-------------Get OT details----------------------------
+                    if (msgDs2 != null)
+                    {
+                        foreach (DataRow dr in msgDs2.Tables[0].Rows)
+                        {
+                            try
+                            {
+                                RLoad objLoad = new RLoad()
+                                {
+                                    SchoolName = dr["SchoolName"].ToString(),
+                                    FirstName = dr["FirstName"].ToString(),
+                                    LastName = dr["LastName"].ToString(),
+                                    srate = Utils.CheckDecimal(dr["ARate"].ToString()),                                    
+                                    Charge = Utils.CheckDecimal(dr["ACharge"].ToString())  
+                                  
+                                };
+                                LoadPlan.Add(objLoad);
+                            }
+                            catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
+                        }
+                    }
+
+                    //LoadPlan = 
+
+                    //var itemList = from t in LoadPlan
+                    //    where !t.Items && t.DeliverySelection
+                    //    orderby t.Delivery.SubmissionDate descending
+                    //    select t;
+
+                    return LoadPlan;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetLoadPlan: " + ex.Message);
+                return null;
+            }
+        }
+
+        public List<RLoad> GetOverTimeDetails(DateTime dStart)
+        {
+
+            List<RLoad> LoadPlan = new List<RLoad>();
+            try
+            {
+                string SQLstr = GetLoadPlanSQL(dStart);
+                DataSet msgDs = GetDataSet(SQLstr);
+
+                if (msgDs != null)
+                {
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            string shortname = dr["ShortName"].ToString();
+                            RLoad objLoad = new RLoad()
+                            {
+
+                                SchoolName = dr["SchoolName"].ToString(),
+                                FirstName = dr["FirstName"].ToString(),
+                                LastName = dr["LastName"].ToString(),
+                                numDays = Convert.ToInt32(dr["numDays"]),
+                                Monday = dr["Monday"].ToString().Replace(shortname, "").Trim(),
+                                Tuesday = dr["Tuesday"].ToString().Replace(shortname, "").Trim(),
+                                Wednesday = dr["Wednesday"].ToString().Replace(shortname, "").Trim(),
+                                Thursday = dr["Thursday"].ToString().Replace(shortname, "").Trim(),
+                                Friday = dr["Friday"].ToString().Replace(shortname, "").Trim(),
+                                srate = Utils.CheckDecimal(dr["srate"].ToString()),
+                                TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
+                                //Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
+                                Charge = Utils.CheckDecimal(dr["sCharge"].ToString()),
+                                Revenue = Utils.CheckDecimal(dr["Revenue"].ToString()),
+                                TMargin = Utils.CheckDecimal(dr["TMargin"].ToString()),
+                                MonID = dr["MonID"].ToString(),
+                                TueID = dr["TueID"].ToString(),
+                                WedID = dr["WedID"].ToString(),
+                                ThuID = dr["ThuID"].ToString(),
+                                FriID = dr["FriID"].ToString(),
+
+                            };
                             LoadPlan.Add(objLoad);
                         }
                         catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
@@ -3755,6 +3843,28 @@ namespace RedboxAddin.DL
             SQL += "WHERE isAbsence != 1 ";
 
             SQL += "ORDER BY SchoolName, sCharge DESC, LastName, FirstName ";
+            GetOverTimeDetailsSQL( dStart);
+            return SQL;
+        }
+
+        private string GetOverTimeDetailsSQL(DateTime dStart)
+        {
+
+            string monday = dStart.ToString("yyyyMMdd");
+            string tuesday = dStart.AddDays(1).ToString("yyyyMMdd");
+            string wednesday = dStart.AddDays(2).ToString("yyyyMMdd");
+            string thursday = dStart.AddDays(3).ToString("yyyyMMdd");
+            string friday = dStart.AddDays(4).ToString("yyyyMMdd");
+
+            string SQL = "";
+
+            SQL = "Select Schools.SchoolName, Contacts.FirstName, Contacts.LastName, SUM(BookingOverTime.RateAdditional) AS ARate, SUM(BookingOverTime.ChargeAdditional) AS ACharge " +
+"FROM BookingOverTime INNER JOIN Bookings ON BookingOverTime.BookingID = Bookings.ID INNER JOIN " +
+"MasterBookings ON Bookings.MasterBookingID = MasterBookings.ID INNER JOIN Schools ON MasterBookings.SchoolID = Schools.ID INNER JOIN Contacts ON MasterBookings.contactID = Contacts.contactID " +
+"WHERE (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + monday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + tuesday + "') OR " +
+"(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + wednesday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + thursday + "') OR " +
+"(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + friday + "') GROUP BY MasterBookings.SchoolID, Schools.SchoolName, Contacts.FirstName, Contacts.LastName, MasterBookings.contactID";
+
 
             return SQL;
         }

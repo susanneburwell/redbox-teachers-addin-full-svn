@@ -134,7 +134,7 @@
             this.txtPwd.Location = new System.Drawing.Point(832, 50);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
-            this.txtPwd.Size = new System.Drawing.Size(66, 26);
+            this.txtPwd.Size = new System.Drawing.Size(66, 22);
             this.txtPwd.TabIndex = 91;
             // 
             // btnCreateInvoices
@@ -182,7 +182,7 @@
             this.radCustom.AutoSize = true;
             this.radCustom.Location = new System.Drawing.Point(473, 10);
             this.radCustom.Name = "radCustom";
-            this.radCustom.Size = new System.Drawing.Size(88, 24);
+            this.radCustom.Size = new System.Drawing.Size(71, 20);
             this.radCustom.TabIndex = 24;
             this.radCustom.Text = "Custom";
             this.radCustom.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             this.radMonth.AutoSize = true;
             this.radMonth.Location = new System.Drawing.Point(384, 10);
             this.radMonth.Name = "radMonth";
-            this.radMonth.Size = new System.Drawing.Size(76, 24);
+            this.radMonth.Size = new System.Drawing.Size(62, 20);
             this.radMonth.TabIndex = 23;
             this.radMonth.Text = "Month";
             this.radMonth.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@
             this.radWeek.Checked = true;
             this.radWeek.Location = new System.Drawing.Point(296, 11);
             this.radWeek.Name = "radWeek";
-            this.radWeek.Size = new System.Drawing.Size(72, 24);
+            this.radWeek.Size = new System.Drawing.Size(62, 20);
             this.radWeek.TabIndex = 22;
             this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
@@ -219,7 +219,7 @@
             // 
             this.dtFrom.Location = new System.Drawing.Point(68, 8);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 26);
+            this.dtFrom.Size = new System.Drawing.Size(200, 22);
             this.dtFrom.TabIndex = 18;
             this.dtFrom.ValueChanged += new System.EventHandler(this.RefreshGrid);
             // 
@@ -228,7 +228,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(16, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
+            this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 19;
             this.label4.Text = "From:";
             // 
@@ -236,7 +236,7 @@
             // 
             this.dtTo.Location = new System.Drawing.Point(68, 37);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(200, 26);
+            this.dtTo.Size = new System.Drawing.Size(200, 22);
             this.dtTo.TabIndex = 20;
             this.dtTo.Visible = false;
             this.dtTo.ValueChanged += new System.EventHandler(this.dtTo_ValueChanged);
@@ -246,7 +246,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(16, 42);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 20);
+            this.label5.Size = new System.Drawing.Size(28, 16);
             this.label5.TabIndex = 21;
             this.label5.Text = "To:";
             // 
@@ -257,7 +257,7 @@
             this.label1.Location = new System.Drawing.Point(747, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 46);
+            this.label1.Size = new System.Drawing.Size(162, 37);
             this.label1.TabIndex = 17;
             this.label1.Text = "Load Plan";
             // 
@@ -266,7 +266,7 @@
             this.lblTo.AutoSize = true;
             this.lblTo.Location = new System.Drawing.Point(65, 41);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(45, 20);
+            this.lblTo.Size = new System.Drawing.Size(39, 16);
             this.lblTo.TabIndex = 25;
             this.lblTo.Text = "lblTo";
             // 
@@ -316,6 +316,9 @@
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TMargin", null, "£{0}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Revenue", null, "£{0}")});
             this.gridView1.Name = "gridView1";
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.School, DevExpress.Data.ColumnSortOrder.Ascending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.FirstName, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // School
             // 
@@ -545,7 +548,7 @@
             // 
             // frmLoadPlan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 673);
             this.Controls.Add(this.tableLayoutPanel1);
