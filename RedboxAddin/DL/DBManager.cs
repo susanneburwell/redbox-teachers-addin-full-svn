@@ -340,6 +340,7 @@ namespace RedboxAddin.DL
                         bool thuProv = Utils.CheckBool(dr["ThuPr"]);
                         bool friProv = Utils.CheckBool(dr["FriPr"]);
 
+
                         string yearGroup = "";
                         if (dr["Nur"].ToString() == "True") yearGroup += "N";
                         if (dr["Rec"].ToString() == "True") yearGroup += "R";
@@ -349,6 +350,8 @@ namespace RedboxAddin.DL
                         if (dr["Yr4"].ToString() == "True") yearGroup += "4";
                         if (dr["Yr5"].ToString() == "True") yearGroup += "5";
                         if (dr["Yr6"].ToString() == "True") yearGroup += "6";
+                        if (dr["SEN"].ToString() == "True") yearGroup += "S";
+
 
                         objAvail.Teacher = dr["TeacherName"].ToString();
                         objAvail.TeacherID = dr["TeacherID"].ToString();
