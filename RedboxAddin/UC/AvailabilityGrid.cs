@@ -618,6 +618,7 @@ namespace RedboxAddin.UC
                     {
                         teacherIDForANewBooking = _rowInfo.Status.Split('.')[1];
                         Items.Add(CreateMenuItem("New booking", imageList.Images[0], "NEW", true));
+                        bookingDate = _rowInfo.BookingDate;
                     }
                 }
             }
@@ -635,7 +636,7 @@ namespace RedboxAddin.UC
 
             if (status == "NEW")
             {
-                frmMasterBooking frm = new frmMasterBooking(teacherIDForANewBooking);
+                frmMasterBooking frm = new frmMasterBooking(teacherIDForANewBooking, bookingDate);
                 frm.Show();
             }
             else if (status == "Change Teacher")

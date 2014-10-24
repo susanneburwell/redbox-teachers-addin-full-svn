@@ -27,6 +27,7 @@ namespace RedboxAddin.Presentation
         RedBoxDB db;
         long _masterBookingID = -1;
         long contactIDLong = -1;
+        DateTime bookingDate = new DateTime(2000, 01, 01);
         bool loading = false;
         string errorMessage = "Not Saved";
 
@@ -36,10 +37,11 @@ namespace RedboxAddin.Presentation
             availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
-        public frmMasterBooking(string contactID)
+        public frmMasterBooking(string contactID, DateTime bookingDate)
         {
             InitializeComponent();
             this.contactIDLong = long.Parse(contactID);
+            this.bookingDate = bookingDate;
             availabilityGrid1.DblClick += new EventHandler(availabilityGrid_DblClick);
         }
 
@@ -52,10 +54,16 @@ namespace RedboxAddin.Presentation
 
         private void frmNewRequest_Load(object sender, EventArgs e)
         {
+            DateTime tempDate = new DateTime(2000, 01, 01);
+
             InitialLoad();
             if (contactIDLong != -1)
                 cmbTeacher.SelectedValue = contactIDLong;
-
+            if (bookingDate != tempDate)
+            {
+                dtFrom.Value = bookingDate;
+                dtTo.Value = bookingDate;
+            }
         }
 
         private void InitialLoad()

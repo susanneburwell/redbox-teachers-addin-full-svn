@@ -39,7 +39,6 @@
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.lblTo = new System.Windows.Forms.Label();
             this.radCustom = new System.Windows.Forms.RadioButton();
             this.radMonth = new System.Windows.Forms.RadioButton();
             this.radWeek = new System.Windows.Forms.RadioButton();
@@ -48,6 +47,7 @@
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTo = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.School = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,11 +59,11 @@
             this.Wednesday = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Thursday = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Friday = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Rate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Charge = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Revenue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TMargin = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Charge = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Rate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.sMargin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MonID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TueID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,7 +90,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 713);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 673);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -101,7 +101,6 @@
             this.panelTop.Controls.Add(this.btnCreatePaySheets);
             this.panelTop.Controls.Add(this.bnFwd);
             this.panelTop.Controls.Add(this.btnBack);
-            this.panelTop.Controls.Add(this.lblTo);
             this.panelTop.Controls.Add(this.radCustom);
             this.panelTop.Controls.Add(this.radMonth);
             this.panelTop.Controls.Add(this.radWeek);
@@ -110,6 +109,7 @@
             this.panelTop.Controls.Add(this.dtTo);
             this.panelTop.Controls.Add(this.label5);
             this.panelTop.Controls.Add(this.label1);
+            this.panelTop.Controls.Add(this.lblTo);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelTop.Location = new System.Drawing.Point(4, 4);
@@ -134,7 +134,7 @@
             this.txtPwd.Location = new System.Drawing.Point(832, 50);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
-            this.txtPwd.Size = new System.Drawing.Size(66, 22);
+            this.txtPwd.Size = new System.Drawing.Size(66, 26);
             this.txtPwd.TabIndex = 91;
             // 
             // btnCreateInvoices
@@ -159,7 +159,7 @@
             // 
             // bnFwd
             // 
-            this.bnFwd.Location = new System.Drawing.Point(362, 36);
+            this.bnFwd.Location = new System.Drawing.Point(362, 37);
             this.bnFwd.Name = "bnFwd";
             this.bnFwd.Size = new System.Drawing.Size(51, 23);
             this.bnFwd.TabIndex = 27;
@@ -169,7 +169,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(296, 36);
+            this.btnBack.Location = new System.Drawing.Point(296, 37);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(60, 23);
             this.btnBack.TabIndex = 26;
@@ -177,21 +177,12 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(65, 36);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(39, 16);
-            this.lblTo.TabIndex = 25;
-            this.lblTo.Text = "lblTo";
-            // 
             // radCustom
             // 
             this.radCustom.AutoSize = true;
             this.radCustom.Location = new System.Drawing.Point(473, 10);
             this.radCustom.Name = "radCustom";
-            this.radCustom.Size = new System.Drawing.Size(71, 20);
+            this.radCustom.Size = new System.Drawing.Size(88, 24);
             this.radCustom.TabIndex = 24;
             this.radCustom.Text = "Custom";
             this.radCustom.UseVisualStyleBackColor = true;
@@ -203,7 +194,7 @@
             this.radMonth.AutoSize = true;
             this.radMonth.Location = new System.Drawing.Point(384, 10);
             this.radMonth.Name = "radMonth";
-            this.radMonth.Size = new System.Drawing.Size(62, 20);
+            this.radMonth.Size = new System.Drawing.Size(76, 24);
             this.radMonth.TabIndex = 23;
             this.radMonth.Text = "Month";
             this.radMonth.UseVisualStyleBackColor = true;
@@ -216,7 +207,7 @@
             this.radWeek.Checked = true;
             this.radWeek.Location = new System.Drawing.Point(296, 11);
             this.radWeek.Name = "radWeek";
-            this.radWeek.Size = new System.Drawing.Size(62, 20);
+            this.radWeek.Size = new System.Drawing.Size(72, 24);
             this.radWeek.TabIndex = 22;
             this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
@@ -228,24 +219,24 @@
             // 
             this.dtFrom.Location = new System.Drawing.Point(68, 8);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 22);
+            this.dtFrom.Size = new System.Drawing.Size(200, 26);
             this.dtFrom.TabIndex = 18;
             this.dtFrom.ValueChanged += new System.EventHandler(this.RefreshGrid);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 12);
+            this.label4.Location = new System.Drawing.Point(16, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "From:";
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(68, 32);
+            this.dtTo.Location = new System.Drawing.Point(68, 37);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(200, 22);
+            this.dtTo.Size = new System.Drawing.Size(200, 26);
             this.dtTo.TabIndex = 20;
             this.dtTo.Visible = false;
             this.dtTo.ValueChanged += new System.EventHandler(this.dtTo_ValueChanged);
@@ -253,9 +244,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 37);
+            this.label5.Location = new System.Drawing.Point(16, 42);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 16);
+            this.label5.Size = new System.Drawing.Size(33, 20);
             this.label5.TabIndex = 21;
             this.label5.Text = "To:";
             // 
@@ -266,9 +257,18 @@
             this.label1.Location = new System.Drawing.Point(747, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 37);
+            this.label1.Size = new System.Drawing.Size(200, 46);
             this.label1.TabIndex = 17;
             this.label1.Text = "Load Plan";
+            // 
+            // lblTo
+            // 
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(65, 41);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(45, 20);
+            this.lblTo.TabIndex = 25;
+            this.lblTo.Text = "lblTo";
             // 
             // gridControl1
             // 
@@ -281,7 +281,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(998, 608);
+            this.gridControl1.Size = new System.Drawing.Size(998, 568);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -420,6 +420,36 @@
             this.Friday.VisibleIndex = 8;
             this.Friday.Width = 68;
             // 
+            // Rate
+            // 
+            this.Rate.Caption = "Rate";
+            this.Rate.DisplayFormat.FormatString = "{0:c}";
+            this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Rate.FieldName = "srate";
+            this.Rate.MaxWidth = 80;
+            this.Rate.MinWidth = 10;
+            this.Rate.Name = "Rate";
+            this.Rate.OptionsColumn.AllowEdit = false;
+            this.Rate.OptionsColumn.ReadOnly = true;
+            this.Rate.Visible = true;
+            this.Rate.VisibleIndex = 9;
+            this.Rate.Width = 50;
+            // 
+            // Charge
+            // 
+            this.Charge.Caption = "Charge";
+            this.Charge.DisplayFormat.FormatString = "{0:c}";
+            this.Charge.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Charge.FieldName = "Charge";
+            this.Charge.MaxWidth = 80;
+            this.Charge.MinWidth = 10;
+            this.Charge.Name = "Charge";
+            this.Charge.OptionsColumn.AllowEdit = false;
+            this.Charge.OptionsColumn.ReadOnly = true;
+            this.Charge.Visible = true;
+            this.Charge.VisibleIndex = 10;
+            this.Charge.Width = 50;
+            // 
             // Revenue
             // 
             this.Revenue.Caption = "Revenue";
@@ -465,36 +495,6 @@
             this.TMargin.Visible = true;
             this.TMargin.VisibleIndex = 13;
             this.TMargin.Width = 80;
-            // 
-            // Charge
-            // 
-            this.Charge.Caption = "Charge";
-            this.Charge.DisplayFormat.FormatString = "{0:c}";
-            this.Charge.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.Charge.FieldName = "Charge";
-            this.Charge.MaxWidth = 80;
-            this.Charge.MinWidth = 10;
-            this.Charge.Name = "Charge";
-            this.Charge.OptionsColumn.AllowEdit = false;
-            this.Charge.OptionsColumn.ReadOnly = true;
-            this.Charge.Visible = true;
-            this.Charge.VisibleIndex = 10;
-            this.Charge.Width = 50;
-            // 
-            // Rate
-            // 
-            this.Rate.Caption = "Rate";
-            this.Rate.DisplayFormat.FormatString = "{0:c}";
-            this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.Rate.FieldName = "srate";
-            this.Rate.MaxWidth = 80;
-            this.Rate.MinWidth = 10;
-            this.Rate.Name = "Rate";
-            this.Rate.OptionsColumn.AllowEdit = false;
-            this.Rate.OptionsColumn.ReadOnly = true;
-            this.Rate.Visible = true;
-            this.Rate.VisibleIndex = 9;
-            this.Rate.Width = 50;
             // 
             // sMargin
             // 
@@ -545,9 +545,9 @@
             // 
             // frmLoadPlan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 713);
+            this.ClientSize = new System.Drawing.Size(1006, 673);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

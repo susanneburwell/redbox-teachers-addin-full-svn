@@ -69,7 +69,7 @@
             this.radDelete.AutoSize = true;
             this.radDelete.Location = new System.Drawing.Point(24, 47);
             this.radDelete.Name = "radDelete";
-            this.radDelete.Size = new System.Drawing.Size(126, 20);
+            this.radDelete.Size = new System.Drawing.Size(153, 24);
             this.radDelete.TabIndex = 1;
             this.radDelete.Text = "Delete Bookings";
             this.radDelete.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@
             this.radUpdate.Checked = true;
             this.radUpdate.Location = new System.Drawing.Point(24, 21);
             this.radUpdate.Name = "radUpdate";
-            this.radUpdate.Size = new System.Drawing.Size(131, 20);
+            this.radUpdate.Size = new System.Drawing.Size(157, 24);
             this.radUpdate.TabIndex = 0;
             this.radUpdate.TabStop = true;
             this.radUpdate.Text = "Update Bookings";
@@ -93,7 +93,7 @@
             this.lblAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAction.Location = new System.Drawing.Point(31, 14);
             this.lblAction.Name = "lblAction";
-            this.lblAction.Size = new System.Drawing.Size(147, 20);
+            this.lblAction.Size = new System.Drawing.Size(176, 25);
             this.lblAction.TabIndex = 1;
             this.lblAction.Text = "Update Bookings";
             // 
@@ -101,7 +101,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(270, 124);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker1.TabIndex = 2;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -111,7 +111,7 @@
             this.lblFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFrom.Location = new System.Drawing.Point(31, 44);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(103, 20);
+            this.lblFrom.Size = new System.Drawing.Size(128, 25);
             this.lblFrom.TabIndex = 3;
             this.lblFrom.Text = "From Today";
             // 
@@ -120,7 +120,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(267, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 16);
+            this.label1.Size = new System.Drawing.Size(338, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Set date to the first date you want to change";
             // 
@@ -129,7 +129,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 16);
+            this.label3.Size = new System.Drawing.Size(68, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Charge:";
             // 
@@ -138,7 +138,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(17, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 16);
+            this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Rate:";
             // 
@@ -147,7 +147,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(17, 108);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 16);
+            this.label5.Size = new System.Drawing.Size(100, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Description:";
             // 
@@ -166,7 +166,7 @@
             this.grpSet.Controls.Add(this.label3);
             this.grpSet.Location = new System.Drawing.Point(35, 177);
             this.grpSet.Name = "grpSet";
-            this.grpSet.Size = new System.Drawing.Size(519, 149);
+            this.grpSet.Size = new System.Drawing.Size(567, 149);
             this.grpSet.TabIndex = 9;
             this.grpSet.TabStop = false;
             this.grpSet.Text = "Set:";
@@ -177,7 +177,7 @@
             this.chkDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDescription.Location = new System.Drawing.Point(235, 80);
             this.chkDescription.Name = "chkDescription";
-            this.chkDescription.Size = new System.Drawing.Size(131, 19);
+            this.chkDescription.Size = new System.Drawing.Size(156, 22);
             this.chkDescription.TabIndex = 119;
             this.chkDescription.Text = "Update Description";
             this.chkDescription.UseVisualStyleBackColor = true;
@@ -190,7 +190,7 @@
             this.chkRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkRate.Location = new System.Drawing.Point(236, 48);
             this.chkRate.Name = "chkRate";
-            this.chkRate.Size = new System.Drawing.Size(95, 19);
+            this.chkRate.Size = new System.Drawing.Size(112, 22);
             this.chkRate.TabIndex = 118;
             this.chkRate.Text = "Update Rate";
             this.chkRate.UseVisualStyleBackColor = true;
@@ -199,7 +199,7 @@
             // 
             this.txtDescription.Location = new System.Drawing.Point(126, 105);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(287, 22);
+            this.txtDescription.Size = new System.Drawing.Size(287, 26);
             this.txtDescription.TabIndex = 117;
             // 
             // chkCharge
@@ -210,7 +210,7 @@
             this.chkCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkCharge.Location = new System.Drawing.Point(236, 17);
             this.chkCharge.Name = "chkCharge";
-            this.chkCharge.Size = new System.Drawing.Size(109, 19);
+            this.chkCharge.Size = new System.Drawing.Size(129, 22);
             this.chkCharge.TabIndex = 117;
             this.chkCharge.Text = "Update Charge";
             this.chkCharge.UseVisualStyleBackColor = true;
@@ -220,7 +220,7 @@
             this.label76.AutoSize = true;
             this.label76.Location = new System.Drawing.Point(104, 18);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(15, 16);
+            this.label76.Size = new System.Drawing.Size(18, 20);
             this.label76.TabIndex = 116;
             this.label76.Text = "£";
             // 
@@ -228,7 +228,7 @@
             // 
             this.txtCharge.Location = new System.Drawing.Point(126, 15);
             this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(63, 22);
+            this.txtCharge.Size = new System.Drawing.Size(63, 26);
             this.txtCharge.TabIndex = 115;
             // 
             // label14
@@ -236,7 +236,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(107, 49);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(15, 16);
+            this.label14.Size = new System.Drawing.Size(18, 20);
             this.label14.TabIndex = 114;
             this.label14.Text = "£";
             // 
@@ -244,12 +244,12 @@
             // 
             this.txtRate.Location = new System.Drawing.Point(126, 46);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(63, 22);
+            this.txtRate.Size = new System.Drawing.Size(63, 26);
             this.txtRate.TabIndex = 113;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(441, 44);
+            this.btnUpdate.Location = new System.Drawing.Point(492, 45);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(113, 27);
             this.btnUpdate.TabIndex = 14;
@@ -259,9 +259,9 @@
             // 
             // frmUpdateBookings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 353);
+            this.ClientSize = new System.Drawing.Size(614, 353);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.grpSet);
             this.Controls.Add(this.label1);

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoadPivot));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.lblTo = new System.Windows.Forms.Label();
             this.radCustom = new System.Windows.Forms.RadioButton();
             this.radMonth = new System.Windows.Forms.RadioButton();
             this.radWeek = new System.Windows.Forms.RadioButton();
@@ -40,6 +39,7 @@
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTo = new System.Windows.Forms.Label();
             this.pivotGridControl1 = new DevExpress.XtraPivotGrid.PivotGridControl();
             this.pivotGridField1 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField2 = new DevExpress.XtraPivotGrid.PivotGridField();
@@ -66,12 +66,11 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 713);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 673);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.lblTo);
             this.panelTop.Controls.Add(this.radCustom);
             this.panelTop.Controls.Add(this.radMonth);
             this.panelTop.Controls.Add(this.radWeek);
@@ -80,6 +79,7 @@
             this.panelTop.Controls.Add(this.dtTo);
             this.panelTop.Controls.Add(this.label5);
             this.panelTop.Controls.Add(this.label1);
+            this.panelTop.Controls.Add(this.lblTo);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelTop.Location = new System.Drawing.Point(4, 4);
@@ -88,21 +88,12 @@
             this.panelTop.Size = new System.Drawing.Size(936, 62);
             this.panelTop.TabIndex = 0;
             // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(65, 36);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(39, 16);
-            this.lblTo.TabIndex = 25;
-            this.lblTo.Text = "lblTo";
-            // 
             // radCustom
             // 
             this.radCustom.AutoSize = true;
-            this.radCustom.Location = new System.Drawing.Point(473, 10);
+            this.radCustom.Location = new System.Drawing.Point(468, 7);
             this.radCustom.Name = "radCustom";
-            this.radCustom.Size = new System.Drawing.Size(71, 20);
+            this.radCustom.Size = new System.Drawing.Size(88, 24);
             this.radCustom.TabIndex = 24;
             this.radCustom.Text = "Custom";
             this.radCustom.UseVisualStyleBackColor = true;
@@ -111,9 +102,9 @@
             // radMonth
             // 
             this.radMonth.AutoSize = true;
-            this.radMonth.Location = new System.Drawing.Point(384, 10);
+            this.radMonth.Location = new System.Drawing.Point(379, 7);
             this.radMonth.Name = "radMonth";
-            this.radMonth.Size = new System.Drawing.Size(62, 20);
+            this.radMonth.Size = new System.Drawing.Size(76, 24);
             this.radMonth.TabIndex = 23;
             this.radMonth.Text = "Month";
             this.radMonth.UseVisualStyleBackColor = true;
@@ -123,9 +114,9 @@
             // 
             this.radWeek.AutoSize = true;
             this.radWeek.Checked = true;
-            this.radWeek.Location = new System.Drawing.Point(296, 11);
+            this.radWeek.Location = new System.Drawing.Point(291, 8);
             this.radWeek.Name = "radWeek";
-            this.radWeek.Size = new System.Drawing.Size(62, 20);
+            this.radWeek.Size = new System.Drawing.Size(72, 24);
             this.radWeek.TabIndex = 22;
             this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
@@ -134,26 +125,26 @@
             // 
             // dtFrom
             // 
-            this.dtFrom.Location = new System.Drawing.Point(68, 8);
+            this.dtFrom.Location = new System.Drawing.Point(78, 5);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 22);
+            this.dtFrom.Size = new System.Drawing.Size(200, 26);
             this.dtFrom.TabIndex = 18;
             this.dtFrom.ValueChanged += new System.EventHandler(this.RefreshGrid);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 12);
+            this.label4.Location = new System.Drawing.Point(23, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
+            this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "From:";
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(68, 32);
+            this.dtTo.Location = new System.Drawing.Point(78, 32);
             this.dtTo.Name = "dtTo";
-            this.dtTo.Size = new System.Drawing.Size(200, 22);
+            this.dtTo.Size = new System.Drawing.Size(200, 26);
             this.dtTo.TabIndex = 20;
             this.dtTo.Visible = false;
             this.dtTo.ValueChanged += new System.EventHandler(this.dtTo_ValueChanged);
@@ -163,7 +154,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(23, 37);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 16);
+            this.label5.Size = new System.Drawing.Size(33, 20);
             this.label5.TabIndex = 21;
             this.label5.Text = "To:";
             // 
@@ -171,12 +162,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(739, 11);
+            this.label1.Location = new System.Drawing.Point(712, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 37);
+            this.label1.Size = new System.Drawing.Size(209, 46);
             this.label1.TabIndex = 17;
             this.label1.Text = "Load Pivot";
+            // 
+            // lblTo
+            // 
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(82, 36);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(45, 20);
+            this.lblTo.TabIndex = 25;
+            this.lblTo.Text = "lblTo";
             // 
             // pivotGridControl1
             // 
@@ -191,7 +191,7 @@
             this.pivotGridField7});
             this.pivotGridControl1.Location = new System.Drawing.Point(3, 73);
             this.pivotGridControl1.Name = "pivotGridControl1";
-            this.pivotGridControl1.Size = new System.Drawing.Size(938, 637);
+            this.pivotGridControl1.Size = new System.Drawing.Size(938, 597);
             this.pivotGridControl1.TabIndex = 1;
             // 
             // pivotGridField1
@@ -253,9 +253,9 @@
             // 
             // frmLoadPivot
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 713);
+            this.ClientSize = new System.Drawing.Size(944, 673);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

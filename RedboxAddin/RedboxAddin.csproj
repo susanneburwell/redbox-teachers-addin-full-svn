@@ -343,8 +343,8 @@
   <ItemGroup>
     <COMReference Include="Redemption">
       <Guid>{2D5E2D34-BED5-4B9F-9793-A31E26E6806E}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>5</VersionMinor>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>

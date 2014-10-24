@@ -87,6 +87,7 @@
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnNew = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -111,7 +112,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 199F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1014, 662);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1024, 662);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -121,6 +122,7 @@
             this.panelTop.Controls.Add(this.btnLayout);
             this.panelTop.Controls.Add(this.lblShowing);
             this.panelTop.Controls.Add(this.grpFilter);
+            this.panelTop.Controls.Add(this.btnNew);
             this.panelTop.Controls.Add(this.btnRefresh);
             this.panelTop.Controls.Add(this.chkJustBookings);
             this.panelTop.Controls.Add(this.btnDblBkgs);
@@ -135,16 +137,16 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 43);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1008, 193);
+            this.panelTop.Size = new System.Drawing.Size(1018, 193);
             this.panelTop.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkShowLT);
             this.groupBox1.Controls.Add(this.chkShowD2D);
-            this.groupBox1.Location = new System.Drawing.Point(874, 79);
+            this.groupBox1.Location = new System.Drawing.Point(875, 79);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(118, 66);
+            this.groupBox1.Size = new System.Drawing.Size(135, 66);
             this.groupBox1.TabIndex = 98;
             this.groupBox1.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox1, "Both unticked means \'Ignore this Filter\'");
@@ -176,7 +178,7 @@
             // btnResetLayout
             // 
             this.btnResetLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetLayout.Location = new System.Drawing.Point(983, 162);
+            this.btnResetLayout.Location = new System.Drawing.Point(983, 160);
             this.btnResetLayout.Name = "btnResetLayout";
             this.btnResetLayout.Size = new System.Drawing.Size(10, 23);
             this.btnResetLayout.TabIndex = 97;
@@ -187,9 +189,9 @@
             // btnLayout
             // 
             this.btnLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLayout.Location = new System.Drawing.Point(879, 162);
+            this.btnLayout.Location = new System.Drawing.Point(875, 159);
             this.btnLayout.Name = "btnLayout";
-            this.btnLayout.Size = new System.Drawing.Size(98, 23);
+            this.btnLayout.Size = new System.Drawing.Size(98, 25);
             this.btnLayout.TabIndex = 96;
             this.btnLayout.Text = "Save Layout";
             this.btnLayout.UseVisualStyleBackColor = true;
@@ -212,7 +214,7 @@
             this.grpFilter.Controls.Add(this.chkShowTAs);
             this.grpFilter.Location = new System.Drawing.Point(734, 78);
             this.grpFilter.Name = "grpFilter";
-            this.grpFilter.Size = new System.Drawing.Size(134, 67);
+            this.grpFilter.Size = new System.Drawing.Size(150, 67);
             this.grpFilter.TabIndex = 95;
             this.grpFilter.TabStop = false;
             this.toolTip1.SetToolTip(this.grpFilter, "Both unticked means \'Ignore this Filter\'");
@@ -247,9 +249,9 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(375, 155);
+            this.btnRefresh.Location = new System.Drawing.Point(495, 154);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(170, 28);
+            this.btnRefresh.Size = new System.Drawing.Size(110, 28);
             this.btnRefresh.TabIndex = 94;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -271,7 +273,7 @@
             // 
             this.btnDblBkgs.BackColor = System.Drawing.Color.Crimson;
             this.btnDblBkgs.ForeColor = System.Drawing.Color.White;
-            this.btnDblBkgs.Location = new System.Drawing.Point(740, 48);
+            this.btnDblBkgs.Location = new System.Drawing.Point(734, 48);
             this.btnDblBkgs.Name = "btnDblBkgs";
             this.btnDblBkgs.Size = new System.Drawing.Size(253, 31);
             this.btnDblBkgs.TabIndex = 86;
@@ -651,7 +653,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(739, 9);
+            this.label1.Location = new System.Drawing.Point(738, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(258, 37);
             this.label1.TabIndex = 16;
@@ -659,9 +661,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(555, 155);
+            this.btnSearch.Location = new System.Drawing.Point(615, 154);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(170, 28);
+            this.btnSearch.Size = new System.Drawing.Size(110, 28);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -690,7 +692,7 @@
             this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
             this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1006, 415);
+            this.availabilityGrid1.Size = new System.Drawing.Size(1016, 415);
             this.availabilityGrid1.TabIndex = 1;
             // 
             // panelRibbon
@@ -699,7 +701,7 @@
             this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRibbon.Location = new System.Drawing.Point(3, 3);
             this.panelRibbon.Name = "panelRibbon";
-            this.panelRibbon.Size = new System.Drawing.Size(1008, 34);
+            this.panelRibbon.Size = new System.Drawing.Size(1018, 34);
             this.panelRibbon.TabIndex = 2;
             // 
             // btnCreatePaySheets
@@ -721,11 +723,21 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(375, 154);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(110, 28);
+            this.btnNew.TabIndex = 94;
+            this.btnNew.Text = "New booking";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
             // frmAvailabilitySheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 662);
+            this.ClientSize = new System.Drawing.Size(1024, 662);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -810,5 +822,6 @@
         private System.Windows.Forms.Button btnResetLayout;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnNew;
     }
 }

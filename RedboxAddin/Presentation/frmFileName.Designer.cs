@@ -42,22 +42,22 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(32, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 16);
+            this.label1.Size = new System.Drawing.Size(288, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Please confirm the required filename:";
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(35, 37);
+            this.txtFileName.Location = new System.Drawing.Point(35, 42);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(492, 22);
+            this.txtFileName.Size = new System.Drawing.Size(492, 26);
             this.txtFileName.TabIndex = 1;
             // 
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(455, 111);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(75, 26);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             // 
             this.btnCancel.Location = new System.Drawing.Point(364, 111);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 26);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -76,15 +76,15 @@
             // lblFolder
             // 
             this.lblFolder.AutoSize = true;
-            this.lblFolder.Location = new System.Drawing.Point(59, 74);
+            this.lblFolder.Location = new System.Drawing.Point(59, 79);
             this.lblFolder.Name = "lblFolder";
-            this.lblFolder.Size = new System.Drawing.Size(84, 16);
+            this.lblFolder.Size = new System.Drawing.Size(100, 20);
             this.lblFolder.TabIndex = 4;
             this.lblFolder.Text = "FolderName";
             // 
             // btnSelectFolder
             // 
-            this.btnSelectFolder.Location = new System.Drawing.Point(35, 71);
+            this.btnSelectFolder.Location = new System.Drawing.Point(35, 76);
             this.btnSelectFolder.Name = "btnSelectFolder";
             this.btnSelectFolder.Size = new System.Drawing.Size(18, 23);
             this.btnSelectFolder.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             // frmFileName
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 161);
             this.Controls.Add(this.btnSelectFolder);

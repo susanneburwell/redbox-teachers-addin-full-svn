@@ -46,36 +46,40 @@
             // 
             // lboxAttAddables
             // 
-            this.lboxAttAddables.Location = new System.Drawing.Point(9, 9);
+            this.lboxAttAddables.Location = new System.Drawing.Point(12, 11);
+            this.lboxAttAddables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lboxAttAddables.Name = "lboxAttAddables";
             this.lboxAttAddables.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lboxAttAddables.Size = new System.Drawing.Size(220, 226);
+            this.lboxAttAddables.Size = new System.Drawing.Size(293, 278);
             this.lboxAttAddables.TabIndex = 0;
             this.lboxAttAddables.DoubleClick += new System.EventHandler(this.lboxAttAddables_DoubleClick);
             // 
             // lboxAttAdded
             // 
-            this.lboxAttAdded.Location = new System.Drawing.Point(329, 9);
+            this.lboxAttAdded.Location = new System.Drawing.Point(439, 11);
+            this.lboxAttAdded.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lboxAttAdded.Name = "lboxAttAdded";
             this.lboxAttAdded.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lboxAttAdded.Size = new System.Drawing.Size(220, 226);
+            this.lboxAttAdded.Size = new System.Drawing.Size(293, 278);
             this.lboxAttAdded.TabIndex = 1;
             this.lboxAttAdded.DoubleClick += new System.EventHandler(this.lboxAttAdded_DoubleClick);
             // 
             // btnAddAtt
             // 
-            this.btnAddAtt.Location = new System.Drawing.Point(240, 83);
+            this.btnAddAtt.Location = new System.Drawing.Point(320, 102);
+            this.btnAddAtt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddAtt.Name = "btnAddAtt";
-            this.btnAddAtt.Size = new System.Drawing.Size(75, 23);
+            this.btnAddAtt.Size = new System.Drawing.Size(100, 28);
             this.btnAddAtt.TabIndex = 0;
             this.btnAddAtt.Text = "Add ->";
             this.btnAddAtt.Click += new System.EventHandler(this.btnAddAtt_Click);
             // 
             // btnRemoveAtt
             // 
-            this.btnRemoveAtt.Location = new System.Drawing.Point(240, 112);
+            this.btnRemoveAtt.Location = new System.Drawing.Point(320, 138);
+            this.btnRemoveAtt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRemoveAtt.Name = "btnRemoveAtt";
-            this.btnRemoveAtt.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveAtt.Size = new System.Drawing.Size(100, 28);
             this.btnRemoveAtt.TabIndex = 1;
             this.btnRemoveAtt.Text = "<- Remove";
             this.btnRemoveAtt.Click += new System.EventHandler(this.btnRemoveAtt_Click);
@@ -86,17 +90,19 @@
             this.panelAtt.Controls.Add(this.btnRemoveAtt);
             this.panelAtt.Controls.Add(this.lboxAttAdded);
             this.panelAtt.Controls.Add(this.btnAddAtt);
-            this.panelAtt.Location = new System.Drawing.Point(12, 12);
+            this.panelAtt.Location = new System.Drawing.Point(16, 15);
+            this.panelAtt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelAtt.Name = "panelAtt";
-            this.panelAtt.Size = new System.Drawing.Size(560, 245);
+            this.panelAtt.Size = new System.Drawing.Size(747, 302);
             this.panelAtt.TabIndex = 4;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(500, 263);
+            this.btnCancel.Location = new System.Drawing.Point(667, 324);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -104,18 +110,20 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(419, 263);
+            this.btnOK.Location = new System.Drawing.Point(559, 324);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(100, 28);
             this.btnOK.TabIndex = 4;
             this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(252, 263);
+            this.btnNew.Location = new System.Drawing.Point(336, 324);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(42, 23);
+            this.btnNew.Size = new System.Drawing.Size(56, 28);
             this.btnNew.TabIndex = 3;
             this.btnNew.Text = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -123,25 +131,27 @@
             // txtNewAttribute
             // 
             this.txtNewAttribute.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewAttribute.Location = new System.Drawing.Point(21, 263);
+            this.txtNewAttribute.Location = new System.Drawing.Point(28, 324);
+            this.txtNewAttribute.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNewAttribute.Name = "txtNewAttribute";
-            this.txtNewAttribute.Size = new System.Drawing.Size(220, 21);
+            this.txtNewAttribute.Size = new System.Drawing.Size(292, 24);
             this.txtNewAttribute.TabIndex = 2;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(312, 263);
+            this.btnDelete.Location = new System.Drawing.Point(416, 324);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmAttributePicker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 295);
+            this.ClientSize = new System.Drawing.Size(776, 352);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.txtNewAttribute);
             this.Controls.Add(this.btnNew);
@@ -149,10 +159,11 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.panelAtt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(600, 333);
+            this.MaximumSize = new System.Drawing.Size(794, 399);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(381, 333);
+            this.MinimumSize = new System.Drawing.Size(502, 399);
             this.Name = "frmAttributePicker";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

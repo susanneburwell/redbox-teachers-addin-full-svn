@@ -470,6 +470,8 @@ namespace RedboxAddin.DL
                         objAvail.FirstAid = Utils.CheckBool(dr["FirstAid"]);
                         objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
                         objAvail.BSL = Utils.CheckBool(dr["BSL"]);
+                        objAvail.Actor = Utils.CheckBool(dr["Actor"]);
+
 
                         if (string.IsNullOrWhiteSpace(objAvail.Teacher))
                         {
@@ -3442,7 +3444,7 @@ namespace RedboxAddin.DL
                             "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT, " +
                             "s1.Provisional as MonPr, s2.Provisional as TuePr, s3.Provisional as WedPr, s4.Provisional as ThuPr, s5.Provisional  as FriPr, " +
                             "g1.Acc as MonGA, g2.Acc as TueGA, g3.Acc as WedGA, g4.Acc as ThuGA, g5.Acc  as FriGA, " +
-                            "g1.Type1 as MonType, g2.Type1 as TueType, g3.Type1 as WedType, g4.Type1 as ThuType, g5.Type1 as FriType " +
+                            "g1.Type1 as MonType, g2.Type1 as TueType, g3.Type1 as WedType, g4.Type1 as ThuType, g5.Type1 as FriType, ContactData.Actor " +
                             "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
@@ -3829,7 +3831,8 @@ namespace RedboxAddin.DL
             SQL += "LEFT JOIN [Schools]  ON MasterBookings.SchoolID = [Schools].ID  ";
             SQL += "WHERE (Date >= '" + start + "' ) AND (Date <= '" + dEnd + "') ";
             SQL += "AND ( isAbsence != 1) AND (MasterBookings.SchoolID = '" + schoolID + "') ";
-            SQL += "ORDER BY [Bookings].MasterBookingID, [Bookings].Charge, [Bookings].Date, LastName, Firstname ";
+            //SQL += "ORDER BY [Bookings].MasterBookingID, [Bookings].Charge, [Bookings].Date, LastName, Firstname ";
+            SQL += "ORDER BY [Bookings].Charge, LastName, Firstname ";//Added as adviced by David
             return SQL;
         }
 

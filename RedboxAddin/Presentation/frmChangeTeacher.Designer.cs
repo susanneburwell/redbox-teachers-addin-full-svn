@@ -39,9 +39,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 54);
+            this.label2.Location = new System.Drawing.Point(49, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 16);
+            this.label2.Size = new System.Drawing.Size(120, 21);
             this.label2.TabIndex = 14;
             this.label2.Text = "Select Teacher";
             // 
@@ -50,16 +50,16 @@
             this.cmbTeacher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTeacher.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.cmbTeacher.FormattingEnabled = true;
-            this.cmbTeacher.Location = new System.Drawing.Point(163, 50);
+            this.cmbTeacher.Location = new System.Drawing.Point(200, 55);
             this.cmbTeacher.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(289, 24);
+            this.cmbTeacher.Size = new System.Drawing.Size(289, 27);
             this.cmbTeacher.TabIndex = 0;
             this.cmbTeacher.SelectedIndexChanged += new System.EventHandler(this.cmbTeacher_SelectedIndexChanged);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(163, 106);
+            this.btnSave.Location = new System.Drawing.Point(200, 111);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(136, 34);
@@ -70,7 +70,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(316, 106);
+            this.btnClose.Location = new System.Drawing.Point(353, 111);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(136, 34);
@@ -82,10 +82,11 @@
             // lblError
             // 
             this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Tahoma", 8.75F);
             this.lblError.ForeColor = System.Drawing.Color.Red;
             this.lblError.Location = new System.Drawing.Point(7, 11);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(508, 16);
+            this.lblError.Size = new System.Drawing.Size(571, 18);
             this.lblError.TabIndex = 14;
             this.lblError.Text = "Availability Error: Selected teacher is not available on one or more dates of the" +
     " booking";
@@ -93,9 +94,9 @@
             // 
             // frmChangeTeacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 166);
+            this.ClientSize = new System.Drawing.Size(592, 167);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblError);

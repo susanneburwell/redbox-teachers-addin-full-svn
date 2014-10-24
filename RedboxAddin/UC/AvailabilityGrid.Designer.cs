@@ -63,9 +63,10 @@
             this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Actor = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -129,6 +130,7 @@
             this.FirstAid,
             this.Guar,
             this.LongTerm,
+            this.Actor,
             this.TeacherID,
             this.Prio});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
@@ -159,6 +161,7 @@
             this.Live.OptionsColumn.ReadOnly = true;
             this.Live.Visible = true;
             this.Live.VisibleIndex = 1;
+            this.Live.Width = 50;
             // 
             // Location
             // 
@@ -169,6 +172,7 @@
             this.Location.OptionsColumn.ReadOnly = true;
             this.Location.Visible = true;
             this.Location.VisibleIndex = 2;
+            this.Location.Width = 48;
             // 
             // Wants
             // 
@@ -193,7 +197,7 @@
             this.YrGroup.OptionsColumn.ReadOnly = true;
             this.YrGroup.Visible = true;
             this.YrGroup.VisibleIndex = 4;
-            this.YrGroup.Width = 70;
+            this.YrGroup.Width = 50;
             // 
             // QTS
             // 
@@ -230,6 +234,7 @@
             this.CRB.OptionsColumn.ReadOnly = true;
             this.CRB.Visible = true;
             this.CRB.VisibleIndex = 7;
+            this.CRB.Width = 48;
             // 
             // NoGo
             // 
@@ -240,6 +245,7 @@
             this.NoGo.OptionsColumn.ReadOnly = true;
             this.NoGo.Visible = true;
             this.NoGo.VisibleIndex = 8;
+            this.NoGo.Width = 48;
             // 
             // Mon
             // 
@@ -250,6 +256,7 @@
             this.Mon.OptionsColumn.ReadOnly = true;
             this.Mon.Visible = true;
             this.Mon.VisibleIndex = 9;
+            this.Mon.Width = 48;
             // 
             // Tue
             // 
@@ -260,6 +267,7 @@
             this.Tue.OptionsColumn.ReadOnly = true;
             this.Tue.Visible = true;
             this.Tue.VisibleIndex = 10;
+            this.Tue.Width = 48;
             // 
             // Wed
             // 
@@ -270,6 +278,7 @@
             this.Wed.OptionsColumn.ReadOnly = true;
             this.Wed.Visible = true;
             this.Wed.VisibleIndex = 11;
+            this.Wed.Width = 48;
             // 
             // Thur
             // 
@@ -280,6 +289,7 @@
             this.Thur.OptionsColumn.ReadOnly = true;
             this.Thur.Visible = true;
             this.Thur.VisibleIndex = 12;
+            this.Thur.Width = 48;
             // 
             // Fri
             // 
@@ -290,6 +300,7 @@
             this.Fri.OptionsColumn.ReadOnly = true;
             this.Fri.Visible = true;
             this.Fri.VisibleIndex = 13;
+            this.Fri.Width = 48;
             // 
             // MonColor
             // 
@@ -407,6 +418,7 @@
             this.RWInc.OptionsColumn.ReadOnly = true;
             this.RWInc.Visible = true;
             this.RWInc.VisibleIndex = 14;
+            this.RWInc.Width = 48;
             // 
             // BSL
             // 
@@ -417,6 +429,7 @@
             this.BSL.OptionsColumn.ReadOnly = true;
             this.BSL.Visible = true;
             this.BSL.VisibleIndex = 15;
+            this.BSL.Width = 48;
             // 
             // FirstAid
             // 
@@ -427,6 +440,7 @@
             this.FirstAid.OptionsColumn.ReadOnly = true;
             this.FirstAid.Visible = true;
             this.FirstAid.VisibleIndex = 16;
+            this.FirstAid.Width = 39;
             // 
             // Guar
             // 
@@ -439,6 +453,7 @@
             this.Guar.OptionsColumn.ReadOnly = true;
             this.Guar.Visible = true;
             this.Guar.VisibleIndex = 17;
+            this.Guar.Width = 20;
             // 
             // LongTerm
             // 
@@ -447,12 +462,19 @@
             this.LongTerm.Name = "LongTerm";
             this.LongTerm.Visible = true;
             this.LongTerm.VisibleIndex = 18;
+            this.LongTerm.Width = 20;
             // 
             // TeacherID
             // 
             this.TeacherID.Caption = "TeacherID";
             this.TeacherID.FieldName = "TeacherID";
             this.TeacherID.Name = "TeacherID";
+            // 
+            // Prio
+            // 
+            this.Prio.Caption = "Prio";
+            this.Prio.FieldName = "Prio";
+            this.Prio.Name = "Prio";
             // 
             // toolTipController1
             // 
@@ -465,11 +487,14 @@
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
             // 
-            // Prio
+            // Actor
             // 
-            this.Prio.Caption = "Prio";
-            this.Prio.FieldName = "Prio";
-            this.Prio.Name = "Prio";
+            this.Actor.Caption = "Actor";
+            this.Actor.FieldName = "Actor";
+            this.Actor.Name = "Actor";
+            this.Actor.Visible = true;
+            this.Actor.VisibleIndex = 19;
+            this.Actor.Width = 20;
             // 
             // AvailabilityGrid
             // 
@@ -522,5 +547,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn TeacherID;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.XtraGrid.Columns.GridColumn Prio;
+        private DevExpress.XtraGrid.Columns.GridColumn Actor;
     }
 }

@@ -69,7 +69,8 @@ namespace RedboxAddin
                 if (filePath == null) filePath = "Y:\\A. Paysheets";
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
-                objBook.SaveAs(filePath + fileName);
+                //objBook.SaveAs(filePath + fileName);
+                objBook.SaveAs(filePath + "\\" + fileName);//Added as adviced by David
                 //Return control of Excel to the user.
                 objApp.Visible = true;
                 objApp.UserControl = true;

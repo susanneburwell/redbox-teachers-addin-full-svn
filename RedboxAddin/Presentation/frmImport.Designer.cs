@@ -51,17 +51,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(47, 37);
+            this.label1.Location = new System.Drawing.Point(50, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 16);
+            this.label1.Size = new System.Drawing.Size(93, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select File:";
             // 
             // btnSelectFile
             // 
-            this.btnSelectFile.Location = new System.Drawing.Point(136, 34);
+            this.btnSelectFile.Location = new System.Drawing.Point(145, 34);
             this.btnSelectFile.Name = "btnSelectFile";
-            this.btnSelectFile.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectFile.Size = new System.Drawing.Size(93, 33);
             this.btnSelectFile.TabIndex = 1;
             this.btnSelectFile.Text = "select";
             this.btnSelectFile.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
             this.lblFile.AutoSize = true;
             this.lblFile.Location = new System.Drawing.Point(260, 37);
             this.lblFile.Name = "lblFile";
-            this.lblFile.Size = new System.Drawing.Size(86, 16);
+            this.lblFile.Size = new System.Drawing.Size(105, 20);
             this.lblFile.TabIndex = 2;
             this.lblFile.Text = "Not Selected";
             // 
@@ -81,15 +81,15 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(50, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "First Row:";
             // 
             // numFirst
             // 
-            this.numFirst.Location = new System.Drawing.Point(136, 73);
+            this.numFirst.Location = new System.Drawing.Point(145, 73);
             this.numFirst.Name = "numFirst";
-            this.numFirst.Size = new System.Drawing.Size(93, 22);
+            this.numFirst.Size = new System.Drawing.Size(93, 26);
             this.numFirst.TabIndex = 4;
             // 
             // lblFirst
@@ -97,7 +97,7 @@
             this.lblFirst.AutoSize = true;
             this.lblFirst.Location = new System.Drawing.Point(260, 75);
             this.lblFirst.Name = "lblFirst";
-            this.lblFirst.Size = new System.Drawing.Size(86, 16);
+            this.lblFirst.Size = new System.Drawing.Size(105, 20);
             this.lblFirst.TabIndex = 5;
             this.lblFirst.Text = "Not Selected";
             // 
@@ -106,15 +106,15 @@
             this.lblLast.AutoSize = true;
             this.lblLast.Location = new System.Drawing.Point(260, 115);
             this.lblLast.Name = "lblLast";
-            this.lblLast.Size = new System.Drawing.Size(86, 16);
+            this.lblLast.Size = new System.Drawing.Size(105, 20);
             this.lblLast.TabIndex = 8;
             this.lblLast.Text = "Not Selected";
             // 
             // numLast
             // 
-            this.numLast.Location = new System.Drawing.Point(136, 113);
+            this.numLast.Location = new System.Drawing.Point(145, 113);
             this.numLast.Name = "numLast";
-            this.numLast.Size = new System.Drawing.Size(93, 22);
+            this.numLast.Size = new System.Drawing.Size(93, 26);
             this.numLast.TabIndex = 7;
             // 
             // lblL
@@ -122,7 +122,7 @@
             this.lblL.AutoSize = true;
             this.lblL.Location = new System.Drawing.Point(50, 118);
             this.lblL.Name = "lblL";
-            this.lblL.Size = new System.Drawing.Size(66, 16);
+            this.lblL.Size = new System.Drawing.Size(85, 20);
             this.lblL.TabIndex = 6;
             this.lblL.Text = "Last Row:";
             // 
@@ -130,7 +130,7 @@
             // 
             this.btnImport.Location = new System.Drawing.Point(507, 187);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.Size = new System.Drawing.Size(75, 29);
             this.btnImport.TabIndex = 29;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             this.chkTeacher.AutoSize = true;
             this.chkTeacher.Location = new System.Drawing.Point(65, 175);
             this.chkTeacher.Name = "chkTeacher";
-            this.chkTeacher.Size = new System.Drawing.Size(78, 20);
+            this.chkTeacher.Size = new System.Drawing.Size(92, 24);
             this.chkTeacher.TabIndex = 30;
             this.chkTeacher.Text = "Teacher";
             this.chkTeacher.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@
             this.chkTA.AutoSize = true;
             this.chkTA.Location = new System.Drawing.Point(65, 214);
             this.chkTA.Name = "chkTA";
-            this.chkTA.Size = new System.Drawing.Size(45, 20);
+            this.chkTA.Size = new System.Drawing.Size(52, 24);
             this.chkTA.TabIndex = 31;
             this.chkTA.Text = "TA";
             this.chkTA.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             this.chkCurrent.AutoSize = true;
             this.chkCurrent.Location = new System.Drawing.Point(65, 256);
             this.chkCurrent.Name = "chkCurrent";
-            this.chkCurrent.Size = new System.Drawing.Size(69, 20);
+            this.chkCurrent.Size = new System.Drawing.Size(87, 24);
             this.chkCurrent.TabIndex = 32;
             this.chkCurrent.Text = "Current";
             this.chkCurrent.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@
             // 
             this.btnCheck.Location = new System.Drawing.Point(263, 145);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(75, 23);
+            this.btnCheck.Size = new System.Drawing.Size(75, 29);
             this.btnCheck.TabIndex = 33;
             this.btnCheck.Text = "Check";
             this.btnCheck.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@
             // 
             // frmImport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 540);
             this.Controls.Add(this.btnCheck);

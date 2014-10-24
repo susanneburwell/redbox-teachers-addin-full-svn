@@ -67,7 +67,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 32);
+            this.label1.Size = new System.Drawing.Size(487, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "This sends an automated email for all bookings starting starting \r\non the given d" +
     "ate, whose status is \'confimed\'.";
@@ -86,7 +86,7 @@
             // 
             this.dtFrom.Location = new System.Drawing.Point(25, 10);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 22);
+            this.dtFrom.Size = new System.Drawing.Size(200, 26);
             this.dtFrom.TabIndex = 7;
             this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
             // 
@@ -241,7 +241,7 @@
             this.chkSendAuto.AutoSize = true;
             this.chkSendAuto.Location = new System.Drawing.Point(666, 31);
             this.chkSendAuto.Name = "chkSendAuto";
-            this.chkSendAuto.Size = new System.Drawing.Size(142, 20);
+            this.chkSendAuto.Size = new System.Drawing.Size(174, 24);
             this.chkSendAuto.TabIndex = 2;
             this.chkSendAuto.Text = "Send Automatically";
             this.toolTip1.SetToolTip(this.chkSendAuto, "If you tick this the emails will be sent without being seen by you.");
@@ -262,9 +262,9 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(918, 9);
+            this.btnRefresh.Location = new System.Drawing.Point(888, 6);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(64, 24);
+            this.btnRefresh.Size = new System.Drawing.Size(94, 32);
             this.btnRefresh.TabIndex = 10;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -273,9 +273,9 @@
             // radAny
             // 
             this.radAny.AutoSize = true;
-            this.radAny.Location = new System.Drawing.Point(823, 11);
+            this.radAny.Location = new System.Drawing.Point(771, 11);
             this.radAny.Name = "radAny";
-            this.radAny.Size = new System.Drawing.Size(89, 20);
+            this.radAny.Size = new System.Drawing.Size(111, 24);
             this.radAny.TabIndex = 9;
             this.radAny.Text = "Any Status";
             this.radAny.UseVisualStyleBackColor = true;
@@ -284,9 +284,9 @@
             // radShowConfirmedMorning
             // 
             this.radShowConfirmedMorning.AutoSize = true;
-            this.radShowConfirmedMorning.Location = new System.Drawing.Point(649, 11);
+            this.radShowConfirmedMorning.Location = new System.Drawing.Point(557, 11);
             this.radShowConfirmedMorning.Name = "radShowConfirmedMorning";
-            this.radShowConfirmedMorning.Size = new System.Drawing.Size(168, 20);
+            this.radShowConfirmedMorning.Size = new System.Drawing.Size(211, 24);
             this.radShowConfirmedMorning.TabIndex = 8;
             this.radShowConfirmedMorning.Text = "Confirmed Morning Only";
             this.radShowConfirmedMorning.UseVisualStyleBackColor = true;
@@ -296,9 +296,9 @@
             // 
             this.radShowConfirmed.AutoSize = true;
             this.radShowConfirmed.Checked = true;
-            this.radShowConfirmed.Location = new System.Drawing.Point(526, 11);
+            this.radShowConfirmed.Location = new System.Drawing.Point(402, 11);
             this.radShowConfirmed.Name = "radShowConfirmed";
-            this.radShowConfirmed.Size = new System.Drawing.Size(117, 20);
+            this.radShowConfirmed.Size = new System.Drawing.Size(146, 24);
             this.radShowConfirmed.TabIndex = 8;
             this.radShowConfirmed.TabStop = true;
             this.radShowConfirmed.Text = "Confirmed Only";
@@ -307,7 +307,7 @@
             // 
             // frmSendVetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 522);
             this.Controls.Add(this.tableLayoutPanel1);

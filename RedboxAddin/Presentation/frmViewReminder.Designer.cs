@@ -51,27 +51,30 @@
             // txtSubject
             // 
             this.txtSubject.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubject.Location = new System.Drawing.Point(69, 33);
+            this.txtSubject.Location = new System.Drawing.Point(92, 41);
+            this.txtSubject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(368, 21);
+            this.txtSubject.Size = new System.Drawing.Size(489, 24);
             this.txtSubject.TabIndex = 0;
             // 
             // txtNotes
             // 
             this.txtNotes.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNotes.Location = new System.Drawing.Point(69, 130);
+            this.txtNotes.Location = new System.Drawing.Point(92, 160);
+            this.txtNotes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(368, 103);
+            this.txtNotes.Size = new System.Drawing.Size(489, 126);
             this.txtNotes.TabIndex = 5;
             // 
             // label71
             // 
             this.label71.AutoSize = true;
             this.label71.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(7, 100);
+            this.label71.Location = new System.Drawing.Point(9, 123);
+            this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(43, 13);
+            this.label71.Size = new System.Drawing.Size(55, 17);
             this.label71.TabIndex = 24;
             this.label71.Text = "Due On";
             // 
@@ -79,9 +82,10 @@
             // 
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(7, 133);
+            this.label70.Location = new System.Drawing.Point(9, 164);
+            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(35, 13);
+            this.label70.Size = new System.Drawing.Size(43, 17);
             this.label70.TabIndex = 25;
             this.label70.Text = "Notes";
             // 
@@ -89,9 +93,10 @@
             // 
             this.label66.AutoSize = true;
             this.label66.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.Location = new System.Drawing.Point(7, 36);
+            this.label66.Location = new System.Drawing.Point(9, 44);
+            this.label66.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(43, 13);
+            this.label66.Size = new System.Drawing.Size(55, 17);
             this.label66.TabIndex = 27;
             this.label66.Text = "Subject";
             // 
@@ -106,9 +111,10 @@
             "Due",
             "InProgress",
             "Completed"});
-            this.cmbStatus.Location = new System.Drawing.Point(69, 67);
+            this.cmbStatus.Location = new System.Drawing.Point(92, 82);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(141, 21);
+            this.cmbStatus.Size = new System.Drawing.Size(187, 25);
             this.cmbStatus.TabIndex = 1;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
             // 
@@ -116,9 +122,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 71);
+            this.label1.Location = new System.Drawing.Point(9, 87);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 42;
             this.label1.Text = "Status";
             // 
@@ -126,9 +133,10 @@
             // 
             this.dtDueDate.CustomFormat = "dd-MMM-yyyy HH:mm";
             this.dtDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDueDate.Location = new System.Drawing.Point(69, 95);
+            this.dtDueDate.Location = new System.Drawing.Point(92, 117);
+            this.dtDueDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtDueDate.Name = "dtDueDate";
-            this.dtDueDate.Size = new System.Drawing.Size(169, 22);
+            this.dtDueDate.Size = new System.Drawing.Size(224, 26);
             this.dtDueDate.TabIndex = 3;
             // 
             // linkLabel1
@@ -136,9 +144,10 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(19, 264);
+            this.linkLabel1.Location = new System.Drawing.Point(25, 325);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(81, 14);
+            this.linkLabel1.Size = new System.Drawing.Size(92, 18);
             this.linkLabel1.TabIndex = 44;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "View Contact";
@@ -147,26 +156,29 @@
             // txtCompletedBy
             // 
             this.txtCompletedBy.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompletedBy.Location = new System.Drawing.Point(299, 67);
+            this.txtCompletedBy.Location = new System.Drawing.Point(399, 82);
+            this.txtCompletedBy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCompletedBy.Name = "txtCompletedBy";
-            this.txtCompletedBy.Size = new System.Drawing.Size(138, 21);
+            this.txtCompletedBy.Size = new System.Drawing.Size(183, 24);
             this.txtCompletedBy.TabIndex = 2;
             // 
             // lblCompletedBy
             // 
             this.lblCompletedBy.AutoSize = true;
             this.lblCompletedBy.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompletedBy.Location = new System.Drawing.Point(220, 71);
+            this.lblCompletedBy.Location = new System.Drawing.Point(293, 87);
+            this.lblCompletedBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCompletedBy.Name = "lblCompletedBy";
-            this.lblCompletedBy.Size = new System.Drawing.Size(73, 13);
+            this.lblCompletedBy.Size = new System.Drawing.Size(94, 17);
             this.lblCompletedBy.TabIndex = 46;
             this.lblCompletedBy.Text = "Completed By";
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(382, 260);
+            this.btnOK.Location = new System.Drawing.Point(509, 320);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(100, 28);
             this.btnOK.TabIndex = 8;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -174,9 +186,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(220, 260);
+            this.btnCancel.Location = new System.Drawing.Point(293, 320);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -196,9 +209,11 @@
             this.groupBox1.Controls.Add(this.dtDueDate);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 9);
+            this.groupBox1.Location = new System.Drawing.Point(16, 11);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(451, 245);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(601, 302);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reminder Info";
@@ -206,9 +221,10 @@
             // btnAddNotes
             // 
             this.btnAddNotes.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNotes.Location = new System.Drawing.Point(6, 155);
+            this.btnAddNotes.Location = new System.Drawing.Point(8, 191);
+            this.btnAddNotes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddNotes.Name = "btnAddNotes";
-            this.btnAddNotes.Size = new System.Drawing.Size(42, 35);
+            this.btnAddNotes.Size = new System.Drawing.Size(56, 43);
             this.btnAddNotes.TabIndex = 4;
             this.btnAddNotes.Text = "Add notes";
             this.btnAddNotes.UseVisualStyleBackColor = true;
@@ -216,9 +232,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(301, 260);
+            this.btnDelete.Location = new System.Drawing.Point(401, 320);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -226,16 +243,17 @@
             // 
             // frmViewReminder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(477, 295);
+            this.ClientSize = new System.Drawing.Size(636, 368);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.linkLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmViewReminder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Reminder";
