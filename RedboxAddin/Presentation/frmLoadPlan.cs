@@ -350,7 +350,7 @@ namespace RedboxAddin.Presentation
 
         private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
-            int myRow = e.RowHandle;//Test
+            int myRow = e.RowHandle;//Test2
 
             bool isOT = bool.Parse(gridView1.GetRowCellValue(myRow, "OT").ToString());
             if (isOT)
