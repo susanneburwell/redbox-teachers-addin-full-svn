@@ -15,6 +15,7 @@ using DevExpress.Data;
 using DevExpress.XtraGrid.Menu;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils.Menu;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace RedboxAddin.Presentation
 {
@@ -23,6 +24,9 @@ namespace RedboxAddin.Presentation
         public frmLoadPlan()
         {
             InitializeComponent();
+            gridView1.OptionsSelection.MultiSelect = true;
+            gridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.RowSelect;
+            gridView1.OptionsBehavior.CopyToClipboardWithColumnHeaders = true;
         }
 
         private void frmLoadPlan_Load(object sender, EventArgs e)
@@ -178,8 +182,8 @@ namespace RedboxAddin.Presentation
                     {
                         try { rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption(); }
                         catch { }
-                        try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString(); }
-                        catch { rowInfo.Teacher = ""; }
+                        //try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString(); }
+                        //catch { rowInfo.Teacher = ""; }
                         try { rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString(); }
                         catch { rowInfo.Description = "zxcvbnmkl"; }
                     }
@@ -278,6 +282,80 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(1, "Error in TotalsButton: " + ex.Message);
             }
         }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                Clipboard.SetText(GetSelectedValues(gridView1));
+                e.Handled = true;
+            }
+        }
+
+        private string GetSelectedValues(DevExpress.XtraGrid.Views.Grid.GridView view)
+        {
+            //validate selected row count
+            if (view.SelectedRowsCount == 0) return "";
+
+            const string CellDelimiter = "\t"; 
+            const string LineDelimiter = "\r\n";
+            string result = "";
+
+            //Iterate cells and compose a tab delimited string of cell values
+            for (int i = view.SelectedRowsCount - 1; i >= 0; i--)
+            {
+                int row = view.GetSelectedRows()[i];
+                for (int j = 0; j < view.VisibleColumns.Count; j++)
+                {
+                    result += view.GetRowCellDisplayText(row, view.VisibleColumns[j]);
+                    if (j != view.VisibleColumns.Count - 1)
+                        result += CellDelimiter;
+                }
+
+                if (i != 0)
+                    result += LineDelimiter;
+            }
+            return result;
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Save_File = "";
+                SaveFileDialog saveFD = new SaveFileDialog();
+                saveFD.Filter = "xls files (*.xls)|*.xls |csv files (*.csv)|*.csv";
+                saveFD.DefaultExt = ".xls";
+                saveFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                if (saveFD.ShowDialog() == DialogResult.OK)
+                {
+                    Save_File = saveFD.FileName;
+                    switch (saveFD.FilterIndex)
+                    {
+                        case 1:
+                            gridView1.ExportToXls(Save_File);
+                            break;
+                        case 2:
+                            gridView1.ExportToCsv(Save_File);
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in btnExport_Click(): " + ex.Message);
+            }
+        }
+
+        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            int myRow = e.RowHandle;
+
+            bool isOT = bool.Parse(gridView1.GetRowCellValue(myRow, "OT").ToString());
+            if (isOT)
+                e.Appearance.BackColor = System.Drawing.Color.LightGray;
+        }
     }
 }
 
@@ -368,7 +446,6 @@ public class LoadPlanCustomMenu : GridViewMenu
         {
             MessageBox.Show("Right Click Error: " + ex.Message);
         }
-
     }
 
 

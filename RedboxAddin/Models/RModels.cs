@@ -130,6 +130,8 @@ namespace RedboxAddin.Models
         public Decimal wedCharge { get; set; }
         public Decimal thuCharge { get; set; }
         public Decimal friCharge { get; set; }
+        public bool OT { get; set; }
+
 
     }
 

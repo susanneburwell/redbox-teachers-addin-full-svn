@@ -35,6 +35,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnTotals = new System.Windows.Forms.Button();
             this.txtPwd = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnCreateInvoices = new System.Windows.Forms.Button();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bnFwd = new System.Windows.Forms.Button();
@@ -70,6 +71,7 @@
             this.WedID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThuID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FriID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.OT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -97,6 +99,7 @@
             // 
             this.panelTop.Controls.Add(this.btnTotals);
             this.panelTop.Controls.Add(this.txtPwd);
+            this.panelTop.Controls.Add(this.btnExport);
             this.panelTop.Controls.Add(this.btnCreateInvoices);
             this.panelTop.Controls.Add(this.btnCreatePaySheets);
             this.panelTop.Controls.Add(this.bnFwd);
@@ -121,7 +124,7 @@
             // btnTotals
             // 
             this.btnTotals.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTotals.Location = new System.Drawing.Point(758, 50);
+            this.btnTotals.Location = new System.Drawing.Point(767, 41);
             this.btnTotals.Name = "btnTotals";
             this.btnTotals.Size = new System.Drawing.Size(68, 22);
             this.btnTotals.TabIndex = 92;
@@ -131,15 +134,25 @@
             // 
             // txtPwd
             // 
-            this.txtPwd.Location = new System.Drawing.Point(832, 50);
+            this.txtPwd.Location = new System.Drawing.Point(841, 41);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(66, 22);
             this.txtPwd.TabIndex = 91;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(419, 35);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(142, 28);
+            this.btnExport.TabIndex = 90;
+            this.btnExport.Text = "Export to Excel";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // btnCreateInvoices
             // 
-            this.btnCreateInvoices.Location = new System.Drawing.Point(567, 32);
+            this.btnCreateInvoices.Location = new System.Drawing.Point(567, 35);
             this.btnCreateInvoices.Name = "btnCreateInvoices";
             this.btnCreateInvoices.Size = new System.Drawing.Size(156, 28);
             this.btnCreateInvoices.TabIndex = 90;
@@ -159,7 +172,7 @@
             // 
             // bnFwd
             // 
-            this.bnFwd.Location = new System.Drawing.Point(362, 37);
+            this.bnFwd.Location = new System.Drawing.Point(362, 38);
             this.bnFwd.Name = "bnFwd";
             this.bnFwd.Size = new System.Drawing.Size(51, 23);
             this.bnFwd.TabIndex = 27;
@@ -169,7 +182,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(296, 37);
+            this.btnBack.Location = new System.Drawing.Point(296, 38);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(60, 23);
             this.btnBack.TabIndex = 26;
@@ -234,7 +247,7 @@
             // 
             // dtTo
             // 
-            this.dtTo.Location = new System.Drawing.Point(68, 37);
+            this.dtTo.Location = new System.Drawing.Point(68, 38);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(200, 22);
             this.dtTo.TabIndex = 20;
@@ -244,7 +257,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 42);
+            this.label5.Location = new System.Drawing.Point(16, 41);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 16);
             this.label5.TabIndex = 21;
@@ -254,7 +267,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(747, 10);
+            this.label1.Location = new System.Drawing.Point(760, 1);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 37);
@@ -310,7 +323,8 @@
             this.TueID,
             this.WedID,
             this.ThuID,
-            this.FriID});
+            this.FriID,
+            this.OT});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TMargin", null, "£{0}"),
@@ -319,6 +333,8 @@
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.School, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.FirstName, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // School
             // 
@@ -539,6 +555,12 @@
             this.FriID.FieldName = "FriID";
             this.FriID.Name = "FriID";
             // 
+            // OT
+            // 
+            this.OT.Caption = "OT";
+            this.OT.FieldName = "OT";
+            this.OT.Name = "OT";
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -609,5 +631,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn FriID;
         private System.Windows.Forms.Button btnTotals;
         private System.Windows.Forms.TextBox txtPwd;
+        private System.Windows.Forms.Button btnExport;
+        private DevExpress.XtraGrid.Columns.GridColumn OT;
     }
 }

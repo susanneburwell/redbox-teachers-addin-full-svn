@@ -745,6 +745,9 @@ namespace RedboxAddin.DL
                 string SQLstr = GetTimeSheetSQL(dStart, schoolID);
                 DataSet msgDs = GetDataSet(SQLstr);
 
+                string SQLstr2 = GetTimeSheetOTDetailsSQL(dStart, schoolID);
+                DataSet msgDs2 = GetDataSet(SQLstr2);
+
                 if (msgDs != null)
                 {
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
@@ -777,7 +780,7 @@ namespace RedboxAddin.DL
                     int listPointer = 0;
                     while (listPointer < TimeSheets.Count - 1)
                     {
-                        if (TimeSheetsMatch(TimeSheets[listPointer], TimeSheets[listPointer + 1]))
+                        if (TimeSheetsMatch(TimeSheets[listPointer], TimeSheets[listPointer + 1]))//ASK
                         {
                             //add a day to existing payment
                             TimeSheets[listPointer].numDays += 1;
@@ -791,6 +794,31 @@ namespace RedboxAddin.DL
                             //move on to next payment
                             listPointer += 1;
                         }
+                    }
+
+                    foreach (DataRow dr in msgDs2.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            string shortname = dr["ShortName"].ToString();
+                            RTimeSheet objTS = new RTimeSheet()
+                            {
+                                ID = Utils.CheckLong(dr["MasterBookingID"]),
+                                SchoolName = dr["SchoolName"].ToString(),
+                                FullName = dr["FullName"].ToString(),
+                                days = GetDay(dr["Date"].ToString()),
+                                Description = dr["Description"].ToString().Replace(shortname, "").Trim() + " [OT]",
+                                numDays = 1,
+                                DayRate = Utils.CheckDecimal(dr["DayRate"].ToString()),
+                                Total = Utils.CheckDecimal(dr["DayRate"].ToString()),
+
+                            };
+                            //only add if charge required
+                            //if (objTS.DayRate > 0) TimeSheets.Add(objTS);
+                            //10/10/2014 Add all items to timesheet
+                            TimeSheets.Add(objTS);
+                        }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
                     }
 
                     return TimeSheets;
@@ -900,7 +928,7 @@ namespace RedboxAddin.DL
                             {
                                 WeekEnding = WeekEnding,
                                 SageAcctRef = SageAccountRef,
-                                Address = dr["Address"].ToString().Replace(",",""),
+                                Address = dr["Address"].ToString().Replace(",", ""),
                                 Description = dr["Description"].ToString().Replace(",", ";"),
                                 LastName = dr["LastName"].ToString().Replace(",", ""),
                                 FirstName = dr["FirstName"].ToString().Replace(",", ""),
@@ -945,7 +973,6 @@ namespace RedboxAddin.DL
                             string shortname = dr["ShortName"].ToString();
                             RLoad objLoad = new RLoad()
                            {
-
                                SchoolName = dr["SchoolName"].ToString(),
                                FirstName = dr["FirstName"].ToString(),
                                LastName = dr["LastName"].ToString(),
@@ -966,6 +993,7 @@ namespace RedboxAddin.DL
                                WedID = dr["WedID"].ToString(),
                                ThuID = dr["ThuID"].ToString(),
                                FriID = dr["FriID"].ToString(),
+                               OT = false
 
                            };
                             LoadPlan.Add(objLoad);
@@ -980,15 +1008,51 @@ namespace RedboxAddin.DL
                         {
                             try
                             {
+                                DateTime date = DateTime.Parse(dr["Date"].ToString());
+                                string mondayText = string.Empty;
+                                string tuesdayText = string.Empty;
+                                string wednesdayText = string.Empty;
+                                string thursdayText = string.Empty;
+                                string fridayText = string.Empty;
+
+                                if (date.DayOfWeek == DayOfWeek.Monday)
+                                    mondayText = dr["Notes"].ToString();
+                                if (date.DayOfWeek == DayOfWeek.Tuesday)
+                                    tuesdayText = dr["Notes"].ToString();
+                                if (date.DayOfWeek == DayOfWeek.Wednesday)
+                                    wednesdayText = dr["Notes"].ToString();
+                                if (date.DayOfWeek == DayOfWeek.Thursday)
+                                    thursdayText = dr["Notes"].ToString();
+                                if (date.DayOfWeek == DayOfWeek.Friday)
+                                    fridayText = dr["Notes"].ToString();
+
+
                                 RLoad objLoad = new RLoad()
                                 {
                                     SchoolName = dr["SchoolName"].ToString(),
                                     FirstName = dr["FirstName"].ToString(),
                                     LastName = dr["LastName"].ToString(),
-                                    srate = Utils.CheckDecimal(dr["ARate"].ToString()),                                    
-                                    Charge = Utils.CheckDecimal(dr["ACharge"].ToString())  
-                                  
+                                    numDays = 1,
+                                    Monday = mondayText,
+                                    Tuesday = tuesdayText,
+                                    Wednesday = wednesdayText,
+                                    Thursday = thursdayText,
+                                    Friday = fridayText,
+                                    srate = Utils.CheckDecimal(dr["ARate"].ToString()),
+                                    Charge = Utils.CheckDecimal(dr["ACharge"].ToString()),
+                                    TotalCost = Utils.CheckDecimal(dr["ARate"].ToString()),
+                                    Revenue = Utils.CheckDecimal(dr["ACharge"].ToString()),
+                                    TMargin = Utils.CheckDecimal(dr["ACharge"].ToString()) - Utils.CheckDecimal(dr["ARate"].ToString()),
+                                    OT = true
                                 };
+
+
+                                mondayText = string.Empty;
+                                tuesdayText = string.Empty;
+                                wednesdayText = string.Empty;
+                                thursdayText = string.Empty;
+                                fridayText = string.Empty;
+
                                 LoadPlan.Add(objLoad);
                             }
                             catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
@@ -3843,7 +3907,7 @@ namespace RedboxAddin.DL
             SQL += "WHERE isAbsence != 1 ";
 
             SQL += "ORDER BY SchoolName, sCharge DESC, LastName, FirstName ";
-            GetOverTimeDetailsSQL( dStart);
+            GetOverTimeDetailsSQL(dStart);
             return SQL;
         }
 
@@ -3858,13 +3922,19 @@ namespace RedboxAddin.DL
 
             string SQL = "";
 
-            SQL = "Select Schools.SchoolName, Contacts.FirstName, Contacts.LastName, SUM(BookingOverTime.RateAdditional) AS ARate, SUM(BookingOverTime.ChargeAdditional) AS ACharge " +
+            //            SQL = "Select Schools.SchoolName, Contacts.FirstName, Contacts.LastName, SUM(BookingOverTime.RateAdditional) AS ARate, SUM(BookingOverTime.ChargeAdditional) AS ACharge " +
+            //"FROM BookingOverTime INNER JOIN Bookings ON BookingOverTime.BookingID = Bookings.ID INNER JOIN " +
+            //"MasterBookings ON Bookings.MasterBookingID = MasterBookings.ID INNER JOIN Schools ON MasterBookings.SchoolID = Schools.ID INNER JOIN Contacts ON MasterBookings.contactID = Contacts.contactID " +
+            //"WHERE (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + monday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + tuesday + "') OR " +
+            //"(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + wednesday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + thursday + "') OR " +
+            //"(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + friday + "') GROUP BY MasterBookings.SchoolID, Schools.SchoolName, Contacts.FirstName, Contacts.LastName, MasterBookings.contactID";
+
+            SQL = "Select Schools.SchoolName, Contacts.FirstName, Contacts.LastName, BookingOverTime.RateAdditional AS ARate, BookingOverTime.ChargeAdditional AS ACharge, BookingOverTime.Notes, Bookings.Date " +
 "FROM BookingOverTime INNER JOIN Bookings ON BookingOverTime.BookingID = Bookings.ID INNER JOIN " +
 "MasterBookings ON Bookings.MasterBookingID = MasterBookings.ID INNER JOIN Schools ON MasterBookings.SchoolID = Schools.ID INNER JOIN Contacts ON MasterBookings.contactID = Contacts.contactID " +
 "WHERE (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + monday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + tuesday + "') OR " +
 "(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + wednesday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + thursday + "') OR " +
-"(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + friday + "') GROUP BY MasterBookings.SchoolID, Schools.SchoolName, Contacts.FirstName, Contacts.LastName, MasterBookings.contactID";
-
+"(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + friday + "')";
 
             return SQL;
         }
@@ -3946,6 +4016,22 @@ namespace RedboxAddin.DL
             SQL += "AND ( isAbsence != 1) AND (MasterBookings.SchoolID = '" + schoolID + "') ";
             //SQL += "ORDER BY [Bookings].MasterBookingID, [Bookings].Charge, [Bookings].Date, LastName, Firstname ";
             SQL += "ORDER BY [Bookings].Charge, LastName, Firstname ";//Added as adviced by David
+            return SQL;
+        }
+
+        private string GetTimeSheetOTDetailsSQL(DateTime dStart, string schoolID)
+        {
+            string start = dStart.ToString("yyyy-MM-dd");
+            string dEnd = dStart.AddDays(4).ToString("yyyy-MM-dd");
+
+            string SQL = "";
+            SQL = "SELECT Bookings.Date, BookingOverTime.ChargeAdditional AS DayRate, Bookings.MasterBookingID, Schools.SchoolName, " +
+"Contacts.LastName + ', ' + Contacts.FirstName AS FullName, BookingOverTime.Notes AS Description, Schools.ShortName " +
+"FROM Bookings LEFT OUTER JOIN BookingOverTime ON Bookings.MasterBookingID = BookingOverTime.MasterBookingID AND " +
+"Bookings.ID = BookingOverTime.BookingID LEFT OUTER JOIN MasterBookings ON MasterBookings.ID = Bookings.MasterBookingID " +
+"LEFT OUTER JOIN Contacts ON MasterBookings.contactID = Contacts.contactID LEFT OUTER JOIN Schools ON MasterBookings.SchoolID = Schools.ID " +
+"WHERE (Bookings.Date >= '" + start + "' ) AND (Bookings.Date <= '" + dEnd + "') AND (MasterBookings.isAbsence <> 1) AND " +
+"(MasterBookings.SchoolID = '" + schoolID + "') AND (BookingOverTime.ChargeAdditional > 0) ORDER BY DayRate, Contacts.LastName, Contacts.FirstName ";
             return SQL;
         }
 
@@ -4102,7 +4188,7 @@ namespace RedboxAddin.DL
                         "WHERE [Bookings].Date = '" + ddate + "'";
             if (!string.IsNullOrEmpty(status))
             {
-                SQL += " AND MasterBookings.BookingStatus = '"+status+"'  ";
+                SQL += " AND MasterBookings.BookingStatus = '" + status + "'  ";
             }
 
 

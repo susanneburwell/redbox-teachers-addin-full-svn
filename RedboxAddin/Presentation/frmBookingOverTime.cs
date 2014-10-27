@@ -83,11 +83,13 @@ namespace RedboxAddin.Presentation
                     if (isUpdate)
                     {
                         db.SubmitChanges();
+                        this.Close();
                     }
                     else
                     {
                         db.BookingOverTimes.InsertOnSubmit(oBOT);
                         db.SubmitChanges();
+                        this.Close();
                     }
                 }
                 else

@@ -51,9 +51,11 @@ namespace RedboxAddin.Presentation
             {
                 //prepare grid for printing
                 gridView1.ViewCaption = "Redbox Teachers TimeSheet - " + cmbSchool.Text + " Week beginning " + dtFrom.Value.ToString("dd-MMM-yyyy");
-
-                string schoolID = cmbSchool.SelectedValue.ToString();
-                gridControl1.DataSource = new DBManager().GetTimeSheets(dtFrom.Value, schoolID);
+                if (cmbSchool.SelectedValue != null)
+                {
+                    string schoolID = cmbSchool.SelectedValue.ToString();
+                    gridControl1.DataSource = new DBManager().GetTimeSheets(dtFrom.Value, schoolID);
+                }
 
             }
             catch (Exception ex)
@@ -246,6 +248,11 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in timesheetTable: " + ex.Message);
                 return "There was an erropr creating the timesheet";
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            if (!loadingForm) LoadGrid();           
         }
 
 
