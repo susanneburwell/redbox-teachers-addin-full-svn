@@ -5076,6 +5076,8 @@ namespace RedboxAddin
 		
 		private bool _Provisional;
 		
+		private string _Weekdays;
+		
 		private EntitySet<Booking> _Bookings;
 		
     #region Extensibility Method Definitions
@@ -5162,6 +5164,8 @@ namespace RedboxAddin
     partial void OnNotesChanged();
     partial void OnProvisionalChanging(bool value);
     partial void OnProvisionalChanged();
+    partial void OnWeekdaysChanging(string value);
+    partial void OnWeekdaysChanged();
     #endregion
 		
 		public MasterBooking()
@@ -5966,6 +5970,26 @@ namespace RedboxAddin
 					this._Provisional = value;
 					this.SendPropertyChanged("Provisional");
 					this.OnProvisionalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weekdays", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Weekdays
+		{
+			get
+			{
+				return this._Weekdays;
+			}
+			set
+			{
+				if ((this._Weekdays != value))
+				{
+					this.OnWeekdaysChanging(value);
+					this.SendPropertyChanging();
+					this._Weekdays = value;
+					this.SendPropertyChanged("Weekdays");
+					this.OnWeekdaysChanged();
 				}
 			}
 		}

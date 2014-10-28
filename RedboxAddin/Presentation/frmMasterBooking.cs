@@ -362,6 +362,18 @@ namespace RedboxAddin.Presentation
                     if (radNS.Checked == false) mb.LinkedTeacherID = Convert.ToInt64(cmbRequestedTeacher.SelectedValue);
                     else mb.LinkedTeacherID = -1;
 
+                    //set selected weekdays
+                    string selectedWeekdays = "";
+                    if (chkMon.Checked) selectedWeekdays += "Mon, ";
+                    if (chkTue.Checked) selectedWeekdays += "Tue, ";
+                    if (chkWed.Checked) selectedWeekdays += "Wed, ";
+                    if (chkThu.Checked) selectedWeekdays += "Thu, ";
+                    if (chkFri.Checked) selectedWeekdays += "Fri, ";
+                    if (selectedWeekdays.Length > 1) 
+                        selectedWeekdays = selectedWeekdays.Substring(0, selectedWeekdays.Length - 2);
+                    mb.Weekdays = selectedWeekdays;
+                    
+
                     //If this is not a new booking, submit changes and exit
                     if (_masterBookingID > 0)
                     {
