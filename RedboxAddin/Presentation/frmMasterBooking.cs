@@ -354,7 +354,6 @@ namespace RedboxAddin.Presentation
                     string teachername = cmbTeacher.Text.Replace(',', ' ');
                     if (teachername.Trim() == "") mb.ContactID = -1;
 
-
                     //If Teacher named
                     mb.NameGiven = radNG.Checked;
                     mb.AskedFor = radAF.Checked;
