@@ -48,6 +48,6 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <GenerateBootstrapper ApplicationFile="$(TargetFileName)" ApplicationName="RedboxAddin" BootstrapperItems="@(BootstrapperFile)" ComponentsLocation="HomeSite" CopyComponents="False" OutputPath="$(OutputPath)" Path="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\Bootstrapper\" ApplicationRequiresElevation="True"  />
+    <GenerateBootstrapper ApplicationFile="$(TargetFileName)" ApplicationName="RedboxAddin 2.0.66" BootstrapperItems="@(BootstrapperFile)" ComponentsLocation="HomeSite" CopyComponents="False" OutputPath="$(OutputPath)" Path="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\Bootstrapper\" ApplicationRequiresElevation="True" />
   </Target>
 </Project>

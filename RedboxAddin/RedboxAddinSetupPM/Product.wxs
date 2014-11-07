@@ -1,95 +1,65 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-	<Product 
-    Id="*" 
-    Name="RedboxAddin 2.0.65" 
-    Language="1033" 
-    Version="2.0.65" 
-    Manufacturer="Davton" 
-    UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" 
-    Codepage="1252">
-    
-  	<Package 
-      InstallerVersion="200" 
-      Compressed="yes" 
-      InstallScope="perMachine" 
-      Description="RedboxAddinSetupPM"
-      Manufacturer="Davton"
-      Languages="1033"
-      SummaryCodepage="1252" 
-      InstallPrivileges="elevated"
-    />
-
+  <Product Id="*" Name="RedboxAddin 2.0.66" Language="1033" Version="2.0.66" Manufacturer="Davton" UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" Codepage="1252">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="RedboxAddinSetupPM" Manufacturer="Davton" Languages="1033" SummaryCodepage="1252" InstallPrivileges="elevated" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="RedboxAddin.cab" EmbedCab="yes" />
-
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-    
     <Feature Id="ProductFeature" Title="RedboxAddin" Level="1" ConfigurableDirectory="INSTALLFOLDER">
       <ComponentRef Id="INSTALLFOLDER" />
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
-
     <UIRef Id="WixUI_InstallDir" />
     <UIRef Id="WixUI_ErrorProgressText" />
-
     <Binary Id="adxregistrator_exe" SourceFile="$(var.ADX_PATH)\Redistributables\adxregistrator.exe" />
-    
-    <CustomAction Id="RegisterApp" BinaryKey="adxregistrator_exe" Execute="deferred" ExeCommand='/install="[INSTALLFOLDER]$(var.RedboxAddin.TargetFileName)" /privileges=admin /returnExitCode=false' Impersonate="yes" />
-    <CustomAction Id="RollbackApp" BinaryKey="adxregistrator_exe" Execute="rollback" ExeCommand='/uninstall="[INSTALLFOLDER]$(var.RedboxAddin.TargetFileName)" /privileges=admin' Impersonate="yes" Return="ignore" />
-    <CustomAction Id="UnregisterApp" BinaryKey="adxregistrator_exe" Execute="deferred" ExeCommand='/uninstall="[INSTALLFOLDER]$(var.RedboxAddin.TargetFileName)" /privileges=admin' Impersonate="yes" Return="ignore" />
-
+    <CustomAction Id="RegisterApp" BinaryKey="adxregistrator_exe" Execute="deferred" ExeCommand="/install=&quot;[INSTALLFOLDER]$(var.RedboxAddin.TargetFileName)&quot; /privileges=admin /returnExitCode=false" Impersonate="yes" />
+    <CustomAction Id="RollbackApp" BinaryKey="adxregistrator_exe" Execute="rollback" ExeCommand="/uninstall=&quot;[INSTALLFOLDER]$(var.RedboxAddin.TargetFileName)&quot; /privileges=admin" Impersonate="yes" Return="ignore" />
+    <CustomAction Id="UnregisterApp" BinaryKey="adxregistrator_exe" Execute="deferred" ExeCommand="/uninstall=&quot;[INSTALLFOLDER]$(var.RedboxAddin.TargetFileName)&quot; /privileges=admin" Impersonate="yes" Return="ignore" />
     <InstallExecuteSequence>
       <Custom Action="RegisterApp" After="StartServices"><![CDATA[$ProductComponent>2]]></Custom>
       <Custom Action="RollbackApp" After="RegisterApp"><![CDATA[$ProductComponent>2]]></Custom>
       <Custom Action="UnregisterApp" After="MsiUnpublishAssemblies"><![CDATA[$ProductComponent=2]]></Custom>
     </InstallExecuteSequence>
-
     <!-- Properties for all current versions of the .NET Framework are available here: http://wix.sourceforge.net/manual-wix3/wixnetfxextension.htm -->
-    <PropertyRef Id="NETFRAMEWORK40CLIENT"/>
-    <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
-      <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
-    </Condition>
-
+    <PropertyRef Id="NETFRAMEWORK40CLIENT" />
+    <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework then run this installer again."><![CDATA[Installed OR NETFRAMEWORK40CLIENT]]></Condition>
   </Product>
-
-	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="RedboxAddin" >
-         <Component Id="INSTALLFOLDER" Guid="29f1cd18-086a-49f0-95a7-869c4a6bfd44">
-            <RemoveFolder On="both" Id="INSTALLFOLDER"/>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="RedboxAddin">
+          <Component Id="INSTALLFOLDER" Guid="29f1cd18-086a-49f0-95a7-869c4a6bfd44">
+            <RemoveFolder On="both" Id="INSTALLFOLDER" />
             <RegistryValue Root="HKLM" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="RedboxAddin" />
           </Component>
         </Directory>
-			</Directory>
-		</Directory>
-	</Fragment>
-
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" >
-      <Component Id="ProductComponent" Guid="700583b7-40ba-4511-b116-1241fbeb8afe" DiskId="1" Directory="INSTALLFOLDER" >
+      </Directory>
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="ProductComponents">
+      <Component Id="ProductComponent" Guid="700583b7-40ba-4511-b116-1241fbeb8afe" DiskId="1" Directory="INSTALLFOLDER">
         <RegistryKey Root="HKLM" Key="Software\[Manufacturer]\[ProductName]">
-          <RegistryValue Type="string" Name="Installed" Value="[INSTALLFOLDER]"  />
+          <RegistryValue Type="string" Name="Installed" Value="[INSTALLFOLDER]" />
         </RegistryKey>
         <File Id="_$(var.RedboxAddin.TargetName)_dll" Name="$(var.RedboxAddin.TargetFileName)" Source="$(var.RedboxAddin.TargetPath)" />
         <File Id="_adxloader_dll_manifest" Name="adxloader.dll.manifest" Source="$(var.RedboxAddin.ProjectDir)Loader\" />
         <File Id="_adxloader_dll" Name="adxloader.dll" Source="$(var.RedboxAddin.ProjectDir)Loader\" KeyPath="yes" />
         <File Id="_adxloader64_dll" Name="adxloader64.dll" Source="$(var.RedboxAddin.ProjectDir)Loader\" />
         <File Id="_AddinExpress_MSO_2005_dll" Name="AddinExpress.MSO.2005.dll" Source="C:\Program Files (x86)\Add-in Express\Add-in Express for .NET\Bin\" />
-				<File Id="_AddinExpress_OL_2005_dll" Name="AddinExpress.OL.2005.dll" Source="C:\Program Files (x86)\Add-in Express\Add-in Express for .NET\Bin\" />
-				<File Id="_DevExpress_Data_v11_2_dll" Name="DevExpress.Data.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.Data.v11.2\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_PivotGrid_v11_2_Core_dll" Name="DevExpress.PivotGrid.v11.2.Core.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.PivotGrid.v11.2.Core\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_Printing_v11_2_Core_dll" Name="DevExpress.Printing.v11.2.Core.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.Printing.v11.2.Core\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_Utils_v11_2_dll" Name="DevExpress.Utils.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.Utils.v11.2\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_XtraEditors_v11_2_dll" Name="DevExpress.XtraEditors.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraEditors.v11.2\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_XtraGrid_v11_2_dll" Name="DevExpress.XtraGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_XtraLayout_v11_2_dll" Name="DevExpress.XtraLayout.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraLayout.v11.2\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_DevExpress_XtraPivotGrid_v11_2_dll" Name="DevExpress.XtraPivotGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPivotGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
-				<File Id="_Microsoft_Vbe_Interop_dll" Name="Microsoft.Vbe.Interop.dll" Source="$(var.RedboxAddin.TargetDir)" />
-				<File Id="_Office_dll" Name="Office.dll" Source="$(var.RedboxAddin.TargetDir)" />
-				<File Id="_RedboxAddin_dll_config" Name="RedboxAddin.dll.config" Source="$(var.RedboxAddin.TargetDir)" />
+        <File Id="_AddinExpress_OL_2005_dll" Name="AddinExpress.OL.2005.dll" Source="C:\Program Files (x86)\Add-in Express\Add-in Express for .NET\Bin\" />
+        <File Id="_DevExpress_Data_v11_2_dll" Name="DevExpress.Data.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.Data.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_PivotGrid_v11_2_Core_dll" Name="DevExpress.PivotGrid.v11.2.Core.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.PivotGrid.v11.2.Core\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_Printing_v11_2_Core_dll" Name="DevExpress.Printing.v11.2.Core.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.Printing.v11.2.Core\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_Utils_v11_2_dll" Name="DevExpress.Utils.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.Utils.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_XtraEditors_v11_2_dll" Name="DevExpress.XtraEditors.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraEditors.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_XtraGrid_v11_2_dll" Name="DevExpress.XtraGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_XtraLayout_v11_2_dll" Name="DevExpress.XtraLayout.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraLayout.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress_XtraPivotGrid_v11_2_dll" Name="DevExpress.XtraPivotGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPivotGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_Microsoft_Vbe_Interop_dll" Name="Microsoft.Vbe.Interop.dll" Source="$(var.RedboxAddin.TargetDir)" />
+        <File Id="_Office_dll" Name="Office.dll" Source="$(var.RedboxAddin.TargetDir)" />
+        <File Id="_RedboxAddin_dll_config" Name="RedboxAddin.dll.config" Source="$(var.RedboxAddin.TargetDir)" />
       </Component>
-		</ComponentGroup>
-	</Fragment>
- </Wix>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

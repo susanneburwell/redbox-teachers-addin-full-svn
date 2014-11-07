@@ -434,6 +434,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
+                availabilityGrid1.SaveLayout();
                 int topRow = availabilityGrid1.getTopRow();
                 LoadTable();
                 CheckDoubleBookings();                
