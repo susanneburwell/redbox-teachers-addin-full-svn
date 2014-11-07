@@ -84,6 +84,7 @@ namespace RedboxAddin.Models
         public bool BSL { get; set; }
         public string Prio { get; set; }
         public bool Actor { get; set; }
+        public int Sort { get; set; }
     }
 
     class RTimeSheet

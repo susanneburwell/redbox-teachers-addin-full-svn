@@ -88,6 +88,7 @@ namespace RedboxAddin.Presentation
                     LoadMasterBooking(_masterBookingID);
                     SetGridVisibility();
                     ShowSavedDetails();
+                    SetTopRow();
                 }
                 else
                 {
@@ -102,6 +103,26 @@ namespace RedboxAddin.Presentation
 
             loading = false;
         }
+
+        private void SetTopRow()
+        {
+            try
+            {
+                for (int i = 0; i < ViewBookings.RowCount; i++)
+                {
+                    if (Convert.ToDateTime(ViewBookings.GetRowCellValue(i, ViewBookings.Columns["Date"])) >= DateTime.Now.Date)
+                    {
+                        ViewBookings.TopRowIndex = i;
+                        return;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
 
         #region LoadControls
 
@@ -471,7 +492,7 @@ namespace RedboxAddin.Presentation
                 DateTime monday = input.AddDays(delta).Date;
 
                 string wheresql = WHERESQL();
-                availabilityGrid1.LoadTable(wheresql, monday);
+                availabilityGrid1.LoadTable(wheresql, monday, "");
 
                 //dgcAvail.DataSource = new DBManager().GetAvailability(monday, wheresql);
                 //dgcAvailView.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
@@ -1687,6 +1708,9 @@ namespace RedboxAddin.Presentation
             }
         }
 
+       
+
+       
 
 
 

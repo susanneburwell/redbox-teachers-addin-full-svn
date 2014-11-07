@@ -62,11 +62,12 @@
             this.FirstAid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Actor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Sort = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.Actor = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -132,7 +133,8 @@
             this.LongTerm,
             this.Actor,
             this.TeacherID,
-            this.Prio});
+            this.Prio,
+            this.Sort});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -464,6 +466,15 @@
             this.LongTerm.VisibleIndex = 18;
             this.LongTerm.Width = 20;
             // 
+            // Actor
+            // 
+            this.Actor.Caption = "Actor";
+            this.Actor.FieldName = "Actor";
+            this.Actor.Name = "Actor";
+            this.Actor.Visible = true;
+            this.Actor.VisibleIndex = 19;
+            this.Actor.Width = 20;
+            // 
             // TeacherID
             // 
             this.TeacherID.Caption = "TeacherID";
@@ -476,6 +487,12 @@
             this.Prio.FieldName = "Prio";
             this.Prio.Name = "Prio";
             // 
+            // Sort
+            // 
+            this.Sort.Caption = "AvailabilitySort";
+            this.Sort.FieldName = "Sort";
+            this.Sort.Name = "Sort";
+            // 
             // toolTipController1
             // 
             this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
@@ -486,15 +503,6 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
-            // 
-            // Actor
-            // 
-            this.Actor.Caption = "Actor";
-            this.Actor.FieldName = "Actor";
-            this.Actor.Name = "Actor";
-            this.Actor.Visible = true;
-            this.Actor.VisibleIndex = 19;
-            this.Actor.Width = 20;
             // 
             // AvailabilityGrid
             // 
@@ -548,5 +556,6 @@
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.XtraGrid.Columns.GridColumn Prio;
         private DevExpress.XtraGrid.Columns.GridColumn Actor;
+        private DevExpress.XtraGrid.Columns.GridColumn Sort;
     }
 }

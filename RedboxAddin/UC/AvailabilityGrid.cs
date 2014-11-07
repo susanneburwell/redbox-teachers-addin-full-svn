@@ -45,7 +45,7 @@ namespace RedboxAddin.UC
 
         }
 
-        public void LoadTable(string wheresql, DateTime input)
+        public void LoadTable(string wheresql, DateTime input, string sortDay)
         {
             try
             {
@@ -57,9 +57,9 @@ namespace RedboxAddin.UC
                 if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
-                List<RedboxAddin.Models.RAvailability> msgDs = new DBManager().GetAvailability(monday, wheresql);
+                //List<RedboxAddin.Models.RAvailability> msgDs = new DBManager().GetAvailability(monday, wheresql,sortDay);
                 //bindingSource1.DataSource = msgDs;
-                gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql);
+                gridControl1.DataSource = new DBManager().GetAvailability(monday, wheresql, sortDay);
                 gridView1.Columns["Monday"].Caption = monday.ToString("ddd d MMM yy");
                 gridView1.Columns["Tuesday"].Caption = monday.AddDays(1).ToString("ddd d MMM yy");
                 gridView1.Columns["Wednesday"].Caption = monday.AddDays(2).ToString("ddd d MMM yy");
@@ -100,6 +100,17 @@ namespace RedboxAddin.UC
             { 
                 new GridColumnSortInfo(gridView1.Columns["Guar"], ColumnSortOrder.Descending),
                 new GridColumnSortInfo(gridView1.Columns["LongTerm"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["Teacher"], ColumnSortOrder.Ascending)
+            });
+
+        }
+
+        public void DaySort()
+        {
+            gridView1.Columns["Sort"].SortOrder = ColumnSortOrder.Descending;
+            gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] 
+            { 
+                new GridColumnSortInfo(gridView1.Columns["Sort"], ColumnSortOrder.Ascending),
                 new GridColumnSortInfo(gridView1.Columns["Teacher"], ColumnSortOrder.Ascending)
             });
 

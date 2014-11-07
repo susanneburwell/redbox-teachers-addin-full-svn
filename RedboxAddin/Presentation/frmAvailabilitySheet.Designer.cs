@@ -41,6 +41,7 @@
             this.grpFilter = new System.Windows.Forms.GroupBox();
             this.chkShowTeachers = new System.Windows.Forms.CheckBox();
             this.chkShowTAs = new System.Windows.Forms.CheckBox();
+            this.btnNew = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.chkJustBookings = new System.Windows.Forms.CheckBox();
             this.btnDblBkgs = new System.Windows.Forms.Button();
@@ -80,14 +81,17 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.btnCreatePaySheets = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnNew = new System.Windows.Forms.Button();
+            this.cmbSortDay = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
+            this.btnDaySort = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -246,6 +250,16 @@
             this.toolTip1.SetToolTip(this.chkShowTAs, "Show clients who are registered as TAs");
             this.chkShowTAs.UseVisualStyleBackColor = true;
             this.chkShowTAs.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(375, 154);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(110, 28);
+            this.btnNew.TabIndex = 94;
+            this.btnNew.Text = "New booking";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnRefresh
             // 
@@ -686,17 +700,12 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1016, 415);
-            this.availabilityGrid1.TabIndex = 1;
-            // 
             // panelRibbon
             // 
+            this.panelRibbon.Controls.Add(this.button1);
+            this.panelRibbon.Controls.Add(this.btnDaySort);
+            this.panelRibbon.Controls.Add(this.label5);
+            this.panelRibbon.Controls.Add(this.cmbSortDay);
             this.panelRibbon.Controls.Add(this.btnCreatePaySheets);
             this.panelRibbon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRibbon.Location = new System.Drawing.Point(3, 3);
@@ -723,15 +732,58 @@
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
-            // btnNew
+            // cmbSortDay
             // 
-            this.btnNew.Location = new System.Drawing.Point(375, 154);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(110, 28);
-            this.btnNew.TabIndex = 94;
-            this.btnNew.Text = "New booking";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            this.cmbSortDay.FormattingEnabled = true;
+            this.cmbSortDay.Items.AddRange(new object[] {
+            "",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri"});
+            this.cmbSortDay.Location = new System.Drawing.Point(668, 6);
+            this.cmbSortDay.Name = "cmbSortDay";
+            this.cmbSortDay.Size = new System.Drawing.Size(121, 24);
+            this.cmbSortDay.TabIndex = 99;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(599, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 16);
+            this.label5.TabIndex = 100;
+            this.label5.Text = "Sort Day:";
+            // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1016, 415);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
+            // btnDaySort
+            // 
+            this.btnDaySort.Location = new System.Drawing.Point(511, 6);
+            this.btnDaySort.Name = "btnDaySort";
+            this.btnDaySort.Size = new System.Drawing.Size(82, 23);
+            this.btnDaySort.TabIndex = 101;
+            this.btnDaySort.Text = "Day Sort";
+            this.btnDaySort.UseVisualStyleBackColor = true;
+            this.btnDaySort.Click += new System.EventHandler(this.btnDaySort_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(387, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.TabIndex = 102;
+            this.button1.Text = "Std Sort";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnResetLayout_Click);
             // 
             // frmAvailabilitySheet
             // 
@@ -758,6 +810,7 @@
             this.grpYearGroups.ResumeLayout(false);
             this.grpYearGroups.PerformLayout();
             this.panelRibbon.ResumeLayout(false);
+            this.panelRibbon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -823,5 +876,9 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbSortDay;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDaySort;
     }
 }

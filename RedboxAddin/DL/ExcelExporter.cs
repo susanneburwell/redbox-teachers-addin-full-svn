@@ -71,9 +71,11 @@ namespace RedboxAddin
 
                 //objBook.SaveAs(filePath + fileName);
                 objBook.SaveAs(filePath + "\\" + fileName);//Added as adviced by David
+                objBook.Close(false);
+                objApp.Quit();
                 //Return control of Excel to the user.
-                objApp.Visible = true;
-                objApp.UserControl = true;
+                //objApp.Visible = true;
+                //objApp.UserControl = true;
 
                 return true;
             }
@@ -85,12 +87,28 @@ namespace RedboxAddin
             }
             finally
             {
-                if (objApp != null) Marshal.ReleaseComObject(objApp);
-                if (objBook != null) Marshal.ReleaseComObject(objBook);
-                if (objBooks != null) Marshal.ReleaseComObject(objBooks);
-                if (objSheets != null) Marshal.ReleaseComObject(objSheets);
-                if (objSheet != null) Marshal.ReleaseComObject(objSheet);
-                if (range != null) Marshal.ReleaseComObject(range);
+                if (objApp != null) Marshal.FinalReleaseComObject(objApp);
+                if (objBook != null) Marshal.FinalReleaseComObject(objBook);
+                if (objBooks != null) Marshal.FinalReleaseComObject(objBooks);
+                if (objSheets != null) Marshal.FinalReleaseComObject(objSheets);
+                if (objSheet != null) Marshal.FinalReleaseComObject(objSheet);
+                if (range != null) Marshal.FinalReleaseComObject(range);
+                objApp = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+        }
+
+        private static void Release(object obj)
+        {
+            // Errors are ignored per Microsoft's suggestion for this type of function:
+            // http://support.microsoft.com/default.aspx/kb/317109
+            try
+            {
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+            }
+            catch
+            {
             }
         }
 

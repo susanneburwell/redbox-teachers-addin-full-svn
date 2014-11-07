@@ -312,7 +312,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RAvailability> GetAvailability(DateTime weekbegining, string wheresql)
+        public List<RAvailability> GetAvailability(DateTime weekbegining, string wheresql, string sortDay)
         {
 
             List<RAvailability> availabilityList = new List<RAvailability>();
@@ -320,8 +320,11 @@ namespace RedboxAddin.DL
             //********* Get Assigned Bookings *************
             try
             {
+                //Mon Availability
+                string orderSQL = " ORDER BY MonGA DESC ";
+
                 string SQLstr = GetAvailabilitySQL(weekbegining);
-                DataSet msgDs = GetDataSet(SQLstr + wheresql);
+                DataSet msgDs = GetDataSet(SQLstr + wheresql + orderSQL);
 
 
                 if (msgDs != null)
@@ -475,6 +478,71 @@ namespace RedboxAddin.DL
                         objAvail.BSL = Utils.CheckBool(dr["BSL"]);
                         objAvail.Actor = Utils.CheckBool(dr["Actor"]);
 
+                        //Set Sort Information
+                        //This allows the data to be sorted based on the users availability on a particular day
+                        //Sort order is Guaranteed, Priority, Available, Unspecified, Unavailable
+                        string dayType = "0";
+                        switch (sortDay)
+                        {
+                            case "Mon":
+                                if (objAvail.Monday == "") dayType = monType;
+                                else if (dr["MonLT"].ToString() == "True") dayType = "L";
+                                else dayType = "B";
+                                break;
+                            case "Tue":
+                                if (objAvail.Tuesday == "") dayType = tueType;
+                                else if (dr["TueLT"].ToString() == "True") dayType = "L";
+                                else dayType = "B";
+                                break;
+                            case "Wed":
+                                if (objAvail.Wednesday == "") dayType = wedType;
+                                else if (dr["WedLT"].ToString() == "True") dayType = "L";
+                                else dayType = "B";
+                                break;
+                            case "Thu":
+                                if (objAvail.Thursday == "") dayType = thuType;
+                                else if (dr["ThuLT"].ToString() == "True") dayType = "L";
+                                else dayType = "B";
+                                break;
+                            case "Fri":
+                                if (objAvail.Friday == "") dayType = friType;
+                                else if (dr["FriLT"].ToString() == "True") dayType = "L";
+                                else dayType = "B";
+                                break;
+                            default:
+                                break;
+                        }
+
+                        switch (dayType)
+                        {
+                            case "B": //Booked
+                                objAvail.Sort = 0;
+                                break;
+                            case "L": //LongTerm
+                                objAvail.Sort = 90;
+                                break;
+                            case "2": //guarantee Accepted
+                                objAvail.Sort = 10;
+                                break;
+                            case "1": //guarantee offered
+                                objAvail.Sort = 20;
+                                break;
+                            case "6": //priority
+                                objAvail.Sort = 30;
+                                break;
+                            case "4": //Avail
+                                objAvail.Sort = 40;
+                                break;
+                            case "3": //Texted
+                                objAvail.Sort = 60;
+                                break;
+                            case "5": //unAvail
+                                objAvail.Sort = 80;
+                                break;
+                            default: //Not set
+                                objAvail.Sort = 60;
+                                break;
+                        }
 
                         if (string.IsNullOrWhiteSpace(objAvail.Teacher))
                         {
@@ -882,7 +950,7 @@ namespace RedboxAddin.DL
                             {
                                 //ID = Utils.CheckLong(dr["ID"]),
                                 PayDetails = dr["PayDetails"].ToString(),
-                                AgencyRef = dr["Description"].ToString(),
+                                AgencyRef = "", //dr["Description"].ToString(),
                                 LastName = dr["LastName"].ToString(),
                                 FirstName = dr["FirstName"].ToString(),
                                 TotalDays = 1,
@@ -3720,6 +3788,7 @@ namespace RedboxAddin.DL
                             ") AS g5 ON g5.TeacherID = [Contacts].contactID ";
 
 
+
             return SQLstr;
         }
 
@@ -3961,7 +4030,7 @@ namespace RedboxAddin.DL
             SQL += "LEFT JOIN [Contacts]  ";
             SQL += "ON [MasterBookings].contactID = [Contacts].contactID  ";
             SQL += "WHERE [Date] >= '" + sStart + "' AND [Date] <= '" + sEnd + "'  ";
-            SQL += "ORDER BY contactID, Rate ";
+            SQL += "ORDER BY [Contacts].LastName, [Contacts].FirstName ";
 
             return SQL;
         }

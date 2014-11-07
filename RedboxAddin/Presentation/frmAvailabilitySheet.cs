@@ -79,7 +79,7 @@ namespace RedboxAddin.Presentation
                 if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
 
-                availabilityGrid1.LoadTable(wheresql, monday);
+                availabilityGrid1.LoadTable(wheresql, monday, cmbSortDay.Text);
 
                 LoadShowingLabel();
                 //DataSet msgDs = new DBManager().GetAvailabilityDS(monday, wheresql);
@@ -661,6 +661,12 @@ namespace RedboxAddin.Presentation
         {
             frmMasterBooking frm = new frmMasterBooking();
             frm.Show();
+        }
+
+        private void btnDaySort_Click(object sender, EventArgs e)
+        {
+            LoadTable();
+            availabilityGrid1.DaySort();
         }
 
        
