@@ -40,6 +40,8 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtRequestedBy = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.btnUpdateDescription = new System.Windows.Forms.Button();
             this.btnUpdateCharge = new System.Windows.Forms.Button();
             this.btnUpdateRate = new System.Windows.Forms.Button();
@@ -120,9 +122,9 @@
             this.dgcBookings = new DevExpress.XtraGrid.GridControl();
             this.ViewBookings = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn0 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.HalfDay = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Charge = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Rate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Notes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -228,7 +230,7 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(427, 78);
+            this.txtNotes.Size = new System.Drawing.Size(427, 61);
             this.txtNotes.TabIndex = 8;
             // 
             // tableLayoutPanel1
@@ -251,6 +253,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtRequestedBy);
+            this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.btnUpdateDescription);
             this.panel2.Controls.Add(this.btnUpdateCharge);
             this.panel2.Controls.Add(this.btnUpdateRate);
@@ -306,6 +310,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1047, 378);
             this.panel2.TabIndex = 1;
+            // 
+            // txtRequestedBy
+            // 
+            this.txtRequestedBy.Location = new System.Drawing.Point(561, 197);
+            this.txtRequestedBy.Name = "txtRequestedBy";
+            this.txtRequestedBy.Size = new System.Drawing.Size(280, 22);
+            this.txtRequestedBy.TabIndex = 9;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(413, 203);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(97, 16);
+            this.label16.TabIndex = 123;
+            this.label16.Text = "Requested By:";
             // 
             // btnUpdateDescription
             // 
@@ -1179,9 +1199,9 @@
             // 
             this.ViewBookings.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn0,
-            this.gridColumn1,
-            this.gridColumn3,
-            this.gridColumn4,
+            this.HalfDay,
+            this.Charge,
+            this.Rate,
             this.gridColumn5,
             this.Notes,
             this.ID,
@@ -1215,50 +1235,50 @@
             this.gridColumn0.VisibleIndex = 0;
             this.gridColumn0.Width = 200;
             // 
-            // gridColumn1
+            // HalfDay
             // 
-            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn1.AppearanceCell.Options.UseFont = true;
-            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn1.Caption = "HalfDay";
-            this.gridColumn1.FieldName = "HalfDay";
-            this.gridColumn1.MaxWidth = 50;
-            this.gridColumn1.MinWidth = 50;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 50;
+            this.HalfDay.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HalfDay.AppearanceCell.Options.UseFont = true;
+            this.HalfDay.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HalfDay.AppearanceHeader.Options.UseFont = true;
+            this.HalfDay.Caption = "HalfDay";
+            this.HalfDay.FieldName = "HalfDay";
+            this.HalfDay.MaxWidth = 50;
+            this.HalfDay.MinWidth = 50;
+            this.HalfDay.Name = "HalfDay";
+            this.HalfDay.Visible = true;
+            this.HalfDay.VisibleIndex = 1;
+            this.HalfDay.Width = 50;
             // 
-            // gridColumn3
+            // Charge
             // 
-            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn3.AppearanceCell.Options.UseFont = true;
-            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn3.Caption = "Charge";
-            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn3.FieldName = "Charge";
-            this.gridColumn3.MaxWidth = 75;
-            this.gridColumn3.MinWidth = 75;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.Charge.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Charge.AppearanceCell.Options.UseFont = true;
+            this.Charge.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Charge.AppearanceHeader.Options.UseFont = true;
+            this.Charge.Caption = "Charge";
+            this.Charge.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Charge.FieldName = "Charge";
+            this.Charge.MaxWidth = 75;
+            this.Charge.MinWidth = 75;
+            this.Charge.Name = "Charge";
+            this.Charge.Visible = true;
+            this.Charge.VisibleIndex = 2;
             // 
-            // gridColumn4
+            // Rate
             // 
-            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn4.AppearanceCell.Options.UseFont = true;
-            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn4.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn4.Caption = "Rate";
-            this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn4.FieldName = "Rate";
-            this.gridColumn4.MaxWidth = 75;
-            this.gridColumn4.MinWidth = 75;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.Rate.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rate.AppearanceCell.Options.UseFont = true;
+            this.Rate.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rate.AppearanceHeader.Options.UseFont = true;
+            this.Rate.Caption = "Rate";
+            this.Rate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Rate.FieldName = "Rate";
+            this.Rate.MaxWidth = 75;
+            this.Rate.MinWidth = 75;
+            this.Rate.Name = "Rate";
+            this.Rate.Visible = true;
+            this.Rate.VisibleIndex = 3;
             // 
             // gridColumn5
             // 
@@ -1501,9 +1521,9 @@
         private DevExpress.XtraGrid.GridControl dgcBookings;
         private DevExpress.XtraGrid.Views.Grid.GridView ViewBookings;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn0;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn HalfDay;
+        private DevExpress.XtraGrid.Columns.GridColumn Charge;
+        private DevExpress.XtraGrid.Columns.GridColumn Rate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
@@ -1568,5 +1588,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Notes;
         private DevExpress.XtraGrid.Columns.GridColumn MasterBookingID;
         private DevExpress.XtraGrid.Columns.GridColumn IsOverTimeAvailable;
+        private System.Windows.Forms.TextBox txtRequestedBy;
+        private System.Windows.Forms.Label label16;
     }
 }

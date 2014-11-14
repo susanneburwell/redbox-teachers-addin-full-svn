@@ -111,7 +111,7 @@ namespace RedboxAddin.Presentation
                             string teacherID = gridView1.GetRowCellValue(i, colContactID).ToString();
                             string schoolID = gridView1.GetRowCellValue(i, colSchoolID).ToString();
                             Int64 masterBookingID = Convert.ToInt64(gridView1.GetRowCellValue(i, colMasterBookingID));
-                            bool success = RedemptionCode.SendVettingDetails(teacherID, schoolID, sendAuto);
+                            bool success = RedemptionCode.SendVettingDetails(teacherID, schoolID, sendAuto, MasterBookingID: masterBookingID);
 
                             if (success)
                             {

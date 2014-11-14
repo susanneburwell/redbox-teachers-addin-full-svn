@@ -239,6 +239,7 @@ namespace RedboxAddin.Presentation
                 chkProvisional.Checked = rMB.Provisional;
 
                 txtCharge.Text = rMB.Charge.ToString();
+                txtRequestedBy.Text = rMB.RequestedBy;
             }
             catch (Exception ex)
             {
@@ -281,6 +282,7 @@ namespace RedboxAddin.Presentation
             cmbRequestedTeacher.Text = "";
             txtNotes.Text = "";
             txtDescription.Text = "";
+            txtRequestedBy.Text = "";
             lblDescription.Text = "";
             cmbTeacher.Text = "";
             cmbBookingStatus.Text = "";
@@ -370,6 +372,7 @@ namespace RedboxAddin.Presentation
                     mb.Color = lblColor.Text;
                     mb.BookingStatus = cmbBookingStatus.Text;
                     mb.Provisional = chkProvisional.Checked;
+                    mb.RequestedBy = txtRequestedBy.Text;
 
                     //Check teacher is real
                     string teachername = cmbTeacher.Text.Replace(',', ' ');
@@ -447,7 +450,7 @@ namespace RedboxAddin.Presentation
                             else nb.Description = txtDescription.Text;
 
                             nb.Notes = string.Empty;
-
+                            nb.IsOverTimeAvailable = false;
                             db.Bookings.InsertOnSubmit(nb);
                         }
 
@@ -894,7 +897,7 @@ namespace RedboxAddin.Presentation
 
                 long contactID = (long)mb.ContactID;
                 bool result = RedemptionCode.SendVettingDetails(contactID.ToString(), schoolID.ToString(), false,
-                    dtFrom.Value.ToShortDateString(), dtTo.Value.ToShortDateString(), agegroup);
+                    dtFrom.Value.ToShortDateString(), dtTo.Value.ToShortDateString(), agegroup, txtRequestedBy.Text);
                 if (result == false)
                 {
                     MessageBox.Show("Error. The email could not be created at this time.");
@@ -1694,10 +1697,13 @@ namespace RedboxAddin.Presentation
                     string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                     long masterbookingID = Convert.ToInt64(ViewBookings.GetRowCellValue(info.RowHandle, "MasterBookingID").ToString());
                     long bookingID = Convert.ToInt64(ViewBookings.GetRowCellValue(info.RowHandle, "ID").ToString());
+                    Decimal charge = Convert.ToDecimal(ViewBookings.GetRowCellValue(info.RowHandle, "Charge").ToString());
+                    Decimal rate = Convert.ToDecimal(ViewBookings.GetRowCellValue(info.RowHandle, "Rate").ToString());
+                    bool halfday = Convert.ToBoolean(ViewBookings.GetRowCellValue(info.RowHandle, "HalfDay").ToString());
 
                     if (masterbookingID > -1 && bookingID > -1)
                     {
-                        frmBookingOverTime fq = new frmBookingOverTime(masterbookingID, bookingID);
+                        frmBookingOverTime fq = new frmBookingOverTime(masterbookingID, bookingID, charge, rate, halfday);
                         fq.Show();
                     }
                 }

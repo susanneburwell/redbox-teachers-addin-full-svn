@@ -163,8 +163,8 @@ namespace RedboxAddin.BL
         // }
 
 
-        internal static bool SendVettingDetails(string contactID, string schoolID, bool sendImmediately,
-            string startDate = null, string endDate = null, string yearGroup = null)
+        internal static bool SendVettingDetails(string contactID, string schoolID,  bool sendImmediately,
+            string startDate = null, string endDate = null, string yearGroup = null, string requestedBy = null, long MasterBookingID =0)
         {
             MailItem oMail = null;
             try
@@ -189,9 +189,16 @@ namespace RedboxAddin.BL
                 string vettingEmailAddresses = school.VettingEmails;
                 if (vettingEmailAddresses == null) return false;
 
+                //Get the 'Request By' field from Master Booking if it has not been given
+                if (string.IsNullOrEmpty(requestedBy) && MasterBookingID > 0)
+                {
+                    MasterBooking mb = LINQmanager.GetMasterBookingbyID(MasterBookingID);
+                    if (mb != null) requestedBy = mb.RequestedBy;
+
+                }
 
                 //Create the Mail
-                oMail = CreateVettingMessage(contactObj,  startDate ,  endDate ,  yearGroup );
+                oMail = CreateVettingMessage(contactObj, startDate, endDate, yearGroup, requestedBy);
                 oMail.To = vettingEmailAddresses; //must be a semicolon delimited list
 
 
@@ -264,7 +271,8 @@ namespace RedboxAddin.BL
             }
         }
 
-        private static MailItem CreateVettingMessage(RContact contactObj, string startDate = null, string endDate = null, string yearGroup = null)
+        private static MailItem CreateVettingMessage(RContact contactObj, string startDate = null, string endDate = null, 
+                                    string yearGroup = null, string requestedBy = null  )
         {
             //Create the message
 
@@ -359,6 +367,10 @@ namespace RedboxAddin.BL
                 TableMiddle = "</td>" + Environment.NewLine + "<td><FONT SIZE=2 FACE=" + (char)34 + "Arial" + (char)34 + ">";
                 //txtBody = txtBody + "Date of Supply: " + contactObj.DateOfSupply.ToShortDateString() + Environment.NewLine;
                 txtBody = txtBody + "Date of Supply: " + supplyDate + Environment.NewLine;
+                if (!string.IsNullOrWhiteSpace(requestedBy))
+                {
+                    txtBody = txtBody + "Requested By: " + requestedBy ;
+                }
                 txtBody = txtBody + Environment.NewLine + "Supply Requirement: Basic Cover" + Environment.NewLine + Environment.NewLine;
                 txtBody = txtBody + "Teacher Name: " + contactObj.FullName + Environment.NewLine + Environment.NewLine;
                 //txtBody = txtBody + "Year Group: " + contactObj.YearGroup + Environment.NewLine;
@@ -467,6 +479,7 @@ namespace RedboxAddin.BL
                     txtBody = txtBody + Environment.NewLine + "Date of Birth: " + contactObj.BirthDate;
                 }
                 else { txtBody = txtBody + Environment.NewLine + "Date of Birth: None"; }
+
 
                 txtBody = txtBody + Environment.NewLine;
                 TableBottom = "</td>" + Environment.NewLine + "</tr>" + Environment.NewLine + "</table>";

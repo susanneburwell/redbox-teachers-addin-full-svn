@@ -34,6 +34,7 @@
             this.Teacher = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Mobile = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Live = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Location = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Wants = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -103,6 +104,7 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Teacher,
+            this.Mobile,
             this.Live,
             this.Location,
             this.Wants,
@@ -152,6 +154,14 @@
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Guar, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             // 
+            // Mobile
+            // 
+            this.Mobile.Caption = "Mobile";
+            this.Mobile.FieldName = "Mobile";
+            this.Mobile.Name = "Mobile";
+            this.Mobile.Visible = true;
+            this.Mobile.VisibleIndex = 1;
+            // 
             // Live
             // 
             this.Live.Caption = "Live";
@@ -162,7 +172,7 @@
             this.Live.OptionsColumn.AllowEdit = false;
             this.Live.OptionsColumn.ReadOnly = true;
             this.Live.Visible = true;
-            this.Live.VisibleIndex = 1;
+            this.Live.VisibleIndex = 2;
             this.Live.Width = 50;
             // 
             // Location
@@ -173,7 +183,7 @@
             this.Location.OptionsColumn.AllowEdit = false;
             this.Location.OptionsColumn.ReadOnly = true;
             this.Location.Visible = true;
-            this.Location.VisibleIndex = 2;
+            this.Location.VisibleIndex = 3;
             this.Location.Width = 48;
             // 
             // Wants
@@ -186,7 +196,7 @@
             this.Wants.OptionsColumn.AllowEdit = false;
             this.Wants.OptionsColumn.ReadOnly = true;
             this.Wants.Visible = true;
-            this.Wants.VisibleIndex = 3;
+            this.Wants.VisibleIndex = 4;
             // 
             // YrGroup
             // 
@@ -198,7 +208,7 @@
             this.YrGroup.OptionsColumn.AllowEdit = false;
             this.YrGroup.OptionsColumn.ReadOnly = true;
             this.YrGroup.Visible = true;
-            this.YrGroup.VisibleIndex = 4;
+            this.YrGroup.VisibleIndex = 5;
             this.YrGroup.Width = 50;
             // 
             // QTS
@@ -211,7 +221,7 @@
             this.QTS.OptionsColumn.AllowEdit = false;
             this.QTS.OptionsColumn.ReadOnly = true;
             this.QTS.Visible = true;
-            this.QTS.VisibleIndex = 5;
+            this.QTS.VisibleIndex = 6;
             this.QTS.Width = 40;
             // 
             // PofA
@@ -224,7 +234,7 @@
             this.PofA.OptionsColumn.AllowEdit = false;
             this.PofA.OptionsColumn.ReadOnly = true;
             this.PofA.Visible = true;
-            this.PofA.VisibleIndex = 6;
+            this.PofA.VisibleIndex = 7;
             this.PofA.Width = 40;
             // 
             // CRB
@@ -235,7 +245,7 @@
             this.CRB.OptionsColumn.AllowEdit = false;
             this.CRB.OptionsColumn.ReadOnly = true;
             this.CRB.Visible = true;
-            this.CRB.VisibleIndex = 7;
+            this.CRB.VisibleIndex = 8;
             this.CRB.Width = 48;
             // 
             // NoGo
@@ -246,7 +256,7 @@
             this.NoGo.OptionsColumn.AllowEdit = false;
             this.NoGo.OptionsColumn.ReadOnly = true;
             this.NoGo.Visible = true;
-            this.NoGo.VisibleIndex = 8;
+            this.NoGo.VisibleIndex = 9;
             this.NoGo.Width = 48;
             // 
             // Mon
@@ -257,7 +267,7 @@
             this.Mon.OptionsColumn.AllowEdit = false;
             this.Mon.OptionsColumn.ReadOnly = true;
             this.Mon.Visible = true;
-            this.Mon.VisibleIndex = 9;
+            this.Mon.VisibleIndex = 10;
             this.Mon.Width = 48;
             // 
             // Tue
@@ -268,7 +278,7 @@
             this.Tue.OptionsColumn.AllowEdit = false;
             this.Tue.OptionsColumn.ReadOnly = true;
             this.Tue.Visible = true;
-            this.Tue.VisibleIndex = 10;
+            this.Tue.VisibleIndex = 11;
             this.Tue.Width = 48;
             // 
             // Wed
@@ -279,7 +289,7 @@
             this.Wed.OptionsColumn.AllowEdit = false;
             this.Wed.OptionsColumn.ReadOnly = true;
             this.Wed.Visible = true;
-            this.Wed.VisibleIndex = 11;
+            this.Wed.VisibleIndex = 12;
             this.Wed.Width = 48;
             // 
             // Thur
@@ -290,7 +300,7 @@
             this.Thur.OptionsColumn.AllowEdit = false;
             this.Thur.OptionsColumn.ReadOnly = true;
             this.Thur.Visible = true;
-            this.Thur.VisibleIndex = 12;
+            this.Thur.VisibleIndex = 13;
             this.Thur.Width = 48;
             // 
             // Fri
@@ -301,7 +311,7 @@
             this.Fri.OptionsColumn.AllowEdit = false;
             this.Fri.OptionsColumn.ReadOnly = true;
             this.Fri.Visible = true;
-            this.Fri.VisibleIndex = 13;
+            this.Fri.VisibleIndex = 14;
             this.Fri.Width = 48;
             // 
             // MonColor
@@ -419,7 +429,7 @@
             this.RWInc.OptionsColumn.AllowEdit = false;
             this.RWInc.OptionsColumn.ReadOnly = true;
             this.RWInc.Visible = true;
-            this.RWInc.VisibleIndex = 14;
+            this.RWInc.VisibleIndex = 15;
             this.RWInc.Width = 48;
             // 
             // BSL
@@ -430,7 +440,7 @@
             this.BSL.OptionsColumn.AllowEdit = false;
             this.BSL.OptionsColumn.ReadOnly = true;
             this.BSL.Visible = true;
-            this.BSL.VisibleIndex = 15;
+            this.BSL.VisibleIndex = 16;
             this.BSL.Width = 48;
             // 
             // FirstAid
@@ -441,7 +451,7 @@
             this.FirstAid.OptionsColumn.AllowEdit = false;
             this.FirstAid.OptionsColumn.ReadOnly = true;
             this.FirstAid.Visible = true;
-            this.FirstAid.VisibleIndex = 16;
+            this.FirstAid.VisibleIndex = 17;
             this.FirstAid.Width = 39;
             // 
             // Guar
@@ -454,7 +464,7 @@
             this.Guar.OptionsColumn.AllowShowHide = false;
             this.Guar.OptionsColumn.ReadOnly = true;
             this.Guar.Visible = true;
-            this.Guar.VisibleIndex = 17;
+            this.Guar.VisibleIndex = 18;
             this.Guar.Width = 20;
             // 
             // LongTerm
@@ -463,7 +473,7 @@
             this.LongTerm.FieldName = "LongTerm";
             this.LongTerm.Name = "LongTerm";
             this.LongTerm.Visible = true;
-            this.LongTerm.VisibleIndex = 18;
+            this.LongTerm.VisibleIndex = 19;
             this.LongTerm.Width = 20;
             // 
             // Actor
@@ -472,7 +482,7 @@
             this.Actor.FieldName = "Actor";
             this.Actor.Name = "Actor";
             this.Actor.Visible = true;
-            this.Actor.VisibleIndex = 19;
+            this.Actor.VisibleIndex = 20;
             this.Actor.Width = 20;
             // 
             // TeacherID
@@ -557,5 +567,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Prio;
         private DevExpress.XtraGrid.Columns.GridColumn Actor;
         private DevExpress.XtraGrid.Columns.GridColumn Sort;
+        private DevExpress.XtraGrid.Columns.GridColumn Mobile;
     }
 }

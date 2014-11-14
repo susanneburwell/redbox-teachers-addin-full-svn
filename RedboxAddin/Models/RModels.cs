@@ -47,6 +47,7 @@ namespace RedboxAddin.Models
         public string Color { get; set; }
         public string BookingStatus { get; set; }
         public bool Provisional { get; set; }
+        public string RequestedBy { get; set; }
     }
 
     class RAvailability
@@ -85,6 +86,7 @@ namespace RedboxAddin.Models
         public string Prio { get; set; }
         public bool Actor { get; set; }
         public int Sort { get; set; }
+        public string Mobile { get; set; }
     }
 
     class RTimeSheet

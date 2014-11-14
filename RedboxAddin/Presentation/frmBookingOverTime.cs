@@ -12,11 +12,14 @@ namespace RedboxAddin.Presentation
 {
     public partial class frmBookingOverTime : Form
     {
-        #region Varibales
+        #region Variables
         RedBoxDB db;
         long masterbookingID = 0;
         long bookingID = 0;
         string validateErrorMessage = "Can not save. Please check following field(s)\n";
+        decimal originalRate = 0;
+        decimal originalCharge = 0;
+        bool halfday = false;
         #endregion
 
 
@@ -26,11 +29,14 @@ namespace RedboxAddin.Presentation
             InitializeComponent();
         }
 
-        public frmBookingOverTime(long masterbookingID, long bookingID)
+        public frmBookingOverTime(long masterbookingID, long bookingID, decimal charge, decimal rate, bool halfDay)
         {
             InitializeComponent();
             this.masterbookingID = masterbookingID;
             this.bookingID = bookingID;
+            this.originalCharge = charge;
+            this.originalRate = rate;
+            this.halfday = halfDay;
         }
 
         private void frmBookingOverTime_Load(object sender, EventArgs e)
@@ -125,6 +131,8 @@ namespace RedboxAddin.Presentation
         {
             txtRate.Text = "0.00";
             txtCharge.Text = "0.00";
+            lblRate.Text = "0.00";
+            lblCharge.Text = "0.00";
             txtHours.Text = "00";
             txtMinutes.Text = "00";
             txtNotes.Clear();
@@ -135,13 +143,15 @@ namespace RedboxAddin.Presentation
         #region Fill Details
         private void FillDetails()
         {
+                lblCharge.Text = originalCharge.ToString();
+                lblRate.Text = originalRate.ToString();
             BookingOverTime oBookingOverTime = db.BookingOverTimes.Where(p => p.MasterBookingID == masterbookingID && p.BookingID == bookingID).SingleOrDefault();
             if (oBookingOverTime != null) //ToDDo: Check For IDs as wel if necessary
             {
                 txtRate.Text = oBookingOverTime.RateAdditional.ToString();
                 txtCharge.Text = oBookingOverTime.ChargeAdditional.ToString();
                 txtHours.Text = oBookingOverTime.Hours.ToString();
-                txtMinutes.Text = oBookingOverTime.Hours.ToString();
+                txtMinutes.Text = oBookingOverTime.Minutes.ToString();
                 txtNotes.Text = oBookingOverTime.Notes;
                 chkIsCredit.Checked = oBookingOverTime.IsCredit;
             }

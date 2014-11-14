@@ -358,6 +358,7 @@ namespace RedboxAddin.DL
 
                         objAvail.Teacher = dr["TeacherName"].ToString();
                         objAvail.TeacherID = dr["TeacherID"].ToString();
+                        objAvail.Mobile = dr["Mobile"].ToString();
 
                         //CRB = dr["CRB"].ToString();
                         objAvail.CRB = dr["CRBStatus"].ToString();
@@ -1774,7 +1775,7 @@ namespace RedboxAddin.DL
                         objBkg.Color = Utils.CheckString(dr["Color"]);
                         objBkg.BookingStatus = Utils.CheckString(dr["BookingStatus"]);
                         objBkg.Provisional = Utils.CheckBool(dr["Provisional"]);
-
+                        objBkg.RequestedBy = Utils.CheckString(dr["RequestedBy"]);
                         return objBkg;
                     }
 
@@ -3745,7 +3746,7 @@ namespace RedboxAddin.DL
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
             string SQLstr = "Select Lastname+', '+FirstName as TeacherName, Contacts.contactID AS TeacherID, Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
-                            "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, CRBStatus, " +
+                            "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, CRBStatus, PhoneMobile as Mobile, " +
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, Float, LT, D2D, RWInc, BSL, FirstAid, " +
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
                             "g3.gar as WedG, s4.School as Thursday, g4.gar as ThuG, s5.School as Friday, g5.gar as FriG,  " +
@@ -4326,7 +4327,7 @@ namespace RedboxAddin.DL
             string SQLstr = " SELECT MasterBookings.ID, SchoolID, SchoolName as School, MasterBookings.contactID, MasterBookings.BookingStatus, MasterBookings.Provisional, " +
                             "LastName+', '+FirstName as TeacherName, Details, MasterBookings.Notes, [MasterBookings].StartDate, [MasterBookings].EndDate, isAbsence, AbsenceReason, " +
                             "HalfDay, LongTerm, Nur, Rec, Yr1, Yr2, Yr3, Yr4, Yr5, Yr6, [MasterBookings].QTS,[MasterBookings].NQT, OTT, Teacher, TA,SEN, QNN, NN, PPL, " +
-                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName, Color " +
+                            "Charge, LinkedTeacherID,NameGiven,AskedFor,TrialDay, LinkedTeacherName, Color, RequestedBy " +
 
                             "FROM MasterBookings " +
                             "LEFT JOIN [Schools] " +
