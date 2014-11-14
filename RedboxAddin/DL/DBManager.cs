@@ -939,13 +939,61 @@ namespace RedboxAddin.DL
             {
                 string SQLstr = GetPayRunSQL(dStart);
                 DataSet msgDs = GetDataSet(SQLstr);
+                string SQLstr2 = GetPayRunOverTimeSQL(dStart);
+                DataSet msgOTDs = GetDataSet(SQLstr2);
+
+                //Build list of overtime results
+                List<Payment> Overtime = new List<Payment>();
+                if (msgOTDs != null)
+                {
+                    foreach (DataRow dr in msgOTDs.Tables[0].Rows)
+                    {
+                        try
+                        {
+                            Payment objTS = new Payment()
+                            {
+                                ID = Utils.CheckLong(dr["contactID"]),  //contactID
+                                PayDetails = dr["PayDetails"].ToString(),
+                                AgencyRef = dr["Notes"].ToString(),
+                                LastName = dr["LastName"].ToString(),
+                                FirstName = dr["FirstName"].ToString(),
+                                TotalDays = 1,
+                                Rate = Utils.CheckDecimal(dr["ARate"]),
+                            };
+                            Overtime.Add(objTS);
+                        }
+                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
+                    }
+
+                }
 
                 if (msgDs != null)
                 {
+                    long previousID = 0;
                     foreach (DataRow dr in msgDs.Tables[0].Rows)
                     {
                         try
                         {
+                            //We add overtime to the end of the list of payments for a particular person
+                            //So we check to see if the person (ID) has changed , and then find overtime belonging to the PREVIOUS person
+                            long currentID = Utils.CheckLong(dr["contactID"]); //ID of the current teacher
+                            if (previousID == 0) previousID = currentID;
+
+                            if (currentID != previousID) //ID has changed so add overtime for previous contact
+                            {
+                                foreach (Payment pp in Overtime)
+                                {
+                                    if (pp.ID == previousID) //only add if ID of payment matches ID of previous contact
+                                    {
+                                        pp.ID = 0;  //set ID back to zero - we will use this to identify which have been processed
+                                        PayList.Add(pp);
+                                    }
+                                }
+
+                                previousID = currentID;
+                            }
+                            
+
                             Payment objTS = new Payment()
                             {
                                 //ID = Utils.CheckLong(dr["ID"]),
@@ -962,6 +1010,15 @@ namespace RedboxAddin.DL
                         }
                         catch (Exception ex) { Debug.DebugMessage(2, "Error Creating GetTimeSheets List: " + ex.Message); }
 
+                    }
+
+                    //Now add any overtime not already added
+                    foreach (Payment pp in Overtime)
+                    {
+                        if (pp.ID != 0) //not already processed
+                        {
+                            PayList.Add(pp);
+                        }
                     }
 
                     return PayList;
@@ -1010,6 +1067,36 @@ namespace RedboxAddin.DL
                             Debug.DebugMessage(2, "Error in GetInvoice(1): " + ex.Message);
                         }
                     }
+
+                    //Add Overtime
+                    string SQLstr2 = GetInvoiceOTSQL(WeekEnding, SageAccountRef);
+                    DataSet msgOTDs = GetDataSet(SQLstr2);
+                    if (msgOTDs != null)
+                    {
+                        foreach (DataRow dr in msgOTDs.Tables[0].Rows)
+                        {
+                            try
+                            {
+                                InvoiceLine invLine = new InvoiceLine()
+                                {
+                                    WeekEnding = WeekEnding,
+                                    SageAcctRef = SageAccountRef,
+                                    Address = dr["Address"].ToString().Replace(",", ""),
+                                    Description = dr["Description"].ToString().Replace(",", ";") + " ( "+ dr["BNotes"].ToString().Replace(",", ";") + " )",
+                                    LastName = dr["LastName"].ToString().Replace(",", ""),
+                                    FirstName = dr["FirstName"].ToString().Replace(",", ""),
+                                    TotalDays = 1,
+                                    Charge = Utils.CheckDecimal(dr["ChargeAdditional"])
+                                };
+                                invoiceList.Add(invLine);
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.DebugMessage(2, "Error in GetInvoice(1): " + ex.Message);
+                            }
+                        }
+                    }
+
                     return invoiceList;
                 }
                 else return null;
@@ -1028,7 +1115,7 @@ namespace RedboxAddin.DL
             try
             {
                 string SQLstr = GetLoadPlanSQL(dStart);
-                string SQLstr2 = GetOverTimeDetailsSQL(dStart);
+                string SQLstr2 = GetLoadPlanOverTimeSQL(dStart);
                 DataSet msgDs = GetDataSet(SQLstr);
                 DataSet msgDs2 = GetDataSet(SQLstr2);
 
@@ -1145,63 +1232,63 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RLoad> GetOverTimeDetails(DateTime dStart)
-        {
+        //public List<RLoad> GetOverTimeDetails(DateTime dStart)
+        //{
 
-            List<RLoad> LoadPlan = new List<RLoad>();
-            try
-            {
-                string SQLstr = GetLoadPlanSQL(dStart);
-                DataSet msgDs = GetDataSet(SQLstr);
+        //    List<RLoad> LoadPlan = new List<RLoad>();
+        //    try
+        //    {
+        //        string SQLstr = GetLoadPlanSQL(dStart);
+        //        DataSet msgDs = GetDataSet(SQLstr);
 
-                if (msgDs != null)
-                {
-                    foreach (DataRow dr in msgDs.Tables[0].Rows)
-                    {
-                        try
-                        {
-                            string shortname = dr["ShortName"].ToString();
-                            RLoad objLoad = new RLoad()
-                            {
+        //        if (msgDs != null)
+        //        {
+        //            foreach (DataRow dr in msgDs.Tables[0].Rows)
+        //            {
+        //                try
+        //                {
+        //                    string shortname = dr["ShortName"].ToString();
+        //                    RLoad objLoad = new RLoad()
+        //                    {
 
-                                SchoolName = dr["SchoolName"].ToString(),
-                                FirstName = dr["FirstName"].ToString(),
-                                LastName = dr["LastName"].ToString(),
-                                numDays = Convert.ToInt32(dr["numDays"]),
-                                Monday = dr["Monday"].ToString().Replace(shortname, "").Trim(),
-                                Tuesday = dr["Tuesday"].ToString().Replace(shortname, "").Trim(),
-                                Wednesday = dr["Wednesday"].ToString().Replace(shortname, "").Trim(),
-                                Thursday = dr["Thursday"].ToString().Replace(shortname, "").Trim(),
-                                Friday = dr["Friday"].ToString().Replace(shortname, "").Trim(),
-                                srate = Utils.CheckDecimal(dr["srate"].ToString()),
-                                TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
-                                //Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
-                                Charge = Utils.CheckDecimal(dr["sCharge"].ToString()),
-                                Revenue = Utils.CheckDecimal(dr["Revenue"].ToString()),
-                                TMargin = Utils.CheckDecimal(dr["TMargin"].ToString()),
-                                MonID = dr["MonID"].ToString(),
-                                TueID = dr["TueID"].ToString(),
-                                WedID = dr["WedID"].ToString(),
-                                ThuID = dr["ThuID"].ToString(),
-                                FriID = dr["FriID"].ToString(),
+        //                        SchoolName = dr["SchoolName"].ToString(),
+        //                        FirstName = dr["FirstName"].ToString(),
+        //                        LastName = dr["LastName"].ToString(),
+        //                        numDays = Convert.ToInt32(dr["numDays"]),
+        //                        Monday = dr["Monday"].ToString().Replace(shortname, "").Trim(),
+        //                        Tuesday = dr["Tuesday"].ToString().Replace(shortname, "").Trim(),
+        //                        Wednesday = dr["Wednesday"].ToString().Replace(shortname, "").Trim(),
+        //                        Thursday = dr["Thursday"].ToString().Replace(shortname, "").Trim(),
+        //                        Friday = dr["Friday"].ToString().Replace(shortname, "").Trim(),
+        //                        srate = Utils.CheckDecimal(dr["srate"].ToString()),
+        //                        TotalCost = Utils.CheckDecimal(dr["TotalCost"].ToString()),
+        //                        //Margin = Utils.CheckDecimal(dr["Margin"].ToString()),
+        //                        Charge = Utils.CheckDecimal(dr["sCharge"].ToString()),
+        //                        Revenue = Utils.CheckDecimal(dr["Revenue"].ToString()),
+        //                        TMargin = Utils.CheckDecimal(dr["TMargin"].ToString()),
+        //                        MonID = dr["MonID"].ToString(),
+        //                        TueID = dr["TueID"].ToString(),
+        //                        WedID = dr["WedID"].ToString(),
+        //                        ThuID = dr["ThuID"].ToString(),
+        //                        FriID = dr["FriID"].ToString(),
 
-                            };
-                            LoadPlan.Add(objLoad);
-                        }
-                        catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
+        //                    };
+        //                    LoadPlan.Add(objLoad);
+        //                }
+        //                catch (Exception ex) { Debug.DebugMessage(2, "Error Creating LoadPlan List(GetLoadPlan): " + ex.Message); }
 
-                    }
+        //            }
 
-                    return LoadPlan;
-                }
-                else return null;
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in GetLoadPlan: " + ex.Message);
-                return null;
-            }
-        }
+        //            return LoadPlan;
+        //        }
+        //        else return null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in GetLoadPlan: " + ex.Message);
+        //        return null;
+        //    }
+        //}
 
         public List<RPivotLoad> GetPivotLoadPlan(DateTime dStart, DateTime dEnd)
         {
@@ -3976,11 +4063,11 @@ namespace RedboxAddin.DL
             SQL += "WHERE isAbsence != 1 ";
 
             SQL += "ORDER BY SchoolName, sCharge DESC, LastName, FirstName ";
-            GetOverTimeDetailsSQL(dStart);
+            GetLoadPlanOverTimeSQL(dStart);
             return SQL;
         }
 
-        private string GetOverTimeDetailsSQL(DateTime dStart)
+        private string GetLoadPlanOverTimeSQL(DateTime dStart)
         {
 
             string monday = dStart.ToString("yyyyMMdd");
@@ -4035,6 +4122,32 @@ namespace RedboxAddin.DL
             return SQL;
         }
 
+        private string GetPayRunOverTimeSQL(DateTime dStart)
+        {
+
+            string monday = dStart.ToString("yyyyMMdd");
+            string tuesday = dStart.AddDays(1).ToString("yyyyMMdd");
+            string wednesday = dStart.AddDays(2).ToString("yyyyMMdd");
+            string thursday = dStart.AddDays(3).ToString("yyyyMMdd");
+            string friday = dStart.AddDays(4).ToString("yyyyMMdd");
+
+            string SQL = "";
+
+            SQL = "Select Schools.SchoolName, Contacts.contactID, Contacts.FirstName, Contacts.LastName, Contacts.PayDetails,  " +
+                    "BookingOverTime.RateAdditional AS ARate, BookingOverTime.ChargeAdditional AS ACharge, BookingOverTime.Notes, Bookings.Date " +
+                    "FROM BookingOverTime " +
+                    "INNER JOIN Bookings ON BookingOverTime.BookingID = Bookings.ID " +
+                    "INNER JOIN MasterBookings ON Bookings.MasterBookingID = MasterBookings.ID " +
+                    "INNER JOIN Schools ON MasterBookings.SchoolID = Schools.ID " +
+                    "INNER JOIN Contacts ON MasterBookings.contactID = Contacts.contactID " +
+                    "WHERE (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + monday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + tuesday + "') OR " +
+                    "(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + wednesday + "') OR (CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + thursday + "') OR " +
+                    "(CONVERT(VARCHAR(10), Bookings.Date, 112) = '" + friday + "') " +
+                    "ORDER By Contacts.LastName,Contacts.FirstName, Arate DESC ";
+
+            return SQL;
+        }
+
         private string GetInvoiceSQL(string WeekEnding, string SageAccountRef)
         {
             DateTime dtEnd = Convert.ToDateTime(WeekEnding);
@@ -4064,6 +4177,28 @@ namespace RedboxAddin.DL
             SQL += "WHERE [Date] >= '" + sStart + "' AND [Date] <= '" + WeekEnding + "'  ";
             SQL += "AND [Schools].SageName = '" + SageAccountRef + "' ";
             SQL += "ORDER BY [Schools].SchoolName,[Bookings].[Charge] DESC, [Contacts].LastName,[Contacts].FirstName  ";
+
+            return SQL;
+        }
+
+        private string GetInvoiceOTSQL(string WeekEnding, string SageAccountRef)
+        {
+            DateTime dtEnd = Convert.ToDateTime(WeekEnding);
+            string sStart = dtEnd.AddDays(-4).ToString("yyyy-MM-dd");
+            string SQL = "";
+            SQL += "SELECT   ";
+            SQL += "[BookingOverTime].[MasterBookingID] ,[Date],[RateAdditional],[ChargeAdditional],[Description],[BookingOverTime].[Notes] As BNotes, ";
+            SQL += "[MasterBookings].contactID,[Contacts].FirstName,[Contacts].LastName,[Contacts].KeyRef,[Contacts].PayDetails , ";
+            SQL += "[Schools].SchoolName,[Schools].SageName,[Schools].Address ";
+            SQL += "FROM [RedboxDB2].[dbo].[BookingOverTime] ";
+            SQL += "LEFT JOIN [Bookings] ON [BookingOverTime].BookingID = [Bookings].ID ";
+            SQL += "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = Bookings.MasterBookingID ";
+            SQL += "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID ";
+            SQL += "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID ";
+            
+            SQL += "WHERE [Date] >= '" + sStart + "' AND [Date] <= '" + WeekEnding + "'  ";
+            SQL += "AND [Schools].SageName = '" + SageAccountRef + "' ";
+            SQL += "ORDER BY [Bookings].[Charge] DESC, [Contacts].LastName,[Contacts].FirstName  ";
 
             return SQL;
         }

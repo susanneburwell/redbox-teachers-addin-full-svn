@@ -31,6 +31,7 @@ using System.IO;
 //2.0.54 18Sept04 DT Add ability to delete individual bookings using the right click key on Masterbookings
 //2.0.55 25Sept 2014 Add columns to Contacts View. Bulk update for descritpion. Delete option for schools. Fix save and new.
 //                   Bulk delete for individual bookings, Fix dates when selecting, Cancelled bookings management
+//2.0.67 14th Nov 2014 Additional payments added to paysheet and invoices as well as load plan.
 
 namespace RedboxAddin
 {
