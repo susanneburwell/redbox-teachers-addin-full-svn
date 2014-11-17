@@ -1697,8 +1697,11 @@ namespace RedboxAddin.Presentation
                     string colCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
                     long masterbookingID = Convert.ToInt64(ViewBookings.GetRowCellValue(info.RowHandle, "MasterBookingID").ToString());
                     long bookingID = Convert.ToInt64(ViewBookings.GetRowCellValue(info.RowHandle, "ID").ToString());
-                    Decimal charge = Convert.ToDecimal(ViewBookings.GetRowCellValue(info.RowHandle, "Charge").ToString());
-                    Decimal rate = Convert.ToDecimal(ViewBookings.GetRowCellValue(info.RowHandle, "Rate").ToString());
+                    //We use the rate from the Master booking, not the individual booking
+                    Decimal charge = Convert.ToDecimal(txtCharge.Text);
+                    Decimal rate = Convert.ToDecimal(txtRate.Text);
+                    //Decimal charge = Convert.ToDecimal(ViewBookings.GetRowCellValue(info.RowHandle, "Charge").ToString());
+                    //Decimal rate = Convert.ToDecimal(ViewBookings.GetRowCellValue(info.RowHandle, "Rate").ToString());
                     bool halfday = Convert.ToBoolean(ViewBookings.GetRowCellValue(info.RowHandle, "HalfDay").ToString());
 
                     if (masterbookingID > -1 && bookingID > -1)
@@ -1712,6 +1715,25 @@ namespace RedboxAddin.Presentation
             {
                 Debug.DebugMessage(2, "Error in gridView1_DoubleClick: " + ex.Message);
             }
+        }
+
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+
+            Decimal charge = Convert.ToDecimal(txtCharge.Text);
+            Decimal rate = Convert.ToDecimal(txtRate.Text);
+            bool halfday = chkHalfDay.Checked;
+
+            using (FrmCalc frmC = new FrmCalc(charge, rate, halfday))
+            {
+                DialogResult dr = frmC.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    txtCharge.Text = frmC.newCharge.ToString();
+                    txtRate.Text = frmC.newRate.ToString();
+                }
+            }
+
         }
 
        

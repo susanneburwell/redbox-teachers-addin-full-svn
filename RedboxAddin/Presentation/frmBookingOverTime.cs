@@ -37,6 +37,7 @@ namespace RedboxAddin.Presentation
             this.originalCharge = charge;
             this.originalRate = rate;
             this.halfday = halfDay;
+            if (halfday) chkHalfDay.Checked = true;
         }
 
         private void frmBookingOverTime_Load(object sender, EventArgs e)
@@ -48,6 +49,7 @@ namespace RedboxAddin.Presentation
 
                 ClearFields();
                 FillDetails();
+                RefreshView();
             }
             catch (Exception ex) //ASK : My debug message format seperated by ':' 
             {
@@ -58,6 +60,19 @@ namespace RedboxAddin.Presentation
 
         #region Button Clicks
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (radOT.Checked)
+            {
+                SaveAdditionalHours();
+            }
+            else
+            {
+                ReviseBookingRates();
+            }
+
+        }
+
+        private void SaveAdditionalHours()
         {
             try
             {
@@ -84,7 +99,11 @@ namespace RedboxAddin.Presentation
                     oBOT.Hours = int.Parse(txtHours.Text.Trim());
                     oBOT.Minutes = int.Parse(txtMinutes.Text.Trim());
                     oBOT.Notes = txtNotes.Text.Trim();
-                    oBOT.IsCredit = chkIsCredit.Checked;
+                    //oBOT.IsCredit = chkIsCredit.Checked;
+
+                    Booking bk = db.Bookings.Where(p => p.ID == bookingID).SingleOrDefault();
+                    bk.IsOverTimeAvailable = true;
+                    bk.Notes = txtNotes.Text.Trim();
 
                     if (isUpdate)
                     {
@@ -103,18 +122,45 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in frmBookingOverTime_Load: " + ex.Message);
+                Debug.DebugMessage(2, "Error in SaveAdditionalHours: " + ex.Message);
             }
+        }
 
+        private void ReviseBookingRates()
+        {
+            try
+            {
+                if (CheckNumberValidity())
+                {
+
+                    Booking bk = db.Bookings.Where(p => p.ID == bookingID).SingleOrDefault();
+                    bk.Notes = txtNotes.Text.Trim();
+                    bk.Description = bk.Description + " ( " + txtNotes.Text.Trim() + " )";
+                    if (bk.Description.Length > 200) bk.Description = bk.Description.Substring(0, 199);
+                    bk.Rate = decimal.Parse(txtRate.Text.Trim());
+                    bk.Charge = decimal.Parse(txtCharge.Text.Trim());
+                    bk.Hours = int.Parse(txtHours.Text);
+                    bk.Minutes = int.Parse(txtMinutes.Text);
+
+                    db.SubmitChanges();
+                    this.Close();
+                }
+                else
+                    MessageBox.Show(validateErrorMessage, "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SaveAdditionalHours: " + ex.Message);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("This will delete the entire booking from the system. There is no UNDO option.\r" +
+            DialogResult dr = MessageBox.Show("This will delete the Overtime details from the system. There is no UNDO option.\r" +
                "Press OK to Delete, or Cancel to cancel deleting.", "Redbox Warning", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.OK)
             {
-                if (DeleteBooking()) this.Close();
+                if (DeleteOvertime()) this.Close();
                 else MessageBox.Show("Deletion Failed!");
 
             }
@@ -123,7 +169,7 @@ namespace RedboxAddin.Presentation
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        } 
+        }
         #endregion
 
         #region Clear Fileds
@@ -131,20 +177,33 @@ namespace RedboxAddin.Presentation
         {
             txtRate.Text = "0.00";
             txtCharge.Text = "0.00";
-            lblRate.Text = "0.00";
-            lblCharge.Text = "0.00";
+            lblRateValue.Text = "0.00";
+            lblChargeValue.Text = "0.00";
             txtHours.Text = "00";
             txtMinutes.Text = "00";
             txtNotes.Clear();
-            chkIsCredit.Checked = false;
+            //chkIsCredit.Checked = false;
         }
         #endregion
 
         #region Fill Details
         private void FillDetails()
         {
-                lblCharge.Text = originalCharge.ToString();
-                lblRate.Text = originalRate.ToString();
+            ClearFields();
+            if (radOT.Checked)
+            {
+                FillOvertimeDetails();
+            }
+            else
+            {
+                FillReducedHoursDetails();
+            }
+        }
+        private void FillOvertimeDetails()
+        {
+            lblChargeValue.Text = originalCharge.ToString();
+            lblRateValue.Text = originalRate.ToString();
+
             BookingOverTime oBookingOverTime = db.BookingOverTimes.Where(p => p.MasterBookingID == masterbookingID && p.BookingID == bookingID).SingleOrDefault();
             if (oBookingOverTime != null) //ToDDo: Check For IDs as wel if necessary
             {
@@ -153,10 +212,25 @@ namespace RedboxAddin.Presentation
                 txtHours.Text = oBookingOverTime.Hours.ToString();
                 txtMinutes.Text = oBookingOverTime.Minutes.ToString();
                 txtNotes.Text = oBookingOverTime.Notes;
-                chkIsCredit.Checked = oBookingOverTime.IsCredit;
+                //chkIsCredit.Checked = oBookingOverTime.IsCredit;
             }
+
         }
-        #endregion       
+
+        private void FillReducedHoursDetails()
+        {
+            lblChargeValue.Text = originalCharge.ToString();
+            lblRateValue.Text = originalRate.ToString();
+            
+            Booking bkg = db.Bookings.Where(p => p.ID == bookingID).SingleOrDefault();
+                if (bkg != null)
+                {
+                    if (bkg.Hours != null) txtHours.Text = bkg.Hours.ToString();
+                    if (bkg.Minutes != null) txtMinutes.Text = bkg.Minutes.ToString();
+                    radSick.Checked = true;
+                }
+        }
+        #endregion
 
         #region Check Validity
         private bool CheckNumberValidity()
@@ -177,21 +251,21 @@ namespace RedboxAddin.Presentation
                 {
                     bStatus = false;
                     validateErrorMessage += "Charge\n";
-                }                
+                }
 
                 if (!(int.TryParse(txtHours.Text, out i)))
                 {
                     bStatus = false;
                     validateErrorMessage += "Hours\n";
                 }
-                else 
+                else
                 {
                     i = int.Parse(txtHours.Text);
                     if (i > 24)
                     {
                         bStatus = false;
                         validateErrorMessage += "Hours\n";
-                    }                    
+                    }
                 }
 
                 if (!(int.TryParse(txtMinutes.Text, out i)))
@@ -216,10 +290,10 @@ namespace RedboxAddin.Presentation
             }
             return bStatus;
         }
-        #endregion       
+        #endregion
 
         #region Delete Booking
-        private bool DeleteBooking()
+        private bool DeleteOvertime()
         {
             BookingOverTime oBookingOverTime = db.BookingOverTimes.Where(p => p.MasterBookingID == masterbookingID && p.BookingID == bookingID).SingleOrDefault();
             if (oBookingOverTime != null) //ToDDo: Check For IDs as wel if necessary
@@ -230,8 +304,121 @@ namespace RedboxAddin.Presentation
             }
             else
                 return false;
-        } 
+        }
         #endregion
+
+        private void txtHours_TextChanged(object sender, EventArgs e)
+        {
+            CalcHours();
+        }
+
+        private void txtMinutes_TextChanged(object sender, EventArgs e)
+        {
+            CalcHours();
+        }
+
+        private void radOTSick_CheckedChanged(object sender, EventArgs e)
+        {
+            FillDetails();
+            RefreshView();
+            CalcHours();
+        }
+
+        private void chkHalfDay_CheckedChanged(object sender, EventArgs e)
+        {
+            CalcHours();
+        }
+
+        private void CalcHours()
+        {
+            if (radOT.Checked)
+            {
+                CalcAdditionalHours();
+            }
+            else
+            {
+                CalcRevisedHours();
+            }
+        }
+
+        private void CalcAdditionalHours()
+        {
+            try
+            {
+                double hours = 6.5;
+                if (chkHalfDay.Checked) hours = 3.25;
+
+                Double hourlyCharge = ((double)originalCharge) / hours;
+                Double hourlyrate = (double)originalRate / hours;
+
+                Double actualHours;
+                bool ok1 = double.TryParse(txtHours.Text, out actualHours);
+                if (!ok1) actualHours = 0;
+                Double actualMins;
+                bool ok2 = double.TryParse(txtMinutes.Text, out actualMins);
+                if (!ok2) actualMins = 0;
+
+                Double addRate = (hourlyrate * actualHours) + (hourlyrate * actualMins / 60);
+                Double addCharge = (hourlyCharge * actualHours) + (hourlyCharge * actualMins / 60);
+
+                txtRate.Text = addRate.ToString("N2");
+                txtCharge.Text = addCharge.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Calculation Error: " + ex.Message);
+            }
+        }
+
+        private void CalcRevisedHours()
+        {
+            try
+            {
+                double hours = 6.5;
+                double margin = 35;
+                if (chkHalfDay.Checked) hours = 3.25;
+
+                Double hourlyCharge = ((double)originalCharge - margin) / hours;
+                Double hourlyrate = (double)originalRate / hours;
+
+                Double actualHours;
+                bool ok1 = double.TryParse(txtHours.Text, out actualHours);
+                if (!ok1) actualHours = 0;
+                Double actualMins;
+                bool ok2 = double.TryParse(txtMinutes.Text, out actualMins);
+                if (!ok2) actualMins = 0;
+
+                Double revisedRate = (hourlyrate * actualHours) + (hourlyrate * actualMins / 60);
+                Double revisedCharge = (hourlyCharge * actualHours) + (hourlyCharge * actualMins / 60) + margin;
+                if (actualHours == 0) revisedCharge = 0;
+
+                txtRate.Text = revisedRate.ToString("N2");
+                txtCharge.Text = revisedCharge.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Calculation Error: " + ex.Message);
+            }
+        }
+
+        private void RefreshView()
+        {
+            if (radOT.Checked)
+            {
+                lblRate.Text = "Additional Rate";
+                lblCharge.Text = "Additional Charge";
+                lblInfo.Text = "Add New Line with Overtime worked";
+                lblInfo.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                lblRate.Text = "Revised Rate";
+                lblCharge.Text = "Revised Charge";
+                lblInfo.Text = "Update Booking Rate based on Hours worked";
+                lblInfo.BackColor = Color.Orange;
+            }
+        }
+
 
 
     }

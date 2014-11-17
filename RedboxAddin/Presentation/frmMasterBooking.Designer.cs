@@ -144,6 +144,7 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnCalc = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -253,6 +254,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnCalc);
             this.panel2.Controls.Add(this.txtRequestedBy);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.btnUpdateDescription);
@@ -1436,6 +1438,17 @@
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // btnCalc
+            // 
+            this.btnCalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc.Location = new System.Drawing.Point(647, 303);
+            this.btnCalc.Name = "btnCalc";
+            this.btnCalc.Size = new System.Drawing.Size(51, 26);
+            this.btnCalc.TabIndex = 124;
+            this.btnCalc.Text = "Calc";
+            this.btnCalc.UseVisualStyleBackColor = true;
+            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
+            // 
             // frmMasterBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1590,5 +1603,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn IsOverTimeAvailable;
         private System.Windows.Forms.TextBox txtRequestedBy;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnCalc;
     }
 }

@@ -30,16 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookingOverTime));
             this.btnSave = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblRate = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtRate = new System.Windows.Forms.TextBox();
-            this.label78 = new System.Windows.Forms.Label();
+            this.lblCharge = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.txtCharge = new System.Windows.Forms.TextBox();
             this.txtHours = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkIsCredit = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -50,13 +48,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblRate = new System.Windows.Forms.Label();
-            this.lblCharge = new System.Windows.Forms.Label();
+            this.lblRateValue = new System.Windows.Forms.Label();
+            this.lblChargeValue = new System.Windows.Forms.Label();
+            this.chkHalfDay = new System.Windows.Forms.CheckBox();
+            this.radOT = new System.Windows.Forms.RadioButton();
+            this.radSick = new System.Windows.Forms.RadioButton();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(73, 284);
+            this.btnSave.Location = new System.Drawing.Point(73, 337);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 27);
             this.btnSave.TabIndex = 14;
@@ -64,14 +66,14 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label13
+            // lblRate
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 67);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(106, 16);
-            this.label13.TabIndex = 117;
-            this.label13.Text = "Additional Rate :";
+            this.lblRate.AutoSize = true;
+            this.lblRate.Location = new System.Drawing.Point(22, 67);
+            this.lblRate.Name = "lblRate";
+            this.lblRate.Size = new System.Drawing.Size(106, 16);
+            this.lblRate.TabIndex = 117;
+            this.lblRate.Text = "Additional Rate :";
             // 
             // label14
             // 
@@ -89,14 +91,14 @@
             this.txtRate.Size = new System.Drawing.Size(63, 22);
             this.txtRate.TabIndex = 116;
             // 
-            // label78
+            // lblCharge
             // 
-            this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(22, 96);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(121, 16);
-            this.label78.TabIndex = 114;
-            this.label78.Text = "Additional Charge :";
+            this.lblCharge.AutoSize = true;
+            this.lblCharge.Location = new System.Drawing.Point(22, 96);
+            this.lblCharge.Name = "lblCharge";
+            this.lblCharge.Size = new System.Drawing.Size(121, 16);
+            this.lblCharge.TabIndex = 114;
+            this.lblCharge.Text = "Additional Charge :";
             // 
             // label76
             // 
@@ -116,42 +118,25 @@
             // 
             // txtHours
             // 
-            this.txtHours.Location = new System.Drawing.Point(319, 64);
+            this.txtHours.Location = new System.Drawing.Point(327, 64);
             this.txtHours.MaxLength = 2;
             this.txtHours.Name = "txtHours";
             this.txtHours.Size = new System.Drawing.Size(34, 22);
             this.txtHours.TabIndex = 119;
+            this.txtHours.TextChanged += new System.EventHandler(this.txtHours_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(264, 67);
+            this.label1.Location = new System.Drawing.Point(288, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 16);
             this.label1.TabIndex = 114;
             this.label1.Text = "HH :";
             // 
-            // chkIsCredit
-            // 
-            this.chkIsCredit.AutoSize = true;
-            this.chkIsCredit.Location = new System.Drawing.Point(319, 98);
-            this.chkIsCredit.Name = "chkIsCredit";
-            this.chkIsCredit.Size = new System.Drawing.Size(15, 14);
-            this.chkIsCredit.TabIndex = 120;
-            this.chkIsCredit.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(264, 97);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 16);
-            this.label2.TabIndex = 114;
-            this.label2.Text = "Credit :";
-            // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(22, 159);
+            this.txtNotes.Location = new System.Drawing.Point(22, 227);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -161,7 +146,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 138);
+            this.label6.Location = new System.Drawing.Point(22, 206);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 16);
             this.label6.TabIndex = 122;
@@ -169,7 +154,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(331, 284);
+            this.btnCancel.Location = new System.Drawing.Point(331, 337);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(123, 27);
             this.btnCancel.TabIndex = 14;
@@ -179,7 +164,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(202, 284);
+            this.btnDelete.Location = new System.Drawing.Point(202, 337);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(123, 27);
             this.btnDelete.TabIndex = 14;
@@ -194,11 +179,12 @@
             this.txtMinutes.Name = "txtMinutes";
             this.txtMinutes.Size = new System.Drawing.Size(34, 22);
             this.txtMinutes.TabIndex = 119;
+            this.txtMinutes.TextChanged += new System.EventHandler(this.txtMinutes_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(365, 67);
+            this.label3.Location = new System.Drawing.Point(380, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 16);
             this.label3.TabIndex = 114;
@@ -240,47 +226,92 @@
             this.label8.TabIndex = 125;
             this.label8.Text = "£";
             // 
-            // lblRate
+            // lblRateValue
             // 
-            this.lblRate.AutoSize = true;
-            this.lblRate.Location = new System.Drawing.Point(199, 9);
-            this.lblRate.Name = "lblRate";
-            this.lblRate.Size = new System.Drawing.Size(32, 16);
-            this.lblRate.TabIndex = 129;
-            this.lblRate.Text = "0.00";
+            this.lblRateValue.AutoSize = true;
+            this.lblRateValue.Location = new System.Drawing.Point(199, 9);
+            this.lblRateValue.Name = "lblRateValue";
+            this.lblRateValue.Size = new System.Drawing.Size(32, 16);
+            this.lblRateValue.TabIndex = 129;
+            this.lblRateValue.Text = "0.00";
             // 
-            // lblCharge
+            // lblChargeValue
             // 
-            this.lblCharge.AutoSize = true;
-            this.lblCharge.Location = new System.Drawing.Point(199, 38);
-            this.lblCharge.Name = "lblCharge";
-            this.lblCharge.Size = new System.Drawing.Size(32, 16);
-            this.lblCharge.TabIndex = 130;
-            this.lblCharge.Text = "0.00";
+            this.lblChargeValue.AutoSize = true;
+            this.lblChargeValue.Location = new System.Drawing.Point(199, 38);
+            this.lblChargeValue.Name = "lblChargeValue";
+            this.lblChargeValue.Size = new System.Drawing.Size(32, 16);
+            this.lblChargeValue.TabIndex = 130;
+            this.lblChargeValue.Text = "0.00";
+            // 
+            // chkHalfDay
+            // 
+            this.chkHalfDay.Location = new System.Drawing.Point(295, 9);
+            this.chkHalfDay.Name = "chkHalfDay";
+            this.chkHalfDay.Size = new System.Drawing.Size(159, 42);
+            this.chkHalfDay.TabIndex = 131;
+            this.chkHalfDay.Text = "Rates are Half Day rates";
+            this.chkHalfDay.UseVisualStyleBackColor = true;
+            this.chkHalfDay.CheckedChanged += new System.EventHandler(this.chkHalfDay_CheckedChanged);
+            // 
+            // radOT
+            // 
+            this.radOT.AutoSize = true;
+            this.radOT.Checked = true;
+            this.radOT.Location = new System.Drawing.Point(25, 152);
+            this.radOT.Name = "radOT";
+            this.radOT.Size = new System.Drawing.Size(305, 20);
+            this.radOT.TabIndex = 132;
+            this.radOT.TabStop = true;
+            this.radOT.Text = "Overtime (Generate additional line in load plan)";
+            this.radOT.UseVisualStyleBackColor = true;
+            this.radOT.CheckedChanged += new System.EventHandler(this.radOTSick_CheckedChanged);
+            // 
+            // radSick
+            // 
+            this.radSick.AutoSize = true;
+            this.radSick.Location = new System.Drawing.Point(25, 177);
+            this.radSick.Name = "radSick";
+            this.radSick.Size = new System.Drawing.Size(362, 20);
+            this.radSick.TabIndex = 133;
+            this.radSick.Text = "Sick/Appointments (Reduce rate and Charge in Booking)";
+            this.radSick.UseVisualStyleBackColor = true;
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfo.Location = new System.Drawing.Point(25, 128);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(201, 18);
+            this.lblInfo.TabIndex = 134;
+            this.lblInfo.Text = "Add New Line in Loadplan";
             // 
             // frmBookingOverTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 326);
-            this.Controls.Add(this.lblCharge);
-            this.Controls.Add(this.lblRate);
+            this.ClientSize = new System.Drawing.Size(466, 373);
+            this.Controls.Add(this.lblInfo);
+            this.Controls.Add(this.radSick);
+            this.Controls.Add(this.radOT);
+            this.Controls.Add(this.chkHalfDay);
+            this.Controls.Add(this.lblChargeValue);
+            this.Controls.Add(this.lblRateValue);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtNotes);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.chkIsCredit);
             this.Controls.Add(this.txtMinutes);
             this.Controls.Add(this.txtHours);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.lblRate);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtRate);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label78);
+            this.Controls.Add(this.lblCharge);
             this.Controls.Add(this.label76);
             this.Controls.Add(this.txtCharge);
             this.Controls.Add(this.btnCancel);
@@ -303,16 +334,14 @@
         #endregion
 
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblRate;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtRate;
-        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Label lblCharge;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.TextBox txtCharge;
         private System.Windows.Forms.TextBox txtHours;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chkIsCredit;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCancel;
@@ -323,7 +352,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblRate;
-        private System.Windows.Forms.Label lblCharge;
+        private System.Windows.Forms.Label lblRateValue;
+        private System.Windows.Forms.Label lblChargeValue;
+        private System.Windows.Forms.CheckBox chkHalfDay;
+        private System.Windows.Forms.RadioButton radOT;
+        private System.Windows.Forms.RadioButton radSick;
+        private System.Windows.Forms.Label lblInfo;
     }
 }

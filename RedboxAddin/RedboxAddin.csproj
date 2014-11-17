@@ -144,6 +144,12 @@
     <Compile Include="Presentation\frmBookingOverTime.Designer.cs">
       <DependentUpon>frmBookingOverTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\FrmCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FrmCalc.Designer.cs">
+      <DependentUpon>FrmCalc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmChangeTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmBookingOverTime.resx">
       <DependentUpon>frmBookingOverTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FrmCalc.resx">
+      <DependentUpon>FrmCalc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmChangeTeacher.resx">
       <DependentUpon>frmChangeTeacher.cs</DependentUpon>

@@ -571,6 +571,10 @@ namespace RedboxAddin
 		
 		private bool _IsOverTimeAvailable;
 		
+		private System.Nullable<int> _Hours;
+		
+		private System.Nullable<int> _Minutes;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -595,6 +599,10 @@ namespace RedboxAddin
     partial void OnNotesChanged();
     partial void OnIsOverTimeAvailableChanging(bool value);
     partial void OnIsOverTimeAvailableChanged();
+    partial void OnHoursChanging(System.Nullable<int> value);
+    partial void OnHoursChanged();
+    partial void OnMinutesChanging(System.Nullable<int> value);
+    partial void OnMinutesChanged();
     #endregion
 		
 		public Booking()
@@ -722,7 +730,7 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
 		public string Description
 		{
 			get
@@ -798,6 +806,46 @@ namespace RedboxAddin
 					this._IsOverTimeAvailable = value;
 					this.SendPropertyChanged("IsOverTimeAvailable");
 					this.OnIsOverTimeAvailableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="hours", Storage="_Hours", DbType="Int")]
+		public System.Nullable<int> Hours
+		{
+			get
+			{
+				return this._Hours;
+			}
+			set
+			{
+				if ((this._Hours != value))
+				{
+					this.OnHoursChanging(value);
+					this.SendPropertyChanging();
+					this._Hours = value;
+					this.SendPropertyChanged("Hours");
+					this.OnHoursChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="minutes", Storage="_Minutes", DbType="Int")]
+		public System.Nullable<int> Minutes
+		{
+			get
+			{
+				return this._Minutes;
+			}
+			set
+			{
+				if ((this._Minutes != value))
+				{
+					this.OnMinutesChanging(value);
+					this.SendPropertyChanging();
+					this._Minutes = value;
+					this.SendPropertyChanged("Minutes");
+					this.OnMinutesChanged();
 				}
 			}
 		}
