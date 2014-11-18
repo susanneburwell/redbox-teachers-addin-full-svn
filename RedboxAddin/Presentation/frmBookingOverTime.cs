@@ -47,6 +47,7 @@ namespace RedboxAddin.Presentation
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
                 db = new RedBoxDB(CONNSTR);
 
+                CheckOvertime();
                 ClearFields();
                 FillDetails();
                 RefreshView();
@@ -187,6 +188,20 @@ namespace RedboxAddin.Presentation
         #endregion
 
         #region Fill Details
+
+        private void CheckOvertime()
+        {
+            BookingOverTime oBookingOverTime = db.BookingOverTimes.Where(p => p.MasterBookingID == masterbookingID && p.BookingID == bookingID).SingleOrDefault();
+            if (oBookingOverTime != null)
+            {
+                radOT.Checked = true;
+            }
+            else
+            {
+                radSick.Checked = true;
+            }
+
+        }
         private void FillDetails()
         {
             ClearFields();
@@ -221,14 +236,14 @@ namespace RedboxAddin.Presentation
         {
             lblChargeValue.Text = originalCharge.ToString();
             lblRateValue.Text = originalRate.ToString();
-            
+
             Booking bkg = db.Bookings.Where(p => p.ID == bookingID).SingleOrDefault();
-                if (bkg != null)
-                {
-                    if (bkg.Hours != null) txtHours.Text = bkg.Hours.ToString();
-                    if (bkg.Minutes != null) txtMinutes.Text = bkg.Minutes.ToString();
-                    radSick.Checked = true;
-                }
+            if (bkg != null)
+            {
+                if (bkg.Hours != null) txtHours.Text = bkg.Hours.ToString();
+                if (bkg.Minutes != null) txtMinutes.Text = bkg.Minutes.ToString();
+                radSick.Checked = true;
+            }
         }
         #endregion
 

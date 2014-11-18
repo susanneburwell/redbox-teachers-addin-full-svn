@@ -392,10 +392,10 @@ namespace RedboxAddin.Presentation
                     if (chkWed.Checked) selectedWeekdays += "Wed, ";
                     if (chkThu.Checked) selectedWeekdays += "Thu, ";
                     if (chkFri.Checked) selectedWeekdays += "Fri, ";
-                    if (selectedWeekdays.Length > 1) 
+                    if (selectedWeekdays.Length > 1)
                         selectedWeekdays = selectedWeekdays.Substring(0, selectedWeekdays.Length - 2);
                     mb.Weekdays = selectedWeekdays;
-                    
+
 
                     //If this is not a new booking, submit changes and exit
                     if (_masterBookingID > 0)
@@ -1662,7 +1662,7 @@ namespace RedboxAddin.Presentation
         }
 
         private bool IsVettingDetailsMorningOnly()
-        {            
+        {
             try
             {
                 bool isVettingAM = false;
@@ -1684,7 +1684,7 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(1, "Error in IsVettingDetailsMorningOnly: " + ex.Message);
                 return false;
             }
-        }    
+        }
 
         private void dgcBookings_DoubleClick(object sender, EventArgs e)
         {
@@ -1719,26 +1719,37 @@ namespace RedboxAddin.Presentation
 
         private void btnCalc_Click(object sender, EventArgs e)
         {
-
-            Decimal charge = Convert.ToDecimal(txtCharge.Text);
-            Decimal rate = Convert.ToDecimal(txtRate.Text);
-            bool halfday = chkHalfDay.Checked;
-
-            using (FrmCalc frmC = new FrmCalc(charge, rate, halfday))
+            try
             {
-                DialogResult dr = frmC.ShowDialog();
-                if (dr == DialogResult.OK)
+                if ((string.IsNullOrWhiteSpace(txtCharge.Text)) || (string.IsNullOrWhiteSpace(txtRate.Text)))
                 {
-                    txtCharge.Text = frmC.newCharge.ToString();
-                    txtRate.Text = frmC.newRate.ToString();
+                    MessageBox.Show("Please make sure Rate and Charge are set correctly.","Missing Rate or Charge");
+                    return;
+                }
+
+                Decimal charge = Convert.ToDecimal(txtCharge.Text);
+                Decimal rate = Convert.ToDecimal(txtRate.Text);
+                bool halfday = chkHalfDay.Checked;
+
+                using (FrmCalc frmC = new FrmCalc(charge, rate, halfday))
+                {
+                    DialogResult dr = frmC.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        txtCharge.Text = frmC.newCharge.ToString();
+                        txtRate.Text = frmC.newRate.ToString();
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading calculation form: " + ex.Message);
+            }
         }
 
-       
 
-       
+
+
 
 
 
