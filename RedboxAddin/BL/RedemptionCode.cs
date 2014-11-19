@@ -187,18 +187,29 @@ namespace RedboxAddin.BL
                 School school = LINQmanager.GetSchoolbyID(schID);
                 //DBManager dbm = new DBManager();
                 string vettingEmailAddresses = school.VettingEmails;
+                string schoolName = school.SchoolName;
                 if (vettingEmailAddresses == null) return false;
 
                 //Get the 'Request By' field from Master Booking if it has not been given
                 if (string.IsNullOrEmpty(requestedBy) && MasterBookingID > 0)
                 {
                     MasterBooking mb = LINQmanager.GetMasterBookingbyID(MasterBookingID);
-                    if (mb != null) requestedBy = mb.RequestedBy;
+                    if (mb != null)
+                    {
+                        requestedBy = mb.RequestedBy;
+                        startDate = mb.StartDate.ToString("dd-MMM-yyyy");
+                        endDate = mb.EndDate.ToString("dd-MMM-yyyy");
+                        yearGroup = Utils.YearGroup(mb.Nur, mb.Rec, mb.Yr1, mb.Yr2, mb.Yr3, mb.Yr4, mb.Yr5, mb.Yr6);
+
+                        //agegroup = (chkPPA.Checked) ? agegroup += "/PPA" : agegroup;
+                        yearGroup = (mb.Float) ? yearGroup += "/Float" : yearGroup;
+                        yearGroup = (mb.TA) ? yearGroup += "/TA" : yearGroup;
+                    }
 
                 }
 
                 //Create the Mail
-                oMail = CreateVettingMessage(contactObj, startDate, endDate, yearGroup, requestedBy);
+                oMail = CreateVettingMessage(contactObj, schoolName, startDate, endDate, yearGroup, requestedBy);
                 oMail.To = vettingEmailAddresses; //must be a semicolon delimited list
 
 
@@ -271,7 +282,7 @@ namespace RedboxAddin.BL
             }
         }
 
-        private static MailItem CreateVettingMessage(RContact contactObj, string startDate = null, string endDate = null, 
+        private static MailItem CreateVettingMessage(RContact contactObj, string schoolName, string startDate = null, string endDate = null, 
                                     string yearGroup = null, string requestedBy = null  )
         {
             //Create the message
@@ -480,10 +491,18 @@ namespace RedboxAddin.BL
                 }
                 else { txtBody = txtBody + Environment.NewLine + "Date of Birth: None"; }
 
+                if (!schoolName.ToLower().Contains("school")) schoolName += " School";
+
+                string textIntro = "Dear " + schoolName + ", <br> <br>" ;
+                textIntro += "This email provides the vetting details for the teacher who will be joining you today: " + contactObj.FullName;
+                textIntro += " to cover: " + yearGroup + ".<br><br>";
+                textIntro += "If you have any queries, please contact Redbox Teacher Recruitment on 01932 247000. <br> <br>";
+                textIntro += "regards <br> <br>" ;
+                textIntro += "Redbox Teacher Recruitment <br> <br>";
 
                 txtBody = txtBody + Environment.NewLine;
                 TableBottom = "</td>" + Environment.NewLine + "</tr>" + Environment.NewLine + "</table>";
-                Replacement1 = "<BODY>" + Environment.NewLine + TableTop + myPic + TableMiddle;
+                Replacement1 = "<BODY>" + Environment.NewLine +textIntro +Environment.NewLine+  TableTop + myPic + TableMiddle;
                 Replacement2 = TableBottom + "</BODY>";
 
                 oMail.Subject = contactObj.FullName;

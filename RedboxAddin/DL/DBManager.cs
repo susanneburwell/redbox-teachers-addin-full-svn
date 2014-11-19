@@ -321,10 +321,10 @@ namespace RedboxAddin.DL
             try
             {
                 //Mon Availability
-                string orderSQL = " ORDER BY MonGA DESC ";
+                //string orderSQL = " ORDER BY MonGA DESC ";
 
                 string SQLstr = GetAvailabilitySQL(weekbegining);
-                DataSet msgDs = GetDataSet(SQLstr + wheresql + orderSQL);
+                DataSet msgDs = GetDataSet(SQLstr + wheresql );
 
 
                 if (msgDs != null)

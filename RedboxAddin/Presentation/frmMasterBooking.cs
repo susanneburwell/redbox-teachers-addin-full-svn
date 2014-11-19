@@ -59,6 +59,7 @@ namespace RedboxAddin.Presentation
             InitialLoad();
             if (contactIDLong != -1)
                 cmbTeacher.SelectedValue = contactIDLong;
+            
             if (bookingDate != tempDate)
             {
                 dtFrom.Value = bookingDate;
@@ -92,7 +93,8 @@ namespace RedboxAddin.Presentation
                 }
                 else
                 {
-                    txtNotes.Text = DateTime.Now.ToShortDateString() + " : ";
+                    txtNotes.Text = DateTime.Now.ToString("ddMMM hh:mm") + " : ";
+                    txtRequestedBy.Text = "  on " + DateTime.Now.ToString("dd-MMM") + " at " + DateTime.Now.ToString("hh:mm");
                 }
                 loading = false;
             }

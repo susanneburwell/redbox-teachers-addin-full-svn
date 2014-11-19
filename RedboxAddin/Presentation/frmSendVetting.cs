@@ -67,6 +67,7 @@ namespace RedboxAddin.Presentation
                         string status = gridView1.GetRowCellValue(i, colStatus).ToString();
                         bool selected = false;
                         if (status == "Confirmed") selected = true;
+                        if (status == "Confirmed - Morning Only") selected = true;
                         gridView1.SetRowCellValue(i, colSelect, selected);
 
                     }

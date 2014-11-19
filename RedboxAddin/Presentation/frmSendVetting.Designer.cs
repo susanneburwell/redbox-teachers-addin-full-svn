@@ -67,7 +67,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(487, 40);
+            this.label1.Size = new System.Drawing.Size(384, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "This sends an automated email for all bookings starting starting \r\non the given d" +
     "ate, whose status is \'confimed\'.";
@@ -86,7 +86,7 @@
             // 
             this.dtFrom.Location = new System.Drawing.Point(25, 10);
             this.dtFrom.Name = "dtFrom";
-            this.dtFrom.Size = new System.Drawing.Size(200, 26);
+            this.dtFrom.Size = new System.Drawing.Size(200, 22);
             this.dtFrom.TabIndex = 7;
             this.dtFrom.ValueChanged += new System.EventHandler(this.dtFrom_ValueChanged);
             // 
@@ -117,14 +117,11 @@
             this.SchoolID});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // Selected
             // 
-            this.Selected.ColumnEdit = this.repositoryItemCheckEdit1;
             this.Selected.FieldName = "Selected";
-            this.Selected.MaxWidth = 30;
+            this.Selected.MaxWidth = 100;
             this.Selected.Name = "Selected";
             this.Selected.Visible = true;
             this.Selected.VisibleIndex = 0;
@@ -142,6 +139,7 @@
             this.Date.MaxWidth = 150;
             this.Date.MinWidth = 70;
             this.Date.Name = "Date";
+            this.Date.OptionsColumn.AllowEdit = false;
             this.Date.Visible = true;
             this.Date.VisibleIndex = 1;
             this.Date.Width = 138;
@@ -153,6 +151,7 @@
             this.School.MaxWidth = 200;
             this.School.MinWidth = 150;
             this.School.Name = "School";
+            this.School.OptionsColumn.AllowEdit = false;
             this.School.Visible = true;
             this.School.VisibleIndex = 2;
             this.School.Width = 200;
@@ -164,6 +163,7 @@
             this.Teacher.MaxWidth = 200;
             this.Teacher.MinWidth = 100;
             this.Teacher.Name = "Teacher";
+            this.Teacher.OptionsColumn.AllowEdit = false;
             this.Teacher.Visible = true;
             this.Teacher.VisibleIndex = 3;
             this.Teacher.Width = 200;
@@ -175,6 +175,7 @@
             this.Booking.MaxWidth = 450;
             this.Booking.MinWidth = 70;
             this.Booking.Name = "Booking";
+            this.Booking.OptionsColumn.AllowEdit = false;
             this.Booking.Visible = true;
             this.Booking.VisibleIndex = 4;
             this.Booking.Width = 100;
@@ -186,6 +187,7 @@
             this.Status.MaxWidth = 150;
             this.Status.MinWidth = 50;
             this.Status.Name = "Status";
+            this.Status.OptionsColumn.AllowEdit = false;
             this.Status.Visible = true;
             this.Status.VisibleIndex = 5;
             this.Status.Width = 100;
@@ -241,7 +243,7 @@
             this.chkSendAuto.AutoSize = true;
             this.chkSendAuto.Location = new System.Drawing.Point(666, 31);
             this.chkSendAuto.Name = "chkSendAuto";
-            this.chkSendAuto.Size = new System.Drawing.Size(174, 24);
+            this.chkSendAuto.Size = new System.Drawing.Size(142, 20);
             this.chkSendAuto.TabIndex = 2;
             this.chkSendAuto.Text = "Send Automatically";
             this.toolTip1.SetToolTip(this.chkSendAuto, "If you tick this the emails will be sent without being seen by you.");
@@ -275,7 +277,7 @@
             this.radAny.AutoSize = true;
             this.radAny.Location = new System.Drawing.Point(771, 11);
             this.radAny.Name = "radAny";
-            this.radAny.Size = new System.Drawing.Size(111, 24);
+            this.radAny.Size = new System.Drawing.Size(89, 20);
             this.radAny.TabIndex = 9;
             this.radAny.Text = "Any Status";
             this.radAny.UseVisualStyleBackColor = true;
@@ -286,7 +288,7 @@
             this.radShowConfirmedMorning.AutoSize = true;
             this.radShowConfirmedMorning.Location = new System.Drawing.Point(557, 11);
             this.radShowConfirmedMorning.Name = "radShowConfirmedMorning";
-            this.radShowConfirmedMorning.Size = new System.Drawing.Size(211, 24);
+            this.radShowConfirmedMorning.Size = new System.Drawing.Size(168, 20);
             this.radShowConfirmedMorning.TabIndex = 8;
             this.radShowConfirmedMorning.Text = "Confirmed Morning Only";
             this.radShowConfirmedMorning.UseVisualStyleBackColor = true;
@@ -298,7 +300,7 @@
             this.radShowConfirmed.Checked = true;
             this.radShowConfirmed.Location = new System.Drawing.Point(402, 11);
             this.radShowConfirmed.Name = "radShowConfirmed";
-            this.radShowConfirmed.Size = new System.Drawing.Size(146, 24);
+            this.radShowConfirmed.Size = new System.Drawing.Size(117, 20);
             this.radShowConfirmed.TabIndex = 8;
             this.radShowConfirmed.TabStop = true;
             this.radShowConfirmed.Text = "Confirmed Only";
@@ -307,7 +309,7 @@
             // 
             // frmSendVetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 522);
             this.Controls.Add(this.tableLayoutPanel1);
