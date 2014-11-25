@@ -20,6 +20,7 @@ namespace RedboxAddin.Presentation
         decimal originalRate = 0;
         decimal originalCharge = 0;
         bool halfday = false;
+        bool frmLoading = false;
         #endregion
 
 
@@ -42,6 +43,7 @@ namespace RedboxAddin.Presentation
 
         private void frmBookingOverTime_Load(object sender, EventArgs e)
         {
+            frmLoading = true;
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -55,6 +57,10 @@ namespace RedboxAddin.Presentation
             catch (Exception ex) //ASK : My debug message format seperated by ':' 
             {
                 Debug.DebugMessage(2, "Error in frmBookingOverTime_Load: " + ex.Message);
+            }
+            finally
+            {
+                frmLoading = false;
             }
         }
         #endregion
@@ -334,9 +340,23 @@ namespace RedboxAddin.Presentation
 
         private void radOTSick_CheckedChanged(object sender, EventArgs e)
         {
-            FillDetails();
-            RefreshView();
-            CalcHours();
+            try
+            {
+                frmLoading = true;
+                FillDetails();
+                RefreshView();
+                //CalcHours();  //don't calc or it changes figures already updated
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                frmLoading = false;
+            }
+
+
         }
 
         private void chkHalfDay_CheckedChanged(object sender, EventArgs e)
@@ -346,6 +366,8 @@ namespace RedboxAddin.Presentation
 
         private void CalcHours()
         {
+            if (frmLoading) return;
+
             if (radOT.Checked)
             {
                 CalcAdditionalHours();

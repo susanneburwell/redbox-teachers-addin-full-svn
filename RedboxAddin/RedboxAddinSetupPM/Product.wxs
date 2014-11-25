@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-  <Product Id="*" Name="RedboxAddin 2.0.69" Language="1033" Version="2.0.69" Manufacturer="Davton" UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" Codepage="1252">
+  <Product Id="*" Name="RedboxAddin 2.0.70" Language="1033" Version="2.0.70" Manufacturer="Davton" UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" Codepage="1252">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="RedboxAddinSetupPM" Manufacturer="Davton" Languages="1033" SummaryCodepage="1252" InstallPrivileges="elevated" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="RedboxAddin.cab" EmbedCab="yes" />

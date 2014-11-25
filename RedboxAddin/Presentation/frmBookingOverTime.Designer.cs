@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBookingOverTime));
             this.btnSave = new System.Windows.Forms.Button();
             this.lblRate = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             this.radOT = new System.Windows.Forms.RadioButton();
             this.radSick = new System.Windows.Forms.RadioButton();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.adxWordControlAdapter1 = new AddinExpress.ToolbarControls.ADXWordControlAdapter(this.components);
             this.SuspendLayout();
             // 
             // btnSave
@@ -358,5 +360,6 @@
         private System.Windows.Forms.RadioButton radOT;
         private System.Windows.Forms.RadioButton radSick;
         private System.Windows.Forms.Label lblInfo;
+        private AddinExpress.ToolbarControls.ADXWordControlAdapter adxWordControlAdapter1;
     }
 }
