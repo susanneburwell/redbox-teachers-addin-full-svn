@@ -370,15 +370,15 @@ namespace RedboxAddin.Presentation
 
             if (radOT.Checked)
             {
-                CalcAdditionalHours();
+                CalcOvertime();
             }
             else
             {
-                CalcRevisedHours();
+                CalcSick();
             }
         }
 
-        private void CalcAdditionalHours()
+        private void CalcOvertime()
         {
             try
             {
@@ -407,15 +407,14 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void CalcRevisedHours()
+        private void CalcSick()
         {
             try
             {
                 double hours = 6.5;
-                double margin = 35;
                 if (chkHalfDay.Checked) hours = 3.25;
 
-                Double hourlyCharge = ((double)originalCharge - margin) / hours;
+                Double hourlyCharge = ((double)originalCharge) / hours;
                 Double hourlyrate = (double)originalRate / hours;
 
                 Double actualHours;
@@ -426,7 +425,7 @@ namespace RedboxAddin.Presentation
                 if (!ok2) actualMins = 0;
 
                 Double revisedRate = (hourlyrate * actualHours) + (hourlyrate * actualMins / 60);
-                Double revisedCharge = (hourlyCharge * actualHours) + (hourlyCharge * actualMins / 60) + margin;
+                Double revisedCharge = (hourlyCharge * actualHours) + (hourlyCharge * actualMins / 60);
                 if (actualHours == 0) revisedCharge = 0;
 
                 txtRate.Text = revisedRate.ToString("N2");
