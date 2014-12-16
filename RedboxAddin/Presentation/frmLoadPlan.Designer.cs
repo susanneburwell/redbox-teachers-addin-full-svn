@@ -33,6 +33,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoadPlan));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnNameSort = new System.Windows.Forms.Button();
+            this.btnSchoolSort = new System.Windows.Forms.Button();
             this.btnTotals = new System.Windows.Forms.Button();
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
@@ -90,13 +92,15 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1006, 673);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.btnNameSort);
+            this.panelTop.Controls.Add(this.btnSchoolSort);
             this.panelTop.Controls.Add(this.btnTotals);
             this.panelTop.Controls.Add(this.txtPwd);
             this.panelTop.Controls.Add(this.btnExport);
@@ -118,8 +122,28 @@
             this.panelTop.Location = new System.Drawing.Point(4, 4);
             this.panelTop.Margin = new System.Windows.Forms.Padding(4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(998, 89);
+            this.panelTop.Size = new System.Drawing.Size(998, 100);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnNameSort
+            // 
+            this.btnNameSort.Location = new System.Drawing.Point(567, 69);
+            this.btnNameSort.Name = "btnNameSort";
+            this.btnNameSort.Size = new System.Drawing.Size(142, 23);
+            this.btnNameSort.TabIndex = 94;
+            this.btnNameSort.Text = "Name Sort";
+            this.btnNameSort.UseVisualStyleBackColor = true;
+            this.btnNameSort.Click += new System.EventHandler(this.btnNameSort_Click);
+            // 
+            // btnSchoolSort
+            // 
+            this.btnSchoolSort.Location = new System.Drawing.Point(419, 69);
+            this.btnSchoolSort.Name = "btnSchoolSort";
+            this.btnSchoolSort.Size = new System.Drawing.Size(142, 23);
+            this.btnSchoolSort.TabIndex = 93;
+            this.btnSchoolSort.Text = "School Sort";
+            this.btnSchoolSort.UseVisualStyleBackColor = true;
+            this.btnSchoolSort.Click += new System.EventHandler(this.btnSchoolSort_Click);
             // 
             // btnTotals
             // 
@@ -290,11 +314,11 @@
             gridLevelNode1.RelationName = "Level1";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gridControl1.Location = new System.Drawing.Point(4, 101);
+            this.gridControl1.Location = new System.Drawing.Point(4, 112);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(998, 568);
+            this.gridControl1.Size = new System.Drawing.Size(998, 557);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -633,5 +657,7 @@
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Button btnExport;
         private DevExpress.XtraGrid.Columns.GridColumn OT;
+        private System.Windows.Forms.Button btnNameSort;
+        private System.Windows.Forms.Button btnSchoolSort;
     }
 }

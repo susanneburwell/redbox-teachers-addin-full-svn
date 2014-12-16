@@ -85,6 +85,8 @@ namespace RedboxAddin.Models
         public bool BSL { get; set; }
         public string Prio { get; set; }
         public bool Actor { get; set; }
+        public bool QNN { get; set; }
+        public bool SEN { get; set; }
         public int Sort { get; set; }
         public string Mobile { get; set; }
     }

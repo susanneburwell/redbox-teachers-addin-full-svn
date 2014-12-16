@@ -69,6 +69,8 @@
             this.Sort = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.QNN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SEN = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -134,6 +136,8 @@
             this.Guar,
             this.LongTerm,
             this.Actor,
+            this.QNN,
+            this.SEN,
             this.TeacherID,
             this.Prio,
             this.Sort});
@@ -161,6 +165,7 @@
             this.Mobile.Name = "Mobile";
             this.Mobile.Visible = true;
             this.Mobile.VisibleIndex = 1;
+            this.Mobile.Width = 61;
             // 
             // Live
             // 
@@ -184,7 +189,7 @@
             this.Location.OptionsColumn.ReadOnly = true;
             this.Location.Visible = true;
             this.Location.VisibleIndex = 3;
-            this.Location.Width = 48;
+            this.Location.Width = 38;
             // 
             // Wants
             // 
@@ -246,7 +251,7 @@
             this.CRB.OptionsColumn.ReadOnly = true;
             this.CRB.Visible = true;
             this.CRB.VisibleIndex = 8;
-            this.CRB.Width = 48;
+            this.CRB.Width = 38;
             // 
             // NoGo
             // 
@@ -257,7 +262,7 @@
             this.NoGo.OptionsColumn.ReadOnly = true;
             this.NoGo.Visible = true;
             this.NoGo.VisibleIndex = 9;
-            this.NoGo.Width = 48;
+            this.NoGo.Width = 38;
             // 
             // Mon
             // 
@@ -268,7 +273,7 @@
             this.Mon.OptionsColumn.ReadOnly = true;
             this.Mon.Visible = true;
             this.Mon.VisibleIndex = 10;
-            this.Mon.Width = 48;
+            this.Mon.Width = 38;
             // 
             // Tue
             // 
@@ -279,7 +284,7 @@
             this.Tue.OptionsColumn.ReadOnly = true;
             this.Tue.Visible = true;
             this.Tue.VisibleIndex = 11;
-            this.Tue.Width = 48;
+            this.Tue.Width = 38;
             // 
             // Wed
             // 
@@ -290,7 +295,7 @@
             this.Wed.OptionsColumn.ReadOnly = true;
             this.Wed.Visible = true;
             this.Wed.VisibleIndex = 12;
-            this.Wed.Width = 48;
+            this.Wed.Width = 38;
             // 
             // Thur
             // 
@@ -301,7 +306,7 @@
             this.Thur.OptionsColumn.ReadOnly = true;
             this.Thur.Visible = true;
             this.Thur.VisibleIndex = 13;
-            this.Thur.Width = 48;
+            this.Thur.Width = 38;
             // 
             // Fri
             // 
@@ -312,7 +317,7 @@
             this.Fri.OptionsColumn.ReadOnly = true;
             this.Fri.Visible = true;
             this.Fri.VisibleIndex = 14;
-            this.Fri.Width = 48;
+            this.Fri.Width = 38;
             // 
             // MonColor
             // 
@@ -430,7 +435,7 @@
             this.RWInc.OptionsColumn.ReadOnly = true;
             this.RWInc.Visible = true;
             this.RWInc.VisibleIndex = 15;
-            this.RWInc.Width = 48;
+            this.RWInc.Width = 38;
             // 
             // BSL
             // 
@@ -441,7 +446,7 @@
             this.BSL.OptionsColumn.ReadOnly = true;
             this.BSL.Visible = true;
             this.BSL.VisibleIndex = 16;
-            this.BSL.Width = 48;
+            this.BSL.Width = 38;
             // 
             // FirstAid
             // 
@@ -452,7 +457,7 @@
             this.FirstAid.OptionsColumn.ReadOnly = true;
             this.FirstAid.Visible = true;
             this.FirstAid.VisibleIndex = 17;
-            this.FirstAid.Width = 39;
+            this.FirstAid.Width = 31;
             // 
             // Guar
             // 
@@ -478,12 +483,12 @@
             // 
             // Actor
             // 
-            this.Actor.Caption = "Actor";
+            this.Actor.Caption = "Act";
             this.Actor.FieldName = "Actor";
             this.Actor.Name = "Actor";
             this.Actor.Visible = true;
             this.Actor.VisibleIndex = 20;
-            this.Actor.Width = 20;
+            this.Actor.Width = 34;
             // 
             // TeacherID
             // 
@@ -513,6 +518,24 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
+            // 
+            // QNN
+            // 
+            this.QNN.Caption = "QNN";
+            this.QNN.FieldName = "QNN";
+            this.QNN.Name = "QNN";
+            this.QNN.Visible = true;
+            this.QNN.VisibleIndex = 21;
+            this.QNN.Width = 34;
+            // 
+            // SEN
+            // 
+            this.SEN.Caption = "SEN";
+            this.SEN.FieldName = "SEN";
+            this.SEN.Name = "SEN";
+            this.SEN.Visible = true;
+            this.SEN.VisibleIndex = 22;
+            this.SEN.Width = 35;
             // 
             // AvailabilityGrid
             // 
@@ -568,5 +591,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Actor;
         private DevExpress.XtraGrid.Columns.GridColumn Sort;
         private DevExpress.XtraGrid.Columns.GridColumn Mobile;
+        private DevExpress.XtraGrid.Columns.GridColumn QNN;
+        private DevExpress.XtraGrid.Columns.GridColumn SEN;
     }
 }

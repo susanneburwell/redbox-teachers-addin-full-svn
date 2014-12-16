@@ -63,7 +63,7 @@ namespace RedboxAddin.Presentation
         private void btnSave_Click(object sender, EventArgs e)
         {
             // Check for clashes
-            if (IsCalshing())
+            if (IsClashing())
             {
                 //if there are clashes, show the msg in red (same msg like in master booking)
                 //this needs to be clear after another teacher is selected
@@ -76,6 +76,8 @@ namespace RedboxAddin.Presentation
                 {
                     oMasterBooking.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
                     db.SubmitChanges();
+
+                    LINQmanager.SetBookingStatus(oMasterBooking.ID, "Unassigned");
                     this.Close();
                 }
             }
@@ -86,7 +88,7 @@ namespace RedboxAddin.Presentation
             this.Close();
         }
 
-        private bool IsCalshing()
+        private bool IsClashing()
         {
             bool isClashing = false;
 

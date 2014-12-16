@@ -55,6 +55,7 @@ namespace RedboxAddin.BL
                 {
                     case 1:
                         myListener.WriteLine(DateTime.Now + " -1- " + dbMessage);
+                        //MessageBox.Show(dbMessage, "Level 1 Debug Message");
                         break;
 
                     case 2:

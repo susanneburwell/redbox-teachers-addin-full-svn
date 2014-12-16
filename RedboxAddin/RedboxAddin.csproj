@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DavtonN.ico</ApplicationIcon>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -105,6 +108,7 @@
     <!--<None Include="RedboxAddin.snk" /> -->
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DavtonN.ico" />
     <Content Include="Loader\adxloader.dll" />
     <Content Include="Loader\adxloader64.dll" />
     <Content Include="Resources\status.png" />

@@ -1047,6 +1047,30 @@ namespace RedboxAddin.Presentation
 
         }
 
+        private void chkCurrent_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCurrent.Checked)
+            {
+                string payDetails = cmbPayDetails.Text.Trim().ToLower();
+                if (string.IsNullOrWhiteSpace(payDetails))
+                {
+                    showPayCodeError();
+                    return;
+                }
+                if (payDetails == "key")
+                {
+                    showPayCodeError();
+                    return;
+                }
+            }
+
+        }
+
+        private void showPayCodeError()
+        {
+            MessageBox.Show("This contact does not have a valid paycode. Please update the PayCode as soon as possible.");
+        }
+
         #region NewCode
 
         private void btnAll_Click(object sender, EventArgs e)
@@ -1304,6 +1328,7 @@ namespace RedboxAddin.Presentation
 
         #endregion
 
+ 
        
 
 

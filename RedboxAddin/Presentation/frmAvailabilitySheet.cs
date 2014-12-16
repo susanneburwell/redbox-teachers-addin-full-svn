@@ -416,6 +416,13 @@ namespace RedboxAddin.Presentation
                 string description = e1.Description;
                 string colCaption = e1.ColumnCaption;
 
+                if (description == teacher)
+                {
+                    //use double clicked teh teacher name
+                    //this does not  have a function
+                    return;
+                }
+
                 List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
 
                 if (MasterBookingIDs.Count > 0)

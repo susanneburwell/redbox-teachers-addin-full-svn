@@ -40,6 +40,7 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCalc = new System.Windows.Forms.Button();
             this.txtRequestedBy = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnUpdateDescription = new System.Windows.Forms.Button();
@@ -144,7 +145,6 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnCalc = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -312,6 +312,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1047, 378);
             this.panel2.TabIndex = 1;
+            // 
+            // btnCalc
+            // 
+            this.btnCalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc.Location = new System.Drawing.Point(647, 303);
+            this.btnCalc.Name = "btnCalc";
+            this.btnCalc.Size = new System.Drawing.Size(51, 26);
+            this.btnCalc.TabIndex = 124;
+            this.btnCalc.Text = "Calc";
+            this.btnCalc.UseVisualStyleBackColor = true;
+            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
             // 
             // txtRequestedBy
             // 
@@ -1437,17 +1448,6 @@
             // 
             this.refreshTimer.Interval = 2500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
-            // 
-            // btnCalc
-            // 
-            this.btnCalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalc.Location = new System.Drawing.Point(647, 303);
-            this.btnCalc.Name = "btnCalc";
-            this.btnCalc.Size = new System.Drawing.Size(51, 26);
-            this.btnCalc.TabIndex = 124;
-            this.btnCalc.Text = "Calc";
-            this.btnCalc.UseVisualStyleBackColor = true;
-            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
             // 
             // frmMasterBooking
             // 

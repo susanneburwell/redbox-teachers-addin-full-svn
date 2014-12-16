@@ -93,8 +93,8 @@ namespace RedboxAddin.Presentation
                 }
                 else
                 {
-                    txtNotes.Text = DateTime.Now.ToString("ddMMM hh:mm") + " : ";
-                    txtRequestedBy.Text = "  on " + DateTime.Now.ToString("dd-MMM") + " at " + DateTime.Now.ToString("hh:mm");
+                    txtNotes.Text = DateTime.Now.ToString("ddMMM HH:mm") + " : ";
+                    txtRequestedBy.Text = "  on " + DateTime.Now.ToString("dd-MMM") + " at " + DateTime.Now.ToString("HH:mm");
                 }
                 loading = false;
             }
@@ -124,7 +124,6 @@ namespace RedboxAddin.Presentation
 
             }
         }
-
 
         #region LoadControls
 
@@ -1052,7 +1051,6 @@ namespace RedboxAddin.Presentation
 
         }
 
-
         #region buttons
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -1390,6 +1388,7 @@ namespace RedboxAddin.Presentation
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                 if (teacherID < 0) return;
                 SetTeacherRate();
+                if (!loading) cmbBookingStatus.Text = "Unassigned";
 
                 //School school = cmbTeacher.SelectedItem as School;
                 string nogo = LINQmanager.GetNoGoforContactID(teacherID).ToLower();
@@ -1668,6 +1667,8 @@ namespace RedboxAddin.Presentation
             try
             {
                 bool isVettingAM = false;
+                //not sure why but sometimes selected value is a school
+                if (cmbSchool.SelectedValue.ToString() == "RedboxAddin.School") return false;
                 if (cmbSchool.SelectedValue != null)
                 {
                     long selectedSchoolID = long.Parse(cmbSchool.SelectedValue.ToString());
@@ -1710,6 +1711,10 @@ namespace RedboxAddin.Presentation
                     {
                         frmBookingOverTime fq = new frmBookingOverTime(masterbookingID, bookingID, charge, rate, halfday);
                         fq.Show();
+                    }
+                    else
+                    {
+                        throw new Exception("Missing BookingID");
                     }
                 }
             }

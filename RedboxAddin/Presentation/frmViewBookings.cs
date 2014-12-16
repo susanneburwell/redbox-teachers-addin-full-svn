@@ -45,7 +45,7 @@ namespace RedboxAddin.Presentation
                 //set dates
                 dtFrom.Value = Utils.GetFirstDayoftheWeek(DateTime.Today);
                 dtTo.Value = dtFrom.Value.AddDays(5);
-                LoadGrid();
+                LoadGrid(false);
             }
             catch (Exception ex)
             {
@@ -73,11 +73,13 @@ namespace RedboxAddin.Presentation
             catch (Exception) { }
         }
 
-        private void LoadGrid()
+        private string lastFilter = "";
+        private void LoadGrid(bool radChanged)
         {
 
             try
             {
+                if (!radChanged) lastFilter = "";
                 string schoolID = "";
                 string teacherID = "";
                 string status = "";
@@ -103,8 +105,17 @@ namespace RedboxAddin.Presentation
                     if (chkTeach.Checked) teacherID = cmbTeacher.SelectedValue.ToString();
                     if (chkStatus.Checked) status = cmbStatus.Text.Trim();
 
-                    List<RBookings> bookings = dbm.GetBookings(schoolID, teacherID, startdate, enddate, status);
-                    gridControl1.DataSource = bookings;
+                    string filter = "ALL";
+                    if (radLT.Checked) filter = "LT";
+                    if (radnoLT.Checked) filter = "NOLT";
+
+                    if (lastFilter != filter)
+                    {
+                        //we need tostop the form getting loaded twice if two rads change
+                        lastFilter = filter;
+                        List<RBookings> bookings = dbm.GetBookings(schoolID, teacherID, startdate, enddate, status, filter);
+                        gridControl1.DataSource = bookings;
+                    }
                 }
 
             }
@@ -117,7 +128,7 @@ namespace RedboxAddin.Presentation
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadGrid();
+            LoadGrid(false);
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
@@ -178,7 +189,7 @@ namespace RedboxAddin.Presentation
                 if (radWeek.Checked) dtFrom.Value = dtFrom.Value.AddDays(7);
                 else dtFrom.Value = dtFrom.Value.AddMonths(1);
                 SetToDate();
-                LoadGrid();
+                LoadGrid(false);
             }
             catch (Exception ex)
             {
@@ -193,7 +204,7 @@ namespace RedboxAddin.Presentation
                 if (radWeek.Checked) dtFrom.Value = dtFrom.Value.AddDays(-7);
                 else dtFrom.Value = dtFrom.Value.AddMonths(-1);
                 SetToDate();
-                LoadGrid();
+                LoadGrid(false);
             }
             catch (Exception ex)
             {
@@ -228,6 +239,12 @@ namespace RedboxAddin.Presentation
             //    else
             //        e.DisplayText = "No";
             //}
+        }
+
+
+        private void radLT_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadGrid(true);
         }
 
     }

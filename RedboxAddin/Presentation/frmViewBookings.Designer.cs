@@ -60,6 +60,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblSchool = new System.Windows.Forms.Label();
             this.cmbSchool = new System.Windows.Forms.ComboBox();
+            this.radAll = new System.Windows.Forms.RadioButton();
+            this.radLT = new System.Windows.Forms.RadioButton();
+            this.radnoLT = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -193,6 +196,9 @@
             // 
             // TopPanel
             // 
+            this.TopPanel.Controls.Add(this.radnoLT);
+            this.TopPanel.Controls.Add(this.radLT);
+            this.TopPanel.Controls.Add(this.radAll);
             this.TopPanel.Controls.Add(this.radMonth);
             this.TopPanel.Controls.Add(this.radWeek);
             this.TopPanel.Controls.Add(this.bnFwd);
@@ -232,12 +238,10 @@
             // radWeek
             // 
             this.radWeek.AutoSize = true;
-            this.radWeek.Checked = true;
             this.radWeek.Location = new System.Drawing.Point(758, 16);
             this.radWeek.Name = "radWeek";
             this.radWeek.Size = new System.Drawing.Size(62, 20);
             this.radWeek.TabIndex = 87;
-            this.radWeek.TabStop = true;
             this.radWeek.Text = "Week";
             this.radWeek.UseVisualStyleBackColor = true;
             this.radWeek.CheckedChanged += new System.EventHandler(this.radWeek_CheckedChanged);
@@ -408,6 +412,40 @@
             this.cmbSchool.Size = new System.Drawing.Size(200, 24);
             this.cmbSchool.TabIndex = 3;
             // 
+            // radAll
+            // 
+            this.radAll.AutoSize = true;
+            this.radAll.Checked = true;
+            this.radAll.Location = new System.Drawing.Point(327, 110);
+            this.radAll.Name = "radAll";
+            this.radAll.Size = new System.Drawing.Size(41, 20);
+            this.radAll.TabIndex = 89;
+            this.radAll.TabStop = true;
+            this.radAll.Text = "All";
+            this.radAll.UseVisualStyleBackColor = true;
+            // 
+            // radLT
+            // 
+            this.radLT.AutoSize = true;
+            this.radLT.Location = new System.Drawing.Point(385, 110);
+            this.radLT.Name = "radLT";
+            this.radLT.Size = new System.Drawing.Size(42, 20);
+            this.radLT.TabIndex = 90;
+            this.radLT.Text = "LT";
+            this.radLT.UseVisualStyleBackColor = true;
+            this.radLT.CheckedChanged += new System.EventHandler(this.radLT_CheckedChanged);
+            // 
+            // radnoLT
+            // 
+            this.radnoLT.AutoSize = true;
+            this.radnoLT.Location = new System.Drawing.Point(445, 110);
+            this.radnoLT.Name = "radnoLT";
+            this.radnoLT.Size = new System.Drawing.Size(60, 20);
+            this.radnoLT.TabIndex = 91;
+            this.radnoLT.Text = "no LT";
+            this.radnoLT.UseVisualStyleBackColor = true;
+            this.radnoLT.CheckedChanged += new System.EventHandler(this.radLT_CheckedChanged);
+            // 
             // frmViewBookings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -462,6 +500,9 @@
         private System.Windows.Forms.Button bnFwd;
         private System.Windows.Forms.Button btnBack;
         private DevExpress.XtraGrid.Columns.GridColumn LT;
+        private System.Windows.Forms.RadioButton radnoLT;
+        private System.Windows.Forms.RadioButton radLT;
+        private System.Windows.Forms.RadioButton radAll;
 
     }
 }

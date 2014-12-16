@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedboxAddin", "RedboxAddin.csproj", "{E2F9BE08-48E8-41D2-92B2-080C14A2E85C}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "RedboxAddinSetup(2.0.14)", "RedboxAddinSetup\2.0.14\RedboxAddinSetup(2.0.14).wixproj", "{F8945502-3116-429F-9C1F-FD862A013B60}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "RedboxAddinSetup", "RedboxAddinSetup\2.0.14\RedboxAddinSetup.wixproj", "{F8945502-3116-429F-9C1F-FD862A013B60}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "RedboxAddinSetupPM", "RedboxAddinSetupPM\RedboxAddinSetupPM.wixproj", "{3D5D07D0-FEE3-49DC-AE47-425159A401C0}"
 EndProject

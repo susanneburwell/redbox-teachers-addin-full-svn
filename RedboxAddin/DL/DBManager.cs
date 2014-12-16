@@ -278,6 +278,94 @@ namespace RedboxAddin.DL
             catch (Exception ex) { return null; }
         }
 
+        public List<string> CheckTeacherPaymentTypes()
+        {
+            List<string> missingContacts = new List<string>();
+            List<string> pTypes = new List<string>();
+            try
+            {
+
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+
+                    var q = from s in db.PaymentTypes
+                            orderby s.Name
+                            select s;
+                    var paymentTypes = q.ToList();
+
+                    foreach (var pt in paymentTypes)
+                    {
+                        if (pt.Name.Trim() != "key")
+                            pTypes.Add(pt.Name.Trim());
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in PopulatePaymentTypes: " + ex.Message);
+            }
+
+            List<RContact> contactList = new List<RContact>();
+            try
+            {
+                DataSet msgDs = GetDataSet("Select FirstName,LastName, PayDetails, [Current] from Contacts join ContactData on ContactData.ContactID = Contacts.contactID");
+                if (msgDs != null)
+                {
+                    RContact objContact;
+                    foreach (DataRow dr in msgDs.Tables[0].Rows)
+                    {
+                        objContact = new RContact()
+                        {
+                            FirstName = dr["FirstName"].ToString(),
+                            LastName = dr["LastName"].ToString(),
+                            PayDetails = dr["PayDetails"].ToString(),
+                            Current = Utils.CheckBool(dr["Current"])
+                        };
+                        contactList.Add(objContact);
+                    }
+                }
+
+                foreach (RContact rc in contactList)
+                {
+                    //just check current contacts
+                    if (!rc.Current) continue;
+
+                    //find empty pay details
+                    if (string.IsNullOrWhiteSpace(rc.PayDetails))
+                    {
+                        missingContacts.Add(rc.FirstName + " " + rc.LastName);
+                    }
+                        //Check for mising key details
+                    else if (rc.PayDetails.Substring(0, 3).ToLower() == "key") 
+                    {
+                        if (rc.PayDetails.Length < 6) missingContacts.Add(rc.FirstName + " " + rc.LastName);
+
+                    }
+                    else
+                    {
+                        //check to see if it is set to a known pay type
+                        bool found = false;
+                        foreach (string paytype in pTypes)
+                        {
+                            if (paytype == rc.PayDetails)
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) missingContacts.Add(rc.FirstName + " " + rc.LastName);
+                    }
+                }
+            }
+
+            catch (Exception ex) { return null; }
+            return missingContacts;
+        }
+
+
         public List<RReminder> GetReminders()
         {
             List<RReminder> reminderList = new List<RReminder>();
@@ -478,6 +566,8 @@ namespace RedboxAddin.DL
                         objAvail.RWInc = Utils.CheckBool(dr["RWInc"]);
                         objAvail.BSL = Utils.CheckBool(dr["BSL"]);
                         objAvail.Actor = Utils.CheckBool(dr["Actor"]);
+                        objAvail.SEN = Utils.CheckBool(dr["SEN"]);
+                        objAvail.QNN = Utils.CheckBool(dr["QNN"]);
 
                         //Set Sort Information
                         //This allows the data to be sorted based on the users availability on a particular day
@@ -1335,7 +1425,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public List<RBookings> GetBookings(string SchoolID, string teacherID, string dtStart, string dtEnd, string status)
+        public List<RBookings> GetBookings(string SchoolID, string teacherID, string dtStart, string dtEnd, string status, string filter)
         {
             List<RBookings> bookingList = new List<RBookings>();
             try
@@ -1378,7 +1468,19 @@ namespace RedboxAddin.DL
                             default:
                                 break;
                         }
-                        bookingList.Add(objBkg);
+                        switch (filter)
+                        {
+                            case "LT":
+                                if (objBkg.LT)  bookingList.Add(objBkg);
+                                break;
+                            case "NOLT":
+                                if (!objBkg.LT) bookingList.Add(objBkg);
+                                break;
+                            default:
+                                bookingList.Add(objBkg);
+                                break;
+                        }
+
 
                     }
 

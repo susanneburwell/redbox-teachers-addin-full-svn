@@ -16,6 +16,7 @@ using DevExpress.XtraGrid.Menu;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
 
 namespace RedboxAddin.Presentation
 {
@@ -120,6 +121,27 @@ namespace RedboxAddin.Presentation
 
         private void btnCreatePaySheets_Click(object sender, EventArgs e)
         {
+            //Check if all contacts have current pay data
+
+            DBManager db = new DBManager();
+            List<string> missingContacts = db.CheckTeacherPaymentTypes();
+
+            if (missingContacts.Count > 0)
+            {
+                string strContacts = "";
+                foreach (string contact in missingContacts)
+                    strContacts += contact + "; ";
+                DialogResult ans = MessageBox.Show("The following Current contacts are missing PayData:" + strContacts,"Missing PayData",MessageBoxButtons.OKCancel);
+                if (ans == DialogResult.Cancel) return;
+            }
+            else
+            {
+                DialogResult ans = MessageBox.Show("All Current contacts appear to have up to date PayData","PayData",MessageBoxButtons.OKCancel);
+                if (ans == DialogResult.Cancel) return;
+            }
+
+
+
             string sEnd = dtFrom.Value.AddDays(4).ToString("yyyy-MM-dd");
             List<string> names = LINQmanager.GetPaymentTypes();
             ExcelExporter exEx = new ExcelExporter();
@@ -356,6 +378,51 @@ namespace RedboxAddin.Presentation
             if (isOT)
                 e.Appearance.BackColor = System.Drawing.Color.LightGray;
         }
+
+        private void btnSchoolSort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+           
+            gridView1.Columns["SchoolName"].SortOrder = ColumnSortOrder.Descending;
+            gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] 
+            { 
+                new GridColumnSortInfo(gridView1.Columns["SchoolName"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["LastName"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["FirstName"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["Charge"], ColumnSortOrder.Descending)
+            });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in sort: " + ex.Message);
+            }
+        }
+
+        private void btnNameSort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            
+            gridView1.Columns["LastName"].SortOrder = ColumnSortOrder.Descending;
+            gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] 
+            { 
+                new GridColumnSortInfo(gridView1.Columns["LastName"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["FirstName"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["Charge"], ColumnSortOrder.Descending)
+            });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in sort: " + ex.Message);
+            }
+
+        }
+    
+    
+    
     }
 }
 

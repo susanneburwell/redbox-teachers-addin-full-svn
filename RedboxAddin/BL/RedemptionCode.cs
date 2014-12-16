@@ -26,9 +26,12 @@ namespace RedboxAddin.BL
         {
             try
             {
-                RedemptionLoader_DllLocation64Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData) + "\\RedboxAddin\\Redemption64.dll";
-                RedemptionLoader_DllLocation32Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData) + "\\RedboxAddin\\Redemption.dll";
-                AppDataFilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData) + "\\RedboxAddin";
+                //RedemptionLoader_DllLocation64Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData) + "\\RedboxAddin\\Redemption64.dll";
+                //RedemptionLoader_DllLocation32Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData) + "\\RedboxAddin\\Redemption.dll";
+                //AppDataFilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData) + "\\RedboxAddin";
+                RedemptionLoader_DllLocation64Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin\\Redemption64.dll";
+                RedemptionLoader_DllLocation32Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin\\Redemption.dll";
+                AppDataFilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin";
                 Debug.DebugMessage(1, "Redemption FilePath:- " + RedemptionLoader_DllLocation32Bit_FilePath);
 
                 if (File.Exists(RedemptionLoader_DllLocation32Bit_FilePath) && File.Exists(RedemptionLoader_DllLocation64Bit_FilePath))
