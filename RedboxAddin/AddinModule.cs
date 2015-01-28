@@ -34,7 +34,7 @@ using System.IO;
 //2.0.67 14th Nov 2014 Additional payments added to paysheet and invoices as well as load plan.
 //2.0.72 15th Dec DT Minor bug fixes after 2.0.71. Time set to 24hour / view bookings filter was erroneously blocked 
 //2.0.73    16th Dec 2014 Changed back to per machine installation
-
+//2.0.74 16Dec added missing file to installation (addinexpress toolbar controls)
 namespace RedboxAddin
 {
     /// <summary>

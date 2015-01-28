@@ -307,8 +307,12 @@ namespace RedboxAddin
                     string myAddress5 = (myAddress.Length > 4) ? myAddress[4] : "";
 
                     //remove school name from description
-                    string updatedDescription = invLine.Description.Replace(shortName, "").Trim();
-                    string initial = (invLine.FirstName.Length > 0)?" " + invLine.FirstName.Substring(0,1):"";
+                    string updatedDescription = invLine.Description;
+                    if (!string.IsNullOrWhiteSpace(shortName))
+                    {
+                        updatedDescription = invLine.Description.Replace(shortName, "").Trim();
+                    }
+                    string initial = (invLine.FirstName.Length > 0) ? " " + invLine.FirstName.Substring(0, 1) : "";
                     string nameWithInitial = invLine.LastName + initial;
 
                     string myDesc = nameWithInitial + ": " + updatedDescription;
@@ -332,7 +336,7 @@ namespace RedboxAddin
                 string fileName = listItems[0].SageAcctRef + "_" + listItems[0].WeekEnding + ".csv";
 
                 string filePath = DavSettings.getDavValue("INVOICEFOLDERPATH");
-                if( filePath== null) filePath = "Y:\\A. Sage Invoices Imports";
+                if (filePath == null) filePath = "Y:\\A. Sage Invoices Imports";
 
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
                 File.WriteAllText(filePath + "\\" + fileName, sb.ToString());

@@ -23,12 +23,12 @@ public static class DavSettings
                 PropList.Clear();
                 string XMLSTring = "";
                 StreamReader ioFile = null;
-                //var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\Davton\\" + ProductName + "\\Settings.xml";
-                var myAllUserFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\RedboxAddin\\Settings.xml";
-                Debug.DebugMessage(1, "AllUserFilePath: " + myAllUserFilePath);
-                if (File.Exists(myAllUserFilePath))
+                var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\" + ProductName + "\\Settings.xml";
+                //var myAllUserFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\RedboxAddin\\Settings.xml";
+                Debug.DebugMessage(1, "AllUserFilePath: " + myFilePath);
+                if (File.Exists(myFilePath))
                 {
-                    ioFile = new StreamReader(myAllUserFilePath);
+                    ioFile = new StreamReader(myFilePath);
                     XMLSTring = ioFile.ReadToEnd();
                     ioFile.Close();
                 }
@@ -124,24 +124,24 @@ public static class DavSettings
 
             //Writing on Current User's  Application Data folder
             StreamWriter ioFile = null;
-            var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\Davton\\" + ProductName + "\\Settings.xml";
+            var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\" + ProductName + "\\Settings.xml";
             if (File.Exists(myFilePath))
             {
                 File.Delete(myFilePath);
             }
-            DirectoryInfo d1 = Directory.CreateDirectory((Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\Davton\\" + ProductName + "");
+            DirectoryInfo d1 = Directory.CreateDirectory((Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\" + ProductName + "");
             ioFile = new StreamWriter(myFilePath);
             ioFile.WriteLine(myXMLString);
             ioFile.Close();
 
             //Writing on All Users  Application Data folder
             StreamWriter ioFile2 = null;
-            var myAllUsersFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\Davton\\" + ProductName + "\\Settings.xml";
+            var myAllUsersFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\" + ProductName + "\\Settings.xml";
             if (File.Exists(myAllUsersFilePath))
             {
                 File.Delete(myAllUsersFilePath);
             }
-            DirectoryInfo d2 = Directory.CreateDirectory((Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\Davton\\" + ProductName + "");
+            DirectoryInfo d2 = Directory.CreateDirectory((Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\" + ProductName + "");
 
             ioFile2 = new StreamWriter(myAllUsersFilePath);
             ioFile2.WriteLine(myXMLString);
