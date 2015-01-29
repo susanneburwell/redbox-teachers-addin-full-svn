@@ -1759,15 +1759,13 @@
             // 
             // chkUpdateService
             // 
-            this.chkUpdateService.AutoSize = true;
             this.chkUpdateService.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkUpdateService.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkUpdateService.Location = new System.Drawing.Point(411, 74);
+            this.chkUpdateService.Location = new System.Drawing.Point(381, 74);
             this.chkUpdateService.Name = "chkUpdateService";
-            this.chkUpdateService.Size = new System.Drawing.Size(99, 17);
+            this.chkUpdateService.Size = new System.Drawing.Size(130, 17);
             this.chkUpdateService.TabIndex = 32;
             this.chkUpdateService.Text = "Update Service";
-            this.chkUpdateService.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkUpdateService.UseVisualStyleBackColor = true;
             // 
             // chkNQT
@@ -2001,7 +1999,7 @@
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(457, 142);
+            this.label48.Location = new System.Drawing.Point(381, 142);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(53, 13);
             this.label48.TabIndex = 77;
@@ -2012,7 +2010,7 @@
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(443, 375);
+            this.label50.Location = new System.Drawing.Point(381, 375);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(67, 13);
             this.label50.TabIndex = 75;
@@ -2032,43 +2030,39 @@
             // txtGTCNumber
             // 
             this.txtGTCNumber.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGTCNumber.Location = new System.Drawing.Point(401, 391);
+            this.txtGTCNumber.Location = new System.Drawing.Point(384, 391);
             this.txtGTCNumber.Name = "txtGTCNumber";
-            this.txtGTCNumber.Size = new System.Drawing.Size(109, 21);
+            this.txtGTCNumber.Size = new System.Drawing.Size(126, 21);
             this.txtGTCNumber.TabIndex = 52;
             // 
             // chkList99Undertaken
             // 
-            this.chkList99Undertaken.AutoSize = true;
             this.chkList99Undertaken.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkList99Undertaken.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkList99Undertaken.Location = new System.Drawing.Point(394, 279);
+            this.chkList99Undertaken.Location = new System.Drawing.Point(381, 279);
             this.chkList99Undertaken.Name = "chkList99Undertaken";
-            this.chkList99Undertaken.Size = new System.Drawing.Size(116, 17);
+            this.chkList99Undertaken.Size = new System.Drawing.Size(130, 17);
             this.chkList99Undertaken.TabIndex = 45;
             this.chkList99Undertaken.Text = "List 99 Undertaken";
-            this.chkList99Undertaken.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkList99Undertaken.UseVisualStyleBackColor = true;
             // 
             // chkOverseasPoliceCheck
             // 
-            this.chkOverseasPoliceCheck.AutoSize = true;
             this.chkOverseasPoliceCheck.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkOverseasPoliceCheck.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkOverseasPoliceCheck.Location = new System.Drawing.Point(376, 226);
+            this.chkOverseasPoliceCheck.Location = new System.Drawing.Point(381, 226);
             this.chkOverseasPoliceCheck.Name = "chkOverseasPoliceCheck";
-            this.chkOverseasPoliceCheck.Size = new System.Drawing.Size(134, 17);
+            this.chkOverseasPoliceCheck.Size = new System.Drawing.Size(130, 17);
             this.chkOverseasPoliceCheck.TabIndex = 41;
             this.chkOverseasPoliceCheck.Text = "Overseas Police Check";
-            this.chkOverseasPoliceCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkOverseasPoliceCheck.UseVisualStyleBackColor = true;
             // 
             // txtVisaType
             // 
             this.txtVisaType.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVisaType.Location = new System.Drawing.Point(417, 158);
+            this.txtVisaType.Location = new System.Drawing.Point(384, 158);
             this.txtVisaType.Name = "txtVisaType";
-            this.txtVisaType.Size = new System.Drawing.Size(93, 21);
+            this.txtVisaType.Size = new System.Drawing.Size(126, 21);
             this.txtVisaType.TabIndex = 37;
             // 
             // label37
@@ -2214,15 +2208,13 @@
             // 
             // chkReferencesChecked
             // 
-            this.chkReferencesChecked.AutoSize = true;
             this.chkReferencesChecked.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkReferencesChecked.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkReferencesChecked.Location = new System.Drawing.Point(385, 251);
+            this.chkReferencesChecked.Location = new System.Drawing.Point(381, 251);
             this.chkReferencesChecked.Name = "chkReferencesChecked";
-            this.chkReferencesChecked.Size = new System.Drawing.Size(125, 17);
+            this.chkReferencesChecked.Size = new System.Drawing.Size(130, 17);
             this.chkReferencesChecked.TabIndex = 43;
             this.chkReferencesChecked.Text = "References Checked";
-            this.chkReferencesChecked.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkReferencesChecked.UseVisualStyleBackColor = true;
             // 
             // btnSendDetails
@@ -2238,15 +2230,13 @@
             // 
             // chkIDChecked
             // 
-            this.chkIDChecked.AutoSize = true;
             this.chkIDChecked.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkIDChecked.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkIDChecked.Location = new System.Drawing.Point(429, 193);
+            this.chkIDChecked.Location = new System.Drawing.Point(381, 193);
             this.chkIDChecked.Name = "chkIDChecked";
-            this.chkIDChecked.Size = new System.Drawing.Size(81, 17);
+            this.chkIDChecked.Size = new System.Drawing.Size(130, 17);
             this.chkIDChecked.TabIndex = 39;
             this.chkIDChecked.Text = "ID Checked";
-            this.chkIDChecked.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkIDChecked.UseVisualStyleBackColor = true;
             // 
             // dtRedboxStart
@@ -3125,12 +3115,11 @@
             // 
             this.checkBox14.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox14.Location = new System.Drawing.Point(376, 95);
+            this.checkBox14.Location = new System.Drawing.Point(381, 95);
             this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(134, 34);
+            this.checkBox14.Size = new System.Drawing.Size(130, 34);
             this.checkBox14.TabIndex = 34;
             this.checkBox14.Text = "Prohibition from Teaching Check";
-            this.checkBox14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox14.UseVisualStyleBackColor = true;
             // 
             // label111
@@ -3156,15 +3145,13 @@
             // 
             // chkMedicalChecklist
             // 
-            this.chkMedicalChecklist.AutoSize = true;
             this.chkMedicalChecklist.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkMedicalChecklist.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMedicalChecklist.Location = new System.Drawing.Point(404, 310);
+            this.chkMedicalChecklist.Location = new System.Drawing.Point(381, 310);
             this.chkMedicalChecklist.Name = "chkMedicalChecklist";
-            this.chkMedicalChecklist.Size = new System.Drawing.Size(106, 17);
+            this.chkMedicalChecklist.Size = new System.Drawing.Size(130, 17);
             this.chkMedicalChecklist.TabIndex = 47;
             this.chkMedicalChecklist.Text = "Medical Checklist";
-            this.chkMedicalChecklist.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkMedicalChecklist.UseVisualStyleBackColor = true;
             // 
             // label112
@@ -3214,15 +3201,13 @@
             // 
             // chkProofOfAddress
             // 
-            this.chkProofOfAddress.AutoSize = true;
             this.chkProofOfAddress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkProofOfAddress.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkProofOfAddress.Location = new System.Drawing.Point(401, 339);
+            this.chkProofOfAddress.Location = new System.Drawing.Point(381, 339);
             this.chkProofOfAddress.Name = "chkProofOfAddress";
-            this.chkProofOfAddress.Size = new System.Drawing.Size(109, 17);
+            this.chkProofOfAddress.Size = new System.Drawing.Size(130, 17);
             this.chkProofOfAddress.TabIndex = 49;
             this.chkProofOfAddress.Text = "Proof Of Address";
-            this.chkProofOfAddress.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkProofOfAddress.UseVisualStyleBackColor = true;
             // 
             // dtRegistrationDate
