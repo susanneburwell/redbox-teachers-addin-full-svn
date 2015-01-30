@@ -50,7 +50,7 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(3, "for " + item.FirstName + " " + item.LastName);
                 Create12QPReminder(item.FirstName + " " + item.LastName, item.LTStartDate, item.contactID);
                 Create1YearReminder(item.FirstName + " " + item.LastName, item.LTStartDate, item.contactID);
-                CreateCRBReminder(item.FirstName + " " + item.LastName, item.CRBExpiryDate, item.contactID);
+                CreateCRBReminder(item.FirstName + " " + item.LastName, item.DBSExpiryDate, item.contactID);
                 CreateRedboxStartReminder(item.FirstName + " " + item.LastName, item.RedboxStartDate, item.contactID);
                 CreateVisaExpiryReminder(item.FirstName + " " + item.LastName, item.VisaExpiryDate, item.contactID);
             }

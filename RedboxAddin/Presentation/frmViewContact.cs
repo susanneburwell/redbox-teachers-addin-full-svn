@@ -97,66 +97,80 @@ namespace RedboxAddin.Presentation
                 lblAddress.Text = Utils.GetAddress(addressStreet, addressCity, addressState, addressPostcode, addressCountry);
                 txtPhoneHome.Text = contactObj.PhoneHome;
                 txtPhoneMobile.Text = contactObj.PhoneMobile;
-                txtPhoneBusiness.Text = contactObj.PhoneBusiness;
-                txtPhoneBusinessFax.Text = contactObj.PhoneFax;
+                //txtPhoneBusiness.Text = contactObj.PhoneBusiness;
+                //txtPhoneBusinessFax.Text = contactObj.PhoneFax;
                 chkReferee1Checked.Checked = contactObj._1stRefChecked;
                 chkReferee2Checked.Checked = contactObj._2ndRefChecked;
                 chkReferee3Checked.Checked = contactObj._3rdRefChecked;
-                txtAccountName.Text = contactObj.AccountName;
-                chkCautionsCRB.Checked = contactObj.AdditionalInfoOnCRB;
-                txtBankAccountNumber.Text = contactObj.BankAccountNumber;
-                txtBankName.Text = contactObj.BankName;
-                txtBankSortCode.Text = contactObj.BankSortCode;
-                txtBankStatementLocation.Text = contactObj.BankStatementLocation;
+                //txtAccountName.Text = contactObj.AccountName;
+                chkCautionsCRB.Checked = contactObj.Cautions_AdditionalInfo_OnDBS;
+                //txtBankAccountNumber.Text = contactObj.BankAccountNumber;
+                //txtBankName.Text = contactObj.BankName;
+                //txtBankSortCode.Text = contactObj.BankSortCode;
+                //txtBankStatementLocation.Text = contactObj.BankStatementLocation;
                 txtBirthday.Text = contactObj.BirthDate;
                 txtConsultant.Text = contactObj.Consultant;
-                chkProofOfAddress.Checked = contactObj.CRBandAddressProofMatch;
-                dtCRBDateSent.Value = contactObj.CRBDateSent;
-                dtCRBExpiry.Value = contactObj.CRBExpiryDate;
-                txtCRBFormRef.Text = contactObj.CRBFormRef;
-                txtCRBNumber.Text = contactObj.CRBNumber;
-                dtCRBValidFrom.Value = contactObj.CRBValidFrom;
+                chkProofOfAddress.Checked = contactObj.DBSandAddressProofMatch;
+                dtCRBDateSent.Value = contactObj.DBSDateSent;
+                dtCRBExpiry.Value = contactObj.DBSExpiryDate;
+                txtCRBFormRef.Text = contactObj.DBSFormRef;
+                txtCRBNumber.Text = contactObj.DBSNumber;
+                dtCRBValidFrom.Value = contactObj.DBSValidFrom;
                 chkDBSDirectPayment.Checked = contactObj.DBSDirectPayment;
+                dtDBSudChk.Value = contactObj.DBSUpdateServiceCheckedDate ;
+                dtDBAChkd.Value = contactObj.DBAChkd ;
+                chkDBAsigned.Checked = contactObj.DBASgnd;
+
                 txtCurrentPayScale.Text = contactObj.CurrentPayScale;
                 chkCVReceived.Checked = contactObj.CVReceived;
                 dtDateOfSupply.Value = contactObj.DateOfSupply;
                 dtFirstDayTeachingUK.Value = contactObj.FirstDayTeachingUK;
                 dtGTCCheckDate.Value = contactObj.GTCCheckDate;
                 chkIDChecked.Checked = contactObj.IDChecked;
+                dtIDChkd.Value = contactObj.IDCheckedDate;
                 chkInstructor.Checked = contactObj.Instructor;
                 txtGTCNumber.Text = contactObj.GTCNumber;
                 txtInterviewNotes.Text = contactObj.InterviewNotes;
                 txtKeyRef.Text = contactObj.KeyRef;
                 txtLateRecord.Text = contactObj.LateRecord;
                 chkList99Undertaken.Checked = contactObj.List99;
+                dtList99Chkd.Value = contactObj.List99CheckedDate;
                 dtLongTermStart.Value = contactObj.LTStartDate;
                 chkMedicalChecklist.Checked = contactObj.MedicalChecklist;
+                dtMedCLChkd.Value = contactObj.MedicalChecklistCheckedDate ;
+
                 txtNINumber.Text = contactObj.NINumber;
                 txtNotes.Text = contactObj.Notes;
                 chkNQT.Checked = contactObj.NQT;
                 // false;  //*************************=            contactObj.OtherCRBNumber ;
                 dtOTTEndDate.Value = contactObj.OTTEndDate;
                 chkOverseasPoliceCheck.Checked = contactObj.OverseasPoliceCheck;
+                dtOvPolChkd.Value = contactObj.OverseasPoliceCheckedDate ;
                 chkOverseasTrainedTeacher.Checked = contactObj.OverseasTrainedTeacher;
-                txtPassportNumber.Text = contactObj.PassportNo;
-                txtPassportLocation.Text = contactObj.PassportLocation;
+                //txtPassportNumber.Text = contactObj.PassportNo;
+                //txtPassportLocation.Text = contactObj.PassportLocation;
                 cmbPayDetails.Text = contactObj.PayDetails;
                 chkPAYETeacherContractSigned.Checked = contactObj.PAYETeacherContractSigned;
                 picturebox1.ImageLocation = contactObj.PhotoLocation;
                 pictureBox2.ImageLocation = contactObj.PhotoLocation;
                 txtFilePath.Text = contactObj.PhotoLocation;
                 dtGradDate.Value = contactObj.GraduationDate;
+                chkPrFrmTch.Checked =contactObj.ProhibitionFromTeaching ;
+                dtPrFrmTchchkd.Value = contactObj.ProhibitionFromTeachingCheckedDate;
                 dtProtabilityCheckSent.Value = contactObj.ProtabilityCheckSent;
                 dtProtabilityReceivedDate.Value = contactObj.ProtabilityReceivedDate;
                 chkProofOfAddress.Checked = contactObj.ProofOfAddress;
-                cmbProofID.Text = contactObj.ProofOfID;
-                cmbProofID2.Text = contactObj.ProofOfID2;
+                dtPOAChkd.Value = contactObj.ProofOfAddressCheckedDate;
+                //cmbProofID.Text = contactObj.ProofOfID;
+                //cmbProofID2.Text = contactObj.ProofOfID2;
                 chkQTS.Checked = contactObj.QTS;
                 txtQualification.Text = contactObj.Qualification;
+                dtQualChecked.Value = contactObj.QualificationCheckedDate ;
+
                 dtRedboxLeaveDate.Value = contactObj.RedboxLeaveDate;
                 dtRedboxStart.Value = contactObj.RedboxStartDate;
-                chkRedboxCRB.Checked = contactObj.RedboxCRB;
-                txtReferredBy.Text = contactObj.ReferredBy;
+                chkRedboxCRB.Checked = contactObj.RedboxDBS;
+                //txtReferredBy.Text = contactObj.ReferredBy;
                 txtReferee1Address.Text = contactObj.Referee1Address;
                 txtReferee1Email.Text = contactObj.Referee1Email;
                 txtReferee1Fax.Text = contactObj.Referee1Fax;
@@ -179,11 +193,12 @@ namespace RedboxAddin.Presentation
                 txtReferee3Notes.Text = contactObj.Referee3Notes;
                 txtReferee3Phone.Text = contactObj.Referee3Phone;
                 chkReferencesChecked.Checked = contactObj.ReferencesChecked;
-                chkRegistrationComplete.Checked = contactObj.RegistrationComplete;
+                dtRefChkd.Value = contactObj.ReferencesCheckedDate;
+                //chkRegistrationComplete.Checked = contactObj.RegistrationComplete;
                 dtRegistrationDate.Value = contactObj.RegistrationDate;
-                chkSendBankStatement.Checked = contactObj.SendBankStatement;
-                chkSendPassport.Checked = contactObj.SendPassport;
-                chkSendVisa.Checked = contactObj.SendVisa;
+                //chkSendBankStatement.Checked = contactObj.SendBankStatement;
+                //chkSendPassport.Checked = contactObj.SendPassport;
+                //chkSendVisa.Checked = contactObj.SendVisa;
                 txtSicknessRecord.Text = contactObj.SicknessRecord;
                 cmbTeacherStatus.Text = contactObj.TeacherStatus;
                 dtUKArrivalDate.Value = contactObj.UKArrivalDate;
@@ -191,9 +206,10 @@ namespace RedboxAddin.Presentation
                 dtUpdateServiceRegDate.Value = contactObj.UpdateServiceRegisteredDate;
                 dtVisaExpiryDate.Value = contactObj.VisaExpiryDate;
                 txtVisaType.Text = contactObj.VisaType;
-                txtVisaLocation.Text = contactObj.VisaLocation;
+                dtVisaChkd.Value =contactObj.VisaCheckedDate ;
+                //txtVisaLocation.Text = contactObj.VisaLocation;
                 txtYearGroup.Text = contactObj.YearGroup;
-                chkMMRV.Checked = contactObj.AttendMMRV;
+                //chkMMRV.Checked = contactObj.AttendMMRV;
                 CheckReminderButtonColors();
 
                 LoadSummaryInfo();
@@ -223,65 +239,76 @@ namespace RedboxAddin.Presentation
                 contactObj.AddressCountry = addressCountry;
                 contactObj.PhoneHome = txtPhoneHome.Text;
                 contactObj.PhoneMobile = txtPhoneMobile.Text;
-                contactObj.PhoneBusiness = txtPhoneBusiness.Text;
-                contactObj.PhoneFax = txtPhoneBusinessFax.Text;
+                //contactObj.PhoneBusiness = txtPhoneBusiness.Text;
+                //contactObj.PhoneFax = txtPhoneBusinessFax.Text;
                 contactObj.CategoryStr = categoryStr;
                 contactObj._1stRefChecked = chkReferee1Checked.Checked;
                 contactObj._2ndRefChecked = chkReferee2Checked.Checked;
                 contactObj._3rdRefChecked = chkReferee3Checked.Checked;
-                contactObj.AccountName = txtAccountName.Text;
-                contactObj.AdditionalInfoOnCRB = chkCautionsCRB.Checked;
-                contactObj.BankAccountNumber = txtBankAccountNumber.Text;
-                contactObj.BankName = txtBankName.Text;
-                contactObj.BankSortCode = txtBankSortCode.Text;
-                contactObj.BankStatementLocation = txtBankStatementLocation.Text;
+                //contactObj.AccountName = txtAccountName.Text;
+                contactObj.Cautions_AdditionalInfo_OnDBS = chkCautionsCRB.Checked;
+                //contactObj.BankAccountNumber = txtBankAccountNumber.Text;
+                //contactObj.BankName = txtBankName.Text;
+                //contactObj.BankSortCode = txtBankSortCode.Text;
+                //contactObj.BankStatementLocation = txtBankStatementLocation.Text;
                 contactObj.BirthDate = txtBirthday.Text;
                 contactObj.Consultant = txtConsultant.Text;
-                contactObj.CRBandAddressProofMatch = chkProofOfAddress.Checked;
-                contactObj.CRBDateSent = dtCRBDateSent.Value;
-                contactObj.CRBExpiryDate = dtCRBExpiry.Value;
-                contactObj.CRBFormRef = txtCRBFormRef.Text;
-                contactObj.CRBNumber = txtCRBNumber.Text;
-                contactObj.CRBValidFrom = dtCRBValidFrom.Value;
+                contactObj.DBAChkd = dtDBAChkd.Value;
+                contactObj.DBASgnd = chkDBAsigned.Checked;
+                contactObj.DBSandAddressProofMatch = chkProofOfAddress.Checked;
+                contactObj.DBSDateSent = dtCRBDateSent.Value;
+                contactObj.DBSExpiryDate = dtCRBExpiry.Value;
+                contactObj.DBSFormRef = txtCRBFormRef.Text;
+                contactObj.DBSNumber = txtCRBNumber.Text;
+                contactObj.DBSValidFrom = dtCRBValidFrom.Value;
                 contactObj.DBSDirectPayment = chkDBSDirectPayment.Checked;
+                contactObj.DBSUpdateServiceCheckedDate = dtDBSudChk.Value;
                 contactObj.CurrentPayScale = txtCurrentPayScale.Text;
                 contactObj.CVReceived = chkCVReceived.Checked;
                 contactObj.DateOfSupply = dtDateOfSupply.Value;
                 contactObj.FirstDayTeachingUK = dtFirstDayTeachingUK.Value;
                 contactObj.GTCCheckDate = dtGTCCheckDate.Value;
                 contactObj.IDChecked = chkIDChecked.Checked;
+                contactObj.IDCheckedDate = dtIDChkd.Value;
                 contactObj.Instructor = chkInstructor.Checked;
                 contactObj.InterviewNotes = txtInterviewNotes.Text;
                 contactObj.LateRecord = txtLateRecord.Text;
                 contactObj.GTCNumber = txtGTCNumber.Text;
                 contactObj.KeyRef = txtKeyRef.Text;
                 contactObj.List99 = chkList99Undertaken.Checked;
+                contactObj.List99CheckedDate = dtList99Chkd.Value;
                 contactObj.LTStartDate = dtLongTermStart.Value;
                 contactObj.MedicalChecklist = chkMedicalChecklist.Checked;
+                contactObj.MedicalChecklistCheckedDate = dtMedCLChkd.Value;
                 contactObj.NINumber = txtNINumber.Text;
                 contactObj.Notes = txtNotes.Text;
                 contactObj.NQT = chkNQT.Checked;
                 contactObj.OtherCRBNumber = false;  //**************************
                 contactObj.OTTEndDate = dtOTTEndDate.Value;
                 contactObj.OverseasPoliceCheck = chkOverseasPoliceCheck.Checked;
+                contactObj.OverseasPoliceCheckedDate = dtOvPolChkd.Value;
                 contactObj.OverseasTrainedTeacher = chkOverseasTrainedTeacher.Checked;
-                contactObj.PassportNo = txtPassportNumber.Text;
-                contactObj.PassportLocation = txtPassportLocation.Text;
+                //contactObj.PassportNo = txtPassportNumber.Text;
+                //contactObj.PassportLocation = txtPassportLocation.Text;
                 contactObj.PayDetails = cmbPayDetails.Text;
                 contactObj.PAYETeacherContractSigned = chkPAYETeacherContractSigned.Checked;
                 contactObj.PhotoLocation = txtFilePath.Text;
                 contactObj.GraduationDate = dtGradDate.Value;
+                contactObj.ProhibitionFromTeaching = chkPrFrmTch.Checked;
+                contactObj.ProhibitionFromTeachingCheckedDate = dtPrFrmTchchkd.Value;
                 contactObj.ProtabilityCheckSent = dtProtabilityCheckSent.Value;
                 contactObj.ProtabilityReceivedDate = dtProtabilityReceivedDate.Value;
                 contactObj.ProofOfAddress = chkProofOfAddress.Checked;
-                contactObj.ProofOfID = cmbProofID.Text;
-                contactObj.ProofOfID2 = cmbProofID2.Text;
+                contactObj.ProofOfAddressCheckedDate = dtPOAChkd.Value;
+                //contactObj.ProofOfID = cmbProofID.Text;
+                //contactObj.ProofOfID2 = cmbProofID2.Text;
                 contactObj.QTS = chkQTS.Checked;
                 contactObj.Qualification = txtQualification.Text;
+                contactObj.QualificationCheckedDate = dtQualChecked.Value;
                 contactObj.RedboxLeaveDate = dtRedboxLeaveDate.Value;
                 contactObj.RedboxStartDate = dtRedboxStart.Value;
-                contactObj.RedboxCRB = chkRedboxCRB.Checked;
-                contactObj.ReferredBy = txtReferredBy.Text;
+                contactObj.RedboxDBS = chkRedboxCRB.Checked;
+                //contactObj.ReferredBy = txtReferredBy.Text;
                 contactObj.Referee1Address = txtReferee1Address.Text;
                 contactObj.Referee1Email = txtReferee1Email.Text;
                 contactObj.Referee1Fax = txtReferee1Fax.Text;
@@ -304,21 +331,23 @@ namespace RedboxAddin.Presentation
                 contactObj.Referee3Notes = txtReferee3Notes.Text;
                 contactObj.Referee3Phone = txtReferee3Phone.Text;
                 contactObj.ReferencesChecked = chkReferencesChecked.Checked;
-                contactObj.RegistrationComplete = chkRegistrationComplete.Checked;
+                contactObj.ReferencesCheckedDate = dtRefChkd.Value;
+                //contactObj.RegistrationComplete = chkRegistrationComplete.Checked;
                 contactObj.RegistrationDate = dtRegistrationDate.Value;
-                contactObj.SendBankStatement = chkSendBankStatement.Checked;
-                contactObj.SendPassport = chkSendPassport.Checked;
-                contactObj.SendVisa = chkSendVisa.Checked;
+                //contactObj.SendBankStatement = chkSendBankStatement.Checked;
+                //contactObj.SendPassport = chkSendPassport.Checked;
+                //contactObj.SendVisa = chkSendVisa.Checked;
                 contactObj.SicknessRecord = txtSicknessRecord.Text;
                 contactObj.TeacherStatus = cmbTeacherStatus.Text;
                 contactObj.UKArrivalDate = dtUKArrivalDate.Value;
                 contactObj.UpdateService = chkUpdateService.Checked;
                 contactObj.UpdateServiceRegisteredDate = dtUpdateServiceRegDate.Value;
                 contactObj.VisaExpiryDate = dtVisaExpiryDate.Value;
+                contactObj.VisaCheckedDate = dtVisaChkd.Value;
                 contactObj.VisaType = txtVisaType.Text;
-                contactObj.VisaLocation = txtVisaLocation.Text;
+                //contactObj.VisaLocation = txtVisaLocation.Text;
                 contactObj.YearGroup = txtYearGroup.Text;
-                contactObj.AttendMMRV = chkMMRV.Checked;
+                //contactObj.AttendMMRV = chkMMRV.Checked;
 
                 bool result = false;
                 if (CurrentContactID != 0)
@@ -690,83 +719,83 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void btnLoadPassport_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialogObj = new OpenFileDialog();
-            openFileDialogObj.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
-            openFileDialogObj.Title = "Pick Image";
-            var dResult = openFileDialogObj.ShowDialog();
-            if (dResult == System.Windows.Forms.DialogResult.OK)
-            {
-                string filePath = openFileDialogObj.FileName;
-                txtPassportLocation.Text = filePath;
-            }
-        }
+        //private void btnLoadPassport_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog openFileDialogObj = new OpenFileDialog();
+        //    openFileDialogObj.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
+        //    openFileDialogObj.Title = "Pick Image";
+        //    var dResult = openFileDialogObj.ShowDialog();
+        //    if (dResult == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        string filePath = openFileDialogObj.FileName;
+        //        txtPassportLocation.Text = filePath;
+        //    }
+        //}
 
-        private void btnLoadBankStatement_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialogObj = new OpenFileDialog();
-            openFileDialogObj.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
-            openFileDialogObj.Title = "Pick Image";
-            var dResult = openFileDialogObj.ShowDialog();
-            if (dResult == System.Windows.Forms.DialogResult.OK)
-            {
-                string filePath = openFileDialogObj.FileName;
-                txtBankStatementLocation.Text = filePath;
-            }
-        }
+        //private void btnLoadBankStatement_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog openFileDialogObj = new OpenFileDialog();
+        //    openFileDialogObj.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
+        //    openFileDialogObj.Title = "Pick Image";
+        //    var dResult = openFileDialogObj.ShowDialog();
+        //    if (dResult == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        string filePath = openFileDialogObj.FileName;
+        //        txtBankStatementLocation.Text = filePath;
+        //    }
+        //}
 
-        private void btnLoadVisa_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialogObj = new OpenFileDialog();
-            openFileDialogObj.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
-            openFileDialogObj.Title = "Pick Image";
-            var dResult = openFileDialogObj.ShowDialog();
-            if (dResult == System.Windows.Forms.DialogResult.OK)
-            {
-                string filePath = openFileDialogObj.FileName;
-                txtVisaLocation.Text = filePath;
-            }
-        }
+        //private void btnLoadVisa_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog openFileDialogObj = new OpenFileDialog();
+        //    openFileDialogObj.Filter = "All Graphics Types|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
+        //    openFileDialogObj.Title = "Pick Image";
+        //    var dResult = openFileDialogObj.ShowDialog();
+        //    if (dResult == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        string filePath = openFileDialogObj.FileName;
+        //        txtVisaLocation.Text = filePath;
+        //    }
+        //}
 
         #endregion
 
-        private bool AddAttachments(ref RDOAttachments attachmentCol)
-        {
-            try
-            {
-                if (chkSendBankStatement.Checked)
-                {
-                    if (!string.IsNullOrWhiteSpace(txtBankStatementLocation.Text))
-                    {
-                        RDOAttachment rAttachment = attachmentCol.Add(txtBankStatementLocation.Text);
-                        if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                    }
-                }
-                if (chkSendPassport.Checked)
-                {
-                    if (!string.IsNullOrWhiteSpace(txtPassportLocation.Text))
-                    {
-                        RDOAttachment rAttachment = attachmentCol.Add(txtPassportLocation.Text);
-                        if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                    }
-                }
-                if (chkSendVisa.Checked)
-                {
-                    if (!string.IsNullOrWhiteSpace(txtVisaLocation.Text))
-                    {
-                        RDOAttachment rAttachment = attachmentCol.Add(txtVisaLocation.Text);
-                        if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                    }
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
-                return false;
-            }
-        }
+        //private bool AddAttachments(ref RDOAttachments attachmentCol)
+        //{
+        //    try
+        //    {
+        //        if (chkSendBankStatement.Checked)
+        //        {
+        //            if (!string.IsNullOrWhiteSpace(txtBankStatementLocation.Text))
+        //            {
+        //                RDOAttachment rAttachment = attachmentCol.Add(txtBankStatementLocation.Text);
+        //                if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+        //            }
+        //        }
+        //        if (chkSendPassport.Checked)
+        //        {
+        //            if (!string.IsNullOrWhiteSpace(txtPassportLocation.Text))
+        //            {
+        //                RDOAttachment rAttachment = attachmentCol.Add(txtPassportLocation.Text);
+        //                if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+        //            }
+        //        }
+        //        if (chkSendVisa.Checked)
+        //        {
+        //            if (!string.IsNullOrWhiteSpace(txtVisaLocation.Text))
+        //            {
+        //                RDOAttachment rAttachment = attachmentCol.Add(txtVisaLocation.Text);
+        //                if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
+        //        return false;
+        //    }
+        //}
 
         private void btnSendDetails_Click(object sender, EventArgs e)
         {
@@ -795,8 +824,11 @@ namespace RedboxAddin.Presentation
                 rFolderDrafts = RedemptionCode.rSession.GetDefaultFolder(rdoDefaultFolders.olFolderDrafts);
                 rItems = rFolderDrafts.Items;
                 rMail = (RDOMail)rItems.Add("IPM.Note");
-                colAttach = rMail.Attachments;
-                AddAttachments(ref colAttach);
+
+                //attachments removed
+                //colAttach = rMail.Attachments;
+                //AddAttachments(ref colAttach);
+
                 rMail.Body = " ";
                 try
                 {
@@ -1222,9 +1254,9 @@ namespace RedboxAddin.Presentation
                     cd.RGD = chkRGD.Checked;
                     cd.Location = GetLocation();
 
-                    cd.FirstAid = chkFirstAid.Checked;
-                    cd.RWInc = chkRWInc.Checked;
-                    cd.BSL = chkBSL.Checked;
+                    //cd.FirstAid = chkFirstAid.Checked;
+                    //cd.RWInc = chkRWInc.Checked;
+                    //cd.BSL = chkBSL.Checked;
 
                     db.SubmitChanges();
                     return;
@@ -1297,9 +1329,9 @@ namespace RedboxAddin.Presentation
                         chkD2D.Checked = cd.D2D;
                         chkRGD.Checked = cd.RGD;
                         SetLocation(cd.Location);
-                        chkFirstAid.Checked = cd.FirstAid;
-                        chkRWInc.Checked = cd.RWInc;
-                        chkBSL.Checked = cd.BSL;
+                        //chkFirstAid.Checked = cd.FirstAid;
+                        //chkRWInc.Checked = cd.RWInc;
+                        //chkBSL.Checked = cd.BSL;
 
                     }
 

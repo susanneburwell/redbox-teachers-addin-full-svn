@@ -38,7 +38,7 @@ namespace RedboxAddin.BL
                 System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
                 System.Diagnostics.Debug.AutoFlush = true;
                 System.Diagnostics.Debug.Indent();
-                DebugMessage(1, "Application Started");
+                DebugMessage(2, "Application Started");
                 ClearOldDebugFiles();
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace RedboxAddin.BL
                 {
                     case 1:
                         myListener.WriteLine(DateTime.Now + " -1- " + dbMessage);
-                        //MessageBox.Show(dbMessage, "Level 1 Debug Message");
+                        MessageBox.Show(dbMessage, "Redbox Plugin Error");
                         break;
 
                     case 2:

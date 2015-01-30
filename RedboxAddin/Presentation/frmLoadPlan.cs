@@ -218,7 +218,7 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(1, "Error in DoubleClick: " + ex.Message);
+                Debug.DebugMessage(1, "Redbox Error: Error in DoubleClick: " + ex.Message);
             }
 
         }

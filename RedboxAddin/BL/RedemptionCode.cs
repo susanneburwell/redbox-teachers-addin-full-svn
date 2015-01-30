@@ -32,7 +32,7 @@ namespace RedboxAddin.BL
                 RedemptionLoader_DllLocation64Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin\\Redemption64.dll";
                 RedemptionLoader_DllLocation32Bit_FilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin\\Redemption.dll";
                 AppDataFilePath = Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\RedboxAddin";
-                Debug.DebugMessage(1, "Redemption FilePath:- " + RedemptionLoader_DllLocation32Bit_FilePath);
+                Debug.DebugMessage(2, "Redemption FilePath:- " + RedemptionLoader_DllLocation32Bit_FilePath);
 
                 if (File.Exists(RedemptionLoader_DllLocation32Bit_FilePath) && File.Exists(RedemptionLoader_DllLocation64Bit_FilePath))
                 {
@@ -417,22 +417,22 @@ namespace RedboxAddin.BL
                 if (contactObj.CVReceived) { txtBody = txtBody + Environment.NewLine + "CV Received? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "CV Received? No"; }
 
-                if (contactObj.RedboxCRB) { txtBody = txtBody + Environment.NewLine + "Red Box CRB? Yes"; }
+                if (contactObj.RedboxDBS) { txtBody = txtBody + Environment.NewLine + "Red Box CRB? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Red Box CRB? No"; }
 
-                txtBody = txtBody + Environment.NewLine + "Red Box CRB Form Ref: " + contactObj.CRBFormRef;
-                txtBody = txtBody + Environment.NewLine + "CRB Number: " + contactObj.CRBNumber;
+                txtBody = txtBody + Environment.NewLine + "Red Box CRB Form Ref: " + contactObj.DBSFormRef;
+                txtBody = txtBody + Environment.NewLine + "CRB Number: " + contactObj.DBSNumber;
 
-                if (contactObj.CRBValidFrom != DateTime.MinValue)
+                if (contactObj.DBSValidFrom != DateTime.MinValue)
                 {
-                    txtBody = txtBody + Environment.NewLine + "CRB Valid from: " + contactObj.CRBValidFrom.ToShortDateString();
+                    txtBody = txtBody + Environment.NewLine + "CRB Valid from: " + contactObj.DBSValidFrom.ToShortDateString();
                 }
                 else
                 {
                     txtBody = txtBody + Environment.NewLine + "CRB Valid from: None";
                 }
 
-                if (contactObj.AdditionalInfoOnCRB) { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? Yes"; }
+                if (contactObj.Cautions_AdditionalInfo_OnDBS) { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? No"; }
 
                 if (contactObj.UpdateService) { txtBody = txtBody + Environment.NewLine + "DBS Update Service? Yes"; }

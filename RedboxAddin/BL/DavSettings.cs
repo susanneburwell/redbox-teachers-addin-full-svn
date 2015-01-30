@@ -25,7 +25,7 @@ public static class DavSettings
                 StreamReader ioFile = null;
                 var myFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)) + "\\" + ProductName + "\\Settings.xml";
                 //var myAllUserFilePath = (Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + "\\RedboxAddin\\Settings.xml";
-                Debug.DebugMessage(1, "AllUserFilePath: " + myFilePath);
+                Debug.DebugMessage(3, "AllUserFilePath: " + myFilePath);
                 if (File.Exists(myFilePath))
                 {
                     ioFile = new StreamReader(myFilePath);
@@ -204,7 +204,7 @@ public static class DavSettings
         }
         catch (Exception ex)
         {
-            Debug.DebugMessage(1, "Error in function AddField() :- " + ex.Message);
+            Debug.DebugMessage(1, "DavSettings Error: Error in function AddField() :- " + ex.Message);
         }
     }
 

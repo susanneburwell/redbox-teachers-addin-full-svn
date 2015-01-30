@@ -31,7 +31,7 @@ namespace RedboxAddin.DL
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error Opening the DB Connection :- " + ex.Message);
+                Debug.DebugMessage(1, "Error Opening the DB Connection - the database could not be found :- " + ex.Message);
                 return false;
             }
         }
@@ -171,7 +171,7 @@ namespace RedboxAddin.DL
                                 CategoryStr = "",
                                 PhoneMobile = dr["PhoneMobile"].ToString(),
                                 contactID = Convert.ToInt64(dr["contactID"].ToString()),
-                                CRBExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
+                                DBSExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
                                 LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
                                 VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                                 RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
@@ -208,7 +208,7 @@ namespace RedboxAddin.DL
                                     CategoryStr = arr[i],
                                     PhoneMobile = dr["PhoneMobile"].ToString(),
                                     contactID = Convert.ToInt64(dr["contactID"].ToString()),
-                                    CRBExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
+                                    DBSExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
                                     LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
                                     VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                                     RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
@@ -263,7 +263,7 @@ namespace RedboxAddin.DL
                             CategoryStr = dr["CategoryStr"].ToString(),
                             PhoneMobile = dr["PhoneMobile"].ToString(),
                             contactID = Convert.ToInt64(dr["contactID"].ToString()),
-                            CRBExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
+                            DBSExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
                             LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
                             VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                             RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
@@ -2151,7 +2151,7 @@ namespace RedboxAddin.DL
                             _2ndRefChecked = CheckBool(dr["2ndRefChecked"].ToString()),
                             _3rdRefChecked = CheckBool(dr["3rdRefChecked"].ToString()),
                             AccountName = dr["AccountName"].ToString(),
-                            AdditionalInfoOnCRB = CheckBool(dr["AdditionalInfoOnCRB"].ToString()),
+                            Cautions_AdditionalInfo_OnDBS = CheckBool(dr["AdditionalInfoOnCRB"].ToString()),
                             AttendMMRV = CheckBool(dr["AttendMMRV"].ToString()),
                             BankAccountNumber = dr["BankAccountNumber"].ToString(),
                             BankName = dr["BankName"].ToString(),
@@ -2159,12 +2159,12 @@ namespace RedboxAddin.DL
                             BankStatementLocation = dr["BankStatementLocation"].ToString(),
                             BirthDate = dr["BirthDate"].ToString(),
                             Consultant = dr["Consultant"].ToString(),
-                            CRBandAddressProofMatch = CheckBool(dr["CRBandAddressProofMatch"].ToString()),
-                            CRBDateSent = CheckDate(dr["CRBDateSent"].ToString()),
-                            CRBExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
-                            CRBFormRef = dr["CRBFormRef"].ToString(),
-                            CRBNumber = dr["CRBNumber"].ToString(),
-                            CRBValidFrom = CheckDate(dr["CRBValidFrom"].ToString()),
+                            DBSandAddressProofMatch = CheckBool(dr["CRBandAddressProofMatch"].ToString()),
+                            DBSDateSent = CheckDate(dr["CRBDateSent"].ToString()),
+                            DBSExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
+                            DBSFormRef = dr["CRBFormRef"].ToString(),
+                            DBSNumber = dr["CRBNumber"].ToString(),
+                            DBSValidFrom = CheckDate(dr["CRBValidFrom"].ToString()),
                             DBSDirectPayment = CheckBool(dr["DBSDirectPayment"]),
                             CurrentPayScale = dr["CurrentPayScale"].ToString(),
                             CVReceived = CheckBool(dr["CVReceived"].ToString()),
@@ -2202,7 +2202,7 @@ namespace RedboxAddin.DL
                             Qualification = dr["Qualification"].ToString(),
                             RedboxLeaveDate = CheckDate(dr["RedboxLeaveDate"].ToString()),
                             RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
-                            RedboxCRB = CheckBool(dr["RedboxCRB"].ToString()),
+                            RedboxDBS = CheckBool(dr["RedboxCRB"].ToString()),
                             ReferredBy = dr["ReferredBy"].ToString(),
                             Referee1Address = dr["Referee1Address"].ToString(),
                             Referee1Email = dr["Referee1Email"].ToString(),
@@ -2967,7 +2967,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@2ndRefChecked"].Value = CheckVals(contactObj._2ndRefChecked);
                 CmdAddContact.Parameters["@3rdRefChecked"].Value = CheckVals(contactObj._3rdRefChecked);
                 CmdAddContact.Parameters["@AccountName"].Value = CheckVals(contactObj.AccountName);
-                CmdAddContact.Parameters["@AdditionalInfoOnCRB"].Value = CheckVals(contactObj.AdditionalInfoOnCRB);
+                CmdAddContact.Parameters["@AdditionalInfoOnCRB"].Value = CheckVals(contactObj.Cautions_AdditionalInfo_OnDBS);
                 CmdAddContact.Parameters["@AttendMMRV"].Value = CheckVals(contactObj.AttendMMRV);
                 CmdAddContact.Parameters["@BankAccountNumber"].Value = CheckVals(contactObj.BankAccountNumber);
                 CmdAddContact.Parameters["@BankName"].Value = CheckVals(contactObj.BankName);
@@ -2975,12 +2975,12 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@BankStatementLocation"].Value = CheckVals(contactObj.BankStatementLocation);
                 CmdAddContact.Parameters["@BirthDate"].Value = CheckVals(contactObj.BirthDate);
                 CmdAddContact.Parameters["@Consultant"].Value = CheckVals(contactObj.Consultant);
-                CmdAddContact.Parameters["@CRBandAddressProofMatch"].Value = CheckVals(contactObj.CRBandAddressProofMatch);
-                CmdAddContact.Parameters["@CRBDateSent"].Value = FilterSQLDate(contactObj.CRBDateSent);
-                CmdAddContact.Parameters["@CRBExpiryDate"].Value = FilterSQLDate(contactObj.CRBExpiryDate);
-                CmdAddContact.Parameters["@CRBFormRef"].Value = CheckVals(contactObj.CRBFormRef);
-                CmdAddContact.Parameters["@CRBNumber"].Value = CheckVals(contactObj.CRBNumber);
-                CmdAddContact.Parameters["@CRBValidFrom"].Value = FilterSQLDate(contactObj.CRBValidFrom);
+                CmdAddContact.Parameters["@CRBandAddressProofMatch"].Value = CheckVals(contactObj.DBSandAddressProofMatch);
+                CmdAddContact.Parameters["@CRBDateSent"].Value = FilterSQLDate(contactObj.DBSDateSent);
+                CmdAddContact.Parameters["@CRBExpiryDate"].Value = FilterSQLDate(contactObj.DBSExpiryDate);
+                CmdAddContact.Parameters["@CRBFormRef"].Value = CheckVals(contactObj.DBSFormRef);
+                CmdAddContact.Parameters["@CRBNumber"].Value = CheckVals(contactObj.DBSNumber);
+                CmdAddContact.Parameters["@CRBValidFrom"].Value = FilterSQLDate(contactObj.DBSValidFrom);
                 CmdAddContact.Parameters["@DBSDirectPayment"].Value = CheckVals(contactObj.DBSDirectPayment);
                 CmdAddContact.Parameters["@CurrentPayScale"].Value = CheckVals(contactObj.CurrentPayScale);
                 CmdAddContact.Parameters["@CVReceived"].Value = CheckVals(contactObj.CVReceived);
@@ -3018,7 +3018,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters["@Qualification"].Value = CheckVals(contactObj.Qualification);
                 CmdAddContact.Parameters["@RedboxLeaveDate"].Value = FilterSQLDate(contactObj.RedboxLeaveDate);
                 CmdAddContact.Parameters["@RedboxStartDate"].Value = FilterSQLDate(contactObj.RedboxStartDate);
-                CmdAddContact.Parameters["@RedboxCRB"].Value = CheckVals(contactObj.RedboxCRB);
+                CmdAddContact.Parameters["@RedboxCRB"].Value = CheckVals(contactObj.RedboxDBS);
                 CmdAddContact.Parameters["@ReferredBy"].Value = CheckVals(contactObj.ReferredBy);
                 CmdAddContact.Parameters["@Referee1Address"].Value = CheckVals(contactObj.Referee1Address);
                 CmdAddContact.Parameters["@Referee1Email"].Value = CheckVals(contactObj.Referee1Email);
@@ -3103,11 +3103,11 @@ namespace RedboxAddin.DL
                        + "[3rdRefChecked] = @3rdRefChecked, "
                        + "AccountName = @AccountName, "
                        + "AdditionalInfoOnCRB = @AdditionalInfoOnCRB, "
-                       + "AttendMMRV = @AttendMMRV, "
-                       + "BankAccountNumber = @BankAccountNumber, "
-                       + "BankName = @BankName, "
-                       + "BankSortCode = @BankSortCode, "
-                       + "BankStatementLocation = @BankStatementLocation, "
+                       //+ "AttendMMRV = @AttendMMRV, "
+                       //+ "BankAccountNumber = @BankAccountNumber, "
+                       //+ "BankName = @BankName, "
+                       //+ "BankSortCode = @BankSortCode, "
+                       //+ "BankStatementLocation = @BankStatementLocation, "
                        + "BirthDate = @BirthDate, "
                        + "Consultant = @Consultant , "
                        + "CRBandAddressProofMatch = @CRBandAddressProofMatch, "
@@ -3117,6 +3117,9 @@ namespace RedboxAddin.DL
                        + "CRBNumber = @CRBNumber, "
                        + "CRBValidFrom = @CRBValidFrom, "
                        + "DBSDirectPayment = @DBSDirectPayment, "
+                       + "DBSUpdateSvcChkdDate = @DBSUpdateSvcChkdDate, "
+                       + "DisqByAssoc = @DisqByAssoc, "
+                       + "DisqByAssocChkdDate = @DisqByAssocChkdDate, "
                        + "CurrentPayScale = @CurrentPayScale, "
                        + "CVReceived = @CVReceived, "
                        + "DateOfSupply = @DateOfSupply, "
@@ -3124,37 +3127,45 @@ namespace RedboxAddin.DL
                        + "GTCCheckDate = @GTCCheckDate, "
                        + "GTCNumber = @GTCNumber, "
                        + "IDChecked = @IDChecked, "
+                       + "IDChkdDate = @IDChkdDate, "
                        + "Instructor = @Instructor, "
                        + "InterviewNotes = @InterviewNotes, "
                        + "KeyRef = @KeyRef, "
                        + "LateRecord = @LateRecord, "
                        + "List99 = @List99, "
+                       + "List99ChkdDate = @List99ChkdDate, "
                        + "LTStartDate = @LTStartDate, "
                        + "MedicalChecklist = @MedicalChecklist, "
+                       + "MedicalChecklistChkdDate = @MedicalChecklistChkdDate, "
                        + "NINumber = @NINumber, "
                        + "Notes = @Notes,"
                        + "NQT = @NQT, "
                        + "OtherCRBNumber = @OtherCRBNumber, "
                        + "OTTEndDate = @OTTEndDate, "
                        + "OverseasPoliceCheck = @OverseasPoliceCheck, "
+                       + "OverseasPoliceChkdDate = @OverseasPoliceChkdDate, "
                        + "OverseasTrainedTeacher = @OverseasTrainedTeacher, "
-                       + "PassportNo = @PassportNo, "
-                       + "PassportLocation = @PassportLocation, "
+                       //+ "PassportNo = @PassportNo, "
+                       //+ "PassportLocation = @PassportLocation, "
                        + "PayDetails = @PayDetails, "
                        + "PAYETeacherContractSigned = @PAYETeacherContractSigned, "
                        + "PhotoLocation = @PhotoLocation,"
                        + "GraduationDate = @GraduationDate, "
+                       + "ProFrmTch = @ProFrmTch, "
+                       + "ProFrmTchChkdDate = @ProFrmTchChkdDate, "
                        + "ProtabilityCheckSent = @ProtabilityCheckSent, "
                        + "ProtabilityReceivedDate = @ProtabilityReceivedDate, "
                        + "ProofOfAddress = @ProofOfAddress, "
-                       + "ProofOfID = @ProofOfID, "
-                       + "ProofOfID2 = @ProofOfID2, "
+                       + "POAChkdDate = @POAChkdDate, "
+                       //+ "ProofOfID = @ProofOfID, "
+                       //+ "ProofOfID2 = @ProofOfID2, "
                        + "QTS = @QTS, "
                        + "Qualification = @Qualification, "
+                       + "QualificationCheckedDate = @QualificationCheckedDate, "
                        + "RedboxLeaveDate = @RedboxLeaveDate, "
                        + "RedboxStartDate = @RedboxStartDate, "
                        + "RedboxCRB = @RedboxCRB, "
-                       + "ReferredBy = @ReferredBy, "
+                       //+ "ReferredBy = @ReferredBy, "
                        + "Referee1Address = @Referee1Address, "
                        + "Referee1Email = @Referee1Email, "
                        + "Referee1Fax = @Referee1Fax, "
@@ -3177,11 +3188,12 @@ namespace RedboxAddin.DL
                        + "Referee3Notes = @Referee3Notes, "
                        + "Referee3Phone = @Referee3Phone, "
                        + "ReferencesChecked = @ReferencesChecked, "
-                       + "RegistrationComplete = @RegistrationComplete, "
+                       + "ReferencesChkdDate = @ReferencesChkdDate, "
+                       //+ "RegistrationComplete = @RegistrationComplete, "
                        + "RegistrationDate = @RegistrationDate, "
-                       + "SendBankStatement = @SendBankStatement, "
-                       + "SendPassport = @SendPassport, "
-                       + "SendVisa = @SendVisa, "
+                       //+ "SendBankStatement = @SendBankStatement, "
+                       //+ "SendPassport = @SendPassport, "
+                       //+ "SendVisa = @SendVisa, "
                        + "SicknessRecord = @SicknessRecord, "
                        + "TeacherStatus = @TeacherStatus, "
                        + "UKArrivalDate = @UKArrivalDate, "
@@ -3189,7 +3201,8 @@ namespace RedboxAddin.DL
                        + "UpdateServiceRegisteredDate = @UpdateServiceRegisteredDate,"
                        + "VisaExpiryDate = @VisaExpiryDate, "
                        + "VisaType = @VisaType, "
-                       + "VisaLocation = @VisaLocation, "
+                       //+ "VisaLocation = @VisaLocation, "
+                       + "VisaChkdDate = @VisaChkdDate, "
                        + "YearGroup = @YearGroup, "
                        + "LastMod = @LastMod WHERE contactID = @contactID";
                 DBManager.OpenDBConnection();
@@ -3219,22 +3232,24 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.AddWithValue("@2ndRefChecked", CheckVals(contactObj._2ndRefChecked));
                 CmdUpdateContact.Parameters.AddWithValue("@3rdRefChecked", CheckVals(contactObj._3rdRefChecked));
                 CmdUpdateContact.Parameters.AddWithValue("@AccountName", CheckVals(contactObj.AccountName));
-                CmdUpdateContact.Parameters.AddWithValue("@AdditionalInfoOnCRB", CheckVals(contactObj.AdditionalInfoOnCRB));
-                CmdUpdateContact.Parameters.AddWithValue("@AdditionalInfoOnCRB", CheckVals(contactObj.AdditionalInfoOnCRB));
-                CmdUpdateContact.Parameters.AddWithValue("@AttendMMRV", CheckVals(contactObj.AttendMMRV));
-                CmdUpdateContact.Parameters.AddWithValue("@BankAccountNumber", CheckVals(contactObj.BankAccountNumber));
-                CmdUpdateContact.Parameters.AddWithValue("@BankName", CheckVals(contactObj.BankName));
-                CmdUpdateContact.Parameters.AddWithValue("@BankSortCode", CheckVals(contactObj.BankSortCode));
-                CmdUpdateContact.Parameters.AddWithValue("@BankStatementLocation", CheckVals(contactObj.BankStatementLocation));
+                CmdUpdateContact.Parameters.AddWithValue("@AdditionalInfoOnCRB", CheckVals(contactObj.Cautions_AdditionalInfo_OnDBS));
+               // CmdUpdateContact.Parameters.AddWithValue("@AttendMMRV", CheckVals(contactObj.AttendMMRV));
+               // CmdUpdateContact.Parameters.AddWithValue("@BankAccountNumber", CheckVals(contactObj.BankAccountNumber));
+                //CmdUpdateContact.Parameters.AddWithValue("@BankName", CheckVals(contactObj.BankName));
+                //CmdUpdateContact.Parameters.AddWithValue("@BankSortCode", CheckVals(contactObj.BankSortCode));
+               // CmdUpdateContact.Parameters.AddWithValue("@BankStatementLocation", CheckVals(contactObj.BankStatementLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@BirthDate", CheckVals(contactObj.BirthDate));
                 CmdUpdateContact.Parameters.AddWithValue("@Consultant", CheckVals(contactObj.Consultant));
-                CmdUpdateContact.Parameters.AddWithValue("@CRBandAddressProofMatch", CheckVals(contactObj.CRBandAddressProofMatch));
-                CmdUpdateContact.Parameters.AddWithValue("@CRBDateSent", FilterSQLDate(contactObj.CRBDateSent));
-                CmdUpdateContact.Parameters.AddWithValue("@CRBExpiryDate", FilterSQLDate(contactObj.CRBExpiryDate));
-                CmdUpdateContact.Parameters.AddWithValue("@CRBFormRef", CheckVals(contactObj.CRBFormRef));
-                CmdUpdateContact.Parameters.AddWithValue("@CRBNumber", CheckVals(contactObj.CRBNumber));
-                CmdUpdateContact.Parameters.AddWithValue("@CRBValidFrom", FilterSQLDate(contactObj.CRBValidFrom));
+                CmdUpdateContact.Parameters.AddWithValue("@CRBandAddressProofMatch", CheckVals(contactObj.DBSandAddressProofMatch));
+                CmdUpdateContact.Parameters.AddWithValue("@CRBDateSent", FilterSQLDate(contactObj.DBSDateSent));
+                CmdUpdateContact.Parameters.AddWithValue("@CRBExpiryDate", FilterSQLDate(contactObj.DBSExpiryDate));
+                CmdUpdateContact.Parameters.AddWithValue("@CRBFormRef", CheckVals(contactObj.DBSFormRef));
+                CmdUpdateContact.Parameters.AddWithValue("@CRBNumber", CheckVals(contactObj.DBSNumber));
+                CmdUpdateContact.Parameters.AddWithValue("@CRBValidFrom", FilterSQLDate(contactObj.DBSValidFrom));
                 CmdUpdateContact.Parameters.AddWithValue("@DBSDirectPayment", CheckVals(contactObj.DBSDirectPayment));
+                CmdUpdateContact.Parameters.AddWithValue("@DBSUpdateSvcChkdDate", FilterSQLDate(contactObj.DBSUpdateServiceCheckedDate));
+                CmdUpdateContact.Parameters.AddWithValue("@DisqByAssoc", CheckVals(contactObj.DBASgnd));
+                CmdUpdateContact.Parameters.AddWithValue("@DisqByAssocChkdDate", FilterSQLDate(contactObj.DBAChkd));
                 CmdUpdateContact.Parameters.AddWithValue("@CurrentPayScale", CheckVals(contactObj.CurrentPayScale));
                 CmdUpdateContact.Parameters.AddWithValue("@CVReceived", CheckVals(contactObj.CVReceived));
                 CmdUpdateContact.Parameters.AddWithValue("@DateOfSupply", FilterSQLDate(contactObj.DateOfSupply));
@@ -3242,37 +3257,45 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.AddWithValue("@GTCCheckDate", FilterSQLDate(contactObj.GTCCheckDate));
                 CmdUpdateContact.Parameters.AddWithValue("@GTCNumber", CheckVals(contactObj.GTCNumber));
                 CmdUpdateContact.Parameters.AddWithValue("@IDChecked", CheckVals(contactObj.IDChecked));
+                CmdUpdateContact.Parameters.AddWithValue("@IDChkdDate", FilterSQLDate(contactObj.IDCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@Instructor", CheckVals(contactObj.Instructor));
                 CmdUpdateContact.Parameters.AddWithValue("@InterviewNotes", CheckVals(contactObj.InterviewNotes));
                 CmdUpdateContact.Parameters.AddWithValue("@KeyRef", CheckVals(contactObj.KeyRef));
                 CmdUpdateContact.Parameters.AddWithValue("@LateRecord", CheckVals(contactObj.LateRecord));
                 CmdUpdateContact.Parameters.AddWithValue("@List99", CheckVals(contactObj.List99));
+                CmdUpdateContact.Parameters.AddWithValue("@List99ChkdDate", FilterSQLDate(contactObj.List99CheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@LTStartDate", FilterSQLDate(contactObj.LTStartDate));
+                CmdUpdateContact.Parameters.AddWithValue("@MedicalChecklistChkdDate", FilterSQLDate(contactObj.MedicalChecklistCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@MedicalChecklist", CheckVals(contactObj.MedicalChecklist));
                 CmdUpdateContact.Parameters.AddWithValue("@NINumber", CheckVals(contactObj.NINumber));
                 CmdUpdateContact.Parameters.AddWithValue("@Notes", CheckVals(contactObj.Notes));
                 CmdUpdateContact.Parameters.AddWithValue("@NQT", CheckVals(contactObj.NQT));
                 CmdUpdateContact.Parameters.AddWithValue("@OtherCRBNumber", CheckVals(contactObj.OtherCRBNumber));
                 CmdUpdateContact.Parameters.AddWithValue("@OTTEndDate", FilterSQLDate(contactObj.OTTEndDate));
+                CmdUpdateContact.Parameters.AddWithValue("@OverseasPoliceChkdDate", FilterSQLDate(contactObj.OverseasPoliceCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@OverseasPoliceCheck", CheckVals(contactObj.OverseasPoliceCheck));
                 CmdUpdateContact.Parameters.AddWithValue("@OverseasTrainedTeacher", CheckVals(contactObj.OverseasTrainedTeacher));
-                CmdUpdateContact.Parameters.AddWithValue("@PassportNo", CheckVals(contactObj.PassportNo));
-                CmdUpdateContact.Parameters.AddWithValue("@PassportLocation", CheckVals(contactObj.PassportLocation));
+                //CmdUpdateContact.Parameters.AddWithValue("@PassportNo", CheckVals(contactObj.PassportNo));
+                //CmdUpdateContact.Parameters.AddWithValue("@PassportLocation", CheckVals(contactObj.PassportLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@PayDetails", CheckVals(contactObj.PayDetails));
                 CmdUpdateContact.Parameters.AddWithValue("@PAYETeacherContractSigned", CheckVals(contactObj.PAYETeacherContractSigned));
                 CmdUpdateContact.Parameters.AddWithValue("@PhotoLocation", CheckVals(contactObj.PhotoLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@GraduationDate", FilterSQLDate(contactObj.GraduationDate));
+                CmdUpdateContact.Parameters.AddWithValue("@ProFrmTchChkdDate", FilterSQLDate(contactObj.ProhibitionFromTeachingCheckedDate));
+                CmdUpdateContact.Parameters.AddWithValue("@ProFrmTch", CheckVals(contactObj.ProhibitionFromTeaching));
                 CmdUpdateContact.Parameters.AddWithValue("@ProtabilityCheckSent", FilterSQLDate(contactObj.ProtabilityCheckSent));
                 CmdUpdateContact.Parameters.AddWithValue("@ProtabilityReceivedDate", FilterSQLDate(contactObj.ProtabilityReceivedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@ProofOfAddress", CheckVals(contactObj.ProofOfAddress));
-                CmdUpdateContact.Parameters.AddWithValue("@ProofOfID", CheckVals(contactObj.ProofOfID));
-                CmdUpdateContact.Parameters.AddWithValue("@ProofOfID2", CheckVals(contactObj.ProofOfID2));
+                CmdUpdateContact.Parameters.AddWithValue("@POAChkdDate", FilterSQLDate(contactObj.ProofOfAddressCheckedDate));
+                //CmdUpdateContact.Parameters.AddWithValue("@ProofOfID", CheckVals(contactObj.ProofOfID));
+                //CmdUpdateContact.Parameters.AddWithValue("@ProofOfID2", CheckVals(contactObj.ProofOfID2));
                 CmdUpdateContact.Parameters.AddWithValue("@QTS", CheckVals(contactObj.QTS));
                 CmdUpdateContact.Parameters.AddWithValue("@Qualification", CheckVals(contactObj.Qualification));
+                CmdUpdateContact.Parameters.AddWithValue("@QualificationCheckedDate", FilterSQLDate(contactObj.QualificationCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@RedboxLeaveDate", FilterSQLDate(contactObj.RedboxLeaveDate));
                 CmdUpdateContact.Parameters.AddWithValue("@RedboxStartDate", FilterSQLDate(contactObj.RedboxStartDate));
-                CmdUpdateContact.Parameters.AddWithValue("@RedboxCRB", CheckVals(contactObj.RedboxCRB));
-                CmdUpdateContact.Parameters.AddWithValue("@ReferredBy", CheckVals(contactObj.ReferredBy));
+                CmdUpdateContact.Parameters.AddWithValue("@RedboxCRB", CheckVals(contactObj.RedboxDBS));
+                //CmdUpdateContact.Parameters.AddWithValue("@ReferredBy", CheckVals(contactObj.ReferredBy));
                 CmdUpdateContact.Parameters.AddWithValue("@Referee1Address", CheckVals(contactObj.Referee1Address));
                 CmdUpdateContact.Parameters.AddWithValue("@Referee1Email", CheckVals(contactObj.Referee1Email));
                 CmdUpdateContact.Parameters.AddWithValue("@Referee1Fax", CheckVals(contactObj.Referee1Fax));
@@ -3295,19 +3318,21 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.AddWithValue("@Referee3Notes", CheckVals(contactObj.Referee3Notes));
                 CmdUpdateContact.Parameters.AddWithValue("@Referee3Phone", CheckVals(contactObj.Referee3Phone));
                 CmdUpdateContact.Parameters.AddWithValue("@ReferencesChecked", CheckVals(contactObj.ReferencesChecked));
-                CmdUpdateContact.Parameters.AddWithValue("@RegistrationComplete", CheckVals(contactObj.RegistrationComplete));
+                CmdUpdateContact.Parameters.AddWithValue("@ReferencesChkdDate", FilterSQLDate(contactObj.ReferencesCheckedDate));
+                //CmdUpdateContact.Parameters.AddWithValue("@RegistrationComplete", CheckVals(contactObj.RegistrationComplete));
                 CmdUpdateContact.Parameters.AddWithValue("@RegistrationDate", FilterSQLDate(contactObj.RegistrationDate));
-                CmdUpdateContact.Parameters.AddWithValue("@SendBankStatement", CheckVals(contactObj.SendBankStatement));
-                CmdUpdateContact.Parameters.AddWithValue("@SendPassport", CheckVals(contactObj.SendPassport));
-                CmdUpdateContact.Parameters.AddWithValue("@SendVisa", CheckVals(contactObj.SendVisa));
+                //CmdUpdateContact.Parameters.AddWithValue("@SendBankStatement", CheckVals(contactObj.SendBankStatement));
+                //CmdUpdateContact.Parameters.AddWithValue("@SendPassport", CheckVals(contactObj.SendPassport));
+                //CmdUpdateContact.Parameters.AddWithValue("@SendVisa", CheckVals(contactObj.SendVisa));
                 CmdUpdateContact.Parameters.AddWithValue("@SicknessRecord", CheckVals(contactObj.SicknessRecord));
                 CmdUpdateContact.Parameters.AddWithValue("@TeacherStatus", CheckVals(contactObj.TeacherStatus));
                 CmdUpdateContact.Parameters.AddWithValue("@UKArrivalDate", FilterSQLDate(contactObj.UKArrivalDate));
                 CmdUpdateContact.Parameters.AddWithValue("@UpdateService", CheckVals(contactObj.UpdateService));
                 CmdUpdateContact.Parameters.AddWithValue("@UpdateServiceRegisteredDate", FilterSQLDate(contactObj.UpdateServiceRegisteredDate));
                 CmdUpdateContact.Parameters.AddWithValue("@VisaExpiryDate", FilterSQLDate(contactObj.VisaExpiryDate));
+                CmdUpdateContact.Parameters.AddWithValue("@VisaChkdDate", FilterSQLDate(contactObj.VisaCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@VisaType", CheckVals(contactObj.VisaType));
-                CmdUpdateContact.Parameters.AddWithValue("@VisaLocation", CheckVals(contactObj.VisaLocation));
+                //CmdUpdateContact.Parameters.AddWithValue("@VisaLocation", CheckVals(contactObj.VisaLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@YearGroup", CheckVals(contactObj.YearGroup));
                 CmdUpdateContact.Parameters.AddWithValue("@LastMod", FilterSQLDate(DateTime.UtcNow));
                 CmdUpdateContact.ExecuteNonQuery();
