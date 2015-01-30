@@ -50,8 +50,8 @@ namespace RedboxAddin.Models
         public string DBSNumber { get; set; }
         public DateTime DBSValidFrom { get; set; }
         public bool DBSDirectPayment { get; set; }
-        public bool DBASgnd { get; set; }
-        public DateTime DBAChkd { get; set; }
+        public bool DisqByAssoc { get; set; }
+        public DateTime DisqByAssocChkdDate { get; set; }
         public string CurrentPayScale { get; set; }
         public bool CVReceived { get; set; }
         public DateTime DateOfSupply { get; set; }

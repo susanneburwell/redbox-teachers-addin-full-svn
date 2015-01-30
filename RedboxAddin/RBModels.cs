@@ -2253,6 +2253,32 @@ namespace RedboxAddin
 		
 		private System.Nullable<bool> _AttendMMRV;
 		
+		private System.Nullable<System.DateTime> _QualificationCheckedDate;
+		
+		private System.Nullable<System.DateTime> _DBSUpdateSvcChkdDate;
+		
+		private System.Nullable<bool> _ProFrmTch;
+		
+		private System.Nullable<System.DateTime> _ProFrmTchChkdDate;
+		
+		private System.Nullable<System.DateTime> _VisaChkdDate;
+		
+		private System.Nullable<System.DateTime> _IDChkdDate;
+		
+		private System.Nullable<System.DateTime> _OverseasPoliceChkdDate;
+		
+		private System.Nullable<System.DateTime> _ReferencesChkdDate;
+		
+		private System.Nullable<System.DateTime> _List99ChkdDate;
+		
+		private System.Nullable<System.DateTime> _MedicalChecklistChkdDate;
+		
+		private System.Nullable<System.DateTime> _POAChkdDate;
+		
+		private System.Nullable<bool> _DisqByAssoc;
+		
+		private System.Nullable<System.DateTime> _DisqByAssocChkdDate;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2487,6 +2513,32 @@ namespace RedboxAddin
     partial void OnDBSDirectPaymentChanged();
     partial void OnAttendMMRVChanging(System.Nullable<bool> value);
     partial void OnAttendMMRVChanged();
+    partial void OnQualificationCheckedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnQualificationCheckedDateChanged();
+    partial void OnDBSUpdateSvcChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDBSUpdateSvcChkdDateChanged();
+    partial void OnProFrmTchChanging(System.Nullable<bool> value);
+    partial void OnProFrmTchChanged();
+    partial void OnProFrmTchChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnProFrmTchChkdDateChanged();
+    partial void OnVisaChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnVisaChkdDateChanged();
+    partial void OnIDChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnIDChkdDateChanged();
+    partial void OnOverseasPoliceChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnOverseasPoliceChkdDateChanged();
+    partial void OnReferencesChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnReferencesChkdDateChanged();
+    partial void OnList99ChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnList99ChkdDateChanged();
+    partial void OnMedicalChecklistChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnMedicalChecklistChkdDateChanged();
+    partial void OnPOAChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnPOAChkdDateChanged();
+    partial void OnDisqByAssocChanging(System.Nullable<bool> value);
+    partial void OnDisqByAssocChanged();
+    partial void OnDisqByAssocChkdDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDisqByAssocChkdDateChanged();
     #endregion
 		
 		public Contact()
@@ -4790,6 +4842,266 @@ namespace RedboxAddin
 					this._AttendMMRV = value;
 					this.SendPropertyChanged("AttendMMRV");
 					this.OnAttendMMRVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QualificationCheckedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> QualificationCheckedDate
+		{
+			get
+			{
+				return this._QualificationCheckedDate;
+			}
+			set
+			{
+				if ((this._QualificationCheckedDate != value))
+				{
+					this.OnQualificationCheckedDateChanging(value);
+					this.SendPropertyChanging();
+					this._QualificationCheckedDate = value;
+					this.SendPropertyChanged("QualificationCheckedDate");
+					this.OnQualificationCheckedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DBSUpdateSvcChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DBSUpdateSvcChkdDate
+		{
+			get
+			{
+				return this._DBSUpdateSvcChkdDate;
+			}
+			set
+			{
+				if ((this._DBSUpdateSvcChkdDate != value))
+				{
+					this.OnDBSUpdateSvcChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._DBSUpdateSvcChkdDate = value;
+					this.SendPropertyChanged("DBSUpdateSvcChkdDate");
+					this.OnDBSUpdateSvcChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProFrmTch", DbType="Bit")]
+		public System.Nullable<bool> ProFrmTch
+		{
+			get
+			{
+				return this._ProFrmTch;
+			}
+			set
+			{
+				if ((this._ProFrmTch != value))
+				{
+					this.OnProFrmTchChanging(value);
+					this.SendPropertyChanging();
+					this._ProFrmTch = value;
+					this.SendPropertyChanged("ProFrmTch");
+					this.OnProFrmTchChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProFrmTchChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProFrmTchChkdDate
+		{
+			get
+			{
+				return this._ProFrmTchChkdDate;
+			}
+			set
+			{
+				if ((this._ProFrmTchChkdDate != value))
+				{
+					this.OnProFrmTchChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._ProFrmTchChkdDate = value;
+					this.SendPropertyChanged("ProFrmTchChkdDate");
+					this.OnProFrmTchChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VisaChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> VisaChkdDate
+		{
+			get
+			{
+				return this._VisaChkdDate;
+			}
+			set
+			{
+				if ((this._VisaChkdDate != value))
+				{
+					this.OnVisaChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._VisaChkdDate = value;
+					this.SendPropertyChanged("VisaChkdDate");
+					this.OnVisaChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> IDChkdDate
+		{
+			get
+			{
+				return this._IDChkdDate;
+			}
+			set
+			{
+				if ((this._IDChkdDate != value))
+				{
+					this.OnIDChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._IDChkdDate = value;
+					this.SendPropertyChanged("IDChkdDate");
+					this.OnIDChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OverseasPoliceChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OverseasPoliceChkdDate
+		{
+			get
+			{
+				return this._OverseasPoliceChkdDate;
+			}
+			set
+			{
+				if ((this._OverseasPoliceChkdDate != value))
+				{
+					this.OnOverseasPoliceChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._OverseasPoliceChkdDate = value;
+					this.SendPropertyChanged("OverseasPoliceChkdDate");
+					this.OnOverseasPoliceChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferencesChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ReferencesChkdDate
+		{
+			get
+			{
+				return this._ReferencesChkdDate;
+			}
+			set
+			{
+				if ((this._ReferencesChkdDate != value))
+				{
+					this.OnReferencesChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._ReferencesChkdDate = value;
+					this.SendPropertyChanged("ReferencesChkdDate");
+					this.OnReferencesChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_List99ChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> List99ChkdDate
+		{
+			get
+			{
+				return this._List99ChkdDate;
+			}
+			set
+			{
+				if ((this._List99ChkdDate != value))
+				{
+					this.OnList99ChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._List99ChkdDate = value;
+					this.SendPropertyChanged("List99ChkdDate");
+					this.OnList99ChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MedicalChecklistChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> MedicalChecklistChkdDate
+		{
+			get
+			{
+				return this._MedicalChecklistChkdDate;
+			}
+			set
+			{
+				if ((this._MedicalChecklistChkdDate != value))
+				{
+					this.OnMedicalChecklistChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._MedicalChecklistChkdDate = value;
+					this.SendPropertyChanged("MedicalChecklistChkdDate");
+					this.OnMedicalChecklistChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POAChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> POAChkdDate
+		{
+			get
+			{
+				return this._POAChkdDate;
+			}
+			set
+			{
+				if ((this._POAChkdDate != value))
+				{
+					this.OnPOAChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._POAChkdDate = value;
+					this.SendPropertyChanged("POAChkdDate");
+					this.OnPOAChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisqByAssoc", DbType="Bit")]
+		public System.Nullable<bool> DisqByAssoc
+		{
+			get
+			{
+				return this._DisqByAssoc;
+			}
+			set
+			{
+				if ((this._DisqByAssoc != value))
+				{
+					this.OnDisqByAssocChanging(value);
+					this.SendPropertyChanging();
+					this._DisqByAssoc = value;
+					this.SendPropertyChanged("DisqByAssoc");
+					this.OnDisqByAssocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisqByAssocChkdDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DisqByAssocChkdDate
+		{
+			get
+			{
+				return this._DisqByAssocChkdDate;
+			}
+			set
+			{
+				if ((this._DisqByAssocChkdDate != value))
+				{
+					this.OnDisqByAssocChkdDateChanging(value);
+					this.SendPropertyChanging();
+					this._DisqByAssocChkdDate = value;
+					this.SendPropertyChanged("DisqByAssocChkdDate");
+					this.OnDisqByAssocChkdDateChanged();
 				}
 			}
 		}

@@ -276,7 +276,10 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkDBAsigned = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.dtRedboxLeaveDate = new UIComponent.DateTimePicker();
+            this.dtDBAChkd = new UIComponent.DateTimePicker();
             this.dtGradDate = new UIComponent.DateTimePicker();
             this.dtRedboxStart = new UIComponent.DateTimePicker();
             this.dtLongTermStart = new UIComponent.DateTimePicker();
@@ -303,9 +306,6 @@
             this.dtVisaExpiryDate = new UIComponent.DateTimePicker();
             this.dtGTCCheckDate = new UIComponent.DateTimePicker();
             this.dtOTTEndDate = new UIComponent.DateTimePicker();
-            this.chkDBAsigned = new System.Windows.Forms.CheckBox();
-            this.dtDBAChkd = new UIComponent.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -2101,9 +2101,9 @@
             this.label50.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label50.Location = new System.Drawing.Point(381, 375);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(67, 13);
+            this.label50.Size = new System.Drawing.Size(72, 13);
             this.label50.TabIndex = 75;
-            this.label50.Text = "GTC Number";
+            this.label50.Text = "NCTL Number";
             this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // chkCautionsCRB
@@ -2206,9 +2206,9 @@
             this.label40.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label40.Location = new System.Drawing.Point(628, 393);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(85, 13);
+            this.label40.Size = new System.Drawing.Size(90, 13);
             this.label40.TabIndex = 94;
-            this.label40.Text = "GTC Check Date";
+            this.label40.Text = "NCTL Check Date";
             // 
             // label58
             // 
@@ -3042,6 +3042,27 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // chkDBAsigned
+            // 
+            this.chkDBAsigned.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkDBAsigned.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDBAsigned.Location = new System.Drawing.Point(380, 66);
+            this.chkDBAsigned.Name = "chkDBAsigned";
+            this.chkDBAsigned.Size = new System.Drawing.Size(130, 34);
+            this.chkDBAsigned.TabIndex = 126;
+            this.chkDBAsigned.Text = "Disqualification by Accociation signed";
+            this.chkDBAsigned.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.CausesValidation = false;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(628, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(150, 27);
+            this.label3.TabIndex = 128;
+            this.label3.Text = "Disqualification by Accociation Checked Date";
+            // 
             // dtRedboxLeaveDate
             // 
             this.dtRedboxLeaveDate.CustomFormat = " ";
@@ -3052,6 +3073,17 @@
             this.dtRedboxLeaveDate.Size = new System.Drawing.Size(107, 21);
             this.dtRedboxLeaveDate.TabIndex = 9;
             this.dtRedboxLeaveDate.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtDBAChkd
+            // 
+            this.dtDBAChkd.CustomFormat = " ";
+            this.dtDBAChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDBAChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDBAChkd.Location = new System.Drawing.Point(526, 71);
+            this.dtDBAChkd.Name = "dtDBAChkd";
+            this.dtDBAChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtDBAChkd.TabIndex = 127;
+            this.dtDBAChkd.Value = new System.DateTime(((long)(0)));
             // 
             // dtGradDate
             // 
@@ -3338,38 +3370,6 @@
             this.dtOTTEndDate.Size = new System.Drawing.Size(106, 21);
             this.dtOTTEndDate.TabIndex = 2;
             this.dtOTTEndDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // chkDBAsigned
-            // 
-            this.chkDBAsigned.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkDBAsigned.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDBAsigned.Location = new System.Drawing.Point(380, 66);
-            this.chkDBAsigned.Name = "chkDBAsigned";
-            this.chkDBAsigned.Size = new System.Drawing.Size(130, 34);
-            this.chkDBAsigned.TabIndex = 126;
-            this.chkDBAsigned.Text = "Disqualification by Accociation signed";
-            this.chkDBAsigned.UseVisualStyleBackColor = true;
-            // 
-            // dtDBAChkd
-            // 
-            this.dtDBAChkd.CustomFormat = " ";
-            this.dtDBAChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDBAChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDBAChkd.Location = new System.Drawing.Point(526, 71);
-            this.dtDBAChkd.Name = "dtDBAChkd";
-            this.dtDBAChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtDBAChkd.TabIndex = 127;
-            this.dtDBAChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // label3
-            // 
-            this.label3.CausesValidation = false;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(628, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 27);
-            this.label3.TabIndex = 128;
-            this.label3.Text = "Disqualification by Accociation Checked Date";
             // 
             // frmViewContact
             // 

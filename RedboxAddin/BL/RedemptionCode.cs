@@ -166,8 +166,8 @@ namespace RedboxAddin.BL
         // }
 
 
-        internal static bool SendVettingDetails(string contactID, string schoolID,  bool sendImmediately,
-            string startDate = null, string endDate = null, string yearGroup = null, string requestedBy = null, long MasterBookingID =0)
+        internal static bool SendVettingDetails(bool sendImmediately, string contactID, string schoolID = null, 
+            string startDate = null, string endDate = null, string yearGroup = null, string requestedBy = null, long MasterBookingID = 0)
         {
             MailItem oMail = null;
             try
@@ -186,12 +186,18 @@ namespace RedboxAddin.BL
                 if (contactObj == null) return false;
 
                 //Get the email addresses
-                long schID = Convert.ToInt64(schoolID);
-                School school = LINQmanager.GetSchoolbyID(schID);
-                //DBManager dbm = new DBManager();
-                string vettingEmailAddresses = school.VettingEmails;
-                string schoolName = school.SchoolName;
-                if (vettingEmailAddresses == null) return false;
+                long schID = -1;
+                string vettingEmailAddresses = "";
+                string schoolName = "";
+                if (schoolID != null)
+                {
+                    schID = Convert.ToInt64(schoolID);
+                    School school  = LINQmanager.GetSchoolbyID(schID);
+                    //DBManager dbm = new DBManager();
+                    vettingEmailAddresses = school.VettingEmails;
+                    schoolName = school.SchoolName;
+                    if (vettingEmailAddresses == null) return false;
+                }
 
                 //Get the 'Request By' field from Master Booking if it has not been given
                 if (string.IsNullOrEmpty(requestedBy) && MasterBookingID > 0)
@@ -248,7 +254,6 @@ namespace RedboxAddin.BL
         {
             try
             {
-
                 //Create temp file
                 string filePath = Path.GetTempPath() + "redboxTemp.html";
                 // Check if file already exists. If yes, delete it. 
@@ -257,8 +262,6 @@ namespace RedboxAddin.BL
                     File.Delete(filePath);
                 }
                 File.WriteAllText(filePath, html);
-
-
 
                 Word.Application oWord = new Word.Application();
                 Word.Document oDoc = oWord.Documents.Add();
@@ -270,13 +273,10 @@ namespace RedboxAddin.BL
                 oPara1.Format.SpaceAfter = 24;    //24 pt spacing after paragraph.
                 oPara1.Range.InsertParagraphAfter();
 
-                object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */ 
+                object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
                 Word.Range oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-
                 oRng.InsertFile(filePath);
-
                 oWord.Visible = true;
-
             }
             catch (System.Exception)
             {
@@ -285,8 +285,8 @@ namespace RedboxAddin.BL
             }
         }
 
-        private static MailItem CreateVettingMessage(RContact contactObj, string schoolName, string startDate = null, string endDate = null, 
-                                    string yearGroup = null, string requestedBy = null  )
+        private static MailItem CreateVettingMessage(RContact contactObj, string schoolName, string startDate = null, string endDate = null,
+                                    string yearGroup = null, string requestedBy = null)
         {
             //Create the message
 
@@ -306,15 +306,16 @@ namespace RedboxAddin.BL
                 string myPic = "";
                 string myBody = "";
                 string txtBody = "";
+                string format = "dd/MM/yyyy";
 
                 //set supply date
-                string supplyDate = "01/01/0001"  ;
+                string supplyDate = "01/01/0001";
                 if (startDate != null) supplyDate = startDate;
                 if ((endDate != null) && (endDate != startDate)) supplyDate = supplyDate + " to " + endDate;
 
                 //set year group
-                if (yearGroup==null) yearGroup = "";
-                 
+                if (yearGroup == null) yearGroup = "";
+
 
                 string contentID = "myident";
                 string TableTop = "<table border=" + (char)(34) + "1" + (char)(34) + "width=" + (char)(34) + "100%" +
@@ -327,37 +328,38 @@ namespace RedboxAddin.BL
                 //AddAttachments(ref colAttach);
 
                 //Add Attachments
-                try
-                {
-                    if (contactObj.SendBankStatement)
-                    {
-                        if (!string.IsNullOrWhiteSpace(contactObj.BankStatementLocation))
-                        {
-                            RDOAttachment rAttachment = colAttach.Add(contactObj.BankStatementLocation);
-                            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                        }
-                    }
-                    if (contactObj.SendPassport)
-                    {
-                        if (!string.IsNullOrWhiteSpace(contactObj.PassportLocation))
-                        {
-                            RDOAttachment rAttachment = colAttach.Add(contactObj.PassportLocation);
-                            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                        }
-                    }
-                    if (contactObj.SendVisa)
-                    {
-                        if (!string.IsNullOrWhiteSpace(contactObj.VisaLocation))
-                        {
-                            RDOAttachment rAttachment = colAttach.Add(contactObj.VisaLocation);
-                            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                        }
-                    }
-                }
-                catch (System.Exception ex)
-                {
-                    Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
-                }
+                //Removed 30th January 2015 DT
+                //try
+                //{
+                //    if (contactObj.SendBankStatement)
+                //    {
+                //        if (!string.IsNullOrWhiteSpace(contactObj.BankStatementLocation))
+                //        {
+                //            RDOAttachment rAttachment = colAttach.Add(contactObj.BankStatementLocation);
+                //            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+                //        }
+                //    }
+                //    if (contactObj.SendPassport)
+                //    {
+                //        if (!string.IsNullOrWhiteSpace(contactObj.PassportLocation))
+                //        {
+                //            RDOAttachment rAttachment = colAttach.Add(contactObj.PassportLocation);
+                //            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+                //        }
+                //    }
+                //    if (contactObj.SendVisa)
+                //    {
+                //        if (!string.IsNullOrWhiteSpace(contactObj.VisaLocation))
+                //        {
+                //            RDOAttachment rAttachment = colAttach.Add(contactObj.VisaLocation);
+                //            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
+                //        }
+                //    }
+                //}
+                //catch (System.Exception ex)
+                //{
+                //    Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
+                //}
 
 
                 rMail.Body = " ";
@@ -381,35 +383,24 @@ namespace RedboxAddin.BL
                 TableMiddle = "</td>" + Environment.NewLine + "<td><FONT SIZE=2 FACE=" + (char)34 + "Arial" + (char)34 + ">";
                 //txtBody = txtBody + "Date of Supply: " + contactObj.DateOfSupply.ToShortDateString() + Environment.NewLine;
                 txtBody = txtBody + "Date of Supply: " + supplyDate + Environment.NewLine;
-                if (!string.IsNullOrWhiteSpace(requestedBy))
-                {
-                    txtBody = txtBody + "Requested By: " + requestedBy ;
-                }
                 txtBody = txtBody + Environment.NewLine + "Supply Requirement: Basic Cover" + Environment.NewLine + Environment.NewLine;
                 txtBody = txtBody + "Teacher Name: " + contactObj.FullName + Environment.NewLine + Environment.NewLine;
-                //txtBody = txtBody + "Year Group: " + contactObj.YearGroup + Environment.NewLine;
                 txtBody = txtBody + "Year Group: " + yearGroup + Environment.NewLine;
+                if (!string.IsNullOrWhiteSpace(requestedBy))
+                {
+                    txtBody = txtBody + "Requested By: " + requestedBy;
+                }
                 txtBody = txtBody + Environment.NewLine + "Qualification: " + contactObj.Qualification;
-                if (contactObj.QTS)
-                {
-                    txtBody = txtBody + Environment.NewLine + "QTS? Yes";
-                }
-                else
-                {
-                    txtBody = txtBody + Environment.NewLine + "QTS? No";
-                }
+                txtBody = txtBody + Environment.NewLine + "Date Qualification Checked: " + contactObj.QualificationCheckedDate.ToString(format);
 
-                if (contactObj.NQT)
-                {
-                    txtBody = txtBody + Environment.NewLine + "NQT? Yes";
-                }
-                else
-                {
-                    txtBody = txtBody + Environment.NewLine + "NQT? No";
-                }
+                if (contactObj.QTS) txtBody = txtBody + Environment.NewLine + "QTS? Yes";
+                else txtBody = txtBody + Environment.NewLine + "QTS? No";
 
-                if (contactObj.Instructor) { txtBody = txtBody + Environment.NewLine + "Instructor? Yes"; }
-                else { txtBody = txtBody + Environment.NewLine + "Instructor? No"; }
+                if (contactObj.NQT) txtBody = txtBody + Environment.NewLine + "NQT? Yes";
+                else txtBody = txtBody + Environment.NewLine + "NQT? No";
+
+                //if (contactObj.Instructor) { txtBody = txtBody + Environment.NewLine + "Instructor? Yes"; }
+                //else { txtBody = txtBody + Environment.NewLine + "Instructor? No"; }
 
                 if (contactObj.OverseasTrainedTeacher) { txtBody = txtBody + Environment.NewLine + "Overseas Trained Teacher? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Overseas Trained Teacher? No"; }
@@ -417,26 +408,47 @@ namespace RedboxAddin.BL
                 if (contactObj.CVReceived) { txtBody = txtBody + Environment.NewLine + "CV Received? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "CV Received? No"; }
 
-                if (contactObj.RedboxDBS) { txtBody = txtBody + Environment.NewLine + "Red Box CRB? Yes"; }
-                else { txtBody = txtBody + Environment.NewLine + "Red Box CRB? No"; }
+                if (contactObj.RedboxDBS) { txtBody = txtBody + Environment.NewLine + "Red Box DBS? Yes"; }
+                else { txtBody = txtBody + Environment.NewLine + "Red Box DBS? No"; }
 
-                txtBody = txtBody + Environment.NewLine + "Red Box CRB Form Ref: " + contactObj.DBSFormRef;
-                txtBody = txtBody + Environment.NewLine + "CRB Number: " + contactObj.DBSNumber;
+                txtBody = txtBody + Environment.NewLine + "Red Box DBS Form Ref: " + contactObj.DBSFormRef;
+                txtBody = txtBody + Environment.NewLine + "DBS Number: " + contactObj.DBSNumber;
 
                 if (contactObj.DBSValidFrom != DateTime.MinValue)
                 {
-                    txtBody = txtBody + Environment.NewLine + "CRB Valid from: " + contactObj.DBSValidFrom.ToShortDateString();
+                    txtBody = txtBody + Environment.NewLine + "DBS Valid from: " + contactObj.DBSValidFrom.ToString(format);
                 }
                 else
                 {
-                    txtBody = txtBody + Environment.NewLine + "CRB Valid from: None";
+                    txtBody = txtBody + Environment.NewLine + "DBS Valid from: None";
                 }
 
-                if (contactObj.Cautions_AdditionalInfo_OnDBS) { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? Yes"; }
-                else { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on CRB? No"; }
+                if (contactObj.Cautions_AdditionalInfo_OnDBS) { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on DBS? Yes"; }
+                else { txtBody = txtBody + Environment.NewLine + "Cautions/Convictions on DBS? No"; }
+
+                if (contactObj.ProhibitionFromTeaching) { txtBody = txtBody + Environment.NewLine + "Prohibition From Teaching Check? Yes"; }
+                else { txtBody = txtBody + Environment.NewLine + "Prohibition From Teaching Check? No"; }
+                if (contactObj.ProhibitionFromTeachingCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Prohibition From Teaching Checked: " + contactObj.ProhibitionFromTeachingCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Prohibition From Teaching Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.UpdateService) { txtBody = txtBody + Environment.NewLine + "DBS Update Service? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "DBS Update Service? No"; }
+                if (contactObj.DBSUpdateServiceCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.DBSUpdateServiceCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.VisaExpiryDate != DateTime.MinValue)
                 {
@@ -455,24 +467,87 @@ namespace RedboxAddin.BL
                 {
                     txtBody = txtBody + Environment.NewLine + "Visa Type: None";
                 }
+                if (contactObj.VisaCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.VisaCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.IDChecked) { txtBody = txtBody + Environment.NewLine + "ID checked? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "ID checked? No"; }
+                if (contactObj.IDCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.IDCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.OverseasPoliceCheck) { txtBody = txtBody + Environment.NewLine + "Overseas Police Check? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Overseas Police Check? No"; }
+                if (contactObj.OverseasPoliceCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.OverseasPoliceCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.ReferencesChecked) { txtBody = txtBody + Environment.NewLine + "All References checked? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "All References checked? No"; }
+                if (contactObj.ReferencesCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.ReferencesCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.List99) { txtBody = txtBody + Environment.NewLine + "List 99 undertaken? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "List 99 undertaken? No"; }
+                if (contactObj.List99CheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.List99CheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.MedicalChecklist) { txtBody = txtBody + Environment.NewLine + "Medical Checklist checked? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Medical Checklist checked? No"; }
+                if (contactObj.MedicalChecklistCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.MedicalChecklistCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.ProofOfAddress) { txtBody = txtBody + Environment.NewLine + "Proof of Address checked? Yes"; }
                 else { txtBody = txtBody + Environment.NewLine + "Proof of Address checked? No"; }
+                if (contactObj.ProofOfAddressCheckedDate != DateTime.MinValue)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: " + contactObj.ProofOfAddressCheckedDate.ToString(format);
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Date Checked: None";
+                }
+                txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.RegistrationDate != DateTime.MinValue)
                 {
@@ -480,32 +555,37 @@ namespace RedboxAddin.BL
                 }
                 else { txtBody = txtBody + Environment.NewLine + "Date of Registration: None"; }
 
-                txtBody = txtBody + Environment.NewLine + "GTC Number: " + contactObj.GTCNumber;
+                txtBody = txtBody + Environment.NewLine + "NCTL Number: " + contactObj.GTCNumber;
 
                 if (contactObj.GTCCheckDate != DateTime.MinValue)
                 {
-                    txtBody = txtBody + Environment.NewLine + "GTC Check Date: " + contactObj.GTCCheckDate.ToShortDateString();
+                    txtBody = txtBody + Environment.NewLine + "NCTL Check Date: " + contactObj.GTCCheckDate.ToShortDateString();
                 }
-                else { txtBody = txtBody + Environment.NewLine + "GTC Check Date: None"; }
+                else { txtBody = txtBody + Environment.NewLine + "NCTL Check Date: None"; }
 
                 if (!string.IsNullOrWhiteSpace(contactObj.BirthDate))
                 {
                     txtBody = txtBody + Environment.NewLine + "Date of Birth: " + contactObj.BirthDate;
                 }
                 else { txtBody = txtBody + Environment.NewLine + "Date of Birth: None"; }
+                txtBody = txtBody + Environment.NewLine;
+
+                txtBody = txtBody + Environment.NewLine + "Should you require a copy of the qualification certificates, ";
+                txtBody = txtBody + Environment.NewLine + "references or any of the above checks, please let us know ";
+                txtBody = txtBody + Environment.NewLine + "and we will gladly make them available to you.";
 
                 if (!schoolName.ToLower().Contains("school")) schoolName += " School";
 
-                string textIntro = "Dear " + schoolName + ", <br> <br>" ;
+                string textIntro = "Dear " + schoolName + ", <br> <br>";
                 textIntro += "This email provides the vetting details for the teacher who will be joining you today: " + contactObj.FullName;
                 textIntro += " to cover: " + yearGroup + ".<br><br>";
                 textIntro += "If you have any queries, please contact Redbox Teacher Recruitment on 01932 247000. <br> <br>";
-                textIntro += "regards <br> <br>" ;
+                textIntro += "regards <br> <br>";
                 textIntro += "Redbox Teacher Recruitment <br> <br>";
 
                 txtBody = txtBody + Environment.NewLine;
                 TableBottom = "</td>" + Environment.NewLine + "</tr>" + Environment.NewLine + "</table>";
-                Replacement1 = "<BODY>" + Environment.NewLine +textIntro +Environment.NewLine+  TableTop + myPic + TableMiddle;
+                Replacement1 = "<BODY>" + Environment.NewLine + textIntro + Environment.NewLine + TableTop + myPic + TableMiddle;
                 Replacement2 = TableBottom + "</BODY>";
 
                 oMail.Subject = contactObj.FullName;

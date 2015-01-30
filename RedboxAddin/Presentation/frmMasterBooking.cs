@@ -897,7 +897,7 @@ namespace RedboxAddin.Presentation
                 agegroup = (chkTA.Checked) ? agegroup += "/TA" : agegroup;
 
                 long contactID = (long)mb.ContactID;
-                bool result = RedemptionCode.SendVettingDetails(contactID.ToString(), schoolID.ToString(), false,
+                bool result = RedemptionCode.SendVettingDetails(false, contactID.ToString(), schoolID.ToString(), 
                     dtFrom.Value.ToShortDateString(), dtTo.Value.ToShortDateString(), agegroup, txtRequestedBy.Text);
                 if (result == false)
                 {

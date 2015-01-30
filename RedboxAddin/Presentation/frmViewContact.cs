@@ -118,8 +118,8 @@ namespace RedboxAddin.Presentation
                 dtCRBValidFrom.Value = contactObj.DBSValidFrom;
                 chkDBSDirectPayment.Checked = contactObj.DBSDirectPayment;
                 dtDBSudChk.Value = contactObj.DBSUpdateServiceCheckedDate ;
-                dtDBAChkd.Value = contactObj.DBAChkd ;
-                chkDBAsigned.Checked = contactObj.DBASgnd;
+                dtDBAChkd.Value = contactObj.DisqByAssocChkdDate ;
+                chkDBAsigned.Checked = contactObj.DisqByAssoc;
 
                 txtCurrentPayScale.Text = contactObj.CurrentPayScale;
                 chkCVReceived.Checked = contactObj.CVReceived;
@@ -253,8 +253,8 @@ namespace RedboxAddin.Presentation
                 //contactObj.BankStatementLocation = txtBankStatementLocation.Text;
                 contactObj.BirthDate = txtBirthday.Text;
                 contactObj.Consultant = txtConsultant.Text;
-                contactObj.DBAChkd = dtDBAChkd.Value;
-                contactObj.DBASgnd = chkDBAsigned.Checked;
+                contactObj.DisqByAssocChkdDate = dtDBAChkd.Value;
+                contactObj.DisqByAssoc = chkDBAsigned.Checked;
                 contactObj.DBSandAddressProofMatch = chkProofOfAddress.Checked;
                 contactObj.DBSDateSent = dtCRBDateSent.Value;
                 contactObj.DBSExpiryDate = dtCRBExpiry.Value;
@@ -798,6 +798,19 @@ namespace RedboxAddin.Presentation
         //}
 
         private void btnSendDetails_Click(object sender, EventArgs e)
+        {
+            //SendDetails();
+
+            bool result = RedemptionCode.SendVettingDetails(false, CurrentContactID.ToString(), null, 
+                null, null, null, null);
+            if (result == false)
+            {
+                MessageBox.Show("Error. The email could not be created at this time.");
+            }
+
+        }
+
+        private void SendDetails()
         {
             RDOFolder rFolderDrafts = null;
             RDOItems rItems = null;

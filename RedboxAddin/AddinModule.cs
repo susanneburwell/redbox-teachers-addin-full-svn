@@ -35,6 +35,9 @@ using System.IO;
 //2.0.72 15th Dec DT Minor bug fixes after 2.0.71. Time set to 24hour / view bookings filter was erroneously blocked 
 //2.0.73    16th Dec 2014 Changed back to per machine installation
 //2.0.74 16Dec added missing file to installation (addinexpress toolbar controls)
+//2.0.75 30thjan2015 DT Added lots of contact fields for date items checked and updated the vetting email.
+
+
 namespace RedboxAddin
 {
     /// <summary>
@@ -1404,23 +1407,23 @@ namespace RedboxAddin
 
         private void adxImportContacts_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            if (MessageBox.Show("This will add new contacts to the current contact data and should only be used before the system is live." +
-                "/RDo you want to proceed?", "Carefull!!", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                OLDDBManager odb = new OLDDBManager();
-                List<RContact> contacts = odb.GetOldContacts();
+            //if (MessageBox.Show("This will add new contacts to the current contact data and should only be used before the system is live." +
+            //    "/RDo you want to proceed?", "Carefull!!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //{
+            //    OLDDBManager odb = new OLDDBManager();
+            //    List<RContact> contacts = odb.GetOldContacts();
 
-                DBManager db = new DBManager();
-                int count = 0;
-                foreach (RContact c in contacts)
-                {
-                    count += 1;
-                    db.AddContact(c);
-                }
+            //    DBManager db = new DBManager();
+            //    int count = 0;
+            //    foreach (RContact c in contacts)
+            //    {
+            //        count += 1;
+            //        db.AddContact(c);
+            //    }
 
-                MessageBox.Show(count.ToString() + " contacts added.");
+            //    MessageBox.Show(count.ToString() + " contacts added.");
 
-            }
+            //}
         }
 
         private void adxUpdateContacts_OnClick(object sender, IRibbonControl control, bool pressed)
