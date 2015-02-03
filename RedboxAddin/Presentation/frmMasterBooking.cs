@@ -948,6 +948,36 @@ namespace RedboxAddin.Presentation
             }
         }
 
+        private bool CheckForPastBookings()
+        {
+            try
+            {
+                var bookingList = from b in db.Bookings
+                                    where b.MasterBookingID == _masterBookingID
+                                    && b.Date < DateTime.Today
+                                    select b;
+
+                if (bookingList == null)
+                {
+                    MessageBox.Show("Error Reviewing Past Bookings. Can not delete.");
+                    return true;
+                }
+                else if (bookingList.Count() > 0)
+                {
+                    MessageBox.Show("This Master Booking has Past Bookings already logged. It can not be deleted.");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckForPastBookings(): " + ex.Message);
+                return false;
+            }
+        }
         private bool DeleteBooking()
         {
             try
@@ -1401,6 +1431,8 @@ namespace RedboxAddin.Presentation
                     MessageBox.Show(cmbTeacher.Text + " has a NoGo flagged for " + shortname, "NoGo Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
+              
+
             }
             catch (InvalidCastException ex)
             {
@@ -1431,13 +1463,21 @@ namespace RedboxAddin.Presentation
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("This will delete the entire booking from the system. There is no UNDO option.\r" +
-                "Press OK to Delete, or Cancel to cancel deleting.", "Redbox Warning", MessageBoxButtons.OKCancel);
-            if (dr == DialogResult.OK)
+            bool foundPastBookings = CheckForPastBookings();
+            if (foundPastBookings == true)
             {
-                if (DeleteBooking()) this.Close();
-                else MessageBox.Show("Deletion Failed!");
+                return;  //Message box shows in CheckForPastBookings()
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show("This will delete the entire booking from the system. There is no UNDO option.\r" +
+                    "Press OK to Delete, or Cancel to cancel deleting.", "Redbox Warning", MessageBoxButtons.OKCancel);
+                if (dr == DialogResult.OK)
+                {
+                    if (DeleteBooking()) this.Close();
+                    else MessageBox.Show("Deletion Failed!");
 
+                }
             }
         }
 

@@ -2279,6 +2279,10 @@ namespace RedboxAddin
 		
 		private System.Nullable<System.DateTime> _DisqByAssocChkdDate;
 		
+		private bool _CurrentPayScaleProof;
+		
+		private string _CNGHO;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2539,6 +2543,10 @@ namespace RedboxAddin
     partial void OnDisqByAssocChanged();
     partial void OnDisqByAssocChkdDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDisqByAssocChkdDateChanged();
+    partial void OnCurrentPayScaleProofChanging(bool value);
+    partial void OnCurrentPayScaleProofChanged();
+    partial void OnCNGHOChanging(string value);
+    partial void OnCNGHOChanged();
     #endregion
 		
 		public Contact()
@@ -5102,6 +5110,46 @@ namespace RedboxAddin
 					this._DisqByAssocChkdDate = value;
 					this.SendPropertyChanged("DisqByAssocChkdDate");
 					this.OnDisqByAssocChkdDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentPayScaleProof", DbType="Bit NOT NULL")]
+		public bool CurrentPayScaleProof
+		{
+			get
+			{
+				return this._CurrentPayScaleProof;
+			}
+			set
+			{
+				if ((this._CurrentPayScaleProof != value))
+				{
+					this.OnCurrentPayScaleProofChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentPayScaleProof = value;
+					this.SendPropertyChanged("CurrentPayScaleProof");
+					this.OnCurrentPayScaleProofChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CNGHO", DbType="NVarChar(500)")]
+		public string CNGHO
+		{
+			get
+			{
+				return this._CNGHO;
+			}
+			set
+			{
+				if ((this._CNGHO != value))
+				{
+					this.OnCNGHOChanging(value);
+					this.SendPropertyChanging();
+					this._CNGHO = value;
+					this.SendPropertyChanged("CNGHO");
+					this.OnCNGHOChanged();
 				}
 			}
 		}

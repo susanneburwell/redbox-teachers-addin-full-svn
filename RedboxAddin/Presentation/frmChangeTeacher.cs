@@ -17,12 +17,15 @@ namespace RedboxAddin.Presentation
         RedBoxDB db;
         DateTime selectedDate = new DateTime(2000, 01, 01);
         long masterBookingID = -1;
+        long schoolID = -1;
+        bool formLoading = true;
         #endregion
 
 
         #region Form Load
         public frmChangeTeacher()
         {
+            formLoading = true;
             InitializeComponent();
 
             try
@@ -34,10 +37,12 @@ namespace RedboxAddin.Presentation
             {
                 Debug.DebugMessage(2, "Error in frmChangeTeacher Load: " + ex.Message);
             }
+            formLoading = false;
         }
 
         public frmChangeTeacher(DateTime selectedDate, long masterBookingID)
         {
+            formLoading = true;
             InitializeComponent();
             try
             {
@@ -45,18 +50,22 @@ namespace RedboxAddin.Presentation
                 db = new RedBoxDB(CONNSTR);
                 this.selectedDate = selectedDate;
                 this.masterBookingID = masterBookingID;
+                MasterBooking mb = LINQmanager.GetMasterBookingbyID(masterBookingID);
+                schoolID = mb.SchoolID;
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in frmChangeTeacher Load(DateTime selectedDate, long masterBookingID): " + ex.Message);
             }
+            formLoading = false;
         }
 
         private void frmChangeTeacher_Load(object sender, EventArgs e)
         {
             //populate teachers
+            formLoading = true;
             Utils.PopulateTeacher(cmbTeacher, true);
-
+            formLoading = false;
         } 
         #endregion
 
@@ -69,6 +78,11 @@ namespace RedboxAddin.Presentation
                 //this needs to be clear after another teacher is selected
                 lblError.Visible = true;
             }
+            else if (IsNogo())
+            {
+                MessageBox.Show("There is a NoGo for that Teacher and Schol.", "Can not save changes");
+            }
+
             else
             {
                 MasterBooking oMasterBooking = db.MasterBookings.Where(p => p.ID == this.masterBookingID).SingleOrDefault();
@@ -105,9 +119,36 @@ namespace RedboxAddin.Presentation
             return isClashing;
         }
 
+        private bool IsNogo()
+        {
+            //School school = cmbTeacher.SelectedItem as School;
+            //string strTeacherID = cmbTeacher.Value;
+            long teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+            string nogo = LINQmanager.GetNoGoforContactID(teacherID).ToLower();
+            if (nogo == "") 
+            {
+                lblNogo.Text = " - ";
+                return false;
+            }
+            else lblNogo.Text = nogo;
+            string shortname = LINQmanager.GetShortNameforSchoolID(schoolID).ToLower();
+            if (shortname == "") return false;
+
+            if (nogo.Contains(shortname))
+            {
+                MessageBox.Show(cmbTeacher.Text + " has a NoGo flagged for " + shortname, "NoGo Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void cmbTeacher_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblError.Visible = false;
+            if (!formLoading) IsNogo();
         }
     }
 }

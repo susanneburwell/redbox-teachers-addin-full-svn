@@ -34,6 +34,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblNogo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -41,7 +43,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(49, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 21);
+            this.label2.Size = new System.Drawing.Size(94, 16);
             this.label2.TabIndex = 14;
             this.label2.Text = "Select Teacher";
             // 
@@ -53,13 +55,13 @@
             this.cmbTeacher.Location = new System.Drawing.Point(200, 55);
             this.cmbTeacher.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTeacher.Name = "cmbTeacher";
-            this.cmbTeacher.Size = new System.Drawing.Size(289, 27);
+            this.cmbTeacher.Size = new System.Drawing.Size(289, 24);
             this.cmbTeacher.TabIndex = 0;
             this.cmbTeacher.SelectedIndexChanged += new System.EventHandler(this.cmbTeacher_SelectedIndexChanged);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(200, 111);
+            this.btnSave.Location = new System.Drawing.Point(202, 120);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(136, 34);
@@ -70,7 +72,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(353, 111);
+            this.btnClose.Location = new System.Drawing.Point(355, 120);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(136, 34);
@@ -86,17 +88,37 @@
             this.lblError.ForeColor = System.Drawing.Color.Red;
             this.lblError.Location = new System.Drawing.Point(7, 11);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(571, 18);
+            this.lblError.Size = new System.Drawing.Size(484, 14);
             this.lblError.TabIndex = 14;
             this.lblError.Text = "Availability Error: Selected teacher is not available on one or more dates of the" +
     " booking";
             this.lblError.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(49, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "NoGo:";
+            // 
+            // lblNogo
+            // 
+            this.lblNogo.AutoSize = true;
+            this.lblNogo.Location = new System.Drawing.Point(199, 93);
+            this.lblNogo.Name = "lblNogo";
+            this.lblNogo.Size = new System.Drawing.Size(13, 16);
+            this.lblNogo.TabIndex = 16;
+            this.lblNogo.Text = "-";
+            // 
             // frmChangeTeacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 167);
+            this.Controls.Add(this.lblNogo);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblError);
@@ -123,5 +145,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNogo;
     }
 }

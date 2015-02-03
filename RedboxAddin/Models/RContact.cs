@@ -41,7 +41,7 @@ namespace RedboxAddin.Models
         //public string BankSortCode { get; set; }
         //public string BankStatementLocation { get; set; }
         public string BirthDate { get; set; }
-        public string Consultant { get; set; }
+        //public string Consultant { get; set; }
         public bool DBSandAddressProofMatch { get; set; } //**??
         public DateTime DBSDateSent { get; set; }
         public DateTime DBSExpiryDate { get; set; }
@@ -52,7 +52,9 @@ namespace RedboxAddin.Models
         public bool DBSDirectPayment { get; set; }
         public bool DisqByAssoc { get; set; }
         public DateTime DisqByAssocChkdDate { get; set; }
+        public string CNGHO { get; set; }
         public string CurrentPayScale { get; set; }
+        public bool CurrentPayScaleProof { get; set; }
         public bool CVReceived { get; set; }
         public DateTime DateOfSupply { get; set; }
         public DateTime FirstDayTeachingUK { get; set; }
@@ -60,9 +62,9 @@ namespace RedboxAddin.Models
         public string GTCNumber { get; set; }
         public bool IDChecked { get; set; }
         public DateTime IDCheckedDate { get; set; }
-        public bool Instructor { get; set; }
+        //public bool Instructor { get; set; }
         public string InterviewNotes { get; set; }
-        public string KeyRef { get; set; }
+        //public string KeyRef { get; set; }
         public string LateRecord { get; set; }
         public bool List99 { get; set; }
         public DateTime List99CheckedDate { get; set; }
@@ -127,6 +129,7 @@ namespace RedboxAddin.Models
         //public bool SendPassport { get; set; }
         //public bool SendVisa { get; set; }
         public string SicknessRecord { get; set; }
+        public string Summary { get; set; }
         public string TeacherStatus { get; set; }
         public DateTime UKArrivalDate { get; set; }
         public bool UpdateService { get; set; }

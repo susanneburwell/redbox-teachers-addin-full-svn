@@ -36,6 +36,10 @@ using System.IO;
 //2.0.73    16th Dec 2014 Changed back to per machine installation
 //2.0.74 16Dec added missing file to installation (addinexpress toolbar controls)
 //2.0.75 30thjan2015 DT Added lots of contact fields for date items checked and updated the vetting email.
+//2.0.77 3Feb2015 DT Add summary notes to summary page. Check NoGo when changing teachers. Set status to unassigned when changing teacher. 
+//                      Teachers are not permanently deleted but have a flag set to 'Deleted'. 
+//                      Don't allow master booking to be deleted if there are past bookings for this master booking
+
 
 
 namespace RedboxAddin
@@ -122,6 +126,8 @@ namespace RedboxAddin
         private ADXCommandBarButton adxCommandBarButton1;
         private ADXCommandBarButton adxcbEditPaymentTypes;
         private ADXRibbonButton adxEditPaymentTypes;
+        private ADXRibbonButton adxRibbonDCR;
+        private ADXCommandBarButton adxDailyContactReport;
 
         #region Component Designer generated code
         /// <summary>
@@ -206,6 +212,8 @@ namespace RedboxAddin
             this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton1 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxDailyContactReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxRibbonDCR = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxTabMail
             // 
@@ -373,7 +381,7 @@ namespace RedboxAddin
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 28;
+            this.commandBarRedboxAddin.UpdateCounter = 29;
             // 
             // cbBtnNewContact
             // 
@@ -535,6 +543,7 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxSendVetting);
             this.adxOptions.Controls.Add(this.adxEditSchool);
             this.adxOptions.Controls.Add(this.adxEditPaymentTypes);
+            this.adxOptions.Controls.Add(this.adxRibbonDCR);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.Image = 5;
             this.adxOptions.ImageList = this.imageList32;
@@ -775,6 +784,7 @@ namespace RedboxAddin
             this.adxCommandBarPopup1.Controls.Add(this.adxcbSendVetting);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbEditSchools);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbEditPaymentTypes);
+            this.adxCommandBarPopup1.Controls.Add(this.adxDailyContactReport);
             this.adxCommandBarPopup1.ControlTag = "049113cd-d4a7-4d94-9e8a-f9bcc775fb2f";
             this.adxCommandBarPopup1.Temporary = true;
             this.adxCommandBarPopup1.UpdateCounter = 1;
@@ -922,6 +932,23 @@ namespace RedboxAddin
             this.adxCommandBarButton1.Temporary = true;
             this.adxCommandBarButton1.UpdateCounter = 3;
             this.adxCommandBarButton1.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxCommandBarButton1_Click);
+            // 
+            // adxDailyContactReport
+            // 
+            this.adxDailyContactReport.Caption = "Daily Contact Report";
+            this.adxDailyContactReport.ControlTag = "7772cc69-ef76-4ae7-823e-1b35daac387d";
+            this.adxDailyContactReport.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxDailyContactReport.Temporary = true;
+            this.adxDailyContactReport.UpdateCounter = 4;
+            this.adxDailyContactReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxDailyContactReport_Click);
+            // 
+            // adxRibbonDCR
+            // 
+            this.adxRibbonDCR.Caption = "Daily Contact Report";
+            this.adxRibbonDCR.Id = "adxRibbonButton_4074e733ed8d467187141363ea75c48b";
+            this.adxRibbonDCR.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxRibbonDCR.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxRibbonDCR.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibbonDCR_OnClick);
             // 
             // AddinModule
             // 
@@ -1793,6 +1820,20 @@ namespace RedboxAddin
 
 
         #endregion
+
+        private void adxDailyContactReport_Click(object sender)
+        {
+            frmReport fr = new frmReport();
+            fr.Show();
+        }
+
+        private void adxRibbonDCR_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            frmReport fr = new frmReport();
+            fr.Show();
+        }
+
+       
 
         
 

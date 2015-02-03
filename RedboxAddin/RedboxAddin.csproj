@@ -264,6 +264,12 @@
     <Compile Include="Presentation\frmReminderExp.Designer.cs">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmSendVetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmReminderExp.resx">
       <DependentUpon>frmReminderExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmSendVetting.resx">
       <DependentUpon>frmSendVetting.cs</DependentUpon>
