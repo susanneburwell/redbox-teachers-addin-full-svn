@@ -78,6 +78,7 @@
             this.btnAddNotes = new System.Windows.Forms.Button();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkVettingAM = new System.Windows.Forms.CheckBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -85,7 +86,7 @@
             this.txtTALTDay = new System.Windows.Forms.TextBox();
             this.txtTAHfDayCharge = new System.Windows.Forms.TextBox();
             this.txtTADayCharge = new System.Windows.Forms.TextBox();
-            this.chkVettingAM = new System.Windows.Forms.CheckBox();
+            this.chkUseSchoolRate = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -161,11 +162,10 @@
             // 
             // chkRequirePofA
             // 
-            this.chkRequirePofA.AutoSize = true;
             this.chkRequirePofA.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkRequirePofA.Location = new System.Drawing.Point(403, 79);
             this.chkRequirePofA.Name = "chkRequirePofA";
-            this.chkRequirePofA.Size = new System.Drawing.Size(225, 20);
+            this.chkRequirePofA.Size = new System.Drawing.Size(238, 20);
             this.chkRequirePofA.TabIndex = 10;
             this.chkRequirePofA.Text = "Requires Proof of Address?           ";
             this.chkRequirePofA.UseVisualStyleBackColor = true;
@@ -525,6 +525,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkUseSchoolRate);
             this.panel1.Controls.Add(this.chkVettingAM);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.label23);
@@ -579,6 +580,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1000, 494);
             this.panel1.TabIndex = 1;
+            // 
+            // chkVettingAM
+            // 
+            this.chkVettingAM.AutoSize = true;
+            this.chkVettingAM.Location = new System.Drawing.Point(14, 464);
+            this.chkVettingAM.Name = "chkVettingAM";
+            this.chkVettingAM.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkVettingAM.Size = new System.Drawing.Size(136, 20);
+            this.chkVettingAM.TabIndex = 51;
+            this.chkVettingAM.Text = "               Vetting AM";
+            this.chkVettingAM.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
@@ -637,16 +649,15 @@
             this.txtTADayCharge.Size = new System.Drawing.Size(68, 22);
             this.txtTADayCharge.TabIndex = 15;
             // 
-            // chkVettingAM
+            // chkUseSchoolRate
             // 
-            this.chkVettingAM.AutoSize = true;
-            this.chkVettingAM.Location = new System.Drawing.Point(14, 464);
-            this.chkVettingAM.Name = "chkVettingAM";
-            this.chkVettingAM.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkVettingAM.Size = new System.Drawing.Size(136, 20);
-            this.chkVettingAM.TabIndex = 51;
-            this.chkVettingAM.Text = "               Vetting AM";
-            this.chkVettingAM.UseVisualStyleBackColor = true;
+            this.chkUseSchoolRate.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkUseSchoolRate.Location = new System.Drawing.Point(404, 105);
+            this.chkUseSchoolRate.Name = "chkUseSchoolRate";
+            this.chkUseSchoolRate.Size = new System.Drawing.Size(237, 20);
+            this.chkUseSchoolRate.TabIndex = 52;
+            this.chkUseSchoolRate.Text = "Always Use School rate";
+            this.chkUseSchoolRate.UseVisualStyleBackColor = true;
             // 
             // frmEditSchool
             // 
@@ -731,5 +742,6 @@
         private System.Windows.Forms.TextBox txtTADayCharge;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.CheckBox chkVettingAM;
+        private System.Windows.Forms.CheckBox chkUseSchoolRate;
     }
 }

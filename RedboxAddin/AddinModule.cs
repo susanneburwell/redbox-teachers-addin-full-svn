@@ -39,7 +39,7 @@ using System.IO;
 //2.0.77 3Feb2015 DT Add summary notes to summary page. Check NoGo when changing teachers. Set status to unassigned when changing teacher. 
 //                      Teachers are not permanently deleted but have a flag set to 'Deleted'. 
 //                      Don't allow master booking to be deleted if there are past bookings for this master booking
-
+//2.0.78 4Feb2015   DT  Create report to show DBS expiring and LT 12wk/12month. Add coplours to view bookings, Create an option for schools - always pay this rate (£130)
 
 
 namespace RedboxAddin

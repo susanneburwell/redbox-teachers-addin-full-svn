@@ -2206,7 +2206,7 @@ namespace RedboxAddin.DL
                 DBSFormRef = dr["CRBFormRef"].ToString(),
                 DBSNumber = dr["CRBNumber"].ToString(),
                 DBSValidFrom = CheckDate(dr["CRBValidFrom"].ToString()),
-                DBSDirectPayment = CheckBool(dr["DBSDirectPayment"]),
+                //DBSDirectPayment = CheckBool(dr["DBSDirectPayment"]),
                 DBSUpdateServiceCheckedDate = CheckDate(dr["DBSUpdateSvcChkdDate"].ToString()),
                 DisqByAssocChkdDate = CheckDate(dr["DisqByAssocChkdDate"].ToString()),
                 DisqByAssoc = CheckBool(dr["DisqByAssoc"]),
@@ -2240,10 +2240,10 @@ namespace RedboxAddin.DL
                 //PassportNo = dr["PassportNo"].ToString(),
                 //PassportLocation = dr["PassportLocation"].ToString(),
                 PayDetails = dr["PayDetails"].ToString(),
-                PAYETeacherContractSigned = CheckBool(dr["PAYETeacherContractSigned"].ToString()),
+                //PAYETeacherContractSigned = CheckBool(dr["PAYETeacherContractSigned"].ToString()),
                 PhotoLocation = dr["PhotoLocation"].ToString(),
                 GraduationDate = CheckDate(dr["GraduationDate"].ToString()),
-                ProtabilityCheckSent = CheckDate(dr["ProtabilityCheckSent"].ToString()),
+                //ProtabilityCheckSent = CheckDate(dr["ProtabilityCheckSent"].ToString()),
                 ProtabilityReceivedDate = CheckDate(dr["ProtabilityReceivedDate"].ToString()),
                 ProofOfAddress = CheckBool(dr["ProofOfAddress"].ToString()),
                 ProofOfAddressCheckedDate = CheckDate(dr["POAChkdDate"].ToString()),
@@ -2288,10 +2288,10 @@ namespace RedboxAddin.DL
                 //SendVisa = CheckBool(dr["SendVisa"].ToString()),
                 SicknessRecord = dr["SicknessRecord"].ToString(),
                 Summary = dr["Summary"].ToString(),
-                TeacherStatus = dr["TeacherStatus"].ToString(),
+                //TeacherStatus = dr["TeacherStatus"].ToString(),
                 UKArrivalDate = CheckDate(dr["UKArrivalDate"].ToString()),
                 UpdateService = CheckBool(dr["UpdateService"].ToString()),
-                UpdateServiceRegisteredDate = CheckDate(dr["UpdateServiceRegisteredDate"].ToString()),
+                //UpdateServiceRegisteredDate = CheckDate(dr["UpdateServiceRegisteredDate"].ToString()),
                 VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
                 VisaType = dr["VisaType"].ToString(),
                 VisaCheckedDate = CheckDate(dr["VisaChkdDate"].ToString()),
@@ -2683,7 +2683,7 @@ namespace RedboxAddin.DL
                     + "CurrentPayScale,"
                     + "CurrentPayScaleProof,"
                     + "CNGHO,"
-                    + "DBSDirectPayment,"
+                    //+ "DBSDirectPayment,"
                     + "DBSUpdateSvcChkdDate, "
                     + "DisqByAssoc, "
                     + "DisqByAssocChkdDate, "
@@ -2714,10 +2714,10 @@ namespace RedboxAddin.DL
                     //+ "PassportNo,"
                     //+ "PassportLocation,"
                     + "PayDetails,"
-                    + "PAYETeacherContractSigned,"
+                    //+ "PAYETeacherContractSigned,"
                     + "PhotoLocation,"
                     + "GraduationDate,"
-                    + "ProtabilityCheckSent,"
+                    //+ "ProtabilityCheckSent,"
                     + "ProtabilityReceivedDate,"
                     + "ProFrmTch, "
                     + "ProFrmTchChkdDate, "
@@ -2762,10 +2762,10 @@ namespace RedboxAddin.DL
                     //+ "SendVisa,"
                     + "SicknessRecord,"
                     + "Summary,"
-                    + "TeacherStatus,"
+                    //+ "TeacherStatus,"
                     + "UKArrivalDate,"
                     + "UpdateService,"
-                    + "UpdateServiceRegisteredDate,"
+                    //+ "UpdateServiceRegisteredDate,"
                     + "VisaExpiryDate,"
                     + "VisaType,"
                     + "VisaChkdDate, "
@@ -2813,7 +2813,7 @@ namespace RedboxAddin.DL
                     + "@CurrentPayScale,"
                     + "@CurrentPayScaleProof,"
                     + "@CNGHO,"
-                    + "@DBSDirectPayment,"
+                    //+ "@DBSDirectPayment,"
                     + "@DBSUpdateSvcChkdDate, "
                     + "@DisqByAssoc, "
                     + "@DisqByAssocChkdDate, "
@@ -2845,10 +2845,10 @@ namespace RedboxAddin.DL
                     //+ "@PassportNo,"
                     //+ "@PassportLocation,"
                     + "@PayDetails,"
-                    + "@PAYETeacherContractSigned,"
+                    //+ "@PAYETeacherContractSigned,"
                     + "@PhotoLocation,"
                     + "@GraduationDate,"
-                    + "@ProtabilityCheckSent,"
+                    //+ "@ProtabilityCheckSent,"
                     + "@ProtabilityReceivedDate,"
                     + "@ProFrmTch, "
                     + "@ProFrmTchChkdDate, "
@@ -2893,10 +2893,10 @@ namespace RedboxAddin.DL
                     //+ "@SendVisa,"
                     + "@SicknessRecord,"
                     + "@Summary,"
-                    + "@TeacherStatus,"
+                    //+ "@TeacherStatus,"
                     + "@UKArrivalDate,"
                     + "@UpdateService,"
-                    + "@UpdateServiceRegisteredDate,"
+                    //+ "@UpdateServiceRegisteredDate,"
                     + "@VisaExpiryDate,"
                     + "@VisaType,"
                     + "@VisaChkdDate, "
@@ -2945,7 +2945,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.AddWithValue("@CRBFormRef",  CheckVals(contactObj.DBSFormRef));
                 CmdAddContact.Parameters.AddWithValue("@CRBNumber",  CheckVals(contactObj.DBSNumber));
                 CmdAddContact.Parameters.AddWithValue("@CRBValidFrom",  FilterSQLDate(contactObj.DBSValidFrom));
-                CmdAddContact.Parameters.AddWithValue("@DBSDirectPayment",  CheckVals(contactObj.DBSDirectPayment));
+                //CmdAddContact.Parameters.AddWithValue("@DBSDirectPayment",  CheckVals(contactObj.DBSDirectPayment));
                 CmdAddContact.Parameters.AddWithValue("@DBSUpdateSvcChkdDate", FilterSQLDate(contactObj.DBSUpdateServiceCheckedDate));
                 CmdAddContact.Parameters.AddWithValue("@DisqByAssoc", CheckVals(contactObj.DisqByAssoc));
                 CmdAddContact.Parameters.AddWithValue("@DisqByAssocChkdDate", FilterSQLDate(contactObj.DisqByAssocChkdDate));
@@ -2979,12 +2979,12 @@ namespace RedboxAddin.DL
                 //CmdAddContact.Parameters.AddWithValue("@PassportNo",  CheckVals(contactObj.PassportNo));
                 //CmdAddContact.Parameters.AddWithValue("@PassportLocation",  CheckVals(contactObj.PassportLocation));
                 CmdAddContact.Parameters.AddWithValue("@PayDetails",  CheckVals(contactObj.PayDetails));
-                CmdAddContact.Parameters.AddWithValue("@PAYETeacherContractSigned",  CheckVals(contactObj.PAYETeacherContractSigned));
+                //CmdAddContact.Parameters.AddWithValue("@PAYETeacherContractSigned",  CheckVals(contactObj.PAYETeacherContractSigned));
                 CmdAddContact.Parameters.AddWithValue("@PhotoLocation",  CheckVals(contactObj.PhotoLocation));
                 CmdAddContact.Parameters.AddWithValue("@GraduationDate",  FilterSQLDate(contactObj.GraduationDate));
                 CmdAddContact.Parameters.AddWithValue("@ProFrmTchChkdDate", FilterSQLDate(contactObj.ProhibitionFromTeachingCheckedDate));
                 CmdAddContact.Parameters.AddWithValue("@ProFrmTch", CheckVals(contactObj.ProhibitionFromTeaching));
-                CmdAddContact.Parameters.AddWithValue("@ProtabilityCheckSent",  FilterSQLDate(contactObj.ProtabilityCheckSent));
+                //CmdAddContact.Parameters.AddWithValue("@ProtabilityCheckSent",  FilterSQLDate(contactObj.ProtabilityCheckSent));
                 CmdAddContact.Parameters.AddWithValue("@ProtabilityReceivedDate",  FilterSQLDate(contactObj.ProtabilityReceivedDate));
                 CmdAddContact.Parameters.AddWithValue("@ProofOfAddress",  CheckVals(contactObj.ProofOfAddress));
                 CmdAddContact.Parameters.AddWithValue("@POAChkdDate", FilterSQLDate(contactObj.ProofOfAddressCheckedDate));
@@ -3027,10 +3027,10 @@ namespace RedboxAddin.DL
                 //CmdAddContact.Parameters.AddWithValue("@SendVisa",  CheckVals(contactObj.SendVisa));
                 CmdAddContact.Parameters.AddWithValue("@SicknessRecord", CheckVals(contactObj.SicknessRecord));
                 CmdAddContact.Parameters.AddWithValue("@Summary", CheckVals(contactObj.Summary));
-                CmdAddContact.Parameters.AddWithValue("@TeacherStatus", CheckVals(contactObj.TeacherStatus));
+                //CmdAddContact.Parameters.AddWithValue("@TeacherStatus", CheckVals(contactObj.TeacherStatus));
                 CmdAddContact.Parameters.AddWithValue("@UKArrivalDate",  FilterSQLDate(contactObj.UKArrivalDate));
                 CmdAddContact.Parameters.AddWithValue("@UpdateService",  CheckVals(contactObj.UpdateService));
-                CmdAddContact.Parameters.AddWithValue("@UpdateServiceRegisteredDate",  FilterSQLDate(contactObj.UpdateServiceRegisteredDate));
+                //CmdAddContact.Parameters.AddWithValue("@UpdateServiceRegisteredDate",  FilterSQLDate(contactObj.UpdateServiceRegisteredDate));
                 CmdAddContact.Parameters.AddWithValue("@VisaExpiryDate",  FilterSQLDate(contactObj.VisaExpiryDate));
                 CmdAddContact.Parameters.AddWithValue("@VisaType",  CheckVals(contactObj.VisaType));
                 CmdAddContact.Parameters.AddWithValue("@VisaChkdDate", FilterSQLDate(contactObj.VisaCheckedDate));
@@ -3096,7 +3096,7 @@ namespace RedboxAddin.DL
                        + "CRBFormRef = @CRBFormRef, "
                        + "CRBNumber = @CRBNumber, "
                        + "CRBValidFrom = @CRBValidFrom, "
-                       + "DBSDirectPayment = @DBSDirectPayment, "
+                       //+ "DBSDirectPayment = @DBSDirectPayment, "
                        + "DBSUpdateSvcChkdDate = @DBSUpdateSvcChkdDate, "
                        + "DisqByAssoc = @DisqByAssoc, "
                        + "DisqByAssocChkdDate = @DisqByAssocChkdDate, "
@@ -3130,12 +3130,12 @@ namespace RedboxAddin.DL
                     //+ "PassportNo = @PassportNo, "
                     //+ "PassportLocation = @PassportLocation, "
                        + "PayDetails = @PayDetails, "
-                       + "PAYETeacherContractSigned = @PAYETeacherContractSigned, "
+                      // + "PAYETeacherContractSigned = @PAYETeacherContractSigned, "
                        + "PhotoLocation = @PhotoLocation,"
                        + "GraduationDate = @GraduationDate, "
                        + "ProFrmTch = @ProFrmTch, "
                        + "ProFrmTchChkdDate = @ProFrmTchChkdDate, "
-                       + "ProtabilityCheckSent = @ProtabilityCheckSent, "
+                       //+ "ProtabilityCheckSent = @ProtabilityCheckSent, "
                        + "ProtabilityReceivedDate = @ProtabilityReceivedDate, "
                        + "ProofOfAddress = @ProofOfAddress, "
                        + "POAChkdDate = @POAChkdDate, "
@@ -3178,10 +3178,10 @@ namespace RedboxAddin.DL
                     //+ "SendVisa = @SendVisa, "
                        + "SicknessRecord = @SicknessRecord, "
                        + "Summary = @Summary, "
-                       + "TeacherStatus = @TeacherStatus, "
+                       //+ "TeacherStatus = @TeacherStatus, "
                        + "UKArrivalDate = @UKArrivalDate, "
                        + "UpdateService = @UpdateService,"
-                       + "UpdateServiceRegisteredDate = @UpdateServiceRegisteredDate,"
+                       //+ "UpdateServiceRegisteredDate = @UpdateServiceRegisteredDate,"
                        + "VisaExpiryDate = @VisaExpiryDate, "
                        + "VisaType = @VisaType, "
                     //+ "VisaLocation = @VisaLocation, "
@@ -3229,7 +3229,7 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.AddWithValue("@CRBFormRef", CheckVals(contactObj.DBSFormRef));
                 CmdUpdateContact.Parameters.AddWithValue("@CRBNumber", CheckVals(contactObj.DBSNumber));
                 CmdUpdateContact.Parameters.AddWithValue("@CRBValidFrom", FilterSQLDate(contactObj.DBSValidFrom));
-                CmdUpdateContact.Parameters.AddWithValue("@DBSDirectPayment", CheckVals(contactObj.DBSDirectPayment));
+                //CmdUpdateContact.Parameters.AddWithValue("@DBSDirectPayment", CheckVals(contactObj.DBSDirectPayment));
                 CmdUpdateContact.Parameters.AddWithValue("@DBSUpdateSvcChkdDate", FilterSQLDate(contactObj.DBSUpdateServiceCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@DisqByAssoc", CheckVals(contactObj.DisqByAssoc));
                 CmdUpdateContact.Parameters.AddWithValue("@DisqByAssocChkdDate", FilterSQLDate(contactObj.DisqByAssocChkdDate));
@@ -3263,12 +3263,12 @@ namespace RedboxAddin.DL
                 //CmdUpdateContact.Parameters.AddWithValue("@PassportNo", CheckVals(contactObj.PassportNo));
                 //CmdUpdateContact.Parameters.AddWithValue("@PassportLocation", CheckVals(contactObj.PassportLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@PayDetails", CheckVals(contactObj.PayDetails));
-                CmdUpdateContact.Parameters.AddWithValue("@PAYETeacherContractSigned", CheckVals(contactObj.PAYETeacherContractSigned));
+                //CmdUpdateContact.Parameters.AddWithValue("@PAYETeacherContractSigned", CheckVals(contactObj.PAYETeacherContractSigned));
                 CmdUpdateContact.Parameters.AddWithValue("@PhotoLocation", CheckVals(contactObj.PhotoLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@GraduationDate", FilterSQLDate(contactObj.GraduationDate));
                 CmdUpdateContact.Parameters.AddWithValue("@ProFrmTchChkdDate", FilterSQLDate(contactObj.ProhibitionFromTeachingCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@ProFrmTch", CheckVals(contactObj.ProhibitionFromTeaching));
-                CmdUpdateContact.Parameters.AddWithValue("@ProtabilityCheckSent", FilterSQLDate(contactObj.ProtabilityCheckSent));
+                //CmdUpdateContact.Parameters.AddWithValue("@ProtabilityCheckSent", FilterSQLDate(contactObj.ProtabilityCheckSent));
                 CmdUpdateContact.Parameters.AddWithValue("@ProtabilityReceivedDate", FilterSQLDate(contactObj.ProtabilityReceivedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@ProofOfAddress", CheckVals(contactObj.ProofOfAddress));
                 CmdUpdateContact.Parameters.AddWithValue("@POAChkdDate", FilterSQLDate(contactObj.ProofOfAddressCheckedDate));
@@ -3311,10 +3311,10 @@ namespace RedboxAddin.DL
                 //CmdUpdateContact.Parameters.AddWithValue("@SendVisa", CheckVals(contactObj.SendVisa));
                 CmdUpdateContact.Parameters.AddWithValue("@SicknessRecord", CheckVals(contactObj.SicknessRecord));
                 CmdUpdateContact.Parameters.AddWithValue("@Summary", CheckVals(contactObj.Summary));
-                CmdUpdateContact.Parameters.AddWithValue("@TeacherStatus", CheckVals(contactObj.TeacherStatus));
+                //CmdUpdateContact.Parameters.AddWithValue("@TeacherStatus", CheckVals(contactObj.TeacherStatus));
                 CmdUpdateContact.Parameters.AddWithValue("@UKArrivalDate", FilterSQLDate(contactObj.UKArrivalDate));
                 CmdUpdateContact.Parameters.AddWithValue("@UpdateService", CheckVals(contactObj.UpdateService));
-                CmdUpdateContact.Parameters.AddWithValue("@UpdateServiceRegisteredDate", FilterSQLDate(contactObj.UpdateServiceRegisteredDate));
+                //CmdUpdateContact.Parameters.AddWithValue("@UpdateServiceRegisteredDate", FilterSQLDate(contactObj.UpdateServiceRegisteredDate));
                 CmdUpdateContact.Parameters.AddWithValue("@VisaExpiryDate", FilterSQLDate(contactObj.VisaExpiryDate));
                 CmdUpdateContact.Parameters.AddWithValue("@VisaChkdDate", FilterSQLDate(contactObj.VisaCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@VisaType", CheckVals(contactObj.VisaType));

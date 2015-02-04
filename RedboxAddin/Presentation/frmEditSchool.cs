@@ -103,7 +103,7 @@ namespace RedboxAddin.Presentation
                     txtSageAccountRef.Text = "";
                     txtNotes.Text = "";
                     chkVettingAM.Checked = false;
-
+                    chkUseSchoolRate.Checked = false;
 
                     return;
                 }
@@ -144,6 +144,7 @@ namespace RedboxAddin.Presentation
                             txtSageAccountRef.Text = school.SageName;
                             txtNotes.Text = school.Notes;
                             chkVettingAM.Checked = school.VettingAM;
+                            chkUseSchoolRate.Checked = school.AlwaysUseSchoolRate;
 
                             return;
                         }
@@ -193,6 +194,7 @@ namespace RedboxAddin.Presentation
                         school.SageName = txtSageAccountRef.Text;
                         school.Notes = txtNotes.Text;
                         school.VettingAM = chkVettingAM.Checked;
+                        school.AlwaysUseSchoolRate = chkUseSchoolRate.Checked;
 
                         db.Schools.InsertOnSubmit(school);
                         db.SubmitChanges();
@@ -231,6 +233,7 @@ namespace RedboxAddin.Presentation
                             school.SageName = txtSageAccountRef.Text;
                             school.Notes = txtNotes.Text;
                             school.VettingAM = chkVettingAM.Checked;
+                            school.AlwaysUseSchoolRate = chkUseSchoolRate.Checked;
                             db.SubmitChanges();
                         }
                         return true;

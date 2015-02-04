@@ -49,7 +49,7 @@ namespace RedboxAddin.Models
         public string DBSFormRef { get; set; }
         public string DBSNumber { get; set; }
         public DateTime DBSValidFrom { get; set; }
-        public bool DBSDirectPayment { get; set; }
+        //public bool DBSDirectPayment { get; set; }
         public bool DisqByAssoc { get; set; }
         public DateTime DisqByAssocChkdDate { get; set; }
         public string CNGHO { get; set; }
@@ -84,10 +84,10 @@ namespace RedboxAddin.Models
         public string PayDetails { get; set; }
         public bool ProhibitionFromTeaching { get; set; }
         public DateTime ProhibitionFromTeachingCheckedDate { get; set; }
-        public bool PAYETeacherContractSigned { get; set; }
+        //public bool PAYETeacherContractSigned { get; set; }
         public string PhotoLocation { get; set; }
         public DateTime GraduationDate { get; set; }
-        public DateTime ProtabilityCheckSent { get; set; }
+        //public DateTime ProtabilityCheckSent { get; set; }
         public DateTime ProtabilityReceivedDate { get; set; }
         public bool ProofOfAddress { get; set; }
         public DateTime ProofOfAddressCheckedDate { get; set; }
@@ -130,10 +130,10 @@ namespace RedboxAddin.Models
         //public bool SendVisa { get; set; }
         public string SicknessRecord { get; set; }
         public string Summary { get; set; }
-        public string TeacherStatus { get; set; }
+        //public string TeacherStatus { get; set; }
         public DateTime UKArrivalDate { get; set; }
         public bool UpdateService { get; set; }
-        public DateTime UpdateServiceRegisteredDate { get; set; }
+        //public DateTime UpdateServiceRegisteredDate { get; set; }
         public DateTime VisaExpiryDate { get; set; }
         public DateTime VisaCheckedDate { get; set; }
         public string VisaType { get; set; }

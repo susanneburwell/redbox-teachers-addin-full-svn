@@ -59,7 +59,7 @@ namespace RedboxAddin.Presentation
             InitialLoad();
             if (contactIDLong != -1)
                 cmbTeacher.SelectedValue = contactIDLong;
-            
+
             if (bookingDate != tempDate)
             {
                 dtFrom.Value = bookingDate;
@@ -693,83 +693,108 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void SetTeacherRate()
+        private bool AlwaysUseSchoolRate()
         {
-            decimal? rate = 0;
             try
             {
-                //Get rate for teacher
-                string rateType = "";
-                if (chkTA.Checked)
-                {
-                    //TA
-                    if (chkHalfDay.Checked)
-                    {
-                        //HalfDay
-                        if (chkLongTerm.Checked)
-                        {
-                            //LongTerm
-                            rateType = "HalfDayRateLTTA";
-                        }
-                        else
-                        {
-                            rateType = "HalfDayRateTA";
-                        }
-                    }
-                    else
-                    {
-                        //FullDay
-                        if (chkLongTerm.Checked)
-                        {
-                            //LongTerm
-                            rateType = "DayRateLTTA";
-                        }
-                        else
-                        {
-                            rateType = "DayRateTA";
-                        }
-                    }
-                }
-                else
-                {
-                    //Teacher
-                    if (chkHalfDay.Checked)
-                    {
-                        //Half Day
-                        if (chkLongTerm.Checked)
-                        {
-                            //LongTerm
-                            rateType = "HalfDayRateLT";
-                        }
-                        else
-                        {
-                            rateType = "HalfDayRate";
-                        }
-                    }
-                    else
-                    {
-                        //Full Day
-                        if (chkLongTerm.Checked)
-                        {
-                            //LongTerm
-                            rateType = "DayRateLT";
-                        }
-                        else
-                        {
-                            rateType = "DayRate";
-                        }
-                    }
-                }
-
-                long contID = Convert.ToInt64(cmbTeacher.SelectedValue);
-                rate = LINQmanager.GetRateForContact(contID, rateType);
-
+                long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
+                School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
+                if (school.AlwaysUseSchoolRate) return true;
+                else return false;
             }
             catch (Exception ex)
             {
-
+                throw new Exception("Error in AlwaysUseSchoolRate(): " + ex.Message);
             }
-            txtRate.Text = rate.ToString();
+
+        }
+
+        private void SetTeacherRate()
+        {
+            //if school is set for always use school rate, set rate to Charge - £35  
+            //otherwise use rate set for teacher
+            if (AlwaysUseSchoolRate())
+            {
+                txtRate.Text = (Convert.ToDouble(txtCharge.Text) - 35).ToString();
+            }
+            else
+            {
+                decimal? rate = 0;
+                try
+                {
+                    //Get rate for teacher
+                    string rateType = "";
+                    if (chkTA.Checked)
+                    {
+                        //TA
+                        if (chkHalfDay.Checked)
+                        {
+                            //HalfDay
+                            if (chkLongTerm.Checked)
+                            {
+                                //LongTerm
+                                rateType = "HalfDayRateLTTA";
+                            }
+                            else
+                            {
+                                rateType = "HalfDayRateTA";
+                            }
+                        }
+                        else
+                        {
+                            //FullDay
+                            if (chkLongTerm.Checked)
+                            {
+                                //LongTerm
+                                rateType = "DayRateLTTA";
+                            }
+                            else
+                            {
+                                rateType = "DayRateTA";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Teacher
+                        if (chkHalfDay.Checked)
+                        {
+                            //Half Day
+                            if (chkLongTerm.Checked)
+                            {
+                                //LongTerm
+                                rateType = "HalfDayRateLT";
+                            }
+                            else
+                            {
+                                rateType = "HalfDayRate";
+                            }
+                        }
+                        else
+                        {
+                            //Full Day
+                            if (chkLongTerm.Checked)
+                            {
+                                //LongTerm
+                                rateType = "DayRateLT";
+                            }
+                            else
+                            {
+                                rateType = "DayRate";
+                            }
+                        }
+                    }
+
+                    long contID = Convert.ToInt64(cmbTeacher.SelectedValue);
+                    rate = LINQmanager.GetRateForContact(contID, rateType);
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+                txtRate.Text = rate.ToString();
+            }
         }
 
         private void RestoreLayout()
@@ -897,7 +922,7 @@ namespace RedboxAddin.Presentation
                 agegroup = (chkTA.Checked) ? agegroup += "/TA" : agegroup;
 
                 long contactID = (long)mb.ContactID;
-                bool result = RedemptionCode.SendVettingDetails(false, contactID.ToString(), schoolID.ToString(), 
+                bool result = RedemptionCode.SendVettingDetails(false, contactID.ToString(), schoolID.ToString(),
                     dtFrom.Value.ToShortDateString(), dtTo.Value.ToShortDateString(), agegroup, txtRequestedBy.Text);
                 if (result == false)
                 {
@@ -953,9 +978,9 @@ namespace RedboxAddin.Presentation
             try
             {
                 var bookingList = from b in db.Bookings
-                                    where b.MasterBookingID == _masterBookingID
-                                    && b.Date < DateTime.Today
-                                    select b;
+                                  where b.MasterBookingID == _masterBookingID
+                                  && b.Date < DateTime.Today
+                                  select b;
 
                 if (bookingList == null)
                 {
@@ -1417,6 +1442,7 @@ namespace RedboxAddin.Presentation
                 long teacherID = Convert.ToInt64(cmbTeacher.SelectedValue);
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                 if (teacherID < 0) return;
+
                 SetTeacherRate();
                 if (!loading) cmbBookingStatus.Text = "Unassigned";
 
@@ -1431,7 +1457,7 @@ namespace RedboxAddin.Presentation
                     MessageBox.Show(cmbTeacher.Text + " has a NoGo flagged for " + shortname, "NoGo Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
-              
+
 
             }
             catch (InvalidCastException ex)
@@ -1770,7 +1796,7 @@ namespace RedboxAddin.Presentation
             {
                 if ((string.IsNullOrWhiteSpace(txtCharge.Text)) || (string.IsNullOrWhiteSpace(txtRate.Text)))
                 {
-                    MessageBox.Show("Please make sure Rate and Charge are set correctly.","Missing Rate or Charge");
+                    MessageBox.Show("Please make sure Rate and Charge are set correctly.", "Missing Rate or Charge");
                     return;
                 }
 

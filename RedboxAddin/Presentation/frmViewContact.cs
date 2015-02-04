@@ -116,9 +116,9 @@ namespace RedboxAddin.Presentation
                 txtCRBFormRef.Text = contactObj.DBSFormRef;
                 txtCRBNumber.Text = contactObj.DBSNumber;
                 dtCRBValidFrom.Value = contactObj.DBSValidFrom;
-                chkDBSDirectPayment.Checked = contactObj.DBSDirectPayment;
-                dtDBSudChk.Value = contactObj.DBSUpdateServiceCheckedDate ;
-                dtDBAChkd.Value = contactObj.DisqByAssocChkdDate ;
+                //chkDBSDirectPayment.Checked = contactObj.DBSDirectPayment;
+                dtDBSudChk.Value = contactObj.DBSUpdateServiceCheckedDate;
+                dtDBAChkd.Value = contactObj.DisqByAssocChkdDate;
                 chkDBAsigned.Checked = contactObj.DisqByAssoc;
 
                 txtCNGHO.Text = contactObj.CNGHO;
@@ -139,7 +139,7 @@ namespace RedboxAddin.Presentation
                 dtList99Chkd.Value = contactObj.List99CheckedDate;
                 dtLongTermStart.Value = contactObj.LTStartDate;
                 chkMedicalChecklist.Checked = contactObj.MedicalChecklist;
-                dtMedCLChkd.Value = contactObj.MedicalChecklistCheckedDate ;
+                dtMedCLChkd.Value = contactObj.MedicalChecklistCheckedDate;
 
                 txtNINumber.Text = contactObj.NINumber;
                 txtNotes.Text = contactObj.Notes;
@@ -147,19 +147,19 @@ namespace RedboxAddin.Presentation
                 // false;  //*************************=            contactObj.OtherCRBNumber ;
                 dtOTTEndDate.Value = contactObj.OTTEndDate;
                 chkOverseasPoliceCheck.Checked = contactObj.OverseasPoliceCheck;
-                dtOvPolChkd.Value = contactObj.OverseasPoliceCheckedDate ;
+                dtOvPolChkd.Value = contactObj.OverseasPoliceCheckedDate;
                 chkOverseasTrainedTeacher.Checked = contactObj.OverseasTrainedTeacher;
                 //txtPassportNumber.Text = contactObj.PassportNo;
                 //txtPassportLocation.Text = contactObj.PassportLocation;
                 cmbPayDetails.Text = contactObj.PayDetails;
-                chkPAYETeacherContractSigned.Checked = contactObj.PAYETeacherContractSigned;
+                //chkPAYETeacherContractSigned.Checked = contactObj.PAYETeacherContractSigned;
                 picturebox1.ImageLocation = contactObj.PhotoLocation;
                 pictureBox2.ImageLocation = contactObj.PhotoLocation;
                 txtFilePath.Text = contactObj.PhotoLocation;
                 dtGradDate.Value = contactObj.GraduationDate;
-                chkPrFrmTch.Checked =contactObj.ProhibitionFromTeaching ;
+                chkPrFrmTch.Checked = contactObj.ProhibitionFromTeaching;
                 dtPrFrmTchchkd.Value = contactObj.ProhibitionFromTeachingCheckedDate;
-                dtProtabilityCheckSent.Value = contactObj.ProtabilityCheckSent;
+                //dtProtabilityCheckSent.Value = contactObj.ProtabilityCheckSent;
                 dtProtabilityReceivedDate.Value = contactObj.ProtabilityReceivedDate;
                 chkProofOfAddress.Checked = contactObj.ProofOfAddress;
                 dtPOAChkd.Value = contactObj.ProofOfAddressCheckedDate;
@@ -167,7 +167,7 @@ namespace RedboxAddin.Presentation
                 //cmbProofID2.Text = contactObj.ProofOfID2;
                 chkQTS.Checked = contactObj.QTS;
                 txtQualification.Text = contactObj.Qualification;
-                dtQualChecked.Value = contactObj.QualificationCheckedDate ;
+                dtQualChecked.Value = contactObj.QualificationCheckedDate;
 
                 dtRedboxLeaveDate.Value = contactObj.RedboxLeaveDate;
                 dtRedboxStart.Value = contactObj.RedboxStartDate;
@@ -203,13 +203,13 @@ namespace RedboxAddin.Presentation
                 //chkSendVisa.Checked = contactObj.SendVisa;
                 txtSummary.Text = contactObj.Summary;
                 txtSicknessRecord.Text = contactObj.SicknessRecord;
-                cmbTeacherStatus.Text = contactObj.TeacherStatus;
+                //cmbTeacherStatus.Text = contactObj.TeacherStatus;
                 dtUKArrivalDate.Value = contactObj.UKArrivalDate;
                 chkUpdateService.Checked = contactObj.UpdateService;
-                dtUpdateServiceRegDate.Value = contactObj.UpdateServiceRegisteredDate;
+                //dtUpdateServiceRegDate.Value = contactObj.UpdateServiceRegisteredDate;
                 dtVisaExpiryDate.Value = contactObj.VisaExpiryDate;
                 txtVisaType.Text = contactObj.VisaType;
-                dtVisaChkd.Value =contactObj.VisaCheckedDate ;
+                dtVisaChkd.Value = contactObj.VisaCheckedDate;
                 //txtVisaLocation.Text = contactObj.VisaLocation;
                 txtYearGroup.Text = contactObj.YearGroup;
                 //chkMMRV.Checked = contactObj.AttendMMRV;
@@ -219,6 +219,7 @@ namespace RedboxAddin.Presentation
                 PopulatePaymentTypes();
 
             }
+            dteSetAll.Value = DateTime.Today;
         }
 
         private bool SaveContact()
@@ -264,7 +265,7 @@ namespace RedboxAddin.Presentation
                 contactObj.DBSFormRef = txtCRBFormRef.Text;
                 contactObj.DBSNumber = txtCRBNumber.Text;
                 contactObj.DBSValidFrom = dtCRBValidFrom.Value;
-                contactObj.DBSDirectPayment = chkDBSDirectPayment.Checked;
+                //contactObj.DBSDirectPayment = chkDBSDirectPayment.Checked;
                 contactObj.DBSUpdateServiceCheckedDate = dtDBSudChk.Value;
                 contactObj.CNGHO = txtCNGHO.Text;
                 contactObj.CurrentPayScale = txtCurrentPayScale.Text;
@@ -296,12 +297,12 @@ namespace RedboxAddin.Presentation
                 //contactObj.PassportNo = txtPassportNumber.Text;
                 //contactObj.PassportLocation = txtPassportLocation.Text;
                 contactObj.PayDetails = cmbPayDetails.Text;
-                contactObj.PAYETeacherContractSigned = chkPAYETeacherContractSigned.Checked;
+                //contactObj.PAYETeacherContractSigned = chkPAYETeacherContractSigned.Checked;
                 contactObj.PhotoLocation = txtFilePath.Text;
                 contactObj.GraduationDate = dtGradDate.Value;
                 contactObj.ProhibitionFromTeaching = chkPrFrmTch.Checked;
                 contactObj.ProhibitionFromTeachingCheckedDate = dtPrFrmTchchkd.Value;
-                contactObj.ProtabilityCheckSent = dtProtabilityCheckSent.Value;
+                //contactObj.ProtabilityCheckSent = dtProtabilityCheckSent.Value;
                 contactObj.ProtabilityReceivedDate = dtProtabilityReceivedDate.Value;
                 contactObj.ProofOfAddress = chkProofOfAddress.Checked;
                 contactObj.ProofOfAddressCheckedDate = dtPOAChkd.Value;
@@ -344,10 +345,10 @@ namespace RedboxAddin.Presentation
                 //contactObj.SendVisa = chkSendVisa.Checked;
                 contactObj.SicknessRecord = txtSicknessRecord.Text;
                 contactObj.Summary = txtSummary.Text;
-                contactObj.TeacherStatus = cmbTeacherStatus.Text;
+                //contactObj.TeacherStatus = cmbTeacherStatus.Text;
                 contactObj.UKArrivalDate = dtUKArrivalDate.Value;
                 contactObj.UpdateService = chkUpdateService.Checked;
-                contactObj.UpdateServiceRegisteredDate = dtUpdateServiceRegDate.Value;
+                //contactObj.UpdateServiceRegisteredDate = dtUpdateServiceRegDate.Value;
                 contactObj.VisaExpiryDate = dtVisaExpiryDate.Value;
                 contactObj.VisaCheckedDate = dtVisaChkd.Value;
                 contactObj.VisaType = txtVisaType.Text;
@@ -403,7 +404,7 @@ namespace RedboxAddin.Presentation
 
                     //create contact
                     CurrentContactID = new DBManager().AddContact(contactObj);
-                    
+
                     //create contactdata
                     string CONNSTR = DavSettings.getDavValue("CONNSTR");
                     using (RedBoxDB db = new RedBoxDB(CONNSTR))
@@ -414,7 +415,7 @@ namespace RedboxAddin.Presentation
                         db.SubmitChanges();
                     }
 
-                    
+
 
                     if (CurrentContactID != 0)
                     {
@@ -470,7 +471,7 @@ namespace RedboxAddin.Presentation
         {
             if (SaveContact()) this.Close();
         }
-        
+
         private void btnPickAddress_Click(object sender, EventArgs e)
         {
             frmAddress frmObj = new frmAddress();
@@ -807,7 +808,7 @@ namespace RedboxAddin.Presentation
         {
             //SendDetails();
 
-            bool result = RedemptionCode.SendVettingDetails(false, CurrentContactID.ToString(), null, 
+            bool result = RedemptionCode.SendVettingDetails(false, CurrentContactID.ToString(), null,
                 null, null, null, null);
             if (result == false)
             {
@@ -1084,7 +1085,7 @@ namespace RedboxAddin.Presentation
                 if (CurrentContactID != 0)
                 {
                     //var deleteResult = new DBManager().ExecuteQuery("DELETE FROM Contacts WHERE contactID = " + CurrentContactID.ToString());
- 
+
                     bool deleteResult = new DBManager().ExecuteQuery("Update Contacts Set [Deleted] = 1  WHERE contactID = " + CurrentContactID.ToString());
                     bool deleteResult2 = false;
                     if (deleteResult == true)
@@ -1248,7 +1249,7 @@ namespace RedboxAddin.Presentation
                     cd.NoGo = txtNoGo.Text;
                     cd.Wants = txtWants.Text;
                     cd.CRBStatus = txtCRBstatus.Text;
-                    cd.TeacherStatus = txtTeacherStatus.Text;
+                    //cd.TeacherStatus = txtTeacherStatus.Text;
                     cd.Teacher = chkTeacher.Checked;
                     cd.NN = chkNN.Checked;
                     cd.QNN = chkQNN.Checked;
@@ -1320,7 +1321,7 @@ namespace RedboxAddin.Presentation
                         txtNoGo.Text = cd.NoGo;
                         txtWants.Text = cd.Wants;
                         txtCRBstatus.Text = cd.CRBStatus;
-                        txtTeacherStatus.Text = cd.TeacherStatus;
+                        //txtTeacherStatus.Text = cd.TeacherStatus;
                         chkTeacher.Checked = cd.Teacher;
                         chkTA.Checked = cd.TA;
                         chkActor.Checked = cd.Actor;
@@ -1386,6 +1387,26 @@ namespace RedboxAddin.Presentation
         }
 
         #endregion
+
+        private void btnSetAllCheckedDates_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Have you really checked: " + Environment.NewLine +
+                "NCTL, Prohibition from Teaching, Medical Checklist, Disqualification by Association, ID, Visa, Proof of Address, References?", "What really?",
+                MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                DateTime checkedDate = dteSetAll.Value;
+                dtGTCCheckDate.Value = checkedDate;
+                dtPrFrmTchchkd.Value = checkedDate;
+                dtMedCLChkd.Value = checkedDate;
+                dtDBAChkd.Value = checkedDate;
+                dtIDChkd.Value = checkedDate;
+                dtVisaChkd.Value = checkedDate;
+                dtPOAChkd.Value = checkedDate;
+                dtRefChkd.Value = checkedDate;
+            }
+        }
+
 
 
 

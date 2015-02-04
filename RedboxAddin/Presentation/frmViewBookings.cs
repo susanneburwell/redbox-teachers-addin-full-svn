@@ -247,5 +247,146 @@ namespace RedboxAddin.Presentation
             LoadGrid(true);
         }
 
+        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+
+            try
+            {
+                string columnname = e.Column.FieldName;
+                string expname = "";//"MonColor";
+                int myRow = e.RowHandle;
+
+                //  redd/yell  redd forecolr   yel back colour
+                string myStatus = gridView1.GetRowCellValue(myRow, "BookingStatus").ToString();
+                string myLT = gridView1.GetRowCellValue(myRow, "LT").ToString();
+                bool isLT = false;
+                if (myLT.ToLower() == "true") isLT = true;
+
+                string myVal = Utils.SetColours(myStatus, false, isLT, null);
+
+                //switch (columnname)
+                //{
+                //    case "Monday":
+                //        expname = "MonColor";
+                //        break;
+                //    case "Tuesday":
+                //        expname = "TueColor";
+                //        break;
+                //    case "Wednesday":
+                //        expname = "WedColor";
+                //        break;
+                //    case "Thursday":
+                //        expname = "ThuColor";
+                //        break;
+                //    case "Friday":
+                //        expname = "FriColor";
+                //        break;
+
+                //    case "Teacher":
+                //        //string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
+                //        //string myP = gridView1.GetRowCellValue(myRow, "Prio").ToString();
+                //        //if (myG == "1")
+                //        //{
+                //        //    e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+                //        //}
+                //        //else if (myP == "1")
+                //        //{
+                //        //    e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+                //        //}
+                //        //else
+                //        //{
+                //        //    string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
+                //        //    if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
+                //        //}
+                //        //return;
+                //        break;
+
+                //    default:
+                //        //return;
+                //        break;
+                //}
+
+
+                //If colours are set
+                if (myVal.Length > 8)
+                {
+                    string backcolor = myVal.Substring(5, 4);
+                    string forecolor = myVal.Substring(0, 4);
+                    string italics = "e";
+                    if (myVal.Length > 9) italics = myVal.Substring(9, 1);
+
+                    switch (backcolor)
+                    {
+                        case "yell":
+                            e.Appearance.BackColor = System.Drawing.Color.Yellow;
+                            break;
+                        case "gray":
+                            e.Appearance.BackColor = System.Drawing.Color.LightGray;
+                            break;
+                        case "lblu":
+                            e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+                            break;
+                        case "dblu":
+                            e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+                            break;
+                        case "brwn":
+                            e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
+                            break;
+                        case "gree": //guaranteed
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+                            break;
+                        case "pink": //texted
+                            e.Appearance.BackColor = System.Drawing.Color.LightPink;
+                            break;
+                        case "orng": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.Orange;
+                            break;
+                        case "lgre": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
+                            break;
+                        case "pech": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+                            break;
+                        case "purp":
+                            e.Appearance.BackColor = System.Drawing.Color.Violet;
+                            e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+
+                            break;
+                        default:
+                            break;
+                    }
+
+                    switch (forecolor)
+                    {
+                        case "redd":
+                            e.Appearance.ForeColor = System.Drawing.Color.Red;
+                            break;
+                        case "purp":
+                            e.Appearance.ForeColor = System.Drawing.Color.Purple;
+                            break;
+                        case "blck":
+                            e.Appearance.ForeColor = System.Drawing.Color.Black;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    if (italics == "i")
+                    {
+                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
+            }
+        }
+
+
+
     }
 }

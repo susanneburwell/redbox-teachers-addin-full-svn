@@ -2283,6 +2283,10 @@ namespace RedboxAddin
 		
 		private string _CNGHO;
 		
+		private bool _Deleted;
+		
+		private string _Summary;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2547,6 +2551,10 @@ namespace RedboxAddin
     partial void OnCurrentPayScaleProofChanged();
     partial void OnCNGHOChanging(string value);
     partial void OnCNGHOChanged();
+    partial void OnDeletedChanging(bool value);
+    partial void OnDeletedChanged();
+    partial void OnSummaryChanging(string value);
+    partial void OnSummaryChanged();
     #endregion
 		
 		public Contact()
@@ -5154,6 +5162,46 @@ namespace RedboxAddin
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Deleted", DbType="Bit NOT NULL")]
+		public bool Deleted
+		{
+			get
+			{
+				return this._Deleted;
+			}
+			set
+			{
+				if ((this._Deleted != value))
+				{
+					this.OnDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._Deleted = value;
+					this.SendPropertyChanged("Deleted");
+					this.OnDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Summary", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Summary
+		{
+			get
+			{
+				return this._Summary;
+			}
+			set
+			{
+				if ((this._Summary != value))
+				{
+					this.OnSummaryChanging(value);
+					this.SendPropertyChanging();
+					this._Summary = value;
+					this.SendPropertyChanged("Summary");
+					this.OnSummaryChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -7004,6 +7052,8 @@ namespace RedboxAddin
 		
 		private bool _VettingAM;
 		
+		private bool _AlwaysUseSchoolRate;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -7054,6 +7104,8 @@ namespace RedboxAddin
     partial void OnTAHalfDayChargeLTChanged();
     partial void OnVettingAMChanging(bool value);
     partial void OnVettingAMChanged();
+    partial void OnAlwaysUseSchoolRateChanging(bool value);
+    partial void OnAlwaysUseSchoolRateChanged();
     #endregion
 		
 		public School()
@@ -7517,6 +7569,26 @@ namespace RedboxAddin
 					this._VettingAM = value;
 					this.SendPropertyChanged("VettingAM");
 					this.OnVettingAMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlwaysUseSchoolRate", DbType="Bit NOT NULL")]
+		public bool AlwaysUseSchoolRate
+		{
+			get
+			{
+				return this._AlwaysUseSchoolRate;
+			}
+			set
+			{
+				if ((this._AlwaysUseSchoolRate != value))
+				{
+					this.OnAlwaysUseSchoolRateChanging(value);
+					this.SendPropertyChanging();
+					this._AlwaysUseSchoolRate = value;
+					this.SendPropertyChanged("AlwaysUseSchoolRate");
+					this.OnAlwaysUseSchoolRateChanged();
 				}
 			}
 		}
