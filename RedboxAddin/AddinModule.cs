@@ -10,6 +10,7 @@ using RedboxAddin.BL;
 using RedboxAddin.DL;
 using RedboxAddin.Models;
 using System.Linq;
+using System.Xml.Linq;
 using System.Collections.Generic;
 using System.IO;
 
@@ -40,7 +41,7 @@ using System.IO;
 //                      Teachers are not permanently deleted but have a flag set to 'Deleted'. 
 //                      Don't allow master booking to be deleted if there are past bookings for this master booking
 //2.0.78 4Feb2015   DT  Create report to show DBS expiring and LT 12wk/12month. Add coplours to view bookings, Create an option for schools - always pay this rate (£130)
-
+//2.0.80 10Feb2014 DT Three options for creating rate - school rate, teacher rate, calculate rate. Also built ratechange into teacher change
 
 namespace RedboxAddin
 {
@@ -175,6 +176,7 @@ namespace RedboxAddin
             this.adxSendVetting = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditSchool = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxEditPaymentTypes = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxRibbonDCR = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTeacherContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxRibbonMenu1 = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -201,6 +203,7 @@ namespace RedboxAddin
             this.adxcbSendVetting = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxcbEditSchools = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxcbEditPaymentTypes = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxDailyContactReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarPopup2 = new AddinExpress.MSO.ADXCommandBarPopup(this.components);
             this.adxCommandBarButton10 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton11 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
@@ -212,8 +215,6 @@ namespace RedboxAddin
             this.adxCommandBarButton17 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton18 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton1 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
-            this.adxDailyContactReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
-            this.adxRibbonDCR = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxTabMail
             // 
@@ -319,12 +320,12 @@ namespace RedboxAddin
             // 
             // olFrmBotNavi
             // 
-            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmBotNavi.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.BottomNavigationPane;
             this.olFrmBotNavi.FormClassName = "RedboxAddin.Presentation.frmBotNavi";
@@ -337,12 +338,12 @@ namespace RedboxAddin
             // olFrmExplorer
             // 
             this.olFrmExplorer.Enabled = false;
-            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmExplorer.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmExplorer.FolderName = "Inbox";
@@ -352,12 +353,12 @@ namespace RedboxAddin
             // olFrmReminders
             // 
             this.olFrmReminders.Enabled = false;
-            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmReminders.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmReminders.FolderName = "Redbox";
@@ -373,15 +374,15 @@ namespace RedboxAddin
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnNewReminders);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnCheckForUpdates);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnAbout);
-            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
+            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 29;
+            this.commandBarRedboxAddin.UpdateCounter = 30;
             // 
             // cbBtnNewContact
             // 
@@ -589,6 +590,14 @@ namespace RedboxAddin
             this.adxEditPaymentTypes.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxEditPaymentTypes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxEditPaymentTypes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxEditPaymentTypes_OnClick);
+            // 
+            // adxRibbonDCR
+            // 
+            this.adxRibbonDCR.Caption = "Daily Contact Report";
+            this.adxRibbonDCR.Id = "adxRibbonButton_4074e733ed8d467187141363ea75c48b";
+            this.adxRibbonDCR.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxRibbonDCR.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxRibbonDCR.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibbonDCR_OnClick);
             // 
             // adxTeacherContacts
             // 
@@ -834,6 +843,15 @@ namespace RedboxAddin
             this.adxcbEditPaymentTypes.UpdateCounter = 4;
             this.adxcbEditPaymentTypes.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbEditPaymentTypes_Click);
             // 
+            // adxDailyContactReport
+            // 
+            this.adxDailyContactReport.Caption = "Daily Contact Report";
+            this.adxDailyContactReport.ControlTag = "7772cc69-ef76-4ae7-823e-1b35daac387d";
+            this.adxDailyContactReport.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxDailyContactReport.Temporary = true;
+            this.adxDailyContactReport.UpdateCounter = 4;
+            this.adxDailyContactReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxDailyContactReport_Click);
+            // 
             // adxCommandBarPopup2
             // 
             this.adxCommandBarPopup2.Caption = "Maintenance";
@@ -932,23 +950,6 @@ namespace RedboxAddin
             this.adxCommandBarButton1.Temporary = true;
             this.adxCommandBarButton1.UpdateCounter = 3;
             this.adxCommandBarButton1.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxCommandBarButton1_Click);
-            // 
-            // adxDailyContactReport
-            // 
-            this.adxDailyContactReport.Caption = "Daily Contact Report";
-            this.adxDailyContactReport.ControlTag = "7772cc69-ef76-4ae7-823e-1b35daac387d";
-            this.adxDailyContactReport.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxDailyContactReport.Temporary = true;
-            this.adxDailyContactReport.UpdateCounter = 4;
-            this.adxDailyContactReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxDailyContactReport_Click);
-            // 
-            // adxRibbonDCR
-            // 
-            this.adxRibbonDCR.Caption = "Daily Contact Report";
-            this.adxRibbonDCR.Id = "adxRibbonButton_4074e733ed8d467187141363ea75c48b";
-            this.adxRibbonDCR.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxRibbonDCR.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxRibbonDCR.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibbonDCR_OnClick);
             // 
             // AddinModule
             // 
@@ -1257,28 +1258,40 @@ namespace RedboxAddin
 
         private void rbCheckForUpdates_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            CheckUpdates();
+            CheckDavtonUpdates();
+            //CheckUpdates();
         }
 
         public void CheckUpdates()
         {
             try
             {
-                if (IsMSINetworkDeployed() & IsMSIUpdatable())
+                string updateUrl = CheckForMSIUpdates();
+                if (IsMSINetworkDeployed())
                 {
-                    string updateUrl = CheckForMSIUpdates();
-
-                    if ((string.IsNullOrEmpty(updateUrl) == false))
+                    if (IsMSIUpdatable())
                     {
-                        if (MessageBox.Show("A new version of the Outlook Add-In was found. Would you like to install the update?", "Redbox Addin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification) == DialogResult.Yes)
+
+                        if ((string.IsNullOrEmpty(updateUrl) == false))
                         {
-                            System.Diagnostics.Process.Start(updateUrl);
+                            if (MessageBox.Show("A new version of the Outlook Add-In was found. Would you like to install the update?", "Redbox Addin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification) == DialogResult.Yes)
+                            {
+                                System.Diagnostics.Process.Start(updateUrl);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No updates found for the Outlook Add-In", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("No updates found for the Outlook Add-In", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("This installation is not MSI updatable. No updates found for the Outlook Add-In", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                }
+                else
+                {
+                    MessageBox.Show("This installation was not MSI installed. No updates found for the Outlook Add-In", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -1287,9 +1300,27 @@ namespace RedboxAddin
             }
         }
 
+        public void CheckDavtonUpdates()
+        {
+            try
+            {
+                string updateUrl = "http://www.davton1.com/redbox/version_info.xml";
+
+                Downloader.GetXML(updateUrl);
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error checking For Updates : " + ex.Message);
+            }
+        }
+
+
         private void cbBtnCheckForUpdates_Click(object sender)
         {
-            CheckUpdates();
+            CheckDavtonUpdates();
+            //CheckUpdates();
         }
 
         private void adxNewRequest_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -1720,7 +1751,7 @@ namespace RedboxAddin
 
                 string from = oMail.SenderName;
                 string fromAddress = oMail.SenderEmailAddress;
-                
+
                 if (from == fromAddress) fromAddress = "";
                 else if (fromAddress.IndexOf('=') != -1) fromAddress = ""; //this removes exchange type email addresses
                 else fromAddress = "<" + fromAddress + ">";
@@ -1729,7 +1760,7 @@ namespace RedboxAddin
                 string subject = oMail.Subject;
                 string filename = subject.Replace("re:", "").Replace("RE:", "").Replace("Re:", "");
 
-                string timeSheetfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ "\\Davton Files\\TimeSheets";
+                string timeSheetfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Davton Files\\TimeSheets";
 
                 //get the required filename
                 frmFileName fn = new frmFileName(filename);
@@ -1797,7 +1828,7 @@ namespace RedboxAddin
 
 
 
-                 string timesheetpath = timeSheetfolder + "\\" + fileNameToUse + ".pdf";
+                string timesheetpath = timeSheetfolder + "\\" + fileNameToUse + ".pdf";
                 wDoc2.SaveAs(timesheetpath, Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
                 // wApp2.Visible = true;
                 wDoc2.Close(Word.WdSaveOptions.wdDoNotSaveChanges);
@@ -1833,15 +1864,15 @@ namespace RedboxAddin
             fr.Show();
         }
 
-       
 
-        
 
-        
 
-       
 
-       
+
+
+
+
+
 
     }
 }

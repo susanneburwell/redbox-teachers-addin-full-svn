@@ -52,6 +52,7 @@ namespace RedboxAddin.Presentation
                 this.masterBookingID = masterBookingID;
                 MasterBooking mb = LINQmanager.GetMasterBookingbyID(masterBookingID);
                 schoolID = mb.SchoolID;
+                lblOrigRate.Text = LINQmanager.GetRate(masterBookingID, mb.ContactID);
             }
             catch (Exception ex)
             {
@@ -66,7 +67,7 @@ namespace RedboxAddin.Presentation
             formLoading = true;
             Utils.PopulateTeacher(cmbTeacher, true);
             formLoading = false;
-        } 
+        }
         #endregion
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace RedboxAddin.Presentation
             }
             else if (IsNogo())
             {
-                MessageBox.Show("There is a NoGo for that Teacher and Schol.", "Can not save changes");
+                MessageBox.Show("There is a NoGo for that Teacher and School.", "Can not save changes");
             }
 
             else
@@ -88,10 +89,22 @@ namespace RedboxAddin.Presentation
                 MasterBooking oMasterBooking = db.MasterBookings.Where(p => p.ID == this.masterBookingID).SingleOrDefault();
                 if (oMasterBooking != null)
                 {
+                    //update Masterbooking
                     oMasterBooking.ContactID = Utils.CheckLong(cmbTeacher.SelectedValue);
+                    oMasterBooking.BookingStatus = "Unassigned";
+                    //LINQmanager.SetBookingStatus(oMasterBooking.ID, "Unassigned");
                     db.SubmitChanges();
 
-                    LINQmanager.SetBookingStatus(oMasterBooking.ID, "Unassigned");
+                    //if rate has changed - update bookings
+                    if (lblOrigRate.Text != lblNewRate.Text)
+                    {
+                        DBManager dbm = new DBManager();
+                        int result = dbm.UpdateBookings(this.masterBookingID, null, lblNewRate.Text, null);
+                        if (result == -1) MessageBox.Show("Error updating bookings");
+                        else if (result == 1) MessageBox.Show("1 booking updated");
+                        else MessageBox.Show(result.ToString() + " bookings updated");
+                    }
+
                     this.Close();
                 }
             }
@@ -125,7 +138,7 @@ namespace RedboxAddin.Presentation
             //string strTeacherID = cmbTeacher.Value;
             long teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
             string nogo = LINQmanager.GetNoGoforContactID(teacherID).ToLower();
-            if (nogo == "") 
+            if (nogo == "")
             {
                 lblNogo.Text = " - ";
                 return false;
@@ -148,7 +161,13 @@ namespace RedboxAddin.Presentation
         private void cmbTeacher_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblError.Visible = false;
-            if (!formLoading) IsNogo();
+            if (!formLoading)
+            {
+                IsNogo();
+                long teacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
+                lblNewRate.Text = LINQmanager.GetRate(masterBookingID, teacherID);
+
+            }
         }
     }
 }

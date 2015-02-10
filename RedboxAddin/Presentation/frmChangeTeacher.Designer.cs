@@ -36,6 +36,10 @@
             this.lblError = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNogo = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblOrigRate = new System.Windows.Forms.Label();
+            this.lblNewRate = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -61,7 +65,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(202, 120);
+            this.btnSave.Location = new System.Drawing.Point(200, 196);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(136, 34);
@@ -72,7 +76,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(355, 120);
+            this.btnClose.Location = new System.Drawing.Point(353, 196);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(136, 34);
@@ -112,11 +116,51 @@
             this.lblNogo.TabIndex = 16;
             this.lblNogo.Text = "-";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(49, 130);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 16);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Original Rate:";
+            // 
+            // lblOrigRate
+            // 
+            this.lblOrigRate.AutoSize = true;
+            this.lblOrigRate.Location = new System.Drawing.Point(199, 130);
+            this.lblOrigRate.Name = "lblOrigRate";
+            this.lblOrigRate.Size = new System.Drawing.Size(33, 16);
+            this.lblOrigRate.TabIndex = 18;
+            this.lblOrigRate.Text = "0.00";
+            // 
+            // lblNewRate
+            // 
+            this.lblNewRate.AutoSize = true;
+            this.lblNewRate.Location = new System.Drawing.Point(199, 162);
+            this.lblNewRate.Name = "lblNewRate";
+            this.lblNewRate.Size = new System.Drawing.Size(33, 16);
+            this.lblNewRate.TabIndex = 20;
+            this.lblNewRate.Text = "0.00";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(49, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 16);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "New Rate:";
+            // 
             // frmChangeTeacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 167);
+            this.ClientSize = new System.Drawing.Size(592, 243);
+            this.Controls.Add(this.lblNewRate);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblOrigRate);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblNogo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
@@ -147,5 +191,9 @@
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNogo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblOrigRate;
+        private System.Windows.Forms.Label lblNewRate;
+        private System.Windows.Forms.Label label6;
     }
 }

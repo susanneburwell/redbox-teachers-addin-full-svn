@@ -7052,7 +7052,23 @@ namespace RedboxAddin
 		
 		private bool _VettingAM;
 		
-		private bool _AlwaysUseSchoolRate;
+		private string _RateType;
+		
+		private System.Nullable<decimal> _DayRate;
+		
+		private System.Nullable<decimal> _HalfDayRate;
+		
+		private System.Nullable<decimal> _DayRateLT;
+		
+		private System.Nullable<decimal> _HalfDayRateLT;
+		
+		private System.Nullable<decimal> _TADayRate;
+		
+		private System.Nullable<decimal> _TAHalfDayRate;
+		
+		private System.Nullable<decimal> _TADayRateLT;
+		
+		private System.Nullable<decimal> _TAHalfDayRateLT;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -7104,8 +7120,24 @@ namespace RedboxAddin
     partial void OnTAHalfDayChargeLTChanged();
     partial void OnVettingAMChanging(bool value);
     partial void OnVettingAMChanged();
-    partial void OnAlwaysUseSchoolRateChanging(bool value);
-    partial void OnAlwaysUseSchoolRateChanged();
+    partial void OnRateTypeChanging(string value);
+    partial void OnRateTypeChanged();
+    partial void OnDayRateChanging(System.Nullable<decimal> value);
+    partial void OnDayRateChanged();
+    partial void OnHalfDayRateChanging(System.Nullable<decimal> value);
+    partial void OnHalfDayRateChanged();
+    partial void OnDayRateLTChanging(System.Nullable<decimal> value);
+    partial void OnDayRateLTChanged();
+    partial void OnHalfDayRateLTChanging(System.Nullable<decimal> value);
+    partial void OnHalfDayRateLTChanged();
+    partial void OnTADayRateChanging(System.Nullable<decimal> value);
+    partial void OnTADayRateChanged();
+    partial void OnTAHalfDayRateChanging(System.Nullable<decimal> value);
+    partial void OnTAHalfDayRateChanged();
+    partial void OnTADayRateLTChanging(System.Nullable<decimal> value);
+    partial void OnTADayRateLTChanged();
+    partial void OnTAHalfDayRateLTChanging(System.Nullable<decimal> value);
+    partial void OnTAHalfDayRateLTChanged();
     #endregion
 		
 		public School()
@@ -7573,22 +7605,182 @@ namespace RedboxAddin
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlwaysUseSchoolRate", DbType="Bit NOT NULL")]
-		public bool AlwaysUseSchoolRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RateType", DbType="NVarChar(10)")]
+		public string RateType
 		{
 			get
 			{
-				return this._AlwaysUseSchoolRate;
+				return this._RateType;
 			}
 			set
 			{
-				if ((this._AlwaysUseSchoolRate != value))
+				if ((this._RateType != value))
 				{
-					this.OnAlwaysUseSchoolRateChanging(value);
+					this.OnRateTypeChanging(value);
 					this.SendPropertyChanging();
-					this._AlwaysUseSchoolRate = value;
-					this.SendPropertyChanged("AlwaysUseSchoolRate");
-					this.OnAlwaysUseSchoolRateChanged();
+					this._RateType = value;
+					this.SendPropertyChanged("RateType");
+					this.OnRateTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRate
+		{
+			get
+			{
+				return this._DayRate;
+			}
+			set
+			{
+				if ((this._DayRate != value))
+				{
+					this.OnDayRateChanging(value);
+					this.SendPropertyChanging();
+					this._DayRate = value;
+					this.SendPropertyChanged("DayRate");
+					this.OnDayRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRate
+		{
+			get
+			{
+				return this._HalfDayRate;
+			}
+			set
+			{
+				if ((this._HalfDayRate != value))
+				{
+					this.OnHalfDayRateChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayRate = value;
+					this.SendPropertyChanged("HalfDayRate");
+					this.OnHalfDayRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayRateLT", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> DayRateLT
+		{
+			get
+			{
+				return this._DayRateLT;
+			}
+			set
+			{
+				if ((this._DayRateLT != value))
+				{
+					this.OnDayRateLTChanging(value);
+					this.SendPropertyChanging();
+					this._DayRateLT = value;
+					this.SendPropertyChanged("DayRateLT");
+					this.OnDayRateLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HalfDayRateLT", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> HalfDayRateLT
+		{
+			get
+			{
+				return this._HalfDayRateLT;
+			}
+			set
+			{
+				if ((this._HalfDayRateLT != value))
+				{
+					this.OnHalfDayRateLTChanging(value);
+					this.SendPropertyChanging();
+					this._HalfDayRateLT = value;
+					this.SendPropertyChanged("HalfDayRateLT");
+					this.OnHalfDayRateLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TADayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> TADayRate
+		{
+			get
+			{
+				return this._TADayRate;
+			}
+			set
+			{
+				if ((this._TADayRate != value))
+				{
+					this.OnTADayRateChanging(value);
+					this.SendPropertyChanging();
+					this._TADayRate = value;
+					this.SendPropertyChanged("TADayRate");
+					this.OnTADayRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAHalfDayRate", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> TAHalfDayRate
+		{
+			get
+			{
+				return this._TAHalfDayRate;
+			}
+			set
+			{
+				if ((this._TAHalfDayRate != value))
+				{
+					this.OnTAHalfDayRateChanging(value);
+					this.SendPropertyChanging();
+					this._TAHalfDayRate = value;
+					this.SendPropertyChanged("TAHalfDayRate");
+					this.OnTAHalfDayRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TADayRateLT", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> TADayRateLT
+		{
+			get
+			{
+				return this._TADayRateLT;
+			}
+			set
+			{
+				if ((this._TADayRateLT != value))
+				{
+					this.OnTADayRateLTChanging(value);
+					this.SendPropertyChanging();
+					this._TADayRateLT = value;
+					this.SendPropertyChanged("TADayRateLT");
+					this.OnTADayRateLTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAHalfDayRateLT", DbType="Decimal(7,2)")]
+		public System.Nullable<decimal> TAHalfDayRateLT
+		{
+			get
+			{
+				return this._TAHalfDayRateLT;
+			}
+			set
+			{
+				if ((this._TAHalfDayRateLT != value))
+				{
+					this.OnTAHalfDayRateLTChanging(value);
+					this.SendPropertyChanging();
+					this._TAHalfDayRateLT = value;
+					this.SendPropertyChanged("TAHalfDayRateLT");
+					this.OnTAHalfDayRateLTChanged();
 				}
 			}
 		}

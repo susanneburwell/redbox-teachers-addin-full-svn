@@ -693,18 +693,22 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private bool AlwaysUseSchoolRate()
+        private string GetRateType()
         {
             try
             {
                 long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
                 School school = db.Schools.Where<School>(s => s.ID == schoolID).FirstOrDefault();
-                if (school.AlwaysUseSchoolRate) return true;
-                else return false;
+
+                if (school == null) throw new Exception("Error in GetRateType(): Could not find School");
+
+                if (school.RateType == null) return "TeacherRate";
+                else return school.RateType;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in AlwaysUseSchoolRate(): " + ex.Message);
+                return "TeacherRate";
+                throw new Exception("Error in GetRateType(): " + ex.Message);
             }
 
         }
@@ -713,88 +717,106 @@ namespace RedboxAddin.Presentation
         {
             //if school is set for always use school rate, set rate to Charge - £35  
             //otherwise use rate set for teacher
-            if (AlwaysUseSchoolRate())
+            string rateType = GetRateType();
+            if (rateType == "CalcRate")
             {
                 txtRate.Text = (Convert.ToDouble(txtCharge.Text) - 35).ToString();
             }
+            else if (rateType == "SchoolRate")
+            {
+                txtRate.Text = GetRate(teacherRate: false);
+            }
             else
             {
-                decimal? rate = 0;
-                try
+                txtRate.Text = GetRate(teacherRate: true);
+            }
+        }
+
+        private string GetRate(bool teacherRate)
+        {
+            decimal? rate = 0;
+            string rateName = "";
+            try
+            {
+                //Get rate for teacher
+                if (chkTA.Checked)
                 {
-                    //Get rate for teacher
-                    string rateType = "";
-                    if (chkTA.Checked)
+                    //TA
+                    if (chkHalfDay.Checked)
                     {
-                        //TA
-                        if (chkHalfDay.Checked)
+                        //HalfDay
+                        if (chkLongTerm.Checked)
                         {
-                            //HalfDay
-                            if (chkLongTerm.Checked)
-                            {
-                                //LongTerm
-                                rateType = "HalfDayRateLTTA";
-                            }
-                            else
-                            {
-                                rateType = "HalfDayRateTA";
-                            }
+                            //LongTerm
+                            rateName = "HalfDayRateLTTA";
                         }
                         else
                         {
-                            //FullDay
-                            if (chkLongTerm.Checked)
-                            {
-                                //LongTerm
-                                rateType = "DayRateLTTA";
-                            }
-                            else
-                            {
-                                rateType = "DayRateTA";
-                            }
+                            rateName = "HalfDayRateTA";
                         }
                     }
                     else
                     {
-                        //Teacher
-                        if (chkHalfDay.Checked)
+                        //FullDay
+                        if (chkLongTerm.Checked)
                         {
-                            //Half Day
-                            if (chkLongTerm.Checked)
-                            {
-                                //LongTerm
-                                rateType = "HalfDayRateLT";
-                            }
-                            else
-                            {
-                                rateType = "HalfDayRate";
-                            }
+                            //LongTerm
+                            rateName = "DayRateLTTA";
                         }
                         else
                         {
-                            //Full Day
-                            if (chkLongTerm.Checked)
-                            {
-                                //LongTerm
-                                rateType = "DayRateLT";
-                            }
-                            else
-                            {
-                                rateType = "DayRate";
-                            }
+                            rateName = "DayRateTA";
                         }
                     }
-
-                    long contID = Convert.ToInt64(cmbTeacher.SelectedValue);
-                    rate = LINQmanager.GetRateForContact(contID, rateType);
-
                 }
-                catch (Exception ex)
+                else
                 {
-
+                    //Teacher
+                    if (chkHalfDay.Checked)
+                    {
+                        //Half Day
+                        if (chkLongTerm.Checked)
+                        {
+                            //LongTerm
+                            rateName = "HalfDayRateLT";
+                        }
+                        else
+                        {
+                            rateName = "HalfDayRate";
+                        }
+                    }
+                    else
+                    {
+                        //Full Day
+                        if (chkLongTerm.Checked)
+                        {
+                            //LongTerm
+                            rateName = "DayRateLT";
+                        }
+                        else
+                        {
+                            rateName = "DayRate";
+                        }
+                    }
                 }
-                txtRate.Text = rate.ToString();
+                if (teacherRate)
+                {
+                    long contID = Convert.ToInt64(cmbTeacher.SelectedValue);
+                    rate = LINQmanager.GetRateForContact(contID, rateName);
+                }
+                else
+                {
+                    //must be school rate
+                    long schoolID = Convert.ToInt64(cmbSchool.SelectedValue);
+                    rate = LINQmanager.GetRateForSchool(schoolID, rateName);
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in GetRate(): " + ex.Message);
+
+            }
+            return rate.ToString();
         }
 
         private void RestoreLayout()
@@ -1003,6 +1025,7 @@ namespace RedboxAddin.Presentation
                 return false;
             }
         }
+        
         private bool DeleteBooking()
         {
             try

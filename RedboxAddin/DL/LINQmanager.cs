@@ -347,7 +347,7 @@ namespace RedboxAddin.DL
                     List<string> pt2 = new List<string>();
                     foreach (RedboxAddin.PaymentType type in pt) pt2.Add(type.Name.ToString().Trim());
 
-                    return pt2 ;
+                    return pt2;
                 }
             }
             catch (Exception ex)
@@ -357,8 +357,111 @@ namespace RedboxAddin.DL
             }
         }
 
-        public static decimal? GetRateForContact(long contactID, string requiredRate)
+        public static string GetRate(long masterBookingID, long? contactID)
         {
+            if (contactID == null) return "0.00";
+
+            MasterBooking mb = GetMasterBookingbyID(masterBookingID);
+            long schoolID = mb.SchoolID;
+            School sch = GetSchoolbyID(schoolID);
+            string rateType = sch.RateType;
+            if (rateType == null) rateType = "TeacherRate";
+
+            decimal? rate = null;
+
+            string rateName = "";
+            try
+            {
+                if (mb.TA)
+                {
+                    //TA
+                    if (mb.HalfDay)
+                    {
+                        //HalfDay
+                        if (mb.LongTerm)
+                        {
+                            //LongTerm
+                            rateName = "HalfDayRateLTTA";
+                        }
+                        else
+                        {
+                            rateName = "HalfDayRateTA";
+                        }
+                    }
+                    else
+                    {
+                        //FullDay
+                        if (mb.LongTerm)
+                        {
+                            //LongTerm
+                            rateName = "DayRateLTTA";
+                        }
+                        else
+                        {
+                            rateName = "DayRateTA";
+                        }
+                    }
+                }
+                else
+                {
+                    //Teacher
+                    if (mb.HalfDay)
+                    {
+                        //Half Day
+                        if (mb.LongTerm)
+                        {
+                            //LongTerm
+                            rateName = "HalfDayRateLT";
+                        }
+                        else
+                        {
+                            rateName = "HalfDayRate";
+                        }
+                    }
+                    else
+                    {
+                        //Full Day
+                        if (mb.LongTerm)
+                        {
+                            //LongTerm
+                            rateName = "DayRateLT";
+                        }
+                        else
+                        {
+                            rateName = "DayRate";
+                        }
+                    }
+                }
+
+                if (rateType == "TeacherRate")
+                {
+                    rate = LINQmanager.GetRateForContact(contactID, rateName);
+                }
+                else if (rateType == "SchoolRate")
+                {
+                    rate = LINQmanager.GetRateForSchool(schoolID, rateName);
+                }
+                else if (rateType == "CalcRate")
+                {
+                    rate = LINQmanager.GetChargeForSchool(schoolID, rateName) - 35;
+                }
+                else
+                {
+                    throw new Exception("Error in GetRate(): Invalid rateType: " + rateType);
+                }
+                return rate.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in GetRate(): " + ex.Message);
+
+            }
+            return null;
+        }
+
+        public static decimal? GetRateForContact(long? contactID, string requiredRate)
+        {
+            if (contactID == null) return (Decimal)0.00;
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -400,12 +503,108 @@ namespace RedboxAddin.DL
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in GetContactbyID: " + ex.Message);
+                Debug.DebugMessage(2, "Error in GetRateForContact: " + ex.Message);
                 return null;
             }
         }
 
-        
+        public static decimal? GetRateForSchool(long schoolID, string requiredRate)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var sd = db.Schools.FirstOrDefault(s => s.ID == schoolID);
+
+                    if (sd == null) return null;
+
+                    switch (requiredRate)
+                    {
+                        case "DayRate":
+                            return sd.DayRate;
+                            break;
+                        case "HalfDayRate":
+                            return sd.HalfDayRate;
+                            break;
+                        case "DayRateLT":
+                            return sd.DayRateLT;
+                            break;
+                        case "HalfDayRateLT":
+                            return sd.HalfDayRateLT;
+                            break;
+                        case "DayRateTA":
+                            return sd.TADayRate;
+                            break;
+                        case "HalfDayRateTA":
+                            return sd.TAHalfDayRate;
+                            break;
+                        case "DayRateLTTA":
+                            return sd.TADayRateLT;
+                            break;
+                        case "HalfDayRateLTTA":
+                            return sd.TAHalfDayRateLT;
+                            break;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetRateForSchool: " + ex.Message);
+                return null;
+            }
+        }
+
+        public static decimal? GetChargeForSchool(long schoolID, string requiredRate)
+        {
+            try
+            {
+                string CONNSTR = DavSettings.getDavValue("CONNSTR");
+                using (RedBoxDB db = new RedBoxDB(CONNSTR))
+                {
+                    var sd = db.Schools.FirstOrDefault(s => s.ID == schoolID);
+
+                    if (sd == null) return null;
+
+                    switch (requiredRate)
+                    {
+                        //Although this says day Rate we want the CHARGE in each case as we will calculate rate as Charge -35
+                        case "DayRate":
+                            return sd.DayCharge;
+                            break;
+                        case "HalfDayRate":
+                            return sd.HalfDayCharge;
+                            break;
+                        case "DayRateLT":
+                            return sd.DayChargeLT;
+                            break;
+                        case "HalfDayRateLT":
+                            return sd.HalfDayChargeLT;
+                            break;
+                        case "DayRateTA":
+                            return sd.TADayCharge;
+                            break;
+                        case "HalfDayRateTA":
+                            return sd.TAHalfDayCharge;
+                            break;
+                        case "DayRateLTTA":
+                            return sd.TADayRateLT;
+                            break;
+                        case "HalfDayRateLTTA":
+                            return sd.TAHalfDayRateLT;
+                            break;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetRateForSchool: " + ex.Message);
+                return null;
+            }
+        }
+
 
     }
 }

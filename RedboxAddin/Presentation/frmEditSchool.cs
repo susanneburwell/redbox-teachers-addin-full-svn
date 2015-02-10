@@ -31,7 +31,7 @@ namespace RedboxAddin.Presentation
                 {
                     PopulateSchools(db);
                     LoadSchoolDetails(cmbSchool.Text);
-                     if (cmbSchool.SelectedItem != null) _selectedItem = cmbSchool.SelectedItem as School;
+                    if (cmbSchool.SelectedItem != null) _selectedItem = cmbSchool.SelectedItem as School;
                 }
             }
             catch (Exception ex)
@@ -103,7 +103,16 @@ namespace RedboxAddin.Presentation
                     txtSageAccountRef.Text = "";
                     txtNotes.Text = "";
                     chkVettingAM.Checked = false;
-                    chkUseSchoolRate.Checked = false;
+                    radSchoolRate.Checked = false;
+                    txtDayRate.Text = "";
+                    txtHfDayRate.Text = "";
+                    txtLTDayRate.Text = "";
+                    txtLTHfDayRate.Text = "";
+                    txtTADayrate.Text = "";
+                    txtTAHfDayRate.Text = "";
+                    txtTALTDayRate.Text = "";
+                    txtTALTHfDayRate.Text = "";
+
 
                     return;
                 }
@@ -129,6 +138,7 @@ namespace RedboxAddin.Presentation
                             txtEmailAddress.Text = school.EmailAddress;
                             txtTel.Text = school.Telephone;
                             txtFax.Text = school.Fax;
+
                             txtDayCharge.Text = school.DayCharge.ToString();
                             txtHfDayCharge.Text = school.HalfDayCharge.ToString();
                             txtLTDay.Text = school.DayChargeLT.ToString();
@@ -137,6 +147,7 @@ namespace RedboxAddin.Presentation
                             txtTAHfDayCharge.Text = school.TAHalfDayCharge.ToString();
                             txtTALTDay.Text = school.TADayChargeLT.ToString();
                             txtTALTHfDay.Text = school.TAHalfDayChargeLT.ToString();
+
                             lblID.Text = school.ID.ToString();
                             txtVettingEmails.Text = school.VettingEmails;
                             chkUseFaxForTimeSheets.Checked = school.FaxTimeSheet;
@@ -144,8 +155,30 @@ namespace RedboxAddin.Presentation
                             txtSageAccountRef.Text = school.SageName;
                             txtNotes.Text = school.Notes;
                             chkVettingAM.Checked = school.VettingAM;
-                            chkUseSchoolRate.Checked = school.AlwaysUseSchoolRate;
 
+                            txtDayRate.Text = school.DayRate.ToString();
+                            txtHfDayRate.Text = school.HalfDayRate.ToString();
+                            txtLTDayRate.Text = school.DayRateLT.ToString();
+                            txtLTHfDayRate.Text = school.HalfDayRateLT.ToString();
+                            txtTADayrate.Text = school.TADayRate.ToString();
+                            txtTAHfDayRate.Text = school.TAHalfDayRate.ToString();
+                            txtTALTDayRate.Text = school.TADayRateLT.ToString();
+                            txtTALTHfDayRate.Text = school.TAHalfDayRateLT.ToString();
+
+                            if (school.RateType == "SchoolRate")
+                            {
+                                radSchoolRate.Checked = true;
+                            }
+                            else if (school.RateType == "CalcRate")
+                            {
+                                radCalcRate.Checked = true;
+                            }
+                            else 
+                            {
+                                radRateTeacher.Checked = true;
+                            }
+
+                            SetRateVisibility();
                             return;
                         }
                     }
@@ -180,21 +213,44 @@ namespace RedboxAddin.Presentation
                         school.EmailAddress = txtEmailAddress.Text;
                         school.Telephone = txtTel.Text;
                         school.Fax = txtFax.Text;
-                        school.DayCharge = Convert.ToDecimal(txtDayCharge.Text);
-                        school.HalfDayCharge = Convert.ToDecimal(txtHfDayCharge.Text);
-                        school.DayChargeLT = Convert.ToDecimal(txtLTDay.Text);
-                        school.HalfDayChargeLT = Convert.ToDecimal(txtLTHfDay.Text);
-                        school.TADayCharge = Convert.ToDecimal(txtTADayCharge.Text);
-                        school.TAHalfDayCharge = Convert.ToDecimal(txtTAHfDayCharge.Text);
-                        school.TADayChargeLT = Convert.ToDecimal(txtTALTDay.Text);
-                        school.TAHalfDayChargeLT = Convert.ToDecimal(txtTALTHfDay.Text);
+                        school.DayCharge = Utils.CheckDecimal(txtDayCharge.Text);
+                        school.HalfDayCharge = Utils.CheckDecimal(txtHfDayCharge.Text);
+                        school.DayChargeLT = Utils.CheckDecimal(txtLTDay.Text);
+                        school.HalfDayChargeLT = Utils.CheckDecimal(txtLTHfDay.Text);
+                        school.TADayCharge = Utils.CheckDecimal(txtTADayCharge.Text);
+                        school.TAHalfDayCharge = Utils.CheckDecimal(txtTAHfDayCharge.Text);
+                        school.TADayChargeLT = Utils.CheckDecimal(txtTALTDay.Text);
+                        school.TAHalfDayChargeLT = Utils.CheckDecimal(txtTALTHfDay.Text);
                         school.VettingEmails = txtVettingEmails.Text;
                         school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
                         school.Address = txtAddress.Text;
                         school.SageName = txtSageAccountRef.Text;
                         school.Notes = txtNotes.Text;
                         school.VettingAM = chkVettingAM.Checked;
-                        school.AlwaysUseSchoolRate = chkUseSchoolRate.Checked;
+
+                        school.DayRate = Utils.CheckDecimal(txtDayRate.Text);
+                        school.HalfDayRate= Utils.CheckDecimal(txtHfDayRate.Text );
+                        school.DayRateLT = Utils.CheckDecimal(txtLTDayRate.Text);
+                        school.HalfDayRateLT = Utils.CheckDecimal(txtLTHfDayRate.Text);
+                        school.TADayRate = Utils.CheckDecimal(txtTADayrate.Text);
+                        school.TAHalfDayRate = Utils.CheckDecimal(txtTAHfDayRate.Text);
+                        school.TADayRateLT = Utils.CheckDecimal(txtTALTDayRate.Text );
+                        school.TAHalfDayRateLT = Utils.CheckDecimal(txtTALTHfDayRate.Text);
+
+                        if (radSchoolRate.Checked  )
+                        {
+                            school.RateType = "SchoolRate";
+                        }
+                        else if (radCalcRate.Checked )
+                        {
+                            school.RateType = "CalcRate";
+                        }
+                        else
+                        {
+                            school.RateType = "TeacherRate";
+                        }
+
+                        
 
                         db.Schools.InsertOnSubmit(school);
                         db.SubmitChanges();
@@ -219,21 +275,41 @@ namespace RedboxAddin.Presentation
                             school.EmailAddress = txtEmailAddress.Text;
                             school.Telephone = txtTel.Text;
                             school.Fax = txtFax.Text;
-                            school.DayCharge = Convert.ToDecimal(txtDayCharge.Text);
-                            school.HalfDayCharge = Convert.ToDecimal(txtHfDayCharge.Text);
-                            school.DayChargeLT = Convert.ToDecimal(txtLTDay.Text);
-                            school.HalfDayChargeLT = Convert.ToDecimal(txtLTHfDay.Text);
-                            school.TADayCharge = Convert.ToDecimal(txtTADayCharge.Text);
-                            school.TAHalfDayCharge = Convert.ToDecimal(txtTAHfDayCharge.Text);
-                            school.TADayChargeLT = Convert.ToDecimal(txtTALTDay.Text);
-                            school.TAHalfDayChargeLT = Convert.ToDecimal(txtTALTHfDay.Text);
+                            school.DayCharge = Utils.CheckDecimal(txtDayCharge.Text);
+                            school.HalfDayCharge = Utils.CheckDecimal(txtHfDayCharge.Text);
+                            school.DayChargeLT = Utils.CheckDecimal(txtLTDay.Text);
+                            school.HalfDayChargeLT = Utils.CheckDecimal(txtLTHfDay.Text);
+                            school.TADayCharge = Utils.CheckDecimal(txtTADayCharge.Text);
+                            school.TAHalfDayCharge = Utils.CheckDecimal(txtTAHfDayCharge.Text);
+                            school.TADayChargeLT = Utils.CheckDecimal(txtTALTDay.Text);
+                            school.TAHalfDayChargeLT = Utils.CheckDecimal(txtTALTHfDay.Text);
                             school.VettingEmails = txtVettingEmails.Text;
                             school.FaxTimeSheet = chkUseFaxForTimeSheets.Checked;
                             school.Address = txtAddress.Text;
                             school.SageName = txtSageAccountRef.Text;
                             school.Notes = txtNotes.Text;
                             school.VettingAM = chkVettingAM.Checked;
-                            school.AlwaysUseSchoolRate = chkUseSchoolRate.Checked;
+                            school.DayRate = Utils.CheckDecimal(txtDayRate.Text);
+                            school.HalfDayRate = Utils.CheckDecimal(txtHfDayRate.Text);
+                            school.DayRateLT = Utils.CheckDecimal(txtLTDayRate.Text);
+                            school.HalfDayRateLT = Utils.CheckDecimal(txtLTHfDayRate.Text);
+                            school.TADayRate = Utils.CheckDecimal(txtTADayrate.Text);
+                            school.TAHalfDayRate = Utils.CheckDecimal(txtTAHfDayRate.Text);
+                            school.TADayRateLT = Utils.CheckDecimal(txtTALTDayRate.Text);
+                            school.TAHalfDayRateLT = Utils.CheckDecimal(txtTALTHfDayRate.Text);
+
+                            if (radSchoolRate.Checked)
+                            {
+                                school.RateType = "SchoolRate";
+                            }
+                            else if (radCalcRate.Checked)
+                            {
+                                school.RateType = "CalcRate";
+                            }
+                            else
+                            {
+                                school.RateType = "TeacherRate";
+                            } 
                             db.SubmitChanges();
                         }
                         return true;
@@ -304,7 +380,7 @@ namespace RedboxAddin.Presentation
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var ans = MessageBox.Show("Delete "  +_selectedItem.SchoolName + "? This can not be undone.", "Delete?", MessageBoxButtons.YesNo);
+            var ans = MessageBox.Show("Delete " + _selectedItem.SchoolName + "? This can not be undone.", "Delete?", MessageBoxButtons.YesNo);
             if (ans == DialogResult.Yes)
             {
                 DBManager dbm = new DBManager();
@@ -315,7 +391,7 @@ namespace RedboxAddin.Presentation
                 }
                 else MessageBox.Show(_selectedItem.SchoolName + " could not be Deleted");
             }
-         }
+        }
 
         private void txtDayCharge_Validating(object sender, CancelEventArgs e)
         {
@@ -361,7 +437,41 @@ namespace RedboxAddin.Presentation
             }
         }
 
-       
+
+
+        private void radSchoolRate_CheckedChanged(object sender, EventArgs e)
+        {
+            SetRateVisibility();
+        }
+
+        private void SetRateVisibility()
+        {
+            if (radSchoolRate.Checked)
+            {
+                txtDayRate.Visible = true;
+                txtHfDayRate.Visible = true;
+                txtLTDayRate.Visible = true;
+                txtLTHfDayRate.Visible = true;
+                txtTADayrate.Visible = true;
+                txtTAHfDayRate.Visible = true;
+                txtTALTDayRate.Visible = true;
+                txtTALTHfDayRate.Visible = true;
+            }
+            else
+            {
+                txtDayRate.Visible = false;
+                txtHfDayRate.Visible = false;
+                txtLTDayRate.Visible = false;
+                txtLTHfDayRate.Visible = false;
+                txtTADayrate.Visible = false;
+                txtTAHfDayRate.Visible = false;
+                txtTALTDayRate.Visible = false;
+                txtTALTHfDayRate.Visible = false;
+
+            }
+        }
+
+
 
 
 

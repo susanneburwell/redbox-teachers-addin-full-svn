@@ -78,6 +78,17 @@
             this.btnAddNotes = new System.Windows.Forms.Button();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radCalcRate = new System.Windows.Forms.RadioButton();
+            this.radSchoolRate = new System.Windows.Forms.RadioButton();
+            this.radRateTeacher = new System.Windows.Forms.RadioButton();
+            this.txtTALTHfDayRate = new System.Windows.Forms.TextBox();
+            this.txtTALTDayRate = new System.Windows.Forms.TextBox();
+            this.txtTAHfDayRate = new System.Windows.Forms.TextBox();
+            this.txtTADayrate = new System.Windows.Forms.TextBox();
+            this.txtLTHfDayRate = new System.Windows.Forms.TextBox();
+            this.txtLTDayRate = new System.Windows.Forms.TextBox();
+            this.txtHfDayRate = new System.Windows.Forms.TextBox();
+            this.txtDayRate = new System.Windows.Forms.TextBox();
             this.chkVettingAM = new System.Windows.Forms.CheckBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -86,7 +97,6 @@
             this.txtTALTDay = new System.Windows.Forms.TextBox();
             this.txtTAHfDayCharge = new System.Windows.Forms.TextBox();
             this.txtTADayCharge = new System.Windows.Forms.TextBox();
-            this.chkUseSchoolRate = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -163,7 +173,7 @@
             // chkRequirePofA
             // 
             this.chkRequirePofA.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkRequirePofA.Location = new System.Drawing.Point(403, 79);
+            this.chkRequirePofA.Location = new System.Drawing.Point(402, 54);
             this.chkRequirePofA.Name = "chkRequirePofA";
             this.chkRequirePofA.Size = new System.Drawing.Size(238, 20);
             this.chkRequirePofA.TabIndex = 10;
@@ -218,7 +228,7 @@
             this.txtEmailAddress.Location = new System.Drawing.Point(135, 306);
             this.txtEmailAddress.Multiline = true;
             this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.Size = new System.Drawing.Size(605, 56);
+            this.txtEmailAddress.Size = new System.Drawing.Size(609, 56);
             this.txtEmailAddress.TabIndex = 7;
             // 
             // txtTel
@@ -249,27 +259,27 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(393, 189);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 16);
+            this.label9.Size = new System.Drawing.Size(81, 16);
             this.label9.TabIndex = 17;
-            this.label9.Text = "1/2 Day Charge";
+            this.label9.Text = "1/2 Day Chg";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(393, 232);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(101, 16);
+            this.label10.Size = new System.Drawing.Size(52, 16);
             this.label10.TabIndex = 18;
-            this.label10.Text = "Long Term Day";
+            this.label10.Text = "LT Day";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(393, 269);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 16);
+            this.label11.Size = new System.Drawing.Size(73, 16);
             this.label11.TabIndex = 19;
-            this.label11.Text = "Long Term 1/2 Day";
+            this.label11.Text = "LT 1/2 Day";
             // 
             // btnSave
             // 
@@ -294,7 +304,7 @@
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(572, 57);
+            this.lblID.Location = new System.Drawing.Point(522, 19);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(35, 16);
             this.lblID.TabIndex = 26;
@@ -314,7 +324,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(552, 155);
+            this.label13.Location = new System.Drawing.Point(503, 155);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(15, 16);
             this.label13.TabIndex = 28;
@@ -323,7 +333,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(552, 189);
+            this.label14.Location = new System.Drawing.Point(503, 189);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(15, 16);
             this.label14.TabIndex = 29;
@@ -332,7 +342,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(552, 232);
+            this.label15.Location = new System.Drawing.Point(503, 232);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(15, 16);
             this.label15.TabIndex = 30;
@@ -341,7 +351,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(552, 272);
+            this.label16.Location = new System.Drawing.Point(503, 272);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(15, 16);
             this.label16.TabIndex = 31;
@@ -357,33 +367,34 @@
             // 
             // txtDayCharge
             // 
-            this.txtDayCharge.Location = new System.Drawing.Point(573, 149);
+            this.txtDayCharge.Location = new System.Drawing.Point(524, 149);
             this.txtDayCharge.Name = "txtDayCharge";
-            this.txtDayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtDayCharge.Size = new System.Drawing.Size(50, 22);
             this.txtDayCharge.TabIndex = 11;
+            this.txtDayCharge.Text = "120";
             this.txtDayCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtDayCharge_Validating);
             // 
             // txtHfDayCharge
             // 
-            this.txtHfDayCharge.Location = new System.Drawing.Point(573, 186);
+            this.txtHfDayCharge.Location = new System.Drawing.Point(524, 186);
             this.txtHfDayCharge.Name = "txtHfDayCharge";
-            this.txtHfDayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtHfDayCharge.Size = new System.Drawing.Size(50, 22);
             this.txtHfDayCharge.TabIndex = 12;
             this.txtHfDayCharge.Validating += new System.ComponentModel.CancelEventHandler(this.txtHfDayCharge_Validating);
             // 
             // txtLTDay
             // 
-            this.txtLTDay.Location = new System.Drawing.Point(573, 229);
+            this.txtLTDay.Location = new System.Drawing.Point(524, 229);
             this.txtLTDay.Name = "txtLTDay";
-            this.txtLTDay.Size = new System.Drawing.Size(68, 22);
+            this.txtLTDay.Size = new System.Drawing.Size(50, 22);
             this.txtLTDay.TabIndex = 13;
             this.txtLTDay.Validating += new System.ComponentModel.CancelEventHandler(this.txtLTDay_Validating);
             // 
             // txtLTHfDay
             // 
-            this.txtLTHfDay.Location = new System.Drawing.Point(573, 269);
+            this.txtLTHfDay.Location = new System.Drawing.Point(524, 269);
             this.txtLTHfDay.Name = "txtLTHfDay";
-            this.txtLTHfDay.Size = new System.Drawing.Size(68, 22);
+            this.txtLTHfDay.Size = new System.Drawing.Size(50, 22);
             this.txtLTHfDay.TabIndex = 14;
             this.txtLTHfDay.Validating += new System.ComponentModel.CancelEventHandler(this.txtLTHfDay_Validating);
             // 
@@ -426,7 +437,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(757, 130);
+            this.txtAddress.Location = new System.Drawing.Point(756, 148);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -435,7 +446,7 @@
             // 
             // label19
             // 
-            this.label19.Location = new System.Drawing.Point(753, 72);
+            this.label19.Location = new System.Drawing.Point(757, 90);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(234, 55);
             this.label19.TabIndex = 42;
@@ -525,7 +536,17 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.chkUseSchoolRate);
+            this.panel1.Controls.Add(this.radCalcRate);
+            this.panel1.Controls.Add(this.radSchoolRate);
+            this.panel1.Controls.Add(this.radRateTeacher);
+            this.panel1.Controls.Add(this.txtTALTHfDayRate);
+            this.panel1.Controls.Add(this.txtTALTDayRate);
+            this.panel1.Controls.Add(this.txtTAHfDayRate);
+            this.panel1.Controls.Add(this.txtTADayrate);
+            this.panel1.Controls.Add(this.txtLTHfDayRate);
+            this.panel1.Controls.Add(this.txtLTDayRate);
+            this.panel1.Controls.Add(this.txtHfDayRate);
+            this.panel1.Controls.Add(this.txtDayRate);
             this.panel1.Controls.Add(this.chkVettingAM);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.label23);
@@ -581,6 +602,105 @@
             this.panel1.Size = new System.Drawing.Size(1000, 494);
             this.panel1.TabIndex = 1;
             // 
+            // radCalcRate
+            // 
+            this.radCalcRate.AutoSize = true;
+            this.radCalcRate.Location = new System.Drawing.Point(403, 106);
+            this.radCalcRate.Name = "radCalcRate";
+            this.radCalcRate.Size = new System.Drawing.Size(190, 20);
+            this.radCalcRate.TabIndex = 64;
+            this.radCalcRate.Text = "Calculate Rate from Charge";
+            this.radCalcRate.UseVisualStyleBackColor = true;
+            // 
+            // radSchoolRate
+            // 
+            this.radSchoolRate.AutoSize = true;
+            this.radSchoolRate.Location = new System.Drawing.Point(580, 80);
+            this.radSchoolRate.Name = "radSchoolRate";
+            this.radSchoolRate.Size = new System.Drawing.Size(128, 20);
+            this.radSchoolRate.TabIndex = 63;
+            this.radSchoolRate.Text = "Use School Rate";
+            this.radSchoolRate.UseVisualStyleBackColor = true;
+            this.radSchoolRate.CheckedChanged += new System.EventHandler(this.radSchoolRate_CheckedChanged);
+            // 
+            // radRateTeacher
+            // 
+            this.radRateTeacher.AutoSize = true;
+            this.radRateTeacher.Checked = true;
+            this.radRateTeacher.Location = new System.Drawing.Point(403, 80);
+            this.radRateTeacher.Name = "radRateTeacher";
+            this.radRateTeacher.Size = new System.Drawing.Size(137, 20);
+            this.radRateTeacher.TabIndex = 62;
+            this.radRateTeacher.TabStop = true;
+            this.radRateTeacher.Text = "Use Teacher Rate";
+            this.radRateTeacher.UseVisualStyleBackColor = true;
+            // 
+            // txtTALTHfDayRate
+            // 
+            this.txtTALTHfDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtTALTHfDayRate.Location = new System.Drawing.Point(694, 268);
+            this.txtTALTHfDayRate.Name = "txtTALTHfDayRate";
+            this.txtTALTHfDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtTALTHfDayRate.TabIndex = 61;
+            // 
+            // txtTALTDayRate
+            // 
+            this.txtTALTDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtTALTDayRate.Location = new System.Drawing.Point(694, 228);
+            this.txtTALTDayRate.Name = "txtTALTDayRate";
+            this.txtTALTDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtTALTDayRate.TabIndex = 60;
+            // 
+            // txtTAHfDayRate
+            // 
+            this.txtTAHfDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtTAHfDayRate.Location = new System.Drawing.Point(694, 185);
+            this.txtTAHfDayRate.Name = "txtTAHfDayRate";
+            this.txtTAHfDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtTAHfDayRate.TabIndex = 59;
+            // 
+            // txtTADayrate
+            // 
+            this.txtTADayrate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtTADayrate.Location = new System.Drawing.Point(694, 148);
+            this.txtTADayrate.Name = "txtTADayrate";
+            this.txtTADayrate.Size = new System.Drawing.Size(50, 22);
+            this.txtTADayrate.TabIndex = 58;
+            this.txtTADayrate.Text = "120";
+            // 
+            // txtLTHfDayRate
+            // 
+            this.txtLTHfDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtLTHfDayRate.Location = new System.Drawing.Point(580, 269);
+            this.txtLTHfDayRate.Name = "txtLTHfDayRate";
+            this.txtLTHfDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtLTHfDayRate.TabIndex = 57;
+            // 
+            // txtLTDayRate
+            // 
+            this.txtLTDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtLTDayRate.Location = new System.Drawing.Point(580, 229);
+            this.txtLTDayRate.Name = "txtLTDayRate";
+            this.txtLTDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtLTDayRate.TabIndex = 56;
+            // 
+            // txtHfDayRate
+            // 
+            this.txtHfDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtHfDayRate.Location = new System.Drawing.Point(580, 186);
+            this.txtHfDayRate.Name = "txtHfDayRate";
+            this.txtHfDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtHfDayRate.TabIndex = 55;
+            // 
+            // txtDayRate
+            // 
+            this.txtDayRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtDayRate.Location = new System.Drawing.Point(580, 149);
+            this.txtDayRate.Name = "txtDayRate";
+            this.txtDayRate.Size = new System.Drawing.Size(50, 22);
+            this.txtDayRate.TabIndex = 54;
+            this.txtDayRate.Text = "120";
+            // 
             // chkVettingAM
             // 
             this.chkVettingAM.AutoSize = true;
@@ -606,7 +726,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(669, 127);
+            this.label23.Location = new System.Drawing.Point(635, 127);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(26, 16);
             this.label23.TabIndex = 49;
@@ -615,7 +735,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(570, 127);
+            this.label22.Location = new System.Drawing.Point(521, 127);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(59, 16);
             this.label22.TabIndex = 48;
@@ -623,41 +743,31 @@
             // 
             // txtTALTHfDay
             // 
-            this.txtTALTHfDay.Location = new System.Drawing.Point(672, 269);
+            this.txtTALTHfDay.Location = new System.Drawing.Point(638, 269);
             this.txtTALTHfDay.Name = "txtTALTHfDay";
-            this.txtTALTHfDay.Size = new System.Drawing.Size(68, 22);
+            this.txtTALTHfDay.Size = new System.Drawing.Size(50, 22);
             this.txtTALTHfDay.TabIndex = 18;
             // 
             // txtTALTDay
             // 
-            this.txtTALTDay.Location = new System.Drawing.Point(672, 229);
+            this.txtTALTDay.Location = new System.Drawing.Point(638, 229);
             this.txtTALTDay.Name = "txtTALTDay";
-            this.txtTALTDay.Size = new System.Drawing.Size(68, 22);
+            this.txtTALTDay.Size = new System.Drawing.Size(50, 22);
             this.txtTALTDay.TabIndex = 17;
             // 
             // txtTAHfDayCharge
             // 
-            this.txtTAHfDayCharge.Location = new System.Drawing.Point(672, 186);
+            this.txtTAHfDayCharge.Location = new System.Drawing.Point(638, 186);
             this.txtTAHfDayCharge.Name = "txtTAHfDayCharge";
-            this.txtTAHfDayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtTAHfDayCharge.Size = new System.Drawing.Size(50, 22);
             this.txtTAHfDayCharge.TabIndex = 16;
             // 
             // txtTADayCharge
             // 
-            this.txtTADayCharge.Location = new System.Drawing.Point(672, 149);
+            this.txtTADayCharge.Location = new System.Drawing.Point(638, 149);
             this.txtTADayCharge.Name = "txtTADayCharge";
-            this.txtTADayCharge.Size = new System.Drawing.Size(68, 22);
+            this.txtTADayCharge.Size = new System.Drawing.Size(50, 22);
             this.txtTADayCharge.TabIndex = 15;
-            // 
-            // chkUseSchoolRate
-            // 
-            this.chkUseSchoolRate.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkUseSchoolRate.Location = new System.Drawing.Point(404, 105);
-            this.chkUseSchoolRate.Name = "chkUseSchoolRate";
-            this.chkUseSchoolRate.Size = new System.Drawing.Size(237, 20);
-            this.chkUseSchoolRate.TabIndex = 52;
-            this.chkUseSchoolRate.Text = "Always Use School rate";
-            this.chkUseSchoolRate.UseVisualStyleBackColor = true;
             // 
             // frmEditSchool
             // 
@@ -742,6 +852,16 @@
         private System.Windows.Forms.TextBox txtTADayCharge;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.CheckBox chkVettingAM;
-        private System.Windows.Forms.CheckBox chkUseSchoolRate;
+        private System.Windows.Forms.TextBox txtTALTHfDayRate;
+        private System.Windows.Forms.TextBox txtTALTDayRate;
+        private System.Windows.Forms.TextBox txtTAHfDayRate;
+        private System.Windows.Forms.TextBox txtTADayrate;
+        private System.Windows.Forms.TextBox txtLTHfDayRate;
+        private System.Windows.Forms.TextBox txtLTDayRate;
+        private System.Windows.Forms.TextBox txtHfDayRate;
+        private System.Windows.Forms.TextBox txtDayRate;
+        private System.Windows.Forms.RadioButton radCalcRate;
+        private System.Windows.Forms.RadioButton radSchoolRate;
+        private System.Windows.Forms.RadioButton radRateTeacher;
     }
 }

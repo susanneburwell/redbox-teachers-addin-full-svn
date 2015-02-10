@@ -213,8 +213,13 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex) {  }
         }
-        
 
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
        
     }
 }
