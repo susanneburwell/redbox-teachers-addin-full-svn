@@ -71,6 +71,7 @@ namespace RedboxAddin.Models
         public DateTime LTStartDate { get; set; }
         public bool MedicalChecklist { get; set; }
         public DateTime MedicalChecklistCheckedDate { get; set; }
+        public string NextOfKin { get; set; }
         public string NINumber { get; set; }
         public string Notes { get; set; }
         public bool NQT { get; set; }

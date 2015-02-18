@@ -143,7 +143,7 @@ namespace RedboxAddin.DL
                 "ContactData.[Current],ContactData.[Wants],ContactData.[Teacher],ContactData.[TA],ContactData.[NoGo],ContactData.[LT], " +
                 "ContactData.[D2D],ContactData.[PPA],ContactData.[RGD] from Contacts " +
                 "join ContactData on ContactData.ContactID = Contacts.contactID " +
-                "WHERE [Deleted] = 0 ") ;
+                "WHERE [Deleted] = 0 ");
 
 
                 if (msgDs != null)
@@ -2166,138 +2166,139 @@ namespace RedboxAddin.DL
 
         private RContact GetContactFromDataRow(DataRow dr)
         {
-            RContact objContact = new RContact()
-            {
-                FirstName = dr["FirstName"].ToString(),
-                LastName = dr["LastName"].ToString(),
-                Title = dr["Title"].ToString(),
-                MiddleName = dr["MiddleName"].ToString(),
-                Suffix = dr["Suffix"].ToString(),
-                Email1 = dr["Email1"].ToString(),
-                Email2 = dr["Email2"].ToString(),
-                Email3 = dr["Email3"].ToString(),
-                JobTitle = dr["JobTitle"].ToString(),
-                contactID = Convert.ToInt64(dr["contactID"].ToString()),
-                AddressStreet = dr["AddressStreet"].ToString(),
-                AddressCity = dr["AddressCity"].ToString(),
-                AddressState = dr["AddressState"].ToString(),
-                AddressPostcode = dr["AddressPostcode"].ToString(),
-                AddressCountry = dr["AddressCountry"].ToString(),
-                PhoneHome = dr["PhoneHome"].ToString(),
-                PhoneMobile = dr["PhoneMobile"].ToString(),
-                PhoneBusiness = dr["PhoneBusiness"].ToString(),
-                PhoneFax = dr["PhoneFax"].ToString(),
-                CategoryStr = dr["CategoryStr"].ToString(),
-                _1stRefChecked = CheckBool(dr["1stRefChecked"].ToString()),
-                _2ndRefChecked = CheckBool(dr["2ndRefChecked"].ToString()),
-                _3rdRefChecked = CheckBool(dr["3rdRefChecked"].ToString()),
-                AccountName = dr["AccountName"].ToString(),
-                Cautions_AdditionalInfo_OnDBS = CheckBool(dr["AdditionalInfoOnCRB"].ToString()),
-                //AttendMMRV = CheckBool(dr["AttendMMRV"].ToString()),
-                //BankAccountNumber = dr["BankAccountNumber"].ToString(),
-                //BankName = dr["BankName"].ToString(),
-                //BankSortCode = dr["BankSortCode"].ToString(),
-                //BankStatementLocation = dr["BankStatementLocation"].ToString(),
-                BirthDate = dr["BirthDate"].ToString(),
-                //Consultant = dr["Consultant"].ToString(),
-                DBSandAddressProofMatch = CheckBool(dr["CRBandAddressProofMatch"].ToString()),
-                DBSDateSent = CheckDate(dr["CRBDateSent"].ToString()),
-                DBSExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString()),
-                DBSFormRef = dr["CRBFormRef"].ToString(),
-                DBSNumber = dr["CRBNumber"].ToString(),
-                DBSValidFrom = CheckDate(dr["CRBValidFrom"].ToString()),
-                //DBSDirectPayment = CheckBool(dr["DBSDirectPayment"]),
-                DBSUpdateServiceCheckedDate = CheckDate(dr["DBSUpdateSvcChkdDate"].ToString()),
-                DisqByAssocChkdDate = CheckDate(dr["DisqByAssocChkdDate"].ToString()),
-                DisqByAssoc = CheckBool(dr["DisqByAssoc"]),
-                CurrentPayScaleProof = CheckBool(dr["CurrentPayScaleProof"]),
-                CurrentPayScale = dr["CurrentPayScale"].ToString(),
-                CNGHO = dr["CNGHO"].ToString(),
-                CVReceived = CheckBool(dr["CVReceived"].ToString()),
-                DateOfSupply = CheckDate(dr["DateOfSupply"].ToString()),
-                FirstDayTeachingUK = CheckDate(dr["FirstDayTeachingUK"].ToString()),
-                GTCCheckDate = CheckDate(dr["GTCCheckDate"].ToString()),
-                IDChecked = CheckBool(dr["IDChecked"].ToString()),
-                IDCheckedDate = CheckDate(dr["IDChkdDate"].ToString()),
-                //Instructor = CheckBool(dr["Instructor"].ToString()),
-                GTCNumber = dr["GTCNumber"].ToString(),
-                InterviewNotes = dr["InterviewNotes"].ToString(),
-                //KeyRef = dr["KeyRef"].ToString(),
-                LateRecord = dr["LateRecord"].ToString(),
-                List99 = CheckBool(dr["List99"].ToString()),
-                List99CheckedDate = CheckDate(dr["List99ChkdDate"].ToString()),
-                LTStartDate = CheckDate(dr["LTStartDate"].ToString()),
-                MedicalChecklist = CheckBool(dr["MedicalChecklist"].ToString()),
-                MedicalChecklistCheckedDate = CheckDate(dr["MedicalChecklistChkdDate"].ToString()),
-                NINumber = dr["NINumber"].ToString(),
-                Notes = dr["Notes"].ToString(),
-                NQT = CheckBool(dr["NQT"].ToString()),
-                OtherCRBNumber = CheckBool(dr["OtherCRBNumber"].ToString()),
-                OTTEndDate = CheckDate(dr["OTTEndDate"].ToString()),
-                OverseasPoliceCheck = CheckBool(dr["OverseasPoliceCheck"].ToString()),
-                OverseasPoliceCheckedDate = CheckDate(dr["OverseasPoliceChkdDate"].ToString()),
-                OverseasTrainedTeacher = CheckBool(dr["OverseasTrainedTeacher"].ToString()),
-                //PassportNo = dr["PassportNo"].ToString(),
-                //PassportLocation = dr["PassportLocation"].ToString(),
-                PayDetails = dr["PayDetails"].ToString(),
-                //PAYETeacherContractSigned = CheckBool(dr["PAYETeacherContractSigned"].ToString()),
-                PhotoLocation = dr["PhotoLocation"].ToString(),
-                GraduationDate = CheckDate(dr["GraduationDate"].ToString()),
-                //ProtabilityCheckSent = CheckDate(dr["ProtabilityCheckSent"].ToString()),
-                ProtabilityReceivedDate = CheckDate(dr["ProtabilityReceivedDate"].ToString()),
-                ProofOfAddress = CheckBool(dr["ProofOfAddress"].ToString()),
-                ProofOfAddressCheckedDate = CheckDate(dr["POAChkdDate"].ToString()),
-                ProhibitionFromTeaching = CheckBool(dr["ProFrmTch"].ToString()),
-                ProhibitionFromTeachingCheckedDate = CheckDate(dr["ProFrmTchChkdDate"].ToString()),
-                //ProofOfID = dr["ProofOfID"].ToString(),
-                //ProofOfID2 = dr["ProofOfID2"].ToString(),
-                QTS = CheckBool(dr["QTS"].ToString()),
-                Qualification = dr["Qualification"].ToString(),
-                QualificationCheckedDate = CheckDate(dr["QualificationCheckedDate"].ToString()),
-                RedboxLeaveDate = CheckDate(dr["RedboxLeaveDate"].ToString()),
-                RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString()),
-                RedboxDBS = CheckBool(dr["RedboxCRB"].ToString()),
-                //ReferredBy = dr["ReferredBy"].ToString(),
-                Referee1Address = dr["Referee1Address"].ToString(),
-                Referee1Email = dr["Referee1Email"].ToString(),
-                Referee1Fax = dr["Referee1Fax"].ToString(),
-                Referee1Mobile = dr["Referee1Mobile"].ToString(),
-                Referee1Name = dr["Referee1Name"].ToString(),
-                Referee1Notes = dr["Referee1Notes"].ToString(),
-                Referee1Phone = dr["Referee1Phone"].ToString(),
-                Referee2Address = dr["Referee2Address"].ToString(),
-                Referee2Email = dr["Referee2Email"].ToString(),
-                Referee2Fax = dr["Referee2Fax"].ToString(),
-                Referee2Mobile = dr["Referee2Mobile"].ToString(),
-                Referee2Name = dr["Referee2Name"].ToString(),
-                Referee2Notes = dr["Referee2Notes"].ToString(),
-                Referee2Phone = dr["Referee2Phone"].ToString(),
-                Referee3Address = dr["Referee3Address"].ToString(),
-                Referee3Email = dr["Referee3Email"].ToString(),
-                Referee3Fax = dr["Referee3Fax"].ToString(),
-                Referee3Mobile = dr["Referee3Mobile"].ToString(),
-                Referee3Name = dr["Referee3Name"].ToString(),
-                Referee3Notes = dr["Referee3Notes"].ToString(),
-                Referee3Phone = dr["Referee3Phone"].ToString(),
-                ReferencesChecked = CheckBool(dr["ReferencesChecked"].ToString()),
-                ReferencesCheckedDate = CheckDate(dr["ReferencesChkdDate"].ToString()),
-                //RegistrationComplete = CheckBool(dr["RegistrationComplete"].ToString()),
-                RegistrationDate = CheckDate(dr["RegistrationDate"].ToString()),
-                //SendBankStatement = CheckBool(dr["SendBankStatement"].ToString()),
-                //SendPassport = CheckBool(dr["SendPassport"].ToString()),
-                //SendVisa = CheckBool(dr["SendVisa"].ToString()),
-                SicknessRecord = dr["SicknessRecord"].ToString(),
-                Summary = dr["Summary"].ToString(),
-                //TeacherStatus = dr["TeacherStatus"].ToString(),
-                UKArrivalDate = CheckDate(dr["UKArrivalDate"].ToString()),
-                UpdateService = CheckBool(dr["UpdateService"].ToString()),
-                //UpdateServiceRegisteredDate = CheckDate(dr["UpdateServiceRegisteredDate"].ToString()),
-                VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString()),
-                VisaType = dr["VisaType"].ToString(),
-                VisaCheckedDate = CheckDate(dr["VisaChkdDate"].ToString()),
-                //VisaLocation = dr["VisaLocation"].ToString(),
-                YearGroup = dr["YearGroup"].ToString(),
-            };
+            RContact objContact = new RContact();
+
+            objContact.FirstName = dr["FirstName"].ToString();
+            objContact.LastName = dr["LastName"].ToString();
+            objContact.Title = dr["Title"].ToString();
+            objContact.MiddleName = dr["MiddleName"].ToString();
+            objContact.Suffix = dr["Suffix"].ToString();
+            objContact.Email1 = dr["Email1"].ToString();
+            objContact.Email2 = dr["Email2"].ToString();
+            objContact.Email3 = dr["Email3"].ToString();
+            objContact.JobTitle = dr["JobTitle"].ToString();
+            objContact.contactID = Convert.ToInt64(dr["contactID"].ToString());
+            objContact.AddressStreet = dr["AddressStreet"].ToString();
+            objContact.AddressCity = dr["AddressCity"].ToString();
+            objContact.AddressState = dr["AddressState"].ToString();
+            objContact.AddressPostcode = dr["AddressPostcode"].ToString();
+            objContact.AddressCountry = dr["AddressCountry"].ToString();
+            objContact.PhoneHome = dr["PhoneHome"].ToString();
+            objContact.PhoneMobile = dr["PhoneMobile"].ToString();
+            objContact.PhoneBusiness = dr["PhoneBusiness"].ToString();
+            objContact.PhoneFax = dr["PhoneFax"].ToString();
+            objContact.CategoryStr = dr["CategoryStr"].ToString();
+            objContact._1stRefChecked = CheckBool(dr["1stRefChecked"].ToString());
+            objContact._2ndRefChecked = CheckBool(dr["2ndRefChecked"].ToString());
+            objContact._3rdRefChecked = CheckBool(dr["3rdRefChecked"].ToString());
+            objContact.AccountName = dr["AccountName"].ToString();
+            objContact.Cautions_AdditionalInfo_OnDBS = CheckBool(dr["AdditionalInfoOnCRB"].ToString());
+            //AttendMMRV = CheckBool(dr["AttendMMRV"].ToString());
+            //BankAccountNumber = dr["BankAccountNumber"].ToString();
+            //BankName = dr["BankName"].ToString();
+            //BankSortCode = dr["BankSortCode"].ToString();
+            //BankStatementLocation = dr["BankStatementLocation"].ToString();
+            objContact.BirthDate = dr["BirthDate"].ToString();
+            //Consultant = dr["Consultant"].ToString();
+            objContact.DBSandAddressProofMatch = CheckBool(dr["CRBandAddressProofMatch"].ToString());
+            objContact.DBSDateSent = CheckDate(dr["CRBDateSent"].ToString());
+            objContact.DBSExpiryDate = CheckDate(dr["CRBExpiryDate"].ToString());
+            objContact.DBSFormRef = dr["CRBFormRef"].ToString();
+            objContact.DBSNumber = dr["CRBNumber"].ToString();
+            objContact.DBSValidFrom = CheckDate(dr["CRBValidFrom"].ToString());
+            //DBSDirectPayment = CheckBool(dr["DBSDirectPayment"]);
+            objContact.DBSUpdateServiceCheckedDate = CheckDate(dr["DBSUpdateSvcChkdDate"].ToString());
+            objContact.DisqByAssocChkdDate = CheckDate(dr["DisqByAssocChkdDate"].ToString());
+            objContact.DisqByAssoc = CheckBool(dr["DisqByAssoc"]);
+            objContact.CurrentPayScaleProof = CheckBool(dr["CurrentPayScaleProof"]);
+            objContact.CurrentPayScale = dr["CurrentPayScale"].ToString();
+            objContact.CNGHO = dr["CNGHO"].ToString();
+            objContact.CVReceived = CheckBool(dr["CVReceived"].ToString());
+            objContact.DateOfSupply = CheckDate(dr["DateOfSupply"].ToString());
+            objContact.FirstDayTeachingUK = CheckDate(dr["FirstDayTeachingUK"].ToString());
+            objContact.GTCCheckDate = CheckDate(dr["GTCCheckDate"].ToString());
+            objContact.IDChecked = CheckBool(dr["IDChecked"].ToString());
+            objContact.IDCheckedDate = CheckDate(dr["IDChkdDate"].ToString());
+            //Instructor = CheckBool(dr["Instructor"].ToString());
+            objContact.GTCNumber = dr["GTCNumber"].ToString();
+            objContact.InterviewNotes = dr["InterviewNotes"].ToString();
+            //KeyRef = dr["KeyRef"].ToString();
+            objContact.LateRecord = dr["LateRecord"].ToString();
+            objContact.List99 = CheckBool(dr["List99"].ToString());
+            objContact.List99CheckedDate = CheckDate(dr["List99ChkdDate"].ToString());
+            objContact.LTStartDate = CheckDate(dr["LTStartDate"].ToString());
+            objContact.MedicalChecklist = CheckBool(dr["MedicalChecklist"].ToString());
+            objContact.MedicalChecklistCheckedDate = CheckDate(dr["MedicalChecklistChkdDate"].ToString());
+            objContact.NextOfKin = dr["NextOfKin"].ToString();
+            objContact.NINumber = dr["NINumber"].ToString();
+            objContact.Notes = dr["Notes"].ToString();
+            objContact.NQT = CheckBool(dr["NQT"].ToString());
+            objContact.OtherCRBNumber = CheckBool(dr["OtherCRBNumber"].ToString());
+            objContact.OTTEndDate = CheckDate(dr["OTTEndDate"].ToString());
+            objContact.OverseasPoliceCheck = CheckBool(dr["OverseasPoliceCheck"].ToString());
+            objContact.OverseasPoliceCheckedDate = CheckDate(dr["OverseasPoliceChkdDate"].ToString());
+            objContact.OverseasTrainedTeacher = CheckBool(dr["OverseasTrainedTeacher"].ToString());
+            //PassportNo = dr["PassportNo"].ToString();
+            //PassportLocation = dr["PassportLocation"].ToString();
+            objContact.PayDetails = dr["PayDetails"].ToString();
+            //PAYETeacherContractSigned = CheckBool(dr["PAYETeacherContractSigned"].ToString());
+            objContact.PhotoLocation = dr["PhotoLocation"].ToString();
+            objContact.GraduationDate = CheckDate(dr["GraduationDate"].ToString());
+            //ProtabilityCheckSent = CheckDate(dr["ProtabilityCheckSent"].ToString());
+            objContact.ProtabilityReceivedDate = CheckDate(dr["ProtabilityReceivedDate"].ToString());
+            objContact.ProofOfAddress = CheckBool(dr["ProofOfAddress"].ToString());
+            objContact.ProofOfAddressCheckedDate = CheckDate(dr["POAChkdDate"].ToString());
+            objContact.ProhibitionFromTeaching = CheckBool(dr["ProFrmTch"].ToString());
+            objContact.ProhibitionFromTeachingCheckedDate = CheckDate(dr["ProFrmTchChkdDate"].ToString());
+            //ProofOfID = dr["ProofOfID"].ToString();
+            //ProofOfID2 = dr["ProofOfID2"].ToString();
+            objContact.QTS = CheckBool(dr["QTS"].ToString());
+            objContact.Qualification = dr["Qualification"].ToString();
+            objContact.QualificationCheckedDate = CheckDate(dr["QualificationCheckedDate"].ToString());
+            objContact.RedboxLeaveDate = CheckDate(dr["RedboxLeaveDate"].ToString());
+            objContact.RedboxStartDate = CheckDate(dr["RedboxStartDate"].ToString());
+            objContact.RedboxDBS = CheckBool(dr["RedboxCRB"].ToString());
+            //ReferredBy = dr["ReferredBy"].ToString();
+            objContact.Referee1Address = dr["Referee1Address"].ToString();
+            objContact.Referee1Email = dr["Referee1Email"].ToString();
+            objContact.Referee1Fax = dr["Referee1Fax"].ToString();
+            objContact.Referee1Mobile = dr["Referee1Mobile"].ToString();
+            objContact.Referee1Name = dr["Referee1Name"].ToString();
+            objContact.Referee1Notes = dr["Referee1Notes"].ToString();
+            objContact.Referee1Phone = dr["Referee1Phone"].ToString();
+            objContact.Referee2Address = dr["Referee2Address"].ToString();
+            objContact.Referee2Email = dr["Referee2Email"].ToString();
+            objContact.Referee2Fax = dr["Referee2Fax"].ToString();
+            objContact.Referee2Mobile = dr["Referee2Mobile"].ToString();
+            objContact.Referee2Name = dr["Referee2Name"].ToString();
+            objContact.Referee2Notes = dr["Referee2Notes"].ToString();
+            objContact.Referee2Phone = dr["Referee2Phone"].ToString();
+            objContact.Referee3Address = dr["Referee3Address"].ToString();
+            objContact.Referee3Email = dr["Referee3Email"].ToString();
+            objContact.Referee3Fax = dr["Referee3Fax"].ToString();
+            objContact.Referee3Mobile = dr["Referee3Mobile"].ToString();
+            objContact.Referee3Name = dr["Referee3Name"].ToString();
+            objContact.Referee3Notes = dr["Referee3Notes"].ToString();
+            objContact.Referee3Phone = dr["Referee3Phone"].ToString();
+            objContact.ReferencesChecked = CheckBool(dr["ReferencesChecked"].ToString());
+            objContact.ReferencesCheckedDate = CheckDate(dr["ReferencesChkdDate"].ToString());
+            //RegistrationComplete = CheckBool(dr["RegistrationComplete"].ToString());
+            objContact.RegistrationDate = CheckDate(dr["RegistrationDate"].ToString());
+            //SendBankStatement = CheckBool(dr["SendBankStatement"].ToString());
+            //SendPassport = CheckBool(dr["SendPassport"].ToString());
+            //SendVisa = CheckBool(dr["SendVisa"].ToString());
+            objContact.SicknessRecord = dr["SicknessRecord"].ToString();
+            objContact.Summary = dr["Summary"].ToString();
+            //TeacherStatus = dr["TeacherStatus"].ToString();
+            objContact.UKArrivalDate = CheckDate(dr["UKArrivalDate"].ToString());
+            objContact.UpdateService = CheckBool(dr["UpdateService"].ToString());
+            //UpdateServiceRegisteredDate = CheckDate(dr["UpdateServiceRegisteredDate"].ToString());
+            objContact.VisaExpiryDate = CheckDate(dr["VisaExpiryDate"].ToString());
+            objContact.VisaType = dr["VisaType"].ToString();
+            objContact.VisaCheckedDate = CheckDate(dr["VisaChkdDate"].ToString());
+            //VisaLocation = dr["VisaLocation"].ToString();
+            objContact.YearGroup = dr["YearGroup"].ToString();
+
 
             objContact.FullName = objContact.LastName + ", " + objContact.FirstName;
             if (objContact.Suffix != "") objContact.FullName += " " + objContact.Suffix;
@@ -2673,7 +2674,7 @@ namespace RedboxAddin.DL
                     //+ "BankSortCode,"
                     //+ "BankStatementLocation,"
                     + "BirthDate,"
-//                    + "Consultant,"
+                    //                    + "Consultant,"
                     + "CRBandAddressProofMatch,"
                     + "CRBDateSent,"
                     + "CRBExpiryDate,"
@@ -2694,15 +2695,16 @@ namespace RedboxAddin.DL
                     + "GTCNumber,"
                     + "IDChecked,"
                     + "IDChkdDate, "
-//                    + "Instructor,"
+                    //                    + "Instructor,"
                     + "InterviewNotes,"
-//                    + "KeyRef,"
+                    //                    + "KeyRef,"
                     + "LateRecord,"
                     + "List99,"
                     + "List99ChkdDate, "
                     + "LTStartDate,"
                     + "MedicalChecklist,"
                     + "MedicalChecklistChkdDate, "
+                    + "NextOfKin, "
                     + "NINumber,"
                     + "Notes,"
                     + "NQT,"
@@ -2803,7 +2805,7 @@ namespace RedboxAddin.DL
                     //+ "@BankSortCode,"
                     //+ "@BankStatementLocation,"
                     + "@BirthDate,"
-//                    + "@Consultant,"
+                    //                    + "@Consultant,"
                     + "@CRBandAddressProofMatch,"
                     + "@CRBDateSent,"
                     + "@CRBExpiryDate,"
@@ -2825,15 +2827,17 @@ namespace RedboxAddin.DL
                     + "@GTCNumber,"
                     + "@IDChecked,"
                     + "@IDChkdDate, "
-//                    + "@Instructor,"
+                    //                    + "@Instructor,"
                     + "@InterviewNotes,"
-//                    + "@KeyRef,"
+                    //                    + "@KeyRef,"
                     + "@LateRecord,"
                     + "@List99,"
                     + "@List99ChkdDate, "
                     + "@LTStartDate,"
                     + "@MedicalChecklist,"
                     + "@MedicalChecklistChkdDate, "
+                    + "@NextOfKin, "
+
                     + "@NINumber,"
                     + "@Notes,"
                     + "@NQT,"
@@ -2909,42 +2913,42 @@ namespace RedboxAddin.DL
                 var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
 
                 CmdAddContact.Parameters.AddWithValue("@FirstName", CheckVals(contactObj.FirstName));
-                CmdAddContact.Parameters.AddWithValue("@LastName",  CheckVals(contactObj.LastName));
-                CmdAddContact.Parameters.AddWithValue("@Title",  CheckVals(contactObj.Title));
-                CmdAddContact.Parameters.AddWithValue("@MiddleName",  CheckVals(contactObj.MiddleName));
-                CmdAddContact.Parameters.AddWithValue("@Suffix",  CheckVals(contactObj.Suffix));
-                CmdAddContact.Parameters.AddWithValue("@Email1",  CheckVals(contactObj.Email1));
-                CmdAddContact.Parameters.AddWithValue("@Email2",  CheckVals(contactObj.Email2));
-                CmdAddContact.Parameters.AddWithValue("@Email3",  CheckVals(contactObj.Email3));
-                CmdAddContact.Parameters.AddWithValue("@JobTitle",  CheckVals(contactObj.JobTitle));
-                CmdAddContact.Parameters.AddWithValue("@AddressStreet",  CheckVals(contactObj.AddressStreet));
-                CmdAddContact.Parameters.AddWithValue("@AddressCity",  CheckVals(contactObj.AddressCity));
-                CmdAddContact.Parameters.AddWithValue("@AddressState",  CheckVals(contactObj.AddressState));
-                CmdAddContact.Parameters.AddWithValue("@AddressPostcode",  CheckVals(contactObj.AddressPostcode));
-                CmdAddContact.Parameters.AddWithValue("@AddressCountry",  CheckVals(contactObj.AddressCountry));
-                CmdAddContact.Parameters.AddWithValue("@PhoneHome",  CheckVals(contactObj.PhoneHome));
-                CmdAddContact.Parameters.AddWithValue("@PhoneMobile",  CheckVals(contactObj.PhoneMobile));
-                CmdAddContact.Parameters.AddWithValue("@PhoneBusiness",  CheckVals(contactObj.PhoneBusiness));
-                CmdAddContact.Parameters.AddWithValue("@PhoneFax",  CheckVals(contactObj.PhoneFax));
-                CmdAddContact.Parameters.AddWithValue("@CategoryStr",  CheckVals(contactObj.CategoryStr));
-                CmdAddContact.Parameters.AddWithValue("@1stRefChecked",  CheckVals(contactObj._1stRefChecked));
-                CmdAddContact.Parameters.AddWithValue("@2ndRefChecked",  CheckVals(contactObj._2ndRefChecked));
-                CmdAddContact.Parameters.AddWithValue("@3rdRefChecked",  CheckVals(contactObj._3rdRefChecked));
-                CmdAddContact.Parameters.AddWithValue("@AccountName",  CheckVals(contactObj.AccountName));
-                CmdAddContact.Parameters.AddWithValue("@AdditionalInfoOnCRB",  CheckVals(contactObj.Cautions_AdditionalInfo_OnDBS));
+                CmdAddContact.Parameters.AddWithValue("@LastName", CheckVals(contactObj.LastName));
+                CmdAddContact.Parameters.AddWithValue("@Title", CheckVals(contactObj.Title));
+                CmdAddContact.Parameters.AddWithValue("@MiddleName", CheckVals(contactObj.MiddleName));
+                CmdAddContact.Parameters.AddWithValue("@Suffix", CheckVals(contactObj.Suffix));
+                CmdAddContact.Parameters.AddWithValue("@Email1", CheckVals(contactObj.Email1));
+                CmdAddContact.Parameters.AddWithValue("@Email2", CheckVals(contactObj.Email2));
+                CmdAddContact.Parameters.AddWithValue("@Email3", CheckVals(contactObj.Email3));
+                CmdAddContact.Parameters.AddWithValue("@JobTitle", CheckVals(contactObj.JobTitle));
+                CmdAddContact.Parameters.AddWithValue("@AddressStreet", CheckVals(contactObj.AddressStreet));
+                CmdAddContact.Parameters.AddWithValue("@AddressCity", CheckVals(contactObj.AddressCity));
+                CmdAddContact.Parameters.AddWithValue("@AddressState", CheckVals(contactObj.AddressState));
+                CmdAddContact.Parameters.AddWithValue("@AddressPostcode", CheckVals(contactObj.AddressPostcode));
+                CmdAddContact.Parameters.AddWithValue("@AddressCountry", CheckVals(contactObj.AddressCountry));
+                CmdAddContact.Parameters.AddWithValue("@PhoneHome", CheckVals(contactObj.PhoneHome));
+                CmdAddContact.Parameters.AddWithValue("@PhoneMobile", CheckVals(contactObj.PhoneMobile));
+                CmdAddContact.Parameters.AddWithValue("@PhoneBusiness", CheckVals(contactObj.PhoneBusiness));
+                CmdAddContact.Parameters.AddWithValue("@PhoneFax", CheckVals(contactObj.PhoneFax));
+                CmdAddContact.Parameters.AddWithValue("@CategoryStr", CheckVals(contactObj.CategoryStr));
+                CmdAddContact.Parameters.AddWithValue("@1stRefChecked", CheckVals(contactObj._1stRefChecked));
+                CmdAddContact.Parameters.AddWithValue("@2ndRefChecked", CheckVals(contactObj._2ndRefChecked));
+                CmdAddContact.Parameters.AddWithValue("@3rdRefChecked", CheckVals(contactObj._3rdRefChecked));
+                CmdAddContact.Parameters.AddWithValue("@AccountName", CheckVals(contactObj.AccountName));
+                CmdAddContact.Parameters.AddWithValue("@AdditionalInfoOnCRB", CheckVals(contactObj.Cautions_AdditionalInfo_OnDBS));
                 //CmdAddContact.Parameters.AddWithValue("@AttendMMRV",  CheckVals(contactObj.AttendMMRV));
                 //CmdAddContact.Parameters.AddWithValue("@BankAccountNumber",  CheckVals(contactObj.BankAccountNumber));
                 //CmdAddContact.Parameters.AddWithValue("@BankName",  CheckVals(contactObj.BankName));
                 //CmdAddContact.Parameters.AddWithValue("@BankSortCode",  CheckVals(contactObj.BankSortCode));
                 //CmdAddContact.Parameters.AddWithValue("@BankStatementLocation",  CheckVals(contactObj.BankStatementLocation));
-                CmdAddContact.Parameters.AddWithValue("@BirthDate",  CheckVals(contactObj.BirthDate));
+                CmdAddContact.Parameters.AddWithValue("@BirthDate", CheckVals(contactObj.BirthDate));
                 //CmdAddContact.Parameters.AddWithValue("@Consultant",  CheckVals(contactObj.Consultant));
-                CmdAddContact.Parameters.AddWithValue("@CRBandAddressProofMatch",  CheckVals(contactObj.DBSandAddressProofMatch));
-                CmdAddContact.Parameters.AddWithValue("@CRBDateSent",  FilterSQLDate(contactObj.DBSDateSent));
-                CmdAddContact.Parameters.AddWithValue("@CRBExpiryDate",  FilterSQLDate(contactObj.DBSExpiryDate));
-                CmdAddContact.Parameters.AddWithValue("@CRBFormRef",  CheckVals(contactObj.DBSFormRef));
-                CmdAddContact.Parameters.AddWithValue("@CRBNumber",  CheckVals(contactObj.DBSNumber));
-                CmdAddContact.Parameters.AddWithValue("@CRBValidFrom",  FilterSQLDate(contactObj.DBSValidFrom));
+                CmdAddContact.Parameters.AddWithValue("@CRBandAddressProofMatch", CheckVals(contactObj.DBSandAddressProofMatch));
+                CmdAddContact.Parameters.AddWithValue("@CRBDateSent", FilterSQLDate(contactObj.DBSDateSent));
+                CmdAddContact.Parameters.AddWithValue("@CRBExpiryDate", FilterSQLDate(contactObj.DBSExpiryDate));
+                CmdAddContact.Parameters.AddWithValue("@CRBFormRef", CheckVals(contactObj.DBSFormRef));
+                CmdAddContact.Parameters.AddWithValue("@CRBNumber", CheckVals(contactObj.DBSNumber));
+                CmdAddContact.Parameters.AddWithValue("@CRBValidFrom", FilterSQLDate(contactObj.DBSValidFrom));
                 //CmdAddContact.Parameters.AddWithValue("@DBSDirectPayment",  CheckVals(contactObj.DBSDirectPayment));
                 CmdAddContact.Parameters.AddWithValue("@DBSUpdateSvcChkdDate", FilterSQLDate(contactObj.DBSUpdateServiceCheckedDate));
                 CmdAddContact.Parameters.AddWithValue("@DisqByAssoc", CheckVals(contactObj.DisqByAssoc));
@@ -2953,92 +2957,94 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.AddWithValue("@CurrentPayScaleProof", CheckVals(contactObj.CurrentPayScaleProof));
                 CmdAddContact.Parameters.AddWithValue("@CNGHO", CheckVals(contactObj.CNGHO));
                 CmdAddContact.Parameters.AddWithValue("@CVReceived", CheckVals(contactObj.CVReceived));
-                CmdAddContact.Parameters.AddWithValue("@DateOfSupply",  FilterSQLDate(contactObj.DateOfSupply));
-                CmdAddContact.Parameters.AddWithValue("@FirstDayTeachingUK",  FilterSQLDate(contactObj.FirstDayTeachingUK));
-                CmdAddContact.Parameters.AddWithValue("@GTCCheckDate",  FilterSQLDate(contactObj.GTCCheckDate));
-                CmdAddContact.Parameters.AddWithValue("@GTCNumber",  CheckVals(contactObj.GTCNumber));
-                CmdAddContact.Parameters.AddWithValue("@IDChecked",  CheckVals(contactObj.IDChecked));
+                CmdAddContact.Parameters.AddWithValue("@DateOfSupply", FilterSQLDate(contactObj.DateOfSupply));
+                CmdAddContact.Parameters.AddWithValue("@FirstDayTeachingUK", FilterSQLDate(contactObj.FirstDayTeachingUK));
+                CmdAddContact.Parameters.AddWithValue("@GTCCheckDate", FilterSQLDate(contactObj.GTCCheckDate));
+                CmdAddContact.Parameters.AddWithValue("@GTCNumber", CheckVals(contactObj.GTCNumber));
+                CmdAddContact.Parameters.AddWithValue("@IDChecked", CheckVals(contactObj.IDChecked));
                 CmdAddContact.Parameters.AddWithValue("@IDChkdDate", FilterSQLDate(contactObj.IDCheckedDate));
                 //CmdAddContact.Parameters.AddWithValue("@Instructor",  CheckVals(contactObj.Instructor));
-                CmdAddContact.Parameters.AddWithValue("@InterviewNotes",  CheckVals(contactObj.InterviewNotes));
+                CmdAddContact.Parameters.AddWithValue("@InterviewNotes", CheckVals(contactObj.InterviewNotes));
                 //CmdAddContact.Parameters.AddWithValue("@KeyRef",  CheckVals(contactObj.KeyRef));
-                CmdAddContact.Parameters.AddWithValue("@LateRecord",  CheckVals(contactObj.LateRecord));
-                CmdAddContact.Parameters.AddWithValue("@List99",  CheckVals(contactObj.List99));
+                CmdAddContact.Parameters.AddWithValue("@LateRecord", CheckVals(contactObj.LateRecord));
+                CmdAddContact.Parameters.AddWithValue("@List99", CheckVals(contactObj.List99));
                 CmdAddContact.Parameters.AddWithValue("@List99ChkdDate", FilterSQLDate(contactObj.List99CheckedDate));
-                CmdAddContact.Parameters.AddWithValue("@LTStartDate",  FilterSQLDate(contactObj.LTStartDate));
-                CmdAddContact.Parameters.AddWithValue("@MedicalChecklist",  CheckVals(contactObj.MedicalChecklist));
+                CmdAddContact.Parameters.AddWithValue("@LTStartDate", FilterSQLDate(contactObj.LTStartDate));
+                CmdAddContact.Parameters.AddWithValue("@MedicalChecklist", CheckVals(contactObj.MedicalChecklist));
                 CmdAddContact.Parameters.AddWithValue("@MedicalChecklistChkdDate", FilterSQLDate(contactObj.MedicalChecklistCheckedDate));
-                CmdAddContact.Parameters.AddWithValue("@NINumber",  CheckVals(contactObj.NINumber));
-                CmdAddContact.Parameters.AddWithValue("@Notes",  CheckVals(contactObj.Notes));
-                CmdAddContact.Parameters.AddWithValue("@NQT",  CheckVals(contactObj.NQT));
-                CmdAddContact.Parameters.AddWithValue("@OtherCRBNumber",  CheckVals(contactObj.OtherCRBNumber));
-                CmdAddContact.Parameters.AddWithValue("@OTTEndDate",  FilterSQLDate(contactObj.OTTEndDate));
-                CmdAddContact.Parameters.AddWithValue("@OverseasPoliceCheck",  CheckVals(contactObj.OverseasPoliceCheck));
+                CmdAddContact.Parameters.AddWithValue("@NextOfKin", CheckVals(contactObj.NextOfKin));
+
+                CmdAddContact.Parameters.AddWithValue("@NINumber", CheckVals(contactObj.NINumber));
+                CmdAddContact.Parameters.AddWithValue("@Notes", CheckVals(contactObj.Notes));
+                CmdAddContact.Parameters.AddWithValue("@NQT", CheckVals(contactObj.NQT));
+                CmdAddContact.Parameters.AddWithValue("@OtherCRBNumber", CheckVals(contactObj.OtherCRBNumber));
+                CmdAddContact.Parameters.AddWithValue("@OTTEndDate", FilterSQLDate(contactObj.OTTEndDate));
+                CmdAddContact.Parameters.AddWithValue("@OverseasPoliceCheck", CheckVals(contactObj.OverseasPoliceCheck));
                 CmdAddContact.Parameters.AddWithValue("@OverseasPoliceChkdDate", FilterSQLDate(contactObj.OverseasPoliceCheckedDate));
-                CmdAddContact.Parameters.AddWithValue("@OverseasTrainedTeacher",  CheckVals(contactObj.OverseasTrainedTeacher));
+                CmdAddContact.Parameters.AddWithValue("@OverseasTrainedTeacher", CheckVals(contactObj.OverseasTrainedTeacher));
                 //CmdAddContact.Parameters.AddWithValue("@PassportNo",  CheckVals(contactObj.PassportNo));
                 //CmdAddContact.Parameters.AddWithValue("@PassportLocation",  CheckVals(contactObj.PassportLocation));
-                CmdAddContact.Parameters.AddWithValue("@PayDetails",  CheckVals(contactObj.PayDetails));
+                CmdAddContact.Parameters.AddWithValue("@PayDetails", CheckVals(contactObj.PayDetails));
                 //CmdAddContact.Parameters.AddWithValue("@PAYETeacherContractSigned",  CheckVals(contactObj.PAYETeacherContractSigned));
-                CmdAddContact.Parameters.AddWithValue("@PhotoLocation",  CheckVals(contactObj.PhotoLocation));
-                CmdAddContact.Parameters.AddWithValue("@GraduationDate",  FilterSQLDate(contactObj.GraduationDate));
+                CmdAddContact.Parameters.AddWithValue("@PhotoLocation", CheckVals(contactObj.PhotoLocation));
+                CmdAddContact.Parameters.AddWithValue("@GraduationDate", FilterSQLDate(contactObj.GraduationDate));
                 CmdAddContact.Parameters.AddWithValue("@ProFrmTchChkdDate", FilterSQLDate(contactObj.ProhibitionFromTeachingCheckedDate));
                 CmdAddContact.Parameters.AddWithValue("@ProFrmTch", CheckVals(contactObj.ProhibitionFromTeaching));
                 //CmdAddContact.Parameters.AddWithValue("@ProtabilityCheckSent",  FilterSQLDate(contactObj.ProtabilityCheckSent));
-                CmdAddContact.Parameters.AddWithValue("@ProtabilityReceivedDate",  FilterSQLDate(contactObj.ProtabilityReceivedDate));
-                CmdAddContact.Parameters.AddWithValue("@ProofOfAddress",  CheckVals(contactObj.ProofOfAddress));
+                CmdAddContact.Parameters.AddWithValue("@ProtabilityReceivedDate", FilterSQLDate(contactObj.ProtabilityReceivedDate));
+                CmdAddContact.Parameters.AddWithValue("@ProofOfAddress", CheckVals(contactObj.ProofOfAddress));
                 CmdAddContact.Parameters.AddWithValue("@POAChkdDate", FilterSQLDate(contactObj.ProofOfAddressCheckedDate));
                 //CmdAddContact.Parameters.AddWithValue("@ProofOfID",  CheckVals(contactObj.ProofOfID));
                 //CmdAddContact.Parameters.AddWithValue("@ProofOfID2",  CheckVals(contactObj.ProofOfID2));
-                CmdAddContact.Parameters.AddWithValue("@QTS",  CheckVals(contactObj.QTS));
-                CmdAddContact.Parameters.AddWithValue("@Qualification",  CheckVals(contactObj.Qualification));
+                CmdAddContact.Parameters.AddWithValue("@QTS", CheckVals(contactObj.QTS));
+                CmdAddContact.Parameters.AddWithValue("@Qualification", CheckVals(contactObj.Qualification));
                 CmdAddContact.Parameters.AddWithValue("@QualificationCheckedDate", FilterSQLDate(contactObj.QualificationCheckedDate));
-                CmdAddContact.Parameters.AddWithValue("@RedboxLeaveDate",  FilterSQLDate(contactObj.RedboxLeaveDate));
-                CmdAddContact.Parameters.AddWithValue("@RedboxStartDate",  FilterSQLDate(contactObj.RedboxStartDate));
-                CmdAddContact.Parameters.AddWithValue("@RedboxCRB",  CheckVals(contactObj.RedboxDBS));
+                CmdAddContact.Parameters.AddWithValue("@RedboxLeaveDate", FilterSQLDate(contactObj.RedboxLeaveDate));
+                CmdAddContact.Parameters.AddWithValue("@RedboxStartDate", FilterSQLDate(contactObj.RedboxStartDate));
+                CmdAddContact.Parameters.AddWithValue("@RedboxCRB", CheckVals(contactObj.RedboxDBS));
                 //CmdAddContact.Parameters.AddWithValue("@ReferredBy",  CheckVals(contactObj.ReferredBy));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Address",  CheckVals(contactObj.Referee1Address));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Email",  CheckVals(contactObj.Referee1Email));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Fax",  CheckVals(contactObj.Referee1Fax));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Mobile",  CheckVals(contactObj.Referee1Mobile));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Name",  CheckVals(contactObj.Referee1Name));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Notes",  CheckVals(contactObj.Referee1Notes));
-                CmdAddContact.Parameters.AddWithValue("@Referee1Phone",  CheckVals(contactObj.Referee1Phone));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Address",  CheckVals(contactObj.Referee2Address));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Email",  CheckVals(contactObj.Referee2Email));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Fax",  CheckVals(contactObj.Referee2Fax));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Mobile",  CheckVals(contactObj.Referee2Mobile));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Name",  CheckVals(contactObj.Referee2Name));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Notes",  CheckVals(contactObj.Referee2Notes));
-                CmdAddContact.Parameters.AddWithValue("@Referee2Phone",  CheckVals(contactObj.Referee2Phone));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Address",  CheckVals(contactObj.Referee3Address));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Email",  CheckVals(contactObj.Referee3Email));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Fax",  CheckVals(contactObj.Referee3Fax));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Mobile",  CheckVals(contactObj.Referee3Mobile));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Name",  CheckVals(contactObj.Referee3Name));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Notes",  CheckVals(contactObj.Referee3Notes));
-                CmdAddContact.Parameters.AddWithValue("@Referee3Phone",  CheckVals(contactObj.Referee3Phone));
-                CmdAddContact.Parameters.AddWithValue("@ReferencesChecked",  CheckVals(contactObj.ReferencesChecked));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Address", CheckVals(contactObj.Referee1Address));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Email", CheckVals(contactObj.Referee1Email));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Fax", CheckVals(contactObj.Referee1Fax));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Mobile", CheckVals(contactObj.Referee1Mobile));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Name", CheckVals(contactObj.Referee1Name));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Notes", CheckVals(contactObj.Referee1Notes));
+                CmdAddContact.Parameters.AddWithValue("@Referee1Phone", CheckVals(contactObj.Referee1Phone));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Address", CheckVals(contactObj.Referee2Address));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Email", CheckVals(contactObj.Referee2Email));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Fax", CheckVals(contactObj.Referee2Fax));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Mobile", CheckVals(contactObj.Referee2Mobile));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Name", CheckVals(contactObj.Referee2Name));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Notes", CheckVals(contactObj.Referee2Notes));
+                CmdAddContact.Parameters.AddWithValue("@Referee2Phone", CheckVals(contactObj.Referee2Phone));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Address", CheckVals(contactObj.Referee3Address));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Email", CheckVals(contactObj.Referee3Email));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Fax", CheckVals(contactObj.Referee3Fax));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Mobile", CheckVals(contactObj.Referee3Mobile));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Name", CheckVals(contactObj.Referee3Name));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Notes", CheckVals(contactObj.Referee3Notes));
+                CmdAddContact.Parameters.AddWithValue("@Referee3Phone", CheckVals(contactObj.Referee3Phone));
+                CmdAddContact.Parameters.AddWithValue("@ReferencesChecked", CheckVals(contactObj.ReferencesChecked));
                 CmdAddContact.Parameters.AddWithValue("@ReferencesChkdDate", FilterSQLDate(contactObj.ReferencesCheckedDate));
                 //CmdAddContact.Parameters.AddWithValue("@RegistrationComplete",  CheckVals(contactObj.RegistrationComplete));
-                CmdAddContact.Parameters.AddWithValue("@RegistrationDate",  FilterSQLDate(contactObj.RegistrationDate));
+                CmdAddContact.Parameters.AddWithValue("@RegistrationDate", FilterSQLDate(contactObj.RegistrationDate));
                 //CmdAddContact.Parameters.AddWithValue("@SendBankStatement",  CheckVals(contactObj.SendBankStatement));
                 //CmdAddContact.Parameters.AddWithValue("@SendPassport",  CheckVals(contactObj.SendPassport));
                 //CmdAddContact.Parameters.AddWithValue("@SendVisa",  CheckVals(contactObj.SendVisa));
                 CmdAddContact.Parameters.AddWithValue("@SicknessRecord", CheckVals(contactObj.SicknessRecord));
                 CmdAddContact.Parameters.AddWithValue("@Summary", CheckVals(contactObj.Summary));
                 //CmdAddContact.Parameters.AddWithValue("@TeacherStatus", CheckVals(contactObj.TeacherStatus));
-                CmdAddContact.Parameters.AddWithValue("@UKArrivalDate",  FilterSQLDate(contactObj.UKArrivalDate));
-                CmdAddContact.Parameters.AddWithValue("@UpdateService",  CheckVals(contactObj.UpdateService));
+                CmdAddContact.Parameters.AddWithValue("@UKArrivalDate", FilterSQLDate(contactObj.UKArrivalDate));
+                CmdAddContact.Parameters.AddWithValue("@UpdateService", CheckVals(contactObj.UpdateService));
                 //CmdAddContact.Parameters.AddWithValue("@UpdateServiceRegisteredDate",  FilterSQLDate(contactObj.UpdateServiceRegisteredDate));
-                CmdAddContact.Parameters.AddWithValue("@VisaExpiryDate",  FilterSQLDate(contactObj.VisaExpiryDate));
-                CmdAddContact.Parameters.AddWithValue("@VisaType",  CheckVals(contactObj.VisaType));
+                CmdAddContact.Parameters.AddWithValue("@VisaExpiryDate", FilterSQLDate(contactObj.VisaExpiryDate));
+                CmdAddContact.Parameters.AddWithValue("@VisaType", CheckVals(contactObj.VisaType));
                 CmdAddContact.Parameters.AddWithValue("@VisaChkdDate", FilterSQLDate(contactObj.VisaCheckedDate));
                 //CmdAddContact.Parameters.AddWithValue("@VisaLocation",  CheckVals(contactObj.VisaLocation));
-                CmdAddContact.Parameters.AddWithValue("@YearGroup",  CheckVals(contactObj.YearGroup));
-                CmdAddContact.Parameters.AddWithValue("@LastMod",FilterSQLDate(DateTime.UtcNow));
+                CmdAddContact.Parameters.AddWithValue("@YearGroup", CheckVals(contactObj.YearGroup));
+                CmdAddContact.Parameters.AddWithValue("@LastMod", FilterSQLDate(DateTime.UtcNow));
                 string guidVal = System.Guid.NewGuid().ToString();
-                CmdAddContact.Parameters["@GUID"].Value = CheckVals(guidVal);
+                CmdAddContact.Parameters.AddWithValue("@GUID", CheckVals(guidVal));
                 CmdAddContact.ExecuteNonQuery();
 
                 DataSet ds = GetDataSet("SELECT contactID FROM Contacts WHERE GUID = '" + guidVal + "'");
@@ -3089,14 +3095,14 @@ namespace RedboxAddin.DL
                     //+ "BankSortCode = @BankSortCode, "
                     //+ "BankStatementLocation = @BankStatementLocation, "
                        + "BirthDate = @BirthDate, "
-                      // + "Consultant = @Consultant , "
+                    // + "Consultant = @Consultant , "
                        + "CRBandAddressProofMatch = @CRBandAddressProofMatch, "
                        + "CRBDateSent = @CRBDateSent, "
                        + "CRBExpiryDate = @CRBExpiryDate, "
                        + "CRBFormRef = @CRBFormRef, "
                        + "CRBNumber = @CRBNumber, "
                        + "CRBValidFrom = @CRBValidFrom, "
-                       //+ "DBSDirectPayment = @DBSDirectPayment, "
+                    //+ "DBSDirectPayment = @DBSDirectPayment, "
                        + "DBSUpdateSvcChkdDate = @DBSUpdateSvcChkdDate, "
                        + "DisqByAssoc = @DisqByAssoc, "
                        + "DisqByAssocChkdDate = @DisqByAssocChkdDate, "
@@ -3110,15 +3116,16 @@ namespace RedboxAddin.DL
                        + "GTCNumber = @GTCNumber, "
                        + "IDChecked = @IDChecked, "
                        + "IDChkdDate = @IDChkdDate, "
-                      // + "Instructor = @Instructor, "
+                    // + "Instructor = @Instructor, "
                        + "InterviewNotes = @InterviewNotes, "
-                      // + "KeyRef = @KeyRef, "
+                    // + "KeyRef = @KeyRef, "
                        + "LateRecord = @LateRecord, "
                        + "List99 = @List99, "
                        + "List99ChkdDate = @List99ChkdDate, "
                        + "LTStartDate = @LTStartDate, "
                        + "MedicalChecklist = @MedicalChecklist, "
                        + "MedicalChecklistChkdDate = @MedicalChecklistChkdDate, "
+                       + "NextOfKin = @NextOfKin, "
                        + "NINumber = @NINumber, "
                        + "Notes = @Notes,"
                        + "NQT = @NQT, "
@@ -3130,12 +3137,12 @@ namespace RedboxAddin.DL
                     //+ "PassportNo = @PassportNo, "
                     //+ "PassportLocation = @PassportLocation, "
                        + "PayDetails = @PayDetails, "
-                      // + "PAYETeacherContractSigned = @PAYETeacherContractSigned, "
+                    // + "PAYETeacherContractSigned = @PAYETeacherContractSigned, "
                        + "PhotoLocation = @PhotoLocation,"
                        + "GraduationDate = @GraduationDate, "
                        + "ProFrmTch = @ProFrmTch, "
                        + "ProFrmTchChkdDate = @ProFrmTchChkdDate, "
-                       //+ "ProtabilityCheckSent = @ProtabilityCheckSent, "
+                    //+ "ProtabilityCheckSent = @ProtabilityCheckSent, "
                        + "ProtabilityReceivedDate = @ProtabilityReceivedDate, "
                        + "ProofOfAddress = @ProofOfAddress, "
                        + "POAChkdDate = @POAChkdDate, "
@@ -3178,10 +3185,10 @@ namespace RedboxAddin.DL
                     //+ "SendVisa = @SendVisa, "
                        + "SicknessRecord = @SicknessRecord, "
                        + "Summary = @Summary, "
-                       //+ "TeacherStatus = @TeacherStatus, "
+                    //+ "TeacherStatus = @TeacherStatus, "
                        + "UKArrivalDate = @UKArrivalDate, "
                        + "UpdateService = @UpdateService,"
-                       //+ "UpdateServiceRegisteredDate = @UpdateServiceRegisteredDate,"
+                    //+ "UpdateServiceRegisteredDate = @UpdateServiceRegisteredDate,"
                        + "VisaExpiryDate = @VisaExpiryDate, "
                        + "VisaType = @VisaType, "
                     //+ "VisaLocation = @VisaLocation, "
@@ -3252,6 +3259,7 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.AddWithValue("@LTStartDate", FilterSQLDate(contactObj.LTStartDate));
                 CmdUpdateContact.Parameters.AddWithValue("@MedicalChecklistChkdDate", FilterSQLDate(contactObj.MedicalChecklistCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@MedicalChecklist", CheckVals(contactObj.MedicalChecklist));
+                CmdUpdateContact.Parameters.AddWithValue("@NextOfKin", CheckVals(contactObj.NextOfKin));
                 CmdUpdateContact.Parameters.AddWithValue("@NINumber", CheckVals(contactObj.NINumber));
                 CmdUpdateContact.Parameters.AddWithValue("@Notes", CheckVals(contactObj.Notes));
                 CmdUpdateContact.Parameters.AddWithValue("@NQT", CheckVals(contactObj.NQT));

@@ -40,8 +40,10 @@ using System.IO;
 //2.0.77 3Feb2015 DT Add summary notes to summary page. Check NoGo when changing teachers. Set status to unassigned when changing teacher. 
 //                      Teachers are not permanently deleted but have a flag set to 'Deleted'. 
 //                      Don't allow master booking to be deleted if there are past bookings for this master booking
-//2.0.78 4Feb2015   DT  Create report to show DBS expiring and LT 12wk/12month. Add coplours to view bookings, Create an option for schools - always pay this rate (£130)
+//2.0.78 4Feb2015   DT  Create report to show DBS expiring and LT 12wk/12month. Add colours to view bookings, Create an option for schools - always pay this rate (£130)
 //2.0.80 10Feb2014 DT Three options for creating rate - school rate, teacher rate, calculate rate. Also built ratechange into teacher change
+//2.0.81 11Feb2014  DT Updated reports. Next of Kin box added. 
+//2.0.82 18Feb2015 DT Fixed bug stopping new contacts from being saved
 
 namespace RedboxAddin
 {
@@ -320,12 +322,12 @@ namespace RedboxAddin
             // 
             // olFrmBotNavi
             // 
-            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
+            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmBotNavi.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.BottomNavigationPane;
             this.olFrmBotNavi.FormClassName = "RedboxAddin.Presentation.frmBotNavi";
@@ -338,12 +340,12 @@ namespace RedboxAddin
             // olFrmExplorer
             // 
             this.olFrmExplorer.Enabled = false;
-            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
+            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmExplorer.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmExplorer.FolderName = "Inbox";
@@ -353,12 +355,12 @@ namespace RedboxAddin
             // olFrmReminders
             // 
             this.olFrmReminders.Enabled = false;
-            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
+            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmReminders.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmReminders.FolderName = "Redbox";
@@ -374,15 +376,15 @@ namespace RedboxAddin
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnNewReminders);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnCheckForUpdates);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnAbout);
-            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem)
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem)
+            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem) 
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
-            this.commandBarRedboxAddin.UpdateCounter = 30;
+            this.commandBarRedboxAddin.UpdateCounter = 32;
             // 
             // cbBtnNewContact
             // 

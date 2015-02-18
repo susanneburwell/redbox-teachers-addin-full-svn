@@ -140,7 +140,7 @@ namespace RedboxAddin.Presentation
                 dtLongTermStart.Value = contactObj.LTStartDate;
                 chkMedicalChecklist.Checked = contactObj.MedicalChecklist;
                 dtMedCLChkd.Value = contactObj.MedicalChecklistCheckedDate;
-
+                txtNextOfKin.Text = contactObj.NextOfKin;
                 txtNINumber.Text = contactObj.NINumber;
                 txtNotes.Text = contactObj.Notes;
                 chkNQT.Checked = contactObj.NQT;
@@ -286,6 +286,7 @@ namespace RedboxAddin.Presentation
                 contactObj.LTStartDate = dtLongTermStart.Value;
                 contactObj.MedicalChecklist = chkMedicalChecklist.Checked;
                 contactObj.MedicalChecklistCheckedDate = dtMedCLChkd.Value;
+                contactObj.NextOfKin = txtNextOfKin.Text;
                 contactObj.NINumber = txtNINumber.Text;
                 contactObj.Notes = txtNotes.Text;
                 contactObj.NQT = chkNQT.Checked;

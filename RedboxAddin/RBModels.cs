@@ -2287,6 +2287,8 @@ namespace RedboxAddin
 		
 		private string _Summary;
 		
+		private string _NextOfKin;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2555,6 +2557,8 @@ namespace RedboxAddin
     partial void OnDeletedChanged();
     partial void OnSummaryChanging(string value);
     partial void OnSummaryChanged();
+    partial void OnNextOfKinChanging(string value);
+    partial void OnNextOfKinChanged();
     #endregion
 		
 		public Contact()
@@ -5198,6 +5202,26 @@ namespace RedboxAddin
 					this._Summary = value;
 					this.SendPropertyChanged("Summary");
 					this.OnSummaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NextOfKin", DbType="NVarChar(500)")]
+		public string NextOfKin
+		{
+			get
+			{
+				return this._NextOfKin;
+			}
+			set
+			{
+				if ((this._NextOfKin != value))
+				{
+					this.OnNextOfKinChanging(value);
+					this.SendPropertyChanging();
+					this._NextOfKin = value;
+					this.SendPropertyChanged("NextOfKin");
+					this.OnNextOfKinChanged();
 				}
 			}
 		}
