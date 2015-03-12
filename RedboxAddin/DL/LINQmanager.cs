@@ -28,7 +28,7 @@ namespace RedboxAddin.DL
         //    }
         //}
 
-        public static List<long> GetMasterBookingIDs(string teachername, string bookingdate, string description)
+        public static List<long> GetMasterBookingIDs(string teacher, string bookingdate, string description)
         {
             List<long> IDs = new List<long>();
             try
@@ -39,18 +39,36 @@ namespace RedboxAddin.DL
                 using (RedBoxDB db = new RedBoxDB(CONNSTR))
                 {
 
-                    //Determine if teacher name exists
-                    bool TeacherNameFound = !string.IsNullOrWhiteSpace(teachername.Replace(',', ' '));
+                    ////Determine if teacher name exists
+                    //bool TeacherNameFound = !string.IsNullOrWhiteSpace(teacher.Replace(',', ' '));
                     long teacherID = -1;
-                    if (TeacherNameFound)
-                    {
-                        string[] name = teachername.Split(',');
-                        string lastname = name[0].Trim();
-                        string firstname = name[1].Trim();
+                    //if (TeacherNameFound)
+                    //{
+                    //    string[] name = teacher.Split(',');
+                    //    string lastname = name[0].Trim();
+                    //    string firstname = name[1].Trim();
 
-                        //get teacherID from teachername
-                        var teachers = db.Contacts.Where(s => s.FirstName == firstname && s.LastName == lastname).First();
-                        teacherID = teachers.ContactID;
+                    //    //get teacherID from teachername
+                    //    var teachers = db.Contacts.Where(s => s.FirstName == firstname && s.LastName == lastname).First();
+                    //    teacherID = teachers.ContactID;
+                    //}
+
+                    if (string.IsNullOrWhiteSpace(teacher)) return null;
+                    else
+                    {
+                        try
+                        {
+                            teacherID = Convert.ToInt64(teacher);
+                        }
+                        catch
+                        {
+                            teacherID = -1;
+                        }
+                    }
+
+                    if (teacherID == -1)
+                    {
+                        return null;
                     }
 
                     //get bookings ID from description and date
@@ -64,11 +82,11 @@ namespace RedboxAddin.DL
                         try
                         {
                             long id = Convert.ToInt64(bb.MasterBookingID);
-                            if (TeacherNameFound)
-                            {
+                            //if (TeacherNameFound)
+                            //{
                                 if (bb.ContactID == teacherID) IDs.Add(id);
-                            }
-                            else IDs.Add(id);
+                            //}
+                            //else IDs.Add(id);
                         }
                         catch { }
                     }

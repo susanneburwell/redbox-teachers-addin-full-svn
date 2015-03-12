@@ -44,6 +44,7 @@ using System.IO;
 //2.0.80 10Feb2014 DT Three options for creating rate - school rate, teacher rate, calculate rate. Also built ratechange into teacher change
 //2.0.81 11Feb2014  DT Updated reports. Next of Kin box added. 
 //2.0.82 18Feb2015 DT Fixed bug stopping new contacts from being saved
+//2.0.83 12Mar2015 DT Plugin missed opening Booking when teacher has identical name - fixed by using TeacherID not Teachername
 
 namespace RedboxAddin
 {

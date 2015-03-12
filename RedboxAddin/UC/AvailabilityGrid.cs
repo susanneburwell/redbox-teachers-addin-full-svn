@@ -287,7 +287,9 @@ namespace RedboxAddin.UC
                         {
                             try { rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption(); }
                             catch { }
-                            try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString(); }
+                            //try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString(); }
+                            //catch { rowInfo.Teacher = ""; }
+                            try { rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "TeacherID").ToString(); }
                             catch { rowInfo.Teacher = ""; }
                             try { rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString(); }
                             catch { rowInfo.Description = "zxcvbnmkl"; }
@@ -336,6 +338,12 @@ namespace RedboxAddin.UC
                         long masterBookingID = -1;
 
                         List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+                        if (MasterBookingIDs == null)
+                        {
+                            MessageBox.Show("Error trying to retrieve MasterBookingID");
+                            return;
+                        }
+
                         if (MasterBookingIDs.Count > 0)
                         {
                             masterBookingID = MasterBookingIDs[0];
@@ -528,6 +536,8 @@ namespace RedboxAddin.UC
                 }
             }
         }
+
+    
     }
 
     public class GridViewCustomMenu : GridViewMenu
@@ -667,6 +677,12 @@ namespace RedboxAddin.UC
                 string colCaption = _rowInfo.ColumnCaption;
 
                 List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+
+                if (MasterBookingIDs == null)
+                {
+                    MessageBox.Show("Error trying to retrieve MasterBookingID");
+                    return;
+                }
 
                 if (MasterBookingIDs.Count > 0)
                 {

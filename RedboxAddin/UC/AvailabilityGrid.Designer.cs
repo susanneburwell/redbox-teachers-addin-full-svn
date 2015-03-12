@@ -64,13 +64,13 @@
             this.Guar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LongTerm = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Actor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.QNN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SEN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Sort = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.QNN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SEN = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -490,6 +490,24 @@
             this.Actor.VisibleIndex = 20;
             this.Actor.Width = 34;
             // 
+            // QNN
+            // 
+            this.QNN.Caption = "QNN";
+            this.QNN.FieldName = "QNN";
+            this.QNN.Name = "QNN";
+            this.QNN.Visible = true;
+            this.QNN.VisibleIndex = 21;
+            this.QNN.Width = 34;
+            // 
+            // SEN
+            // 
+            this.SEN.Caption = "SEN";
+            this.SEN.FieldName = "SEN";
+            this.SEN.Name = "SEN";
+            this.SEN.Visible = true;
+            this.SEN.VisibleIndex = 22;
+            this.SEN.Width = 35;
+            // 
             // TeacherID
             // 
             this.TeacherID.Caption = "TeacherID";
@@ -518,24 +536,6 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
-            // 
-            // QNN
-            // 
-            this.QNN.Caption = "QNN";
-            this.QNN.FieldName = "QNN";
-            this.QNN.Name = "QNN";
-            this.QNN.Visible = true;
-            this.QNN.VisibleIndex = 21;
-            this.QNN.Width = 34;
-            // 
-            // SEN
-            // 
-            this.SEN.Caption = "SEN";
-            this.SEN.FieldName = "SEN";
-            this.SEN.Name = "SEN";
-            this.SEN.Visible = true;
-            this.SEN.VisibleIndex = 22;
-            this.SEN.Width = 35;
             // 
             // AvailabilityGrid
             // 

@@ -425,6 +425,12 @@ namespace RedboxAddin.Presentation
 
                 List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
 
+                if (MasterBookingIDs == null)
+                {
+                    MessageBox.Show("Error trying to retrieve MasterBookingID");
+                    return;
+                }
+
                 if (MasterBookingIDs.Count > 0)
                 {
                     frmMasterBooking fq = new frmMasterBooking(MasterBookingIDs[0]);
