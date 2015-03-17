@@ -412,18 +412,18 @@ namespace RedboxAddin.Presentation
             {
                 REventArgs e1 = e as REventArgs;
 
-                string teacher = e1.Teacher;
+                string teacherID = e1.Teacher;
                 string description = e1.Description;
                 string colCaption = e1.ColumnCaption;
 
-                if (description == teacher)
+                if (description == teacherID)
                 {
                     //use double clicked teh teacher name
                     //this does not  have a function
                     return;
                 }
 
-                List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+                List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacherID, colCaption, description);
 
                 if (MasterBookingIDs == null)
                 {

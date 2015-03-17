@@ -28,7 +28,7 @@ namespace RedboxAddin.DL
         //    }
         //}
 
-        public static List<long> GetMasterBookingIDs(string teacher, string bookingdate, string description)
+        public static List<long> GetMasterBookingIDs(string teacherID, string bookingdate, string description)
         {
             List<long> IDs = new List<long>();
             try
@@ -41,7 +41,7 @@ namespace RedboxAddin.DL
 
                     ////Determine if teacher name exists
                     //bool TeacherNameFound = !string.IsNullOrWhiteSpace(teacher.Replace(',', ' '));
-                    long teacherID = -1;
+                    long teachID = -1;
                     //if (TeacherNameFound)
                     //{
                     //    string[] name = teacher.Split(',');
@@ -53,20 +53,20 @@ namespace RedboxAddin.DL
                     //    teacherID = teachers.ContactID;
                     //}
 
-                    if (string.IsNullOrWhiteSpace(teacher)) return null;
+                    if (string.IsNullOrWhiteSpace(teacherID)) return null;
                     else
                     {
                         try
                         {
-                            teacherID = Convert.ToInt64(teacher);
+                            teachID = Convert.ToInt64(teacherID);
                         }
                         catch
                         {
-                            teacherID = -1;
+                            teachID = -1;
                         }
                     }
 
-                    if (teacherID == -1)
+                    if (teachID == -1)
                     {
                         return null;
                     }
@@ -84,7 +84,7 @@ namespace RedboxAddin.DL
                             long id = Convert.ToInt64(bb.MasterBookingID);
                             //if (TeacherNameFound)
                             //{
-                                if (bb.ContactID == teacherID) IDs.Add(id);
+                                if (bb.ContactID == teachID) IDs.Add(id);
                             //}
                             //else IDs.Add(id);
                         }

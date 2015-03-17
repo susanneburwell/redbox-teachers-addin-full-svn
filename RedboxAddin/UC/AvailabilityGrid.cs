@@ -327,7 +327,7 @@ namespace RedboxAddin.UC
 
 
                         rowInfo.ColumnCaption = info.Column == null ? "N/A" : info.Column.GetCaption();
-                        rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "Teacher").ToString();
+                        rowInfo.Teacher = gridView1.GetRowCellValue(info.RowHandle, "TeacherID").ToString();
                         rowInfo.Description = gridView1.GetRowCellValue(info.RowHandle, info.Column).ToString();
                         backColor = ((GridViewInfo)gridView1.GetViewInfo()).GetGridCellInfo(info.RowHandle, info.Column).Appearance.BackColor;
                         rowInfo.BookingDate = Convert.ToDateTime(rowInfo.ColumnCaption).Date;
@@ -672,11 +672,11 @@ namespace RedboxAddin.UC
             }
             else
             {
-                string teacher = _rowInfo.Teacher;
+                string teacherID = _rowInfo.Teacher;
                 string description = _rowInfo.Description;
                 string colCaption = _rowInfo.ColumnCaption;
 
-                List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacher, colCaption, description);
+                List<long> MasterBookingIDs = LINQmanager.GetMasterBookingIDs(teacherID, colCaption, description);
 
                 if (MasterBookingIDs == null)
                 {
