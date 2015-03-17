@@ -325,42 +325,6 @@ namespace RedboxAddin.BL
                 rItems = rFolderDrafts.Items;
                 rMail = (RDOMail)rItems.Add("IPM.Note");
                 colAttach = rMail.Attachments;
-                //AddAttachments(ref colAttach);
-
-                //Add Attachments
-                //Removed 30th January 2015 DT
-                //try
-                //{
-                //    if (contactObj.SendBankStatement)
-                //    {
-                //        if (!string.IsNullOrWhiteSpace(contactObj.BankStatementLocation))
-                //        {
-                //            RDOAttachment rAttachment = colAttach.Add(contactObj.BankStatementLocation);
-                //            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                //        }
-                //    }
-                //    if (contactObj.SendPassport)
-                //    {
-                //        if (!string.IsNullOrWhiteSpace(contactObj.PassportLocation))
-                //        {
-                //            RDOAttachment rAttachment = colAttach.Add(contactObj.PassportLocation);
-                //            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                //        }
-                //    }
-                //    if (contactObj.SendVisa)
-                //    {
-                //        if (!string.IsNullOrWhiteSpace(contactObj.VisaLocation))
-                //        {
-                //            RDOAttachment rAttachment = colAttach.Add(contactObj.VisaLocation);
-                //            if (rAttachment != null) Marshal.ReleaseComObject(rAttachment);
-                //        }
-                //    }
-                //}
-                //catch (System.Exception ex)
-                //{
-                //    Debug.DebugMessage(2, "Error in AddAttachments :- " + ex.Message);
-                //}
-
 
                 rMail.Body = " ";
                 try
@@ -435,6 +399,14 @@ namespace RedboxAddin.BL
                 else
                 {
                     txtBody = txtBody + Environment.NewLine + "Date Prohibition From Teaching Checked: None";
+                }
+                if (contactObj.DisqByAssoc)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Disqualification By Association Signed: Yes" ;
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Disqualification By Association Signed: No";
                 }
                 txtBody = txtBody + Environment.NewLine;
 
