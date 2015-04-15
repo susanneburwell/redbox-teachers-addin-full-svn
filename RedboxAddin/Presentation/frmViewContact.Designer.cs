@@ -73,48 +73,75 @@
             this.label66 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Panel11 = new System.Windows.Forms.Panel();
+            this.dteSetAll = new UIComponent.DateTimePicker();
             this.btnSetAllCheckedDates = new System.Windows.Forms.Button();
             this.chkOriginalDocsReturnedToTeacher = new System.Windows.Forms.CheckBox();
             this.chkOriginalsSeenAndDocumentsStamped = new System.Windows.Forms.CheckBox();
+            this.dtOTTEndDate = new UIComponent.DateTimePicker();
             this.label33 = new System.Windows.Forms.Label();
             this.chkCurrentPayScaleProof = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dtDBAChkd = new UIComponent.DateTimePicker();
             this.chkDBAsigned = new System.Windows.Forms.CheckBox();
+            this.dtGradDate = new UIComponent.DateTimePicker();
+            this.dtRedboxStart = new UIComponent.DateTimePicker();
             this.label54 = new System.Windows.Forms.Label();
             this.txtCurrentPayScale = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.dtRedboxLeaveDate = new UIComponent.DateTimePicker();
+            this.dtLongTermStart = new UIComponent.DateTimePicker();
+            this.dtPOAChkd = new UIComponent.DateTimePicker();
             this.label53 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
+            this.dtMedCLChkd = new UIComponent.DateTimePicker();
             this.label69 = new System.Windows.Forms.Label();
+            this.dtList99Chkd = new UIComponent.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
+            this.dtDateOfSupply = new UIComponent.DateTimePicker();
             this.chkCVReceived = new System.Windows.Forms.CheckBox();
+            this.dtRegistrationDate = new UIComponent.DateTimePicker();
             this.label39 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.dtRefChkd = new UIComponent.DateTimePicker();
             this.label63 = new System.Windows.Forms.Label();
             this.chkProofOfAddress = new System.Windows.Forms.CheckBox();
+            this.dtFirstDayTeachingUK = new UIComponent.DateTimePicker();
             this.label112 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.chkReferencesChecked = new System.Windows.Forms.CheckBox();
+            this.dtPrFrmTchchkd = new UIComponent.DateTimePicker();
             this.label37 = new System.Windows.Forms.Label();
+            this.dtOvPolChkd = new UIComponent.DateTimePicker();
             this.btnRedboxStartReminder = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
             this.label111 = new System.Windows.Forms.Label();
+            this.dtUKArrivalDate = new UIComponent.DateTimePicker();
             this.chkPrFrmTch = new System.Windows.Forms.CheckBox();
             this.chkMedicalChecklist = new System.Windows.Forms.CheckBox();
+            this.dtProtabilityReceivedDate = new UIComponent.DateTimePicker();
             this.btnCRBExpiryReminder = new System.Windows.Forms.Button();
+            this.dtDBSudChk = new UIComponent.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
+            this.dtIDChkd = new UIComponent.DateTimePicker();
             this.label92 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.dtVisaChkd = new UIComponent.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.chkIDChecked = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.chkOverseasTrainedTeacher = new System.Windows.Forms.CheckBox();
+            this.dtQualChecked = new UIComponent.DateTimePicker();
             this.chkRedboxCRB = new System.Windows.Forms.CheckBox();
             this.chkUpdateService = new System.Windows.Forms.CheckBox();
             this.chkNQT = new System.Windows.Forms.CheckBox();
             this.chkQTS = new System.Windows.Forms.CheckBox();
+            this.dtCRBValidFrom = new UIComponent.DateTimePicker();
+            this.dtCRBExpiry = new UIComponent.DateTimePicker();
+            this.dtCRBDateSent = new UIComponent.DateTimePicker();
+            this.dtVisaExpiryDate = new UIComponent.DateTimePicker();
+            this.dtGTCCheckDate = new UIComponent.DateTimePicker();
             this.btnVisaExpiryReminder = new System.Windows.Forms.Button();
             this.btn1YearReminder = new System.Windows.Forms.Button();
             this.btn12QPReminder = new System.Windows.Forms.Button();
@@ -274,33 +301,9 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.dteSetAll = new UIComponent.DateTimePicker();
-            this.dtOTTEndDate = new UIComponent.DateTimePicker();
-            this.dtDBAChkd = new UIComponent.DateTimePicker();
-            this.dtGradDate = new UIComponent.DateTimePicker();
-            this.dtRedboxStart = new UIComponent.DateTimePicker();
-            this.dtRedboxLeaveDate = new UIComponent.DateTimePicker();
-            this.dtLongTermStart = new UIComponent.DateTimePicker();
-            this.dtPOAChkd = new UIComponent.DateTimePicker();
-            this.dtMedCLChkd = new UIComponent.DateTimePicker();
-            this.dtList99Chkd = new UIComponent.DateTimePicker();
-            this.dtDateOfSupply = new UIComponent.DateTimePicker();
-            this.dtRegistrationDate = new UIComponent.DateTimePicker();
-            this.dtRefChkd = new UIComponent.DateTimePicker();
-            this.dtFirstDayTeachingUK = new UIComponent.DateTimePicker();
-            this.dtPrFrmTchchkd = new UIComponent.DateTimePicker();
-            this.dtOvPolChkd = new UIComponent.DateTimePicker();
-            this.dtUKArrivalDate = new UIComponent.DateTimePicker();
-            this.dtProtabilityReceivedDate = new UIComponent.DateTimePicker();
-            this.dtDBSudChk = new UIComponent.DateTimePicker();
-            this.dtIDChkd = new UIComponent.DateTimePicker();
-            this.dtVisaChkd = new UIComponent.DateTimePicker();
-            this.dtQualChecked = new UIComponent.DateTimePicker();
-            this.dtCRBValidFrom = new UIComponent.DateTimePicker();
-            this.dtCRBExpiry = new UIComponent.DateTimePicker();
-            this.dtCRBDateSent = new UIComponent.DateTimePicker();
-            this.dtVisaExpiryDate = new UIComponent.DateTimePicker();
-            this.dtGTCCheckDate = new UIComponent.DateTimePicker();
+            this.chkDSWCsigned = new System.Windows.Forms.CheckBox();
+            this.dtDSWCsigned = new UIComponent.DateTimePicker();
+            this.label42 = new System.Windows.Forms.Label();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -799,6 +802,9 @@
             // 
             // Panel11
             // 
+            this.Panel11.Controls.Add(this.label42);
+            this.Panel11.Controls.Add(this.dtDSWCsigned);
+            this.Panel11.Controls.Add(this.chkDSWCsigned);
             this.Panel11.Controls.Add(this.dteSetAll);
             this.Panel11.Controls.Add(this.btnSetAllCheckedDates);
             this.Panel11.Controls.Add(this.chkOriginalDocsReturnedToTeacher);
@@ -895,6 +901,17 @@
             this.Panel11.Size = new System.Drawing.Size(994, 467);
             this.Panel11.TabIndex = 1;
             // 
+            // dteSetAll
+            // 
+            this.dteSetAll.CustomFormat = " ";
+            this.dteSetAll.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dteSetAll.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dteSetAll.Location = new System.Drawing.Point(775, 432);
+            this.dteSetAll.Name = "dteSetAll";
+            this.dteSetAll.Size = new System.Drawing.Size(93, 21);
+            this.dteSetAll.TabIndex = 133;
+            this.dteSetAll.Value = new System.DateTime(((long)(0)));
+            // 
             // btnSetAllCheckedDates
             // 
             this.btnSetAllCheckedDates.BackColor = System.Drawing.Color.White;
@@ -910,7 +927,7 @@
             // chkOriginalDocsReturnedToTeacher
             // 
             this.chkOriginalDocsReturnedToTeacher.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkOriginalDocsReturnedToTeacher.Location = new System.Drawing.Point(522, 412);
+            this.chkOriginalDocsReturnedToTeacher.Location = new System.Drawing.Point(550, 412);
             this.chkOriginalDocsReturnedToTeacher.Name = "chkOriginalDocsReturnedToTeacher";
             this.chkOriginalDocsReturnedToTeacher.Size = new System.Drawing.Size(160, 40);
             this.chkOriginalDocsReturnedToTeacher.TabIndex = 38;
@@ -924,11 +941,22 @@
             this.chkOriginalsSeenAndDocumentsStamped.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkOriginalsSeenAndDocumentsStamped.Location = new System.Drawing.Point(379, 416);
             this.chkOriginalsSeenAndDocumentsStamped.Name = "chkOriginalsSeenAndDocumentsStamped";
-            this.chkOriginalsSeenAndDocumentsStamped.Size = new System.Drawing.Size(131, 35);
+            this.chkOriginalsSeenAndDocumentsStamped.Size = new System.Drawing.Size(155, 35);
             this.chkOriginalsSeenAndDocumentsStamped.TabIndex = 37;
             this.chkOriginalsSeenAndDocumentsStamped.Text = "Originals seen and Docs stamped";
             this.chkOriginalsSeenAndDocumentsStamped.UseVisualStyleBackColor = true;
             this.chkOriginalsSeenAndDocumentsStamped.Visible = false;
+            // 
+            // dtOTTEndDate
+            // 
+            this.dtOTTEndDate.CustomFormat = " ";
+            this.dtOTTEndDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtOTTEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtOTTEndDate.Location = new System.Drawing.Point(885, 282);
+            this.dtOTTEndDate.Name = "dtOTTEndDate";
+            this.dtOTTEndDate.Size = new System.Drawing.Size(93, 21);
+            this.dtOTTEndDate.TabIndex = 57;
+            this.dtOTTEndDate.Value = new System.DateTime(((long)(0)));
             // 
             // label33
             // 
@@ -946,7 +974,7 @@
             this.chkCurrentPayScaleProof.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkCurrentPayScaleProof.Location = new System.Drawing.Point(379, 100);
             this.chkCurrentPayScaleProof.Name = "chkCurrentPayScaleProof";
-            this.chkCurrentPayScaleProof.Size = new System.Drawing.Size(131, 34);
+            this.chkCurrentPayScaleProof.Size = new System.Drawing.Size(155, 34);
             this.chkCurrentPayScaleProof.TabIndex = 21;
             this.chkCurrentPayScaleProof.Text = "Current Pay Scale Proof";
             this.chkCurrentPayScaleProof.UseVisualStyleBackColor = true;
@@ -955,22 +983,55 @@
             // 
             this.label3.CausesValidation = false;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(627, 202);
+            this.label3.Location = new System.Drawing.Point(655, 171);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 20);
+            this.label3.Size = new System.Drawing.Size(108, 20);
             this.label3.TabIndex = 128;
             this.label3.Text = "DbA Checked Date";
+            // 
+            // dtDBAChkd
+            // 
+            this.dtDBAChkd.CustomFormat = " ";
+            this.dtDBAChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDBAChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDBAChkd.Location = new System.Drawing.Point(550, 167);
+            this.dtDBAChkd.Name = "dtDBAChkd";
+            this.dtDBAChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtDBAChkd.TabIndex = 26;
+            this.dtDBAChkd.Value = new System.DateTime(((long)(0)));
             // 
             // chkDBAsigned
             // 
             this.chkDBAsigned.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkDBAsigned.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDBAsigned.Location = new System.Drawing.Point(380, 193);
+            this.chkDBAsigned.Location = new System.Drawing.Point(380, 159);
             this.chkDBAsigned.Name = "chkDBAsigned";
-            this.chkDBAsigned.Size = new System.Drawing.Size(130, 34);
+            this.chkDBAsigned.Size = new System.Drawing.Size(154, 34);
             this.chkDBAsigned.TabIndex = 25;
             this.chkDBAsigned.Text = "Disqualification by Association signed";
             this.chkDBAsigned.UseVisualStyleBackColor = true;
+            // 
+            // dtGradDate
+            // 
+            this.dtGradDate.CustomFormat = " ";
+            this.dtGradDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtGradDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtGradDate.Location = new System.Drawing.Point(552, 14);
+            this.dtGradDate.Name = "dtGradDate";
+            this.dtGradDate.Size = new System.Drawing.Size(93, 21);
+            this.dtGradDate.TabIndex = 13;
+            this.dtGradDate.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtRedboxStart
+            // 
+            this.dtRedboxStart.CustomFormat = " ";
+            this.dtRedboxStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtRedboxStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtRedboxStart.Location = new System.Drawing.Point(886, 84);
+            this.dtRedboxStart.Name = "dtRedboxStart";
+            this.dtRedboxStart.Size = new System.Drawing.Size(93, 21);
+            this.dtRedboxStart.TabIndex = 53;
+            this.dtRedboxStart.Value = new System.DateTime(((long)(0)));
             // 
             // label54
             // 
@@ -985,7 +1046,7 @@
             // txtCurrentPayScale
             // 
             this.txtCurrentPayScale.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCurrentPayScale.Location = new System.Drawing.Point(523, 106);
+            this.txtCurrentPayScale.Location = new System.Drawing.Point(551, 106);
             this.txtCurrentPayScale.Name = "txtCurrentPayScale";
             this.txtCurrentPayScale.Size = new System.Drawing.Size(94, 21);
             this.txtCurrentPayScale.TabIndex = 22;
@@ -994,17 +1055,50 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(627, 20);
+            this.label35.Location = new System.Drawing.Point(655, 20);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(86, 13);
             this.label35.TabIndex = 99;
             this.label35.Text = "Graduation Date";
             // 
+            // dtRedboxLeaveDate
+            // 
+            this.dtRedboxLeaveDate.CustomFormat = " ";
+            this.dtRedboxLeaveDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtRedboxLeaveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtRedboxLeaveDate.Location = new System.Drawing.Point(884, 203);
+            this.dtRedboxLeaveDate.Name = "dtRedboxLeaveDate";
+            this.dtRedboxLeaveDate.Size = new System.Drawing.Size(94, 21);
+            this.dtRedboxLeaveDate.TabIndex = 55;
+            this.dtRedboxLeaveDate.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtLongTermStart
+            // 
+            this.dtLongTermStart.CustomFormat = " ";
+            this.dtLongTermStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtLongTermStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtLongTermStart.Location = new System.Drawing.Point(884, 145);
+            this.dtLongTermStart.Name = "dtLongTermStart";
+            this.dtLongTermStart.Size = new System.Drawing.Size(93, 21);
+            this.dtLongTermStart.TabIndex = 54;
+            this.dtLongTermStart.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtPOAChkd
+            // 
+            this.dtPOAChkd.CustomFormat = " ";
+            this.dtPOAChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPOAChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtPOAChkd.Location = new System.Drawing.Point(550, 354);
+            this.dtPOAChkd.Name = "dtPOAChkd";
+            this.dtPOAChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtPOAChkd.TabIndex = 34;
+            this.dtPOAChkd.Value = new System.DateTime(((long)(0)));
+            // 
             // label53
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(627, 109);
+            this.label53.Location = new System.Drawing.Point(655, 109);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(93, 13);
             this.label53.TabIndex = 65;
@@ -1022,20 +1116,42 @@
             // label70
             // 
             this.label70.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(627, 350);
+            this.label70.Location = new System.Drawing.Point(655, 350);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(108, 19);
             this.label70.TabIndex = 125;
             this.label70.Text = "Date POA Checked";
             // 
+            // dtMedCLChkd
+            // 
+            this.dtMedCLChkd.CustomFormat = " ";
+            this.dtMedCLChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtMedCLChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtMedCLChkd.Location = new System.Drawing.Point(550, 139);
+            this.dtMedCLChkd.Name = "dtMedCLChkd";
+            this.dtMedCLChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtMedCLChkd.TabIndex = 24;
+            this.dtMedCLChkd.Value = new System.DateTime(((long)(0)));
+            // 
             // label69
             // 
             this.label69.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(627, 170);
+            this.label69.Location = new System.Drawing.Point(655, 139);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(108, 28);
             this.label69.TabIndex = 123;
             this.label69.Text = "Date Medical CL Checked";
+            // 
+            // dtList99Chkd
+            // 
+            this.dtList99Chkd.CustomFormat = " ";
+            this.dtList99Chkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtList99Chkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtList99Chkd.Location = new System.Drawing.Point(109, 317);
+            this.dtList99Chkd.Name = "dtList99Chkd";
+            this.dtList99Chkd.Size = new System.Drawing.Size(93, 21);
+            this.dtList99Chkd.TabIndex = 49;
+            this.dtList99Chkd.Value = new System.DateTime(((long)(0)));
             // 
             // label9
             // 
@@ -1047,6 +1163,17 @@
             this.label9.TabIndex = 121;
             this.label9.Text = "List 99 Checked";
             // 
+            // dtDateOfSupply
+            // 
+            this.dtDateOfSupply.CustomFormat = " ";
+            this.dtDateOfSupply.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDateOfSupply.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDateOfSupply.Location = new System.Drawing.Point(884, 319);
+            this.dtDateOfSupply.Name = "dtDateOfSupply";
+            this.dtDateOfSupply.Size = new System.Drawing.Size(93, 21);
+            this.dtDateOfSupply.TabIndex = 58;
+            this.dtDateOfSupply.Value = new System.DateTime(((long)(0)));
+            // 
             // chkCVReceived
             // 
             this.chkCVReceived.AutoSize = true;
@@ -1057,6 +1184,17 @@
             this.chkCVReceived.TabIndex = 59;
             this.chkCVReceived.Text = "CV Received";
             this.chkCVReceived.UseVisualStyleBackColor = true;
+            // 
+            // dtRegistrationDate
+            // 
+            this.dtRegistrationDate.CustomFormat = " ";
+            this.dtRegistrationDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtRegistrationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtRegistrationDate.Location = new System.Drawing.Point(887, 50);
+            this.dtRegistrationDate.Name = "dtRegistrationDate";
+            this.dtRegistrationDate.Size = new System.Drawing.Size(93, 21);
+            this.dtRegistrationDate.TabIndex = 52;
+            this.dtRegistrationDate.Value = new System.DateTime(((long)(0)));
             // 
             // label39
             // 
@@ -1078,6 +1216,17 @@
             this.label46.TabIndex = 82;
             this.label46.Text = "Registration Date";
             // 
+            // dtRefChkd
+            // 
+            this.dtRefChkd.CustomFormat = " ";
+            this.dtRefChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtRefChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtRefChkd.Location = new System.Drawing.Point(549, 389);
+            this.dtRefChkd.Name = "dtRefChkd";
+            this.dtRefChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtRefChkd.TabIndex = 36;
+            this.dtRefChkd.Value = new System.DateTime(((long)(0)));
+            // 
             // label63
             // 
             this.label63.AutoSize = true;
@@ -1094,16 +1243,27 @@
             this.chkProofOfAddress.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkProofOfAddress.Location = new System.Drawing.Point(380, 356);
             this.chkProofOfAddress.Name = "chkProofOfAddress";
-            this.chkProofOfAddress.Size = new System.Drawing.Size(130, 17);
+            this.chkProofOfAddress.Size = new System.Drawing.Size(154, 17);
             this.chkProofOfAddress.TabIndex = 33;
             this.chkProofOfAddress.Text = "Proof Of Address";
             this.chkProofOfAddress.UseVisualStyleBackColor = true;
+            // 
+            // dtFirstDayTeachingUK
+            // 
+            this.dtFirstDayTeachingUK.CustomFormat = " ";
+            this.dtFirstDayTeachingUK.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFirstDayTeachingUK.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFirstDayTeachingUK.Location = new System.Drawing.Point(884, 251);
+            this.dtFirstDayTeachingUK.Name = "dtFirstDayTeachingUK";
+            this.dtFirstDayTeachingUK.Size = new System.Drawing.Size(93, 21);
+            this.dtFirstDayTeachingUK.TabIndex = 56;
+            this.dtFirstDayTeachingUK.Value = new System.DateTime(((long)(0)));
             // 
             // label112
             // 
             this.label112.CausesValidation = false;
             this.label112.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label112.Location = new System.Drawing.Point(627, 381);
+            this.label112.Location = new System.Drawing.Point(655, 381);
             this.label112.Name = "label112";
             this.label112.Size = new System.Drawing.Size(109, 27);
             this.label112.TabIndex = 119;
@@ -1113,7 +1273,7 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(627, 316);
+            this.label41.Location = new System.Drawing.Point(655, 316);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(80, 13);
             this.label41.TabIndex = 90;
@@ -1125,10 +1285,21 @@
             this.chkReferencesChecked.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkReferencesChecked.Location = new System.Drawing.Point(380, 391);
             this.chkReferencesChecked.Name = "chkReferencesChecked";
-            this.chkReferencesChecked.Size = new System.Drawing.Size(130, 17);
+            this.chkReferencesChecked.Size = new System.Drawing.Size(154, 17);
             this.chkReferencesChecked.TabIndex = 35;
             this.chkReferencesChecked.Text = "References Checked";
             this.chkReferencesChecked.UseVisualStyleBackColor = true;
+            // 
+            // dtPrFrmTchchkd
+            // 
+            this.dtPrFrmTchchkd.CustomFormat = " ";
+            this.dtPrFrmTchchkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPrFrmTchchkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtPrFrmTchchkd.Location = new System.Drawing.Point(553, 79);
+            this.dtPrFrmTchchkd.Name = "dtPrFrmTchchkd";
+            this.dtPrFrmTchchkd.Size = new System.Drawing.Size(93, 21);
+            this.dtPrFrmTchchkd.TabIndex = 20;
+            this.dtPrFrmTchchkd.Value = new System.DateTime(((long)(0)));
             // 
             // label37
             // 
@@ -1138,6 +1309,17 @@
             this.label37.Size = new System.Drawing.Size(93, 33);
             this.label37.TabIndex = 97;
             this.label37.Text = "First Day Teaching UK";
+            // 
+            // dtOvPolChkd
+            // 
+            this.dtOvPolChkd.CustomFormat = " ";
+            this.dtOvPolChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtOvPolChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtOvPolChkd.Location = new System.Drawing.Point(110, 283);
+            this.dtOvPolChkd.Name = "dtOvPolChkd";
+            this.dtOvPolChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtOvPolChkd.TabIndex = 48;
+            this.dtOvPolChkd.Value = new System.DateTime(((long)(0)));
             // 
             // btnRedboxStartReminder
             // 
@@ -1164,11 +1346,22 @@
             // 
             this.label111.CausesValidation = false;
             this.label111.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label111.Location = new System.Drawing.Point(627, 76);
+            this.label111.Location = new System.Drawing.Point(655, 76);
             this.label111.Name = "label111";
             this.label111.Size = new System.Drawing.Size(109, 27);
             this.label111.TabIndex = 117;
             this.label111.Text = "Prohibition from Teaching Check Date";
+            // 
+            // dtUKArrivalDate
+            // 
+            this.dtUKArrivalDate.CustomFormat = " ";
+            this.dtUKArrivalDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtUKArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtUKArrivalDate.Location = new System.Drawing.Point(550, 311);
+            this.dtUKArrivalDate.Name = "dtUKArrivalDate";
+            this.dtUKArrivalDate.Size = new System.Drawing.Size(93, 21);
+            this.dtUKArrivalDate.TabIndex = 32;
+            this.dtUKArrivalDate.Value = new System.DateTime(((long)(0)));
             // 
             // chkPrFrmTch
             // 
@@ -1176,7 +1369,7 @@
             this.chkPrFrmTch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkPrFrmTch.Location = new System.Drawing.Point(380, 72);
             this.chkPrFrmTch.Name = "chkPrFrmTch";
-            this.chkPrFrmTch.Size = new System.Drawing.Size(130, 34);
+            this.chkPrFrmTch.Size = new System.Drawing.Size(154, 34);
             this.chkPrFrmTch.TabIndex = 19;
             this.chkPrFrmTch.Text = "Prohibition from Teaching Check";
             this.chkPrFrmTch.UseVisualStyleBackColor = true;
@@ -1185,12 +1378,23 @@
             // 
             this.chkMedicalChecklist.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkMedicalChecklist.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMedicalChecklist.Location = new System.Drawing.Point(380, 172);
+            this.chkMedicalChecklist.Location = new System.Drawing.Point(380, 141);
             this.chkMedicalChecklist.Name = "chkMedicalChecklist";
-            this.chkMedicalChecklist.Size = new System.Drawing.Size(130, 17);
+            this.chkMedicalChecklist.Size = new System.Drawing.Size(154, 17);
             this.chkMedicalChecklist.TabIndex = 23;
             this.chkMedicalChecklist.Text = "Medical Checklist";
             this.chkMedicalChecklist.UseVisualStyleBackColor = true;
+            // 
+            // dtProtabilityReceivedDate
+            // 
+            this.dtProtabilityReceivedDate.CustomFormat = " ";
+            this.dtProtabilityReceivedDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtProtabilityReceivedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtProtabilityReceivedDate.Location = new System.Drawing.Point(112, 344);
+            this.dtProtabilityReceivedDate.Name = "dtProtabilityReceivedDate";
+            this.dtProtabilityReceivedDate.Size = new System.Drawing.Size(93, 21);
+            this.dtProtabilityReceivedDate.TabIndex = 50;
+            this.dtProtabilityReceivedDate.Value = new System.DateTime(((long)(0)));
             // 
             // btnCRBExpiryReminder
             // 
@@ -1204,6 +1408,17 @@
             this.btnCRBExpiryReminder.UseVisualStyleBackColor = false;
             this.btnCRBExpiryReminder.Click += new System.EventHandler(this.btnCRBExpiryReminder_Click);
             // 
+            // dtDBSudChk
+            // 
+            this.dtDBSudChk.CustomFormat = " ";
+            this.dtDBSudChk.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDBSudChk.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDBSudChk.Location = new System.Drawing.Point(112, 221);
+            this.dtDBSudChk.Name = "dtDBSudChk";
+            this.dtDBSudChk.Size = new System.Drawing.Size(93, 21);
+            this.dtDBSudChk.TabIndex = 46;
+            this.dtDBSudChk.Value = new System.DateTime(((long)(0)));
+            // 
             // label7
             // 
             this.label7.CausesValidation = false;
@@ -1213,6 +1428,17 @@
             this.label7.Size = new System.Drawing.Size(97, 27);
             this.label7.TabIndex = 114;
             this.label7.Text = "OSPC checked";
+            // 
+            // dtIDChkd
+            // 
+            this.dtIDChkd.CustomFormat = " ";
+            this.dtIDChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtIDChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtIDChkd.Location = new System.Drawing.Point(550, 227);
+            this.dtIDChkd.Name = "dtIDChkd";
+            this.dtIDChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtIDChkd.TabIndex = 28;
+            this.dtIDChkd.Value = new System.DateTime(((long)(0)));
             // 
             // label92
             // 
@@ -1227,17 +1453,28 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(627, 230);
+            this.label6.Location = new System.Drawing.Point(655, 230);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 13);
             this.label6.TabIndex = 112;
             this.label6.Text = "Date ID Checked";
             // 
+            // dtVisaChkd
+            // 
+            this.dtVisaChkd.CustomFormat = " ";
+            this.dtVisaChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtVisaChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtVisaChkd.Location = new System.Drawing.Point(550, 284);
+            this.dtVisaChkd.Name = "dtVisaChkd";
+            this.dtVisaChkd.Size = new System.Drawing.Size(93, 21);
+            this.dtVisaChkd.TabIndex = 31;
+            this.dtVisaChkd.Value = new System.DateTime(((long)(0)));
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(627, 289);
+            this.label4.Location = new System.Drawing.Point(655, 289);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 110;
@@ -1249,7 +1486,7 @@
             this.chkIDChecked.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIDChecked.Location = new System.Drawing.Point(380, 229);
             this.chkIDChecked.Name = "chkIDChecked";
-            this.chkIDChecked.Size = new System.Drawing.Size(130, 17);
+            this.chkIDChecked.Size = new System.Drawing.Size(154, 17);
             this.chkIDChecked.TabIndex = 27;
             this.chkIDChecked.Text = "ID Checked";
             this.chkIDChecked.UseVisualStyleBackColor = true;
@@ -1283,6 +1520,17 @@
             this.chkOverseasTrainedTeacher.TabIndex = 16;
             this.chkOverseasTrainedTeacher.Text = "Overseas Trained Teacher";
             this.chkOverseasTrainedTeacher.UseVisualStyleBackColor = true;
+            // 
+            // dtQualChecked
+            // 
+            this.dtQualChecked.CustomFormat = " ";
+            this.dtQualChecked.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtQualChecked.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtQualChecked.Location = new System.Drawing.Point(886, 14);
+            this.dtQualChecked.Name = "dtQualChecked";
+            this.dtQualChecked.Size = new System.Drawing.Size(93, 21);
+            this.dtQualChecked.TabIndex = 51;
+            this.dtQualChecked.Value = new System.DateTime(((long)(0)));
             // 
             // chkRedboxCRB
             // 
@@ -1328,13 +1576,68 @@
             this.chkQTS.Text = "QTS";
             this.chkQTS.UseVisualStyleBackColor = true;
             // 
+            // dtCRBValidFrom
+            // 
+            this.dtCRBValidFrom.CustomFormat = " ";
+            this.dtCRBValidFrom.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtCRBValidFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtCRBValidFrom.Location = new System.Drawing.Point(112, 134);
+            this.dtCRBValidFrom.Name = "dtCRBValidFrom";
+            this.dtCRBValidFrom.Size = new System.Drawing.Size(93, 21);
+            this.dtCRBValidFrom.TabIndex = 42;
+            this.dtCRBValidFrom.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtCRBExpiry
+            // 
+            this.dtCRBExpiry.CustomFormat = " ";
+            this.dtCRBExpiry.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtCRBExpiry.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtCRBExpiry.Location = new System.Drawing.Point(112, 161);
+            this.dtCRBExpiry.Name = "dtCRBExpiry";
+            this.dtCRBExpiry.Size = new System.Drawing.Size(93, 21);
+            this.dtCRBExpiry.TabIndex = 43;
+            this.dtCRBExpiry.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtCRBDateSent
+            // 
+            this.dtCRBDateSent.CustomFormat = " ";
+            this.dtCRBDateSent.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtCRBDateSent.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtCRBDateSent.Location = new System.Drawing.Point(112, 191);
+            this.dtCRBDateSent.Name = "dtCRBDateSent";
+            this.dtCRBDateSent.Size = new System.Drawing.Size(93, 21);
+            this.dtCRBDateSent.TabIndex = 44;
+            this.dtCRBDateSent.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtVisaExpiryDate
+            // 
+            this.dtVisaExpiryDate.CustomFormat = " ";
+            this.dtVisaExpiryDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtVisaExpiryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtVisaExpiryDate.Location = new System.Drawing.Point(550, 259);
+            this.dtVisaExpiryDate.Name = "dtVisaExpiryDate";
+            this.dtVisaExpiryDate.Size = new System.Drawing.Size(93, 21);
+            this.dtVisaExpiryDate.TabIndex = 29;
+            this.dtVisaExpiryDate.Value = new System.DateTime(((long)(0)));
+            // 
+            // dtGTCCheckDate
+            // 
+            this.dtGTCCheckDate.CustomFormat = " ";
+            this.dtGTCCheckDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtGTCCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtGTCCheckDate.Location = new System.Drawing.Point(552, 47);
+            this.dtGTCCheckDate.Name = "dtGTCCheckDate";
+            this.dtGTCCheckDate.Size = new System.Drawing.Size(93, 21);
+            this.dtGTCCheckDate.TabIndex = 18;
+            this.dtGTCCheckDate.Value = new System.DateTime(((long)(0)));
+            // 
             // btnVisaExpiryReminder
             // 
             this.btnVisaExpiryReminder.BackColor = System.Drawing.Color.White;
             this.btnVisaExpiryReminder.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVisaExpiryReminder.Location = new System.Drawing.Point(396, 309);
+            this.btnVisaExpiryReminder.Location = new System.Drawing.Point(384, 311);
             this.btnVisaExpiryReminder.Name = "btnVisaExpiryReminder";
-            this.btnVisaExpiryReminder.Size = new System.Drawing.Size(114, 30);
+            this.btnVisaExpiryReminder.Size = new System.Drawing.Size(150, 30);
             this.btnVisaExpiryReminder.TabIndex = 64;
             this.btnVisaExpiryReminder.Text = "Visa Expiry Reminder";
             this.btnVisaExpiryReminder.UseVisualStyleBackColor = false;
@@ -1379,7 +1682,7 @@
             this.txtQualification.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQualification.Location = new System.Drawing.Point(87, 14);
             this.txtQualification.Name = "txtQualification";
-            this.txtQualification.Size = new System.Drawing.Size(423, 21);
+            this.txtQualification.Size = new System.Drawing.Size(447, 21);
             this.txtQualification.TabIndex = 12;
             // 
             // label48
@@ -1419,7 +1722,7 @@
             this.txtGTCNumber.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGTCNumber.Location = new System.Drawing.Point(384, 47);
             this.txtGTCNumber.Name = "txtGTCNumber";
-            this.txtGTCNumber.Size = new System.Drawing.Size(126, 21);
+            this.txtGTCNumber.Size = new System.Drawing.Size(150, 21);
             this.txtGTCNumber.TabIndex = 17;
             // 
             // chkList99Undertaken
@@ -1447,7 +1750,7 @@
             this.txtVisaType.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVisaType.Location = new System.Drawing.Point(384, 282);
             this.txtVisaType.Name = "txtVisaType";
-            this.txtVisaType.Size = new System.Drawing.Size(126, 21);
+            this.txtVisaType.Size = new System.Drawing.Size(150, 21);
             this.txtVisaType.TabIndex = 30;
             // 
             // label45
@@ -1464,7 +1767,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(627, 262);
+            this.label38.Location = new System.Drawing.Point(655, 262);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(85, 13);
             this.label38.TabIndex = 96;
@@ -1490,7 +1793,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(627, 51);
+            this.label40.Location = new System.Drawing.Point(655, 51);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(90, 13);
             this.label40.TabIndex = 94;
@@ -3000,302 +3303,37 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // dteSetAll
+            // chkDSWCsigned
             // 
-            this.dteSetAll.CustomFormat = " ";
-            this.dteSetAll.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteSetAll.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dteSetAll.Location = new System.Drawing.Point(775, 432);
-            this.dteSetAll.Name = "dteSetAll";
-            this.dteSetAll.Size = new System.Drawing.Size(93, 21);
-            this.dteSetAll.TabIndex = 133;
-            this.dteSetAll.Value = new System.DateTime(((long)(0)));
+            this.chkDSWCsigned.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkDSWCsigned.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDSWCsigned.Location = new System.Drawing.Point(379, 190);
+            this.chkDSWCsigned.Name = "chkDSWCsigned";
+            this.chkDSWCsigned.Size = new System.Drawing.Size(155, 34);
+            this.chkDSWCsigned.TabIndex = 134;
+            this.chkDSWCsigned.Text = "Declaration of Suitability to Work with Children";
+            this.chkDSWCsigned.UseVisualStyleBackColor = true;
             // 
-            // dtOTTEndDate
+            // dtDSWCsigned
             // 
-            this.dtOTTEndDate.CustomFormat = " ";
-            this.dtOTTEndDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtOTTEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtOTTEndDate.Location = new System.Drawing.Point(885, 282);
-            this.dtOTTEndDate.Name = "dtOTTEndDate";
-            this.dtOTTEndDate.Size = new System.Drawing.Size(93, 21);
-            this.dtOTTEndDate.TabIndex = 57;
-            this.dtOTTEndDate.Value = new System.DateTime(((long)(0)));
+            this.dtDSWCsigned.CustomFormat = " ";
+            this.dtDSWCsigned.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDSWCsigned.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDSWCsigned.Location = new System.Drawing.Point(550, 195);
+            this.dtDSWCsigned.Name = "dtDSWCsigned";
+            this.dtDSWCsigned.Size = new System.Drawing.Size(93, 21);
+            this.dtDSWCsigned.TabIndex = 135;
+            this.dtDSWCsigned.Value = new System.DateTime(((long)(0)));
             // 
-            // dtDBAChkd
+            // label42
             // 
-            this.dtDBAChkd.CustomFormat = " ";
-            this.dtDBAChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDBAChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDBAChkd.Location = new System.Drawing.Point(522, 198);
-            this.dtDBAChkd.Name = "dtDBAChkd";
-            this.dtDBAChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtDBAChkd.TabIndex = 26;
-            this.dtDBAChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtGradDate
-            // 
-            this.dtGradDate.CustomFormat = " ";
-            this.dtGradDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtGradDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtGradDate.Location = new System.Drawing.Point(524, 14);
-            this.dtGradDate.Name = "dtGradDate";
-            this.dtGradDate.Size = new System.Drawing.Size(93, 21);
-            this.dtGradDate.TabIndex = 13;
-            this.dtGradDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtRedboxStart
-            // 
-            this.dtRedboxStart.CustomFormat = " ";
-            this.dtRedboxStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRedboxStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtRedboxStart.Location = new System.Drawing.Point(886, 84);
-            this.dtRedboxStart.Name = "dtRedboxStart";
-            this.dtRedboxStart.Size = new System.Drawing.Size(93, 21);
-            this.dtRedboxStart.TabIndex = 53;
-            this.dtRedboxStart.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtRedboxLeaveDate
-            // 
-            this.dtRedboxLeaveDate.CustomFormat = " ";
-            this.dtRedboxLeaveDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRedboxLeaveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtRedboxLeaveDate.Location = new System.Drawing.Point(884, 203);
-            this.dtRedboxLeaveDate.Name = "dtRedboxLeaveDate";
-            this.dtRedboxLeaveDate.Size = new System.Drawing.Size(94, 21);
-            this.dtRedboxLeaveDate.TabIndex = 55;
-            this.dtRedboxLeaveDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtLongTermStart
-            // 
-            this.dtLongTermStart.CustomFormat = " ";
-            this.dtLongTermStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtLongTermStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtLongTermStart.Location = new System.Drawing.Point(884, 145);
-            this.dtLongTermStart.Name = "dtLongTermStart";
-            this.dtLongTermStart.Size = new System.Drawing.Size(93, 21);
-            this.dtLongTermStart.TabIndex = 54;
-            this.dtLongTermStart.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtPOAChkd
-            // 
-            this.dtPOAChkd.CustomFormat = " ";
-            this.dtPOAChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPOAChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPOAChkd.Location = new System.Drawing.Point(522, 354);
-            this.dtPOAChkd.Name = "dtPOAChkd";
-            this.dtPOAChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtPOAChkd.TabIndex = 34;
-            this.dtPOAChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtMedCLChkd
-            // 
-            this.dtMedCLChkd.CustomFormat = " ";
-            this.dtMedCLChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtMedCLChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtMedCLChkd.Location = new System.Drawing.Point(522, 170);
-            this.dtMedCLChkd.Name = "dtMedCLChkd";
-            this.dtMedCLChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtMedCLChkd.TabIndex = 24;
-            this.dtMedCLChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtList99Chkd
-            // 
-            this.dtList99Chkd.CustomFormat = " ";
-            this.dtList99Chkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtList99Chkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtList99Chkd.Location = new System.Drawing.Point(109, 317);
-            this.dtList99Chkd.Name = "dtList99Chkd";
-            this.dtList99Chkd.Size = new System.Drawing.Size(93, 21);
-            this.dtList99Chkd.TabIndex = 49;
-            this.dtList99Chkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtDateOfSupply
-            // 
-            this.dtDateOfSupply.CustomFormat = " ";
-            this.dtDateOfSupply.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDateOfSupply.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDateOfSupply.Location = new System.Drawing.Point(884, 319);
-            this.dtDateOfSupply.Name = "dtDateOfSupply";
-            this.dtDateOfSupply.Size = new System.Drawing.Size(93, 21);
-            this.dtDateOfSupply.TabIndex = 58;
-            this.dtDateOfSupply.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtRegistrationDate
-            // 
-            this.dtRegistrationDate.CustomFormat = " ";
-            this.dtRegistrationDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRegistrationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtRegistrationDate.Location = new System.Drawing.Point(887, 50);
-            this.dtRegistrationDate.Name = "dtRegistrationDate";
-            this.dtRegistrationDate.Size = new System.Drawing.Size(93, 21);
-            this.dtRegistrationDate.TabIndex = 52;
-            this.dtRegistrationDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtRefChkd
-            // 
-            this.dtRefChkd.CustomFormat = " ";
-            this.dtRefChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtRefChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtRefChkd.Location = new System.Drawing.Point(521, 389);
-            this.dtRefChkd.Name = "dtRefChkd";
-            this.dtRefChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtRefChkd.TabIndex = 36;
-            this.dtRefChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtFirstDayTeachingUK
-            // 
-            this.dtFirstDayTeachingUK.CustomFormat = " ";
-            this.dtFirstDayTeachingUK.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtFirstDayTeachingUK.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFirstDayTeachingUK.Location = new System.Drawing.Point(884, 251);
-            this.dtFirstDayTeachingUK.Name = "dtFirstDayTeachingUK";
-            this.dtFirstDayTeachingUK.Size = new System.Drawing.Size(93, 21);
-            this.dtFirstDayTeachingUK.TabIndex = 56;
-            this.dtFirstDayTeachingUK.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtPrFrmTchchkd
-            // 
-            this.dtPrFrmTchchkd.CustomFormat = " ";
-            this.dtPrFrmTchchkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPrFrmTchchkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPrFrmTchchkd.Location = new System.Drawing.Point(525, 79);
-            this.dtPrFrmTchchkd.Name = "dtPrFrmTchchkd";
-            this.dtPrFrmTchchkd.Size = new System.Drawing.Size(93, 21);
-            this.dtPrFrmTchchkd.TabIndex = 20;
-            this.dtPrFrmTchchkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtOvPolChkd
-            // 
-            this.dtOvPolChkd.CustomFormat = " ";
-            this.dtOvPolChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtOvPolChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtOvPolChkd.Location = new System.Drawing.Point(110, 283);
-            this.dtOvPolChkd.Name = "dtOvPolChkd";
-            this.dtOvPolChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtOvPolChkd.TabIndex = 48;
-            this.dtOvPolChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtUKArrivalDate
-            // 
-            this.dtUKArrivalDate.CustomFormat = " ";
-            this.dtUKArrivalDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtUKArrivalDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtUKArrivalDate.Location = new System.Drawing.Point(522, 311);
-            this.dtUKArrivalDate.Name = "dtUKArrivalDate";
-            this.dtUKArrivalDate.Size = new System.Drawing.Size(93, 21);
-            this.dtUKArrivalDate.TabIndex = 32;
-            this.dtUKArrivalDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtProtabilityReceivedDate
-            // 
-            this.dtProtabilityReceivedDate.CustomFormat = " ";
-            this.dtProtabilityReceivedDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtProtabilityReceivedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtProtabilityReceivedDate.Location = new System.Drawing.Point(112, 344);
-            this.dtProtabilityReceivedDate.Name = "dtProtabilityReceivedDate";
-            this.dtProtabilityReceivedDate.Size = new System.Drawing.Size(93, 21);
-            this.dtProtabilityReceivedDate.TabIndex = 50;
-            this.dtProtabilityReceivedDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtDBSudChk
-            // 
-            this.dtDBSudChk.CustomFormat = " ";
-            this.dtDBSudChk.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDBSudChk.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDBSudChk.Location = new System.Drawing.Point(112, 221);
-            this.dtDBSudChk.Name = "dtDBSudChk";
-            this.dtDBSudChk.Size = new System.Drawing.Size(93, 21);
-            this.dtDBSudChk.TabIndex = 46;
-            this.dtDBSudChk.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtIDChkd
-            // 
-            this.dtIDChkd.CustomFormat = " ";
-            this.dtIDChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtIDChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtIDChkd.Location = new System.Drawing.Point(522, 227);
-            this.dtIDChkd.Name = "dtIDChkd";
-            this.dtIDChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtIDChkd.TabIndex = 28;
-            this.dtIDChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtVisaChkd
-            // 
-            this.dtVisaChkd.CustomFormat = " ";
-            this.dtVisaChkd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtVisaChkd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtVisaChkd.Location = new System.Drawing.Point(522, 284);
-            this.dtVisaChkd.Name = "dtVisaChkd";
-            this.dtVisaChkd.Size = new System.Drawing.Size(93, 21);
-            this.dtVisaChkd.TabIndex = 31;
-            this.dtVisaChkd.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtQualChecked
-            // 
-            this.dtQualChecked.CustomFormat = " ";
-            this.dtQualChecked.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtQualChecked.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtQualChecked.Location = new System.Drawing.Point(886, 14);
-            this.dtQualChecked.Name = "dtQualChecked";
-            this.dtQualChecked.Size = new System.Drawing.Size(93, 21);
-            this.dtQualChecked.TabIndex = 51;
-            this.dtQualChecked.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtCRBValidFrom
-            // 
-            this.dtCRBValidFrom.CustomFormat = " ";
-            this.dtCRBValidFrom.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtCRBValidFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtCRBValidFrom.Location = new System.Drawing.Point(112, 134);
-            this.dtCRBValidFrom.Name = "dtCRBValidFrom";
-            this.dtCRBValidFrom.Size = new System.Drawing.Size(93, 21);
-            this.dtCRBValidFrom.TabIndex = 42;
-            this.dtCRBValidFrom.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtCRBExpiry
-            // 
-            this.dtCRBExpiry.CustomFormat = " ";
-            this.dtCRBExpiry.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtCRBExpiry.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtCRBExpiry.Location = new System.Drawing.Point(112, 161);
-            this.dtCRBExpiry.Name = "dtCRBExpiry";
-            this.dtCRBExpiry.Size = new System.Drawing.Size(93, 21);
-            this.dtCRBExpiry.TabIndex = 43;
-            this.dtCRBExpiry.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtCRBDateSent
-            // 
-            this.dtCRBDateSent.CustomFormat = " ";
-            this.dtCRBDateSent.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtCRBDateSent.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtCRBDateSent.Location = new System.Drawing.Point(112, 191);
-            this.dtCRBDateSent.Name = "dtCRBDateSent";
-            this.dtCRBDateSent.Size = new System.Drawing.Size(93, 21);
-            this.dtCRBDateSent.TabIndex = 44;
-            this.dtCRBDateSent.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtVisaExpiryDate
-            // 
-            this.dtVisaExpiryDate.CustomFormat = " ";
-            this.dtVisaExpiryDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtVisaExpiryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtVisaExpiryDate.Location = new System.Drawing.Point(522, 259);
-            this.dtVisaExpiryDate.Name = "dtVisaExpiryDate";
-            this.dtVisaExpiryDate.Size = new System.Drawing.Size(93, 21);
-            this.dtVisaExpiryDate.TabIndex = 29;
-            this.dtVisaExpiryDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // dtGTCCheckDate
-            // 
-            this.dtGTCCheckDate.CustomFormat = " ";
-            this.dtGTCCheckDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtGTCCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtGTCCheckDate.Location = new System.Drawing.Point(524, 47);
-            this.dtGTCCheckDate.Name = "dtGTCCheckDate";
-            this.dtGTCCheckDate.Size = new System.Drawing.Size(93, 21);
-            this.dtGTCCheckDate.TabIndex = 18;
-            this.dtGTCCheckDate.Value = new System.DateTime(((long)(0)));
+            this.label42.CausesValidation = false;
+            this.label42.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(655, 198);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(108, 21);
+            this.label42.TabIndex = 136;
+            this.label42.Text = "DSWC Checked Date";
             // 
             // frmViewContact
             // 
@@ -3624,5 +3662,8 @@
         private System.Windows.Forms.Button btnSetAllCheckedDates;
         private System.Windows.Forms.TextBox txtNextOfKin;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label42;
+        private UIComponent.DateTimePicker dtDSWCsigned;
+        private System.Windows.Forms.CheckBox chkDSWCsigned;
     }
 }

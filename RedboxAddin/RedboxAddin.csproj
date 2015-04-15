@@ -38,7 +38,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>DavtonN.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -51,7 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Add-in Express\Add-in Express for .NET\Bin\AddinExpress.OL.2005.dll</HintPath>
     </Reference>
-    <Reference Include="AddinExpress.ToolbarControls.2005, Version=7.5.4072.2005, Culture=neutral, PublicKeyToken=16211aef6795d6cc, processorArchitecture=MSIL" />
+    <Reference Include="AddinExpress.ToolbarControls.2005, Version=7.3.4061.2005, Culture=neutral, PublicKeyToken=16211aef6795d6cc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Add-in Express\Add-in Express for .NET\Bin\AddinExpress.ToolbarControls.2005.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v11.2, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v11.2.Core, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v11.2.Core, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -110,9 +114,9 @@
     <!--<None Include="RedboxAddin.snk" /> -->
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DavtonN.ico" />
     <Content Include="Loader\adxloader.dll" />
     <Content Include="Loader\adxloader64.dll" />
+    <Content Include="Resources\DavtonN.ico" />
     <Content Include="Resources\status.png" />
     <None Include="Resources\red-box-logo.gif" />
     <None Include="packages.config">
@@ -499,6 +503,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC\AvailabilityGrid.resx">
       <DependentUpon>AvailabilityGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
