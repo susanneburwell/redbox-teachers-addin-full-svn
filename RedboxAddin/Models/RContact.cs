@@ -52,6 +52,8 @@ namespace RedboxAddin.Models
         //public bool DBSDirectPayment { get; set; }
         public bool DisqByAssoc { get; set; }
         public DateTime DisqByAssocChkdDate { get; set; }
+        public bool DSWC { get; set; }
+        public DateTime DSWCChkdDate { get; set; }
         public string CNGHO { get; set; }
         public string CurrentPayScale { get; set; }
         public bool CurrentPayScaleProof { get; set; }

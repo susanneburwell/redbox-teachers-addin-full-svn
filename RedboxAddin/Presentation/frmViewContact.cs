@@ -120,6 +120,8 @@ namespace RedboxAddin.Presentation
                 dtDBSudChk.Value = contactObj.DBSUpdateServiceCheckedDate;
                 dtDBAChkd.Value = contactObj.DisqByAssocChkdDate;
                 chkDBAsigned.Checked = contactObj.DisqByAssoc;
+                chkDSWCsigned.Checked = contactObj.DSWC;
+                dtDSWCChkd.Value = contactObj.DSWCChkdDate;
 
                 txtCNGHO.Text = contactObj.CNGHO;
                 txtCurrentPayScale.Text = contactObj.CurrentPayScale;
@@ -259,6 +261,9 @@ namespace RedboxAddin.Presentation
                 //contactObj.Consultant = txtConsultant.Text;
                 contactObj.DisqByAssocChkdDate = dtDBAChkd.Value;
                 contactObj.DisqByAssoc = chkDBAsigned.Checked;
+                contactObj.DSWC = chkDSWCsigned.Checked;
+                contactObj.DSWCChkdDate = dtDSWCChkd.Value;
+
                 contactObj.DBSandAddressProofMatch = chkProofOfAddress.Checked;
                 contactObj.DBSDateSent = dtCRBDateSent.Value;
                 contactObj.DBSExpiryDate = dtCRBExpiry.Value;
@@ -1392,7 +1397,7 @@ namespace RedboxAddin.Presentation
         private void btnSetAllCheckedDates_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Have you really checked: " + Environment.NewLine +
-                "NCTL, Prohibition from Teaching, Medical Checklist, Disqualification by Association, ID, Visa, Proof of Address, References?", "What really?",
+                "NCTL, Prohibition from Teaching, Medical Checklist, Disqualification by Association, Declaration of Suitability to Work with Children, ID, Visa, Proof of Address, References?", "What really?",
                 MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
@@ -1405,6 +1410,7 @@ namespace RedboxAddin.Presentation
                 dtVisaChkd.Value = checkedDate;
                 dtPOAChkd.Value = checkedDate;
                 dtRefChkd.Value = checkedDate;
+                dtDSWCChkd.Value = checkedDate;
             }
         }
 

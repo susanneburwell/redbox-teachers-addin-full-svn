@@ -47,6 +47,7 @@ using System.IO;
 //2.0.83 12Mar2015 DT Plugin missed opening Booking when teacher has identical name - fixed by using TeacherID not Teachername
 //2.0.84 17Mar2015 DT Disqualification By Association added to Send Details
 //2.0.85 17Mar2015 DT Fixed bug where Rowinfo gave Teachername instead of TeacherID
+//2.0.86 15Apr2015 DT Declaration of Suitability to Work with Children added
 
 namespace RedboxAddin
 {

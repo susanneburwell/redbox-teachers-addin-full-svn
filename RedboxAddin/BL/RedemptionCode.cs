@@ -408,6 +408,14 @@ namespace RedboxAddin.BL
                 {
                     txtBody = txtBody + Environment.NewLine + "Disqualification By Association Signed: No";
                 }
+                if (contactObj.DSWC)
+                {
+                    txtBody = txtBody + Environment.NewLine + "Declaration of Suitability to Work with Children Signed: Yes";
+                }
+                else
+                {
+                    txtBody = txtBody + Environment.NewLine + "Declaration of Suitability to Work with Children: No";
+                }
                 txtBody = txtBody + Environment.NewLine;
 
                 if (contactObj.UpdateService) { txtBody = txtBody + Environment.NewLine + "DBS Update Service? Yes"; }

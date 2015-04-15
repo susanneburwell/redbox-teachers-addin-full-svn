@@ -2210,6 +2210,9 @@ namespace RedboxAddin.DL
             objContact.DBSUpdateServiceCheckedDate = CheckDate(dr["DBSUpdateSvcChkdDate"].ToString());
             objContact.DisqByAssocChkdDate = CheckDate(dr["DisqByAssocChkdDate"].ToString());
             objContact.DisqByAssoc = CheckBool(dr["DisqByAssoc"]);
+            objContact.DSWC = CheckBool(dr["DSWC"]);
+            objContact.DSWCChkdDate = CheckDate(dr["DSWCChkdDate"].ToString());
+
             objContact.CurrentPayScaleProof = CheckBool(dr["CurrentPayScaleProof"]);
             objContact.CurrentPayScale = dr["CurrentPayScale"].ToString();
             objContact.CNGHO = dr["CNGHO"].ToString();
@@ -2688,6 +2691,8 @@ namespace RedboxAddin.DL
                     + "DBSUpdateSvcChkdDate, "
                     + "DisqByAssoc, "
                     + "DisqByAssocChkdDate, "
+                    + "DSWC, "
+                    + "DSWCChkdDate, "
                     + "CVReceived,"
                     + "DateOfSupply,"
                     + "FirstDayTeachingUK,"
@@ -2819,6 +2824,8 @@ namespace RedboxAddin.DL
                     + "@DBSUpdateSvcChkdDate, "
                     + "@DisqByAssoc, "
                     + "@DisqByAssocChkdDate, "
+                    + "@DSWC, "
+                    + "@DSWCChkdDate, "
 
                     + "@CVReceived,"
                     + "@DateOfSupply,"
@@ -2953,6 +2960,8 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.AddWithValue("@DBSUpdateSvcChkdDate", FilterSQLDate(contactObj.DBSUpdateServiceCheckedDate));
                 CmdAddContact.Parameters.AddWithValue("@DisqByAssoc", CheckVals(contactObj.DisqByAssoc));
                 CmdAddContact.Parameters.AddWithValue("@DisqByAssocChkdDate", FilterSQLDate(contactObj.DisqByAssocChkdDate));
+                CmdAddContact.Parameters.AddWithValue("@DSWC", CheckVals(contactObj.DSWC));
+                CmdAddContact.Parameters.AddWithValue("@DSWCChkdDate", FilterSQLDate(contactObj.DSWCChkdDate));
                 CmdAddContact.Parameters.AddWithValue("@CurrentPayScale", CheckVals(contactObj.CurrentPayScale));
                 CmdAddContact.Parameters.AddWithValue("@CurrentPayScaleProof", CheckVals(contactObj.CurrentPayScaleProof));
                 CmdAddContact.Parameters.AddWithValue("@CNGHO", CheckVals(contactObj.CNGHO));
@@ -3106,6 +3115,8 @@ namespace RedboxAddin.DL
                        + "DBSUpdateSvcChkdDate = @DBSUpdateSvcChkdDate, "
                        + "DisqByAssoc = @DisqByAssoc, "
                        + "DisqByAssocChkdDate = @DisqByAssocChkdDate, "
+                       + "DSWC = @DSWC, "
+                       + "DSWCChkdDate = @DSWCChkdDate, "
                        + "CurrentPayScale = @CurrentPayScale, "
                        + "CurrentPayScaleProof = @CurrentPayScaleProof, "
                        + "CNGHO = @CNGHO, "
@@ -3240,6 +3251,8 @@ namespace RedboxAddin.DL
                 CmdUpdateContact.Parameters.AddWithValue("@DBSUpdateSvcChkdDate", FilterSQLDate(contactObj.DBSUpdateServiceCheckedDate));
                 CmdUpdateContact.Parameters.AddWithValue("@DisqByAssoc", CheckVals(contactObj.DisqByAssoc));
                 CmdUpdateContact.Parameters.AddWithValue("@DisqByAssocChkdDate", FilterSQLDate(contactObj.DisqByAssocChkdDate));
+                CmdUpdateContact.Parameters.AddWithValue("@DSWC", CheckVals(contactObj.DSWC));
+                CmdUpdateContact.Parameters.AddWithValue("@DSWCChkdDate", FilterSQLDate(contactObj.DSWCChkdDate));
                 CmdUpdateContact.Parameters.AddWithValue("@CurrentPayScale", CheckVals(contactObj.CurrentPayScale));
                 CmdUpdateContact.Parameters.AddWithValue("@CurrentPayScaleProof", CheckVals(contactObj.CurrentPayScaleProof));
                 CmdUpdateContact.Parameters.AddWithValue("@CNGHO", CheckVals(contactObj.CNGHO));
