@@ -181,8 +181,8 @@ namespace RedboxAddin.Presentation
 
                 Microsoft.Office.Interop.Outlook.MailItem oMail = Globals.objOutlook.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem) as Microsoft.Office.Interop.Outlook.MailItem;
                 var oMail1 = myMail.Copy();
-                //oMail1.To = email;
-                oMail1.To = "croosb@gmail.com";
+                oMail1.To = email;
+                //oMail1.To = "croosb@gmail.com";
                 oMail1.Body = myMail.Body.Replace("[Name]", firstname);
                 oMail1.Send();
             }
