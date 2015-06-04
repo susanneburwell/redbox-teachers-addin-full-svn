@@ -130,6 +130,40 @@ namespace RedboxAddin.DL
             finally { CloseDBConnection(); }
         }
 
+        public DataSet GetCurrentContacts()
+        {
+            DataSet msgDs = null;
+            try
+            {
+                msgDs = GetDataSet("Select FirstName,LastName,Email1 from Contacts join ContactData on ContactData.ContactID = Contacts.contactID WHERE [Deleted] = 0 AND [Current]=1");
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(4, "***Error in GetCurrentContacts. /n" + ex.Message);
+                return null;
+
+            }
+
+            return msgDs;
+        }
+
+        public DataSet GetSchooltContacts()
+        {
+            DataSet msgDs = null;
+            try
+            {
+                msgDs = GetDataSet("Select SchoolName, EmailAddress from Schools WHERE EmailAddress != ''");
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(4, "***Error in GetCurrentContacts. /n" + ex.Message);
+                return null;
+
+            }
+
+            return msgDs;
+        }
+
         public List<RContact> GetContacts()
         {
 
