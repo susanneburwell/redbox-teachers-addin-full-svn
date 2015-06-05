@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,6 +21,7 @@ namespace RedboxAddin.Presentation
         DataSet DSUsers = null;
         bool chkTeacherState = true;
         bool chkSchoolState = false;
+        string AppDataFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\";
 
         public frmSendMailshot()
         {
@@ -32,6 +34,9 @@ namespace RedboxAddin.Presentation
             DSSchools = new DBManager().GetSchooltContacts();
             DSUsers = new DBManager().GetCurrentContacts();
             DrawDatagrid(chkTeacherState, chkSchoolState);
+
+            DisplayTestEmail();
+
         }
 
         private void chkTeachers_CheckedChanged(object sender, EventArgs e)
@@ -156,6 +161,89 @@ namespace RedboxAddin.Presentation
                 GC.Collect();
             }
         }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            string TESTEMAIL = GetTestEmail();
+            if (string.IsNullOrEmpty(TESTEMAIL))
+            {
+                frmTestEmailAddress frm = new frmTestEmailAddress();
+                frm.Show();
+            }
+            else
+            {
+                SendTestMail(TESTEMAIL);
+            }
+
+        }
+
+        private void SendTestMail(string testemail)
+        {
+            Outlook.Inspector currentInspector = null;
+            Outlook.MailItem myMail = null;
+            SendMailshot objSendMailshot = new SendMailshot();
+            try
+            {
+                currentInspector = Globals.objOutlook.ActiveInspector();
+                myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
+                objSendMailshot.TestSendMail(testemail, ref myMail);
+                lblSending.Text = "Test mail has been sent successfully.";
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in SendTestMail : " + ex.Message);
+            }
+            finally
+            {
+                if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
+                GC.Collect();
+            }
+
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmTestEmailAddress frm = new frmTestEmailAddress();
+            frm.Show();
+        }
+
+        private string GetTestEmail()
+        {
+            string testEmail = string.Empty;
+
+            if (File.Exists(AppDataFilePath + "TestEmail.txt"))
+            {
+                try
+                {
+                    testEmail = File.ReadAllText(AppDataFilePath + "TestEmail.txt");
+                }
+                catch (Exception ex)
+                {
+                    Debug.DebugMessage(2, "Error in GetTestEmail: " + ex.Message);
+                    return null;
+
+                }
+            }
+            return testEmail;
+        }
+
+        private void DisplayTestEmail()
+        {
+            string TESTEMAIL = GetTestEmail();
+            if (!string.IsNullOrEmpty(TESTEMAIL))
+            {
+                lblTestEmail.Text = "Test Email : " + TESTEMAIL;
+                btnAdd.Text = "Change";
+            }
+            else
+            {
+                lblTestEmail.Text = "Please add test email before test mail : ";
+                btnAdd.Text = "Add";
+            }
+
+        }
+
 
     }
 }

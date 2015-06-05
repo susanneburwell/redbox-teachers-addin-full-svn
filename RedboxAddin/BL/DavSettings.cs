@@ -94,6 +94,7 @@ public static class DavSettings
                     PropName = myPropName,
                     PropValue = myValue
                 });
+                SaveDavSettings();
             }
         }
         catch (Exception ex)

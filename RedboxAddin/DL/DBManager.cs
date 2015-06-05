@@ -152,7 +152,7 @@ namespace RedboxAddin.DL
             DataSet msgDs = null;
             try
             {
-                msgDs = GetDataSet("Select SchoolName, EmailAddress from Schools WHERE EmailAddress != ''");
+                msgDs = GetDataSet("Select SchoolName, VettingEmails from Schools WHERE EmailAddress != ''");
             }
             catch (Exception ex)
             {

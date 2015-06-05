@@ -16,14 +16,37 @@ namespace RedboxAddin.BL
             try
             {
                 oMailCopy = myMail.Copy();
-                //oMail1.To = email;
-                oMailCopy.To = "croosb@gmail.com";
+                oMailCopy.To = email;
+                //oMailCopy.To = "croosb@gmail.com";
                 oMailCopy.Body = myMail.Body.Replace("[Name]", firstname);
                 oMailCopy.Send();
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in SendMail : " + ex.Message);
+            }
+
+            finally
+            {
+                if (oMailCopy != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(oMailCopy);
+                GC.Collect();
+            }
+
+        }
+
+        public void TestSendMail(string email, ref Outlook.MailItem myMail)
+        {
+            Outlook.MailItem oMailCopy = null;
+            try
+            {
+                oMailCopy = myMail.Copy();
+                oMailCopy.To = email;
+                oMailCopy.Subject = "Test Mail";      
+                oMailCopy.Send();
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in TestSendMail : " + ex.Message);
             }
 
             finally

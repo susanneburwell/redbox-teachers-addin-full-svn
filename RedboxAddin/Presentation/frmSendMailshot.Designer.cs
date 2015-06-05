@@ -35,6 +35,8 @@
             this.btnSendNow = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.lblSending = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lblTestEmail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdCurrntUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,9 +48,9 @@
             this.grdCurrntUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdCurrntUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-            this.grdCurrntUsers.Location = new System.Drawing.Point(2, 106);
+            this.grdCurrntUsers.Location = new System.Drawing.Point(2, 111);
             this.grdCurrntUsers.Name = "grdCurrntUsers";
-            this.grdCurrntUsers.Size = new System.Drawing.Size(542, 546);
+            this.grdCurrntUsers.Size = new System.Drawing.Size(542, 541);
             this.grdCurrntUsers.TabIndex = 0;
             // 
             // Column1
@@ -99,6 +101,7 @@
             this.btnTest.TabIndex = 4;
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // lblSending
             // 
@@ -108,12 +111,33 @@
             this.lblSending.Size = new System.Drawing.Size(0, 13);
             this.lblSending.TabIndex = 5;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(427, 83);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Change";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lblTestEmail
+            // 
+            this.lblTestEmail.AutoSize = true;
+            this.lblTestEmail.Location = new System.Drawing.Point(191, 93);
+            this.lblTestEmail.Name = "lblTestEmail";
+            this.lblTestEmail.Size = new System.Drawing.Size(60, 13);
+            this.lblTestEmail.TabIndex = 8;
+            this.lblTestEmail.Text = "Test E-Mail";
+            // 
             // frmSendMailshot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(544, 656);
+            this.Controls.Add(this.lblTestEmail);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblSending);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnSendNow);
@@ -138,6 +162,8 @@
         private System.Windows.Forms.Button btnSendNow;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label lblSending;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Label lblTestEmail;
 
     }
 }

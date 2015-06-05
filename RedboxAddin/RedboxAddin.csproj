@@ -306,6 +306,12 @@
     <Compile Include="Presentation\frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmTestEmailAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmTestEmailAddress.Designer.cs">
+      <DependentUpon>frmTestEmailAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmTimeSheets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -474,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmTestEmailAddress.resx">
+      <DependentUpon>frmTestEmailAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmTimeSheets.resx">
       <DependentUpon>frmTimeSheets.cs</DependentUpon>
