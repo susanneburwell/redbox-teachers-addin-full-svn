@@ -55,12 +55,13 @@ namespace RedboxAddin.Presentation
                 DataTable table = new DataTable();
                 table.Columns.Add("Name", typeof(string));
                 table.Columns.Add("Email", typeof(string));
+                table.Columns.Add("User", typeof(string));
 
                 if (teachersState)
                 {
                     foreach (DataRow dataRow in DSUsers.Tables[0].Rows)
                     {
-                        table.Rows.Add(dataRow[0].ToString(), dataRow[2].ToString());
+                        table.Rows.Add(dataRow[0].ToString(), dataRow[2].ToString(), "Teacher");
                     }
                 }
 
@@ -68,13 +69,14 @@ namespace RedboxAddin.Presentation
                 {
                     foreach (DataRow dataRow in DSSchools.Tables[0].Rows)
                     {
-                        table.Rows.Add(dataRow[0].ToString(), dataRow[1].ToString());
+                        table.Rows.Add(dataRow[0].ToString(), dataRow[1].ToString(), "School");
                     }
                 }
                 grdCurrntUsers.DataSource = table;
 
                 grdCurrntUsers.Columns[1].Width = 200;
                 grdCurrntUsers.Columns[2].Width = 250;
+                grdCurrntUsers.Columns[3].Visible = false;
 
 
                 for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
@@ -102,6 +104,7 @@ namespace RedboxAddin.Presentation
                         SelectedContacts selectedContact = new SelectedContacts();
                         selectedContact.Name = grdCurrntUsers.Rows[i].Cells[1].Value.ToString();
                         selectedContact.Email = grdCurrntUsers.Rows[i].Cells[2].Value.ToString();
+                        selectedContact.User = grdCurrntUsers.Rows[i].Cells[3].Value.ToString();
                         selectedContacts.Add(selectedContact);
                     }
                 }
@@ -149,53 +152,6 @@ namespace RedboxAddin.Presentation
 
             lblSending.Text = "";
         }
-
-        //private bool IsValidEmail(string email)
-        //{
-        //    string pattern = null;
-        //    pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
-
-        //    if (Regex.IsMatch(email, pattern)) { return true; }
-        //    else { return false; }
-        //}
-
-        //private string GetEmails(string emails)
-        //{
-        //    string allEmails = string.Empty;
-        //    try
-        //    {
-        //        string[] emailsArray = emails.Split(';');
-        //        foreach (string mail in emailsArray)
-        //        {
-        //            if (IsValidEmail(mail.Trim()))
-        //            {
-        //                allEmails += mail + "; ";
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.DebugMessage(2, "Error in GetEmails : " + ex.Message);
-        //    }
-
-        //    return allEmails;
-        //}
-
-        //private void SendMail(string firstname, string email, Outlook.MailItem myMail)
-        //{
-        //    try
-        //    {
-        //        var oMail1 = myMail.Copy();
-        //        //oMail1.To = email;
-        //        oMail1.To = "croosb@gmail.com";
-        //        oMail1.Body = myMail.Body.Replace("[Name]", firstname);
-        //        oMail1.Send();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.DebugMessage(2, "Error in SendMail : " + ex.Message);
-        //    }
-
-        //}
+        
     }
 }
