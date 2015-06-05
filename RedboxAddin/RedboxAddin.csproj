@@ -142,6 +142,7 @@
     <Compile Include="BL\IOManager.cs" />
     <Compile Include="BL\RedemptionCode.cs" />
     <Compile Include="BL\RedemptionLoader.cs" />
+    <Compile Include="BL\SendMailshot.cs" />
     <Compile Include="BL\Utils.cs" />
     <Compile Include="DateTimePicker.cs">
       <SubType>Component</SubType>

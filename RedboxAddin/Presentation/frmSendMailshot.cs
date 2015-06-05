@@ -117,17 +117,23 @@ namespace RedboxAddin.Presentation
 
         private void btnSendNow_Click(object sender, EventArgs e)
         {
+            Outlook.Inspector currentInspector = null;
+            Outlook.MailItem myMail = null;
+            SendMailshot objSendMailshot = new SendMailshot();
             try
             {
                 List<SelectedContacts> selectCheckedContacts = SelectCheckedContacts();
-                if (MessageBox.Show("Are you sure? This will send an email to " + selectCheckedContacts .Count+ " contacts! ", "Send mail", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Are you sure? This will send an email to " + selectCheckedContacts.Count + " contacts! ", "Send mail", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
+                    currentInspector = Globals.objOutlook.ActiveInspector();
+                    myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
+
                     foreach (var selectedcontact in selectCheckedContacts)
                     {
                         lblSending.Text = "Sending email to " + selectedcontact.Name;
-                        SendMail(selectedcontact.Name, GetEmails(selectedcontact.Email));
+                        objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email),ref myMail);
                     }
-                }              
+                }
 
             }
             catch (Exception ex)
@@ -135,61 +141,61 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in btnSendNow_Click : " + ex.Message);
             }
 
+            finally
+            {
+                if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
+                GC.Collect();
+            }
+
             lblSending.Text = "";
         }
 
-        private bool IsValidEmail(string email)
-        {
-            string pattern = null;
-            pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
+        //private bool IsValidEmail(string email)
+        //{
+        //    string pattern = null;
+        //    pattern = "^([0-9a-zA-Z]([-\\.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
 
-            if (Regex.IsMatch(email, pattern)) { return true; }
-            else { return false; }
-        }
+        //    if (Regex.IsMatch(email, pattern)) { return true; }
+        //    else { return false; }
+        //}
 
-        private string GetEmails(string emails)
-        {
-            string allEmails = string.Empty;
-            try
-            {
-                string[] emailsArray = emails.Split(';');
-                foreach (string mail in emailsArray)
-                {
-                    if (IsValidEmail(mail.Trim()))
-                    {
-                        allEmails += mail + "; ";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in GetEmails : " + ex.Message);
-            }
+        //private string GetEmails(string emails)
+        //{
+        //    string allEmails = string.Empty;
+        //    try
+        //    {
+        //        string[] emailsArray = emails.Split(';');
+        //        foreach (string mail in emailsArray)
+        //        {
+        //            if (IsValidEmail(mail.Trim()))
+        //            {
+        //                allEmails += mail + "; ";
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in GetEmails : " + ex.Message);
+        //    }
 
-            return allEmails;
-        }
+        //    return allEmails;
+        //}
 
-        private void SendMail(string firstname, string email)
-        {
-            try
-            {
-                Outlook.Inspector currentInspector = null;
-                Outlook.MailItem myMail = null;
+        //private void SendMail(string firstname, string email, Outlook.MailItem myMail)
+        //{
+        //    try
+        //    {
+        //        var oMail1 = myMail.Copy();
+        //        //oMail1.To = email;
+        //        oMail1.To = "croosb@gmail.com";
+        //        oMail1.Body = myMail.Body.Replace("[Name]", firstname);
+        //        oMail1.Send();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "Error in SendMail : " + ex.Message);
+        //    }
 
-                currentInspector = Globals.objOutlook.ActiveInspector();
-                myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
-
-                Microsoft.Office.Interop.Outlook.MailItem oMail = Globals.objOutlook.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem) as Microsoft.Office.Interop.Outlook.MailItem;
-                var oMail1 = myMail.Copy();
-                oMail1.To = email;
-                //oMail1.To = "croosb@gmail.com";
-                oMail1.Body = myMail.Body.Replace("[Name]", firstname);
-                oMail1.Send();
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in SendMail : " + ex.Message);
-            }
-        }
+        //}
     }
 }
