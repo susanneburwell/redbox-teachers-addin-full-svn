@@ -103,7 +103,7 @@
             // lblSending
             // 
             this.lblSending.AutoSize = true;
-            this.lblSending.Location = new System.Drawing.Point(343, 28);
+            this.lblSending.Location = new System.Drawing.Point(156, 29);
             this.lblSending.Name = "lblSending";
             this.lblSending.Size = new System.Drawing.Size(0, 13);
             this.lblSending.TabIndex = 5;

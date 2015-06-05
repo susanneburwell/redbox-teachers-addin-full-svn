@@ -50,6 +50,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
+                lblSending.Text = "";
                 grdCurrntUsers.DataSource = null;
 
                 DataTable table = new DataTable();
@@ -123,9 +124,9 @@ namespace RedboxAddin.Presentation
             Outlook.Inspector currentInspector = null;
             Outlook.MailItem myMail = null;
             SendMailshot objSendMailshot = new SendMailshot();
+            List<SelectedContacts> selectCheckedContacts = SelectCheckedContacts();
             try
             {
-                List<SelectedContacts> selectCheckedContacts = SelectCheckedContacts();
                 if (MessageBox.Show("Are you sure? This will send an email to " + selectCheckedContacts.Count + " contacts! ", "Send mail", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     currentInspector = Globals.objOutlook.ActiveInspector();
@@ -134,14 +135,19 @@ namespace RedboxAddin.Presentation
                     foreach (var selectedcontact in selectCheckedContacts)
                     {
                         lblSending.Text = "Sending email to " + selectedcontact.Name;
-                        objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email),ref myMail);
+                        objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email), ref myMail);
                     }
+
+                    if (selectCheckedContacts.Count == 1) { lblSending.Text = "The e-mail has been successfully sent for " + selectCheckedContacts.Count + " contact"; }
+                    else if (selectCheckedContacts.Count > 1) { lblSending.Text = "E-Mails have been successfully sent for " + selectCheckedContacts.Count + " contacts"; }
+                    else if (selectCheckedContacts.Count == 0) { lblSending.Text = "The e-mails has been successfully sent for " + selectCheckedContacts.Count + " contact"; }
                 }
 
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in btnSendNow_Click : " + ex.Message);
+                lblSending.Text = "E-Mail has not been sent";
             }
 
             finally
@@ -149,9 +155,7 @@ namespace RedboxAddin.Presentation
                 if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
                 GC.Collect();
             }
-
-            lblSending.Text = "";
         }
-        
+
     }
 }
