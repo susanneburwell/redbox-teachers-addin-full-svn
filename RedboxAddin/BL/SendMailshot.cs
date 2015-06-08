@@ -18,7 +18,7 @@ namespace RedboxAddin.BL
                 oMailCopy = myMail.Copy();
                 oMailCopy.To = email;
                 //oMailCopy.To = "croosb@gmail.com";
-                oMailCopy.Body = myMail.Body.Replace("[Name]", firstname);
+                oMailCopy.HTMLBody = myMail.HTMLBody.Replace("[Name]", firstname);
                 oMailCopy.Send();
             }
             catch (Exception ex)
@@ -41,7 +41,8 @@ namespace RedboxAddin.BL
             {
                 oMailCopy = myMail.Copy();
                 oMailCopy.To = email;
-                oMailCopy.Subject = "Test Mail";      
+                //oMailCopy.Subject = "Test Mail";
+                oMailCopy.HTMLBody = myMail.HTMLBody.Replace("[Name]", "Test Name");
                 oMailCopy.Send();
             }
             catch (Exception ex)

@@ -8,7 +8,7 @@
       <FindRelatedProducts Sequence="200" />
     </InstallUISequence>
     <Upgrade Id="e2f9be08-48e8-41d2-92b2-080c14a2e85d">
-      <UpgradeVersion Minimum="2.0.82" Property="NEWPRODUCTFOUND" OnlyDetect="yes" IncludeMinimum="no" Language="1033" />
+      <UpgradeVersion Minimum="2.0.86" Property="NEWPRODUCTFOUND" OnlyDetect="yes" IncludeMinimum="no" Language="1033" />
     </Upgrade>
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="RedboxAddin.cab" EmbedCab="yes" />
