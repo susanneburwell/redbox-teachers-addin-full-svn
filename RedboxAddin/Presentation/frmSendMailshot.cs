@@ -106,7 +106,7 @@ namespace RedboxAddin.Presentation
             {
                 for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
                 {
-                    if (grdCurrntUsers.Rows[i].Cells[0].Value.ToString() == "True")
+                    if (grdCurrntUsers.Rows[i].Cells[0].Value != null && grdCurrntUsers.Rows[i].Cells[0].Value.ToString() == "True")
                     {
                         SelectedContacts selectedContact = new SelectedContacts();
                         selectedContact.Name = grdCurrntUsers.Rows[i].Cells[1].Value.ToString();
