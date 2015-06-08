@@ -32,6 +32,7 @@
             this.txtTestEmail = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblInvalidMsg = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTestEmail
@@ -69,12 +70,23 @@
             this.lblInvalidMsg.Size = new System.Drawing.Size(0, 13);
             this.lblInvalidMsg.TabIndex = 3;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(238, 51);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // frmTestEmailAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(403, 84);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblInvalidMsg);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtTestEmail);
@@ -83,6 +95,7 @@
             this.MinimizeBox = false;
             this.Name = "frmTestEmailAddress";
             this.Text = "Test Email";
+            this.Load += new System.EventHandler(this.frmTestEmailAddress_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +107,6 @@
         private System.Windows.Forms.TextBox txtTestEmail;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblInvalidMsg;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

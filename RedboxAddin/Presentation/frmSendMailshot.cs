@@ -17,6 +17,7 @@ namespace RedboxAddin.Presentation
 {
     public partial class frmSendMailshot : Form
     {
+        string testemailaddress = "";
         DataSet DSSchools = null;
         DataSet DSUsers = null;
         bool chkTeacherState = true;
@@ -167,8 +168,7 @@ namespace RedboxAddin.Presentation
             string TESTEMAIL = GetTestEmail();
             if (string.IsNullOrEmpty(TESTEMAIL))
             {
-                frmTestEmailAddress frm = new frmTestEmailAddress();
-                frm.Show();
+                btnAdd_Click(null, null);
             }
             else
             {
@@ -204,8 +204,12 @@ namespace RedboxAddin.Presentation
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmTestEmailAddress frm = new frmTestEmailAddress();
-            frm.Show();
+            frmTestEmailAddress frmObj = new frmTestEmailAddress();
+            RTestEmail namesObj = frmObj.ShowDialogExt(new RTestEmail() { TestEmail = testemailaddress });
+            testemailaddress = namesObj.TestEmail;
+            lblTestEmail.Text = "Test Email : " + testemailaddress;
+            btnAdd.Text = "Change";
+
         }
 
         private string GetTestEmail()
@@ -235,6 +239,7 @@ namespace RedboxAddin.Presentation
             {
                 lblTestEmail.Text = "Test Email : " + TESTEMAIL;
                 btnAdd.Text = "Change";
+                testemailaddress = TESTEMAIL;
             }
             else
             {

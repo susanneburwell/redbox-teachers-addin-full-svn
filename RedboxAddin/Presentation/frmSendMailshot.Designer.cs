@@ -123,12 +123,13 @@
             // 
             // lblTestEmail
             // 
-            this.lblTestEmail.AutoSize = true;
-            this.lblTestEmail.Location = new System.Drawing.Point(191, 93);
+            this.lblTestEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTestEmail.Location = new System.Drawing.Point(12, 88);
             this.lblTestEmail.Name = "lblTestEmail";
-            this.lblTestEmail.Size = new System.Drawing.Size(60, 13);
+            this.lblTestEmail.Size = new System.Drawing.Size(409, 18);
             this.lblTestEmail.TabIndex = 8;
             this.lblTestEmail.Text = "Test E-Mail";
+            this.lblTestEmail.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // frmSendMailshot
             // 

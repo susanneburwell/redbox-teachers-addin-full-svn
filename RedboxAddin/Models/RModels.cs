@@ -215,7 +215,7 @@ namespace RedboxAddin.Models
         public int Type { get; set; } //0- nothing, 1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable
     }
 
-    public class REventArgs: EventArgs
+    public class REventArgs : EventArgs
     {
         public string Teacher { get; set; }
         public string ColumnCaption { get; set; }
@@ -254,6 +254,11 @@ namespace RedboxAddin.Models
         public int TotalDays { get; set; }
         public decimal Charge { get; set; }
 
+    }
+
+    public class RTestEmail
+    {
+        public string TestEmail { get; set; }
     }
 
 }

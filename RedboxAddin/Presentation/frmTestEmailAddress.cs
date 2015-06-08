@@ -17,30 +17,50 @@ namespace RedboxAddin.Presentation
     public partial class frmTestEmailAddress : Form
     {
         string AppDataFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\";
+        private RTestEmail OriginalName = null;
+        private RTestEmail EditedName = null;
 
         public frmTestEmailAddress()
         {
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        public RTestEmail ShowDialogExt(RTestEmail name)
         {
+            this.OriginalName = name;
+            this.EditedName = name;
+            DialogResult myResult = base.ShowDialog();
+
+            if (myResult == System.Windows.Forms.DialogResult.OK)
+            {
+                return EditedName;
+            }
+            else
+            {
+                return OriginalName;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {  
             lblInvalidMsg.Text = "";
 
             if (IsValidEmail(txtTestEmail.Text.Trim().ToString()))
             {
                 SaveTestEmail(txtTestEmail.Text.Trim().ToString());
 
-                string text1 = File.ReadAllText(AppDataFilePath+"TestEmail.txt");
+                string text1 = File.ReadAllText(AppDataFilePath + "TestEmail.txt");
 
-                //SendTestMail(txtTestEmail.Text.Trim().ToString());
-                this.Close();
+                EditedName.TestEmail = txtTestEmail.Text;
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
+                //SendTestMail(txtTestEmail.Text.Trim().ToString());                
             }
             else
             {
-                lblInvalidMsg.Text = "Please enter valid email address.";
+                lblInvalidMsg.Text = "Invalid email address.";
             }
-            
+
         }
 
         private bool IsValidEmail(string email)
@@ -76,7 +96,7 @@ namespace RedboxAddin.Presentation
         }
 
         private void SaveTestEmail(string email)
-        {          
+        {
             try
             {
                 System.IO.File.WriteAllText(AppDataFilePath + "TestEmail.txt", email);
@@ -85,6 +105,17 @@ namespace RedboxAddin.Presentation
             {
                 Debug.DebugMessage(2, "Error in SaveTestEmail : " + ex.Message);
             }
+        }
+
+        private void frmTestEmailAddress_Load(object sender, EventArgs e)
+        {
+            txtTestEmail.Text = OriginalName.TestEmail;
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
     }
 }
