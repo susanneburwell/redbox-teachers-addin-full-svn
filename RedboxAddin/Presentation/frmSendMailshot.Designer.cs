@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSendMailshot));
             this.grdCurrntUsers = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.chkTeachers = new System.Windows.Forms.CheckBox();
             this.chkSchool = new System.Windows.Forms.CheckBox();
             this.btnSendNow = new System.Windows.Forms.Button();
@@ -37,6 +37,8 @@
             this.lblSending = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblTestEmail = new System.Windows.Forms.Label();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.lblmailformat = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdCurrntUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,18 +48,11 @@
             this.grdCurrntUsers.BackgroundColor = System.Drawing.Color.White;
             this.grdCurrntUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdCurrntUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdCurrntUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
-            this.grdCurrntUsers.Location = new System.Drawing.Point(2, 111);
+            this.grdCurrntUsers.Location = new System.Drawing.Point(1, 151);
             this.grdCurrntUsers.Name = "grdCurrntUsers";
-            this.grdCurrntUsers.Size = new System.Drawing.Size(542, 541);
+            this.grdCurrntUsers.Size = new System.Drawing.Size(542, 553);
             this.grdCurrntUsers.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 30;
+            this.grdCurrntUsers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdCurrntUsers_ColumnHeaderMouseClick);
             // 
             // chkTeachers
             // 
@@ -106,7 +101,7 @@
             // lblSending
             // 
             this.lblSending.AutoSize = true;
-            this.lblSending.Location = new System.Drawing.Point(156, 29);
+            this.lblSending.Location = new System.Drawing.Point(156, 25);
             this.lblSending.Name = "lblSending";
             this.lblSending.Size = new System.Drawing.Size(0, 13);
             this.lblSending.TabIndex = 5;
@@ -124,19 +119,40 @@
             // lblTestEmail
             // 
             this.lblTestEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTestEmail.Location = new System.Drawing.Point(12, 88);
+            this.lblTestEmail.Location = new System.Drawing.Point(110, 88);
             this.lblTestEmail.Name = "lblTestEmail";
-            this.lblTestEmail.Size = new System.Drawing.Size(409, 18);
+            this.lblTestEmail.Size = new System.Drawing.Size(311, 18);
             this.lblTestEmail.TabIndex = 8;
             this.lblTestEmail.Text = "Test E-Mail";
             this.lblTestEmail.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(12, 83);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect.TabIndex = 9;
+            this.btnSelect.Text = "Unselect All";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // lblmailformat
+            // 
+            this.lblmailformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmailformat.Location = new System.Drawing.Point(9, 122);
+            this.lblmailformat.Name = "lblmailformat";
+            this.lblmailformat.Size = new System.Drawing.Size(490, 26);
+            this.lblmailformat.TabIndex = 10;
+            this.lblmailformat.Text = "Insert [Name] where you want the recipients name to appear.\r\n";
             // 
             // frmSendMailshot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(544, 656);
+            this.ClientSize = new System.Drawing.Size(544, 707);
+            this.Controls.Add(this.lblmailformat);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.lblTestEmail);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblSending);
@@ -145,6 +161,7 @@
             this.Controls.Add(this.chkSchool);
             this.Controls.Add(this.chkTeachers);
             this.Controls.Add(this.grdCurrntUsers);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSendMailshot";
             this.Text = "Send Mailshot";
             this.Load += new System.EventHandler(this.frmSendMailshot_Load);
@@ -157,7 +174,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView grdCurrntUsers;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.CheckBox chkTeachers;
         private System.Windows.Forms.CheckBox chkSchool;
         private System.Windows.Forms.Button btnSendNow;
@@ -165,6 +181,8 @@
         private System.Windows.Forms.Label lblSending;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblTestEmail;
+        private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.Label lblmailformat;
 
     }
 }

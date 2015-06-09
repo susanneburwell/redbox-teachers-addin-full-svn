@@ -60,6 +60,7 @@ namespace RedboxAddin.Presentation
                 grdCurrntUsers.DataSource = null;
 
                 DataTable table = new DataTable();
+                table.Columns.Add("Selected", typeof(bool));
                 table.Columns.Add("Name", typeof(string));
                 table.Columns.Add("Email", typeof(string));
                 table.Columns.Add("User", typeof(string));
@@ -68,7 +69,7 @@ namespace RedboxAddin.Presentation
                 {
                     foreach (DataRow dataRow in DSUsers.Tables[0].Rows)
                     {
-                        table.Rows.Add(dataRow[0].ToString(), dataRow[2].ToString(), "Teacher");
+                        table.Rows.Add(false, dataRow[0].ToString(), dataRow[2].ToString(), "Teacher");
                     }
                 }
 
@@ -76,21 +77,18 @@ namespace RedboxAddin.Presentation
                 {
                     foreach (DataRow dataRow in DSSchools.Tables[0].Rows)
                     {
-                        table.Rows.Add(dataRow[0].ToString(), dataRow[1].ToString(), "School");
+                        table.Rows.Add(false, dataRow[0].ToString(), dataRow[1].ToString(), "School");
                     }
                 }
                 grdCurrntUsers.DataSource = table;
 
+                grdCurrntUsers.Columns[0].Width = 30;
                 grdCurrntUsers.Columns[1].Width = 200;
                 grdCurrntUsers.Columns[2].Width = 250;
                 grdCurrntUsers.Columns[3].Visible = false;
 
-
-                for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
-                {
-                    grdCurrntUsers.Rows[i].Cells[0].Value = true;
-                }
-
+                ResetInitialCheckbox();
+               
             }
             catch (Exception ex)
             {
@@ -133,20 +131,29 @@ namespace RedboxAddin.Presentation
             List<SelectedContacts> selectCheckedContacts = SelectCheckedContacts();
             try
             {
-                if (MessageBox.Show("Are you sure? This will send an email to " + selectCheckedContacts.Count + " contacts! ", "Send mail", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (selectCheckedContacts.Count == 0)
                 {
-                    currentInspector = Globals.objOutlook.ActiveInspector();
-                    myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
 
-                    foreach (var selectedcontact in selectCheckedContacts)
+                    MessageBox.Show("Please select contact to send mail", "Send mail", MessageBoxButtons.OK);
+                }
+                else
+                {
+
+                    if (MessageBox.Show("Are you sure? This will send an email to " + selectCheckedContacts.Count + " contacts! ", "Send mail", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        lblSending.Text = "Sending email to " + selectedcontact.Name;
-                        objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email), ref myMail);
-                    }
+                        currentInspector = Globals.objOutlook.ActiveInspector();
+                        myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
 
-                    if (selectCheckedContacts.Count == 1) { lblSending.Text = "The e-mail has been successfully sent for " + selectCheckedContacts.Count + " contact"; }
-                    else if (selectCheckedContacts.Count > 1) { lblSending.Text = "E-Mails have been successfully sent for " + selectCheckedContacts.Count + " contacts"; }
-                    else if (selectCheckedContacts.Count == 0) { lblSending.Text = "The e-mails has been successfully sent for " + selectCheckedContacts.Count + " contact"; }
+                        foreach (var selectedcontact in selectCheckedContacts)
+                        {
+                            lblSending.Text = "Sending email to " + selectedcontact.Name;
+                            objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email), ref myMail);
+                        }
+
+                        if (selectCheckedContacts.Count == 1) { lblSending.Text = "The email has been sent to " + selectCheckedContacts.Count + " contact."; }
+                        else if (selectCheckedContacts.Count > 1) { lblSending.Text = "The email has been sent to " + selectCheckedContacts.Count + " contacts."; }
+                        else if (selectCheckedContacts.Count == 0) { lblSending.Text = "The e-mails has been sent for " + selectCheckedContacts.Count + " contact."; }
+                    }
                 }
 
             }
@@ -187,7 +194,7 @@ namespace RedboxAddin.Presentation
                 currentInspector = Globals.objOutlook.ActiveInspector();
                 myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
                 objSendMailshot.TestSendMail(testemail, ref myMail);
-                lblSending.Text = "Test mail has been sent successfully.";
+                lblSending.Text = "Test email has been sent successfully.";
             }
             catch (Exception ex)
             {
@@ -237,7 +244,7 @@ namespace RedboxAddin.Presentation
             string TESTEMAIL = GetTestEmail();
             if (!string.IsNullOrEmpty(TESTEMAIL))
             {
-                lblTestEmail.Text = "Test Email : " + TESTEMAIL;
+                lblTestEmail.Text = "Test email : " + TESTEMAIL;
                 btnAdd.Text = "Change";
                 testemailaddress = TESTEMAIL;
             }
@@ -246,6 +253,124 @@ namespace RedboxAddin.Presentation
                 lblTestEmail.Text = "Please add test email before test mail : ";
                 btnAdd.Text = "Add";
             }
+
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btnSelect.Text == "Select All")
+                {
+                    for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
+                    {
+                        grdCurrntUsers.Rows[i].Cells[0].Value = true;
+                    }
+
+                    btnSelect.Text = "Unselect All";
+                }
+                else
+                {
+                    for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
+                    {
+                        grdCurrntUsers.Rows[i].Cells[0].Value = false;
+                    }
+
+                    btnSelect.Text = "Select All";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in btnSelect_Click: " + ex.Message);
+            }
+        }
+
+        private void grdCurrntUsers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            List<string> checkedList = RestsortingCheckbox();
+            ResetCheckbox(checkedList);
+        }
+
+        private void ResetCheckbox(List<string> checkedList)
+        {
+            try
+            {
+                for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
+                {
+                    string emial = null;
+                    emial = grdCurrntUsers.Rows[i].Cells[2].Value.ToString();
+                    var result = checkedList.Find(x => x == emial);
+                    if (result != null) { grdCurrntUsers.Rows[i].Cells[0].Value = true; }
+                    else { grdCurrntUsers.Rows[i].Cells[0].Value = false; }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in ResetCheckbox: " + ex.Message);
+            }
+        }
+
+        private List<string> RestsortingCheckbox()
+        {
+            List<string> CheckedUserList = new List<string>();
+            try
+            {
+                for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
+                {
+                    if (grdCurrntUsers.Rows[i].Cells[0].Value.ToString() == "True")
+                    {
+                        string checkedemail = grdCurrntUsers.Rows[i].Cells[2].Value.ToString();
+                        CheckedUserList.Add(checkedemail);
+                    }
+                }
+
+                return CheckedUserList;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in RestsortingCheckbox: " + ex.Message);
+                return null;
+            }
+        }
+
+        private void ResetInitialCheckbox()
+        {
+            try
+            {
+                for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
+                {
+                    if (btnSelect.Text == "Unselect All") { grdCurrntUsers.Rows[i].Cells[0].Value = true; }
+                    else { grdCurrntUsers.Rows[i].Cells[0].Value = false; }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in ResetCheckbox: " + ex.Message);
+            }
+        }
+
+        private void SetGridViewHeight()
+        {
+            int columnheight = grdCurrntUsers.RowTemplate.Height;
+            int headerheight = grdCurrntUsers.ColumnHeadersHeight;
+
+            int gridHeight = grdCurrntUsers.Height;
+            int frmHeight = this.Height;
+
+            int numberofRows = grdCurrntUsers.Rows.Count;
+
+            int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
+            int expertHeight = numberofRows * columnheight + headerheight;
+
+            if (availableHeight > expertHeight)
+            {
+                int detactValue = gridHeight - expertHeight;
+                this.Height = this.Height - detactValue;
+            }
+
+
 
         }
 

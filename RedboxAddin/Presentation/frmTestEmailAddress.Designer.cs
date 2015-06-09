@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTestEmailAddress));
             this.lblTestEmail = new System.Windows.Forms.Label();
             this.txtTestEmail = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -91,6 +92,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtTestEmail);
             this.Controls.Add(this.lblTestEmail);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTestEmailAddress";
