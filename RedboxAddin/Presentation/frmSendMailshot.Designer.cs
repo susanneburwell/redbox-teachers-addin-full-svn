@@ -50,7 +50,7 @@
             this.grdCurrntUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdCurrntUsers.Location = new System.Drawing.Point(1, 151);
             this.grdCurrntUsers.Name = "grdCurrntUsers";
-            this.grdCurrntUsers.Size = new System.Drawing.Size(542, 553);
+            this.grdCurrntUsers.Size = new System.Drawing.Size(742, 553);
             this.grdCurrntUsers.TabIndex = 0;
             this.grdCurrntUsers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdCurrntUsers_ColumnHeaderMouseClick);
             // 
@@ -80,7 +80,7 @@
             // 
             // btnSendNow
             // 
-            this.btnSendNow.Location = new System.Drawing.Point(346, 56);
+            this.btnSendNow.Location = new System.Drawing.Point(571, 60);
             this.btnSendNow.Name = "btnSendNow";
             this.btnSendNow.Size = new System.Drawing.Size(75, 23);
             this.btnSendNow.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(427, 56);
+            this.btnTest.Location = new System.Drawing.Point(652, 60);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 4;
@@ -108,7 +108,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(427, 83);
+            this.btnAdd.Location = new System.Drawing.Point(652, 87);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 7;
@@ -119,9 +119,9 @@
             // lblTestEmail
             // 
             this.lblTestEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTestEmail.Location = new System.Drawing.Point(110, 88);
+            this.lblTestEmail.Location = new System.Drawing.Point(93, 92);
             this.lblTestEmail.Name = "lblTestEmail";
-            this.lblTestEmail.Size = new System.Drawing.Size(311, 18);
+            this.lblTestEmail.Size = new System.Drawing.Size(553, 18);
             this.lblTestEmail.TabIndex = 8;
             this.lblTestEmail.Text = "Test E-Mail";
             this.lblTestEmail.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -150,7 +150,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(544, 707);
+            this.ClientSize = new System.Drawing.Size(744, 717);
             this.Controls.Add(this.lblmailformat);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.lblTestEmail);
@@ -165,6 +165,7 @@
             this.Name = "frmSendMailshot";
             this.Text = "Send Mailshot";
             this.Load += new System.EventHandler(this.frmSendMailshot_Load);
+            this.Resize += new System.EventHandler(this.frmSendMailshot_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.grdCurrntUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

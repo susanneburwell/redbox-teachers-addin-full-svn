@@ -23,6 +23,7 @@ namespace RedboxAddin.Presentation
         bool chkTeacherState = true;
         bool chkSchoolState = false;
         string AppDataFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\";
+        bool loaded = false;
 
         public frmSendMailshot()
         {
@@ -36,7 +37,8 @@ namespace RedboxAddin.Presentation
             DSUsers = new DBManager().GetCurrentContacts();
             DrawDatagrid(chkTeacherState, chkSchoolState);
             DisplayTestEmail();
-
+            loaded = true;
+            SetGridViewHeight(this.Height);
         }
 
         private void chkTeachers_CheckedChanged(object sender, EventArgs e)
@@ -51,6 +53,11 @@ namespace RedboxAddin.Presentation
                 if (TeachersList != null) { checkedList.AddRange(TeachersList); }
             }
             ResetCheckbox(checkedList);
+
+            loaded = true;
+            if (grdCurrntUsers.Rows.Count != 0) { SetGridViewHeight(this.Height); }
+            else { SetGridViewHeight(746); }// default value 
+
         }
 
         private void chkSchool_CheckedChanged(object sender, EventArgs e)
@@ -65,6 +72,11 @@ namespace RedboxAddin.Presentation
                 if (schoolList != null) { checkedList.AddRange(schoolList); }
             }
             ResetCheckbox(checkedList);
+
+            loaded = true;
+            int frmCurrentheight = this.Height;
+            if (grdCurrntUsers.Rows.Count != 0) { SetGridViewHeight(this.Height); }
+            else { SetGridViewHeight(746); }// default value 
         }
 
         private void DrawDatagrid(bool teachersState, bool schoolsState)
@@ -76,15 +88,17 @@ namespace RedboxAddin.Presentation
 
                 DataTable table = new DataTable();
                 table.Columns.Add("Selected", typeof(bool));
-                table.Columns.Add("Name", typeof(string));
+                table.Columns.Add("First Name", typeof(string));
+                table.Columns.Add("Second Name", typeof(string));
                 table.Columns.Add("Email", typeof(string));
                 table.Columns.Add("User", typeof(string));
+               
 
                 if (teachersState)
                 {
                     foreach (DataRow dataRow in DSUsers.Tables[0].Rows)
                     {
-                        table.Rows.Add(false, dataRow[0].ToString(), dataRow[2].ToString(), "Teacher");
+                        table.Rows.Add(false, dataRow[0].ToString(), dataRow[1].ToString(), dataRow[2].ToString(), "Teacher");
                     }
                 }
 
@@ -92,15 +106,17 @@ namespace RedboxAddin.Presentation
                 {
                     foreach (DataRow dataRow in DSSchools.Tables[0].Rows)
                     {
-                        table.Rows.Add(false, dataRow[0].ToString(), dataRow[1].ToString(), "School");
+                        table.Rows.Add(false, dataRow[0].ToString(),"", dataRow[1].ToString(), "School");
                     }
                 }
                 grdCurrntUsers.DataSource = table;
 
                 grdCurrntUsers.Columns[0].Width = 30;
                 grdCurrntUsers.Columns[1].Width = 200;
-                grdCurrntUsers.Columns[2].Width = 250;
-                grdCurrntUsers.Columns[3].Visible = false;
+                grdCurrntUsers.Columns[2].Width = 200;
+                grdCurrntUsers.Columns[3].Width = 250;
+                grdCurrntUsers.Columns[4].Visible = false;
+               
 
                 ResetInitialCheckbox();
 
@@ -126,8 +142,8 @@ namespace RedboxAddin.Presentation
                     {
                         SelectedContacts selectedContact = new SelectedContacts();
                         selectedContact.Name = grdCurrntUsers.Rows[i].Cells[1].Value.ToString();
-                        selectedContact.Email = grdCurrntUsers.Rows[i].Cells[2].Value.ToString();
-                        selectedContact.User = grdCurrntUsers.Rows[i].Cells[3].Value.ToString();
+                        selectedContact.Email = grdCurrntUsers.Rows[i].Cells[3].Value.ToString();
+                        selectedContact.User = grdCurrntUsers.Rows[i].Cells[4].Value.ToString();
                         selectedContacts.Add(selectedContact);
                     }
                 }
@@ -317,7 +333,7 @@ namespace RedboxAddin.Presentation
                 for (int i = 0; i < grdCurrntUsers.Rows.Count; i++)
                 {
                     string emial = null;
-                    emial = grdCurrntUsers.Rows[i].Cells[2].Value.ToString();
+                    emial = grdCurrntUsers.Rows[i].Cells[3].Value.ToString();
                     var result = checkedList.Find(x => x == emial);
                     if (result != null) { grdCurrntUsers.Rows[i].Cells[0].Value = true; }
                     else { grdCurrntUsers.Rows[i].Cells[0].Value = false; }
@@ -339,7 +355,7 @@ namespace RedboxAddin.Presentation
                 {
                     if (grdCurrntUsers.Rows[i].Cells[0].Value.ToString() == "True")
                     {
-                        string checkedemail = grdCurrntUsers.Rows[i].Cells[2].Value.ToString();
+                        string checkedemail = grdCurrntUsers.Rows[i].Cells[3].Value.ToString();
                         CheckedUserList.Add(checkedemail);
                     }
                 }
@@ -369,24 +385,37 @@ namespace RedboxAddin.Presentation
             }
         }
 
-        private void SetGridViewHeight()
+        private void SetGridViewHeight(int frmheight)
         {
-            int columnheight = grdCurrntUsers.RowTemplate.Height;
-            int headerheight = grdCurrntUsers.ColumnHeadersHeight;
+            //if (chkSchoolState || chkTeacherState)
+            //{
+            //    int columnheight = grdCurrntUsers.RowTemplate.Height;
+            //    int headerheight = grdCurrntUsers.ColumnHeadersHeight;
 
-            int gridHeight = grdCurrntUsers.Height;
-            int frmHeight = this.Height;
+            //    int gridHeight = grdCurrntUsers.Height;
+            //    int frmHeight = frmheight - 25;
 
-            int numberofRows = grdCurrntUsers.Rows.Count;
+            //    int numberofRows = grdCurrntUsers.Rows.Count;
 
-            int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
-            int expertHeight = numberofRows * columnheight + headerheight;
+            //    int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
+            //    int expertHeight = numberofRows * columnheight + headerheight;
 
-            if (availableHeight > expertHeight)
-            {
-                int detactValue = gridHeight - expertHeight;
-                this.Height = this.Height - detactValue;
-            }
+            //    if (availableHeight > expertHeight)
+            //    {
+            //        int detactValue = gridHeight - expertHeight;
+            //        this.Height = this.Height - detactValue;
+            //    }
+            //    else
+            //    {
+            //        grdCurrntUsers.Height = FindGridHeight(availableHeight) * columnheight;
+
+            //    }
+            //}
+            //else
+            //{
+            //    this.Height = 250;
+            //    grdCurrntUsers.Height = 30;
+            //}
 
 
 
@@ -433,6 +462,28 @@ namespace RedboxAddin.Presentation
             }
 
         }
+
+        private void frmSendMailshot_Resize(object sender, EventArgs e)
+        {
+            if (!loaded) { SetGridViewHeight(this.Height); } // first time no need to call 
+            loaded = false;
+
+        }
+
+        private int FindGridHeight(int availableheight)
+        {
+            int columnheight = grdCurrntUsers.RowTemplate.Height;
+            int headerheight = grdCurrntUsers.ColumnHeadersHeight;
+
+            int needGridSpace = availableheight - headerheight;
+
+            int numberOfRows = needGridSpace / columnheight;
+
+            return numberOfRows;
+
+        }
+
+
 
 
     }
