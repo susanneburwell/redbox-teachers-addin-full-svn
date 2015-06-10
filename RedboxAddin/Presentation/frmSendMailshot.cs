@@ -87,7 +87,7 @@ namespace RedboxAddin.Presentation
                 grdCurrntUsers.DataSource = null;
 
                 DataTable table = new DataTable();
-                table.Columns.Add("Selected", typeof(bool));
+                table.Columns.Add(" ", typeof(bool));
                 table.Columns.Add("First Name", typeof(string));
                 table.Columns.Add("Second Name", typeof(string));
                 table.Columns.Add("Email", typeof(string));
@@ -387,37 +387,35 @@ namespace RedboxAddin.Presentation
 
         private void SetGridViewHeight(int frmheight)
         {
-            //if (chkSchoolState || chkTeacherState)
-            //{
-            //    int columnheight = grdCurrntUsers.RowTemplate.Height;
-            //    int headerheight = grdCurrntUsers.ColumnHeadersHeight;
+            if (chkSchoolState || chkTeacherState)
+            {
+                int columnheight = grdCurrntUsers.RowTemplate.Height;
+                int headerheight = grdCurrntUsers.ColumnHeadersHeight;
 
-            //    int gridHeight = grdCurrntUsers.Height;
-            //    int frmHeight = frmheight - 25;
+                int gridHeight = grdCurrntUsers.Height;
+                int frmHeight = frmheight - 25;
 
-            //    int numberofRows = grdCurrntUsers.Rows.Count;
+                int numberofRows = grdCurrntUsers.Rows.Count;
 
-            //    int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
-            //    int expertHeight = numberofRows * columnheight + headerheight;
+                int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
+                int expertHeight = numberofRows * columnheight + headerheight;
 
-            //    if (availableHeight > expertHeight)
-            //    {
-            //        int detactValue = gridHeight - expertHeight;
-            //        this.Height = this.Height - detactValue;
-            //    }
-            //    else
-            //    {
-            //        grdCurrntUsers.Height = FindGridHeight(availableHeight) * columnheight;
+                if (availableHeight > expertHeight)
+                {
+                    int detactValue = gridHeight - expertHeight;
+                    this.Height = this.Height - detactValue;
+                }
+                else
+                {
+                    grdCurrntUsers.Height = FindGridHeight(availableHeight) * columnheight;
 
-            //    }
-            //}
-            //else
-            //{
-            //    this.Height = 250;
-            //    grdCurrntUsers.Height = 30;
-            //}
-
-
+                }
+            }
+            else
+            {
+                this.Height = 250;
+                grdCurrntUsers.Height = 30;
+            }
 
         }
 
@@ -482,8 +480,8 @@ namespace RedboxAddin.Presentation
             return numberOfRows;
 
         }
-
-
+        
+       
 
 
     }
