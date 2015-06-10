@@ -41,9 +41,9 @@
             this.lblTestEmail.AutoSize = true;
             this.lblTestEmail.Location = new System.Drawing.Point(12, 26);
             this.lblTestEmail.Name = "lblTestEmail";
-            this.lblTestEmail.Size = new System.Drawing.Size(60, 13);
+            this.lblTestEmail.Size = new System.Drawing.Size(55, 13);
             this.lblTestEmail.TabIndex = 0;
-            this.lblTestEmail.Text = "Test E-Mail";
+            this.lblTestEmail.Text = "Test email";
             // 
             // txtTestEmail
             // 

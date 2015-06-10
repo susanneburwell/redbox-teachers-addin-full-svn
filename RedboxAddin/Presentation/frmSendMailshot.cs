@@ -35,7 +35,6 @@ namespace RedboxAddin.Presentation
             DSSchools = new DBManager().GetSchooltContacts();
             DSUsers = new DBManager().GetCurrentContacts();
             DrawDatagrid(chkTeacherState, chkSchoolState);
-
             DisplayTestEmail();
 
         }
@@ -43,13 +42,29 @@ namespace RedboxAddin.Presentation
         private void chkTeachers_CheckedChanged(object sender, EventArgs e)
         {
             chkTeacherState = chkTeachers.Checked;
+            List<string> checkedList = RestsortingCheckbox();
             DrawDatagrid(chkTeacherState, chkSchoolState);
+
+            if (btnSelect.Text == "Unselect All")
+            {
+                List<string> TeachersList = GetTeachersList();
+                if (TeachersList != null) { checkedList.AddRange(TeachersList); }
+            }
+            ResetCheckbox(checkedList);
         }
 
         private void chkSchool_CheckedChanged(object sender, EventArgs e)
         {
             chkSchoolState = chkSchool.Checked;
+            List<string> checkedList = RestsortingCheckbox();
             DrawDatagrid(chkTeacherState, chkSchoolState);
+
+            if (btnSelect.Text == "Unselect All")
+            {
+                List<string> schoolList = GetSchoolList();
+                if (schoolList != null) { checkedList.AddRange(schoolList); }
+            }
+            ResetCheckbox(checkedList);
         }
 
         private void DrawDatagrid(bool teachersState, bool schoolsState)
@@ -88,7 +103,10 @@ namespace RedboxAddin.Presentation
                 grdCurrntUsers.Columns[3].Visible = false;
 
                 ResetInitialCheckbox();
-               
+
+                // sort the table
+                grdCurrntUsers.Sort(this.grdCurrntUsers.Columns[1], ListSortDirection.Ascending);
+
             }
             catch (Exception ex)
             {
@@ -371,6 +389,48 @@ namespace RedboxAddin.Presentation
             }
 
 
+
+        }
+
+        private List<string> GetTeachersList()
+        {
+            List<string> TeachersList = new List<string>();
+            try
+            {
+                foreach (DataRow dataRow in DSUsers.Tables[0].Rows)
+                {
+                    TeachersList.Add(dataRow[2].ToString());
+                }
+
+                return TeachersList;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetTeacherList: " + ex.Message);
+                return null;
+            }
+
+        }
+
+        private List<string> GetSchoolList()
+        {
+            List<string> SchoolsList = new List<string>();
+            try
+            {
+                foreach (DataRow dataRow in DSSchools.Tables[0].Rows)
+                {
+                    SchoolsList.Add(dataRow[1].ToString());
+                }
+
+                return SchoolsList;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetSchoolList: " + ex.Message);
+                return null;
+            }
 
         }
 
