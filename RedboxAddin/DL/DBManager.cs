@@ -164,6 +164,42 @@ namespace RedboxAddin.DL
             return msgDs;
         }
 
+        public DataSet GetWorkerDetails()
+        {
+            DataSet msgDs = null;
+            try
+            {
+
+                msgDs = GetDataSet("SELECT"
+                                 + "[MasterBookings].[ContactID],"
+                                 + "max([FirstName]) as FN,"
+                                 + "max( [LastName])as LFN,"
+                                 + "max( [Title])as title,"
+                                 + "max([MiddleName])as middle,"
+                                 + "max([BirthDate]) as DOB,"
+                                 + "max( [NINumber])as NI,"
+                                 + "SUM([Rate]) as total,"
+                                 + "min([Bookings].Date) as start,"
+                                 + "max([Bookings].Date) as finish"
+                                 + " FROM [RedboxDB2].[dbo].[Bookings]"
+                                 + " join [RedboxDB2].[dbo].[MasterBookings] On [MasterBookings].ID = MasterBookingID"
+                                 + " join [RedboxDB2].[dbo].Contacts ON [MasterBookings].contactID = [Contacts].contactID"
+                                 + " Where [Bookings].Date > '2011-04-01'"
+                                 + " AND [Bookings].Date < '2015-06-01'"
+                                 + " Group By [MasterBookings].[ContactID]"
+                                 + " Order by [MasterBookings].[ContactID], start");
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(4, "***Error in GetWorkerDetails. /n" + ex.Message);
+                return null;
+
+            }
+
+            return msgDs;
+        }
+
         public List<RContact> GetContacts()
         {
 

@@ -17,6 +17,7 @@ namespace RedboxAddin.Presentation
 {
     public partial class frmSendMailshot : Form
     {
+
         string testemailaddress = "";
         DataSet DSSchools = null;
         DataSet DSUsers = null;
@@ -24,10 +25,26 @@ namespace RedboxAddin.Presentation
         bool chkSchoolState = false;
         string AppDataFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\";
         bool loaded = false;
+        Outlook.MailItem mailShotMail = null;
 
-        public frmSendMailshot()
+        public frmSendMailshot(Outlook.MailItem mailShotMailCopy)
         {
             InitializeComponent();
+
+            try
+            {
+                mailShotMail = mailShotMailCopy;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in frmSendMailshot: " + ex.Message);
+            }
+            finally
+            {
+                //if (mailShotMailCopy != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(mailShotMailCopy);
+                //GC.Collect();
+            }
+
         }
 
         private void frmSendMailshot_Load(object sender, EventArgs e)
@@ -92,7 +109,7 @@ namespace RedboxAddin.Presentation
                 table.Columns.Add("Second Name", typeof(string));
                 table.Columns.Add("Email", typeof(string));
                 table.Columns.Add("User", typeof(string));
-               
+
 
                 if (teachersState)
                 {
@@ -106,7 +123,7 @@ namespace RedboxAddin.Presentation
                 {
                     foreach (DataRow dataRow in DSSchools.Tables[0].Rows)
                     {
-                        table.Rows.Add(false, dataRow[0].ToString(),"", dataRow[1].ToString(), "School");
+                        table.Rows.Add(false, dataRow[0].ToString(), "", dataRow[1].ToString(), "School");
                     }
                 }
                 grdCurrntUsers.DataSource = table;
@@ -116,7 +133,7 @@ namespace RedboxAddin.Presentation
                 grdCurrntUsers.Columns[2].Width = 200;
                 grdCurrntUsers.Columns[3].Width = 250;
                 grdCurrntUsers.Columns[4].Visible = false;
-               
+
 
                 ResetInitialCheckbox();
 
@@ -158,9 +175,7 @@ namespace RedboxAddin.Presentation
         }
 
         private void btnSendNow_Click(object sender, EventArgs e)
-        {
-            Outlook.Inspector currentInspector = null;
-            Outlook.MailItem myMail = null;
+        {            
             SendMailshot objSendMailshot = new SendMailshot();
             List<SelectedContacts> selectCheckedContacts = SelectCheckedContacts();
             try
@@ -174,14 +189,12 @@ namespace RedboxAddin.Presentation
                 {
 
                     if (MessageBox.Show("Are you sure? This will send an email to " + selectCheckedContacts.Count + " contacts! ", "Send mail", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                    {
-                        currentInspector = Globals.objOutlook.ActiveInspector();
-                        myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
+                    {                        
 
                         foreach (var selectedcontact in selectCheckedContacts)
                         {
                             lblSending.Text = "Sending email to " + selectedcontact.Name;
-                            objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email), ref myMail);
+                            objSendMailshot.SendMail(selectedcontact.Name, objSendMailshot.GetEmails(selectedcontact.Email), ref mailShotMail);
                         }
 
                         if (selectCheckedContacts.Count == 1) { lblSending.Text = "The email has been sent to " + selectCheckedContacts.Count + " contact."; }
@@ -199,36 +212,34 @@ namespace RedboxAddin.Presentation
 
             finally
             {
-                if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
-                GC.Collect();
+                //clear obj when close the form 
+                //if (mailShotMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(mailShotMail);
+                //GC.Collect();
             }
         }
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            string TESTEMAIL = GetTestEmail();
-            if (string.IsNullOrEmpty(TESTEMAIL))
+            string testEmail = GetTestEmail();
+            if (string.IsNullOrEmpty(testEmail))
             {
                 btnAdd_Click(null, null);
             }
             else
             {
-                SendTestMail(TESTEMAIL);
+                SendTestMail(testEmail);
             }
 
         }
 
         private void SendTestMail(string testemail)
         {
-            Outlook.Inspector currentInspector = null;
-            Outlook.MailItem myMail = null;
             SendMailshot objSendMailshot = new SendMailshot();
             try
             {
-                currentInspector = Globals.objOutlook.ActiveInspector();
-                myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
-                objSendMailshot.TestSendMail(testemail, ref myMail);
-                lblSending.Text = "Test email has been sent successfully.";
+                bool res = objSendMailshot.TestSendMail(testemail, ref mailShotMail);
+                if (res) { lblSending.Text = "Test email has been sent successfully."; }
+                else { lblSending.Text = "Failed to send test email."; }
             }
             catch (Exception ex)
             {
@@ -236,10 +247,10 @@ namespace RedboxAddin.Presentation
             }
             finally
             {
-                if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
-                GC.Collect();
+                //clear obj when close the form 
+                //if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
+                //GC.Collect();
             }
-
 
         }
 
@@ -387,35 +398,35 @@ namespace RedboxAddin.Presentation
 
         private void SetGridViewHeight(int frmheight)
         {
-            if (chkSchoolState || chkTeacherState)
-            {
-                int columnheight = grdCurrntUsers.RowTemplate.Height;
-                int headerheight = grdCurrntUsers.ColumnHeadersHeight;
+            //if (chkSchoolState || chkTeacherState)
+            //{
+            //    int columnheight = grdCurrntUsers.RowTemplate.Height;
+            //    int headerheight = grdCurrntUsers.ColumnHeadersHeight;
 
-                int gridHeight = grdCurrntUsers.Height;
-                int frmHeight = frmheight - 25;
+            //    int gridHeight = grdCurrntUsers.Height;
+            //    int frmHeight = frmheight - 25;
 
-                int numberofRows = grdCurrntUsers.Rows.Count;
+            //    int numberofRows = grdCurrntUsers.Rows.Count;
 
-                int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
-                int expertHeight = numberofRows * columnheight + headerheight;
+            //    int availableHeight = frmHeight - grdCurrntUsers.Location.Y;
+            //    int expertHeight = numberofRows * columnheight + headerheight;
 
-                if (availableHeight > expertHeight)
-                {
-                    int detactValue = gridHeight - expertHeight;
-                    this.Height = this.Height - detactValue;
-                }
-                else
-                {
-                    grdCurrntUsers.Height = FindGridHeight(availableHeight) * columnheight;
+            //    if (availableHeight > expertHeight)
+            //    {
+            //        int detactValue = gridHeight - expertHeight;
+            //        this.Height = this.Height - detactValue;
+            //    }
+            //    else
+            //    {
+            //        grdCurrntUsers.Height = FindGridHeight(availableHeight) * columnheight;
 
-                }
-            }
-            else
-            {
-                this.Height = 250;
-                grdCurrntUsers.Height = 30;
-            }
+            //    }
+            //}
+            //else
+            //{
+            //    this.Height = 250;
+            //    grdCurrntUsers.Height = 30;
+            //}
 
         }
 
@@ -479,10 +490,13 @@ namespace RedboxAddin.Presentation
 
             return numberOfRows;
 
-        }
-        
-       
+        }        
 
+        private void frmSendMailshot_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (mailShotMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(mailShotMail);
+            GC.Collect();
+        }
 
     }
 }

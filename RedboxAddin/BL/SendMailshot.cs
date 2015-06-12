@@ -10,7 +10,7 @@ namespace RedboxAddin.BL
     public class SendMailshot
     {
 
-        public void SendMail(string firstname, string email,ref Outlook.MailItem myMail)
+        public void SendMail(string firstname, string email, ref Outlook.MailItem myMail)
         {
             Outlook.MailItem oMailCopy = null;
             try
@@ -34,7 +34,7 @@ namespace RedboxAddin.BL
 
         }
 
-        public void TestSendMail(string email, ref Outlook.MailItem myMail)
+        public bool TestSendMail(string email, ref Outlook.MailItem myMail)
         {
             Outlook.MailItem oMailCopy = null;
             try
@@ -44,10 +44,12 @@ namespace RedboxAddin.BL
                 //oMailCopy.Subject = "Test Mail";
                 oMailCopy.HTMLBody = myMail.HTMLBody.Replace("[Name]", "Test Name");
                 oMailCopy.Send();
+                return true;
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in TestSendMail : " + ex.Message);
+                return false;
             }
 
             finally

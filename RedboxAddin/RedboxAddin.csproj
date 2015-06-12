@@ -246,6 +246,12 @@
     <Compile Include="Presentation\frmFileName.Designer.cs">
       <DependentUpon>frmFileName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmHMRCReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmHMRCReport.Designer.cs">
+      <DependentUpon>frmHMRCReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmFileName.resx">
       <DependentUpon>frmFileName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmHMRCReport.resx">
+      <DependentUpon>frmHMRCReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>

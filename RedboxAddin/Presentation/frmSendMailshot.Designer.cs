@@ -48,7 +48,7 @@
             this.grdCurrntUsers.BackgroundColor = System.Drawing.Color.White;
             this.grdCurrntUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdCurrntUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdCurrntUsers.Location = new System.Drawing.Point(1, 151);
+            this.grdCurrntUsers.Location = new System.Drawing.Point(1, 165);
             this.grdCurrntUsers.Name = "grdCurrntUsers";
             this.grdCurrntUsers.Size = new System.Drawing.Size(742, 553);
             this.grdCurrntUsers.TabIndex = 0;
@@ -141,16 +141,17 @@
             this.lblmailformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblmailformat.Location = new System.Drawing.Point(9, 122);
             this.lblmailformat.Name = "lblmailformat";
-            this.lblmailformat.Size = new System.Drawing.Size(490, 26);
+            this.lblmailformat.Size = new System.Drawing.Size(718, 40);
             this.lblmailformat.TabIndex = 10;
-            this.lblmailformat.Text = "Insert [Name] where you want the recipients name to appear.\r\n";
+            this.lblmailformat.Text = "Insert [Name] where you want the recipients name to appear.\r\nIf you want to edit " +
+    "the message close this form and reopen it after editing\r\n";
             // 
             // frmSendMailshot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(744, 717);
+            this.ClientSize = new System.Drawing.Size(744, 734);
             this.Controls.Add(this.lblmailformat);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.lblTestEmail);
@@ -164,6 +165,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSendMailshot";
             this.Text = "Send Mailshot";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSendMailshot_FormClosed);
             this.Load += new System.EventHandler(this.frmSendMailshot_Load);
             this.Resize += new System.EventHandler(this.frmSendMailshot_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.grdCurrntUsers)).EndInit();

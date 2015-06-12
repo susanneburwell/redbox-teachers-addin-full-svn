@@ -138,6 +138,7 @@ namespace RedboxAddin
         private ADXRibbonTab adxRibbonTabInsp;
         private ADXRibbonGroup adxRibGrpInsp;
         private ADXRibbonButton adxRibBtnSelectContacts;
+        private ADXRibbonButton adxHMRCReport;
 
         #region Component Designer generated code
         /// <summary>
@@ -227,6 +228,7 @@ namespace RedboxAddin
             this.adxRibbonTabInsp = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxRibGrpInsp = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxRibBtnSelectContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxHMRCReport = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxTabMail
             // 
@@ -559,6 +561,7 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxEditSchool);
             this.adxOptions.Controls.Add(this.adxEditPaymentTypes);
             this.adxOptions.Controls.Add(this.adxRibbonDCR);
+            this.adxOptions.Controls.Add(this.adxHMRCReport);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.Image = 5;
             this.adxOptions.ImageList = this.imageList32;
@@ -990,7 +993,15 @@ namespace RedboxAddin
             this.adxRibBtnSelectContacts.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxRibBtnSelectContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose;
             this.adxRibBtnSelectContacts.Size = AddinExpress.MSO.ADXRibbonXControlSize.Large;
-            this.adxRibBtnSelectContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibBtnSendMail_OnClick);
+            this.adxRibBtnSelectContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibBtnSelectContacts_OnClick);
+            // 
+            // adxHMRCReport
+            // 
+            this.adxHMRCReport.Caption = "HMRC Report";
+            this.adxHMRCReport.Id = "adxRibbonButton_7ce57ca567874ca0838deea770d2e184";
+            this.adxHMRCReport.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxHMRCReport.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxHMRCReport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxHMRCReport_OnClick);
             // 
             // AddinModule
             // 
@@ -1905,12 +1916,39 @@ namespace RedboxAddin
             fr.Show();
         }
 
-        private void adxRibBtnSendMail_OnClick(object sender, IRibbonControl control, bool pressed)
+
+
+        private void adxRibBtnSelectContacts_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            frmSendMailshot frm = new frmSendMailshot();
-            frm.Show();
-            Cursor.Current = Cursors.Default;
+            Outlook.Inspector currentInspector = null;
+            Outlook.MailItem myMail = null;
+            try
+            {
+                currentInspector = Globals.objOutlook.ActiveInspector();
+                myMail = currentInspector.CurrentItem as Microsoft.Office.Interop.Outlook.MailItem;
+
+                Cursor.Current = Cursors.WaitCursor;
+                frmSendMailshot frm = new frmSendMailshot(myMail);
+                frm.Show();
+                //bool res = frm.ShowDialogExt();
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in adxRibBtnSelectContacts_OnClick: " + ex.Message);
+            }
+            finally
+            {
+                //if (myMail != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(myMail);
+                //GC.Collect();
+            }
+
+        }
+
+        private void adxHMRCReport_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            //frmHMRCReport frm = new frmHMRCReport();
+            //frm.Show();
         }
 
 
