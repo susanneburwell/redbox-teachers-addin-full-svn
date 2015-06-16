@@ -349,6 +349,96 @@ namespace RedboxAddin
                 return false;
             }
         }
+
+
+        public bool CreateHRMCReport(DataSet dsWorkersDetails)
+        {
+            try
+            {
+
+                StringBuilder sb = new StringBuilder();
+
+                //Employment intermediary details
+                List<string> employmentDetails = HMRCReportHelper.EmploymentDetails();
+                foreach (string employmentDetail in employmentDetails)
+                {
+                    string details = '"' + employmentDetail.Replace("\"", "\"\"") + '"';
+                    sb.AppendLine(details + "," + "");
+                }
+
+                //Worker details Header
+                List<string> workerDetailHeaders = HMRCReportHelper.WorkerDetailsHeader();
+                string workerDetailHeaderLine = string.Empty;
+                foreach (string workerDetailHeader in workerDetailHeaders)
+                {
+                    string headerLine = '"' + workerDetailHeader.Replace("\"", "\"\"") + '"';
+                    workerDetailHeaderLine += headerLine + ",";
+                }
+                sb.AppendLine(workerDetailHeaderLine);
+
+                //Get workers whole details 
+                List<HMRCReportModel> workersWholeDetails = HMRCReportHelper.GetWorkersDetails(dsWorkersDetails);
+
+                // Add Worker details
+                foreach (HMRCReportModel workersWholeDetail in workersWholeDetails)
+                {
+                    string workerInforLine = string.Empty;
+                    workerInforLine = workersWholeDetail.Forename + ",";
+                    workerInforLine += workersWholeDetail.MiddleName + ",";
+                    workerInforLine += workersWholeDetail.SurName + ",";
+                    workerInforLine += workersWholeDetail.DateOfBirth + ",";
+                    workerInforLine += workersWholeDetail.Gender + ",";
+                    workerInforLine += workersWholeDetail.NINumber + ",";
+                    workerInforLine += workersWholeDetail.AddressLine1+ ",";
+                    workerInforLine += workersWholeDetail.AddressLine2 + ",";
+                    workerInforLine += workersWholeDetail.AddressLine3 + ",";
+                    workerInforLine += workersWholeDetail.AddressLine4 + ",";
+                    workerInforLine += workersWholeDetail.Postcode + ",";
+                    workerInforLine += workersWholeDetail.EngagementDetails + ",";
+                    workerInforLine += workersWholeDetail.UTR + ",";
+                    workerInforLine += workersWholeDetail.StartDateOfEngagement + ",";
+                    workerInforLine += workersWholeDetail.EndDateOfEngagement + ",";
+                    workerInforLine += workersWholeDetail.AmountPaid + ",";
+                    workerInforLine += workersWholeDetail.Currency + ",";
+                    workerInforLine += workersWholeDetail.IsAmountInclusiveVAT + ",";
+                    workerInforLine += workersWholeDetail.PayDetails + ",";
+                    workerInforLine += workersWholeDetail.AddressLine1OfPartyPaid + ",";
+                    workerInforLine += workersWholeDetail.AddressLine2OfPartyPaid + ",";
+                    workerInforLine += workersWholeDetail.AddressLine3OfPartyPaid + ",";
+                    workerInforLine += workersWholeDetail.AddressLine4OfPartyPaid + ",";
+                    workerInforLine += workersWholeDetail.PostCodeOfPartyPaid + ",";
+                    workerInforLine += workersWholeDetail.CompaniesRegistrationOfPartyPaid + ",";
+                    sb.AppendLine(workerInforLine);                   
+
+                }
+                //foreach (DataRow dsWorkersDetail in dsWorkersDetails.Tables[0].Rows)
+                //{
+                //    string workerInforLine = string.Empty;
+                //    foreach (DataColumn dc in dsWorkersDetails.Tables[0].Columns)
+                //    {
+                //        var workerInfor = dsWorkersDetail[dc].ToString();
+                //        string workerLine = '"' + workerInfor.Replace("\"", "\"\"") + '"';
+                //        workerInforLine += workerLine + ",";
+                //    }
+                //    sb.AppendLine(workerInforLine);
+                //}
+
+                string fileName = "Report_" + ".csv";
+
+                string filePath = "C:\\Report";
+                if (filePath == null) filePath = "Y:\\A. Sage Invoices Imports";
+
+                if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
+                File.WriteAllText(filePath + "\\" + fileName, sb.ToString());
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CreateReport: " + ex.Message);
+                return false;
+            }
+        }
     }
 
 

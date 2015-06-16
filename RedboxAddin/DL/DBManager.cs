@@ -164,7 +164,7 @@ namespace RedboxAddin.DL
             return msgDs;
         }
 
-        public DataSet GetWorkerDetails()
+        public DataSet GetWorkerDetails(DateTime startDate, DateTime endDate)
         {
             DataSet msgDs = null;
             try
@@ -180,12 +180,16 @@ namespace RedboxAddin.DL
                                  + "max( [NINumber])as NI,"
                                  + "SUM([Rate]) as total,"
                                  + "min([Bookings].Date) as start,"
-                                 + "max([Bookings].Date) as finish"
+                                 + "max([Bookings].Date) as finish,"
+                                 + "max([AddressStreet]) as Address1,"
+                                 + "max([AddressCity]) as Address2,"
+                                 + "max([AddressState]) as Address3,"
+                                 + "max([AddressPostcode]) as PostCode"
                                  + " FROM [RedboxDB2].[dbo].[Bookings]"
                                  + " join [RedboxDB2].[dbo].[MasterBookings] On [MasterBookings].ID = MasterBookingID"
                                  + " join [RedboxDB2].[dbo].Contacts ON [MasterBookings].contactID = [Contacts].contactID"
-                                 + " Where [Bookings].Date > '2011-04-01'"
-                                 + " AND [Bookings].Date < '2015-06-01'"
+                                 + " Where [Bookings].Date > '" + startDate + "'"
+                                 + " AND [Bookings].Date < '" + endDate + "'"
                                  + " Group By [MasterBookings].[ContactID]"
                                  + " Order by [MasterBookings].[ContactID], start");
 

@@ -19,12 +19,32 @@ namespace RedboxAddin.Presentation
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            GetWorkerDetails();
+            DateTime startDate=dtpStartDate.Value.Date;
+            DateTime enddate = dtpEndDate.Value.Date;
+
+            DataSet dsWorkersDetails = GetWorkerDetails(startDate,enddate);
+
+            ExcelExporter objReport = new ExcelExporter();
+            objReport.CreateHRMCReport(dsWorkersDetails);
         }
 
-        private void GetWorkerDetails()
+        private DataSet GetWorkerDetails(DateTime startDate, DateTime endDate)
         {
-            DataSet DSSchools = new DBManager().GetWorkerDetails();
+            try
+            {
+                DataSet dsWorkersDetails = new DBManager().GetWorkerDetails(startDate, endDate);
+                return dsWorkersDetails;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            dtpEndDate.Value = dtpStartDate.Value.Date.AddMonths(3);
         }
     }
 }

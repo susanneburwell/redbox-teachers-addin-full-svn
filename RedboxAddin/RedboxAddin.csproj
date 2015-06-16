@@ -142,6 +142,7 @@
     <Compile Include="BL\IOManager.cs" />
     <Compile Include="BL\RedemptionCode.cs" />
     <Compile Include="BL\RedemptionLoader.cs" />
+    <Compile Include="BL\HMRCReportHelper.cs" />
     <Compile Include="BL\SendMailshot.cs" />
     <Compile Include="BL\Utils.cs" />
     <Compile Include="DateTimePicker.cs">
@@ -153,6 +154,7 @@
     <Compile Include="DL\ExcelImporter.cs" />
     <Compile Include="DL\LINQmanager.cs" />
     <Compile Include="Models\DatesForSearch.cs" />
+    <Compile Include="Models\HMRCReportModel.cs" />
     <Compile Include="Models\RModels.cs" />
     <Compile Include="Models\RContact.cs" />
     <Compile Include="Models\SelectCurrentContacts.cs" />
