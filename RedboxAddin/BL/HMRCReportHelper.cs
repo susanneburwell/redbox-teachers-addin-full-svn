@@ -26,6 +26,20 @@ namespace RedboxAddin.BL
             return employmentDetails;
         }
 
+        internal static List<string> EmploymentIntermediaryDetails()
+        {
+            List<string> employmentIntermediaryDetails = new List<string>();
+            employmentIntermediaryDetails.Add("Redbox Teacher Recruitment Ltd");
+            employmentIntermediaryDetails.Add("4-5, Halliford Studios, Scene Dock");
+            employmentIntermediaryDetails.Add("Manygate Ln");
+            employmentIntermediaryDetails.Add("Shepperton");
+            employmentIntermediaryDetails.Add("Middlesex");
+            employmentIntermediaryDetails.Add("TW17 9EG");
+            employmentIntermediaryDetails.Add("");
+
+            return employmentIntermediaryDetails;
+        }
+
         internal static List<string> WorkerDetailsHeader()
         {
             List<string> workerDetailsHeader = new List<string>();

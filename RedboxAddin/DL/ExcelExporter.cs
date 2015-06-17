@@ -363,10 +363,14 @@ namespace RedboxAddin
 
                 //Employment intermediary details
                 List<string> employmentDetails = HMRCReportHelper.EmploymentDetails();
+                List<string> employmentIntermediaryDetails = HMRCReportHelper.EmploymentIntermediaryDetails();
+                int i = 0;
                 foreach (string employmentDetail in employmentDetails)
                 {
-                    string details = '"' + employmentDetail.Replace("\"", "\"\"") + '"';
-                    sb.AppendLine(details + "," + "");
+                    string detailsHeader = '"' + employmentDetail.Replace("\"", "\"\"") + '"';
+                    string detailsValue = '"' + employmentIntermediaryDetails[i].Replace("\"", "\"\"") + '"';
+                    sb.AppendLine(detailsHeader + "," + detailsValue);
+                    i++;
                 }
 
                 //Worker details Header
@@ -418,7 +422,7 @@ namespace RedboxAddin
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
                 saveFileDialog1.Filter = "csv files (*.csv)|*.csv|All Files (*.*)|*.*";
-                saveFileDialog1.FileName = "HMRC Report From"+startReportDate+" To "+endReportDate;
+                saveFileDialog1.FileName = "HMRC Report From" + startReportDate + " To " + endReportDate;
                 saveFileDialog1.FilterIndex = 1;
 
                 if (workersWholeDetails.Count > 0)
