@@ -351,12 +351,15 @@ namespace RedboxAddin
         }
 
 
-        public bool CreateHRMCReport(DataSet dsWorkersDetails)
+        public bool CreateHRMCReport(DataSet dsWorkersDetails, DateTime startDate, DateTime endDate)
         {
             try
             {
 
                 StringBuilder sb = new StringBuilder();
+                string dateFormat = "ddMMMyyyy";
+                string startReportDate = startDate.ToString(dateFormat);
+                string endReportDate = endDate.ToString(dateFormat);
 
                 //Employment intermediary details
                 List<string> employmentDetails = HMRCReportHelper.EmploymentDetails();
@@ -414,7 +417,8 @@ namespace RedboxAddin
 
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
-                saveFileDialog1.Filter = "Your extension here (*.CSV)|*.csv|All Files (*.*)|*.*";
+                saveFileDialog1.Filter = "csv files (*.csv)|*.csv|All Files (*.*)|*.*";
+                saveFileDialog1.FileName = "HMRC Report From"+startReportDate+" To "+endReportDate;
                 saveFileDialog1.FilterIndex = 1;
 
                 if (workersWholeDetails.Count > 0)
@@ -427,6 +431,8 @@ namespace RedboxAddin
                         if (workersWholeDetails.Count == 0) { MessageBox.Show("No contact were added in HMRC report."); }
                         else if (workersWholeDetails.Count == 1) { MessageBox.Show("1 contact was added in HMRC report."); }
                         else { MessageBox.Show(workersWholeDetails.Count.ToString() + " contacts were added in HMRC report."); }
+
+                        Debug.DebugMessage(2, workersWholeDetails.Count.ToString() + " contacts were added in HMRC report.");
                     }
                 }
                 else

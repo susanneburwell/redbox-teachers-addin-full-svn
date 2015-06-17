@@ -28,7 +28,7 @@ namespace RedboxAddin.Presentation
             DataSet dsWorkersDetails = GetWorkerDetails(startDate, enddate);
 
             ExcelExporter objReport = new ExcelExporter();
-            objReport.CreateHRMCReport(dsWorkersDetails);
+            objReport.CreateHRMCReport(dsWorkersDetails, startDate, enddate);
 
             Cursor.Current = Cursors.Default;
         }
