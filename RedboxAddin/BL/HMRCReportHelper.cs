@@ -9,6 +9,9 @@ namespace RedboxAddin.BL
 {
     static class HMRCReportHelper
     {
+        static string dateFormat = "dd/MM/yyyy";
+        static string amountFormat = "0.00";
+
         internal static List<string> EmploymentDetails()
         {
             List<string> employmentDetails = new List<string>();
@@ -26,31 +29,31 @@ namespace RedboxAddin.BL
         internal static List<string> WorkerDetailsHeader()
         {
             List<string> workerDetailsHeader = new List<string>();
-            workerDetailsHeader.Add("Worker forename (Must be between 1 and 35 characters.)");//A
-            workerDetailsHeader.Add("Worker middle name (Optional, between 1 and 35 characters.)");//B
-            workerDetailsHeader.Add("Worker surname (Must be between 1 and 35 characters.)");//C
-            workerDetailsHeader.Add("Worker date of birth (There must be an entry if there is no 'Worker National Insurance number'. Must be in the format of dd/mm/yyyy and be today or in the past, but within the last 130 years.)");//D
-            workerDetailsHeader.Add("Worker gender (There must be an entry if there is no 'Worker National Insurance number'. Must be an 'M' for male or 'F' for female.)");//E
-            workerDetailsHeader.Add("Worker National Insurance number (There must be an entry if there is no 'Worker date of birth' and 'Worker gender'. Must be in the format of 2 letters then 6 digits then A, B, C, D or a space, like QQ123456C or QQ123456 .)");//FF
-            workerDetailsHeader.Add("Worker address line 1 (Must be between 1 and 35 characters.)");//G
-            workerDetailsHeader.Add("Worker address line 2 (Must be between 1 and 35 characters.)");//H
-            workerDetailsHeader.Add("Worker address line 3 (Optional, between 1 and 35 characters.)");//I
-            workerDetailsHeader.Add("Worker address line 4 (Optional, between 1 and 35 characters.)");//J
-            workerDetailsHeader.Add("Worker postcode (Must be between 1 and 10 characters.)");//K
-            workerDetailsHeader.Add("Worker engagement details where intermediary didn't operate PAYE (Must be 'A' Self-employed, 'B' Partnership, 'C' Limited liability partnership, 'D' Limited company, 'E' Non-UK engagement, 'F' Another party operated PAYE on the worker's payments. If more than one option applies select the option that comes first on the list. For example, if A and E both apply, select A.)");//L
-            workerDetailsHeader.Add("Worker unique taxpayer reference (UTR) (There must an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B' or 'C'. Must be 10 numbers.)");//M
-            workerDetailsHeader.Add("Start date of engagement (Must be in the format of dd/mm/yyyy and be today or in the past. May be before the start of the reporting perod if the engagement has never ended.)");//N
-            workerDetailsHeader.Add("End date of engagement (There must be an entry if the engagement ended. Must be in the format of dd/mm/yyyy and must be the same as or after the start date, today or in the past, and in the reporting period the report relates to.)");//O
-            workerDetailsHeader.Add("Amount paid for the worker's services (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B', 'C', 'D' or 'E'. Must be a positive value to 2 decimal places and not include any commas. You should round to the nearest penny.)");//P
-            workerDetailsHeader.Add("Currency (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B', 'C', 'D' or 'E'. Must be Great British pounds ('GBP') or euros ('EUR'). If the worker was paid in another currency it should be converted into Great British pounds or euros.)");//Q
-            workerDetailsHeader.Add("Is this amount inclusive of VAT? (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B', 'C', 'D' or 'E'. Must be a 'Y' for yes or a 'N' for no.)");//R
-            workerDetailsHeader.Add("Name of party paid by intermediary for worker's services (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B', 'C', 'D' or 'E'. Must be between 1 and 120 characters.)");//S
-            workerDetailsHeader.Add("Address line 1 of party paid by intermediary for worker's services (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B', 'C', 'D' or 'E'. Must be between 1 and 35 characters.)");//T
-            workerDetailsHeader.Add("Address line 2 of party paid by intermediary for worker's services (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'A', 'B', 'C', 'D' or 'E'. Must be between 1 and 35 characters.)");//U
-            workerDetailsHeader.Add("Address line 3 of party paid by intermediary for worker's services (Optional, between 1 and 35 characters.)");//V
-            workerDetailsHeader.Add("Address line 4 of party paid by intermediary for worker's services (Optional, between 1 and 35 characters.)");//W
-            workerDetailsHeader.Add("Postcode of party paid by intermediary for worker's services (Optional, between 1 and 10 characters.)");//X
-            workerDetailsHeader.Add("Companies House registration number of party paid by intermediary for worker's services (There must be an entry if 'Worker engagement details where intermediary didn't operate PAYE' is 'D'. Must be 8 numbers or 2 letters and 6-digit numbers.)");//Y
+            workerDetailsHeader.Add("Worker forename");//A
+            workerDetailsHeader.Add("Worker middle name");//B
+            workerDetailsHeader.Add("Worker surname");//C
+            workerDetailsHeader.Add("Worker date of birth");//D
+            workerDetailsHeader.Add("Worker gender");//E
+            workerDetailsHeader.Add("Worker National Insurance number");//FF
+            workerDetailsHeader.Add("Worker address line 1 ");//G
+            workerDetailsHeader.Add("Worker address line 2 ");//H
+            workerDetailsHeader.Add("Worker address line 3 ");//I
+            workerDetailsHeader.Add("Worker address line 4 ");//J
+            workerDetailsHeader.Add("Worker postcode ");//K
+            workerDetailsHeader.Add("Worker engagement details where intermediary didn't operate PAYE");//L
+            workerDetailsHeader.Add("Worker unique taxpayer reference (UTR)");//M
+            workerDetailsHeader.Add("Start date of engagement");//N
+            workerDetailsHeader.Add("End date of engagement");//O
+            workerDetailsHeader.Add("Amount paid for the worker's services");//P
+            workerDetailsHeader.Add("Currency");//Q
+            workerDetailsHeader.Add("Is this amount inclusive of VAT? ");//R
+            workerDetailsHeader.Add("Name of party paid by intermediary for worker's services");//S
+            workerDetailsHeader.Add("Address line 1 of party paid by intermediary for worker's services");//T
+            workerDetailsHeader.Add("Address line 2 of party paid by intermediary for worker's services");//U
+            workerDetailsHeader.Add("Address line 3 of party paid by intermediary for worker's services");//V
+            workerDetailsHeader.Add("Address line 4 of party paid by intermediary for worker's services");//W
+            workerDetailsHeader.Add("Postcode of party paid by intermediary for worker's services");//X
+            workerDetailsHeader.Add("Companies House registration number of party paid by intermediary for worker's services");//Y
 
             return workerDetailsHeader;
         }
@@ -63,22 +66,22 @@ namespace RedboxAddin.BL
                 foreach (DataRow dsWorkersDetail in dsWorkersDetails.Tables[0].Rows)
                 {
                     HMRCReportModel workersWholeDetail = new HMRCReportModel();
-                    workersWholeDetail.Forename = dsWorkersDetail["FN"].ToString();
-                    workersWholeDetail.SurName = dsWorkersDetail["LFN"].ToString();
-                    workersWholeDetail.MiddleName = dsWorkersDetail["middle"].ToString();
-                    workersWholeDetail.DateOfBirth = dsWorkersDetail["DOB"].ToString();
-                    workersWholeDetail.NINumber = dsWorkersDetail["NI"].ToString();
+                    workersWholeDetail.Forename = CheckNameFormat(dsWorkersDetail["FN"].ToString());
+                    workersWholeDetail.SurName = CheckNameFormat(dsWorkersDetail["LFN"].ToString());
+                    workersWholeDetail.MiddleName = CheckNameFormat(dsWorkersDetail["middle"].ToString());
+                    workersWholeDetail.DateOfBirth = CheckDOBFormat(dsWorkersDetail["DOB"].ToString());
+                    workersWholeDetail.NINumber = CheckNINumber(dsWorkersDetail["NI"].ToString());
                     workersWholeDetail.Gender = "";
-                    workersWholeDetail.AddressLine1 = ValidateAddress1(dsWorkersDetail["Address1"].ToString());
-                    workersWholeDetail.AddressLine2 = dsWorkersDetail["Address2"].ToString();
-                    workersWholeDetail.AddressLine3 = dsWorkersDetail["Address3"].ToString();
+                    workersWholeDetail.AddressLine1 = CheckAddress(dsWorkersDetail["Address1"].ToString());
+                    workersWholeDetail.AddressLine2 = CheckAddress(dsWorkersDetail["Address2"].ToString());
+                    workersWholeDetail.AddressLine3 = CheckAddress(dsWorkersDetail["Address3"].ToString());
                     workersWholeDetail.AddressLine4 = "";
                     workersWholeDetail.Postcode = dsWorkersDetail["PostCode"].ToString();
                     workersWholeDetail.EngagementDetails = "F";
                     workersWholeDetail.UTR = "";
-                    workersWholeDetail.StartDateOfEngagement = dsWorkersDetail["start"].ToString();
-                    workersWholeDetail.EndDateOfEngagement = dsWorkersDetail["finish"].ToString();
-                    workersWholeDetail.AmountPaid = dsWorkersDetail["total"].ToString();
+                    workersWholeDetail.StartDateOfEngagement = CheckEngagementStartDate(dsWorkersDetail["start"].ToString());
+                    workersWholeDetail.EndDateOfEngagement = CheckEngagementEndDate(dsWorkersDetail["start"].ToString(), dsWorkersDetail["finish"].ToString());
+                    workersWholeDetail.AmountPaid = CheckPayAmountFormat(dsWorkersDetail["total"].ToString());
                     workersWholeDetail.Currency = "GBP";
                     workersWholeDetail.IsAmountInclusiveVAT = "No";
                     workersWholeDetail.PayDetails = "";
@@ -87,7 +90,7 @@ namespace RedboxAddin.BL
                     workersWholeDetail.AddressLine3OfPartyPaid = "";
                     workersWholeDetail.AddressLine4OfPartyPaid = "";
                     workersWholeDetail.PostCodeOfPartyPaid = "";
-                    workersWholeDetail.CompaniesRegistrationOfPartyPaid = "Regi";
+                    workersWholeDetail.CompaniesRegistrationOfPartyPaid = "";
                     workersWholeDetails.Add(workersWholeDetail);
 
                 }
@@ -95,27 +98,170 @@ namespace RedboxAddin.BL
             }
             catch (Exception ex)
             {
-
+                Debug.DebugMessage(2, "Error in GetWorkersDetails: " + ex.Message);
                 return null;
             }
 
         }
 
-        internal static string ValidateAddress1(string address)
+        internal static string CheckAddress(string address)
         {
-            string address1 = string.Empty;
+            string filterAddress = string.Empty;
             try
             {
-                address1 = address1.Replace(System.Environment.NewLine, string.Empty);
-                address1 = '"' + address1.Replace("\"", "\"\"") + '"';
+                filterAddress = RemoveUnwantedCharacters(address);
             }
             catch (Exception ex)
             {
+                Debug.DebugMessage(2, "Error in CheckAddress: " + ex.Message);
+            }
+
+            return filterAddress;
+
+        }
+
+        private static string RemoveUnwantedCharacters(string value)
+        {
+            string filterValue = string.Empty;
+            try
+            {
+                filterValue = value.Replace(System.Environment.NewLine, string.Empty);
+                filterValue = '"' + filterValue.Replace("\"", "\"\"") + '"';
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in RemoveUnwantedCharacters: " + ex.Message);
+            }
+
+            return filterValue;
+        }
+
+        private static string CheckNameFormat(string name)
+        {
+            string filterName = string.Empty;
+            try
+            {
+                filterName = RemoveUnwantedCharacters(name);
+                if (filterName.Length > 35) { filterName = filterName.Substring(0, 35); }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckNameFormat: " + ex.Message);
+            }
+
+            return filterName;
+        }
+
+        private static string CheckDOBFormat(string date)
+        {
+            string checkDate = string.Empty;
+            try
+            {
+                if (!(string.IsNullOrEmpty(date)))
+                {
+                    int age = 0;
+                    DateTime dt = DateTime.ParseExact(date, dateFormat, null);
+                    age = DateTime.Today.Year - dt.Year;
+                    if (dt < DateTime.Today && age < 130)
+                    {
+                        checkDate = dt.ToString(dateFormat);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckDOBFormat: " + ex.Message);
+            }
+
+            return checkDate;
+        }
+
+        private static string CheckNINumber(string niNumber)
+        {
+            string checkNINumber = string.Empty;
+            string expresion;
+            expresion = "^\\s*([a-zA-Z]){2}\\s*([0-9]){1}\\s*([0-9]){1}\\s*([0-9]){1}\\s*([0-9]){1}\\s*([0-9]){1}\\s*([0-9]){1}\\s*([a-zA-Z]){1}?$";
+            try
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(niNumber.Trim(), expresion))
+                {
+                    checkNINumber = niNumber;
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckNINumber: " + ex.Message);
 
             }
 
-            return address1;
+            return checkNINumber;
 
         }
+
+        private static string CheckEngagementStartDate(string engaementDate)
+        {
+            string checkEngagementDate = string.Empty;
+
+            try
+            {
+                DateTime dt = DateTime.Parse(engaementDate);
+                if (dt <= DateTime.Today)
+                {
+                    checkEngagementDate = dt.ToString(dateFormat);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in engaementDate: " + ex.Message);
+            }
+
+            return checkEngagementDate;
+
+        }
+
+        private static string CheckEngagementEndDate(string engaementStartDate, string engaementEndDate)
+        {
+            string checkEngagementDate = string.Empty;
+
+            try
+            {
+                DateTime dtStart = DateTime.Parse(engaementStartDate);
+                DateTime dtEnd = DateTime.Parse(engaementEndDate);
+
+                if (dtEnd <= DateTime.Today && dtEnd >= dtStart)
+                {
+                    checkEngagementDate = dtEnd.ToString(dateFormat);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckEngagementEndDate: " + ex.Message);
+            }
+
+            return checkEngagementDate;
+
+        }
+
+        private static string CheckPayAmountFormat(string payAmount)
+        {
+            string checkpayAmount = string.Empty;
+            try
+            {
+                decimal payamount = decimal.Parse(payAmount);
+                checkpayAmount = payamount.ToString(amountFormat);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckPayAmountFormat: " + ex.Message);
+            }
+
+            return checkpayAmount;
+        }
+
     }
 }

@@ -139,6 +139,7 @@ namespace RedboxAddin
         private ADXRibbonGroup adxRibGrpInsp;
         private ADXRibbonButton adxRibBtnSelectContacts;
         private ADXRibbonButton adxHMRCReport;
+        private ADXCommandBarButton adxcbHMRCReport;
 
         #region Component Designer generated code
         /// <summary>
@@ -229,6 +230,7 @@ namespace RedboxAddin
             this.adxRibbonTabInsp = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxRibGrpInsp = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxRibBtnSelectContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxcbHMRCReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             // 
             // adxTabMail
             // 
@@ -334,12 +336,12 @@ namespace RedboxAddin
             // 
             // olFrmBotNavi
             // 
-            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmBotNavi.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmBotNavi.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.BottomNavigationPane;
             this.olFrmBotNavi.FormClassName = "RedboxAddin.Presentation.frmBotNavi";
@@ -352,12 +354,12 @@ namespace RedboxAddin
             // olFrmExplorer
             // 
             this.olFrmExplorer.Enabled = false;
-            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmExplorer.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmExplorer.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmExplorer.FolderName = "Inbox";
@@ -367,12 +369,12 @@ namespace RedboxAddin
             // olFrmReminders
             // 
             this.olFrmReminders.Enabled = false;
-            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem) 
+            this.olFrmReminders.ExplorerItemTypes = ((AddinExpress.OL.ADXOlExplorerItemTypes)((((((((AddinExpress.OL.ADXOlExplorerItemTypes.olMailItem | AddinExpress.OL.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.OL.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.OL.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.olFrmReminders.ExplorerLayout = AddinExpress.OL.ADXOlExplorerLayout.WebViewPane;
             this.olFrmReminders.FolderName = "Redbox";
@@ -388,12 +390,12 @@ namespace RedboxAddin
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnNewReminders);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnCheckForUpdates);
             this.commandBarRedboxAddin.Controls.Add(this.cbBtnAbout);
-            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem) 
-            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem) 
+            this.commandBarRedboxAddin.ItemTypes = ((AddinExpress.MSO.ADXOlExplorerItemTypes)((((((((AddinExpress.MSO.ADXOlExplorerItemTypes.olMailItem | AddinExpress.MSO.ADXOlExplorerItemTypes.olAppointmentItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olContactItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olTaskItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olJournalItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olNoteItem)
+            | AddinExpress.MSO.ADXOlExplorerItemTypes.olPostItem)
             | AddinExpress.MSO.ADXOlExplorerItemTypes.olDistributionListItem)));
             this.commandBarRedboxAddin.Temporary = true;
             this.commandBarRedboxAddin.UpdateCounter = 34;
@@ -819,6 +821,7 @@ namespace RedboxAddin
             this.adxCommandBarPopup1.Controls.Add(this.adxcbEditSchools);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbEditPaymentTypes);
             this.adxCommandBarPopup1.Controls.Add(this.adxDailyContactReport);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbHMRCReport);
             this.adxCommandBarPopup1.ControlTag = "049113cd-d4a7-4d94-9e8a-f9bcc775fb2f";
             this.adxCommandBarPopup1.Temporary = true;
             this.adxCommandBarPopup1.UpdateCounter = 1;
@@ -1002,6 +1005,15 @@ namespace RedboxAddin
             this.adxRibBtnSelectContacts.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookMailCompose;
             this.adxRibBtnSelectContacts.Size = AddinExpress.MSO.ADXRibbonXControlSize.Large;
             this.adxRibBtnSelectContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibBtnSelectContacts_OnClick);
+            // 
+            // adxcbHMRCReport
+            // 
+            this.adxcbHMRCReport.Caption = "HMRCReport";
+            this.adxcbHMRCReport.ControlTag = "22064cce-1a12-4a2d-ba39-1702a5a0456e";
+            this.adxcbHMRCReport.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbHMRCReport.Temporary = true;
+            this.adxcbHMRCReport.UpdateCounter = 4;
+            this.adxcbHMRCReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbHMRCReport_Click);
             // 
             // AddinModule
             // 
@@ -1947,8 +1959,26 @@ namespace RedboxAddin
 
         private void adxHMRCReport_OnClick(object sender, IRibbonControl control, bool pressed)
         {
-            frmHMRCReport frm = new frmHMRCReport();
-            frm.Show();
+            LoadHMRCReport();
+        }
+
+        private void adxcbHMRCReport_Click(object sender)
+        {
+            LoadHMRCReport();
+        }
+
+        private void LoadHMRCReport()
+        {
+            frmHMRCReport hmrc = Application.OpenForms["frmHMRCReport"] as frmHMRCReport;
+            if (hmrc == null)
+            {
+                hmrc = new frmHMRCReport();
+                hmrc.Show();
+            }
+            else
+            {
+                hmrc.BringToFront();
+            }
         }
 
 

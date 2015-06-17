@@ -73,11 +73,11 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(788, 38);
+            this.btnCalculate.Location = new System.Drawing.Point(747, 38);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(75, 23);
+            this.btnCalculate.Size = new System.Drawing.Size(116, 23);
             this.btnCalculate.TabIndex = 4;
-            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.Text = "GenerateReport";
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
@@ -94,6 +94,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmHMRCReport";
             this.Text = "HMRC Report";
+            this.Load += new System.EventHandler(this.frmHMRCReport_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,8 +104,8 @@
 
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label lblEndDate;
-        private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
     }
 }

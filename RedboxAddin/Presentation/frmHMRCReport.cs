@@ -1,4 +1,5 @@
-﻿using RedboxAddin.DL;
+﻿using RedboxAddin.BL;
+using RedboxAddin.DL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,13 +20,17 @@ namespace RedboxAddin.Presentation
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            DateTime startDate=dtpStartDate.Value.Date;
+            Cursor.Current = Cursors.WaitCursor;
+
+            DateTime startDate = dtpStartDate.Value.Date;
             DateTime enddate = dtpEndDate.Value.Date;
 
-            DataSet dsWorkersDetails = GetWorkerDetails(startDate,enddate);
+            DataSet dsWorkersDetails = GetWorkerDetails(startDate, enddate);
 
             ExcelExporter objReport = new ExcelExporter();
             objReport.CreateHRMCReport(dsWorkersDetails);
+
+            Cursor.Current = Cursors.Default;
         }
 
         private DataSet GetWorkerDetails(DateTime startDate, DateTime endDate)
@@ -37,6 +42,7 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
+                Debug.DebugMessage(2, "Error in GetWorkerDetails: " + ex.Message);
                 return null;
             }
 
@@ -44,7 +50,17 @@ namespace RedboxAddin.Presentation
 
         private void dtpStartDate_ValueChanged(object sender, EventArgs e)
         {
-            dtpEndDate.Value = dtpStartDate.Value.Date.AddMonths(3);
+            ResetEndDate();
+        }
+
+        private void frmHMRCReport_Load(object sender, EventArgs e)
+        {
+            ResetEndDate();
+        }
+
+        private void ResetEndDate()
+        {
+            dtpEndDate.Value = dtpStartDate.Value.Date.AddMonths(3).AddDays(-1);
         }
     }
 }

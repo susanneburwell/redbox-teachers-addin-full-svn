@@ -389,7 +389,7 @@ namespace RedboxAddin
                     workerInforLine += workersWholeDetail.DateOfBirth + ",";
                     workerInforLine += workersWholeDetail.Gender + ",";
                     workerInforLine += workersWholeDetail.NINumber + ",";
-                    workerInforLine += workersWholeDetail.AddressLine1+ ",";
+                    workerInforLine += workersWholeDetail.AddressLine1 + ",";
                     workerInforLine += workersWholeDetail.AddressLine2 + ",";
                     workerInforLine += workersWholeDetail.AddressLine3 + ",";
                     workerInforLine += workersWholeDetail.AddressLine4 + ",";
@@ -408,28 +408,31 @@ namespace RedboxAddin
                     workerInforLine += workersWholeDetail.AddressLine4OfPartyPaid + ",";
                     workerInforLine += workersWholeDetail.PostCodeOfPartyPaid + ",";
                     workerInforLine += workersWholeDetail.CompaniesRegistrationOfPartyPaid + ",";
-                    sb.AppendLine(workerInforLine);                   
+                    sb.AppendLine(workerInforLine);
 
                 }
-                //foreach (DataRow dsWorkersDetail in dsWorkersDetails.Tables[0].Rows)
-                //{
-                //    string workerInforLine = string.Empty;
-                //    foreach (DataColumn dc in dsWorkersDetails.Tables[0].Columns)
-                //    {
-                //        var workerInfor = dsWorkersDetail[dc].ToString();
-                //        string workerLine = '"' + workerInfor.Replace("\"", "\"\"") + '"';
-                //        workerInforLine += workerLine + ",";
-                //    }
-                //    sb.AppendLine(workerInforLine);
-                //}
 
-                string fileName = "Report_" + ".csv";
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
+                saveFileDialog1.Filter = "Your extension here (*.CSV)|*.csv|All Files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
 
-                string filePath = "C:\\Report";
-                if (filePath == null) filePath = "Y:\\A. Sage Invoices Imports";
+                if (workersWholeDetails.Count > 0)
+                {
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        var fileName = saveFileDialog1.FileName;
+                        File.WriteAllText(fileName, sb.ToString());
 
-                if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
-                File.WriteAllText(filePath + "\\" + fileName, sb.ToString());
+                        if (workersWholeDetails.Count == 0) { MessageBox.Show("No contact were added in HMRC report."); }
+                        else if (workersWholeDetails.Count == 1) { MessageBox.Show("1 contact was added in HMRC report."); }
+                        else { MessageBox.Show(workersWholeDetails.Count.ToString() + " contacts were added in HMRC report."); }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No contact were added in HMRC report.");
+                }
 
                 return true;
             }
