@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace RedboxAddin.BL
 {
@@ -11,6 +13,7 @@ namespace RedboxAddin.BL
     {
         static string dateFormat = "dd/MM/yyyy";
         static string amountFormat = "0.00";
+        static List<PartyPaidModel> PartyPaidDetails = new List<PartyPaidModel>();
 
         internal static List<string> EmploymentDetails()
         {
@@ -72,9 +75,30 @@ namespace RedboxAddin.BL
             return workerDetailsHeader;
         }
 
+        internal static List<PartyPaidModel> GetPartyPaidDetails()
+        {
+            try
+            {
+                string detailsFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\PaidPartyDetails.json";               
+                if (File.Exists(detailsFile))
+                {
+                    string text = System.IO.File.ReadAllText(detailsFile);
+                    List<PartyPaidModel> deserializedProduct = JsonConvert.DeserializeObject<List<PartyPaidModel>>(text);
+                    return deserializedProduct;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetPartyPaidDetails " + ex.Message);
+                return null;
+            }
+        }
+
         internal static List<HMRCReportModel> GetWorkersDetails(DataSet dsWorkersDetails)
         {
             List<HMRCReportModel> workersWholeDetails = new List<HMRCReportModel>();
+            PartyPaidDetails = GetPartyPaidDetails();
             try
             {
                 foreach (DataRow dsWorkersDetail in dsWorkersDetails.Tables[0].Rows)
@@ -98,13 +122,13 @@ namespace RedboxAddin.BL
                     workersWholeDetail.AmountPaid = CheckPayAmountFormat(dsWorkersDetail["total"].ToString());
                     workersWholeDetail.Currency = "GBP";
                     workersWholeDetail.IsAmountInclusiveVAT = "No";
-                    workersWholeDetail.PayDetails = "";
-                    workersWholeDetail.AddressLine1OfPartyPaid = "";
-                    workersWholeDetail.AddressLine2OfPartyPaid = "";
-                    workersWholeDetail.AddressLine3OfPartyPaid = "";
-                    workersWholeDetail.AddressLine4OfPartyPaid = "";
-                    workersWholeDetail.PostCodeOfPartyPaid = "";
-                    workersWholeDetail.CompaniesRegistrationOfPartyPaid = "";
+                    workersWholeDetail.PayDetails = dsWorkersDetail["PayDetails"].ToString();
+                    workersWholeDetail.AddressLine1OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 1);
+                    workersWholeDetail.AddressLine2OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 2);
+                    workersWholeDetail.AddressLine3OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 3);
+                    workersWholeDetail.AddressLine4OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 4);
+                    workersWholeDetail.PostCodeOfPartyPaid = CheckpaidPostCode(dsWorkersDetail["PayDetails"].ToString());
+                    workersWholeDetail.CompaniesRegistrationOfPartyPaid = CheckCompanyRegistation(dsWorkersDetail["PayDetails"].ToString());
                     workersWholeDetails.Add(workersWholeDetail);
 
                 }
@@ -277,5 +301,94 @@ namespace RedboxAddin.BL
             return checkpayAmount;
         }
 
+        private static PartyPaidModel MatchPayDetail(string payDetail)
+        {
+            try
+            {
+                if (!(string.IsNullOrEmpty(payDetail)))
+                {
+                    foreach (PartyPaidModel artyPaidDetail in PartyPaidDetails)
+                    {
+                        if (payDetail.Contains(artyPaidDetail.ID))
+                        {
+                            return artyPaidDetail;
+                        }                        
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in MatchPayDetail: " + ex.Message);
+                return null;
+
+            }
+        }
+
+        private static string CheckPaidaddress(string paidDetail, int addressLine)
+        {
+            string filteraddress = string.Empty;
+            try
+            {
+                PartyPaidModel matchPayDetail = MatchPayDetail(paidDetail);
+                if (matchPayDetail != null)
+                {
+                    string address = string.Empty;
+                    if (addressLine == 1) { address = matchPayDetail.AddressLine1; }
+                    else if (addressLine == 2) { address = matchPayDetail.AddressLine2; }
+                    else if (addressLine == 3) { address = matchPayDetail.AddressLine3; }
+                    else if (addressLine == 4) { address = matchPayDetail.AddressLine4; }
+
+                    return filteraddress = CheckAddress(address);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckPaidaddress: " + ex.Message);
+                return null;
+            }
+        }
+
+        private static string CheckpaidPostCode(string paidDetail)
+        {
+            string filterPosdCode = string.Empty;
+            try
+            {
+                PartyPaidModel matchPayDetail = MatchPayDetail(paidDetail);
+                if (matchPayDetail != null)
+                {
+                    filterPosdCode = matchPayDetail.PostCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckpaidPostCode: " + ex.Message);
+            }
+
+            return filterPosdCode;
+        }
+
+        private static string CheckCompanyRegistation(string paidDetail)
+        {
+            string filterCompanyRegistation = string.Empty;
+            try
+            {
+                PartyPaidModel matchPayDetail = MatchPayDetail(paidDetail);
+                if (matchPayDetail != null)
+                {
+                    filterCompanyRegistation = matchPayDetail.CompanyRegistation;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckpaidPostCode: " + ex.Message);
+            }
+
+            return filterCompanyRegistation;
+        }
     }
 }

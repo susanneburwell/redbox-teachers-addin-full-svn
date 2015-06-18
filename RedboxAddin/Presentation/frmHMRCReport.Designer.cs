@@ -73,11 +73,11 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(747, 38);
+            this.btnCalculate.Location = new System.Drawing.Point(322, 37);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(116, 23);
             this.btnCalculate.TabIndex = 4;
-            this.btnCalculate.Text = "GenerateReport";
+            this.btnCalculate.Text = "Generate Report";
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
@@ -85,13 +85,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 682);
+            this.ClientSize = new System.Drawing.Size(466, 81);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.lblEndDate);
             this.Controls.Add(this.lblStartDate);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmHMRCReport";
             this.Text = "HMRC Report";
             this.Load += new System.EventHandler(this.frmHMRCReport_Load);

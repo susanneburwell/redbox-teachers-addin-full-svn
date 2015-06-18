@@ -183,6 +183,7 @@ namespace RedboxAddin.DL
                                  + "max([Bookings].Date) as finish,"
                                  + "max([AddressStreet]) as Address1,"
                                  + "max([AddressCity]) as Address2,"
+                                 + "max([PayDetails])as PayDetails,"
                                  + "max([AddressState]) as Address3,"
                                  + "max([AddressPostcode]) as PostCode"
                                  + " FROM [RedboxDB2].[dbo].[Bookings]"

@@ -354,7 +354,7 @@ namespace RedboxAddin
         public bool CreateHRMCReport(DataSet dsWorkersDetails, DateTime startDate, DateTime endDate)
         {
             try
-            {
+            {                
 
                 StringBuilder sb = new StringBuilder();
                 string dateFormat = "ddMMMyyyy";
