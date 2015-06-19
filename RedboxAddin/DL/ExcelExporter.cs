@@ -422,7 +422,7 @@ namespace RedboxAddin
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
                 saveFileDialog1.Filter = "csv files (*.csv)|*.csv|All Files (*.*)|*.*";
-                saveFileDialog1.FileName = "HMRC Report From" + startReportDate + " To " + endReportDate;
+                saveFileDialog1.FileName = "HMRC Report From " + startReportDate + " To " + endReportDate;
                 saveFileDialog1.FilterIndex = 1;
 
                 if (workersWholeDetails.Count > 0)

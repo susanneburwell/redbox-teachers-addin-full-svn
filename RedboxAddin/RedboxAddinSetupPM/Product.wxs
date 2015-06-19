@@ -11,6 +11,7 @@
       <ComponentRef Id="comp_BF08DC8E_F3C3_4C45_A0A2_2CE4F8C5EDA4" />
       <ComponentRef Id="comp_B4396A9B_3DB8_4B47_892E_8034684999DF" />
       <ComponentRef Id="comp_FD93DEAE_F6D7_4C52_B8AF_380A6EDBB2F3" />
+      <ComponentRef Id="comp_6B4D96F2_CE04_45AD_912F_E9B060653DFG" />
     </Feature>
     <UIRef Id="WixUI_InstallDir" />
     <UIRef Id="WixUI_ErrorProgressText" />
@@ -48,6 +49,9 @@
           <Component Id="comp_FD93DEAE_F6D7_4C52_B8AF_380A6EDBB2F3" Guid="A58EE27D-A4D0-4B5F-AA0A-A4B23C93A4B6" Permanent="no" SharedDllRefCount="no" Transitive="no">
             <File Id="_D3D25B52_114D_4923_A8E4_067A674FA76F" DiskId="1" Hidden="no" ReadOnly="no" TrueType="no" System="no" Vital="yes" Name="Settings.xml" Source="..\ProgramData Files\Settings.xml" KeyPath="yes" />
           </Component>
+          <Component Id="comp_6B4D96F2_CE04_45AD_912F_E9B060653DFG" Guid="5D65B7CF-513D-4750-9356-1FEA449585A7" Permanent="no" SharedDllRefCount="no" Transitive="no">
+            <File Id="_F1D2AC69_C92A_406F_80E6_8B0C5A5F2A32" DiskId="1" Hidden="no" ReadOnly="no" TrueType="no" System="no" Vital="yes" Name="PaidPartyDetails.json" Source="..\ProgramData Files\PaidPartyDetails.json" KeyPath="yes" />
+          </Component>
         </Directory>
       </Directory>
     </Directory>
@@ -75,6 +79,7 @@
         <File Id="_Microsoft_Vbe_Interop_dll" Name="Microsoft.Vbe.Interop.dll" Source="$(var.RedboxAddin.TargetDir)" />
         <File Id="_Office_dll" Name="Office.dll" Source="$(var.RedboxAddin.TargetDir)" />
         <File Id="_RedboxAddin_dll_config" Name="RedboxAddin.dll.config" Source="$(var.RedboxAddin.TargetDir)" />
+        <File Id="_Newtonsoft_Json_dll" Name="Newtonsoft.Json.dll" Source="$(var.RedboxAddin.TargetDir)" />
       </Component>
     </ComponentGroup>
   </Fragment>
