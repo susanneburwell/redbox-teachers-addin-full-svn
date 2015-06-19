@@ -79,7 +79,7 @@ namespace RedboxAddin.BL
         {
             try
             {
-                string detailsFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\PaidPartyDetails.json";               
+                string detailsFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RedboxAddin\PaidPartyDetails.json";
                 if (File.Exists(detailsFile))
                 {
                     string text = System.IO.File.ReadAllText(detailsFile);
@@ -122,7 +122,7 @@ namespace RedboxAddin.BL
                     workersWholeDetail.AmountPaid = CheckPayAmountFormat(dsWorkersDetail["total"].ToString());
                     workersWholeDetail.Currency = "GBP";
                     workersWholeDetail.IsAmountInclusiveVAT = "No";
-                    workersWholeDetail.PayDetails = dsWorkersDetail["PayDetails"].ToString();
+                    workersWholeDetail.PayDetails = CheckPaidDetailName(dsWorkersDetail["PayDetails"].ToString());
                     workersWholeDetail.AddressLine1OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 1);
                     workersWholeDetail.AddressLine2OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 2);
                     workersWholeDetail.AddressLine3OfPartyPaid = CheckPaidaddress(dsWorkersDetail["PayDetails"].ToString(), 3);
@@ -312,7 +312,7 @@ namespace RedboxAddin.BL
                         if (payDetail.Contains(artyPaidDetail.ID))
                         {
                             return artyPaidDetail;
-                        }                        
+                        }
                     }
                 }
                 return null;
@@ -389,6 +389,27 @@ namespace RedboxAddin.BL
             }
 
             return filterCompanyRegistation;
+        }
+
+        private static string CheckPaidDetailName(string paidDetail)
+        {
+            string filterName = string.Empty;
+
+            try
+            {
+                PartyPaidModel matchPayDetail = MatchPayDetail(paidDetail);
+                if (matchPayDetail != null)
+                {
+                    filterName = matchPayDetail.Name;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CheckPaidDetailName: " + ex.Message);
+            }
+
+            return filterName;
+
         }
     }
 }

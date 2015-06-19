@@ -448,7 +448,7 @@ namespace RedboxAddin
             }
             catch (Exception ex)
             {
-                Debug.DebugMessage(2, "Error in CreateReport: " + ex.Message);
+                Debug.DebugMessage(2, "Error in create report: " + ex.Message);
                 return false;
             }
         }
