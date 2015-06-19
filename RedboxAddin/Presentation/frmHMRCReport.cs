@@ -27,8 +27,25 @@ namespace RedboxAddin.Presentation
 
             DataSet dsWorkersDetails = GetWorkerDetails(startDate, enddate);
 
-            ExcelExporter objReport = new ExcelExporter();
-            objReport.CreateHRMCReport(dsWorkersDetails, startDate, enddate);
+            if (dsWorkersDetails != null)
+            {
+                if (dsWorkersDetails.Tables[0].Rows.Count > 0)
+                {
+                    ExcelExporter objReport = new ExcelExporter();
+                    objReport.CreateHRMCReport(dsWorkersDetails, startDate, enddate);
+                }
+                else
+                {
+                    MessageBox.Show("There is no information for the selected dates. No report was generated.");
+                    Debug.DebugMessage(2, "There is no information for the selected dates. No report was generated.");
+                }
+            }
+            else
+            {
+                //if dsWorkersDetails is null, somthing wrong with DB or connection
+                MessageBox.Show("There is no information or maybe something is failing.");
+                Debug.DebugMessage(2, "There is no information or maybe something is failing.");
+            }
 
             Cursor.Current = Cursors.Default;
         }

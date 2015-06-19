@@ -1,0 +1,62 @@
+
+   [     {
+            "ID":"GEN", 
+            "Name":"Generate",
+            "AddressLine1":"43 Manchester Street",
+            "AddressLine2":"London",
+            "AddressLine3": "",
+            "AddressLine4":"",
+            "PostCode":"W17 9JR",
+            "CompanyRegistation":"08245483"
+        },
+        {
+             "ID":"RACS", 
+            "Name":"RACS",
+            "AddressLine1":"Group House",
+            "AddressLine2":"Three Horseshoes Walk",
+            "AddressLine3": "Warminster",
+            "AddressLine4":"Wiltshire",
+            "PostCode":"BA12 9BT",
+            "CompanyRegistation":"06245291"
+        },
+        {
+             "ID":"JSA", 
+            "Name":"JSA",
+            "AddressLine1":"Radius House",
+            "AddressLine2":"51 Clarendon Road",
+            "AddressLine3": "Watford",
+            "AddressLine4":"",
+            "PostCode":"WD17 1HP",
+            "CompanyRegistation":"02407547"
+        },
+        {
+             "ID":"CXC", 
+            "Name":"CXC Group",
+            "AddressLine1":"65 London Wall",
+            "AddressLine2":"London",
+            "AddressLine3": "",
+            "AddressLine4":"",
+            "PostCode":"EC2M 5TU",
+            "CompanyRegistation":"07462194"
+        },
+        {
+             "ID":"OGE", 
+            "Name":"Orange Genie",
+            "AddressLine1":"Buckingham House",
+            "AddressLine2":"Buckingham Street",
+            "AddressLine3": "Aylesbury",
+            "AddressLine4":"Bucks",
+            "PostCode":"HP20 2LA",
+            "CompanyRegistation":"05650187"
+        },
+        {
+             "ID":"KEY", 
+            "Name":"Key Portfolio",
+            "AddressLine1":"Key House",
+            "AddressLine2":"18 Seaward Place",
+            "AddressLine3": "Centurion Business Park",
+            "AddressLine4":"Glasgow",
+            "PostCode":"G41 1HH",
+            "CompanyRegistation":"SC349485"
+        }
+]

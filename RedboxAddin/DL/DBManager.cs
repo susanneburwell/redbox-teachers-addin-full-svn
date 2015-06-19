@@ -189,8 +189,8 @@ namespace RedboxAddin.DL
                                  + " FROM [RedboxDB2].[dbo].[Bookings]"
                                  + " join [RedboxDB2].[dbo].[MasterBookings] On [MasterBookings].ID = MasterBookingID"
                                  + " join [RedboxDB2].[dbo].Contacts ON [MasterBookings].contactID = [Contacts].contactID"
-                                 + " Where [Bookings].Date > '" + startDate + "'"
-                                 + " AND [Bookings].Date < '" + endDate + "'"
+                                 + " Where [Bookings].Date > '" + startDate.ToString("yyyy-MM-dd") + "'"
+                                 + " AND [Bookings].Date < '" + endDate.ToString("yyyy-MM-dd") + "'"
                                  + " Group By [MasterBookings].[ContactID]"
                                  + " Order by [MasterBookings].[ContactID], start");
 
