@@ -49,7 +49,7 @@
             // 
             this.txtTestEmail.Location = new System.Drawing.Point(78, 23);
             this.txtTestEmail.Name = "txtTestEmail";
-            this.txtTestEmail.Size = new System.Drawing.Size(316, 20);
+            this.txtTestEmail.Size = new System.Drawing.Size(316, 21);
             this.txtTestEmail.TabIndex = 1;
             // 
             // btnSave
@@ -92,6 +92,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtTestEmail);
             this.Controls.Add(this.lblTestEmail);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

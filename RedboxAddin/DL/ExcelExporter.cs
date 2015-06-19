@@ -432,7 +432,7 @@ namespace RedboxAddin
                         var fileName = saveFileDialog1.FileName;
                         File.WriteAllText(fileName, sb.ToString());
 
-                        if (workersWholeDetails.Count == 0) { MessageBox.Show("No contact were added in HMRC report."); }
+                        if (workersWholeDetails.Count == 0) { MessageBox.Show("There is no information for the selected dates. No report was generated."); }
                         else if (workersWholeDetails.Count == 1) { MessageBox.Show("1 contact was added in HMRC report."); }
                         else { MessageBox.Show(workersWholeDetails.Count.ToString() + " contacts were added in HMRC report."); }
 
@@ -441,7 +441,7 @@ namespace RedboxAddin
                 }
                 else
                 {
-                    MessageBox.Show("No contact were added in HMRC report.");
+                    MessageBox.Show("There is no information for the selected dates. No report was generated.");
                 }
 
                 return true;

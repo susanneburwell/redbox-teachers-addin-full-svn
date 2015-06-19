@@ -59,9 +59,10 @@
             this.chkTeachers.AutoSize = true;
             this.chkTeachers.Checked = true;
             this.chkTeachers.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTeachers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTeachers.Location = new System.Drawing.Point(12, 28);
             this.chkTeachers.Name = "chkTeachers";
-            this.chkTeachers.Size = new System.Drawing.Size(71, 17);
+            this.chkTeachers.Size = new System.Drawing.Size(70, 17);
             this.chkTeachers.TabIndex = 1;
             this.chkTeachers.Text = "Teachers";
             this.chkTeachers.UseVisualStyleBackColor = true;
@@ -70,9 +71,10 @@
             // chkSchool
             // 
             this.chkSchool.AutoSize = true;
+            this.chkSchool.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSchool.Location = new System.Drawing.Point(12, 60);
             this.chkSchool.Name = "chkSchool";
-            this.chkSchool.Size = new System.Drawing.Size(64, 17);
+            this.chkSchool.Size = new System.Drawing.Size(62, 17);
             this.chkSchool.TabIndex = 2;
             this.chkSchool.Text = "Schools";
             this.chkSchool.UseVisualStyleBackColor = true;
@@ -80,6 +82,7 @@
             // 
             // btnSendNow
             // 
+            this.btnSendNow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendNow.Location = new System.Drawing.Point(571, 60);
             this.btnSendNow.Name = "btnSendNow";
             this.btnSendNow.Size = new System.Drawing.Size(75, 23);
@@ -90,6 +93,7 @@
             // 
             // btnTest
             // 
+            this.btnTest.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTest.Location = new System.Drawing.Point(652, 60);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
@@ -108,6 +112,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(652, 87);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
@@ -119,6 +124,7 @@
             // lblTestEmail
             // 
             this.lblTestEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTestEmail.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTestEmail.Location = new System.Drawing.Point(93, 92);
             this.lblTestEmail.Name = "lblTestEmail";
             this.lblTestEmail.Size = new System.Drawing.Size(553, 18);
@@ -128,6 +134,7 @@
             // 
             // btnSelect
             // 
+            this.btnSelect.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelect.Location = new System.Drawing.Point(12, 83);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
@@ -138,7 +145,7 @@
             // 
             // lblmailformat
             // 
-            this.lblmailformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblmailformat.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblmailformat.Location = new System.Drawing.Point(9, 122);
             this.lblmailformat.Name = "lblmailformat";
             this.lblmailformat.Size = new System.Drawing.Size(718, 40);
@@ -162,6 +169,7 @@
             this.Controls.Add(this.chkSchool);
             this.Controls.Add(this.chkTeachers);
             this.Controls.Add(this.grdCurrntUsers);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSendMailshot";
             this.Text = "Send Mailshot";
