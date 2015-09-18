@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <assemblyIdentity name="RedboxAddin, PublicKeyToken=d8e8e768e6ee1346" />
-  <loaderSettings generateLogFile="true" shadowCopyEnabled="true" privileges="user" configFileName="App.config" />
+  <loaderSettings generateLogFile="true" shadowCopyEnabled="true" privileges="user" configFileName="RedboxAddin.dll.config" />
 </configuration>

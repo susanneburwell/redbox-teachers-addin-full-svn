@@ -66,6 +66,7 @@ namespace RedboxAddin.Presentation
 
         private void frmViewContact_Load(object sender, EventArgs e)
         {
+            lblCVLocation.Text = "";
             if (CurrentContactID == 0) return;
             RContact contactObj = new DBManager().GetContact(this.CurrentContactID);
             if (contactObj == null)
@@ -215,6 +216,7 @@ namespace RedboxAddin.Presentation
                 //txtVisaLocation.Text = contactObj.VisaLocation;
                 txtYearGroup.Text = contactObj.YearGroup;
                 //chkMMRV.Checked = contactObj.AttendMMRV;
+                lblCVLocation.Text = contactObj.CVLocation;
                 CheckReminderButtonColors();
 
                 LoadSummaryInfo();
@@ -361,6 +363,7 @@ namespace RedboxAddin.Presentation
                 //contactObj.VisaLocation = txtVisaLocation.Text;
                 contactObj.YearGroup = txtYearGroup.Text;
                 //contactObj.AttendMMRV = chkMMRV.Checked;
+                contactObj.CVLocation = lblCVLocation.Text;
 
                 bool result = false;
                 if (CurrentContactID != 0)
@@ -1412,6 +1415,35 @@ namespace RedboxAddin.Presentation
                 dtRefChkd.Value = checkedDate;
                 dtDSWCChkd.Value = checkedDate;
             }
+        }
+
+        private void btnSetCV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult cvLocationpath = ofdCVLocation.ShowDialog();
+                //ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
+                if (cvLocationpath == DialogResult.OK) lblCVLocation.Text = ofdCVLocation.FileName;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in  btnSetCV_Click" + ex.Message);
+            }
+
+        }
+
+        private void btnOpenCV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(lblCVLocation.Text)) System.Diagnostics.Process.Start(lblCVLocation.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("System couldn't find the CV file");
+                Debug.DebugMessage(2, "Error in  btnOpenCV_Click" + ex.Message);
+            }
+
         }
 
 

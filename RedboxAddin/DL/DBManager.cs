@@ -2376,7 +2376,7 @@ namespace RedboxAddin.DL
             objContact.VisaCheckedDate = CheckDate(dr["VisaChkdDate"].ToString());
             //VisaLocation = dr["VisaLocation"].ToString();
             objContact.YearGroup = dr["YearGroup"].ToString();
-
+            objContact.CVLocation = dr["CVLocation"].ToString();
 
             objContact.FullName = objContact.LastName + ", " + objContact.FirstName;
             if (objContact.Suffix != "") objContact.FullName += " " + objContact.Suffix;
@@ -2854,7 +2854,7 @@ namespace RedboxAddin.DL
                     //+ "VisaLocation,"
                     + "YearGroup,"
                     + "LastMod,"
-                    + "GUID) VALUES ("
+                    + "GUID, CVLocation) VALUES ("
                     + "@FirstName,"
                     + "@LastName,"
                     + "@Title,"
@@ -2989,7 +2989,7 @@ namespace RedboxAddin.DL
                     //+ "@VisaLocation,"
                     + "@YearGroup,"
                     + "@LastMod,"
-                    + "@GUID)";
+                    + "@GUID,@CVLocation)";
 
                 DBManager.OpenDBConnection();
                 var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
@@ -3129,6 +3129,7 @@ namespace RedboxAddin.DL
                 CmdAddContact.Parameters.AddWithValue("@LastMod", FilterSQLDate(DateTime.UtcNow));
                 string guidVal = System.Guid.NewGuid().ToString();
                 CmdAddContact.Parameters.AddWithValue("@GUID", CheckVals(guidVal));
+                CmdAddContact.Parameters.AddWithValue("@CVLocation", CheckVals(contactObj.CVLocation));
                 CmdAddContact.ExecuteNonQuery();
 
                 DataSet ds = GetDataSet("SELECT contactID FROM Contacts WHERE GUID = '" + guidVal + "'");
@@ -3280,7 +3281,7 @@ namespace RedboxAddin.DL
                     //+ "VisaLocation = @VisaLocation, "
                        + "VisaChkdDate = @VisaChkdDate, "
                        + "YearGroup = @YearGroup, "
-                       + "LastMod = @LastMod WHERE contactID = @contactID";
+                       + "LastMod = @LastMod, CVLocation=@CVLocation WHERE contactID = @contactID";
                 DBManager.OpenDBConnection();
                 var CmdUpdateContact = new SqlCommand(sqlStr, DBManager._DBConn);
 
@@ -3417,6 +3418,7 @@ namespace RedboxAddin.DL
                 //CmdUpdateContact.Parameters.AddWithValue("@VisaLocation", CheckVals(contactObj.VisaLocation));
                 CmdUpdateContact.Parameters.AddWithValue("@YearGroup", CheckVals(contactObj.YearGroup));
                 CmdUpdateContact.Parameters.AddWithValue("@LastMod", FilterSQLDate(DateTime.UtcNow));
+                CmdUpdateContact.Parameters.AddWithValue("@CVLocation", CheckVals(contactObj.CVLocation));
                 CmdUpdateContact.ExecuteNonQuery();
                 return true;
             }

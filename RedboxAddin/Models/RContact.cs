@@ -152,5 +152,6 @@ namespace RedboxAddin.Models
         public bool RGD { get; set; }
         public string NoGo { get; set; }
         public string Wants { get; set; }
+        public string CVLocation { get; set; }
     }
 }

@@ -276,6 +276,10 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCVLocation = new System.Windows.Forms.Label();
+            this.btnSetCV = new System.Windows.Forms.Button();
+            this.btnOpenCV = new System.Windows.Forms.Button();
+            this.ofdCVLocation = new System.Windows.Forms.OpenFileDialog();
             this.dtDSWCChkd = new UIComponent.DateTimePicker();
             this.dteSetAll = new UIComponent.DateTimePicker();
             this.dtOTTEndDate = new UIComponent.DateTimePicker();
@@ -342,7 +346,7 @@
             this.tableLayoutPanelContainer.RowCount = 2;
             this.tableLayoutPanelContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanelContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelContainer.Size = new System.Drawing.Size(1008, 706);
+            this.tableLayoutPanelContainer.Size = new System.Drawing.Size(1008, 731);
             this.tableLayoutPanelContainer.TabIndex = 0;
             // 
             // tabControlMain
@@ -358,7 +362,7 @@
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1008, 682);
+            this.tabControlMain.Size = new System.Drawing.Size(1008, 707);
             this.tabControlMain.TabIndex = 1;
             // 
             // tabPage4
@@ -366,7 +370,7 @@
             this.tabPage4.Controls.Add(this.tableLayoutPanel1);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1000, 653);
+            this.tabPage4.Size = new System.Drawing.Size(1000, 678);
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "Notes";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -383,7 +387,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 653);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 678);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel3
@@ -392,7 +396,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(103, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(894, 647);
+            this.panel3.Size = new System.Drawing.Size(894, 672);
             this.panel3.TabIndex = 70;
             // 
             // txtNotes
@@ -404,7 +408,7 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(894, 647);
+            this.txtNotes.Size = new System.Drawing.Size(894, 672);
             this.txtNotes.TabIndex = 70;
             // 
             // panel4
@@ -413,7 +417,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(94, 647);
+            this.panel4.Size = new System.Drawing.Size(94, 672);
             this.panel4.TabIndex = 71;
             // 
             // btnAddNotes
@@ -433,7 +437,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1000, 653);
+            this.tabPage1.Size = new System.Drawing.Size(1000, 678);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -446,7 +450,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1000, 653);
+            this.panel2.Size = new System.Drawing.Size(1000, 678);
             this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanelMain
@@ -461,7 +465,7 @@
             this.tableLayoutPanelMain.RowCount = 2;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1000, 653);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1000, 678);
             this.tableLayoutPanelMain.TabIndex = 106;
             // 
             // groupBox4
@@ -796,8 +800,8 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 467F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 467);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 492F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 492);
             this.tableLayoutPanel2.TabIndex = 104;
             // 
             // Panel11
@@ -898,7 +902,7 @@
             this.Panel11.Location = new System.Drawing.Point(0, 0);
             this.Panel11.Margin = new System.Windows.Forms.Padding(0);
             this.Panel11.Name = "Panel11";
-            this.Panel11.Size = new System.Drawing.Size(994, 467);
+            this.Panel11.Size = new System.Drawing.Size(994, 492);
             this.Panel11.TabIndex = 1;
             // 
             // label42
@@ -1554,6 +1558,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblCVLocation);
+            this.tabPage2.Controls.Add(this.btnSetCV);
+            this.tabPage2.Controls.Add(this.btnOpenCV);
             this.tabPage2.Controls.Add(this.txtNINumber);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.cmbPayDetails);
@@ -1562,7 +1569,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1000, 653);
+            this.tabPage2.Size = new System.Drawing.Size(1000, 678);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "References";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1623,7 +1630,7 @@
             this.groupBox3.Controls.Add(this.txtReferee1Mobile);
             this.groupBox3.Controls.Add(this.txtReferee1Name);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(22, 40);
+            this.groupBox3.Location = new System.Drawing.Point(22, 65);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(975, 603);
             this.groupBox3.TabIndex = 2;
@@ -2138,7 +2145,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1000, 653);
+            this.tabPage3.Size = new System.Drawing.Size(1000, 678);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Interview Notes";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -2215,7 +2222,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1000, 653);
+            this.tabPage5.Size = new System.Drawing.Size(1000, 678);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Summary";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -3027,6 +3034,41 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // lblCVLocation
+            // 
+            this.lblCVLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCVLocation.Location = new System.Drawing.Point(35, 44);
+            this.lblCVLocation.Name = "lblCVLocation";
+            this.lblCVLocation.Size = new System.Drawing.Size(735, 18);
+            this.lblCVLocation.TabIndex = 76;
+            this.lblCVLocation.Text = "[location]";
+            this.lblCVLocation.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnSetCV
+            // 
+            this.btnSetCV.Location = new System.Drawing.Point(776, 41);
+            this.btnSetCV.Name = "btnSetCV";
+            this.btnSetCV.Size = new System.Drawing.Size(117, 23);
+            this.btnSetCV.TabIndex = 77;
+            this.btnSetCV.Text = "Set CV Location";
+            this.btnSetCV.UseVisualStyleBackColor = true;
+            this.btnSetCV.Click += new System.EventHandler(this.btnSetCV_Click);
+            // 
+            // btnOpenCV
+            // 
+            this.btnOpenCV.Location = new System.Drawing.Point(899, 41);
+            this.btnOpenCV.Name = "btnOpenCV";
+            this.btnOpenCV.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenCV.TabIndex = 78;
+            this.btnOpenCV.Text = "Open CV";
+            this.btnOpenCV.UseVisualStyleBackColor = true;
+            this.btnOpenCV.Click += new System.EventHandler(this.btnOpenCV_Click);
+            // 
+            // ofdCVLocation
+            // 
+            this.ofdCVLocation.FileName = "CV";
+            this.ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
+            // 
             // dtDSWCChkd
             // 
             this.dtDSWCChkd.CustomFormat = " ";
@@ -3339,7 +3381,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 706);
+            this.ClientSize = new System.Drawing.Size(1008, 731);
             this.Controls.Add(this.tableLayoutPanelContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -3665,5 +3707,9 @@
         private System.Windows.Forms.Label label42;
         private UIComponent.DateTimePicker dtDSWCChkd;
         private System.Windows.Forms.CheckBox chkDSWCsigned;
+        private System.Windows.Forms.Label lblCVLocation;
+        private System.Windows.Forms.Button btnSetCV;
+        private System.Windows.Forms.Button btnOpenCV;
+        private System.Windows.Forms.OpenFileDialog ofdCVLocation;
     }
 }
