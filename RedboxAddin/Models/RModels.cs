@@ -261,4 +261,11 @@ namespace RedboxAddin.Models
         public string TestEmail { get; set; }
     }
 
+    public class Note
+    {
+        public long SchoolID { get; set; }
+        public string NoteText { get; set; }
+        public long ContactID { get; set; }
+    }
+
 }

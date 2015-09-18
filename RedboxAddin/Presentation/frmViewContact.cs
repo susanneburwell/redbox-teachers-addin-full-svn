@@ -31,6 +31,8 @@ namespace RedboxAddin.Presentation
         string addressPostcode = "";
         string addressCountry = "";
         string categoryStr = "";
+        string Notetext = "";
+        long Schoolid;
 
         public frmViewContact(long contactID)
         {
@@ -76,6 +78,8 @@ namespace RedboxAddin.Presentation
             }
             else
             {
+                LoadNoteGrid(CurrentContactID);
+
                 lblID.Text = contactObj.contactID.ToString();
                 lblFullName.Text = Utils.GetFullName(contactObj.Title, contactObj.FirstName, contactObj.MiddleName, contactObj.LastName, contactObj.Suffix);
                 lblTeacherName.Text = lblFullName.Text;
@@ -372,6 +376,7 @@ namespace RedboxAddin.Presentation
                     SaveSummaryInfo();
                     if (result)
                     {
+                        AddNote(CurrentContactID);
                         MessageBox.Show("Contact saved successfully", "Save Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return true;
                     }
@@ -413,6 +418,7 @@ namespace RedboxAddin.Presentation
 
                     //create contact
                     CurrentContactID = new DBManager().AddContact(contactObj);
+                    AddNote(CurrentContactID);
 
                     //create contactdata
                     string CONNSTR = DavSettings.getDavValue("CONNSTR");
@@ -428,7 +434,7 @@ namespace RedboxAddin.Presentation
 
                     if (CurrentContactID != 0)
                     {
-                        SaveSummaryInfo();
+                        SaveSummaryInfo();                       
                         MessageBox.Show("Contact saved successfully", "Save Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return true;
                     }
@@ -1049,14 +1055,19 @@ namespace RedboxAddin.Presentation
 
         private void btnAddNotes_Click(object sender, EventArgs e)
         {
-            try
-            {
-                txtNotes.Text = DateTime.Now.ToString() + "  " + RedemptionCode.OutlookUserName + Environment.NewLine + "*********************************************************" + Environment.NewLine + txtNotes.Text;
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error adding notes " + ex.Message);
-            }
+            frmNote frmnote = new frmNote();
+            Note objNote = frmnote.ShowDialogExt(new Note() { NoteText = Notetext, SchoolID = Schoolid });
+            Notetext = objNote.NoteText;
+            Schoolid = objNote.SchoolID;
+
+            //try
+            //{
+            //    txtNotes.Text = DateTime.Now.ToString() + "  " + RedemptionCode.OutlookUserName + Environment.NewLine + "*********************************************************" + Environment.NewLine + txtNotes.Text;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.DebugMessage(2, "Error adding notes " + ex.Message);
+            //}
         }
 
         private void btnPickFullName_Click(object sender, EventArgs e)
@@ -1422,7 +1433,6 @@ namespace RedboxAddin.Presentation
             try
             {
                 DialogResult cvLocationpath = ofdCVLocation.ShowDialog();
-                //ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
                 if (cvLocationpath == DialogResult.OK) lblCVLocation.Text = ofdCVLocation.FileName;
             }
             catch (Exception ex)
@@ -1446,25 +1456,26 @@ namespace RedboxAddin.Presentation
 
         }
 
+        private void LoadNoteGrid(long contactID)
+        {
+            DataSet noteDS = new DBManager().GetNotes(contactID);
+            if (noteDS != null)
+            {
+                gcNotes.DataSource = noteDS.Tables[0];
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void AddNote(long contactId)
+        {
+            try
+            {
+                new DBManager().AddNote(new Note() { NoteText = Notetext, SchoolID = Schoolid, ContactID = contactId });
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in  AddNote" + ex.Message);
+            }
+        }
 
     }
 }

@@ -164,6 +164,22 @@ namespace RedboxAddin.DL
             return msgDs;
         }
 
+        public DataSet GetSchoolsAndID()
+        {
+            DataSet msgDs = null;
+            try
+            {
+                msgDs = GetDataSet("Select SchoolName, ID from Schools");
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(4, "***Error in GetSchoolsAndID. /n" + ex.Message);
+                return null;
+            }
+
+            return msgDs;
+        }
+
         public DataSet GetWorkerDetails(DateTime startDate, DateTime endDate)
         {
             DataSet msgDs = null;
@@ -2239,6 +2255,25 @@ namespace RedboxAddin.DL
 
         }
 
+        public DataSet GetNotes(long contactID)
+        {
+            try
+            {
+                string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime"
+                            + " FROM tblNotes"
+                            + " INNER JOIN Schools"
+                            + " ON tblNotes.SchoolID=Schools.ID WHERE ContactID =" + contactID.ToString();
+
+                return GetDataSet(sql);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "***GetNotes : Error  : " + ex.Message);
+                return null;
+            }
+
+        }
+
         private RContact GetContactFromDataRow(DataRow dr)
         {
             RContact objContact = new RContact();
@@ -3424,6 +3459,36 @@ namespace RedboxAddin.DL
             }
             catch (Exception ex)
             {
+                return false;
+            }
+        }
+
+        public bool AddNote(Note objNote)
+        {
+            try
+            {
+                string sqlStr = "INSERT INTO tblNotes ("
+                    + "ContactID,"
+                    + "DateTime,"
+                    + "Text,"
+                    + "SchoolID ) VALUES(@ContactID,@DateTime,@Text,@SchoolID) ";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ContactID", SqlDbType.BigInt);
+                CmdAddContact.Parameters.Add("@DateTime", SqlDbType.DateTime);
+                CmdAddContact.Parameters.Add("@Text", SqlDbType.VarChar, -1);
+                CmdAddContact.Parameters.Add("@SchoolID", SqlDbType.BigInt);
+                CmdAddContact.Prepare();
+                CmdAddContact.Parameters["@ContactID"].Value = objNote.ContactID;
+                CmdAddContact.Parameters["@DateTime"].Value = DateTime.Now;
+                CmdAddContact.Parameters["@Text"].Value = objNote.NoteText;
+                CmdAddContact.Parameters["@SchoolID"].Value = objNote.SchoolID;
+                CmdAddContact.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in adding the reminder :- " + ex.Message);
                 return false;
             }
         }
