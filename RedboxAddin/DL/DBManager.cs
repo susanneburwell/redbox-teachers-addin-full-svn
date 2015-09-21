@@ -2138,6 +2138,35 @@ namespace RedboxAddin.DL
 
         }
 
+        public void DeleteNotes(List<string> deletedNotes)
+        {
+            foreach (string noteid in deletedNotes)
+            {
+                long noteID = Int64.Parse(noteid);
+                try
+                {
+                    string sqlStr = "DELETE FROM tblNotes  "
+                        + "WHERE NoteID = @NoteID";
+                    DBManager.OpenDBConnection();
+                    var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                    CmdAddContact.Parameters.Add("@NoteID", SqlDbType.BigInt);
+                    CmdAddContact.Prepare();
+
+                    CmdAddContact.Parameters["@NoteID"].Value = noteID;
+                    int numUpdated = CmdAddContact.ExecuteNonQuery();
+
+                    DBManager.CloseDBConnection();
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.DebugMessage(2, "Error in DeleteNotes :- " + ex.Message);
+
+                }
+            }
+
+        }
+
         public bool DeletePaymentType(string name)
         {
             try
@@ -2255,14 +2284,33 @@ namespace RedboxAddin.DL
 
         }
 
-        public DataSet GetNotes(long contactID)
+        public DataSet GetNotesByContactID(long contactID)
+        {
+            try
+            {
+                string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime,tblNotes.NoteID,tblNotes.SchoolID"
+                            + " FROM tblNotes"
+                            + " INNER JOIN Schools"
+                            + " ON tblNotes.SchoolID=Schools.ID WHERE ContactID =" + contactID.ToString();
+
+                return GetDataSet(sql);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "***GetNotesByContactID : Error  : " + ex.Message);
+                return null;
+            }
+
+        }
+
+        public DataSet GetNotes(DateTime dateFrom, DateTime dateTo)
         {
             try
             {
                 string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime"
                             + " FROM tblNotes"
                             + " INNER JOIN Schools"
-                            + " ON tblNotes.SchoolID=Schools.ID WHERE ContactID =" + contactID.ToString();
+                            + " ON tblNotes.SchoolID=Schools.ID WHERE DateTime <='" + dateTo + "' AND DateTime >='" + dateFrom + "'";
 
                 return GetDataSet(sql);
             }
@@ -3463,35 +3511,42 @@ namespace RedboxAddin.DL
             }
         }
 
-        public bool AddNote(Note objNote)
+        public void AddNote(long ContactID, DataTable NoteDT)
         {
-            try
+            foreach (DataRow dr in NoteDT.Rows)
             {
-                string sqlStr = "INSERT INTO tblNotes ("
-                    + "ContactID,"
-                    + "DateTime,"
-                    + "Text,"
-                    + "SchoolID ) VALUES(@ContactID,@DateTime,@Text,@SchoolID) ";
-                DBManager.OpenDBConnection();
-                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
-                CmdAddContact.Parameters.Add("@ContactID", SqlDbType.BigInt);
-                CmdAddContact.Parameters.Add("@DateTime", SqlDbType.DateTime);
-                CmdAddContact.Parameters.Add("@Text", SqlDbType.VarChar, -1);
-                CmdAddContact.Parameters.Add("@SchoolID", SqlDbType.BigInt);
-                CmdAddContact.Prepare();
-                CmdAddContact.Parameters["@ContactID"].Value = objNote.ContactID;
-                CmdAddContact.Parameters["@DateTime"].Value = DateTime.Now;
-                CmdAddContact.Parameters["@Text"].Value = objNote.NoteText;
-                CmdAddContact.Parameters["@SchoolID"].Value = objNote.SchoolID;
-                CmdAddContact.ExecuteNonQuery();
-                return true;
+                if (dr["NoteID"].ToString() == "0")
+                {
+                    try
+                    {
+                        string sqlStr = "INSERT INTO tblNotes ("
+                            + "ContactID,"
+                            + "DateTime,"
+                            + "Text,"
+                            + "SchoolID ) VALUES(@ContactID,@DateTime,@Text,@SchoolID) ";
+                        DBManager.OpenDBConnection();
+                        var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                        CmdAddContact.Parameters.Add("@ContactID", SqlDbType.BigInt);
+                        CmdAddContact.Parameters.Add("@DateTime", SqlDbType.DateTime);
+                        CmdAddContact.Parameters.Add("@Text", SqlDbType.VarChar, -1);
+                        CmdAddContact.Parameters.Add("@SchoolID", SqlDbType.BigInt);
+                        CmdAddContact.Prepare();
+                        CmdAddContact.Parameters["@ContactID"].Value = ContactID;
+                        CmdAddContact.Parameters["@DateTime"].Value = DateTime.Now;
+                        CmdAddContact.Parameters["@Text"].Value = dr["Text"].ToString();
+                        CmdAddContact.Parameters["@SchoolID"].Value = dr["SchoolID"].ToString();
+                        CmdAddContact.ExecuteNonQuery();
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.DebugMessage(2, "Error in adding the reminder :- " + ex.Message);
+
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in adding the reminder :- " + ex.Message);
-                return false;
-            }
-        }
+
+        }        
 
         private DateTime CheckDate(object value)
         {

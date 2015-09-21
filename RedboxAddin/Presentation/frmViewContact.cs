@@ -33,6 +33,10 @@ namespace RedboxAddin.Presentation
         string categoryStr = "";
         string Notetext = "";
         long Schoolid;
+        string SchoolName = "";
+        DataSet NotesDS;
+        DataTable NotesTable;
+        List<string> DeletedNotes = new List<string>();
 
         public frmViewContact(long contactID)
         {
@@ -69,6 +73,8 @@ namespace RedboxAddin.Presentation
         private void frmViewContact_Load(object sender, EventArgs e)
         {
             lblCVLocation.Text = "";
+            this.repositoryItemPictureEdit1.Click += new EventHandler(Remove_Note);
+            LoadNoteGrid(CurrentContactID);
             if (CurrentContactID == 0) return;
             RContact contactObj = new DBManager().GetContact(this.CurrentContactID);
             if (contactObj == null)
@@ -78,7 +84,6 @@ namespace RedboxAddin.Presentation
             }
             else
             {
-                LoadNoteGrid(CurrentContactID);
 
                 lblID.Text = contactObj.contactID.ToString();
                 lblFullName.Text = Utils.GetFullName(contactObj.Title, contactObj.FirstName, contactObj.MiddleName, contactObj.LastName, contactObj.Suffix);
@@ -434,7 +439,7 @@ namespace RedboxAddin.Presentation
 
                     if (CurrentContactID != 0)
                     {
-                        SaveSummaryInfo();                       
+                        SaveSummaryInfo();
                         MessageBox.Show("Contact saved successfully", "Save Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return true;
                     }
@@ -1056,9 +1061,14 @@ namespace RedboxAddin.Presentation
         private void btnAddNotes_Click(object sender, EventArgs e)
         {
             frmNote frmnote = new frmNote();
-            Note objNote = frmnote.ShowDialogExt(new Note() { NoteText = Notetext, SchoolID = Schoolid });
-            Notetext = objNote.NoteText;
-            Schoolid = objNote.SchoolID;
+            Note objNote = frmnote.ShowDialogExt(new Note() { NoteText = Notetext, SchoolID = Schoolid, SchoolName = SchoolName });
+            if (objNote != null)
+            {
+                Notetext = objNote.NoteText;
+                Schoolid = objNote.SchoolID;
+                SchoolName = objNote.SchoolName;
+                AppendNewNote(Notetext, Schoolid, SchoolName);
+            }
 
             //try
             //{
@@ -1458,22 +1468,99 @@ namespace RedboxAddin.Presentation
 
         private void LoadNoteGrid(long contactID)
         {
-            DataSet noteDS = new DBManager().GetNotes(contactID);
-            if (noteDS != null)
+            NotesDS = new DBManager().GetNotesByContactID(contactID);
+            if (NotesDS != null)
             {
-                gcNotes.DataSource = noteDS.Tables[0];
+                gcNotes.DataSource = CreateTable();
+            }
+        }
+
+        private void Remove_Note(object sender, EventArgs e)
+        {
+            try
+            {
+                int removedIndex = gvNotes.FocusedRowHandle;
+                int count = 0;
+                foreach (DataRow dr in NotesTable.Rows)
+                {
+                    if (removedIndex == count)
+                    {
+                        if (dr["NoteID"].ToString() != "0")
+                        {
+                            DeletedNotes.Add(dr["NoteID"].ToString());
+                        }
+
+                        dr.Delete();
+                        break;
+                    }
+                    count++;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
         private void AddNote(long contactId)
         {
+            DBManager objDBManager = new DBManager();
             try
             {
-                new DBManager().AddNote(new Note() { NoteText = Notetext, SchoolID = Schoolid, ContactID = contactId });
+                objDBManager.AddNote(contactId, NotesTable);
+                if (DeletedNotes.Count > 0) objDBManager.DeleteNotes(DeletedNotes);
+
+                // clear and build with new source 
+                DeletedNotes.Clear();
+                NotesTable.Clear();
+                LoadNoteGrid(contactId);
+
             }
             catch (Exception ex)
             {
                 Debug.DebugMessage(2, "Error in  AddNote" + ex.Message);
+            }
+        }
+
+        private void AppendNewNote(string note, long schoolID, string schoolName)
+        {
+            try
+            {
+                NotesTable.Rows.Add(note, schoolName, DateTime.Now.ToString(), 0, Properties.Resources._1360344418_101, Schoolid);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in  AppendNewNote" + ex.Message);
+            }
+        }
+
+        private DataTable CreateTable()
+        {
+            try
+            {
+                NotesTable = new DataTable();
+                NotesTable.Columns.Add("Text", typeof(string));
+                NotesTable.Columns.Add("SchoolName", typeof(string));
+                NotesTable.Columns.Add("DateTime", typeof(string));
+                NotesTable.Columns.Add("NoteID", typeof(string));
+                NotesTable.Columns.Add("RemoveNote", typeof(Image));
+                NotesTable.Columns.Add("SchoolID", typeof(string));
+
+                foreach (DataTable ta in NotesDS.Tables)
+                {
+                    foreach (DataRow dr in ta.Rows)
+                    {
+                        NotesTable.Rows.Add(dr["Text"].ToString(), dr["SchoolName"].ToString(), dr["DateTime"].ToString(), dr["NoteID"].ToString(), Properties.Resources._1360344418_101, dr["SchoolID"].ToString());
+                    }
+                }
+                return NotesTable;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in CreateTable -: " + ex.Message);
+                return null;
             }
         }
 

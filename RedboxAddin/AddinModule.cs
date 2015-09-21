@@ -140,6 +140,8 @@ namespace RedboxAddin
         private ADXRibbonButton adxRibBtnSelectContacts;
         private ADXRibbonButton adxHMRCReport;
         private ADXCommandBarButton adxcbHMRCReport;
+        private ADXCommandBarButton adxcbViewNotes;
+        private ADXRibbonButton adxViewNotes;
 
         #region Component Designer generated code
         /// <summary>
@@ -216,6 +218,8 @@ namespace RedboxAddin
             this.adxcbEditSchools = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxcbEditPaymentTypes = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxDailyContactReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbHMRCReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxcbViewNotes = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarPopup2 = new AddinExpress.MSO.ADXCommandBarPopup(this.components);
             this.adxCommandBarButton10 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             this.adxCommandBarButton11 = new AddinExpress.MSO.ADXCommandBarButton(this.components);
@@ -230,7 +234,7 @@ namespace RedboxAddin
             this.adxRibbonTabInsp = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxRibGrpInsp = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxRibBtnSelectContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxcbHMRCReport = new AddinExpress.MSO.ADXCommandBarButton(this.components);
+            this.adxViewNotes = new AddinExpress.MSO.ADXRibbonButton(this.components);
             // 
             // adxTabMail
             // 
@@ -564,6 +568,7 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxEditPaymentTypes);
             this.adxOptions.Controls.Add(this.adxRibbonDCR);
             this.adxOptions.Controls.Add(this.adxHMRCReport);
+            this.adxOptions.Controls.Add(this.adxViewNotes);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.Image = 5;
             this.adxOptions.ImageList = this.imageList32;
@@ -822,6 +827,7 @@ namespace RedboxAddin
             this.adxCommandBarPopup1.Controls.Add(this.adxcbEditPaymentTypes);
             this.adxCommandBarPopup1.Controls.Add(this.adxDailyContactReport);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbHMRCReport);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbViewNotes);
             this.adxCommandBarPopup1.ControlTag = "049113cd-d4a7-4d94-9e8a-f9bcc775fb2f";
             this.adxCommandBarPopup1.Temporary = true;
             this.adxCommandBarPopup1.UpdateCounter = 1;
@@ -879,6 +885,24 @@ namespace RedboxAddin
             this.adxDailyContactReport.Temporary = true;
             this.adxDailyContactReport.UpdateCounter = 4;
             this.adxDailyContactReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxDailyContactReport_Click);
+            // 
+            // adxcbHMRCReport
+            // 
+            this.adxcbHMRCReport.Caption = "HMRCReport";
+            this.adxcbHMRCReport.ControlTag = "22064cce-1a12-4a2d-ba39-1702a5a0456e";
+            this.adxcbHMRCReport.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbHMRCReport.Temporary = true;
+            this.adxcbHMRCReport.UpdateCounter = 4;
+            this.adxcbHMRCReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbHMRCReport_Click);
+            // 
+            // adxcbViewNotes
+            // 
+            this.adxcbViewNotes.Caption = "View Notes";
+            this.adxcbViewNotes.ControlTag = "769e8db5-6735-411e-a6ec-22d4cd67ac73";
+            this.adxcbViewNotes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbViewNotes.Temporary = true;
+            this.adxcbViewNotes.UpdateCounter = 4;
+            this.adxcbViewNotes.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbViewNotes_Click);
             // 
             // adxCommandBarPopup2
             // 
@@ -1006,14 +1030,13 @@ namespace RedboxAddin
             this.adxRibBtnSelectContacts.Size = AddinExpress.MSO.ADXRibbonXControlSize.Large;
             this.adxRibBtnSelectContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibBtnSelectContacts_OnClick);
             // 
-            // adxcbHMRCReport
+            // adxViewNotes
             // 
-            this.adxcbHMRCReport.Caption = "HMRCReport";
-            this.adxcbHMRCReport.ControlTag = "22064cce-1a12-4a2d-ba39-1702a5a0456e";
-            this.adxcbHMRCReport.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxcbHMRCReport.Temporary = true;
-            this.adxcbHMRCReport.UpdateCounter = 4;
-            this.adxcbHMRCReport.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbHMRCReport_Click);
+            this.adxViewNotes.Caption = "View Notes";
+            this.adxViewNotes.Id = "adxRibbonButton_b3a7f9efd0ed403a876445d680eaac17";
+            this.adxViewNotes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxViewNotes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxViewNotes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxViewNotes_OnClick);
             // 
             // AddinModule
             // 
@@ -1978,6 +2001,30 @@ namespace RedboxAddin
             else
             {
                 hmrc.BringToFront();
+            }
+        }
+
+        private void adxcbViewNotes_Click(object sender)
+        {
+            LoadViewNotes();
+        }
+
+        private void adxViewNotes_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            LoadViewNotes();
+        }
+
+        private void LoadViewNotes()
+        {
+            frmViewNotes viewnotes = Application.OpenForms["frmViewNotes"] as frmViewNotes;
+            if (viewnotes == null)
+            {
+                viewnotes = new frmViewNotes();
+                viewnotes.Show();
+            }
+            else
+            {
+                viewnotes.BringToFront();
             }
         }
 

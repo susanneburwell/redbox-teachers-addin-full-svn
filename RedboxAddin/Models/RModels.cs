@@ -266,6 +266,7 @@ namespace RedboxAddin.Models
         public long SchoolID { get; set; }
         public string NoteText { get; set; }
         public long ContactID { get; set; }
+        public string SchoolName { get; set; }
     }
 
 }

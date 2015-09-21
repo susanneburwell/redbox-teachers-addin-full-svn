@@ -41,7 +41,13 @@
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colSchool = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRemove = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.colSchoolID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnAddNotes = new System.Windows.Forms.Button();
@@ -173,8 +179,9 @@
             this.label57 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblCVLocation = new System.Windows.Forms.Label();
+            this.grpCVLink = new System.Windows.Forms.GroupBox();
             this.btnSetCV = new System.Windows.Forms.Button();
+            this.lblCVLocation = new System.Windows.Forms.Label();
             this.btnOpenCV = new System.Windows.Forms.Button();
             this.txtNINumber = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -315,7 +322,6 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ofdCVLocation = new System.Windows.Forms.OpenFileDialog();
-            this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -324,7 +330,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             this.panel4.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -334,6 +343,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.Panel11.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.grpCVLink.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -344,7 +354,6 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanelContainer
@@ -359,7 +368,7 @@
             this.tableLayoutPanelContainer.RowCount = 2;
             this.tableLayoutPanelContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanelContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelContainer.Size = new System.Drawing.Size(1008, 731);
+            this.tableLayoutPanelContainer.Size = new System.Drawing.Size(1008, 741);
             this.tableLayoutPanelContainer.TabIndex = 0;
             // 
             // tabControlMain
@@ -375,7 +384,7 @@
             this.tabControlMain.Margin = new System.Windows.Forms.Padding(0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1008, 707);
+            this.tabControlMain.Size = new System.Drawing.Size(1008, 717);
             this.tabControlMain.TabIndex = 1;
             // 
             // tabPage4
@@ -383,7 +392,7 @@
             this.tabPage4.Controls.Add(this.tableLayoutPanel1);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1000, 678);
+            this.tabPage4.Size = new System.Drawing.Size(1000, 688);
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "Notes";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -400,7 +409,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 678);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 688);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel3
@@ -410,19 +419,22 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(103, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(894, 672);
+            this.panel3.Size = new System.Drawing.Size(894, 682);
             this.panel3.TabIndex = 70;
             // 
             // gcNotes
             // 
-            this.gcNotes.Location = new System.Drawing.Point(3, 138);
+            this.gcNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcNotes.Location = new System.Drawing.Point(0, 0);
             this.gcNotes.MainView = this.gvNotes;
             this.gcNotes.Name = "gcNotes";
             this.gcNotes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1,
             this.repositoryItemLookUpEdit1,
-            this.repositoryItemMemoExEdit1});
-            this.gcNotes.Size = new System.Drawing.Size(886, 226);
+            this.repositoryItemMemoExEdit1,
+            this.repositoryItemPictureEdit1,
+            this.repositoryItemImageComboBox1});
+            this.gcNotes.Size = new System.Drawing.Size(894, 682);
             this.gcNotes.TabIndex = 71;
             this.gcNotes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvNotes});
@@ -432,18 +444,24 @@
             this.gvNotes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colNotes,
             this.colSchool,
-            this.colDateTime});
+            this.colDateTime,
+            this.colID,
+            this.colRemove,
+            this.colSchoolID});
             this.gvNotes.GridControl = this.gcNotes;
             this.gvNotes.Name = "gvNotes";
+            this.gvNotes.OptionsView.RowAutoHeight = true;
+            this.gvNotes.OptionsView.ShowGroupPanel = false;
             // 
             // colNotes
             // 
             this.colNotes.Caption = "Notes";
-            this.colNotes.ColumnEdit = this.repositoryItemMemoExEdit1;
+            this.colNotes.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colNotes.FieldName = "Text";
             this.colNotes.Name = "colNotes";
             this.colNotes.Visible = true;
             this.colNotes.VisibleIndex = 0;
+            this.colNotes.Width = 271;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -456,6 +474,7 @@
             this.colSchool.Name = "colSchool";
             this.colSchool.Visible = true;
             this.colSchool.VisibleIndex = 1;
+            this.colSchool.Width = 200;
             // 
             // colDateTime
             // 
@@ -464,6 +483,36 @@
             this.colDateTime.Name = "colDateTime";
             this.colDateTime.Visible = true;
             this.colDateTime.VisibleIndex = 2;
+            this.colDateTime.Width = 121;
+            // 
+            // colID
+            // 
+            this.colID.Caption = "ID";
+            this.colID.FieldName = "NoteID";
+            this.colID.Name = "colID";
+            // 
+            // colRemove
+            // 
+            this.colRemove.Caption = "Remove";
+            this.colRemove.ColumnEdit = this.repositoryItemPictureEdit1;
+            this.colRemove.FieldName = "RemoveNote";
+            this.colRemove.Name = "colRemove";
+            this.colRemove.Visible = true;
+            this.colRemove.VisibleIndex = 3;
+            this.colRemove.Width = 50;
+            // 
+            // repositoryItemImageComboBox1
+            // 
+            this.repositoryItemImageComboBox1.AutoHeight = false;
+            this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
+            // 
+            // colSchoolID
+            // 
+            this.colSchoolID.Caption = "SchoolID";
+            this.colSchoolID.FieldName = "SchoolID";
+            this.colSchoolID.Name = "colSchoolID";
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -471,6 +520,19 @@
             this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            // 
+            // repositoryItemMemoExEdit1
+            // 
+            this.repositoryItemMemoExEdit1.AutoHeight = false;
+            this.repositoryItemMemoExEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemMemoExEdit1.Name = "repositoryItemMemoExEdit1";
+            // 
+            // repositoryItemPictureEdit1
+            // 
+            this.repositoryItemPictureEdit1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("repositoryItemPictureEdit1.ErrorImage")));
+            this.repositoryItemPictureEdit1.InitialImage = global::RedboxAddin.Properties.Resources._1360344418_101;
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
             // txtNotes
             // 
@@ -480,8 +542,9 @@
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(894, 135);
+            this.txtNotes.Size = new System.Drawing.Size(894, 1);
             this.txtNotes.TabIndex = 70;
+            this.txtNotes.Visible = false;
             // 
             // panel4
             // 
@@ -489,7 +552,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(94, 672);
+            this.panel4.Size = new System.Drawing.Size(94, 682);
             this.panel4.TabIndex = 71;
             // 
             // btnAddNotes
@@ -509,7 +572,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1000, 678);
+            this.tabPage1.Size = new System.Drawing.Size(1000, 688);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -522,7 +585,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1000, 678);
+            this.panel2.Size = new System.Drawing.Size(1000, 688);
             this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanelMain
@@ -537,7 +600,7 @@
             this.tableLayoutPanelMain.RowCount = 2;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1000, 678);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1000, 688);
             this.tableLayoutPanelMain.TabIndex = 106;
             // 
             // groupBox4
@@ -873,7 +936,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 492F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 492);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 502);
             this.tableLayoutPanel2.TabIndex = 104;
             // 
             // Panel11
@@ -974,7 +1037,7 @@
             this.Panel11.Location = new System.Drawing.Point(0, 0);
             this.Panel11.Margin = new System.Windows.Forms.Padding(0);
             this.Panel11.Name = "Panel11";
-            this.Panel11.Size = new System.Drawing.Size(994, 492);
+            this.Panel11.Size = new System.Drawing.Size(994, 502);
             this.Panel11.TabIndex = 1;
             // 
             // label42
@@ -1938,9 +2001,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lblCVLocation);
-            this.tabPage2.Controls.Add(this.btnSetCV);
-            this.tabPage2.Controls.Add(this.btnOpenCV);
+            this.tabPage2.Controls.Add(this.grpCVLink);
             this.tabPage2.Controls.Add(this.txtNINumber);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.cmbPayDetails);
@@ -1949,24 +2010,27 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1000, 678);
+            this.tabPage2.Size = new System.Drawing.Size(1000, 688);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "References";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // lblCVLocation
+            // grpCVLink
             // 
-            this.lblCVLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCVLocation.Location = new System.Drawing.Point(35, 44);
-            this.lblCVLocation.Name = "lblCVLocation";
-            this.lblCVLocation.Size = new System.Drawing.Size(735, 18);
-            this.lblCVLocation.TabIndex = 76;
-            this.lblCVLocation.Text = "[location]";
-            this.lblCVLocation.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.grpCVLink.Controls.Add(this.btnSetCV);
+            this.grpCVLink.Controls.Add(this.lblCVLocation);
+            this.grpCVLink.Controls.Add(this.btnOpenCV);
+            this.grpCVLink.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpCVLink.Location = new System.Drawing.Point(22, 35);
+            this.grpCVLink.Name = "grpCVLink";
+            this.grpCVLink.Size = new System.Drawing.Size(975, 37);
+            this.grpCVLink.TabIndex = 76;
+            this.grpCVLink.TabStop = false;
+            this.grpCVLink.Text = "CV Link";
             // 
             // btnSetCV
             // 
-            this.btnSetCV.Location = new System.Drawing.Point(776, 41);
+            this.btnSetCV.Location = new System.Drawing.Point(79, 11);
             this.btnSetCV.Name = "btnSetCV";
             this.btnSetCV.Size = new System.Drawing.Size(117, 23);
             this.btnSetCV.TabIndex = 77;
@@ -1974,9 +2038,18 @@
             this.btnSetCV.UseVisualStyleBackColor = true;
             this.btnSetCV.Click += new System.EventHandler(this.btnSetCV_Click);
             // 
+            // lblCVLocation
+            // 
+            this.lblCVLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCVLocation.Location = new System.Drawing.Point(282, 11);
+            this.lblCVLocation.Name = "lblCVLocation";
+            this.lblCVLocation.Size = new System.Drawing.Size(678, 18);
+            this.lblCVLocation.TabIndex = 76;
+            this.lblCVLocation.Text = "[location]";
+            // 
             // btnOpenCV
             // 
-            this.btnOpenCV.Location = new System.Drawing.Point(899, 41);
+            this.btnOpenCV.Location = new System.Drawing.Point(201, 11);
             this.btnOpenCV.Name = "btnOpenCV";
             this.btnOpenCV.Size = new System.Drawing.Size(75, 23);
             this.btnOpenCV.TabIndex = 78;
@@ -2040,7 +2113,7 @@
             this.groupBox3.Controls.Add(this.txtReferee1Mobile);
             this.groupBox3.Controls.Add(this.txtReferee1Name);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(22, 65);
+            this.groupBox3.Location = new System.Drawing.Point(22, 75);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(975, 603);
             this.groupBox3.TabIndex = 2;
@@ -2555,7 +2628,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1000, 678);
+            this.tabPage3.Size = new System.Drawing.Size(1000, 688);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Interview Notes";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -2632,7 +2705,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1000, 678);
+            this.tabPage5.Size = new System.Drawing.Size(1000, 688);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Summary";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -3449,18 +3522,11 @@
             this.ofdCVLocation.FileName = "CV";
             this.ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
             // 
-            // repositoryItemMemoExEdit1
-            // 
-            this.repositoryItemMemoExEdit1.AutoHeight = false;
-            this.repositoryItemMemoExEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemMemoExEdit1.Name = "repositoryItemMemoExEdit1";
-            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 731);
+            this.ClientSize = new System.Drawing.Size(1008, 741);
             this.Controls.Add(this.tableLayoutPanelContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -3478,7 +3544,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcNotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvNotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -3491,6 +3560,7 @@
             this.Panel11.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.grpCVLink.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -3510,7 +3580,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3803,5 +3872,11 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn colDateTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit repositoryItemMemoExEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colID;
+        private DevExpress.XtraGrid.Columns.GridColumn colRemove;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn colSchoolID;
+        private System.Windows.Forms.GroupBox grpCVLink;
     }
 }
