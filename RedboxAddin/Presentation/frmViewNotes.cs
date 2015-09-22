@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace RedboxAddin.Presentation
 {
     public partial class frmViewNotes : Form
-    {
+    {       
         public frmViewNotes()
         {
             InitializeComponent();
@@ -29,25 +29,26 @@ namespace RedboxAddin.Presentation
         private void frmViewNotes_Load(object sender, EventArgs e)
         {
             SetDefaultDate();
-            LoadNoteGrid(dtpFrom.Value, dtpTo.Value);
+            LoadNoteGrid(dtpFrom.DateTime, dtpTo.DateTime);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadNoteGrid(dtpFrom.Value, dtpTo.Value);
+            LoadNoteGrid(dtpFrom.DateTime, dtpTo.DateTime);
         }
 
         private void SetDefaultDate()
         {
             try
             {
-                dtpFrom.Value = DateTime.Now.AddDays(-7);
-                dtpTo.Value = DateTime.Now;
+                dtpFrom.DateTime = DateTime.Now.AddDays(-7);
+                dtpTo.DateTime = DateTime.Now;
             }
             catch (Exception ex)
             {
 
             }
         }
+        
     }
 }

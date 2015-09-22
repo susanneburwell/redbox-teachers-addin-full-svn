@@ -43,11 +43,11 @@
             this.colDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRemove = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.colSchoolID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
-            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnAddNotes = new System.Windows.Forms.Button();
@@ -330,10 +330,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -455,13 +455,16 @@
             // 
             // colNotes
             // 
+            this.colNotes.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colNotes.AppearanceHeader.Options.UseFont = true;
             this.colNotes.Caption = "Notes";
             this.colNotes.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colNotes.FieldName = "Text";
             this.colNotes.Name = "colNotes";
+            this.colNotes.OptionsColumn.ReadOnly = true;
             this.colNotes.Visible = true;
             this.colNotes.VisibleIndex = 0;
-            this.colNotes.Width = 271;
+            this.colNotes.Width = 476;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -469,21 +472,29 @@
             // 
             // colSchool
             // 
+            this.colSchool.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colSchool.AppearanceHeader.Options.UseFont = true;
             this.colSchool.Caption = "School";
             this.colSchool.FieldName = "SchoolName";
+            this.colSchool.MaxWidth = 200;
             this.colSchool.Name = "colSchool";
+            this.colSchool.OptionsColumn.ReadOnly = true;
             this.colSchool.Visible = true;
             this.colSchool.VisibleIndex = 1;
             this.colSchool.Width = 200;
             // 
             // colDateTime
             // 
+            this.colDateTime.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colDateTime.AppearanceHeader.Options.UseFont = true;
             this.colDateTime.Caption = "Date Time";
             this.colDateTime.FieldName = "DateTime";
+            this.colDateTime.MaxWidth = 130;
             this.colDateTime.Name = "colDateTime";
+            this.colDateTime.OptionsColumn.ReadOnly = true;
             this.colDateTime.Visible = true;
             this.colDateTime.VisibleIndex = 2;
-            this.colDateTime.Width = 121;
+            this.colDateTime.Width = 130;
             // 
             // colID
             // 
@@ -493,20 +504,22 @@
             // 
             // colRemove
             // 
+            this.colRemove.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colRemove.AppearanceHeader.Options.UseFont = true;
             this.colRemove.Caption = "Remove";
             this.colRemove.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colRemove.FieldName = "RemoveNote";
+            this.colRemove.MaxWidth = 70;
             this.colRemove.Name = "colRemove";
             this.colRemove.Visible = true;
             this.colRemove.VisibleIndex = 3;
-            this.colRemove.Width = 50;
+            this.colRemove.Width = 70;
             // 
-            // repositoryItemImageComboBox1
+            // repositoryItemPictureEdit1
             // 
-            this.repositoryItemImageComboBox1.AutoHeight = false;
-            this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
+            this.repositoryItemPictureEdit1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("repositoryItemPictureEdit1.ErrorImage")));
+            this.repositoryItemPictureEdit1.InitialImage = global::RedboxAddin.Properties.Resources._1360344418_101;
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
             // colSchoolID
             // 
@@ -528,11 +541,12 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemMemoExEdit1.Name = "repositoryItemMemoExEdit1";
             // 
-            // repositoryItemPictureEdit1
+            // repositoryItemImageComboBox1
             // 
-            this.repositoryItemPictureEdit1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("repositoryItemPictureEdit1.ErrorImage")));
-            this.repositoryItemPictureEdit1.InitialImage = global::RedboxAddin.Properties.Resources._1360344418_101;
-            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            this.repositoryItemImageComboBox1.AutoHeight = false;
+            this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             // 
             // txtNotes
             // 
@@ -935,7 +949,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 492F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 502F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 502);
             this.tableLayoutPanel2.TabIndex = 104;
             // 
@@ -3544,10 +3558,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcNotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvNotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
