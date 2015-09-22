@@ -137,138 +137,140 @@ namespace RedboxAddin.UC
 
         }
 
-        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            //this paints the grid
-            try
-            {
-                string columnname = e.Column.FieldName;
-                string expname = "";//"MonColor";
-                int myRow = e.RowHandle;
+        // private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        //  {
+        // Moved this code to gridView1_RowCellStyle by BC 22Sep2015
 
-                switch (columnname)
-                {
-                    case "Monday":
-                        expname = "MonColor";
-                        break;
-                    case "Tuesday":
-                        expname = "TueColor";
-                        break;
-                    case "Wednesday":
-                        expname = "WedColor";
-                        break;
-                    case "Thursday":
-                        expname = "ThuColor";
-                        break;
-                    case "Friday":
-                        expname = "FriColor";
-                        break;
+        ////this paints the grid
+        //try
+        //{
+        //    string columnname = e.Column.FieldName;
+        //    string expname = "";//"MonColor";
+        //    int myRow = e.RowHandle;
 
-                    case "Teacher":
-                        string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
-                        string myP = gridView1.GetRowCellValue(myRow, "Prio").ToString();
-                        if (myG == "1")
-                        {
-                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
-                        }
-                        else if (myP == "1")
-                        {
-                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;                               
-                        }
-                        else
-                        {
-                            string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
-                            if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
-                        }
-                        return;
-                        break;
+        //    switch (columnname)
+        //    {
+        //        case "Monday":
+        //            expname = "MonColor";
+        //            break;
+        //        case "Tuesday":
+        //            expname = "TueColor";
+        //            break;
+        //        case "Wednesday":
+        //            expname = "WedColor";
+        //            break;
+        //        case "Thursday":
+        //            expname = "ThuColor";
+        //            break;
+        //        case "Friday":
+        //            expname = "FriColor";
+        //            break;
 
-                    default:
-                        return;
-                        break;
-                }
+        //        case "Teacher":
+        //            string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
+        //            string myP = gridView1.GetRowCellValue(myRow, "Prio").ToString();
+        //            if (myG == "1")
+        //            {
+        //                e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+        //            }
+        //            else if (myP == "1")
+        //            {
+        //                e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+        //            }
+        //            else
+        //            {
+        //                string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
+        //                if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
+        //            }
+        //            return;
+        //            break;
 
-                //  redd/yell  redd forecolr   yel back colour
-                string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
+        //        default:
+        //            return;
+        //            break;
+        //    }
 
-                //If colours are set
-                if (myVal.Length > 8)
-                {
-                    string backcolor = myVal.Substring(5, 4);
-                    string forecolor = myVal.Substring(0, 4);
-                    string italics = "e";
-                    if (myVal.Length > 9) italics = myVal.Substring(9, 1);
+        //    //  redd/yell  redd forecolr   yel back colour
+        //    string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
 
-                    switch (backcolor)
-                    {
-                        case "yell":
-                            e.Appearance.BackColor = System.Drawing.Color.Yellow;
-                            break;
-                        case "gray":
-                            e.Appearance.BackColor = System.Drawing.Color.LightGray;
-                            break;
-                        case "lblu":
-                            e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
-                            break;
-                        case "dblu":
-                            e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-                            break;
-                        case "brwn":
-                            e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
-                            break;
-                        case "gree": //guaranteed
-                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
-                            break;
-                        case "pink": //texted
-                            e.Appearance.BackColor = System.Drawing.Color.LightPink;
-                            break;
-                        case "orng": //unavailable
-                            e.Appearance.BackColor = System.Drawing.Color.Orange;
-                            break;
-                        case "lgre": //unavailable
-                            e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
-                            break;
-                        case "pech": //unavailable
-                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
-                            break;
-                        case "purp":
-                            e.Appearance.BackColor = System.Drawing.Color.Violet;
-                            e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+        //    //If colours are set
+        //    if (myVal.Length > 8)
+        //    {
+        //        string backcolor = myVal.Substring(5, 4);
+        //        string forecolor = myVal.Substring(0, 4);
+        //        string italics = "e";
+        //        if (myVal.Length > 9) italics = myVal.Substring(9, 1);
 
-                            break;
-                        default:
-                            break;
-                    }
+        //        switch (backcolor)
+        //        {
+        //            case "yell":
+        //                e.Appearance.BackColor = System.Drawing.Color.Yellow;
+        //                break;
+        //            case "gray":
+        //                e.Appearance.BackColor = System.Drawing.Color.LightGray;
+        //                break;
+        //            case "lblu":
+        //                e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+        //                break;
+        //            case "dblu":
+        //                e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+        //                break;
+        //            case "brwn":
+        //                e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
+        //                break;
+        //            case "gree": //guaranteed
+        //                e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+        //                break;
+        //            case "pink": //texted
+        //                e.Appearance.BackColor = System.Drawing.Color.LightPink;
+        //                break;
+        //            case "orng": //unavailable
+        //                e.Appearance.BackColor = System.Drawing.Color.Orange;
+        //                break;
+        //            case "lgre": //unavailable
+        //                e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
+        //                break;
+        //            case "pech": //unavailable
+        //                e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+        //                break;
+        //            case "purp":
+        //                e.Appearance.BackColor = System.Drawing.Color.Violet;
+        //                e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 
-                    switch (forecolor)
-                    {
-                        case "redd":
-                            e.Appearance.ForeColor = System.Drawing.Color.Red;
-                            break;
-                        case "purp":
-                            e.Appearance.ForeColor = System.Drawing.Color.Purple;
-                            break;
-                        case "blck":
-                            e.Appearance.ForeColor = System.Drawing.Color.Black;
-                            break;
+        //                break;
+        //            default:
+        //                break;
+        //        }
 
-                        default:
-                            break;
-                    }
+        //        switch (forecolor)
+        //        {
+        //            case "redd":
+        //                e.Appearance.ForeColor = System.Drawing.Color.Red;
+        //                break;
+        //            case "purp":
+        //                e.Appearance.ForeColor = System.Drawing.Color.Purple;
+        //                break;
+        //            case "blck":
+        //                e.Appearance.ForeColor = System.Drawing.Color.Black;
+        //                break;
 
-                    if (italics == "i")
-                    {
-                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
+        //            default:
+        //                break;
+        //        }
 
-                    }
+        //        if (italics == "i")
+        //        {
+        //            e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
 
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
-            }
-        }
+        //        }
+
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    Debug.DebugMessage(2, "Error in gridView1_CustomDrawCell: " + ex.Message);
+        //}
+        //}
 
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
@@ -390,8 +392,8 @@ namespace RedboxAddin.UC
                         //}
                         //else
                         //{
-                            long teacherID = long.Parse(gridView1.GetRowCellValue(info.RowHandle, "TeacherID").ToString());
-                            rowInfo.Status = "New." + teacherID;
+                        long teacherID = long.Parse(gridView1.GetRowCellValue(info.RowHandle, "TeacherID").ToString());
+                        rowInfo.Status = "New." + teacherID;
                         //}
                     }
 
@@ -417,7 +419,7 @@ namespace RedboxAddin.UC
             }
             finally
             {
-                Cursor.Current = Cursors.Default;                
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -443,6 +445,66 @@ namespace RedboxAddin.UC
         public void Clear()
         {
             gridControl1.DataSource = null;
+        }
+
+        public void ShowPrintView()
+        {
+            try
+            {
+                HideColumnsForPrint();
+                gridView1.BestFitColumns();
+                gridView1.ShowPrintPreview();
+                ShowHideColumnsForPrint();
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in ShowPrintView: " + ex.Message);
+            }
+
+
+        }
+
+        private void HideColumnsForPrint()
+        {
+            Mobile.Visible = false;
+            Live.Visible = false;
+            Location.Visible = false;
+            Wants.Visible = false;
+            YrGroup.Visible = false;
+            QTS.Visible = false;
+            PofA.Visible = false;
+            CRB.Visible = false;
+            NoGo.Visible = false;
+            RWInc.Visible = false;
+            BSL.Visible = false;
+            FirstAid.Visible = false;
+            Guar.Visible = false;
+            LongTerm.Visible = false;
+            Actor.Visible = false;
+            QNN.Visible = false;
+            SEN.Visible = false;
+
+        }
+
+        private void ShowHideColumnsForPrint()
+        {
+            Mobile.Visible = true;
+            Live.Visible = true;
+            Location.Visible = true;
+            Wants.Visible = true;
+            YrGroup.Visible = true;
+            QTS.Visible = true;
+            PofA.Visible = true;
+            CRB.Visible = true;
+            NoGo.Visible = true;
+            RWInc.Visible = true;
+            BSL.Visible = true;
+            FirstAid.Visible = true;
+            Guar.Visible = true;
+            LongTerm.Visible = true;
+            Actor.Visible = true;
+            QNN.Visible = true;
+            SEN.Visible = true;
         }
 
         //private void gridView1_Click(object sender, EventArgs e)
@@ -522,7 +584,7 @@ namespace RedboxAddin.UC
                         }
 
                         //Add Notes & description for the tool-tip
-                        toolTip = "Notes : " + gDay.Note + "\nDetails : " + description; 
+                        toolTip = "Notes : " + gDay.Note + "\nDetails : " + description;
 
                         string BodyText = toolTip;
 
@@ -537,7 +599,140 @@ namespace RedboxAddin.UC
             }
         }
 
-    
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            //this paints the grid
+            try
+            {
+                string columnname = e.Column.FieldName;
+                string expname = "";//"MonColor";
+                int myRow = e.RowHandle;
+
+                switch (columnname)
+                {
+                    case "Monday":
+                        expname = "MonColor";
+                        break;
+                    case "Tuesday":
+                        expname = "TueColor";
+                        break;
+                    case "Wednesday":
+                        expname = "WedColor";
+                        break;
+                    case "Thursday":
+                        expname = "ThuColor";
+                        break;
+                    case "Friday":
+                        expname = "FriColor";
+                        break;
+
+                    case "Teacher":
+                        string myG = gridView1.GetRowCellValue(myRow, "Guar").ToString();
+                        string myP = gridView1.GetRowCellValue(myRow, "Prio").ToString();
+                        if (myG == "1")
+                        {
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+                        }
+                        else if (myP == "1")
+                        {
+                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+                        }
+                        else
+                        {
+                            string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
+                            if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
+                        }
+                        return;
+                        break;
+
+                    default:
+                        return;
+                        break;
+                }
+
+                //  redd/yell  redd forecolr   yel back colour
+                string myVal = gridView1.GetRowCellValue(myRow, expname).ToString();
+
+                //If colours are set
+                if (myVal.Length > 8)
+                {
+                    string backcolor = myVal.Substring(5, 4);
+                    string forecolor = myVal.Substring(0, 4);
+                    string italics = "e";
+                    if (myVal.Length > 9) italics = myVal.Substring(9, 1);
+
+                    switch (backcolor)
+                    {
+                        case "yell":
+                            e.Appearance.BackColor = System.Drawing.Color.Yellow;
+                            break;
+                        case "gray":
+                            e.Appearance.BackColor = System.Drawing.Color.LightGray;
+                            break;
+                        case "lblu":
+                            e.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+                            break;
+                        case "dblu":
+                            e.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+                            break;
+                        case "brwn":
+                            e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
+                            break;
+                        case "gree": //guaranteed
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+                            break;
+                        case "pink": //texted
+                            e.Appearance.BackColor = System.Drawing.Color.LightPink;
+                            break;
+                        case "orng": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.Orange;
+                            break;
+                        case "lgre": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
+                            break;
+                        case "pech": //unavailable
+                            e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
+                            break;
+                        case "purp":
+                            e.Appearance.BackColor = System.Drawing.Color.Violet;
+                            e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+
+                            break;
+                        default:
+                            break;
+                    }
+
+                    switch (forecolor)
+                    {
+                        case "redd":
+                            e.Appearance.ForeColor = System.Drawing.Color.Red;
+                            break;
+                        case "purp":
+                            e.Appearance.ForeColor = System.Drawing.Color.Purple;
+                            break;
+                        case "blck":
+                            e.Appearance.ForeColor = System.Drawing.Color.Black;
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    if (italics == "i")
+                    {
+                        e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in gridView1_RowCellStyle: " + ex.Message);
+            }
+        }
+
+
     }
 
     public class GridViewCustomMenu : GridViewMenu
@@ -662,7 +857,7 @@ namespace RedboxAddin.UC
             }
             else if (status == "Change Teacher")
             {
-                frmChangeTeacher frm = new frmChangeTeacher(bookingDate,masterBookingID);
+                frmChangeTeacher frm = new frmChangeTeacher(bookingDate, masterBookingID);
                 frm.ShowDialog();
                 EventHandler handler = RepaintRequired;
                 if (handler != null)
@@ -697,5 +892,7 @@ namespace RedboxAddin.UC
                 }
             }
         }
+
+
     }
 }

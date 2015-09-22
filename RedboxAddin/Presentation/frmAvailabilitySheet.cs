@@ -683,6 +683,12 @@ namespace RedboxAddin.Presentation
             availabilityGrid1.DaySort();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            availabilityGrid1.ShowPrintView();
+            LoadTable();
+        }
+
        
 
 
