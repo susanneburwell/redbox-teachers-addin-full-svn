@@ -166,7 +166,7 @@ namespace RedboxAddin.BL
         // }
 
 
-        internal static bool SendVettingDetails(bool sendImmediately, string contactID, string schoolID = null, 
+        internal static bool SendVettingDetails(bool sendImmediately, string contactID, string schoolID = null,
             string startDate = null, string endDate = null, string yearGroup = null, string requestedBy = null, long MasterBookingID = 0)
         {
             MailItem oMail = null;
@@ -192,7 +192,7 @@ namespace RedboxAddin.BL
                 if (schoolID != null)
                 {
                     schID = Convert.ToInt64(schoolID);
-                    School school  = LINQmanager.GetSchoolbyID(schID);
+                    School school = LINQmanager.GetSchoolbyID(schID);
                     //DBManager dbm = new DBManager();
                     vettingEmailAddresses = school.VettingEmails;
                     schoolName = school.SchoolName;
@@ -402,7 +402,7 @@ namespace RedboxAddin.BL
                 }
                 if (contactObj.DisqByAssoc)
                 {
-                    txtBody = txtBody + Environment.NewLine + "Disqualification By Association Signed: Yes" ;
+                    txtBody = txtBody + Environment.NewLine + "Disqualification By Association Signed: Yes";
                 }
                 else
                 {
@@ -556,12 +556,13 @@ namespace RedboxAddin.BL
 
                 if (!schoolName.ToLower().Contains("school")) schoolName += " School";
 
-                string textIntro = "Dear " + schoolName + ", <br> <br>";
-                textIntro += "This email provides the vetting details for the teacher who will be joining you today: " + contactObj.FullName;
-                textIntro += " to cover: " + yearGroup + ".<br><br>";
-                textIntro += "If you have any queries, please contact Redbox Teacher Recruitment on 01932 247000. <br> <br>";
-                textIntro += "regards <br> <br>";
-                textIntro += "Redbox Teacher Recruitment <br> <br>";
+                string textIntro = "";
+                //string textIntro = "Dear " + schoolName + ", <br> <br>";
+                //textIntro += "This email provides the vetting details for the teacher who will be joining you today: " + contactObj.FullName;
+                //textIntro += " to cover: " + yearGroup + ".<br><br>";
+                //textIntro += "If you have any queries, please contact Redbox Teacher Recruitment on 01932 247000. <br> <br>";
+                //textIntro += "regards <br> <br>";
+                //textIntro += "Redbox Teacher Recruitment <br> <br>";
 
                 txtBody = txtBody + Environment.NewLine;
                 TableBottom = "</td>" + Environment.NewLine + "</tr>" + Environment.NewLine + "</table>";
