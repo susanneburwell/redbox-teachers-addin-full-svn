@@ -681,6 +681,9 @@ namespace RedboxAddin.UC
                         case "gree": //guaranteed
                             e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
                             break;
+                        case "blue": //guaranteed and incomplete
+                            e.Appearance.BackColor = System.Drawing.Color.LightBlue;
+                            break;                   
                         case "pink": //texted
                             e.Appearance.BackColor = System.Drawing.Color.LightPink;
                             break;

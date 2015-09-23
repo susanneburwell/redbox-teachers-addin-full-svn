@@ -13,6 +13,7 @@ namespace RedboxAddin.DL
     class DBManager
     {
         internal static SqlConnection _DBConn;
+        private bool Incomplete = false;
         //private static string _SQLCEConnStr = "Data Source=DAVTON05\\EXPRESS2;Initial Catalog=RedboxDB;Integrated Security=True";
 
 
@@ -522,7 +523,7 @@ namespace RedboxAddin.DL
                         bool wedProv = Utils.CheckBool(dr["WedPr"]);
                         bool thuProv = Utils.CheckBool(dr["ThuPr"]);
                         bool friProv = Utils.CheckBool(dr["FriPr"]);
-
+                        Incomplete = IncompleteState(dr["Incomplete"].ToString());
 
                         string yearGroup = "";
                         if (dr["Nur"].ToString() == "True") yearGroup += "N";
@@ -809,7 +810,8 @@ namespace RedboxAddin.DL
                 switch (type)
                 {
                     case "1": //guarantee offered
-                        return "purp/gree";
+                        if (Incomplete) return "purp/blue";
+                        else return "purp/gree";
                         break;
                     case "2": //gurantee acceopted
                         return "purp/gree";
@@ -836,6 +838,26 @@ namespace RedboxAddin.DL
             {
                 return "";
             }
+        }
+
+        private bool IncompleteState(string incompleteState)
+        {
+            bool incomplete = false;
+            try
+            {
+                if (string.IsNullOrEmpty(incompleteState)) incomplete = false;
+                else
+                {
+                    if (incompleteState == "False") incomplete = false;
+                    else if (incompleteState == "True") incomplete = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in IncompleteState: " + ex.Message);
+            }
+
+            return incomplete;
         }
 
 
@@ -3979,7 +4001,7 @@ namespace RedboxAddin.DL
             string thursday = weekbegining.AddDays(3).ToString("yyyyMMdd");
             string friday = weekbegining.AddDays(4).ToString("yyyyMMdd");
 
-            string SQLstr = "Select Lastname+', '+FirstName as TeacherName, Contacts.contactID AS TeacherID, Live, Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
+            string SQLstr = "Select Lastname+', '+FirstName as TeacherName, Contacts.contactID AS TeacherID, Live, Incomplete,Location, Wants,[ContactData].YearGroup,QTS,ProofofAddress,NoGo, " +
                             "OverseasTrainedTeacher, NQT, TA, Teacher, QNN, SEN, NN, CRBStatus, PhoneMobile as Mobile, " +
                             "Nur,Rec,Yr1,Yr2,Yr3,Yr4,Yr5,Yr6, Float, LT, D2D, RWInc, BSL, FirstAid, " +
                             "s1.School as Monday, g1.gar as MonG, s2.School as Tuesday, g2.gar as TueG, s3.School as Wednesday, " +
