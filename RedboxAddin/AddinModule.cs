@@ -142,6 +142,8 @@ namespace RedboxAddin
         private ADXCommandBarButton adxcbHMRCReport;
         private ADXCommandBarButton adxcbViewNotes;
         private ADXRibbonButton adxViewNotes;
+        private ADXRibbonButton adxLongTermEnding;
+        private ADXCommandBarButton adxcbLongTermEnding;
 
         #region Component Designer generated code
         /// <summary>
@@ -191,6 +193,7 @@ namespace RedboxAddin
             this.adxEditPaymentTypes = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxRibbonDCR = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxHMRCReport = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxViewNotes = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxTeacherContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
             this.adxRibbonMenu1 = new AddinExpress.MSO.ADXRibbonMenu(this.components);
             this.adxImportXL = new AddinExpress.MSO.ADXRibbonButton(this.components);
@@ -234,7 +237,8 @@ namespace RedboxAddin
             this.adxRibbonTabInsp = new AddinExpress.MSO.ADXRibbonTab(this.components);
             this.adxRibGrpInsp = new AddinExpress.MSO.ADXRibbonGroup(this.components);
             this.adxRibBtnSelectContacts = new AddinExpress.MSO.ADXRibbonButton(this.components);
-            this.adxViewNotes = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxLongTermEnding = new AddinExpress.MSO.ADXRibbonButton(this.components);
+            this.adxcbLongTermEnding = new AddinExpress.MSO.ADXCommandBarButton(this.components);
             // 
             // adxTabMail
             // 
@@ -569,6 +573,7 @@ namespace RedboxAddin
             this.adxOptions.Controls.Add(this.adxRibbonDCR);
             this.adxOptions.Controls.Add(this.adxHMRCReport);
             this.adxOptions.Controls.Add(this.adxViewNotes);
+            this.adxOptions.Controls.Add(this.adxLongTermEnding);
             this.adxOptions.Id = "adxRibbonMenu_c2f3769eeaa34668aca908c7e5314288";
             this.adxOptions.Image = 5;
             this.adxOptions.ImageList = this.imageList32;
@@ -630,6 +635,14 @@ namespace RedboxAddin
             this.adxHMRCReport.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adxHMRCReport.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
             this.adxHMRCReport.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxHMRCReport_OnClick);
+            // 
+            // adxViewNotes
+            // 
+            this.adxViewNotes.Caption = "View Notes";
+            this.adxViewNotes.Id = "adxRibbonButton_b3a7f9efd0ed403a876445d680eaac17";
+            this.adxViewNotes.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxViewNotes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxViewNotes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxViewNotes_OnClick);
             // 
             // adxTeacherContacts
             // 
@@ -828,6 +841,7 @@ namespace RedboxAddin
             this.adxCommandBarPopup1.Controls.Add(this.adxDailyContactReport);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbHMRCReport);
             this.adxCommandBarPopup1.Controls.Add(this.adxcbViewNotes);
+            this.adxCommandBarPopup1.Controls.Add(this.adxcbLongTermEnding);
             this.adxCommandBarPopup1.ControlTag = "049113cd-d4a7-4d94-9e8a-f9bcc775fb2f";
             this.adxCommandBarPopup1.Temporary = true;
             this.adxCommandBarPopup1.UpdateCounter = 1;
@@ -1030,13 +1044,22 @@ namespace RedboxAddin
             this.adxRibBtnSelectContacts.Size = AddinExpress.MSO.ADXRibbonXControlSize.Large;
             this.adxRibBtnSelectContacts.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxRibBtnSelectContacts_OnClick);
             // 
-            // adxViewNotes
+            // adxLongTermEnding
             // 
-            this.adxViewNotes.Caption = "View Notes";
-            this.adxViewNotes.Id = "adxRibbonButton_b3a7f9efd0ed403a876445d680eaac17";
-            this.adxViewNotes.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.adxViewNotes.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
-            this.adxViewNotes.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxViewNotes_OnClick);
+            this.adxLongTermEnding.Caption = "Long Term Ending";
+            this.adxLongTermEnding.Id = "adxRibbonButton_3ffeb1e50cea41cea85ec754dbe52bfd";
+            this.adxLongTermEnding.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxLongTermEnding.Ribbons = AddinExpress.MSO.ADXRibbons.msrOutlookExplorer;
+            this.adxLongTermEnding.OnClick += new AddinExpress.MSO.ADXRibbonOnAction_EventHandler(this.adxLongTermEnding_OnClick);
+            // 
+            // adxcbLongTermEnding
+            // 
+            this.adxcbLongTermEnding.Caption = "Long Term Ending";
+            this.adxcbLongTermEnding.ControlTag = "c6bbf774-752b-4f39-a848-562bf55a6321";
+            this.adxcbLongTermEnding.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.adxcbLongTermEnding.Temporary = true;
+            this.adxcbLongTermEnding.UpdateCounter = 5;
+            this.adxcbLongTermEnding.Click += new AddinExpress.MSO.ADXClick_EventHandler(this.adxcbLongTermEnding_Click);
             // 
             // AddinModule
             // 
@@ -2027,6 +2050,32 @@ namespace RedboxAddin
                 viewnotes.BringToFront();
             }
         }
+
+        private void adxcbLongTermEnding_Click(object sender)
+        {
+            LoadLongTermEnding();
+        }
+
+        private void adxLongTermEnding_OnClick(object sender, IRibbonControl control, bool pressed)
+        {
+            LoadLongTermEnding();
+        }
+
+        private void LoadLongTermEnding()
+        {
+            frmLongTermEnding viewLoadLongTermEnding = Application.OpenForms["frmLongTermEnding"] as frmLongTermEnding;
+            if (viewLoadLongTermEnding == null)
+            {
+                viewLoadLongTermEnding = new frmLongTermEnding();
+                viewLoadLongTermEnding.Show();
+            }
+            else
+            {
+                viewLoadLongTermEnding.BringToFront();
+            }
+        }
+
+
 
 
     }

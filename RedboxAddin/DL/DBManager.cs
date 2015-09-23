@@ -1627,6 +1627,21 @@ namespace RedboxAddin.DL
             }
         }
 
+        public DataSet GetLongTermBooking(string startdate, string enddate)
+        {
+            try
+            {
+                string SQLstr = GetLongTermBookingsSQL(startdate, enddate);
+                DataSet msgDs = GetDataSet(SQLstr);
+                return msgDs;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
         public DataTable GetClashingBookingDetailsForUpdate(long masterBookingID, long newTeacherID)
         {
             try
@@ -3536,7 +3551,7 @@ namespace RedboxAddin.DL
                         CmdAddContact.Parameters["@Text"].Value = dr["Text"].ToString();
                         CmdAddContact.Parameters["@SchoolID"].Value = dr["SchoolID"].ToString();
                         CmdAddContact.ExecuteNonQuery();
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -3546,7 +3561,7 @@ namespace RedboxAddin.DL
                 }
             }
 
-        }        
+        }
 
         private DateTime CheckDate(object value)
         {
@@ -4648,6 +4663,27 @@ namespace RedboxAddin.DL
 
             return SQL;
         }
+
+        private string GetLongTermBookingsSQL(string dtStart, string dtEnd)
+        {
+            string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
+                         "LastName+', ' + FirstName as FullName, BookingStatus, Code, MasterBookings.LongTerm AS LT " +
+                         "FROM [Bookings] " +
+                         "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
+                         "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
+                         "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID";
+            string WhereSQL = "";
+            if (!string.IsNullOrWhiteSpace(dtStart)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "' ";
+            if (!string.IsNullOrWhiteSpace(dtEnd)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "' ";
+            WhereSQL += " AND [LongTerm] = " + 1 + " ";
+
+            if (WhereSQL.Length > 2)
+            {
+                WhereSQL = " WHERE " + WhereSQL.Substring(4).Trim();
+            }
+            return SQL + WhereSQL;
+        }
+
         #endregion
 
         #region Import Data from original Database

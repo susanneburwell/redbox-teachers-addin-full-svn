@@ -277,6 +277,12 @@
     <Compile Include="Presentation\frmLoadPlan.designer.cs">
       <DependentUpon>frmLoadPlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmLongTermEnding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmLongTermEnding.Designer.cs">
+      <DependentUpon>frmLongTermEnding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmNames.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -487,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmLoadPlan.resx">
       <DependentUpon>frmLoadPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmLongTermEnding.resx">
+      <DependentUpon>frmLongTermEnding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmNames.resx">
       <DependentUpon>frmNames.cs</DependentUpon>
