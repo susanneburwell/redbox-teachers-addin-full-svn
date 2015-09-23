@@ -309,7 +309,7 @@ namespace RedboxAddin.BL
                 string format = "dd/MM/yyyy";
 
                 //set supply date
-                string supplyDate = "01/01/0001";
+                string supplyDate = "-";
                 if (startDate != null) supplyDate = startDate;
                 if ((endDate != null) && (endDate != startDate)) supplyDate = supplyDate + " to " + endDate;
 
@@ -355,7 +355,8 @@ namespace RedboxAddin.BL
                     txtBody = txtBody + "Requested By: " + requestedBy;
                 }
                 txtBody = txtBody + Environment.NewLine + "Qualification: " + contactObj.Qualification;
-                txtBody = txtBody + Environment.NewLine + "Date Qualification Checked: " + contactObj.QualificationCheckedDate.ToString(format);
+                if (contactObj.QualificationCheckedDate.ToString(format) == "01/01/0001") txtBody = txtBody + Environment.NewLine + "Date Qualification Checked: - ";
+                else txtBody = txtBody + Environment.NewLine + "Date Qualification Checked: " + contactObj.QualificationCheckedDate.ToString(format);
 
                 if (contactObj.QTS) txtBody = txtBody + Environment.NewLine + "QTS? Yes";
                 else txtBody = txtBody + Environment.NewLine + "QTS? No";
@@ -544,8 +545,8 @@ namespace RedboxAddin.BL
                 else { txtBody = txtBody + Environment.NewLine + "NCTL Check Date: None"; }
 
                 if (!string.IsNullOrWhiteSpace(contactObj.BirthDate))
-                {
-                    txtBody = txtBody + Environment.NewLine + "Date of Birth: " + contactObj.BirthDate;
+                {                    
+                        txtBody = txtBody + Environment.NewLine + "Date of Birth: " + contactObj.BirthDate;
                 }
                 else { txtBody = txtBody + Environment.NewLine + "Date of Birth: None"; }
                 txtBody = txtBody + Environment.NewLine;
