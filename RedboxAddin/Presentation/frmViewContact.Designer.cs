@@ -322,6 +322,7 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ofdCVLocation = new System.Windows.Forms.OpenFileDialog();
+            this.chkImcomplete = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -2685,6 +2686,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.chkImcomplete);
             this.tabPage5.Controls.Add(this.txtSummary);
             this.tabPage5.Controls.Add(this.label91);
             this.tabPage5.Controls.Add(this.chkWest);
@@ -3536,6 +3538,19 @@
             this.ofdCVLocation.FileName = "CV";
             this.ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
             // 
+            // chkImcomplete
+            // 
+            this.chkImcomplete.AutoSize = true;
+            this.chkImcomplete.Checked = true;
+            this.chkImcomplete.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkImcomplete.ForeColor = System.Drawing.Color.Purple;
+            this.chkImcomplete.Location = new System.Drawing.Point(491, 79);
+            this.chkImcomplete.Name = "chkImcomplete";
+            this.chkImcomplete.Size = new System.Drawing.Size(93, 20);
+            this.chkImcomplete.TabIndex = 93;
+            this.chkImcomplete.Text = "Incomplete";
+            this.chkImcomplete.UseVisualStyleBackColor = true;
+            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3892,5 +3907,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn colSchoolID;
         private System.Windows.Forms.GroupBox grpCVLink;
+        private System.Windows.Forms.CheckBox chkImcomplete;
     }
 }

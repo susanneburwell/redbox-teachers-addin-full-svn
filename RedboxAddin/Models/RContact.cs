@@ -153,5 +153,6 @@ namespace RedboxAddin.Models
         public string NoGo { get; set; }
         public string Wants { get; set; }
         public string CVLocation { get; set; }
+        public bool Incomplete { get; set; }
     }
 }

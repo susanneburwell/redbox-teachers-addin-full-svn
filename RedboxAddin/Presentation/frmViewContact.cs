@@ -226,6 +226,7 @@ namespace RedboxAddin.Presentation
                 txtYearGroup.Text = contactObj.YearGroup;
                 //chkMMRV.Checked = contactObj.AttendMMRV;
                 lblCVLocation.Text = contactObj.CVLocation;
+                chkImcomplete.Checked = contactObj.Incomplete;
                 CheckReminderButtonColors();
 
                 LoadSummaryInfo();
@@ -373,6 +374,7 @@ namespace RedboxAddin.Presentation
                 contactObj.YearGroup = txtYearGroup.Text;
                 //contactObj.AttendMMRV = chkMMRV.Checked;
                 contactObj.CVLocation = lblCVLocation.Text;
+                contactObj.Incomplete = chkImcomplete.Checked;
 
                 bool result = false;
                 if (CurrentContactID != 0)
@@ -1563,6 +1565,7 @@ namespace RedboxAddin.Presentation
                 return null;
             }
         }
+        
 
     }
 }
