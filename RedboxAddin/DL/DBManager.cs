@@ -598,6 +598,8 @@ namespace RedboxAddin.DL
                             objAvail.MonColor = GetColor(monType);
                             if (monType == "1") objAvail.Monday = "GP Offered";
                         }
+                        //set incomplete color 
+                        if (Incomplete) { objAvail.MonColor = GetIncompleteColor(monType, objAvail.MonColor); }
                         //If provisional show text in italics
                         if (monProv) objAvail.MonColor += "i";
                         else objAvail.MonColor += "o";
@@ -612,6 +614,8 @@ namespace RedboxAddin.DL
                             objAvail.TueColor = GetColor(tueType);
                             if (tueType == "1") objAvail.Tuesday = "GP Offered";
                         }
+                        //set incomplete color 
+                        if (Incomplete) { objAvail.TueColor = GetIncompleteColor(tueType, objAvail.TueColor); }
                         if (tueProv) objAvail.TueColor += "i";
                         else objAvail.TueColor += "o";
 
@@ -625,6 +629,8 @@ namespace RedboxAddin.DL
                             objAvail.WedColor = GetColor(wedType);
                             if (wedType == "1") objAvail.Wednesday = "GP Offered";
                         }
+                        //set incomplete color 
+                        if (Incomplete) { objAvail.WedColor = GetIncompleteColor(wedType, objAvail.WedColor); }
                         if (wedProv) objAvail.WedColor += "i";
                         else objAvail.WedColor += "o";
 
@@ -638,6 +644,8 @@ namespace RedboxAddin.DL
                             objAvail.ThuColor = GetColor(thuType);
                             if (thuType == "1") objAvail.Thursday = "GP Offered";
                         }
+                        //set incomplete color 
+                        if (Incomplete) { objAvail.ThuColor = GetIncompleteColor(thuType, objAvail.ThuColor); }
                         if (thuProv) objAvail.ThuColor += "i";
                         else objAvail.ThuColor += "o";
 
@@ -651,6 +659,8 @@ namespace RedboxAddin.DL
                             objAvail.FriColor = GetColor(friType);
                             if (friType == "1") objAvail.Friday = "GP Offered";
                         }
+                        //set incomplete color 
+                        if (Incomplete) { objAvail.FriColor = GetIncompleteColor(friType, objAvail.FriColor); }
                         if (friProv) objAvail.FriColor += "i";
                         else objAvail.FriColor += "o";
 
@@ -809,9 +819,8 @@ namespace RedboxAddin.DL
 
                 switch (type)
                 {
-                    case "1": //guarantee offered
-                        if (Incomplete) return "purp/blue";
-                        else return "purp/gree";
+                    case "1": //guarantee offered                       
+                        return "purp/gree";
                         break;
                     case "2": //gurantee acceopted
                         return "purp/gree";
@@ -858,6 +867,31 @@ namespace RedboxAddin.DL
             }
 
             return incomplete;
+        }
+
+        private string GetIncompleteColor(string type, string currentColor)
+        {
+            string incompletecolor = currentColor;
+            try
+            {
+                if (type != "1" && type != "2" && type != "5" && type != "")
+                {
+                    if (!string.IsNullOrEmpty(currentColor))
+                        if (currentColor.Length > 8)
+                        {
+                            string backcolor = currentColor.Substring(5, 4);
+                            string forecolor = currentColor.Substring(0, 4);
+                            incompletecolor = forecolor + "/blue";
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetIncompleteColor: " + ex.Message);
+            }
+
+            return incompletecolor;
+
         }
 
 
