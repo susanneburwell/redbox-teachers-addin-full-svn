@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAvailabilitySheet));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkShowLT = new System.Windows.Forms.CheckBox();
             this.chkShowD2D = new System.Windows.Forms.CheckBox();
@@ -81,6 +82,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.panelRibbon = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDaySort = new System.Windows.Forms.Button();
@@ -91,8 +93,6 @@
             this.CheckDoubleBookingsTimer1 = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.availabilityGrid1 = new RedboxAddin.UC.AvailabilityGrid();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -146,6 +146,16 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1018, 193);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(290, 157);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 99;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox1
             // 
@@ -703,6 +713,15 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Date:";
             // 
+            // availabilityGrid1
+            // 
+            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
+            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.availabilityGrid1.Name = "availabilityGrid1";
+            this.availabilityGrid1.Size = new System.Drawing.Size(1016, 415);
+            this.availabilityGrid1.TabIndex = 1;
+            // 
             // panelRibbon
             // 
             this.panelRibbon.Controls.Add(this.button1);
@@ -778,25 +797,6 @@
             // flashtimer1
             // 
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(290, 157);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
-            this.btnPrint.TabIndex = 99;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // availabilityGrid1
-            // 
-            this.availabilityGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.availabilityGrid1.Location = new System.Drawing.Point(4, 243);
-            this.availabilityGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.availabilityGrid1.Name = "availabilityGrid1";
-            this.availabilityGrid1.Size = new System.Drawing.Size(1016, 415);
-            this.availabilityGrid1.TabIndex = 1;
             // 
             // frmAvailabilitySheet
             // 
@@ -875,7 +875,6 @@
         private System.Windows.Forms.Button btnCreatePaySheets;
         private System.Windows.Forms.CheckBox chkJustBookings;
         private System.Windows.Forms.Panel panelRibbon;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.CheckBox chkShowD2D;
         private System.Windows.Forms.CheckBox chkShowLT;
         private System.Windows.Forms.CheckBox chkShowTAs;
@@ -894,5 +893,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDaySort;
         private System.Windows.Forms.Button btnPrint;
+        public System.Windows.Forms.Button btnRefresh;
     }
 }

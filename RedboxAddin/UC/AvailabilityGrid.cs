@@ -683,7 +683,7 @@ namespace RedboxAddin.UC
                             break;
                         case "blue": //guaranteed and incomplete
                             e.Appearance.BackColor = System.Drawing.Color.LightBlue;
-                            break;                   
+                            break;
                         case "pink": //texted
                             e.Appearance.BackColor = System.Drawing.Color.LightPink;
                             break;
@@ -837,6 +837,7 @@ namespace RedboxAddin.UC
                     {
                         teacherIDForANewBooking = _rowInfo.Status.Split('.')[1];
                         Items.Add(CreateMenuItem("New booking", imageList.Images[0], "NEW", true));
+                        Items.Add(CreateUpdateTeacherManu());
                         bookingDate = _rowInfo.BookingDate;
                     }
                 }
@@ -846,6 +847,139 @@ namespace RedboxAddin.UC
                 Debug.DebugMessage(1, "Error in CreateItems(): " + ex.Message);
             }
         }
+
+        private DXMenuItem CreateUpdateTeacherManu()
+        {
+            DXSubMenuItem subMenu = new DXSubMenuItem("Update Teacher");
+            try
+            {
+                DXMenuItem textedRow = new DXMenuItem("&Texted", new EventHandler(OnTextedRowClick), imageList.Images[0]);
+                subMenu.Items.Add(textedRow);
+                DXMenuItem availableRow = new DXMenuItem("&Available", new EventHandler(OnAvailableClick), imageList.Images[0]);
+                subMenu.Items.Add(availableRow);
+                DXMenuItem unavailableRow = new DXMenuItem("&Unavailable", new EventHandler(OnUnavailableClick), imageList.Images[0]);
+                subMenu.Items.Add(unavailableRow);
+                DXMenuItem guaranteedRow = new DXMenuItem("&Guaranteed", new EventHandler(OnGuaranteedClick), imageList.Images[0]);
+                subMenu.Items.Add(guaranteedRow);
+                DXMenuItem offeredRow = new DXMenuItem("&Offered", new EventHandler(OnOfferedClick), imageList.Images[0]);
+                subMenu.Items.Add(offeredRow);
+                DXMenuItem priorityRow = new DXMenuItem("&Priority", new EventHandler(OnPriorityClick), imageList.Images[0]);
+                subMenu.Items.Add(priorityRow);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in CreateUpdateTeacherManu(): " + ex.Message);
+            }
+
+            return subMenu;
+        }
+
+        private void OnPriorityClick(object sender, EventArgs e)
+        {
+            SaveRequest(6);
+            RefreshGrid();
+        }
+
+        private void OnOfferedClick(object sender, EventArgs e)
+        {
+            SaveRequest(2);
+            RefreshGrid();
+        }
+
+        private void OnGuaranteedClick(object sender, EventArgs e)
+        {
+            SaveRequest(1);
+            RefreshGrid();
+        }
+
+        private void OnUnavailableClick(object sender, EventArgs e)
+        {
+            SaveRequest(5);
+            RefreshGrid();
+        }
+
+        private void OnAvailableClick(object sender, EventArgs e)
+        {
+            SaveRequest(4);
+            RefreshGrid();
+        }
+
+        private void OnTextedRowClick(object sender, EventArgs e)
+        {
+            SaveRequest(3);
+            RefreshGrid();
+        }
+
+        private void RefreshGrid()
+        {
+            try
+            {
+                EventHandler handler = RepaintRequired;
+                if (handler != null)
+                {
+                    handler(this, EventArgs.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(1, "Error in RefreshGrid: " + ex.Message);
+            }
+        }
+
+        private bool SaveRequest(int type)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                //Check dates are valid              
+
+
+                List<DayOfWeek> listOfDays = new List<DayOfWeek>();
+                int iCatch = 0;
+                string action;
+
+
+                //Create a new Guaranteed Day
+                action = "Creating Guaranteed Day";
+                GuaranteedDay gd = new GuaranteedDay();
+
+                //1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable, 6-priority
+                //if (chkAccepted.Checked) gd.Accepted = true; else gd.Accepted = false;
+                gd.Type = type;
+
+                gd.Date = bookingDate;
+                gd.Note = "";
+                gd.TeacherID = Int64.Parse(teacherIDForANewBooking);
+
+                //don't add twice
+                var numFound = db.GuaranteedDays.Count(g => g.Date == bookingDate && g.TeacherID == gd.TeacherID);
+                if (numFound == 0) db.GuaranteedDays.InsertOnSubmit(gd);
+
+                iCatch += 1;
+
+                if (iCatch > 365)
+                {
+                    MessageBox.Show("There was an error while " + action + "Too many created.");
+                    Debug.DebugMessage(2, "Overflow error while " + action);
+                    return false;
+                }
+
+
+                db.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Availability Grid: Error SaveRequest: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
 
         protected override void OnMenuItemClick(object sender, EventArgs e)
         {
