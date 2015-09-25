@@ -884,6 +884,10 @@ namespace RedboxAddin.DL
                             incompletecolor = forecolor + "/blue";
                         }
                 }
+                else if (string.IsNullOrEmpty(currentColor) && string.IsNullOrEmpty(type))
+                {
+                    incompletecolor = "blck/blue";
+                }
             }
             catch (Exception ex)
             {
