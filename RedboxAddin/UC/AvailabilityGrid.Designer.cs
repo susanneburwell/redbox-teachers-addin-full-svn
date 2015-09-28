@@ -71,6 +71,7 @@
             this.Sort = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -157,7 +158,6 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Guar, DevExpress.Data.ColumnSortOrder.Descending)});
-            //this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // Mobile
@@ -538,6 +538,19 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "status.png");
             this.imageList1.Images.SetKeyName(1, "found.png");
+            this.imageList1.Images.SetKeyName(2, "availablen.png");
+            this.imageList1.Images.SetKeyName(3, "guaranteed.png");
+            this.imageList1.Images.SetKeyName(4, "priority.png");
+            this.imageList1.Images.SetKeyName(5, "texted.png");
+            this.imageList1.Images.SetKeyName(6, "unavailable.png");
+            this.imageList1.Images.SetKeyName(7, "texted.png");
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "texted.png");
+            this.imageList2.Images.SetKeyName(1, "unavailable.png");
             // 
             // AvailabilityGrid
             // 
@@ -595,5 +608,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Mobile;
         private DevExpress.XtraGrid.Columns.GridColumn QNN;
         private DevExpress.XtraGrid.Columns.GridColumn SEN;
+        private System.Windows.Forms.ImageList imageList2;
     }
 }

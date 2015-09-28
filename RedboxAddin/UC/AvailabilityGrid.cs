@@ -853,17 +853,17 @@ namespace RedboxAddin.UC
             DXSubMenuItem subMenu = new DXSubMenuItem("Update Teacher");
             try
             {
-                DXMenuItem textedRow = new DXMenuItem("&Texted", new EventHandler(OnTextedRowClick), imageList.Images[0]);
+                DXMenuItem textedRow = new DXMenuItem("&Texted", new EventHandler(OnTextedRowClick), imageList.Images[5]);
                 subMenu.Items.Add(textedRow);
-                DXMenuItem availableRow = new DXMenuItem("&Available", new EventHandler(OnAvailableClick), imageList.Images[0]);
+                DXMenuItem availableRow = new DXMenuItem("&Available", new EventHandler(OnAvailableClick), imageList.Images[2]);
                 subMenu.Items.Add(availableRow);
-                DXMenuItem unavailableRow = new DXMenuItem("&Unavailable", new EventHandler(OnUnavailableClick), imageList.Images[0]);
+                DXMenuItem unavailableRow = new DXMenuItem("&Unavailable", new EventHandler(OnUnavailableClick), imageList.Images[6]);
                 subMenu.Items.Add(unavailableRow);
-                DXMenuItem guaranteedRow = new DXMenuItem("&Guaranteed", new EventHandler(OnGuaranteedClick), imageList.Images[0]);
+                DXMenuItem guaranteedRow = new DXMenuItem("&Guaranteed", new EventHandler(OnGuaranteedClick), imageList.Images[3]);
                 subMenu.Items.Add(guaranteedRow);
-                DXMenuItem offeredRow = new DXMenuItem("&Offered", new EventHandler(OnOfferedClick), imageList.Images[0]);
+                DXMenuItem offeredRow = new DXMenuItem("&Offered", new EventHandler(OnOfferedClick), imageList.Images[3]);
                 subMenu.Items.Add(offeredRow);
-                DXMenuItem priorityRow = new DXMenuItem("&Priority", new EventHandler(OnPriorityClick), imageList.Images[0]);
+                DXMenuItem priorityRow = new DXMenuItem("&Priority", new EventHandler(OnPriorityClick), imageList.Images[4]);
                 subMenu.Items.Add(priorityRow);
             }
             catch (Exception ex)
