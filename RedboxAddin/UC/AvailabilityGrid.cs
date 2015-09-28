@@ -777,6 +777,8 @@ namespace RedboxAddin.UC
                         int confMorningOnly = 0;
                         int dets = 0;
                         int none = 0;
+                        int canc = 0;
+                        int cancttbt = 0;
 
                         switch (_rowInfo.Status)
                         {
@@ -803,6 +805,14 @@ namespace RedboxAddin.UC
                             case "None":
                                 none = 1;
                                 break;
+
+                            case "Cancelled":
+                                canc = 1;
+                                break;
+
+                            case "Cancelled - ttbt":
+                                cancttbt = 1;
+                                break;
                         }
 
                         Items.Clear();
@@ -827,6 +837,8 @@ namespace RedboxAddin.UC
                             }
                         }
                         Items.Add(CreateMenuItem("Details Sent", imageList.Images[dets], "Details Sent", true));
+                        Items.Add(CreateMenuItem("Cancelled", imageList.Images[canc], "Cancelled", true));
+                        Items.Add(CreateMenuItem("Cancelled - ttbt", imageList.Images[cancttbt], "Cancelled - ttbt", true));
                         Items.Add(CreateMenuItem("None", imageList.Images[none], "None", true));
                         if (_rowInfo.School != string.Empty)
                             Items.Add(CreateMenuItem("Change Teacher", imageList.Images[0], "Change Teacher", true));
@@ -1018,16 +1030,53 @@ namespace RedboxAddin.UC
 
                 if (MasterBookingIDs.Count > 0)
                 {
-                    if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status))
+                    if (status == "Cancelled" || status == "Cancelled - ttbt")
                     {
-                        EventHandler handler = RepaintRequired;
-                        if (handler != null)
-                        {
-                            handler(this, EventArgs.Empty);
-                        }
+                        if (manageCancelledBooking(status))
+                            if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status)) RefreshGrid();
+                    }
+                    else
+                    {
+                        if (LINQmanager.SetBookingStatus(MasterBookingIDs[0], status)) RefreshGrid();
                     }
                 }
             }
+        }
+
+        private bool manageCancelledBooking(string status)
+        {
+            bool res = false;
+            try
+            {
+                if (status == "Cancelled")
+                {
+                    DialogResult response = MessageBox.Show("You have set the Status to Cancelled. \rThis should be set when the school has cancelled AND the teacher has been told.\r" +
+                        "If this is correct select Yes to remove the individual bookings from the availability sheet, or No to leave them.\r" +
+                        "You should normally remove them.\r" +
+                        "Do not use this method if the teacher has already worked one or more days on this booking.", "Cancelled Booking - Teacher TOLD", MessageBoxButtons.YesNoCancel);
+                    if (response == DialogResult.Yes)
+                    {
+                        res = true;
+                    }
+                }
+                else if (status == "Cancelled - ttbt")
+                {
+                    DialogResult response = MessageBox.Show("You have set the Status to Cancelled - ttbt. \rThis should be set when the school has cancelled BUT the teacher has NOT been told.\r" +
+                        "If this is correct select Yes to update the individual booking text to Cancelled.\r" +
+                        "Once the Teacher has been told, the individual bookings can be deleted.\r" +
+                        "Do not use this method if the teacher has already worked one or more days on this booking.", "Cancelled - ttbt - Teacher To Be Told", MessageBoxButtons.YesNoCancel);
+                    if (response == DialogResult.Yes)
+                    {
+                        res = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in manageCancelledBooking (AvailabilityGrid): " + ex.Message);
+            }
+
+            return res;
         }
 
 
