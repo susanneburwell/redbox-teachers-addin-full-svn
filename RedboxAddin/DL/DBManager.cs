@@ -587,6 +587,16 @@ namespace RedboxAddin.DL
                         }
                         else objAvail.LongTerm = "";
 
+                        //if (monType == "5" && tueType == "5" && wedType == "5" && thuType == "5" && friType == "5")
+                        //{
+                        //    objAvail.UnavailableStatus = "1";
+                        //}
+                        //else
+                        //    objAvail.UnavailableStatus = "";
+
+                        //set order
+                        objAvail.UnavailableStatus = GetTeachersPriorityOrder(monType, tueType, wedType, thuType, friType, Incomplete).ToString();
+
 
                         //****** Set Guaranteed colours and status for each day if required
                         if (objAvail.Monday != "")
@@ -847,6 +857,62 @@ namespace RedboxAddin.DL
             {
                 return "";
             }
+        }
+
+        private int GetTeachersPriorityOrder(string monType, string tueType, string wedType, string thuType, string friType, bool incomplete)
+        {
+            int order = 0;
+            var type = new List<int> { ConvertType(monType), ConvertType(tueType), ConvertType(wedType), ConvertType(thuType), ConvertType(friType), ConvertBoolToType(incomplete) };
+            var priority = new List<int> { 1, 2, 6, 4, 3, 7, 5 };
+            try
+            {
+                int i = 1;
+
+                foreach (int val in priority)
+                {
+                    if (type.Contains(val))
+                    {
+                        order = i;
+                        break;
+                    }
+
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+            }          
+           
+           
+            return order;
+        }
+
+        private int ConvertType(string daytype)
+        {
+            int type = 0;
+            try
+            {
+                type = int.Parse(daytype);
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return type;
+        }
+
+        private int ConvertBoolToType(bool daytype)
+        {
+            int type = 0;
+            try
+            {
+                if (daytype) type = 7;
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return type;
         }
 
         private bool IncompleteState(string incompleteState)

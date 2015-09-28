@@ -36,7 +36,7 @@ namespace RedboxAddin.UC
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                db = new RedBoxDB(CONNSTR);
+                db = new RedBoxDB(CONNSTR);                
             }
             catch (Exception ex)
             {
@@ -67,6 +67,7 @@ namespace RedboxAddin.UC
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
                 this.UseWaitCursor = false;
+                UnavailableStatus.Visible = false;
             }
             catch (Exception ex)
             {
@@ -99,11 +100,14 @@ namespace RedboxAddin.UC
             gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] 
             { 
                 new GridColumnSortInfo(gridView1.Columns["Guar"], ColumnSortOrder.Descending),
+                new GridColumnSortInfo(gridView1.Columns["UnavailableStatus"], ColumnSortOrder.Ascending),
                 new GridColumnSortInfo(gridView1.Columns["LongTerm"], ColumnSortOrder.Ascending),
                 new GridColumnSortInfo(gridView1.Columns["Teacher"], ColumnSortOrder.Ascending)
-            });
+
+            });                       
 
         }
+
 
         public void DaySort()
         {
