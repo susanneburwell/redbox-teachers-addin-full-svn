@@ -36,7 +36,7 @@ namespace RedboxAddin.UC
             try
             {
                 string CONNSTR = DavSettings.getDavValue("CONNSTR");
-                db = new RedBoxDB(CONNSTR);                
+                db = new RedBoxDB(CONNSTR);
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace RedboxAddin.UC
                 new GridColumnSortInfo(gridView1.Columns["LongTerm"], ColumnSortOrder.Ascending),
                 new GridColumnSortInfo(gridView1.Columns["Teacher"], ColumnSortOrder.Ascending)
 
-            });                       
+            });
 
         }
 
@@ -733,6 +733,9 @@ namespace RedboxAddin.UC
                         e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
 
                     }
+
+                    string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//added 29Sep2015
+                    if (myL == "1") e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 
                 }
             }

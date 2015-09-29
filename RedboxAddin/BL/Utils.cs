@@ -748,7 +748,8 @@ namespace RedboxAddin.BL
 
             if (lt) //LongTerm / Regular Booking
             {
-                back = "purp";
+                // comment 29Sep2015
+               // back = "purp";
             }
 
 
