@@ -595,7 +595,7 @@ namespace RedboxAddin.DL
                         //    objAvail.UnavailableStatus = "";
 
                         //set order
-                        objAvail.UnavailableStatus = GetTeachersPriorityOrder(monType, tueType, wedType, thuType, friType, Incomplete).ToString();
+                        objAvail.TeachersOrder = GetTeachersPriorityOrder(monType, tueType, wedType, thuType, friType, Incomplete).ToString();
 
 
                         //****** Set Guaranteed colours and status for each day if required
@@ -863,7 +863,7 @@ namespace RedboxAddin.DL
         {
             int order = 0;
             var type = new List<int> { ConvertType(monType), ConvertType(tueType), ConvertType(wedType), ConvertType(thuType), ConvertType(friType), ConvertBoolToType(incomplete) };
-            var priority = new List<int> { 1, 2, 6, 4, 3, 7, 5 };
+            var priority = new List<int> { 1, 2, 6, 4, 3,8, 7, 5 };
             try
             {
                 int i = 1;
@@ -881,9 +881,9 @@ namespace RedboxAddin.DL
             }
             catch (Exception ex)
             {
-            }          
-           
-           
+            }
+
+            if (order == 0 && !incomplete) order = 6;
             return order;
         }
 

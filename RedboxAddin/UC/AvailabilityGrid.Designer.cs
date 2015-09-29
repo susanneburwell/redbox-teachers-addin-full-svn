@@ -69,7 +69,7 @@
             this.TeacherID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Sort = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.UnavailableStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TeachersOrder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -143,7 +143,7 @@
             this.TeacherID,
             this.Prio,
             this.Sort,
-            this.UnavailableStatus});
+            this.TeachersOrder});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -530,11 +530,11 @@
             this.Sort.FieldName = "Sort";
             this.Sort.Name = "Sort";
             // 
-            // UnavailableStatus
+            // TeachersOrder
             // 
-            this.UnavailableStatus.Caption = "UnavailableStatus";
-            this.UnavailableStatus.FieldName = "UnavailableStatus";
-            this.UnavailableStatus.Name = "UnavailableStatus";
+            this.TeachersOrder.Caption = "TeachersOrder";
+            this.TeachersOrder.FieldName = "TeachersOrder";
+            this.TeachersOrder.Name = "TeachersOrder";
             // 
             // toolTipController1
             // 
@@ -617,6 +617,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn QNN;
         private DevExpress.XtraGrid.Columns.GridColumn SEN;
         private System.Windows.Forms.ImageList imageList2;
-        private DevExpress.XtraGrid.Columns.GridColumn UnavailableStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn TeachersOrder;
     }
 }

@@ -67,7 +67,7 @@ namespace RedboxAddin.UC
                 gridView1.Columns["Friday"].Caption = monday.AddDays(4).ToString("ddd d MMM yy");
 
                 this.UseWaitCursor = false;
-                UnavailableStatus.Visible = false;
+                TeachersOrder.Visible = false;
             }
             catch (Exception ex)
             {
@@ -81,6 +81,9 @@ namespace RedboxAddin.UC
             try
             {
                 gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
+                TeachersOrder.Visible = false;
+                // added 29Sep2015
+                ResetSort();
             }
             catch (Exception) { }
         }
@@ -100,7 +103,7 @@ namespace RedboxAddin.UC
             gridView1.SortInfo.ClearAndAddRange(new GridColumnSortInfo[] 
             { 
                 new GridColumnSortInfo(gridView1.Columns["Guar"], ColumnSortOrder.Descending),
-                new GridColumnSortInfo(gridView1.Columns["UnavailableStatus"], ColumnSortOrder.Ascending),
+                new GridColumnSortInfo(gridView1.Columns["TeachersOrder"], ColumnSortOrder.Ascending),
                 new GridColumnSortInfo(gridView1.Columns["LongTerm"], ColumnSortOrder.Ascending),
                 new GridColumnSortInfo(gridView1.Columns["Teacher"], ColumnSortOrder.Ascending)
 
