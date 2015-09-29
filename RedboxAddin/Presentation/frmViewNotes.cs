@@ -17,9 +17,11 @@ namespace RedboxAddin.Presentation
             InitializeComponent();
         }
 
-        private void LoadNoteGrid(DateTime fromDate, DateTime Todate)
+        private void LoadNoteGrid()
         {
-            DataSet noteDS = new DBManager().GetNotes(fromDate, Todate);
+            string fromdate = dtpFrom.DateTime.ToString("yyyyMMdd");
+            string todate = dtpTo.DateTime.ToString("yyyyMMdd");
+            DataSet noteDS = new DBManager().GetNotes(fromdate, todate);
             if (noteDS != null)
             {
                 gcViewNotes.DataSource = noteDS.Tables[0];
@@ -28,13 +30,13 @@ namespace RedboxAddin.Presentation
 
         private void frmViewNotes_Load(object sender, EventArgs e)
         {
-            SetDefaultDate();
-            LoadNoteGrid(dtpFrom.DateTime, dtpTo.DateTime);
+            SetDefaultDate();         
+            LoadNoteGrid();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
-            LoadNoteGrid(dtpFrom.DateTime, dtpTo.DateTime);
+        {           
+            LoadNoteGrid();
         }
 
         private void SetDefaultDate()

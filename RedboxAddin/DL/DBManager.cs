@@ -2444,7 +2444,7 @@ namespace RedboxAddin.DL
 
         }
 
-        public DataSet GetNotes(DateTime dateFrom, DateTime dateTo)
+        public DataSet GetNotes(string dateFrom, string dateTo)
         {
             try
             {
