@@ -1,4 +1,5 @@
-﻿using RedboxAddin.DL;
+﻿using RedboxAddin.BL;
+using RedboxAddin.DL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace RedboxAddin.Presentation
 
         private void LoadGrid()
         {
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 string startdate = dtpFrom.DateTime.ToString("yyyyMMdd");
@@ -34,8 +36,10 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-
+                Debug.DebugMessage(2, "Error in Load LTBR Grid :- " + ex.Message);
             }
+
+            Cursor.Current = Cursors.Default;
 
         }
 
@@ -46,8 +50,10 @@ namespace RedboxAddin.Presentation
 
         private void DefaultDateTime()
         {
-            dtpFrom.DateTime = DateTime.Now.AddDays(-28);
-            dtpTo.DateTime = DateTime.Now;
+            //dtpFrom.DateTime = DateTime.Now.AddDays(-28);
+            //dtpTo.DateTime = DateTime.Now;
+            dtpFrom.DateTime = Utils.GetFirstDayoftheWeek(DateTime.Today);
+            dtpTo.DateTime = dtpFrom.DateTime.AddDays(27);
         }
 
         private void gvLongTermEditing_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -62,9 +68,32 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
+                Debug.DebugMessage(2, "Error in gvLongTermEditing_RowClick :- " + ex.Message);
                 Cursor.Current = Cursors.Default;
             }
             Cursor.Current = Cursors.Default;
         }
+
+        private void dtpFrom_DateTimeChanged(object sender, EventArgs e)
+        {
+            FromTimechange();
+        }
+
+        private void FromTimechange()
+        {
+            try
+            {
+                DateTime fromDate = dtpFrom.DateTime;
+                dtpFrom.DateTime = Utils.GetFirstDayoftheWeek(fromDate);
+                dtpTo.DateTime = dtpFrom.DateTime.AddDays(27);
+                LoadGrid();
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in FromTimechange :- " + ex.Message);
+            }
+
+        }
+
     }
 }

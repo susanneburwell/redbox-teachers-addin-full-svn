@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLongTermEnding));
             this.pnlSearch = new System.Windows.Forms.Panel();
+            this.dtpTo = new DevExpress.XtraEditors.DateEdit();
+            this.dtpFrom = new DevExpress.XtraEditors.DateEdit();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblTo = new System.Windows.Forms.Label();
+            this.lblFrom = new System.Windows.Forms.Label();
             this.pnlGrid = new System.Windows.Forms.Panel();
             this.gcLongTermEditing = new DevExpress.XtraGrid.GridControl();
             this.gvLongTermEditing = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -39,19 +44,14 @@
             this.Details = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MasterBookingID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BookingStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dtpTo = new DevExpress.XtraEditors.DateEdit();
-            this.dtpFrom = new DevExpress.XtraEditors.DateEdit();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.lblTo = new System.Windows.Forms.Label();
-            this.lblFrom = new System.Windows.Forms.Label();
             this.pnlSearch.SuspendLayout();
-            this.pnlGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcLongTermEditing)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvLongTermEditing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom.Properties)).BeginInit();
+            this.pnlGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcLongTermEditing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvLongTermEditing)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSearch
@@ -65,6 +65,67 @@
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Size = new System.Drawing.Size(810, 68);
             this.pnlSearch.TabIndex = 0;
+            // 
+            // dtpTo
+            // 
+            this.dtpTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpTo.EditValue = null;
+            this.dtpTo.Location = new System.Drawing.Point(309, 25);
+            this.dtpTo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.dtpTo.MinimumSize = new System.Drawing.Size(170, 0);
+            this.dtpTo.Name = "dtpTo";
+            this.dtpTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpTo.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dtpTo.Size = new System.Drawing.Size(212, 20);
+            this.dtpTo.TabIndex = 35;           
+            // 
+            // dtpFrom
+            // 
+            this.dtpFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFrom.EditValue = null;
+            this.dtpFrom.Location = new System.Drawing.Point(48, 25);
+            this.dtpFrom.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.dtpFrom.MinimumSize = new System.Drawing.Size(170, 0);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFrom.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.dtpFrom.Size = new System.Drawing.Size(212, 20);
+            this.dtpFrom.TabIndex = 34;
+            this.dtpFrom.DateTimeChanged += new System.EventHandler(this.dtpFrom_DateTimeChanged);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(536, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 33;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lblTo
+            // 
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(283, 28);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(20, 13);
+            this.lblTo.TabIndex = 32;
+            this.lblTo.Text = "To";
+            // 
+            // lblFrom
+            // 
+            this.lblFrom.AutoSize = true;
+            this.lblFrom.Location = new System.Drawing.Point(12, 27);
+            this.lblFrom.Name = "lblFrom";
+            this.lblFrom.Size = new System.Drawing.Size(30, 13);
+            this.lblFrom.TabIndex = 31;
+            this.lblFrom.Text = "From";
             // 
             // pnlGrid
             // 
@@ -174,66 +235,6 @@
             this.BookingStatus.VisibleIndex = 4;
             this.BookingStatus.Width = 165;
             // 
-            // dtpTo
-            // 
-            this.dtpTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpTo.EditValue = null;
-            this.dtpTo.Location = new System.Drawing.Point(309, 25);
-            this.dtpTo.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.dtpTo.MinimumSize = new System.Drawing.Size(170, 0);
-            this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpTo.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dtpTo.Size = new System.Drawing.Size(212, 20);
-            this.dtpTo.TabIndex = 35;
-            // 
-            // dtpFrom
-            // 
-            this.dtpFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpFrom.EditValue = null;
-            this.dtpFrom.Location = new System.Drawing.Point(48, 25);
-            this.dtpFrom.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.dtpFrom.MinimumSize = new System.Drawing.Size(170, 0);
-            this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFrom.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dtpFrom.Size = new System.Drawing.Size(212, 20);
-            this.dtpFrom.TabIndex = 34;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(536, 22);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 33;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // lblTo
-            // 
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(283, 28);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(20, 13);
-            this.lblTo.TabIndex = 32;
-            this.lblTo.Text = "To";
-            // 
-            // lblFrom
-            // 
-            this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(12, 27);
-            this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(30, 13);
-            this.lblFrom.TabIndex = 31;
-            this.lblFrom.Text = "From";
-            // 
             // frmLongTermEnding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,13 +248,13 @@
             this.Load += new System.EventHandler(this.frmLongTermEnding_Load);
             this.pnlSearch.ResumeLayout(false);
             this.pnlSearch.PerformLayout();
-            this.pnlGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcLongTermEditing)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvLongTermEditing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom.Properties)).EndInit();
+            this.pnlGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcLongTermEditing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvLongTermEditing)).EndInit();
             this.ResumeLayout(false);
 
         }
