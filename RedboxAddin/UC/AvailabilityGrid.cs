@@ -953,22 +953,11 @@ namespace RedboxAddin.UC
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                //Check dates are valid              
 
-
-                List<DayOfWeek> listOfDays = new List<DayOfWeek>();
-                int iCatch = 0;
-                string action;
-
-
-                //Create a new Guaranteed Day
-                action = "Creating Guaranteed Day";
+                //Create a new Guaranteed Day             
                 GuaranteedDay gd = new GuaranteedDay();
 
-                //1- guaranteed offered, 2-guar accepted, 3-texted, 4-available, 5-unavailable, 6-priority
-                //if (chkAccepted.Checked) gd.Accepted = true; else gd.Accepted = false;
                 gd.Type = type;
-
                 gd.Date = bookingDate;
                 gd.Note = "";
                 gd.TeacherID = Int64.Parse(teacherIDForANewBooking);
@@ -976,16 +965,21 @@ namespace RedboxAddin.UC
                 //don't add twice
                 var numFound = db.GuaranteedDays.Count(g => g.Date == bookingDate && g.TeacherID == gd.TeacherID);
                 if (numFound == 0) db.GuaranteedDays.InsertOnSubmit(gd);
-
-                iCatch += 1;
-
-                if (iCatch > 365)
+                else
                 {
-                    MessageBox.Show("There was an error while " + action + "Too many created.");
-                    Debug.DebugMessage(2, "Overflow error while " + action);
-                    return false;
+                    //update state                 
+                    DBManager dbm = new DBManager();
+                    string datetime = bookingDate.ToString("yyyyMMdd");
+                    DataSet ds = dbm.GetGuaranteedDays(datetime, gd.TeacherID);
+                    if (ds != null)
+                        foreach (DataRow dr in ds.Tables[0].Rows)
+                        {
+                            long guranteeID = Int64.Parse(dr["ID"].ToString());
+                            long[] guID = new long[] { guranteeID };
+                            int response = dbm.UpdateGuarantee(guID, type);
+                            break;
+                        }
                 }
-
 
                 db.SubmitChanges();
 

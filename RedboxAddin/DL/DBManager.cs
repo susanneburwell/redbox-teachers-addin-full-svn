@@ -863,7 +863,7 @@ namespace RedboxAddin.DL
         {
             int order = 0;
             var type = new List<int> { ConvertType(monType), ConvertType(tueType), ConvertType(wedType), ConvertType(thuType), ConvertType(friType), ConvertBoolToType(incomplete) };
-            var priority = new List<int> { 1, 2, 6, 4, 3,8, 7, 5 };
+            var priority = new List<int> { 1, 2, 6, 4, 3, 8, 7, 5 };
             try
             {
                 int i = 1;
@@ -2463,6 +2463,24 @@ namespace RedboxAddin.DL
 
         }
 
+        public DataSet GetGuaranteedDays(string datetime, long teacherID)
+        {
+            try
+            {
+                string sql = "SELECT *"
+                            + " FROM GuaranteedDays"
+                            + " WHERE Date ='" + datetime + "' AND TeacherID='" + teacherID + "'";
+
+                return GetDataSet(sql);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "***GetGuaranteedDays : Error  : " + ex.Message);
+                return null;
+            }
+
+        }
+
         private RContact GetContactFromDataRow(DataRow dr)
         {
             RContact objContact = new RContact();
@@ -2737,6 +2755,7 @@ namespace RedboxAddin.DL
             }
 
         }
+        
 
         public int DeleteGuarantee(long[] guaranteeIDs)
         {
