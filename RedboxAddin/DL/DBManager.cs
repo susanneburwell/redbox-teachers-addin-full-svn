@@ -2432,7 +2432,7 @@ namespace RedboxAddin.DL
                 string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime,tblNotes.NoteID,tblNotes.SchoolID"
                             + " FROM tblNotes"
                             + " INNER JOIN Schools"
-                            + " ON tblNotes.SchoolID=Schools.ID WHERE ContactID =" + contactID.ToString();
+                            + " ON tblNotes.SchoolID=Schools.ID WHERE ContactID =" + contactID.ToString() + " ORDER BY NoteID DESC";
 
                 return GetDataSet(sql);
             }
