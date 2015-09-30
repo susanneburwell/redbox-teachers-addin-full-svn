@@ -1,4 +1,5 @@
-﻿using RedboxAddin.DL;
+﻿using RedboxAddin.BL;
+using RedboxAddin.DL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 namespace RedboxAddin.Presentation
 {
     public partial class frmViewNotes : Form
-    {       
+    {
         public frmViewNotes()
         {
             InitializeComponent();
@@ -19,23 +20,33 @@ namespace RedboxAddin.Presentation
 
         private void LoadNoteGrid()
         {
-            string fromdate = dtpFrom.DateTime.ToString("yyyyMMdd");
-            string todate = dtpTo.DateTime.ToString("yyyyMMdd");
-            DataSet noteDS = new DBManager().GetNotes(fromdate, todate);
-            if (noteDS != null)
+            Cursor.Current = Cursors.WaitCursor;
+            try
             {
-                gcViewNotes.DataSource = noteDS.Tables[0];
+                string fromdate = dtpFrom.DateTime.ToString("yyyyMMdd");
+                string todate = dtpTo.DateTime.ToString("yyyyMMdd");
+                DataSet noteDS = new DBManager().GetNotes(fromdate, todate);
+                if (noteDS != null)
+                {
+                    gcViewNotes.DataSource = noteDS.Tables[0];
+                }
+
             }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in LoadNoteGrid(frmViewNotes): " + ex.Message);
+            }
+            Cursor.Current = Cursors.Default;
         }
 
         private void frmViewNotes_Load(object sender, EventArgs e)
         {
-            SetDefaultDate();         
+            SetDefaultDate();
             LoadNoteGrid();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {           
+        {
             LoadNoteGrid();
         }
 
@@ -48,9 +59,19 @@ namespace RedboxAddin.Presentation
             }
             catch (Exception ex)
             {
-
+                Debug.DebugMessage(2, "Error in SetDefaultDate(frmViewNotes): " + ex.Message);
             }
         }
-        
+
+        private void dtpFrom_DateTimeChanged(object sender, EventArgs e)
+        {
+            LoadNoteGrid();
+        }
+
+        private void dtpTo_DateTimeChanged(object sender, EventArgs e)
+        {
+            LoadNoteGrid();
+        }
+
     }
 }

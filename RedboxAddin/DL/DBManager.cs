@@ -2444,14 +2444,36 @@ namespace RedboxAddin.DL
 
         }
 
+        //public DataSet GetNotes(string dateFrom, string dateTo)
+        //{
+        //    try
+        //    {
+        //        string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime"
+        //                    + " FROM tblNotes"
+        //                    + " INNER JOIN Schools"
+        //                    + " ON tblNotes.SchoolID=Schools.ID WHERE DateTime <='" + dateTo + "' AND DateTime >='" + dateFrom + "'";
+
+        //        return GetDataSet(sql);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.DebugMessage(2, "***GetNotes : Error  : " + ex.Message);
+        //        return null;
+        //    }
+
+        //}
+
         public DataSet GetNotes(string dateFrom, string dateTo)
         {
             try
             {
-                string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime"
+                string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime,Contacts.Title+' '+Contacts.FirstName+'  '+Contacts.Lastname as TeacherName"
                             + " FROM tblNotes"
                             + " INNER JOIN Schools"
-                            + " ON tblNotes.SchoolID=Schools.ID WHERE DateTime <='" + dateTo + "' AND DateTime >='" + dateFrom + "'";
+                            + " ON tblNotes.SchoolID=Schools.ID"
+                            + " INNER JOIN Contacts"
+                            + " ON tblNotes.ContactID=Contacts.contactID"
+                            + " WHERE DateTime <='" + dateTo + "' AND DateTime >='" + dateFrom + "'";
 
                 return GetDataSet(sql);
             }
@@ -2755,7 +2777,7 @@ namespace RedboxAddin.DL
             }
 
         }
-        
+
 
         public int DeleteGuarantee(long[] guaranteeIDs)
         {

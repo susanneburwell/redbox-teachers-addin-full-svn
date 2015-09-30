@@ -46,6 +46,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblTo = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
+            this.colTeacherName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlViewNotes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcViewNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewNotes)).BeginInit();
@@ -94,7 +95,8 @@
             this.gvViewNotes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colNotes,
             this.colSchool,
-            this.colDateTime});
+            this.colDateTime,
+            this.colTeacherName});
             this.gvViewNotes.GridControl = this.gcViewNotes;
             this.gvViewNotes.Name = "gvViewNotes";
             this.gvViewNotes.OptionsView.RowAutoHeight = true;
@@ -109,8 +111,8 @@
             this.colNotes.Name = "colNotes";
             this.colNotes.OptionsColumn.ReadOnly = true;
             this.colNotes.Visible = true;
-            this.colNotes.VisibleIndex = 0;
-            this.colNotes.Width = 562;
+            this.colNotes.VisibleIndex = 2;
+            this.colNotes.Width = 400;
             // 
             // repositoryItemMemoEdit2
             // 
@@ -127,7 +129,7 @@
             this.colSchool.OptionsColumn.ReadOnly = true;
             this.colSchool.Visible = true;
             this.colSchool.VisibleIndex = 1;
-            this.colSchool.Width = 200;
+            this.colSchool.Width = 148;
             // 
             // colDateTime
             // 
@@ -140,7 +142,7 @@
             this.colDateTime.Name = "colDateTime";
             this.colDateTime.OptionsColumn.ReadOnly = true;
             this.colDateTime.Visible = true;
-            this.colDateTime.VisibleIndex = 2;
+            this.colDateTime.VisibleIndex = 3;
             this.colDateTime.Width = 130;
             // 
             // repositoryItemTextEdit1
@@ -193,6 +195,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtpTo.Size = new System.Drawing.Size(212, 20);
             this.dtpTo.TabIndex = 30;
+            this.dtpTo.DateTimeChanged += new System.EventHandler(this.dtpTo_DateTimeChanged);
             // 
             // dtpFrom
             // 
@@ -209,6 +212,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtpFrom.Size = new System.Drawing.Size(212, 20);
             this.dtpFrom.TabIndex = 29;
+            this.dtpFrom.DateTimeChanged += new System.EventHandler(this.dtpFrom_DateTimeChanged);
             // 
             // btnSearch
             // 
@@ -237,6 +241,19 @@
             this.lblFrom.Size = new System.Drawing.Size(30, 13);
             this.lblFrom.TabIndex = 0;
             this.lblFrom.Text = "From";
+            // 
+            // colTeacherName
+            // 
+            this.colTeacherName.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colTeacherName.AppearanceHeader.Options.UseFont = true;
+            this.colTeacherName.Caption = "Teacher";
+            this.colTeacherName.FieldName = "TeacherName";
+            this.colTeacherName.MaxWidth = 250;
+            this.colTeacherName.Name = "colTeacherName";
+            this.colTeacherName.OptionsColumn.ReadOnly = true;
+            this.colTeacherName.Visible = true;
+            this.colTeacherName.VisibleIndex = 0;
+            this.colTeacherName.Width = 201;
             // 
             // frmViewNotes
             // 
@@ -286,5 +303,6 @@
         private DevExpress.XtraEditors.DateEdit dtpTo;
         private DevExpress.XtraEditors.DateEdit dtpFrom;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colTeacherName;
     }
 }
