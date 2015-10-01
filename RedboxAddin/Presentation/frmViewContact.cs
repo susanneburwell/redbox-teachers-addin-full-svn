@@ -1487,12 +1487,16 @@ namespace RedboxAddin.Presentation
                 {
                     if (removedIndex == count)
                     {
-                        if (dr["NoteID"].ToString() != "0")
+                        var result = MessageBox.Show("Are you sure you want to delete this note? ", "Redbox Addin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == System.Windows.Forms.DialogResult.Yes)
                         {
-                            DeletedNotes.Add(dr["NoteID"].ToString());
-                        }
+                            if (dr["NoteID"].ToString() != "0")
+                            {
+                                DeletedNotes.Add(dr["NoteID"].ToString());
+                            }
 
-                        dr.Delete();
+                            dr.Delete();
+                        }
                         break;
                     }
                     count++;
@@ -1565,7 +1569,7 @@ namespace RedboxAddin.Presentation
                 return null;
             }
         }
-        
+
 
     }
 }
