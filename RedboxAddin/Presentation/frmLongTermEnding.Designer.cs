@@ -80,7 +80,7 @@
             this.dtpTo.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtpTo.Size = new System.Drawing.Size(212, 20);
-            this.dtpTo.TabIndex = 35;           
+            this.dtpTo.TabIndex = 35;
             // 
             // dtpFrom
             // 
@@ -166,6 +166,8 @@
             // 
             // Date
             // 
+            this.Date.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Date.AppearanceHeader.Options.UseFont = true;
             this.Date.Caption = "Date";
             this.Date.DisplayFormat.FormatString = "ddd dd MMM yyyy";
             this.Date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -181,6 +183,8 @@
             // 
             // School
             // 
+            this.School.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.School.AppearanceHeader.Options.UseFont = true;
             this.School.Caption = "School";
             this.School.FieldName = "SchoolName";
             this.School.MaxWidth = 250;
@@ -194,6 +198,8 @@
             // 
             // Teacher
             // 
+            this.Teacher.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Teacher.AppearanceHeader.Options.UseFont = true;
             this.Teacher.Caption = "Teacher";
             this.Teacher.FieldName = "FullName";
             this.Teacher.MaxWidth = 250;
@@ -207,6 +213,8 @@
             // 
             // Details
             // 
+            this.Details.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Details.AppearanceHeader.Options.UseFont = true;
             this.Details.Caption = "Description";
             this.Details.FieldName = "Description";
             this.Details.MinWidth = 50;
@@ -226,6 +234,8 @@
             // 
             // BookingStatus
             // 
+            this.BookingStatus.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BookingStatus.AppearanceHeader.Options.UseFont = true;
             this.BookingStatus.Caption = "BookingStatus";
             this.BookingStatus.FieldName = "BookingStatus";
             this.BookingStatus.MaxWidth = 250;

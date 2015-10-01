@@ -74,7 +74,7 @@ namespace RedboxAddin.Presentation
         {
             lblCVLocation.Text = "";
             this.repositoryItemPictureEdit1.Click += new EventHandler(Remove_Note);
-            LoadNoteGrid(CurrentContactID);
+            LoadNoteGrid(CurrentContactID);            
             if (CurrentContactID == 0) return;
             RContact contactObj = new DBManager().GetContact(this.CurrentContactID);
             if (contactObj == null)
@@ -1569,6 +1569,7 @@ namespace RedboxAddin.Presentation
                 return null;
             }
         }
+        
 
 
     }

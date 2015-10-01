@@ -1768,6 +1768,21 @@ namespace RedboxAddin.DL
             }
         }
 
+        public DataSet GetAllContacts()
+        {
+            try
+            {
+                string SQLstr = GetAllContactsSQL();
+                DataSet msgDs = GetDataSet(SQLstr);
+                return msgDs;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
         public DataTable GetClashingBookingDetailsForUpdate(long masterBookingID, long newTeacherID)
         {
             try
@@ -4834,24 +4849,49 @@ namespace RedboxAddin.DL
             return SQL;
         }
 
+        //private string GetLongTermBookingsSQL(string dtStart, string dtEnd)
+        //{
+        //    string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
+        //                 "LastName+', ' + FirstName as FullName, BookingStatus, Code, MasterBookings.LongTerm AS LT " +
+        //                 "FROM [Bookings] " +
+        //                 "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
+        //                 "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
+        //                 "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID";
+        //    string WhereSQL = "";
+        //    if (!string.IsNullOrWhiteSpace(dtStart)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "' ";
+        //    if (!string.IsNullOrWhiteSpace(dtEnd)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "' ";
+        //    WhereSQL += " AND [LongTerm] = " + 1 + " ";
+
+        //    if (WhereSQL.Length > 2)
+        //    {
+        //        WhereSQL = " WHERE " + WhereSQL.Substring(4).Trim();
+        //    }
+        //    return SQL + WhereSQL;
+        //}
+
         private string GetLongTermBookingsSQL(string dtStart, string dtEnd)
         {
-            string SQL = "SELECT [Bookings].ID, MasterBookingID, Description, Date, [MasterBookings].contactID, SchoolID, SchoolName, " +
-                         "LastName+', ' + FirstName as FullName, BookingStatus, Code, MasterBookings.LongTerm AS LT " +
-                         "FROM [Bookings] " +
-                         "LEFT JOIN [MasterBookings] ON [MasterBookings].ID = [Bookings].MasterBookingID " +
-                         "LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID " +
-                         "LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID";
-            string WhereSQL = "";
-            if (!string.IsNullOrWhiteSpace(dtStart)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) >= '" + dtStart + "' ";
-            if (!string.IsNullOrWhiteSpace(dtEnd)) WhereSQL += " AND CONVERT(VARCHAR(10), [Bookings].Date, 112) <= '" + dtEnd + "' ";
-            WhereSQL += " AND [LongTerm] = " + 1 + " ";
+            string SQL = "SELECT   MasterBookingID,  Date,SchoolName,LastName+', ' + FirstName as FullName,BookingStatus,Description " +
+                         " FROM (" +
+                         " SELECT   *,  max_date = MAX(Date) OVER (PARTITION BY MasterBookingID)" +
+                         " FROM Bookings" +
+                         " ) AS s" +
+                         " LEFT JOIN [MasterBookings] ON [MasterBookings].ID = MasterBookingID" +
+                         " LEFT JOIN [Schools] ON [MasterBookings].SchoolID = [Schools].ID" +
+                         " LEFT JOIN [Contacts] ON [MasterBookings].contactID = [Contacts].contactID" +
+                        " WHERE Date = max_date AND " +
+                        " CONVERT(VARCHAR(10), Date, 112) <= '" + dtEnd + "' " +
+                        " AND CONVERT(VARCHAR(10), Date, 112) >= '" + dtStart + "' " +
+                        " AND LongTerm=1";
 
-            if (WhereSQL.Length > 2)
-            {
-                WhereSQL = " WHERE " + WhereSQL.Substring(4).Trim();
-            }
-            return SQL + WhereSQL;
+            return SQL;
+        }
+
+        private string GetAllContactsSQL()
+        {
+            string SQL = "SELECT contactID, Notes " +
+                         "FROM Contacts ";
+            return SQL;
         }
 
         #endregion

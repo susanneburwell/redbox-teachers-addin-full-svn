@@ -1134,6 +1134,7 @@ namespace RedboxAddin
             Debug.SetDebugLevel();
             var mapiObject = Globals.objNS.MAPIOBJECT;
             RedemptionCode.InitialiseRedemption(ref mapiObject);
+            MigrateNotesToNotesTable();
         }
 
         private void adxRibbonButton1_OnClick(object sender, IRibbonControl control, bool pressed)
@@ -2072,6 +2073,20 @@ namespace RedboxAddin
             else
             {
                 viewLoadLongTermEnding.BringToFront();
+            }
+        }
+
+        private void MigrateNotesToNotesTable()
+        {
+            try
+            {
+                System.Data.DataSet ds = new System.Data.DataSet();
+                ds = new DBManager().GetAllContacts();
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
