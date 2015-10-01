@@ -27,9 +27,21 @@ namespace RedboxAddin.Presentation
             try
             {
                 DSSchools = new DBManager().GetSchoolsAndID();
-                cmbSchool.DataSource = DSSchools.Tables[0];
+
+                DataTable schoolTable = new DataTable();
+                schoolTable.Columns.Add("SchoolName", typeof(string));
+                schoolTable.Columns.Add("ID", typeof(long));
+                schoolTable.Rows.Add("", 0);
+
+                foreach (DataTable table in DSSchools.Tables)
+                {
+                    foreach (DataRow dr in table.Rows) { schoolTable.Rows.Add(dr["SchoolName"].ToString(), Int64.Parse(dr["ID"].ToString())); }
+                }
+               
+                cmbSchool.DataSource = schoolTable;
                 cmbSchool.ValueMember = "ID";
                 cmbSchool.DisplayMember = "SchoolName";
+
             }
             catch (Exception ex)
             {
@@ -42,7 +54,7 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                LoadSchoolCombo();               
+                LoadSchoolCombo();
             }
             catch (Exception ex)
             {
