@@ -551,11 +551,13 @@ namespace RedboxAddin.DL
                         objAvail.QTS = dr["QTS"].ToString();
                         objAvail.Wants = dr["Wants"].ToString();
                         objAvail.YrGroup = yearGroup;
+
                         objAvail.Monday = dr["Monday"].ToString();
                         objAvail.Tuesday = dr["Tuesday"].ToString();
                         objAvail.Wednesday = dr["Wednesday"].ToString();
                         objAvail.Thursday = dr["Thursday"].ToString();
                         objAvail.Friday = dr["Friday"].ToString();
+
                         objAvail.MonStatus = dr["MonStatus"].ToString();
                         objAvail.TueStatus = dr["TueStatus"].ToString();
                         objAvail.WedStatus = dr["WedStatus"].ToString();
@@ -674,6 +676,14 @@ namespace RedboxAddin.DL
                         if (Incomplete) { objAvail.FriColor = GetIncompleteColor(friType, objAvail.FriColor); }
                         if (friProv) objAvail.FriColor += "i";
                         else objAvail.FriColor += "o";
+
+
+                        // set the incomplete text
+                        if (string.IsNullOrEmpty(objAvail.Monday) && Incomplete) objAvail.Monday = "Inc";
+                        if (string.IsNullOrEmpty(objAvail.Tuesday) && Incomplete) objAvail.Tuesday = "Inc";
+                        if (string.IsNullOrEmpty(objAvail.Wednesday) && Incomplete) objAvail.Wednesday = "Inc";
+                        if (string.IsNullOrEmpty(objAvail.Thursday) && Incomplete) objAvail.Thursday = "Inc";
+                        if (string.IsNullOrEmpty(objAvail.Friday) && Incomplete) objAvail.Friday = "Inc";
 
 
                         objAvail.FirstAid = Utils.CheckBool(dr["FirstAid"]);

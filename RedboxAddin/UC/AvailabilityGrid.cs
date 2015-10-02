@@ -387,7 +387,7 @@ namespace RedboxAddin.UC
                         }
                     }
 
-                    if (rowInfo.Description.Trim() == "")
+                    if (rowInfo.Description.Trim() == "" || rowInfo.Description.Trim() == "Inc")
                     {
                         //This should work for ALL colours (maybe except orange - unavailable)
 
