@@ -2446,9 +2446,10 @@ namespace RedboxAddin.DL
             try
             {
                 string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime,tblNotes.NoteID,tblNotes.SchoolID"
-                            + " FROM tblNotes"
-                            + " INNER JOIN Schools"
-                            + " ON tblNotes.SchoolID=Schools.ID WHERE ContactID =" + contactID.ToString() + " ORDER BY NoteID DESC";
+                             + " FROM tblNotes"
+                             + " LEFT JOIN [Schools] ON tblNotes.SchoolID = [Schools].ID"
+                             + " WHERE ContactID =" + contactID.ToString()
+                             + " ORDER BY NoteID DESC";
 
                 return GetDataSet(sql);
             }
@@ -2485,11 +2486,10 @@ namespace RedboxAddin.DL
             {
                 string sql = "SELECT tblNotes.Text, Schools.SchoolName, tblNotes.DateTime,Contacts.Title+' '+Contacts.FirstName+'  '+Contacts.Lastname as TeacherName"
                             + " FROM tblNotes"
-                            + " INNER JOIN Schools"
-                            + " ON tblNotes.SchoolID=Schools.ID"
-                            + " INNER JOIN Contacts"
-                            + " ON tblNotes.ContactID=Contacts.contactID"
-                            + " WHERE DateTime <='" + dateTo + "' AND DateTime >='" + dateFrom + "'";
+                            + " LEFT JOIN [Schools] ON tblNotes.SchoolID = [Schools].ID"
+                            + " LEFT JOIN [Contacts] ON tblNotes.contactID = [Contacts].contactID"
+                            + " WHERE DateTime <='" + dateTo + "' AND DateTime >='" + dateFrom + "'"
+                            + " ORDER BY DateTime DESC";
 
                 return GetDataSet(sql);
             }
