@@ -90,6 +90,7 @@ namespace RedboxAddin.Models
         public int Sort { get; set; }
         public string Mobile { get; set; }
         public string TeachersOrder { get; set; }
+        public bool Incomplete { get; set; }
     }
 
     class RTimeSheet

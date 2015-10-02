@@ -524,6 +524,7 @@ namespace RedboxAddin.DL
                         bool thuProv = Utils.CheckBool(dr["ThuPr"]);
                         bool friProv = Utils.CheckBool(dr["FriPr"]);
                         Incomplete = IncompleteState(dr["Incomplete"].ToString());
+                        objAvail.Incomplete = Incomplete;
 
                         string yearGroup = "";
                         if (dr["Nur"].ToString() == "True") yearGroup += "N";

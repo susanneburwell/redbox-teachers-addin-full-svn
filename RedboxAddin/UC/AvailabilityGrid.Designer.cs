@@ -70,6 +70,7 @@
             this.Prio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Sort = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TeachersOrder = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Incomplete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -143,7 +144,8 @@
             this.TeacherID,
             this.Prio,
             this.Sort,
-            this.TeachersOrder});
+            this.TeachersOrder,
+            this.Incomplete});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             styleFormatCondition1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -536,6 +538,12 @@
             this.TeachersOrder.FieldName = "TeachersOrder";
             this.TeachersOrder.Name = "TeachersOrder";
             // 
+            // Incomplete
+            // 
+            this.Incomplete.Caption = "Incomplete";
+            this.Incomplete.FieldName = "Incomplete";
+            this.Incomplete.Name = "Incomplete";
+            // 
             // toolTipController1
             // 
             this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
@@ -618,5 +626,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn SEN;
         private System.Windows.Forms.ImageList imageList2;
         private DevExpress.XtraGrid.Columns.GridColumn TeachersOrder;
+        private DevExpress.XtraGrid.Columns.GridColumn Incomplete;
     }
 }

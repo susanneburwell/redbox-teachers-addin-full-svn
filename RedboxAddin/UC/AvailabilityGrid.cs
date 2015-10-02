@@ -648,6 +648,11 @@ namespace RedboxAddin.UC
                         {
                             string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
                             if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
+                            else
+                            {
+                                string incom = gridView1.GetRowCellValue(myRow, "Incomplete").ToString();
+                                if (incom == "True") e.Appearance.BackColor = System.Drawing.Color.LightBlue;
+                            }
                         }
                         return;
                         break;
