@@ -77,6 +77,12 @@
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpTo.Properties.DisplayFormat.FormatString = "ddd dd MMM yyyy";
+            this.dtpTo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpTo.Properties.EditFormat.FormatString = "ddd dd MMM yyyy";
+            this.dtpTo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpTo.Properties.Mask.EditMask = "ddd dd MMM yyyy";
+            this.dtpTo.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.dtpTo.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtpTo.Size = new System.Drawing.Size(212, 20);
@@ -93,6 +99,12 @@
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFrom.Properties.DisplayFormat.FormatString = "ddd dd MMM yyyy";
+            this.dtpFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpFrom.Properties.EditFormat.FormatString = "ddd dd MMM yyyy";
+            this.dtpFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpFrom.Properties.Mask.EditMask = "ddd dd MMM yyyy";
+            this.dtpFrom.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.dtpFrom.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtpFrom.Size = new System.Drawing.Size(212, 20);
@@ -162,7 +174,7 @@
             this.gvLongTermEditing.Name = "gvLongTermEditing";
             this.gvLongTermEditing.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Date, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.gvLongTermEditing.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvLongTermEditing_RowClick);
+            this.gvLongTermEditing.DoubleClick += new System.EventHandler(this.gvLongTermEditing_DoubleClick);
             // 
             // Date
             // 

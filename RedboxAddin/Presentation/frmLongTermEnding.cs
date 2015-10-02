@@ -1,4 +1,5 @@
-﻿using RedboxAddin.BL;
+﻿using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using RedboxAddin.BL;
 using RedboxAddin.DL;
 using System;
 using System.Collections.Generic;
@@ -54,25 +55,7 @@ namespace RedboxAddin.Presentation
             //dtpTo.DateTime = DateTime.Now;
             dtpFrom.DateTime = Utils.GetFirstDayoftheWeek(DateTime.Today);
             dtpTo.DateTime = dtpFrom.DateTime.AddDays(27);
-        }
-
-        private void gvLongTermEditing_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-                string masterbooking = gvLongTermEditing.GetRowCellValue(e.RowHandle, "MasterBookingID").ToString();
-                long id = Convert.ToInt64(masterbooking);
-                frmMasterBooking fq = new frmMasterBooking(id);
-                fq.Show();
-            }
-            catch (Exception ex)
-            {
-                Debug.DebugMessage(2, "Error in gvLongTermEditing_RowClick :- " + ex.Message);
-                Cursor.Current = Cursors.Default;
-            }
-            Cursor.Current = Cursors.Default;
-        }
+        }      
 
         private void dtpFrom_DateTimeChanged(object sender, EventArgs e)
         {
@@ -93,6 +76,29 @@ namespace RedboxAddin.Presentation
                 Debug.DebugMessage(2, "Error in FromTimechange :- " + ex.Message);
             }
 
+        }
+
+        private void gvLongTermEditing_DoubleClick(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                Point pt = gcLongTermEditing.PointToClient(Control.MousePosition);
+                GridHitInfo info = gvLongTermEditing.CalcHitInfo(pt);
+                if (info.InRow || info.InRowCell)
+                {
+                    string masterbooking = gvLongTermEditing.GetRowCellValue(info.RowHandle, "MasterBookingID").ToString();
+                    long id = Convert.ToInt64(masterbooking);
+                    frmMasterBooking fq = new frmMasterBooking(id);
+                    fq.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in gvLongTermEditing_DoubleClick :- " + ex.Message);
+            }
+
+            Cursor.Current = Cursors.Default;
         }
 
     }
