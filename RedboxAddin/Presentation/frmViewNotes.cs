@@ -24,7 +24,7 @@ namespace RedboxAddin.Presentation
             try
             {
                 string fromdate = dtpFrom.DateTime.ToString("yyyyMMdd");
-                string todate = dtpTo.DateTime.ToString("yyyyMMdd");
+                string todate = dtpTo.DateTime.AddDays(1).ToString("yyyyMMdd");
                 DataSet noteDS = new DBManager().GetNotes(fromdate, todate);
                 if (noteDS != null)
                 {

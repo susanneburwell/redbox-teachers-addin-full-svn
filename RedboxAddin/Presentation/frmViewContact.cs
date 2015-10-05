@@ -1599,7 +1599,7 @@ namespace RedboxAddin.Presentation
 
             if (isAnyChanges)
             {
-                var result = MessageBox.Show("Some note changes are not yet saved.  Do you want to save changes?", "Redbox Addin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show("Note changes are not yet saved.  Do you want to save changes?", "Redbox Addin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
                     SaveContact();
