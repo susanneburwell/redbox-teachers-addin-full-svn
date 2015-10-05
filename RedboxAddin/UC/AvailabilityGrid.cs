@@ -691,7 +691,7 @@ namespace RedboxAddin.UC
                             e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
                             break;
                         case "gree": //guaranteed
-                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;                            
                             break;
                         case "blue": //guaranteed and incomplete
                             e.Appearance.BackColor = System.Drawing.Color.LightBlue;

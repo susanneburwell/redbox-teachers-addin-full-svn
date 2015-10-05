@@ -1779,7 +1779,7 @@ namespace RedboxAddin.DL
             }
         }
 
-        public DataSet GetAllContacts()
+        private DataSet GetAllContacts()
         {
             try
             {
@@ -3757,6 +3757,81 @@ namespace RedboxAddin.DL
                 }
             }
 
+        }
+
+        public void MigrateNotes()
+        {
+            DataSet dsNotes = GetAllNotesForMigrate();
+            DataSet dsContactsNotes = GetAllContacts();
+            try
+            {
+                foreach (DataTable table in dsContactsNotes.Tables)
+                {
+                    foreach (DataRow dr in table.Rows)
+                    {
+                        long id = Int64.Parse(dr["contactID"].ToString());
+                        string note = dr["Notes"].ToString();
+
+                        DataRow[] foundRows;
+                        foundRows = dsNotes.Tables[0].Select("ContactID = " + id);
+                        if (foundRows.Count() == 0)
+                        {
+                            SaveMigrateNote(id, note);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in MigrateNotes :- " + ex.Message);
+            }
+
+        }
+
+        public void SaveMigrateNote(long ContactID, string note)
+        {
+            try
+            {
+                string sqlStr = "INSERT INTO tblNotes ("
+                    + "ContactID,"
+                    + "DateTime,"
+                    + "Text,"
+                    + "SchoolID ) VALUES(@ContactID,@DateTime,@Text,@SchoolID) ";
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ContactID", SqlDbType.BigInt);
+                CmdAddContact.Parameters.Add("@DateTime", SqlDbType.DateTime);
+                CmdAddContact.Parameters.Add("@Text", SqlDbType.VarChar, -1);
+                CmdAddContact.Parameters.Add("@SchoolID", SqlDbType.BigInt);
+                CmdAddContact.Prepare();
+                CmdAddContact.Parameters["@ContactID"].Value = ContactID;
+                CmdAddContact.Parameters["@DateTime"].Value = DateTime.Now;
+                CmdAddContact.Parameters["@Text"].Value = note;
+                CmdAddContact.Parameters["@SchoolID"].Value = 0;
+                CmdAddContact.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in adding the reminder :- " + ex.Message);
+
+            }
+
+        }
+
+        private DataSet GetAllNotesForMigrate()
+        {
+            try
+            {
+                string sql = "SELECT ContactID"
+                            + " FROM tblNotes";
+                return GetDataSet(sql);
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetAllNotesForMigrate :- " + ex.Message);
+                return null;
+            }
         }
 
         private DateTime CheckDate(object value)

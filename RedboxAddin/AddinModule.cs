@@ -2080,13 +2080,11 @@ namespace RedboxAddin
         {
             try
             {
-                System.Data.DataSet ds = new System.Data.DataSet();
-                ds = new DBManager().GetAllContacts();
-
+                new DBManager().MigrateNotes();
             }
             catch (Exception ex)
             {
-
+                Debug.DebugMessage(2, "Error in MigrateNotesToNotesTable: " + ex.Message);
             }
         }
 
