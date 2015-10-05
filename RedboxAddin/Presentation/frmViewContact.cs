@@ -74,7 +74,7 @@ namespace RedboxAddin.Presentation
         {
             lblCVLocation.Text = "";
             this.repositoryItemPictureEdit1.Click += new EventHandler(Remove_Note);
-            LoadNoteGrid(CurrentContactID);            
+            LoadNoteGrid(CurrentContactID);
             if (CurrentContactID == 0) return;
             RContact contactObj = new DBManager().GetContact(this.CurrentContactID);
             if (contactObj == null)
@@ -1532,7 +1532,18 @@ namespace RedboxAddin.Presentation
         {
             try
             {
-                NotesTable.Rows.Add(note, schoolName, DateTime.Now.ToString(), 0, Properties.Resources._1360344418_101, Schoolid);
+                DataRow toInsert = NotesTable.NewRow();
+                toInsert[0] = note;
+                toInsert[1] = schoolName;
+                toInsert[2] = DateTime.Now.ToString();
+                toInsert[3] = 0;
+                toInsert[4] = Properties.Resources._1360344418_101;
+                toInsert[5] = schoolID;
+
+                // insert in the desired place
+                NotesTable.Rows.InsertAt(toInsert, 0);
+
+                //  NotesTable.Rows.Add(note, schoolName, DateTime.Now.ToString(), 0, Properties.Resources._1360344418_101, Schoolid);
 
             }
             catch (Exception ex)
@@ -1569,7 +1580,35 @@ namespace RedboxAddin.Presentation
                 return null;
             }
         }
-        
+
+        private void frmViewContact_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+
+            bool isAnyChanges = false;
+
+            foreach (DataRow dr in NotesTable.Rows)
+            {
+                if (dr["NoteID"].ToString() == "0")
+                {
+                    isAnyChanges = true;
+                }
+            }
+
+            if (!isAnyChanges) if (DeletedNotes.Count > 0) isAnyChanges = true;
+
+            if (isAnyChanges)
+            {
+                var result = MessageBox.Show("Some note changes are not yet saved.  Do you want to save changes?", "Redbox Addin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    SaveContact();
+                }
+            }
+
+            Cursor.Current = Cursors.Default;
+        }
+
 
 
     }

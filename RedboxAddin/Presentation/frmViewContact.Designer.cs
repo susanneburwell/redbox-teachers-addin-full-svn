@@ -239,6 +239,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.txtInterviewNotes = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.chkImcomplete = new System.Windows.Forms.CheckBox();
             this.txtSummary = new System.Windows.Forms.TextBox();
             this.label91 = new System.Windows.Forms.Label();
             this.chkWest = new System.Windows.Forms.CheckBox();
@@ -322,7 +323,6 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ofdCVLocation = new System.Windows.Forms.OpenFileDialog();
-            this.chkImcomplete = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -2726,6 +2726,19 @@
             this.tabPage5.Text = "Summary";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // chkImcomplete
+            // 
+            this.chkImcomplete.AutoSize = true;
+            this.chkImcomplete.Checked = true;
+            this.chkImcomplete.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkImcomplete.ForeColor = System.Drawing.Color.Purple;
+            this.chkImcomplete.Location = new System.Drawing.Point(491, 79);
+            this.chkImcomplete.Name = "chkImcomplete";
+            this.chkImcomplete.Size = new System.Drawing.Size(93, 20);
+            this.chkImcomplete.TabIndex = 93;
+            this.chkImcomplete.Text = "Incomplete";
+            this.chkImcomplete.UseVisualStyleBackColor = true;
+            // 
             // txtSummary
             // 
             this.txtSummary.Location = new System.Drawing.Point(24, 537);
@@ -3538,19 +3551,6 @@
             this.ofdCVLocation.FileName = "CV";
             this.ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
             // 
-            // chkImcomplete
-            // 
-            this.chkImcomplete.AutoSize = true;
-            this.chkImcomplete.Checked = true;
-            this.chkImcomplete.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkImcomplete.ForeColor = System.Drawing.Color.Purple;
-            this.chkImcomplete.Location = new System.Drawing.Point(491, 79);
-            this.chkImcomplete.Name = "chkImcomplete";
-            this.chkImcomplete.Size = new System.Drawing.Size(93, 20);
-            this.chkImcomplete.TabIndex = 93;
-            this.chkImcomplete.Text = "Incomplete";
-            this.chkImcomplete.UseVisualStyleBackColor = true;
-            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3562,6 +3562,7 @@
             this.Name = "frmViewContact";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Contact";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmViewContact_FormClosing);
             this.Load += new System.EventHandler(this.frmViewContact_Load);
             this.tableLayoutPanelContainer.ResumeLayout(false);
             this.tableLayoutPanelContainer.PerformLayout();
