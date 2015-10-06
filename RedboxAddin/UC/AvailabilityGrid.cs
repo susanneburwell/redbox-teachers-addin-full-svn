@@ -27,6 +27,7 @@ namespace RedboxAddin.UC
         public event EventHandler DblClick;
         public event EventHandler RepaintRequired;
         RedBoxDB db;
+        DateTime SelectedDate;
 
 
         public AvailabilityGrid()
@@ -56,6 +57,7 @@ namespace RedboxAddin.UC
                 int delta = DayOfWeek.Monday - input.DayOfWeek;
                 if (delta > 0) delta -= 7;
                 DateTime monday = input.AddDays(delta).Date;
+                SelectedDate = input;
 
                 //List<RedboxAddin.Models.RAvailability> msgDs = new DBManager().GetAvailability(monday, wheresql,sortDay);
                 //bindingSource1.DataSource = msgDs;
@@ -691,7 +693,7 @@ namespace RedboxAddin.UC
                             e.Appearance.BackColor = System.Drawing.Color.BurlyWood;
                             break;
                         case "gree": //guaranteed
-                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;                            
+                            e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
                             break;
                         case "blue": //guaranteed and incomplete
                             e.Appearance.BackColor = System.Drawing.Color.LightBlue;
@@ -739,8 +741,10 @@ namespace RedboxAddin.UC
 
                     }
 
-                    string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//added 29Sep2015
-                    if (myL == "1") e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                    string myL = gridView1.GetRowCellValue(myRow, "LTDays").ToString();//added 29Sep2015
+                    // if (myL == "1") e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                    if (Int32.Parse(myL) > 0) if (IsLongTerm(Int32.Parse(myL), e.Column.Caption))
+                            e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 
                 }
             }
@@ -748,6 +752,67 @@ namespace RedboxAddin.UC
             {
                 Debug.DebugMessage(2, "Error in gridView1_RowCellStyle: " + ex.Message);
             }
+        }
+
+        private bool IsLongTerm(int dayNumber, string caption)
+        {
+            bool res = false;
+            bool isMon = false;
+            bool isTue = false;
+            bool isWed = false;
+            bool isThu = false;
+            bool isFri = false;
+
+            int dayNumberCount = dayNumber;
+            try
+            {
+                if (dayNumberCount >= 16)
+                {
+                    isFri = true;
+                    dayNumberCount -= 16;
+                }
+
+                if (dayNumberCount >= 8)
+                {
+                    isThu = true;
+                    dayNumberCount -= 8;
+                }
+
+                if (dayNumberCount >= 4)
+                {
+                    isWed = true;
+                    dayNumberCount -= 4;
+                }
+
+                if (dayNumberCount >= 2)
+                {
+                    isTue = true;
+                    dayNumberCount -= 2;
+                }
+
+                if (dayNumberCount >= 1)
+                {
+                    isMon = true;
+                    dayNumberCount -= 1;
+                }
+
+                int delta = DayOfWeek.Monday - SelectedDate.DayOfWeek;
+                if (delta > 0) delta -= 7;
+                DateTime monday = SelectedDate.AddDays(delta).Date;               
+
+                if (caption == monday.ToString("ddd d MMM yy")) res = isMon;
+                if (caption == monday.AddDays(1).ToString("ddd d MMM yy")) res = isTue;
+                if (caption == monday.AddDays(2).ToString("ddd d MMM yy")) res = isWed;
+                if (caption == monday.AddDays(3).ToString("ddd d MMM yy")) res = isThu;
+                if (caption == monday.AddDays(4).ToString("ddd d MMM yy")) res = isFri;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in IsLongTerm: " + ex.Message);
+            }
+
+            return res;
         }
 
 

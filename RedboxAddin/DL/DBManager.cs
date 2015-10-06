@@ -590,14 +590,15 @@ namespace RedboxAddin.DL
                         }
                         else objAvail.LongTerm = "";
 
-                        //if (monType == "5" && tueType == "5" && wedType == "5" && thuType == "5" && friType == "5")
-                        //{
-                        //    objAvail.UnavailableStatus = "1";
-                        //}
-                        //else
-                        //    objAvail.UnavailableStatus = "";
+                        int longTermCount = 0;
+                        if (dr["MonLT"].ToString() == "True") longTermCount += 1;
+                        if (dr["TueLT"].ToString() == "True") longTermCount += 2;
+                        if (dr["WedLT"].ToString() == "True") longTermCount += 4;
+                        if (dr["ThuLT"].ToString() == "True") longTermCount += 8;
+                        if (dr["FriLT"].ToString() == "True") longTermCount += 16;
+                        objAvail.LTDays = longTermCount.ToString();
 
-                        //set order
+
                         objAvail.TeachersOrder = GetTeachersPriorityOrder(monType, tueType, wedType, thuType, friType, Incomplete).ToString();
 
 
