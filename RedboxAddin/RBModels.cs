@@ -5264,6 +5264,8 @@ namespace RedboxAddin
 		private bool _Accepted;
 		
 		private int _Type;
+
+        private string _Available;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5281,6 +5283,8 @@ namespace RedboxAddin
     partial void OnAcceptedChanged();
     partial void OnTypeChanging(int value);
     partial void OnTypeChanged();
+    partial void OnAMChanging(string value);
+    partial void OnAMChanged();
     #endregion
 		
 		public GuaranteedDay()
@@ -5407,6 +5411,26 @@ namespace RedboxAddin
 				}
 			}
 		}
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Available", DbType = "NVarChar(50)")]
+        public string Available
+        {
+            get
+            {
+                return this._Available;
+            }
+            set
+            {
+                if ((this._Available != value))
+                {
+                    this.OnAMChanging(value);
+                    this.SendPropertyChanging();
+                    this._Available = value;
+                    this.SendPropertyChanged("Available");
+                    this.OnAMChanged();
+                }
+            }
+        }
 		
 		public event PropertyChangingEventHandler PropertyChanging;
 		

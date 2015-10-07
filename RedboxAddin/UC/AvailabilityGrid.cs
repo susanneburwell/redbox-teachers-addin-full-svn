@@ -84,6 +84,7 @@ namespace RedboxAddin.UC
             {
                 gridView1.RestoreLayoutFromXml(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Davton\\" + "RedboxAddin" + "\\AvailabilityFormDump.xml");
                 TeachersOrder.Visible = false;
+                LTDays.Visible = false;
                 // added 29Sep2015
                 ResetSort();
             }
@@ -389,7 +390,7 @@ namespace RedboxAddin.UC
                         }
                     }
 
-                    if (rowInfo.Description.Trim() == "" || rowInfo.Description.Trim() == "Inc")
+                    if (rowInfo.Description.Trim() == "" || rowInfo.Description.Trim() == "AM" || rowInfo.Description.Trim() == "Inc" || rowInfo.Description.Trim() == "PM")
                     {
                         //This should work for ALL colours (maybe except orange - unavailable)
 
@@ -695,7 +696,7 @@ namespace RedboxAddin.UC
                         case "gree": //guaranteed
                             e.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
                             break;
-                        case "blue": //guaranteed and incomplete
+                        case "blue": //incomplete
                             e.Appearance.BackColor = System.Drawing.Color.LightBlue;
                             break;
                         case "pink": //texted
@@ -705,7 +706,9 @@ namespace RedboxAddin.UC
                             e.Appearance.BackColor = System.Drawing.Color.Orange;
                             break;
                         case "lgre": //unavailable
-                            e.Appearance.BackColor = System.Drawing.Color.PaleGreen;
+                            //e.Appearance.BackColor = System.Drawing.Color.PaleGreen; 
+                            e.Appearance.BackColor = GetColor(e.CellValue.ToString(), 1);
+                            e.Appearance.BackColor2 = GetColor(e.CellValue.ToString(), 2);
                             break;
                         case "pech": //unavailable
                             e.Appearance.BackColor = System.Drawing.Color.PeachPuff;
@@ -754,6 +757,30 @@ namespace RedboxAddin.UC
             }
         }
 
+        private Color GetColor(string cellText, int color)
+        {
+            Color color1 = Color.PaleGreen;
+            try
+            {
+                if (color == 1)
+                {
+                    if (cellText == "AM") color1 = Color.PaleGreen;
+                    if (cellText == "PM") color1 = Color.White;
+                }
+                else if (color == 2)
+                {
+                    if (cellText == "AM") color1 = Color.White;
+                    if (cellText == "PM") color1 = Color.PaleGreen;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in GetColor: " + ex.Message);
+            }
+
+            return color1;
+        }
+
         private bool IsLongTerm(int dayNumber, string caption)
         {
             bool res = false;
@@ -798,7 +825,7 @@ namespace RedboxAddin.UC
 
                 int delta = DayOfWeek.Monday - SelectedDate.DayOfWeek;
                 if (delta > 0) delta -= 7;
-                DateTime monday = SelectedDate.AddDays(delta).Date;               
+                DateTime monday = SelectedDate.AddDays(delta).Date;
 
                 if (caption == monday.ToString("ddd d MMM yy")) res = isMon;
                 if (caption == monday.AddDays(1).ToString("ddd d MMM yy")) res = isTue;
@@ -968,37 +995,40 @@ namespace RedboxAddin.UC
 
         private void OnPriorityClick(object sender, EventArgs e)
         {
-            SaveRequest(6);
+            SaveRequest(6, "");
             RefreshGrid();
         }
 
         private void OnOfferedClick(object sender, EventArgs e)
         {
-            SaveRequest(2);
+            SaveRequest(2, "");
             RefreshGrid();
         }
 
         private void OnGuaranteedClick(object sender, EventArgs e)
         {
-            SaveRequest(1);
+            SaveRequest(1, "");
             RefreshGrid();
         }
 
         private void OnUnavailableClick(object sender, EventArgs e)
         {
-            SaveRequest(5);
+            SaveRequest(5, "");
             RefreshGrid();
         }
 
         private void OnAvailableClick(object sender, EventArgs e)
         {
-            SaveRequest(4);
+            frmSelectAvailable frmnote = new frmSelectAvailable();
+            string available = frmnote.ShowDialogExt();
+
+            SaveRequest(4, available);
             RefreshGrid();
         }
 
         private void OnTextedRowClick(object sender, EventArgs e)
         {
-            SaveRequest(3);
+            SaveRequest(3, "");
             RefreshGrid();
         }
 
@@ -1018,7 +1048,7 @@ namespace RedboxAddin.UC
             }
         }
 
-        private bool SaveRequest(int type)
+        private bool SaveRequest(int type, string avilable)
         {
             try
             {
@@ -1031,6 +1061,7 @@ namespace RedboxAddin.UC
                 gd.Date = bookingDate;
                 gd.Note = "";
                 gd.TeacherID = Int64.Parse(teacherIDForANewBooking);
+                gd.Available = avilable;
 
                 //don't add twice
                 var numFound = db.GuaranteedDays.Count(g => g.Date == bookingDate && g.TeacherID == gd.TeacherID);
@@ -1046,7 +1077,8 @@ namespace RedboxAddin.UC
                         {
                             long guranteeID = Int64.Parse(dr["ID"].ToString());
                             long[] guID = new long[] { guranteeID };
-                            int response = dbm.UpdateGuarantee(guID, type);
+                            // int response = dbm.UpdateGuarantee(guID, type);
+                            dbm.UpdateGuaranteeByAvailabilitysheet(guranteeID, type, avilable);
                             break;
                         }
                 }

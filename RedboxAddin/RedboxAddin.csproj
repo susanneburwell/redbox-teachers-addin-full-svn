@@ -307,6 +307,12 @@
     <Compile Include="Presentation\frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmSelectAvailable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmSelectAvailable.Designer.cs">
+      <DependentUpon>frmSelectAvailable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmSendMailshot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -508,6 +514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmSelectAvailable.resx">
+      <DependentUpon>frmSelectAvailable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmSendMailshot.resx">
       <DependentUpon>frmSendMailshot.cs</DependentUpon>

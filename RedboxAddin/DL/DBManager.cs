@@ -679,6 +679,33 @@ namespace RedboxAddin.DL
                         else objAvail.FriColor += "o";
 
 
+                        //set the avilable text
+                        if (monType == "4")
+                        {
+                            string avilable = dr["MonAvailabla"].ToString();
+                            if (string.IsNullOrEmpty(objAvail.Monday)) objAvail.Monday = avilable;
+                        }
+                        if (tueType == "4")
+                        {
+                            string avilable = dr["TueAvailabla"].ToString();
+                            if (string.IsNullOrEmpty(objAvail.Tuesday)) objAvail.Tuesday = avilable;
+                        }
+                        if (wedType == "4")
+                        {
+                            string avilable = dr["WedAvailabla"].ToString();
+                            if (string.IsNullOrEmpty(objAvail.Wednesday)) objAvail.Wednesday = avilable;
+                        }
+                        if (thuType == "4")
+                        {
+                            string avilable = dr["ThuAvailabla"].ToString();
+                            if (string.IsNullOrEmpty(objAvail.Thursday)) objAvail.Thursday = avilable;
+                        }
+                        if (friType == "4")
+                        {
+                            string avilable = dr["FriAvailabla"].ToString();
+                            if (string.IsNullOrEmpty(objAvail.Friday)) objAvail.Friday = avilable;
+                        }
+
                         // set the incomplete text
                         if (string.IsNullOrEmpty(objAvail.Monday) && Incomplete) objAvail.Monday = "Inc";
                         if (string.IsNullOrEmpty(objAvail.Tuesday) && Incomplete) objAvail.Tuesday = "Inc";
@@ -2805,6 +2832,34 @@ namespace RedboxAddin.DL
 
         }
 
+        public void UpdateGuaranteeByAvailabilitysheet(long guaranteeID, int status, string available)
+        {
+            try
+            {
+                string sqlStr = "UPDATE GuaranteedDays SET"
+                + " Type = @Type,"
+                + " Available= @Available "
+                + " WHERE ID = @ID";
+
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Parameters.Add("@Type", SqlDbType.SmallInt);
+                CmdAddContact.Parameters.Add("@Available", SqlDbType.VarChar, 50);
+                CmdAddContact.Prepare();
+
+                CmdAddContact.Parameters["@ID"].Value = guaranteeID;
+                CmdAddContact.Parameters["@Type"].Value = status;
+                CmdAddContact.Parameters["@Available"].Value = available;
+                int a = CmdAddContact.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateGuaranteeByAvailabilitysheet :- " + ex.Message);
+            }
+
+        }
+
 
         public int DeleteGuarantee(long[] guaranteeIDs)
         {
@@ -4258,7 +4313,7 @@ namespace RedboxAddin.DL
                             "s1.LongTerm as MonLT, s2.LongTerm as TueLT, s3.LongTerm as WedLT, s4.LongTerm as ThuLT, s5.LongTerm  as FriLT, " +
                             "s1.Provisional as MonPr, s2.Provisional as TuePr, s3.Provisional as WedPr, s4.Provisional as ThuPr, s5.Provisional  as FriPr, " +
                             "g1.Acc as MonGA, g2.Acc as TueGA, g3.Acc as WedGA, g4.Acc as ThuGA, g5.Acc  as FriGA, " +
-                            "g1.Type1 as MonType, g2.Type1 as TueType, g3.Type1 as WedType, g4.Type1 as ThuType, g5.Type1 as FriType, ContactData.Actor " +
+                            "g1.Type1 as MonType, g2.Type1 as TueType, g3.Type1 as WedType, g4.Type1 as ThuType, g5.Type1 as FriType, ContactData.Actor, g1.Available1 as MonAvailabla, g2.Available1 as TueAvailabla, g3.Available1 as WedAvailabla, g4.Available1 as ThuAvailabla, g5.Available1 as FriAvailabla " +
                             "FROM [Contacts] " +
 
                             "LEFT JOIN [ContactData] " +
@@ -4281,7 +4336,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "SELECT COUNT(ID) as gar , TeacherID, MAX(Available) as Available1, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + monday + "' " +
                             "GROUP BY TeacherID " +
@@ -4303,7 +4358,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "SELECT COUNT(ID) as gar , TeacherID, MAX(Available) as Available1, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + tuesday + "' " +
                             "GROUP BY TeacherID " +
@@ -4326,7 +4381,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "SELECT COUNT(ID) as gar , TeacherID, MAX(Available) as Available1, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + wednesday + "' " +
                             "GROUP BY TeacherID " +
@@ -4349,7 +4404,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "SELECT COUNT(ID) as gar , TeacherID, MAX(Available) as Available1, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + thursday + "' " +
                             "GROUP BY TeacherID " +
@@ -4372,7 +4427,7 @@ namespace RedboxAddin.DL
 
                             "LEFT JOIN " +
                             "( " +
-                            "SELECT COUNT(ID) as gar , TeacherID, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
+                            "SELECT COUNT(ID) as gar , TeacherID, MAX(Available) as Available1, SUM(CASE WHEN Type = 2 THEN 1 ELSE 0 END) AS Acc, MAX(Type) AS Type1 " +
                             "FROM GuaranteedDays " +
                             "WHERE CONVERT(VARCHAR(10), GuaranteedDays.Date, 112) = '" + friday + "' " +
                             "GROUP BY TeacherID " +

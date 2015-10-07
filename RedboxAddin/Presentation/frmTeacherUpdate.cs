@@ -41,7 +41,7 @@ namespace RedboxAddin.Presentation
                 //PopulateTeacher(cmbTeacher);
                 Utils.PopulateTeacher(cmbTeacher, rdoLastName.Checked);
 
-                if (_teacherID != 0) LoadTeacherDates(_teacherID);              
+                if (_teacherID != 0) LoadTeacherDates(_teacherID);
 
                 TickAllDateCheckBoxes();
                 CheckForClashingDates();
@@ -152,6 +152,7 @@ namespace RedboxAddin.Presentation
                         gd.Note = txtDetails.Text;
                         gd.TeacherID = Utils.CheckLong(cmbTeacher.SelectedValue);
                         gd.Note = txtNotes.Text.Trim();
+                        gd.Available = GetAvailabalTime();
 
                         foreach (DayOfWeek day in listOfDays)
                         {
@@ -196,6 +197,26 @@ namespace RedboxAddin.Presentation
             {
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private string GetAvailabalTime()
+        {
+            string availabalTime = "";
+            try
+            {
+                if (radAvail.Checked)
+                {
+                    if (chkAM.Checked) availabalTime = "AM";
+                    if (chkPM.Checked) availabalTime = "PM";
+                    if (chkPM.Checked && chkAM.Checked) availabalTime = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Teacher Update: Error GetAvailabalTime: " + ex.Message);
+            }
+
+            return availabalTime;
         }
 
         public int UpdateBooking(long id, string description)
@@ -552,6 +573,20 @@ namespace RedboxAddin.Presentation
             frm.TopMost = true;
             frm.Show();
         }
+
+        private void radAvail_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radAvail.Checked)
+            {
+                chkAM.Visible = true;
+                chkPM.Visible = true;
+            }
+            else
+            {
+                chkAM.Visible = false;
+                chkPM.Visible = false;
+            }
+        }
     }
 
 
@@ -646,7 +681,10 @@ namespace RedboxAddin.Presentation
                         response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 3);
                         break;
                     case "Available":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 4);
+                        frmSelectAvailable frmnote = new frmSelectAvailable();//Added 07Oct2015
+                        string available = frmnote.ShowDialogExt();
+                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, available);
+                        //response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 4);
                         break;
                     case "Unavailable":
                         response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 5);
