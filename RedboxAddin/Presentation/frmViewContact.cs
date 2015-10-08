@@ -1542,9 +1542,7 @@ namespace RedboxAddin.Presentation
                 toInsert[5] = schoolID;
 
                 // insert in the desired place
-                NotesTable.Rows.InsertAt(toInsert, 0);
-
-                //  NotesTable.Rows.Add(note, schoolName, DateTime.Now.ToString(), 0, Properties.Resources._1360344418_101, Schoolid);
+                NotesTable.Rows.InsertAt(toInsert, 0);               
 
             }
             catch (Exception ex)
@@ -1620,13 +1618,13 @@ namespace RedboxAddin.Presentation
                 oMailItem.To = txtEmail.Text;
                 oMailItem.Subject = "Teacher CV";
                 oMailItem.Attachments.Add(CVLink, Outlook.OlAttachmentType.olByValue);
-                oMailItem.Display(true);
+                oMailItem.Display(false);
             }
             catch (Exception ex)
             {
                 if (!System.IO.File.Exists(CVLink))
                 {
-                    MessageBox.Show("CV is not exist", "Redbox Addin");
+                    MessageBox.Show("CV is not exist", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 Debug.DebugMessage(2, "Error in btnEmailCV_Click -: " + ex.Message);
             }
