@@ -34,8 +34,6 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnDblBkgs = new System.Windows.Forms.Button();
             this.grpAvailability = new System.Windows.Forms.GroupBox();
-            this.chkPM = new System.Windows.Forms.CheckBox();
-            this.chkAM = new System.Windows.Forms.CheckBox();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.chkFri = new System.Windows.Forms.CheckBox();
@@ -88,6 +86,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.flashtimer1 = new System.Windows.Forms.Timer(this.components);
+            this.radAvailAM = new System.Windows.Forms.RadioButton();
+            this.radAvailPM = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.grpAvailability.SuspendLayout();
@@ -149,8 +149,8 @@
             // 
             // grpAvailability
             // 
-            this.grpAvailability.Controls.Add(this.chkPM);
-            this.grpAvailability.Controls.Add(this.chkAM);
+            this.grpAvailability.Controls.Add(this.radAvailPM);
+            this.grpAvailability.Controls.Add(this.radAvailAM);
             this.grpAvailability.Controls.Add(this.txtNotes);
             this.grpAvailability.Controls.Add(this.dtFrom);
             this.grpAvailability.Controls.Add(this.chkFri);
@@ -181,28 +181,6 @@
             this.grpAvailability.TabIndex = 20;
             this.grpAvailability.TabStop = false;
             this.grpAvailability.Text = "Log new Availability";
-            // 
-            // chkPM
-            // 
-            this.chkPM.AutoSize = true;
-            this.chkPM.Location = new System.Drawing.Point(649, 48);
-            this.chkPM.Name = "chkPM";
-            this.chkPM.Size = new System.Drawing.Size(44, 20);
-            this.chkPM.TabIndex = 124;
-            this.chkPM.Text = "PM";
-            this.chkPM.UseVisualStyleBackColor = true;
-            this.chkPM.Visible = false;
-            // 
-            // chkAM
-            // 
-            this.chkAM.AutoSize = true;
-            this.chkAM.Location = new System.Drawing.Point(604, 48);
-            this.chkAM.Name = "chkAM";
-            this.chkAM.Size = new System.Drawing.Size(45, 20);
-            this.chkAM.TabIndex = 123;
-            this.chkAM.Text = "AM";
-            this.chkAM.UseVisualStyleBackColor = true;
-            this.chkAM.Visible = false;
             // 
             // txtNotes
             // 
@@ -357,8 +335,7 @@
             this.radAvail.Size = new System.Drawing.Size(76, 20);
             this.radAvail.TabIndex = 28;
             this.radAvail.Text = "available";
-            this.radAvail.UseVisualStyleBackColor = false;
-            this.radAvail.CheckedChanged += new System.EventHandler(this.radAvail_CheckedChanged);
+            this.radAvail.UseVisualStyleBackColor = false;           
             // 
             // radTexted
             // 
@@ -743,6 +720,28 @@
             this.flashtimer1.Interval = 500;
             this.flashtimer1.Tick += new System.EventHandler(this.flashtimer1_Tick);
             // 
+            // radAvailAM
+            // 
+            this.radAvailAM.AutoSize = true;
+            this.radAvailAM.BackColor = System.Drawing.Color.LightGreen;
+            this.radAvailAM.Location = new System.Drawing.Point(606, 48);
+            this.radAvailAM.Name = "radAvailAM";
+            this.radAvailAM.Size = new System.Drawing.Size(98, 20);
+            this.radAvailAM.TabIndex = 123;
+            this.radAvailAM.Text = "available AM";
+            this.radAvailAM.UseVisualStyleBackColor = false;
+            // 
+            // radAvailPM
+            // 
+            this.radAvailPM.AutoSize = true;
+            this.radAvailPM.BackColor = System.Drawing.Color.LightGreen;
+            this.radAvailPM.Location = new System.Drawing.Point(606, 74);
+            this.radAvailPM.Name = "radAvailPM";
+            this.radAvailPM.Size = new System.Drawing.Size(97, 20);
+            this.radAvailPM.TabIndex = 124;
+            this.radAvailPM.Text = "available PM";
+            this.radAvailPM.UseVisualStyleBackColor = false;
+            // 
             // frmTeacherUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -830,7 +829,7 @@
         private System.Windows.Forms.CheckBox chkMon;
         private System.Windows.Forms.Label lblDays;
         private System.Windows.Forms.RadioButton radPriority;
-        private System.Windows.Forms.CheckBox chkPM;
-        private System.Windows.Forms.CheckBox chkAM;
+        private System.Windows.Forms.RadioButton radAvailPM;
+        private System.Windows.Forms.RadioButton radAvailAM;
     }
 }

@@ -1029,7 +1029,7 @@ namespace RedboxAddin.DL
             {
                 try
                 {
-                    string SQLstr = "SELECT [ID],[Date],[Note],[Accepted],[Type] " +
+                    string SQLstr = "SELECT [ID],[Date],[Note],[Accepted],[Type],[Available] " +
                                     "FROM [GuaranteedDays] " +
                                     "Where [TeacherID] = '" + teacherID.ToString() + "' ";
                     DataSet msgDs = GetDataSet(SQLstr + DateSQL);
@@ -1045,6 +1045,7 @@ namespace RedboxAddin.DL
                             tDay.Details = Utils.CheckString(dr["Note"]);
                             //tDay.Status = (Utils.CheckBool(dr["Accepted"])) ? "Accepted" : "Offered";
                             tDay.Type = Utils.CheckInt(dr["Type"]);
+                            string available = Utils.CheckString(dr["Available"]);
 
                             switch (tDay.Type)
                             {
@@ -1062,7 +1063,9 @@ namespace RedboxAddin.DL
                                     break;
                                 case 4:
                                     tDay.Text = "Availability";
-                                    tDay.Status = "Available";
+                                    if (available == "AM") tDay.Status = "Available AM";
+                                    else if (available == "PM") tDay.Status = "Available PM";
+                                    else tDay.Status = "Available";
                                     break;
                                 case 5:
                                     tDay.Text = "Availability";

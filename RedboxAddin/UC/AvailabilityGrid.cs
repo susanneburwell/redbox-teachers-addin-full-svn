@@ -976,6 +976,10 @@ namespace RedboxAddin.UC
                 subMenu.Items.Add(textedRow);
                 DXMenuItem availableRow = new DXMenuItem("&Available", new EventHandler(OnAvailableClick), imageList.Images[2]);
                 subMenu.Items.Add(availableRow);
+                DXMenuItem availableRowAM = new DXMenuItem("&Available AM", new EventHandler(OnAvailableAMClick), imageList.Images[2]);
+                subMenu.Items.Add(availableRowAM);
+                DXMenuItem availableRowPM = new DXMenuItem("&Available PM", new EventHandler(OnAvailablePMClick), imageList.Images[2]);
+                subMenu.Items.Add(availableRowPM);
                 DXMenuItem unavailableRow = new DXMenuItem("&Unavailable", new EventHandler(OnUnavailableClick), imageList.Images[6]);
                 subMenu.Items.Add(unavailableRow);
                 DXMenuItem guaranteedRow = new DXMenuItem("&Guaranteed", new EventHandler(OnGuaranteedClick), imageList.Images[3]);
@@ -991,6 +995,18 @@ namespace RedboxAddin.UC
             }
 
             return subMenu;
+        }
+
+        private void OnAvailablePMClick(object sender, EventArgs e)
+        {
+            SaveRequest(4, "PM");
+            RefreshGrid();
+        }
+
+        private void OnAvailableAMClick(object sender, EventArgs e)
+        {
+            SaveRequest(4, "AM");
+            RefreshGrid();
         }
 
         private void OnPriorityClick(object sender, EventArgs e)
@@ -1019,10 +1035,7 @@ namespace RedboxAddin.UC
 
         private void OnAvailableClick(object sender, EventArgs e)
         {
-            frmSelectAvailable frmnote = new frmSelectAvailable();
-            string available = frmnote.ShowDialogExt();
-
-            SaveRequest(4, available);
+            SaveRequest(4, "");
             RefreshGrid();
         }
 

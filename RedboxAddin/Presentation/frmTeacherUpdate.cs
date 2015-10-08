@@ -145,6 +145,8 @@ namespace RedboxAddin.Presentation
                         if (radGuaranteed.Checked) gd.Type = 2;
                         if (radTexted.Checked) gd.Type = 3;
                         if (radAvail.Checked) gd.Type = 4;
+                        if (radAvailAM.Checked) gd.Type = 4;
+                        if (radAvailPM.Checked) gd.Type = 4;
                         if (radUnavail.Checked) gd.Type = 5;
                         if (radPriority.Checked) gd.Type = 6;
 
@@ -204,12 +206,10 @@ namespace RedboxAddin.Presentation
             string availabalTime = "";
             try
             {
-                if (radAvail.Checked)
-                {
-                    if (chkAM.Checked) availabalTime = "AM";
-                    if (chkPM.Checked) availabalTime = "PM";
-                    if (chkPM.Checked && chkAM.Checked) availabalTime = "";
-                }
+                if (radAvailAM.Checked) availabalTime = "AM";
+                if (radAvailPM.Checked) availabalTime = "PM";
+                if (radAvail.Checked) availabalTime = "";
+
             }
             catch (Exception ex)
             {
@@ -573,20 +573,6 @@ namespace RedboxAddin.Presentation
             frm.TopMost = true;
             frm.Show();
         }
-
-        private void radAvail_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radAvail.Checked)
-            {
-                chkAM.Visible = true;
-                chkPM.Visible = true;
-            }
-            else
-            {
-                chkAM.Visible = false;
-                chkPM.Visible = false;
-            }
-        }
     }
 
 
@@ -636,6 +622,8 @@ namespace RedboxAddin.Presentation
                 Items.Add(CreateMenuItem("Guarantee Accepted", imageList.Images[acct], "Accepted", true));
                 Items.Add(CreateMenuItem("Texted", imageList.Images[acct], "Texted", true));
                 Items.Add(CreateMenuItem("Available", imageList.Images[acct], "Available", true));
+                Items.Add(CreateMenuItem("Available AM", imageList.Images[acct], "Available AM", true));
+                Items.Add(CreateMenuItem("Available PM", imageList.Images[acct], "Available PM", true));
                 Items.Add(CreateMenuItem("Unavailable", imageList.Images[acct], "Unavailable", true));
                 Items.Add(CreateMenuItem("Priority", imageList.Images[acct], "Priority", true));//Ask
                 Items.Add(CreateMenuItem("Delete", imageList.Images[conf], "Delete", true));
@@ -681,10 +669,15 @@ namespace RedboxAddin.Presentation
                         response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 3);
                         break;
                     case "Available":
-                        frmSelectAvailable frmnote = new frmSelectAvailable();//Added 07Oct2015
-                        string available = frmnote.ShowDialogExt();
-                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, available);
+                        //Added 07Oct2015                      
+                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, "");
                         //response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 4);
+                        break;
+                    case "Available AM":
+                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, "AM");
+                        break;
+                    case "Available PM":
+                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, "PM");
                         break;
                     case "Unavailable":
                         response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 5);
