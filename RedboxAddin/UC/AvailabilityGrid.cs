@@ -650,12 +650,11 @@ namespace RedboxAddin.UC
                         else
                         {
                             string myL = gridView1.GetRowCellValue(myRow, "LongTerm").ToString();//ASK
-                            if (myL == "1") e.Appearance.BackColor = System.Drawing.Color.Violet;
-                            else
-                            {
-                                string incom = gridView1.GetRowCellValue(myRow, "Incomplete").ToString();
-                                if (incom == "True") e.Appearance.BackColor = System.Drawing.Color.LightBlue;
-                            }
+                            if (myL == "1") e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+
+                            string incom = gridView1.GetRowCellValue(myRow, "Incomplete").ToString();
+                            if (incom == "True") e.Appearance.BackColor = System.Drawing.Color.LightBlue;
+
                         }
                         return;
                         break;
@@ -744,8 +743,7 @@ namespace RedboxAddin.UC
 
                     }
 
-                    string myL = gridView1.GetRowCellValue(myRow, "LTDays").ToString();//added 29Sep2015
-                    // if (myL == "1") e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                    string myL = gridView1.GetRowCellValue(myRow, "LTDays").ToString();//added 29Sep2015                
                     if (Int32.Parse(myL) > 0) if (IsLongTerm(Int32.Parse(myL), e.Column.Caption))
                             e.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 
