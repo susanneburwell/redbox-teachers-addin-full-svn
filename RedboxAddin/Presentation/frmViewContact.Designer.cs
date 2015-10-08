@@ -323,6 +323,7 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ofdCVLocation = new System.Windows.Forms.OpenFileDialog();
+            this.btnEmailCV = new System.Windows.Forms.Button();
             this.tableLayoutPanelContainer.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -2032,6 +2033,7 @@
             // 
             // grpCVLink
             // 
+            this.grpCVLink.Controls.Add(this.btnEmailCV);
             this.grpCVLink.Controls.Add(this.btnSetCV);
             this.grpCVLink.Controls.Add(this.lblCVLocation);
             this.grpCVLink.Controls.Add(this.btnOpenCV);
@@ -2056,15 +2058,15 @@
             // lblCVLocation
             // 
             this.lblCVLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCVLocation.Location = new System.Drawing.Point(282, 11);
+            this.lblCVLocation.Location = new System.Drawing.Point(364, 11);
             this.lblCVLocation.Name = "lblCVLocation";
-            this.lblCVLocation.Size = new System.Drawing.Size(678, 18);
+            this.lblCVLocation.Size = new System.Drawing.Size(596, 18);
             this.lblCVLocation.TabIndex = 76;
             this.lblCVLocation.Text = "[location]";
             // 
             // btnOpenCV
             // 
-            this.btnOpenCV.Location = new System.Drawing.Point(201, 11);
+            this.btnOpenCV.Location = new System.Drawing.Point(283, 11);
             this.btnOpenCV.Name = "btnOpenCV";
             this.btnOpenCV.Size = new System.Drawing.Size(75, 23);
             this.btnOpenCV.TabIndex = 78;
@@ -3551,6 +3553,16 @@
             this.ofdCVLocation.FileName = "CV";
             this.ofdCVLocation.Filter = "CV files (*.pdf;*.doc,*.docx)|*.pdf;*.doc;*.docx";
             // 
+            // btnEmailCV
+            // 
+            this.btnEmailCV.Location = new System.Drawing.Point(202, 11);
+            this.btnEmailCV.Name = "btnEmailCV";
+            this.btnEmailCV.Size = new System.Drawing.Size(75, 23);
+            this.btnEmailCV.TabIndex = 79;
+            this.btnEmailCV.Text = "Email CV";
+            this.btnEmailCV.UseVisualStyleBackColor = true;
+            this.btnEmailCV.Click += new System.EventHandler(this.btnEmailCV_Click);
+            // 
             // frmViewContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3909,5 +3921,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSchoolID;
         private System.Windows.Forms.GroupBox grpCVLink;
         private System.Windows.Forms.CheckBox chkImcomplete;
+        private System.Windows.Forms.Button btnEmailCV;
     }
 }

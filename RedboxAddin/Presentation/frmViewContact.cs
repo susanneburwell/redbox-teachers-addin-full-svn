@@ -13,6 +13,7 @@ using Microsoft.Office.Interop.Outlook;
 using Exception = System.Exception;
 using Redemption;
 using System.Runtime.InteropServices;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace RedboxAddin.Presentation
 {
@@ -1607,6 +1608,29 @@ namespace RedboxAddin.Presentation
             }
 
             Cursor.Current = Cursors.Default;
+        }
+
+        private void btnEmailCV_Click(object sender, EventArgs e)
+        {
+            string CVLink = lblCVLocation.Text;
+            try
+            {
+                Outlook.Application oApp = new Outlook.Application();
+                Outlook.MailItem oMailItem = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
+                oMailItem.To = txtEmail.Text;
+                oMailItem.Subject = "Teacher CV";
+                oMailItem.Attachments.Add(CVLink, Outlook.OlAttachmentType.olByValue);
+                oMailItem.Display(true);
+            }
+            catch (Exception ex)
+            {
+                if (!System.IO.File.Exists(CVLink))
+                {
+                    MessageBox.Show("CV is not exist", "Redbox Addin");
+                }
+                Debug.DebugMessage(2, "Error in btnEmailCV_Click -: " + ex.Message);
+            }
+
         }
 
 
