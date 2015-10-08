@@ -2835,6 +2835,42 @@ namespace RedboxAddin.DL
 
         }
 
+        public int UpdateGuaranteeByTeacherUpdate(long[] guaranteeIDs, int status, string available)
+        {
+            int numUpdated = 0;
+            try
+            {               
+
+                string sqlStr = "UPDATE GuaranteedDays SET"
+                + " Type = @Type,"
+                + " Available= @Available "
+                + " WHERE ID = @ID";
+
+
+                DBManager.OpenDBConnection();
+                var CmdAddContact = new SqlCommand(sqlStr, DBManager._DBConn);
+                CmdAddContact.Parameters.Add("@ID", SqlDbType.BigInt);
+                CmdAddContact.Parameters.Add("@Type", SqlDbType.SmallInt);
+                CmdAddContact.Parameters.Add("@Available", SqlDbType.VarChar, 50);
+                CmdAddContact.Prepare();
+
+                foreach (long id in guaranteeIDs)
+                {
+                    CmdAddContact.Parameters["@ID"].Value = id;
+                    CmdAddContact.Parameters["@Type"].Value = status;
+                    CmdAddContact.Parameters["@Available"].Value = available;
+                    numUpdated += CmdAddContact.ExecuteNonQuery();
+                }
+                return numUpdated;
+            }
+            catch (Exception ex)
+            {
+                Debug.DebugMessage(2, "Error in UpdateGuarantee :- " + ex.Message);
+                return numUpdated;
+            }
+
+        }
+
         public void UpdateGuaranteeByAvailabilitysheet(long guaranteeID, int status, string available)
         {
             try

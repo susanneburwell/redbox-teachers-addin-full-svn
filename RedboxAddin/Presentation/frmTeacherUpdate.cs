@@ -660,30 +660,33 @@ namespace RedboxAddin.Presentation
                 switch (status)
                 {
                     case "Offered":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 1);
+                        //response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 1);
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 1, "");   
                         break;
                     case "Accepted":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 2);
+                        //response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 2);
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 2, "");   
                         break;
                     case "Texted":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 3);
+                       // response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 3);
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 3, "");   
                         break;
-                    case "Available":
-                        //Added 07Oct2015                      
-                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, "");
-                        //response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 4);
+                    case "Available":                                              
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 4, "");                      
                         break;
                     case "Available AM":
-                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, "AM");
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 4, "AM");
                         break;
                     case "Available PM":
-                        dbm.UpdateGuaranteeByAvailabilitysheet(_rowInfo.SelectedRows[0], 4, "PM");
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 4, "PM");
                         break;
                     case "Unavailable":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 5);
+                       // response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 5);
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 5, "");   
                         break;
                     case "Priority":
-                        response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 6);
+                       // response = dbm.UpdateGuarantee(_rowInfo.SelectedRows, 6);
+                        dbm.UpdateGuaranteeByTeacherUpdate(_rowInfo.SelectedRows, 6, "");   
                         break;
                     case "Delete":
                         response = dbm.DeleteGuarantee(_rowInfo.SelectedRows);
