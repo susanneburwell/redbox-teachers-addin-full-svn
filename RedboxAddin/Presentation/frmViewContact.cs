@@ -1542,7 +1542,7 @@ namespace RedboxAddin.Presentation
                 toInsert[5] = schoolID;
 
                 // insert in the desired place
-                NotesTable.Rows.InsertAt(toInsert, 0);               
+                NotesTable.Rows.InsertAt(toInsert, 0);
 
             }
             catch (Exception ex)
@@ -1615,7 +1615,27 @@ namespace RedboxAddin.Presentation
             {
                 Outlook.Application oApp = new Outlook.Application();
                 Outlook.MailItem oMailItem = (Outlook.MailItem)oApp.CreateItem(Outlook.OlItemType.olMailItem);
-                oMailItem.To = txtEmail.Text;
+
+                Recipients oRecips = oMailItem.Recipients;
+                List<string> sBCCRecipsList = new List<string>();
+
+                // get all schol emails
+                //DataSet dsSchools = new DBManager().GetSchooltContacts();
+                //foreach (DataRow dr in dsSchools.Tables[0].Rows)
+                //{
+                //    string email = dr["VettingEmails"].ToString();
+                //    if (!string.IsNullOrEmpty(email))
+                //        sBCCRecipsList.Add(email);
+                //}
+
+                // set school email to BCC
+                //foreach (string t in sBCCRecipsList)
+                //{
+                //    Recipient oCCRecip = oRecips.Add(t);
+                //    oCCRecip.Type = (int)OlMailRecipientType.olBCC;
+                //    oCCRecip.Resolve();
+                //}
+
                 oMailItem.Subject = "Teacher CV";
                 oMailItem.Attachments.Add(CVLink, Outlook.OlAttachmentType.olByValue);
                 oMailItem.Display(false);
@@ -1624,7 +1644,7 @@ namespace RedboxAddin.Presentation
             {
                 if (!System.IO.File.Exists(CVLink))
                 {
-                    MessageBox.Show("CV is not exist", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No CV saved to record.", "Redbox Addin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 Debug.DebugMessage(2, "Error in btnEmailCV_Click -: " + ex.Message);
             }
