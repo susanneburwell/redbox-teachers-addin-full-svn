@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-  <Product Id="*" Name="RedboxAddin 2.0.109" Language="1033" Version="2.0.109" Manufacturer="Davton" UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" Codepage="1252">
+  <Product Id="*" Name="RedboxAddin 2.0.110" Language="1033" Version="2.0.110" Manufacturer="Davton" UpgradeCode="e2f9be08-48e8-41d2-92b2-080c14a2e85d" Codepage="1252">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" Description="RedboxAddin" Manufacturer="Davton" Languages="1033" SummaryCodepage="1252" InstallPrivileges="limited" />
     <CustomAction Id="PreventDowngrading" Error="Newer version already installed." />
     <InstallUISequence>
@@ -90,9 +90,10 @@
         <File Id="_DevExpress_XtraGrid_v11_2_dll" Name="DevExpress.XtraGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
         <File Id="_DevExpress_XtraLayout_v11_2_dll" Name="DevExpress.XtraLayout.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraLayout.v11.2\11.2.11.0__b88d1754d700e49a\" />
         <File Id="_DevExpress_XtraPivotGrid_v11_2_dll" Name="DevExpress.XtraPivotGrid.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPivotGrid.v11.2\11.2.11.0__b88d1754d700e49a\" />
+        <File Id="_DevExpress.XtraPrinting_v11_2_dll" Name="DevExpress.XtraPrinting.v11.2.dll" Source="C:\Windows\assembly\GAC_MSIL\DevExpress.XtraPrinting.v11.2\11.2.11.0__b88d1754d700e49a\" />
         <File Id="_Microsoft_Vbe_Interop_dll" Name="Microsoft.Vbe.Interop.dll" Source="$(var.RedboxAddin.TargetDir)" />
         <File Id="_Office_dll" Name="Office.dll" Source="$(var.RedboxAddin.TargetDir)" />
-        <File Id="_RedboxAddin_dll_config" Name="RedboxAddin.dll.config" Source="$(var.RedboxAddin.TargetDir)" />       
+        <File Id="_RedboxAddin_dll_config" Name="RedboxAddin.dll.config" Source="$(var.RedboxAddin.TargetDir)" />
         <File Id="_Newtonsoft_Json_dll" Name="Newtonsoft.Json.dll" Source="$(var.RedboxAddin.TargetDir)" />
       </Component>
     </ComponentGroup>
